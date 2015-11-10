@@ -197,7 +197,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin-top:49px;
 	margin-bottom:50px;
 	background:#fff;
-	padding:50px;
+	padding:0;
 	float:left;
 	width: 100%;
 }
@@ -763,7 +763,7 @@ span.unidade{
 	text-decoration:underline;
 }
 /*SELECT PERSONALIZADO*/
-.selectInicial{
+/*.selectInicial{
 	background: url(../img/bgSelect.gif) right 10px no-repeat #ebebeb;
 	border-top:2px solid #dedede;
 	color:#454545;
@@ -784,7 +784,10 @@ span.unidade{
     border-top: 1px solid #fff;
 	display:none;
 	z-index:1;
-}
+}*/
+
+
+
 .dias .selectPersonalizado{
 	left:106px;
 	width:129px;
@@ -1478,10 +1481,10 @@ span.phone-img {
 /* min-width */ 
 @media screen and (max-width: 650px) { 
 	.wrap{
-		width:560px;
+		width:100%;
 	}
 	.divMiolo .divLogin{
-		width:460px;
+		width:100%;
 	}
 	.divMiolo .divLogin .infoLogin{
 		padding:33px 0 0 0;
@@ -2010,4 +2013,29 @@ span.phone-img {
     border-bottom: none;
     width: 519px;
     float: left;
+}
+
+.bt_add_novo{
+	margin-top: 10px;
+    border: 0;
+    background: none;
+    display: block;
+    float:left;
+    width: 15%;
+    padding-top: 15px;
+    height: 40px;
+    background-image:  url('../img/icoPagNext.png');
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+
+}
+
+.div_hide{
+	display: none;
+}
+
+.div_show{
+	display: block;
 }

@@ -34,6 +34,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\fonts \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\index - saude.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\index.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\plugins \
@@ -102,6 +103,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\index.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\jquery-1.11.3.min.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\jquery-ui.js \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\UIS.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\img\bgHeader.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\img\bgLista.gif \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\img\bgSelect.gif \
