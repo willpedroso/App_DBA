@@ -59,6 +59,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     float: left;
     clear: both;
     width: 100%;
+    min-height: 768px;
 }
 .wrap{
 	margin:0 auto;
@@ -67,8 +68,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .divHeader{
 	float:left;
 	width:100%;
-	background:url(../img/bgHeader.png) no-repeat 0 40px #fff;
-	height:183px;
+	/*background:url(../img/bgHeader.png) no-repeat 0 40px #fff;*/
 	position:relative;
 }
 .divHeader .logo a{
@@ -132,7 +132,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	float:left;
 	width:100%;
 	padding:0 0 12px 0;
-    margin: 43px 0 0 0;
+    margin: 0;
 	position:relative;
 	z-index:1;
 }
@@ -253,7 +253,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 
 .wrapInternas{
 	margin:0 auto;
-	width:100%;
+	width: 32%;
 }
 .divInternas{
 	padding:30px 30px 30px 50px;
@@ -491,8 +491,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .selectDefault .titExibir{
 	float:left;
 	width:176px;
-	text-align:right;
-	padding:0 5px 0 364px;
+	padding:0 5px 0 249px;
 	margin:8px 5px 0 0;
 }
 .selectDefault .titCadastro{
@@ -832,9 +831,7 @@ span.unidade{
 }
 .menuAbas li{
 	list-style:none;
-	display:inline;
 	background:#efefef;
-	float:left;
 	margin:0 5px 0 0;
 	padding:11px 18px 10px 18px;
 }
@@ -869,7 +866,6 @@ span.unidade{
 }
 .menuAbas li.active{
 	background:#fff;
-	border-top:5px solid #eb8202;
 	height:20px;
 	margin-top:-5px;
 }
@@ -1490,6 +1486,7 @@ span.phone-img {
 		padding:33px 0 0 0;
 	}
 	.wrapInternas .contentAba .alignRight{
+
 		clear:both;
 		margin:5px 0 0 0;
 	}
@@ -2032,10 +2029,53 @@ span.phone-img {
 
 }
 
+#container_abas{
+	width: 32%;
+}
+/*anima telas*/
 .div_hide{
 	display: none;
 }
 
 .div_show{
 	display: block;
+}
+.container_hide{
+    margin-left: -25%;
+    -webkit-transition: all 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: all 0.5s;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.container_show{
+     margin-left: 0;
+    -webkit-transition: all 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: all 0.5s;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+.button_aba{
+    height: 36px;
+	margin-top: 20px;
+	width: 79px;
+	background: none repeat scroll 0% 0% #EB8202;
+	border: medium none;
+	float: right;
+	color: #FFF;
+	padding: 8px 15px;
+	cursor: pointer;
+}
+
+.rotacao {
+
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+ 
+/* Firefox */
+-moz-transform: rotate(-90deg);
+ 
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
