@@ -1,24 +1,35 @@
-// anima abertura abas
+// console.log('inicio');
+// $(function (){
+//     $('#bt1').click(function abre(event){
+//        if($("#container_abas").hasClass("container_hide")){
 
-var bt1 =  document.getElementById('bt1');
-bt1.addEventListener('touchend',cliqueaba );
+//         console.log('classe é hide');
+//           $("#container_abas").addClass("container_show");
+//           $("#menu_abas").addClass("div_show");
 
-var container = document.getElementById('container_abas');
+//           console.log('trocou pra show');
+//         }else {}
 
-  function cliqueaba(event){
-    console.log("CLICK",container.className);
+//     });
+// });
 
-    if(event.target.id =='bt1'){
-        document.getElementById("menu_abas").setAttribute("class","div_show");
-      }
 
-      if(container.className == 'container_hide'){
-        document.getElementById("container_abas").setAttribute("class","container_show");
-    }else{
-        document.getElementById("container_abas").setAttribute("class","container_hide");
-    }
-     console.log(container.className)
+    // $('#bt1').click(function fecha(event){
+    //    if($("#container_abas").hasClass("container_show")){
 
-    if(container.className == 'container_hide'){
-        document.getElementById("menu_abas").setAttribute("class","div_show");
-      }
+    //     console.log('classe é show');
+    //       $("#container_abas").addClass("container_hide");
+    //       $("#menu_abas").addClass("div_hide");
+
+    //       console.log('trocou pra hide');
+    //     }else {}
+    // });
+$( document ).ready(function() {
+  $('#container_abas #bt1').click(function() {
+    $('#menu_abas').toggle();
+    $(this).parent().toggleClass('container_show');
+ });
+});
+
+
+

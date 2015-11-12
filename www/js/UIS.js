@@ -1103,12 +1103,15 @@ function salvarFormLogin()
          });
 // anima abertura abas
 
-var bt1 =  document.getElementById('bt1');
-bt1.addEventListener('touchend',cliqueaba );
-
+//var bt1 =  document.getElementById(bt1);
+//document.getElementById("bt1").addEventListener('CLICK', cliqueaba);
 var container = document.getElementById('container_abas');
 
-  function cliqueaba(event){
+//document.getElementById("bt1").addEventListener('CLICK', cliqueaba);
+// bt1.addEventListener('touchend',cliqueaba );
+//document.getElementById("bt1").addEventListener('CLICK', function (event) {
+jQuery("#bt1").click(function (event) {
+//  function cliqueaba(event){
     console.log("CLICK",container.className);
 
     if(event.target.id =='bt1'){
@@ -1129,4 +1132,4 @@ var container = document.getElementById('container_abas');
       }else{
 
       }
-    }
+    });

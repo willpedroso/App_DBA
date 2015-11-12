@@ -29,16 +29,16 @@
       <!--JS-->
       <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
       <script src="js/funcoes.js" type="text/javascript"></script>
-      <script src="js/UIS.js" type="text/javascript"></script>
+      <script src="js/anima.js" type="text/javascript"></script>
       <script src="js/jquery-ui.js" type="text/javascript"></script>
       <script src="js/jquery.mask.js" type="text/javascript"></script>
       <!--CSS-->
-      <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css">
+     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+      <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"> -->
       <link rel="stylesheet" href="css/estilos.css">
       <link rel="stylesheet" href="css/jquery-ui.css">
       <link rel="stylesheet" type="text/css" href="css/index.css">
-      <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+      <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
    </head>
    <title>De Braços Abertos</title>
    <body>
@@ -60,7 +60,7 @@
             <!-- fim menu topo -->
             <!--ABAS-->
             <div id="container_abas" class="container_hide" >
-               <button class="button_aba rotacao"   id="bt1" >ABAS</button>
+               <button class="button_aba rotacao" id="bt1" >ABAS</button>
                <div id="menu_abas" class="wrapInternas div_hide">
                   <ul class="menuAbas">
                      <li class="active noActive"><a href="?m=cidadao/identificacao" title="Identificação">Identificação</a></li>
@@ -107,9 +107,9 @@
                  <div class="linhaForm"> 
                     <input type="text" class="inputGrande" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
                     <input type="submit" class="btnAdicionar" value="Pesquisar">
-                    <input type="button" onclick="limpar()" class="btnAdicionar" value="Limpar">
+                   <!--  <input type="button" onclick="limpar()" class="btnAdicionar" value="Limpar"> -->
                  </div>
-                 <div class="linhaForm">
+                 <div class="linhaForm div_hide">
                     <div class="checkbox">
                        <span class="check active" value="checked"></span>
                        <p>Ativos</p>
