@@ -32,7 +32,7 @@ $('#bt_login').click(function(){
     hideTela('#div_login');
     showTela('#div_header');
     showTela('#container_abas');
-    showTela('#div_busca_inicio');
+    //showTela('#div_busca_inicio');
      console.log(array_Divs);
 });
 

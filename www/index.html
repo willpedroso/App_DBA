@@ -131,6 +131,56 @@
     <!-- incio paginas submenu ABAS -->
 
       <!-- IDENTIFICAÇÃO -->
+        <div class="menuFixo">
+          <p class="nomeSocial">
+          Nome Social: <strong>Adao</strong>
+          </p>
+          <p class="nomeCompleto">Nome Completo: <strong>ADAO CARLOS SANTOS RODRIGUES</strong>
+          </p>
+        </div>
+          <form id="formIdentificacao" action="actions/formIdentificacao/cadastrar.php" method="post" class="cadastro">
+             <fieldset>
+                <legend>Formulario Cadastro</legend>
+                <div class="contentAbaBorda">
+                   <div class="msgAtencao" style="display:none">
+                      <span class="ico"></span>
+                      <p>Atenção! Verifique os campos.</p>
+                   </div>
+                   <div class="msgParabens" style="display:none">
+                      <span class="ico"></span>
+                      <p>Operação realizada com sucesso.</p>
+                   </div>
+                   <div class="msgErro" style="display:none">
+                      <span class="ico"></span>
+                      <p>Erro ao processar as informações.</p>
+                   </div>
+                   <h3>IDENTIFICAÇÃO</h3>
+                   <div class="linhaForm"> 
+                      <span class="titLabel">Nome Completo:<br>(sem abreviação)</span>
+                      <input type="text" class="inputGrande" value="ADAO CARLOS SANTOS RODRIGUES" id="nome" name="nome">
+                   </div>
+                   <div class="linhaForm"> 
+                      <span class="titLabel">Nome Social:</span>
+                      <input type="text" class="inputGrande" value="Adao" name="nome_social">
+                   </div>
+                   <div class="linhaForm"> 
+                      <span class="titLabel">Nome da Mãe:</span>
+                      <input type="text" class="inputGrande" value="TEREZINHA DE JESUS SANTOS" id="nome_mae" name="nome_mae">
+                   </div>
+                   <div class="linhaForm"> 
+                      <span class="titLabel">Número SISA:</span>
+                      <input type="text" class="inputGrande" value="" name="sisrua">
+                   </div>
+                   <div class="linhaForm"> 
+                      <span class="titLabel">Data de Nascimento:<br>(dd/mm/aaaa)</span>
+                      <input type="text" class="inputPeq float-nn" value="11" id="dia_nascimento" name="dia_nascimento" placeholder="dia">
+                      /<input type="text" class="inputPeq float-nn" value="03" id="mes_nascimento" name="mes_nascimento" placeholder="mês">
+                      /<input type="text" class="inputPeq float-nn" value="1967" id="ano_nascimento" name="ano_nascimento" placeholder="ano">
+                   </div>
+                </div>
+                <input type="button" onclick="salvarFormIdentificacao()" class="btnAlterar" value="Salvar Alterações">
+             </fieldset>
+          </form>
       <!-- FIM IDENTIFICAÇÃO -->
 
       <!-- INFO BASICAS -->
