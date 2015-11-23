@@ -38,6 +38,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\index.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\plugins \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\teste.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css\estilos.css \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css\index.css \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css\jquery-ui.css \
@@ -59,6 +60,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\i-mail.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoBandeira-on.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoBandeira.png \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoCalendar.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoCheck-on.gif \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoCheck.gif \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img\icoEdit.png \

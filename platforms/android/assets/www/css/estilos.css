@@ -44,6 +44,7 @@ output, ruby, section, summary, time, mark, audio, video {
 	font-family:"Roboto", Arial;
 	font-size:14px;
 	color:#333333;
+	box-sizing:border-box;
 }
 
 ::-webkit-input-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:14px; }
@@ -59,7 +60,6 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     float: left;
     clear: both;
     width: 100%;
-    min-height: 768px;
 }
 .wrap{
 	margin:0 auto;
@@ -68,8 +68,6 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .divHeader{
 	float:left;
 	width:100%;
-	/*background:url(../img/bgHeader.png) no-repeat 0 40px #fff;*/
-	position:relative;
 }
 .divHeader .logo a{
 	text-indent:-9999px;
@@ -133,8 +131,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	width:100%;
 	padding:0 0 12px 0;
     margin: 0;
-	position:relative;
-	z-index:1;
+	height:64px;
 }
 .divHeader .divMenu ul{
     float: left;
@@ -150,13 +147,15 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .divHeader .divMenu ul li:last-child{
 	border-right:none;
 }
-.divHeader .divMenu ul li a{
+.divHeader .divMenu button{
     font-family: "Roboto", Arial;
-    font-size: 15px;
+    font-size: 28px;
     color: #fff;
     text-decoration: none;
-    padding: 8px 15px 8px 31px;
+    padding: 18px 100px 8px 121px;
     float: left;
+    background: none;
+    border: none;
 }
 .divHeader .divMenu ul li a.menuPainel{
 	background:url(../img/icoMenuPainel.png) no-repeat 0 3px;
@@ -172,12 +171,11 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 
 .divMiolo{
-	background:#e5e5e5;
 	float:left;
 	clear:both;
 	position:relative;
 	width:100%;
-	min-height:300px;
+	height:auto;
 	font-family:"Roboto", Arial;
 }
 .divMiolo h2{
@@ -188,7 +186,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin:15px 0 20px 35px;
 }
 .divMiolo .wrapLogin{
-	margin:0 auto;
+	margin:0;
 	width:93%;
 	overflow: hidden;
 }
@@ -243,12 +241,9 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 
 #container_form{
-	
-	width: 274px;
-	
-	overflow: hidden;
-	  margin-left: auto;
-  margin-right: auto;
+	width: 100%;
+	margin-left: auto;
+  	margin-right: auto;
 }
 
 .wrapInternas{
@@ -511,7 +506,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .linhaForm{
 	float:left;
 	clear:both;
-	margin:13px 0 0 0;
+	margin:13px 0 0 57px;
 	width:100%;
 }
 .linhaForm .readOnly{
@@ -558,12 +553,11 @@ span.unidade{
 	width:40px;
 }
 .contentAbaBorda{
-	border-top:#eb8202 5px solid;
-	background: #fff;
+    background: #fff;
     float: left;
-    width: 94%;
+    width: 100%;
     padding: 3%;
-	margin:8px 0 24px 0;
+    margin: 8px 0 0 52px;
 }
 .inputPeq{
 	background:#ebebeb;
@@ -577,6 +571,18 @@ span.unidade{
 	width:80px;
 	float:left;
 }
+/*.usuario{
+    height: 60px;
+    padding: 4px 16px 4px 16px;
+    margin-top: 16px;
+}
+
+.senha{
+    height: 60px;
+    padding: 4px 16px 4px 16px;
+    margin-top: 16px;
+}*/
+
 .inputMed{
 	background:#ebebeb;
     height: 32px;
@@ -597,7 +603,7 @@ span.unidade{
 	margin:10px 0 30px 270px;
 	clear:both;
 }
-.btnAdicionar{
+/*.btnAdicionar{
 	background:#eb8202;
 	border:none;
 	float:left;
@@ -605,7 +611,7 @@ span.unidade{
 	color:#fff;
 	padding:8px 20px 8px 20px;
 	cursor:pointer;
-}
+}*/
 .btnLupa{
 	background: url(../img/icoLupa.gif) no-repeat;
 	border:none;
@@ -620,14 +626,14 @@ span.unidade{
 }
 .inputGrande{
 	background:#ebebeb;
-    height: 32px;
+    height: 70px;
 	padding:0px 0 0 10px;
 	color: #454545;
 	border-top: 2px solid #dedede;
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:500px;
+	width:325px;
 	float:left;
 }
 .inputAdiciona{
@@ -833,16 +839,9 @@ span.unidade{
 	list-style:none;
 	background:#efefef;
 	margin:0 5px 0 0;
-	padding:11px 18px 10px 18px;
+    padding: 11px 0 10px 18px;	
 }
-.menuAbas li a{
-	float:left;
-	font-family:"Roboto", Arial;
-	font-size:14px;	
-	color:#b9b9b9;
-	padding:2px 0 0 4px;
-	text-decoration:none;
-}
+
 .menuAbas li .number{
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -860,27 +859,37 @@ span.unidade{
 	background:#eb8202;
 	margin:1px 0 0 0;
 }
-.menuAbas li.active a{
-	color:#eb8202;
-	padding:3px 0 0 4px;
-}
-.menuAbas li.active{
-	background:#fff;
-	height:20px;
-	margin-top:-5px;
+
+.active{
+    background: #F7F7F7;
+    height: 80px;
+    line-height: 27px;
+    /* margin-top: -5px; */
+    width: 100%;
+    padding: 3px 0 0 4px;
+    float: left;
+    font-family: "Roboto", Arial;
+    font-size: 24px;
+    color: #b9b9b9;
+    text-decoration: none;
+    /* background: #efefef; */
+    margin: 0 5px 0 0;
+    padding: 11px 18px 10px 18px;
+
 }
 .btnEntrar{
-	background: url(../img/icoEntrar.gif) right no-repeat #eb8202;
-	color:#fff;
-	font-family:"Roboto", Arial;
-	font-size:14px;
-	height:35px;
-	border:none;
-	padding:5px 50px 0 15px;
-	cursor:pointer;
-	margin:15px 10px 15px 0;
-	clear:both;
-	float:right;
+	background: #eb8202;
+	color: #fff;
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	height: 72px;
+	width: 176px;
+	border: none;
+	padding: 5px 32px 0 32px;
+	cursor: pointer;
+	margin: 15px 41px 15px 0;
+	clear: both;
+	float: right;
 }
 .btnAlterar{
 	font-family:"Roboto", Arial;
@@ -1102,29 +1111,29 @@ span.unidade{
 .divMiolo .divLogin form fieldset legend{
 	display:none;
 }
-.divMiolo .divLogin form input.usuario{
+.divLogin form input.usuario{
 	background: url(../img/icoUser.png) right no-repeat #ebebeb;
 	border-top:2px solid #dddddd;
 	color:#666666;
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:260px;
-	height:30px;
-	padding:0 0 0 10px;
+	width:360px;
+	height:70px;
+	padding:4px 16px 4px 16px;
 	float:left;
 	clear:both;	
 }
-.divMiolo .divLogin form input.senha{
+.divLogin form input.senha{
 	background: url(../img/icoPassword.png) right no-repeat #ebebeb;
 	border-top:2px solid #dddddd;
 	color:#666666;
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:260px;
-	height:30px;
-	padding:0 0 0 10px;
+	width:360px;
+	height:70px;
+	padding:4px 16px 4px 16px;
 	float:left;
 	clear:both;
 	margin:8px 0 0 0;
@@ -1178,70 +1187,7 @@ span.unidade{
 	margin-left: -10px;
 }
 
-/*FOOTER*/
 
-.divFooter {
-	background: #3a3a3a;
-	padding: 0px;
-	margin: 0 auto;
-	width: 100%;
-	height: auto;
-	overflow: hidden;
-	position: relative;
-	z-index: 3;
-	float: left;
-	z-index:-1;
-}
-.divFooter-core {
-	display: block;
-	width: 100%;
-	margin: 0 auto;
-	padding: 25px 0 0 0;
-	height: 100px;
-}
-.divFooter-menu {
-	font-size: 1.2rem;
-}
-.divFooter-core:after {
-	clear: both;
-}
-.divFooter-core, .divFooter-core p, .divFooter-core a:hover {
-	color: #FFF;
-}
-.divFooter-core a {
-	color: #c6c6c6;
-	text-align: center;
-}
-.divFooter-core a:hover {
-	color: #ffffff;
-}
-.divFooter-logo {
-	color: #fff;
-	width: 15%;
-	float: left;
-	padding: 10px 0 0 0;
-}
-.divFooter-core aside {
-	border-right: 1px #4b4b4b solid;
-}
-.divFooter-core aside.last {
-	border-right: none;
-}
-.divFooter-core div {
-	height: auto;
-}
-.divFooter-core div ul {
-	list-style-type: none;
-	padding: 0;
-	text-align: center;
-}
-.divFooter-core div ul li {
-	display: inline;
-}
-.divFooter-core div a:link {
-	text-decoration: none;
-}
-/* FOOTER CONTENT*/
 .divLogo {
 	width: 17.7%;
 	min-height: 65px;
@@ -1539,7 +1485,7 @@ span.phone-img {
 		text-align:left;
 	}
 	.wrapInternas{
-		width:560px;
+		width:100%;
 	}
 	.divMiolo h2{
 		width:518px;
@@ -1564,7 +1510,7 @@ span.phone-img {
 	.divHeader .divMenu ul{
 		padding:0;
 	}
-	.divHeader .divMenu ul li{
+	.divHeader .divMenu button{
 		float:left;
 		clear:both;
 		border:none;
@@ -1893,13 +1839,16 @@ span.phone-img {
     cursor:pointer;
 }
 .btnAdicionar{
-	background:#eb8202;
-	border:none;
-	float:left;
-	margin:0 0 0 5px;
-	color:#fff;
-	padding:8px 15px 8px 15px;
-	cursor:pointer;
+	background: #eb8202;
+    border: none;
+    float: left;
+    font-size: 28px;
+    margin: 0 0 0 5px;
+    color: #fff;
+    height: 70px;
+    width: 176px;
+    padding: 8px 16px 8px 16px;
+    cursor: pointer;
 }
 .adicionaInputCertidao{
 	float: left;
@@ -2025,23 +1974,54 @@ span.phone-img {
     background-size: 24px 24px;
     background-position: center center;
     background-repeat: no-repeat;
-
-
+}
+.fl_left{
+	float: left;
 }
 
+#formFrequencia{
+	width: 70%;
+	float: left;
+}
+
+#formFrequencia h3{
+	font-size: 18px;
+    color: #eb8202;
+    float: left;
+    width: 100%;
+    margin: 20px 0 20px 0;
+}
+
+.labelFiltroData{
+	font-family: "Roboto", Arial;
+    float: left;
+    margin: 11px 10px 0 0;
+    color: #333333 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+#div_login{
+	margin: 200px;
+}
+
+#div_abas{
+    width: 24%;
+    background-color: #efefef;
+}
 #container_abas{
-	width: 32%;
+	
+	width: 1038px;
 }
 /*anima telas*/
-.div_hide{
+.hideme{
 	display: none;
 }
 
-.div_show{
+.showme{
 	display: block;
 }
 .container_hide{
-    margin-left: -25%;
+    margin-left: -32%;
     -webkit-transition: all 0.5s; /* For Safari 3.1 to 6.0 */
     transition: all 0.5s;
     -webkit-transform: translate3d(0, 0, 0);
@@ -2054,17 +2034,47 @@ span.phone-img {
     -webkit-transform: translate3d(0, 0, 0);
 }
 .button_aba{
-    height: 36px;
-	margin: 20px;
-	width: 79px;
-	background: none repeat scroll 0% 0% #EB8202;
-	border: medium none;
-	float: right;
-	color: #FFF;
-	padding: 8px 15px;
-	cursor: pointer;
+    height: 60px;
+    margin: 41px 27px 60px -42px;
+    width: 142px;
+    background: none repeat scroll 0% 0% #EB8202;
+    border: medium none;
+    color: #FFF;
+     padding: 8px 16px; 
+    cursor: pointer;
+    font-size: 24px;
+
+}
+#div_busca_inicio{
+	padding: 100px 0 16px 30px;
+	}
+
+
+
+#div_busca_inicio h1, h2, h3{
+	padding: 16px 0;
+}
+#div_busca_inicio h1{
+	font-size: 48px;
+}
+#div_busca_inicio h2{
+	font-size: 24px;
+	   
+}
+#div_busca_inicio h3{
+	font-size: 14px;
 }
 
+#div_frequencia{
+
+}
+.h_100{
+	height: 100px;
+}
+#container_form h2{
+	font-size:32px;
+	padding: 10px 0 16px 0;
+}
 .rotacao {
 
 /* Safari */
@@ -2078,4 +2088,11 @@ span.phone-img {
  
 /* Internet Explorer */
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.icoCalendario{
+	margin: 5px 0px 0 10px;
+}
+.dataFreq {
+    float: right;
+    margin: -40px 10px 0 0;
 }

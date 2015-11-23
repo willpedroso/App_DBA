@@ -18,179 +18,119 @@
        under the License.
    -->
 <html>
-   <head>
-      <meta name="format-detection" content="telephone=no">
-      <meta name="msapplication-tap-highlight" content="no">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="shortcut icon" href="../favicon.ico">
-      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="shortcut icon" href="favicon.ico">
-      <!--JS-->
-      <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
-      <script src="js/funcoes.js" type="text/javascript"></script>
-      <script src="js/anima.js" type="text/javascript"></script>
-      <script src="js/jquery-ui.js" type="text/javascript"></script>
-      <script src="js/jquery.mask.js" type="text/javascript"></script>
-      <!--CSS-->
-     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"> -->
-      <link rel="stylesheet" href="css/estilos.css">
-      <link rel="stylesheet" href="css/jquery-ui.css">
-      <link rel="stylesheet" type="text/css" href="css/index.css">
-      <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
-   </head>
-   <title>De Braços Abertos</title>
-   <body>
-    <div class="container clearfix">
-        <div class="wrap">
-        <!-- inicio menu topo -->
-            <div class="divHeader">
-               <div class="divMenu">
-                  <ul>
-                     <li>
-                        <a href="#">CIDADÃOS</a>
-                     </li>
-                     <li>
-                        <a href="#">FREQUENCIA</a>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-            <!-- fim menu topo -->
-            <!--ABAS-->
-            <div id="container_abas" class="container_hide" >
-               <button class="button_aba rotacao" id="bt1" >ABAS</button>
-               <div id="menu_abas" class="wrapInternas div_hide">
-                  <ul class="menuAbas">
-                     <li class="active noActive"><a href="?m=cidadao/identificacao" title="Identificação">Identificação</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/infoBasicas" title="Informações Básicas">Informações Básicas</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/infoComplementares" title="Informações Complementares">Inf. Complementares</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/situacao" title="Situação DBA">Situação DBA</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/atividades" title="Atividades">Atividades</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/acompanhamentoSmads" title="SMADS | Acompanhamento">Smads</a></li>
-                     <li class="active noActive"><a href="?m=cidadao/acompanhamentoTrabalho" title="Trabalho | Acompanhamento">Trabalho</a></li>
-                     <li class="active"><a href="?m=cidadao/acompanhamentoSaude" title="Saúde | Acompanhamento">Saúde</a></li>
-                  </ul>
-               </div>
-            </div>
-            <!--FIM ABAS-->
-            <!-- inicio tela login -->
-            <div class="divMiolo div_hide">
-               <div class="wrapLogin">
-                  <div class="divLogin">
-                     <div id="container_form">
-                        <h2>ACESSO AO SISTEMA</h2>
-                        <div class="formLogin">
-                           <div class="msgAtencao" style="display:none">
-                              <span class="ico"></span>
-                              <p>Atenção! Verifique os campos.</p>
-                           </div>
-                           <form id="formLogin" action="actions/formLogin/autenticar.php" method="post">
-                              <fieldset>
-                                 <legend>Login</legend>
-                                 <input type="text" name="user" id="user" class="usuario" placeholder="Login">
-                                 <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
-                                 <input type="button" onclick="salvarFormLogin()" value="Entrar" class="btnEntrar">
-                              </fieldset>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- fim tela login -->
-            <!-- inicio tela busca inicio -->
-            <div id="busca_inicio" class="divMiolo div_show">
-              <div class="contentAbaBorda">
-                 <h3>CIDADÃOS</h3>
-                 <div class="linhaForm"> 
-                    <input type="text" class="inputGrande" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
-                    <input type="submit" class="btnAdicionar" value="Pesquisar">
-                   <!--  <input type="button" onclick="limpar()" class="btnAdicionar" value="Limpar"> -->
-                 </div>
-                 <div class="linhaForm div_hide">
-                    <div class="checkbox">
-                       <span class="check active" value="checked"></span>
-                       <p>Ativos</p>
-                       <input type="hidden" name="situacao_cadastral_ativo" value="checked" class="valueCheck">
-                    </div>
-                    <div class="checkbox">
-                       <span class="check active" value="checked"></span>
-                       <p>Inativos</p>
-                       <input type="hidden" name="situacao_cadastral_inativo" value="checked" class="valueCheck">
-                    </div>
-                 </div>
-                 <div class="linhaForm">
-                    <label class="selectDefault exibir">
-                       <div class="comboStilo">
-                          <div id="cb_cad_p_pag">
-                             <span class="titExibir marg-cb-cad-p-pag">Cadastros por página:</span> 
-                             <span class="selectInicial" id="perPageLabel">20</span>
-                             <ul class="selectPersonalizado marg-cb-cad-p-pag">
-                                <li onclick="alterarPerPage(20)" id="20" data-id="perPageLabel" for="perpage">20</li>
-                                <li onclick="alterarPerPage(40)" id="40" data-id="perPageLabel" for="perpage">40</li>
-                                <li onclick="alterarPerPage(60)" id="60" data-id="perPageLabel" for="perpage">60</li>
-                                <li onclick="alterarPerPage(80)" id="80" data-id="perPageLabel" for="perpage">80</li>
-                             </ul>
-                             <input type="hidden" id="perpage" name="perpage" value="">
-                          </div>
-                       </div>
-                       <span class="titCadastro"></span>
-                    </label>
-                 </div>
-                 <div class="tableCadastro">
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                       <tbody>
-                          <tr style="background-color: rgb(249, 249, 249);">
-                             <th width="20%">Nome Completo</th>
-                             <th width="20%">Nome Social</th>
-                             <th width="20%">Nome da Mãe</th>
-                             <th width="15%">Data de Nascimento</th>
-                             <th width="10%">Situação Cadastral</th>
-                             <th width="15%"></th>
-                          </tr>
-                          <tr style="background-color: rgb(238, 238, 238);">
-                             <td>ADAO CARLOS SANTOS RODRIGUES</td>
-                             <td></td>
-                             <td>TEREZINHA DE JESUS SANTOS</td>
-                             <td>11/03/1967</td>
-                             <td>Ativo</td>
-                             <td>
-                                <a href="#" onclick="programaDba(275, 1)" title="Adicionar ao Programa DBA" class="icoBandeira "></a>
-                                <a href="#" onclick="alterarCidadao(275)" title="Editar" class="icoEdit"></a>
-                                <a href="#" onclick="alterarSituacaoCadastral(275)" title="Alterar Situação Cadastral" class="icoDelete"></a>
-                             </td>
-                          </tr>
-                         
-                       </tbody>
-                    </table>
-                 </div>
-                 <input type="hidden" id="pagina" name="pagina" value="1">
-                 <div id="pagination">
-                    <ul>
-                       <li>
-                          <a href="#" title="Anterior" class="btprev deactivate">Anterior</a>
-                       </li>
-                       <li><a href="#" onclick="alterarPaginacao(1)" class="current-pagination">1</a></li>
-                       <li><a href="#" onclick="alterarPaginacao(2)" title="2">2</a></li>
-                       <li><a href="#" onclick="alterarPaginacao(3)" title="3">3</a></li>
-                       <li><a href="#" onclick="alterarPaginacao(4)" title="4">4</a></li>
-                       <li><a href="#" onclick="alterarPaginacao(5)" title="5">5</a></li>
-                       <li><a href="#" onclick="alterarPaginacao(2)" title="Próxima" class="btnext ">Próxima</a></li>
-                    </ul>
-                 </div>
+  <head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!--JS-->
+    <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
+    <script src="js/funcoes.js" type="text/javascript"></script>
+    <script src="js/anima.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/jquery.mask.js" type="text/javascript"></script>
+    <!--CSS-->
+    <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+       <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
+  </head>
+  <title>De Braços Abertos</title>
+  <body>
+    <div class="container ">
+      <!-- inicio menu topo -->
+      <div id="div_header" class="divHeader hideme">
+        <div class="divMenu">
+          <button id="bt_cidadao">CIDADÃOS</button>
+          <button id="bt_frequencia">FREQUENCIA</button>
+        </div>
+      </div>
+      <!-- fim menu topo -->
+      <!-- inicio tela login -->
+      <div id="div_login" class="showme">
+        <div class="wrapLogin">
+          <div class="divLogin">
+            <div id="container_form">
+              <h2>ACESSO AO SISTEMA</h2>
+              <div class="formLogin">
+                <div class="msgAtencao" style="display:none">
+                  <span class="ico"></span>
+                  <p>Atenção! Verifique os campos.</p>
+                </div>
+                <form id="formLogin" action="actions/formLogin/autenticar.php" method="post">
+                    <input type="text" name="user" id="user" class="usuario" placeholder="Login">
+                    <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
+                    <input type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                </form>
               </div>
             </div>
-            <!-- fim tela busca inicio -->
-           
-            <!-- inicio tela Saude -->
-            <!--FORM-->
-            <div id="form_saude" class="div_hide">
-               <!--FIM FORM-->
-            </div>
+          </div>
         </div>
-         <!--FIM CONTEUDO-->&#65279;
       </div>
+      <!-- fim tela login -->
+      <div id="container_abas" class="container_hide hideme">
+        <!--ABAS-->
+        <div id="div_abas" class="fl_left">
+          <div id="menu_abas" class="wrapInternas fl_left showme">
+            <ul class="menuAbas">
+              <li class="active ">Identificação</li>
+              <li class="active">Informações Básicas</li>
+              <li class="active ">Inf. Complementares</li>
+              <li class="active ">Situação DBA</li>
+              <li class="active ">Atividades</li>
+              <li class="active ">Smads</li>
+              <li class="active ">Trabalho</li>
+              <li class="active">Saúde</li>
+            </ul>
+          </div>
+        </div>
+        <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
+
+        <!--FIM ABAS-->
+
+        <!-- inicio tela busca inicio -->
+       <div id="div_busca_inicio" class="fl_left hideme">
+          <h1>Bem Vindo</h1>
+          <h2>Encontre o Cidadão no campo de busca abaixo.</h2>
+          
+          <div>
+            <input type="text" class="inputGrande" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
+            <input type="submit" class="btnAdicionar" value="Pesquisar" autofocus="">
+        </div>
+       </div>
+        <!-- fim tela busca inicio -->
+      <!--inicio tela frequencia-->
+        <div id="div_frequencia" class="hideme">
+          <form id="formFrequencia" action="" method="post" class="cadastro">
+            <input type="hidden" name="atuacao" id="atuacao" value="1">
+            <div class="contentAbaBorda">
+              <h3>Saúde | FREQUÊNCIA</h3>
+              <label class="dataFreq">  
+              <span class="labelFiltroData">Filtre por data</span>
+              <input type="text" class="inputPeq hasDatepicker" readonly="" value="17/11/2015" id="dataCorrente" name="dataCorrente">
+              <img src="img/icoCalendar.png" class="icoCalendario">
+              </label>
+              <div class="tableCadastro">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr style="background-color: rgb(249, 249, 249);">
+                      <td colspan="6">Nenhum registro encontrado.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+      <!-- fim tela frequencia -->
+
+        </div>
+      </div>
+
   </body>
 </html>
