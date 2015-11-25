@@ -561,6 +561,7 @@ span.unidade{
 	margin: 8px 102px 0 0px;
 }
 .inputPeq{
+	font-size: 20px;
 	background: #ebebeb;
 	height: 70px;
 	padding: 3px 0 0 10px;
@@ -569,7 +570,8 @@ span.unidade{
 	border-left: none;
 	border-right: none;
 	border-bottom: none;
-	width: 18%;
+	width: 56%;
+	
 }
 /*.usuario{
     height: 60px;
@@ -625,6 +627,7 @@ span.unidade{
 	text-indent:-9999px;
 }
 .inputGrande{
+	font-size: 20px;
 	background: #ebebeb;
 	height: 70px;
 	padding: 0px 0 0 10px;
@@ -904,7 +907,7 @@ span.unidade{
 	color: #fff;
 	padding: 8px 16px 8px 16px;
 	cursor: pointer;
-	margin: 15px 0 15px 0;
+	margin: 100px 80px 15px 0;
 	clear: both;
 	float: right;
 
