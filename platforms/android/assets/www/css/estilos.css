@@ -525,11 +525,12 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 
 .linhaForm .titLabel{
-	float:left;
-	width:176px;
-	text-align:right;
-	margin:8px 5px 0 0;
-	padding:0 5px 0 0;	
+	font-size: 20px;
+	float: left;
+	width: 100%;
+	margin: 20px 5px 10px 0;
+	padding: 0 34px 0 0;
+
 }
 .linhaForm .checkbox{
 	float:left;
@@ -554,22 +555,21 @@ span.unidade{
 }
 .contentAbaBorda{
     background: #fff;
-    float: left;
-    width: 100%;
-    padding: 3%;
-    margin: 8px 0 0 52px;
+	float: right;
+	width: 60%;
+	padding: 3%;
+	margin: 8px 102px 0 0px;
 }
 .inputPeq{
-	background:#ebebeb;
-    height: 32px;
-	padding:3px 0 0 10px;
+	background: #ebebeb;
+	height: 70px;
+	padding: 3px 0 0 10px;
 	color: #454545;
 	border-top: 2px solid #dedede;
-	border-left:none;
-	border-right:none;
-	border-bottom:none;
-	width:80px;
-	float:left;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	width: 18%;
 }
 /*.usuario{
     height: 60px;
@@ -625,16 +625,16 @@ span.unidade{
 	text-indent:-9999px;
 }
 .inputGrande{
-	background:#ebebeb;
-    height: 70px;
-	padding:0px 0 0 10px;
+	background: #ebebeb;
+	height: 70px;
+	padding: 0px 0 0 10px;
 	color: #454545;
 	border-top: 2px solid #dedede;
-	border-left:none;
-	border-right:none;
-	border-bottom:none;
-	width:325px;
-	float:left;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	width: 100%;
+	float: left;
 }
 .inputAdiciona{
 	background:#ebebeb;
@@ -688,13 +688,13 @@ span.unidade{
 	height:26px;
 }
 .menuFixo{
-	background:#737373;
+	/*background:#737373;*/
 	float:left;
-	width:100%;
-	-webkit-box-shadow: 10px 17px 41px -23px rgba(0,0,0,0.75);
+	width:60%;
+	/*-webkit-box-shadow: 10px 17px 41px -23px rgba(0,0,0,0.75);
 	-moz-box-shadow: 10px 17px 41px -23px rgba(0,0,0,0.75);
 	box-shadow: 10px 17px 41px -23px rgba(0,0,0,0.75);
-	position:relative;
+	position:relative;*/
 }
 .menuFixo.fixed{
 	position:fixed;
@@ -703,18 +703,20 @@ span.unidade{
 	z-index:99;
 }
 .menuFixo .nomeCompleto{
-	float:right;
-	text-align:right;
-	width:500px;
-	color:#fff;
-	padding:20px 15px 10px 0;	
+	font-size: 18px;
+	float: right;
+	text-align: right;
+	width: 60%;
+	color: #fff;
+	padding: 20px 15px 10px 0;
 }
 .menuFixo .nomeSocial{
-	float:left;
-	text-align:left;
-	width:300px;
-	padding:20px 0 0 40px;
-	color:#fff;
+	font-size: 18px;
+	float: left;
+	text-align: left;
+	width: 40%;
+	padding: 20px 0 0 30px;
+	color: #fff;
 }
 .menuFixo .abreMenu{
 	background:url(../img/icoMenuFico.png) no-repeat;
@@ -791,7 +793,9 @@ span.unidade{
 	z-index:1;
 }*/
 
-
+.contentAbaBorda h3{
+	font-size: 28px;
+}
 
 .dias .selectPersonalizado{
 	left:106px;
@@ -892,18 +896,18 @@ span.unidade{
 	float: right;
 }
 .btnAlterar{
-	font-family:"Roboto", Arial;
-	font-size:14px;
-	height:35px;
-	background:#eb8202;
-	border:none;
-	
-	color:#fff;
-	padding:8px 20px 8px 20px;
-	cursor:pointer;
-	margin:15px 0 15px 0;
-	clear:both;
-	float:right;
+	font-family: "Roboto", Arial;
+	font-size: 24px;
+	height: 70px;
+	background: #eb8202;
+	border: none;
+	color: #fff;
+	padding: 8px 16px 8px 16px;
+	cursor: pointer;
+	margin: 15px 0 15px 0;
+	clear: both;
+	float: right;
+
 }
 
 /* Pagination */
@@ -1843,7 +1847,7 @@ span.phone-img {
     border: none;
     float: left;
     font-size: 28px;
-    margin: 0 0 0 5px;
+    margin: 10px 0 0 5px;
     color: #fff;
     height: 70px;
     width: 176px;
@@ -2035,7 +2039,7 @@ span.phone-img {
 }
 .button_aba{
     height: 60px;
-    margin: 41px 27px 60px -42px;
+    margin: 41px -40px 60px -42px;
     width: 142px;
     background: none repeat scroll 0% 0% #EB8202;
     border: medium none;
