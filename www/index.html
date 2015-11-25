@@ -135,6 +135,1006 @@
       <!-- FIM IDENTIFICAÇÃO -->
 
       <!-- INFO BASICAS -->
+      <div id="info_basicas">
+        <form id="formInfoBasicas" action="actions/formInfoBasicas/cadastrar.php" method="post" class="cadastro">
+         <fieldset>
+            <legend>Formulario Cadastro</legend>
+            <!--GENERO-->
+            <div class="contentAbaBorda">
+               <div class="msgAtencao" style="display:none">
+                  <span class="ico"></span>
+                  <p>Atenção! Verifique os campos.</p>
+               </div>
+               <div class="msgParabens" style="display:none">
+                  <span class="ico"></span>
+                  <p>Operação realizada com sucesso.</p>
+               </div>
+               <div class="msgErro" style="display:none">
+                  <span class="ico"></span>
+                  <p>Erro ao processar as informações.</p>
+               </div>
+               <h3>GÊNERO</h3>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Sexo:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="sexoLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="sexoLabel" for="sexo_id">Masculino</li>
+                              <li id="2" data-id="sexoLabel" for="sexo_id">Feminino</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" name="sexo_id" id="sexo_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Informar orientação sexual/orientação de gênero:</span>
+                  <div id="infoOrientacaoSexual" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="info_orientacao_sexual_genero" id="info_orientacao_sexual_genero" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="orientacaoSexual">
+                  <label class="selectDefault">
+                     <span class="titSang">Orientação Sexual:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="orientacaoSexualLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Hétero</li>
+                              <li id="2" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Homossexual</li>
+                              <li id="3" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Bissexual</li>
+                              <li id="4" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Travesti</li>
+                              <li id="5" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Transexual</li>
+                              <li id="6" data-id="orientacaoSexualLabel" for="orientacao_sexual_id">Outros</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="orientacao_sexual_id" name="orientacao_sexual_id" value="">
+                     </div>
+                  </label>
+               </div>
+            </div>
+            <!--GENERO-->
+            <!--INFORMAÇÕES ADICIONAIS-->
+            <div class="contentAbaBorda">
+               <h3>INFORMAÇÕES ADICIONAIS</h3>
+               <div class="linhaForm"> 
+                  <span class="titLabel">RG/RNE:</span>
+                  <input type="text" class="inputGrande" value="" id="rg_rne" name="rg_rne">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">CPF:</span>
+                  <input type="text" class="inputGrande" value="" id="cpf" name="cpf">
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Estado Civil:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="estadoCivilLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="estadoCivilLabel" for="estado_civil_id">Solteiro(a)</li>
+                              <li id="2" data-id="estadoCivilLabel" for="estado_civil_id">Casado(a)</li>
+                              <li id="3" data-id="estadoCivilLabel" for="estado_civil_id">Divorciado(a)</li>
+                              <li id="4" data-id="estadoCivilLabel" for="estado_civil_id">Viúvo(a)</li>
+                              <li id="5" data-id="estadoCivilLabel" for="estado_civil_id">Separado(a)</li>
+                              <li id="6" data-id="estadoCivilLabel" for="estado_civil_id">Companheiro(a)</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="estado_civil_id" name="estado_civil_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Nome do Pai:</span>
+                  <input type="text" class="inputGrande" value="" name="nome_pai">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Cidade de Nascimento:</span>
+                  <input type="text" class="inputGrande" value="" name="cidade_nascimento">
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Estado de Nascimento:</span>
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="nascimentoEstadoLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">AC - Acre</li>
+                              <li id="2" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">AL - Alagoas</li>
+                              <li id="4" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">AM - Amazonas</li>
+                              <li id="3" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">AP - Amapá</li>
+                              <li id="5" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">BA - Bahia</li>
+                              <li id="6" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">CE - Ceara</li>
+                              <li id="7" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">DF - Distrito Federal</li>
+                              <li id="8" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">ES - Espírito Santo</li>
+                              <li id="9" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">GO - Goiás</li>
+                              <li id="10" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">MA - Maranhão</li>
+                              <li id="13" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">MG - Minas Gerais</li>
+                              <li id="12" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">MS - Mato Grosso do Sul</li>
+                              <li id="11" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">MT - Mato Grosso</li>
+                              <li id="14" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">PA - Pará</li>
+                              <li id="15" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">PB - Paraíba</li>
+                              <li id="17" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">PE - Pernambuco</li>
+                              <li id="18" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">PI - Piauí</li>
+                              <li id="16" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">PR - Paraná</li>
+                              <li id="19" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">RJ - Rio de Janeiro</li>
+                              <li id="20" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">RN - Rio Grande do Norte</li>
+                              <li id="22" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">RO - Rondônia</li>
+                              <li id="23" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">RR - Roraima</li>
+                              <li id="21" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">RS - Rio Grande do Sul</li>
+                              <li id="24" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">SC - Santa Catarina</li>
+                              <li id="26" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">SE - Sergipe</li>
+                              <li id="25" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">SP - São Paulo</li>
+                              <li id="27" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">TO - Tocantins</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="nascimento_estado_id" name="nascimento_estado_id" value="">
+                     </div>
+                  </label>
+               </div>
+            </div>
+            <!--INFORMAÇÕES ADICIONAIS-->
+            <!--SITUAÇÃO DE RUA-->
+            <div class="contentAbaBorda">
+               <h3>SITUAÇÃO DE RUA</h3>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <div class="comboStilo">
+                        <span class="titSang">Quanto tempo em situação de rua:</span> 
+                        <div class="container-cb marg-r-10">
+                           <span class="selectInicial w-inh" id="diasLabel">Dias</span>
+                           <ul class="selectPersonalizado pos-inh w-100-pct">
+                              <div class="lista-box-scroll">
+                                 <li id="1" data-id="diasLabel" for="dias_situaca_rua">1 dias</li>
+                                 <li id="2" data-id="diasLabel" for="dias_situaca_rua">2 dias</li>
+                                 <li id="3" data-id="diasLabel" for="dias_situaca_rua">3 dias</li>
+                                 <li id="4" data-id="diasLabel" for="dias_situaca_rua">4 dias</li>
+                                 <li id="5" data-id="diasLabel" for="dias_situaca_rua">5 dias</li>
+                                 <li id="6" data-id="diasLabel" for="dias_situaca_rua">6 dias</li>
+                                 <li id="7" data-id="diasLabel" for="dias_situaca_rua">7 dias</li>
+                                 <li id="8" data-id="diasLabel" for="dias_situaca_rua">8 dias</li>
+                                 <li id="9" data-id="diasLabel" for="dias_situaca_rua">9 dias</li>
+                                 <li id="10" data-id="diasLabel" for="dias_situaca_rua">10 dias</li>
+                                 <li id="11" data-id="diasLabel" for="dias_situaca_rua">11 dias</li>
+                                 <li id="12" data-id="diasLabel" for="dias_situaca_rua">12 dias</li>
+                                 <li id="13" data-id="diasLabel" for="dias_situaca_rua">13 dias</li>
+                                 <li id="14" data-id="diasLabel" for="dias_situaca_rua">14 dias</li>
+                                 <li id="15" data-id="diasLabel" for="dias_situaca_rua">15 dias</li>
+                                 <li id="16" data-id="diasLabel" for="dias_situaca_rua">16 dias</li>
+                                 <li id="17" data-id="diasLabel" for="dias_situaca_rua">17 dias</li>
+                                 <li id="18" data-id="diasLabel" for="dias_situaca_rua">18 dias</li>
+                                 <li id="19" data-id="diasLabel" for="dias_situaca_rua">19 dias</li>
+                                 <li id="20" data-id="diasLabel" for="dias_situaca_rua">20 dias</li>
+                                 <li id="21" data-id="diasLabel" for="dias_situaca_rua">21 dias</li>
+                                 <li id="22" data-id="diasLabel" for="dias_situaca_rua">22 dias</li>
+                                 <li id="23" data-id="diasLabel" for="dias_situaca_rua">23 dias</li>
+                                 <li id="24" data-id="diasLabel" for="dias_situaca_rua">24 dias</li>
+                                 <li id="25" data-id="diasLabel" for="dias_situaca_rua">25 dias</li>
+                                 <li id="26" data-id="diasLabel" for="dias_situaca_rua">26 dias</li>
+                                 <li id="27" data-id="diasLabel" for="dias_situaca_rua">27 dias</li>
+                                 <li id="28" data-id="diasLabel" for="dias_situaca_rua">28 dias</li>
+                                 <li id="29" data-id="diasLabel" for="dias_situaca_rua">29 dias</li>
+                                 <li id="30" data-id="diasLabel" for="dias_situaca_rua">30 dias</li>
+                                 <li id="31" data-id="diasLabel" for="dias_situaca_rua">31 dias</li>
+                              </div>
+                           </ul>
+                           <input type="hidden" id="dias_situaca_rua" name="dias_situaca_rua" value="">
+                        </div>
+                        <div class="container-cb marg-r-10">
+                           <span class="selectInicial w-inh" id="mesesLabel">Meses</span>
+                           <ul class="selectPersonalizado pos-inh w-100-pct">
+                              <div class="lista-box-scroll">
+                                 <li id="1" data-id="mesesLabel" for="meses_situacao_rua">1 meses</li>
+                                 <li id="2" data-id="mesesLabel" for="meses_situacao_rua">2 meses</li>
+                                 <li id="3" data-id="mesesLabel" for="meses_situacao_rua">3 meses</li>
+                                 <li id="4" data-id="mesesLabel" for="meses_situacao_rua">4 meses</li>
+                                 <li id="5" data-id="mesesLabel" for="meses_situacao_rua">5 meses</li>
+                                 <li id="6" data-id="mesesLabel" for="meses_situacao_rua">6 meses</li>
+                                 <li id="7" data-id="mesesLabel" for="meses_situacao_rua">7 meses</li>
+                                 <li id="8" data-id="mesesLabel" for="meses_situacao_rua">8 meses</li>
+                                 <li id="9" data-id="mesesLabel" for="meses_situacao_rua">9 meses</li>
+                                 <li id="10" data-id="mesesLabel" for="meses_situacao_rua">10 meses</li>
+                                 <li id="11" data-id="mesesLabel" for="meses_situacao_rua">11 meses</li>
+                                 <li id="12" data-id="mesesLabel" for="meses_situacao_rua">12 meses</li>
+                              </div>
+                           </ul>
+                           <input type="hidden" id="meses_situacao_rua" name="meses_situacao_rua" value="">
+                        </div>
+                        <div class="container-cb marg-r-10">
+                           <span class="selectInicial w-inh" id="anosLabel">Anos</span>
+                           <ul class="selectPersonalizado pos-inh w-100-pct">
+                              <div class="lista-box-scroll">
+                                 <li id="1" data-id="anosLabel" for="anos_situacao_rua">1 anos</li>
+                                 <li id="2" data-id="anosLabel" for="anos_situacao_rua">2 anos</li>
+                                 <li id="3" data-id="anosLabel" for="anos_situacao_rua">3 anos</li>
+                                 <li id="4" data-id="anosLabel" for="anos_situacao_rua">4 anos</li>
+                                 <li id="5" data-id="anosLabel" for="anos_situacao_rua">5 anos</li>
+                                 <li id="6" data-id="anosLabel" for="anos_situacao_rua">6 anos</li>
+                                 <li id="7" data-id="anosLabel" for="anos_situacao_rua">7 anos</li>
+                                 <li id="8" data-id="anosLabel" for="anos_situacao_rua">8 anos</li>
+                                 <li id="9" data-id="anosLabel" for="anos_situacao_rua">9 anos</li>
+                                 <li id="10" data-id="anosLabel" for="anos_situacao_rua">10 anos</li>
+                                 <li id="11" data-id="anosLabel" for="anos_situacao_rua">11 anos</li>
+                                 <li id="12" data-id="anosLabel" for="anos_situacao_rua">12 anos</li>
+                                 <li id="13" data-id="anosLabel" for="anos_situacao_rua">13 anos</li>
+                                 <li id="14" data-id="anosLabel" for="anos_situacao_rua">14 anos</li>
+                                 <li id="15" data-id="anosLabel" for="anos_situacao_rua">15 anos</li>
+                                 <li id="16" data-id="anosLabel" for="anos_situacao_rua">16 anos</li>
+                                 <li id="17" data-id="anosLabel" for="anos_situacao_rua">17 anos</li>
+                                 <li id="18" data-id="anosLabel" for="anos_situacao_rua">18 anos</li>
+                                 <li id="19" data-id="anosLabel" for="anos_situacao_rua">19 anos</li>
+                                 <li id="20" data-id="anosLabel" for="anos_situacao_rua">20 anos</li>
+                                 <li id="21" data-id="anosLabel" for="anos_situacao_rua">21 anos</li>
+                                 <li id="22" data-id="anosLabel" for="anos_situacao_rua">22 anos</li>
+                                 <li id="23" data-id="anosLabel" for="anos_situacao_rua">23 anos</li>
+                                 <li id="24" data-id="anosLabel" for="anos_situacao_rua">24 anos</li>
+                                 <li id="25" data-id="anosLabel" for="anos_situacao_rua">25 anos</li>
+                                 <li id="26" data-id="anosLabel" for="anos_situacao_rua">26 anos</li>
+                                 <li id="27" data-id="anosLabel" for="anos_situacao_rua">27 anos</li>
+                                 <li id="28" data-id="anosLabel" for="anos_situacao_rua">28 anos</li>
+                                 <li id="29" data-id="anosLabel" for="anos_situacao_rua">29 anos</li>
+                                 <li id="30" data-id="anosLabel" for="anos_situacao_rua">30 anos</li>
+                                 <li id="31" data-id="anosLabel" for="anos_situacao_rua">31 anos</li>
+                                 <li id="32" data-id="anosLabel" for="anos_situacao_rua">32 anos</li>
+                                 <li id="33" data-id="anosLabel" for="anos_situacao_rua">33 anos</li>
+                                 <li id="34" data-id="anosLabel" for="anos_situacao_rua">34 anos</li>
+                                 <li id="35" data-id="anosLabel" for="anos_situacao_rua">35 anos</li>
+                                 <li id="36" data-id="anosLabel" for="anos_situacao_rua">36 anos</li>
+                                 <li id="37" data-id="anosLabel" for="anos_situacao_rua">37 anos</li>
+                                 <li id="38" data-id="anosLabel" for="anos_situacao_rua">38 anos</li>
+                                 <li id="39" data-id="anosLabel" for="anos_situacao_rua">39 anos</li>
+                                 <li id="40" data-id="anosLabel" for="anos_situacao_rua">40 anos</li>
+                                 <li id="41" data-id="anosLabel" for="anos_situacao_rua">41 anos</li>
+                                 <li id="42" data-id="anosLabel" for="anos_situacao_rua">42 anos</li>
+                                 <li id="43" data-id="anosLabel" for="anos_situacao_rua">43 anos</li>
+                                 <li id="44" data-id="anosLabel" for="anos_situacao_rua">44 anos</li>
+                                 <li id="45" data-id="anosLabel" for="anos_situacao_rua">45 anos</li>
+                                 <li id="46" data-id="anosLabel" for="anos_situacao_rua">46 anos</li>
+                                 <li id="47" data-id="anosLabel" for="anos_situacao_rua">47 anos</li>
+                                 <li id="48" data-id="anosLabel" for="anos_situacao_rua">48 anos</li>
+                                 <li id="49" data-id="anosLabel" for="anos_situacao_rua">49 anos</li>
+                                 <li id="50" data-id="anosLabel" for="anos_situacao_rua">50 anos</li>
+                              </div>
+                           </ul>
+                           <input type="hidden" id="anos_situacao_rua" name="anos_situacao_rua" value="">
+                        </div>
+                        <div class="linhaForm"> 
+                           <span class="titSang"></span> 
+                           <input type="text" class="inputGrande" value="" name="outros_situacao_rua" placeholder="Outros">
+                        </div>
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Local que se encontra:</span>
+                  <input type="text" class="inputGrande" value="" name="local_onde_encontra">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Onde morava antes de vir pra rua:</span>
+                  <input type="text" class="inputGrande" value="" name="onde_morava_antes_rua">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Bairro:</span>
+                  <input type="text" class="inputGrande" value="" name="bairro">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Município de procedência:</span>
+                  <input type="text" class="inputGrande" value="" name="municipio_procendencia">
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Estado de procedência:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="estadoProcedenciaLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">AC - Acre</li>
+                              <li id="2" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">AL - Alagoas</li>
+                              <li id="4" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">AM - Amazonas</li>
+                              <li id="3" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">AP - Amapá</li>
+                              <li id="5" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">BA - Bahia</li>
+                              <li id="6" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">CE - Ceara</li>
+                              <li id="7" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">DF - Distrito Federal</li>
+                              <li id="8" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">ES - Espírito Santo</li>
+                              <li id="9" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">GO - Goiás</li>
+                              <li id="10" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">MA - Maranhão</li>
+                              <li id="13" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">MG - Minas Gerais</li>
+                              <li id="12" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">MS - Mato Grosso do Sul</li>
+                              <li id="11" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">MT - Mato Grosso</li>
+                              <li id="14" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">PA - Pará</li>
+                              <li id="15" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">PB - Paraíba</li>
+                              <li id="17" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">PE - Pernambuco</li>
+                              <li id="18" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">PI - Piauí</li>
+                              <li id="16" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">PR - Paraná</li>
+                              <li id="19" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">RJ - Rio de Janeiro</li>
+                              <li id="20" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">RN - Rio Grande do Norte</li>
+                              <li id="22" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">RO - Rondônia</li>
+                              <li id="23" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">RR - Roraima</li>
+                              <li id="21" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">RS - Rio Grande do Sul</li>
+                              <li id="24" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">SC - Santa Catarina</li>
+                              <li id="26" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">SE - Sergipe</li>
+                              <li id="25" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">SP - São Paulo</li>
+                              <li id="27" data-id="estadoProcedenciaLabel" for="procedencia_estado_id">TO - Tocantins</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="procedencia_estado_id" name="procedencia_estado_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">País de procedência:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="paisProcedenciaLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ACORES E MADEIRA</li>
+                              <li id="2" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ACORES E MADEIRA</li>
+                              <li id="3" data-id="paisProcedenciaLabel" for="procendencia_pais_id">AFEGANISTAO</li>
+                              <li id="4" data-id="paisProcedenciaLabel" for="procendencia_pais_id">AFRICA DO SUL</li>
+                              <li id="5" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ALBANIA</li>
+                              <li id="6" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ALEMANHA</li>
+                              <li id="7" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ANDORRA</li>
+                              <li id="8" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ANGOLA</li>
+                              <li id="9" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ANGUILA</li>
+                              <li id="10" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ANTIGUA E BARBUDA</li>
+                              <li id="11" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ANTILHAS HOLANDESAS</li>
+                              <li id="12" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ARABIA SAUDITA</li>
+                              <li id="13" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ARGELIA</li>
+                              <li id="14" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ARGENTINA</li>
+                              <li id="15" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ARMENIA</li>
+                              <li id="16" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ARUBA</li>
+                              <li id="17" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ASCENSAO</li>
+                              <li id="18" data-id="paisProcedenciaLabel" for="procendencia_pais_id">AUSTRALIA</li>
+                              <li id="19" data-id="paisProcedenciaLabel" for="procendencia_pais_id">AUSTRIA</li>
+                              <li id="20" data-id="paisProcedenciaLabel" for="procendencia_pais_id">AZERBAIJAO</li>
+                              <li id="21" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BAHAMAS</li>
+                              <li id="22" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BAHREIN</li>
+                              <li id="23" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BANGLADESH</li>
+                              <li id="24" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BARBADOS</li>
+                              <li id="25" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BELARUS</li>
+                              <li id="26" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BELGICA</li>
+                              <li id="27" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BELIZE</li>
+                              <li id="28" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BENIN</li>
+                              <li id="29" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BERMUDAS</li>
+                              <li id="30" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BOLIVIA</li>
+                              <li id="31" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BOSNIA HERZEGOVINIA</li>
+                              <li id="32" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BOTSUANA</li>
+                              <li id="33" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BRASIL</li>
+                              <li id="34" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BRUNEI DARUSSALAM</li>
+                              <li id="35" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BULGARIA</li>
+                              <li id="36" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BURKINA FASO</li>
+                              <li id="37" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BURUNDI</li>
+                              <li id="38" data-id="paisProcedenciaLabel" for="procendencia_pais_id">BUTAO</li>
+                              <li id="39" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CABO VERDE</li>
+                              <li id="40" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CAMAROES</li>
+                              <li id="41" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CAMBOJA</li>
+                              <li id="42" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CANADA</li>
+                              <li id="43" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CANARIAS E TENERIFE</li>
+                              <li id="44" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CATAR</li>
+                              <li id="45" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CAYMAN</li>
+                              <li id="46" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CAZAQUISTAO</li>
+                              <li id="47" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CENTRO AFRICANA (REPUBLICA)</li>
+                              <li id="48" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CHADE</li>
+                              <li id="49" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CHILE</li>
+                              <li id="50" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CHINA</li>
+                              <li id="51" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CHIPRE</li>
+                              <li id="52" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CHRISTMAS</li>
+                              <li id="53" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CINGAPURA</li>
+                              <li id="54" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COCOS</li>
+                              <li id="55" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COLOMBIA</li>
+                              <li id="56" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COMORES</li>
+                              <li id="57" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CONGO(REP DEMOCRATICA)</li>
+                              <li id="58" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CONGO(REP POPULAR)</li>
+                              <li id="59" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COOK (ILHAS)</li>
+                              <li id="60" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COREIA DO NORTE</li>
+                              <li id="61" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COREIA DO SUL</li>
+                              <li id="62" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COSTA DO MARFIM</li>
+                              <li id="63" data-id="paisProcedenciaLabel" for="procendencia_pais_id">COSTA RICA</li>
+                              <li id="64" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CROACIA</li>
+                              <li id="65" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CUBA</li>
+                              <li id="66" data-id="paisProcedenciaLabel" for="procendencia_pais_id">DINAMARCA</li>
+                              <li id="67" data-id="paisProcedenciaLabel" for="procendencia_pais_id">DJIBUTI</li>
+                              <li id="68" data-id="paisProcedenciaLabel" for="procendencia_pais_id">DOMINICA</li>
+                              <li id="69" data-id="paisProcedenciaLabel" for="procendencia_pais_id">DOMINICANA (REPUBLICA)</li>
+                              <li id="70" data-id="paisProcedenciaLabel" for="procendencia_pais_id">EGITO</li>
+                              <li id="71" data-id="paisProcedenciaLabel" for="procendencia_pais_id">EL SALVADOR</li>
+                              <li id="72" data-id="paisProcedenciaLabel" for="procendencia_pais_id">EMIRADOS ARABES UNIDOS</li>
+                              <li id="73" data-id="paisProcedenciaLabel" for="procendencia_pais_id">EQUADOR</li>
+                              <li id="74" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ERITREIA</li>
+                              <li id="75" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ESLOVAQUIA</li>
+                              <li id="76" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ESLOVENIA</li>
+                              <li id="77" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ESPANHA</li>
+                              <li id="78" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ESTADOS UNIDOS</li>
+                              <li id="79" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ESTONIA</li>
+                              <li id="80" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ETIOPIA</li>
+                              <li id="81" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FALKLAND</li>
+                              <li id="82" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FAROE</li>
+                              <li id="83" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FIJI</li>
+                              <li id="84" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FILIPINAS</li>
+                              <li id="85" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FINLANDIA</li>
+                              <li id="86" data-id="paisProcedenciaLabel" for="procendencia_pais_id">FRANCA</li>
+                              <li id="87" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GABAO</li>
+                              <li id="88" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GAMBIA</li>
+                              <li id="89" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GANA</li>
+                              <li id="90" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GEORGIA</li>
+                              <li id="91" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GEORGIA DO SUL E SANDWICH</li>
+                              <li id="92" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GIBRALTAR</li>
+                              <li id="93" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GRA BRETANHA</li>
+                              <li id="94" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GRANADA</li>
+                              <li id="95" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GRECIA</li>
+                              <li id="96" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GROELANDIA</li>
+                              <li id="97" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUADALUPE</li>
+                              <li id="98" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUAM</li>
+                              <li id="99" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUATEMALA</li>
+                              <li id="100" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUERNESEY</li>
+                              <li id="101" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUIANA</li>
+                              <li id="102" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUIANA FRANCESA</li>
+                              <li id="103" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUINE</li>
+                              <li id="104" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUINE BISSAU</li>
+                              <li id="105" data-id="paisProcedenciaLabel" for="procendencia_pais_id">GUINE EQUATORIAL</li>
+                              <li id="106" data-id="paisProcedenciaLabel" for="procendencia_pais_id">HAITI</li>
+                              <li id="107" data-id="paisProcedenciaLabel" for="procendencia_pais_id">HONDURAS</li>
+                              <li id="108" data-id="paisProcedenciaLabel" for="procendencia_pais_id">HONG KONG</li>
+                              <li id="109" data-id="paisProcedenciaLabel" for="procendencia_pais_id">HUNGRIA</li>
+                              <li id="110" data-id="paisProcedenciaLabel" for="procendencia_pais_id">IEMEM</li>
+                              <li id="111" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ILHAS MENORES DA FRANCA</li>
+                              <li id="112" data-id="paisProcedenciaLabel" for="procendencia_pais_id">INDIA</li>
+                              <li id="113" data-id="paisProcedenciaLabel" for="procendencia_pais_id">INDONESIA</li>
+                              <li id="114" data-id="paisProcedenciaLabel" for="procendencia_pais_id">IRA</li>
+                              <li id="115" data-id="paisProcedenciaLabel" for="procendencia_pais_id">IRAQUE</li>
+                              <li id="116" data-id="paisProcedenciaLabel" for="procendencia_pais_id">IRLANDA</li>
+                              <li id="117" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ISLANDIA</li>
+                              <li id="118" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ISRAEL</li>
+                              <li id="119" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ITALIA</li>
+                              <li id="120" data-id="paisProcedenciaLabel" for="procendencia_pais_id">JAMAICA</li>
+                              <li id="121" data-id="paisProcedenciaLabel" for="procendencia_pais_id">JAPAO</li>
+                              <li id="122" data-id="paisProcedenciaLabel" for="procendencia_pais_id">JERSEY</li>
+                              <li id="123" data-id="paisProcedenciaLabel" for="procendencia_pais_id">JORDANIA</li>
+                              <li id="124" data-id="paisProcedenciaLabel" for="procendencia_pais_id">KIRIBATI</li>
+                              <li id="125" data-id="paisProcedenciaLabel" for="procendencia_pais_id">KUWAIT</li>
+                              <li id="126" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LAOS</li>
+                              <li id="127" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LESOTO</li>
+                              <li id="128" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LETONIA</li>
+                              <li id="129" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LIBANO</li>
+                              <li id="130" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LIBERIA</li>
+                              <li id="131" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LIBIA</li>
+                              <li id="132" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LIECHTENSTEIN</li>
+                              <li id="133" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LITUANIA</li>
+                              <li id="134" data-id="paisProcedenciaLabel" for="procendencia_pais_id">LUXEMBURGO</li>
+                              <li id="135" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MACAU</li>
+                              <li id="136" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MACEDONIA</li>
+                              <li id="137" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MADAGASCAR</li>
+                              <li id="138" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MALASIA</li>
+                              <li id="139" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MALAVI</li>
+                              <li id="140" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MALDIVAS</li>
+                              <li id="141" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MALI</li>
+                              <li id="142" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MALTA</li>
+                              <li id="143" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MAN</li>
+                              <li id="144" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MARIANAS</li>
+                              <li id="145" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MARROCOS</li>
+                              <li id="146" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MARSHALL</li>
+                              <li id="147" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MARTINICA</li>
+                              <li id="148" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MAURICIO</li>
+                              <li id="149" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MAURITANIA</li>
+                              <li id="150" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MAYOTTE</li>
+                              <li id="151" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MEXICO</li>
+                              <li id="152" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MIANMAR</li>
+                              <li id="153" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MICRONESIA</li>
+                              <li id="154" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MIDWAY</li>
+                              <li id="155" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MOCAMBIQUE</li>
+                              <li id="156" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MOLDAVIA</li>
+                              <li id="157" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MONACO</li>
+                              <li id="158" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MONGOLIA</li>
+                              <li id="159" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MONSERRAT</li>
+                              <li id="160" data-id="paisProcedenciaLabel" for="procendencia_pais_id">MONTENEGRO</li>
+                              <li id="161" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NAMIBIA</li>
+                              <li id="162" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NAURU</li>
+                              <li id="163" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NEPAL</li>
+                              <li id="164" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NICARAGUA</li>
+                              <li id="165" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NIGER</li>
+                              <li id="166" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NIGERIA</li>
+                              <li id="167" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NIUE</li>
+                              <li id="168" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NORFOLK</li>
+                              <li id="169" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NORUEGA</li>
+                              <li id="170" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NOVA CALEDONIA</li>
+                              <li id="171" data-id="paisProcedenciaLabel" for="procendencia_pais_id">NOVA ZELANDIA</li>
+                              <li id="172" data-id="paisProcedenciaLabel" for="procendencia_pais_id">OMA</li>
+                              <li id="173" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PAISES BAIXOS</li>
+                              <li id="174" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PALAU</li>
+                              <li id="175" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PALESTINA</li>
+                              <li id="176" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PANAMA</li>
+                              <li id="177" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PAPUA NOVA GUINE</li>
+                              <li id="178" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PAQUISTAO</li>
+                              <li id="179" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PARAGUAI</li>
+                              <li id="180" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PERU</li>
+                              <li id="181" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PITCAIRN</li>
+                              <li id="182" data-id="paisProcedenciaLabel" for="procendencia_pais_id">POLINESIA FRANCESA</li>
+                              <li id="183" data-id="paisProcedenciaLabel" for="procendencia_pais_id">POLONIA</li>
+                              <li id="184" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PORTO RICO</li>
+                              <li id="185" data-id="paisProcedenciaLabel" for="procendencia_pais_id">PORTUGAL</li>
+                              <li id="186" data-id="paisProcedenciaLabel" for="procendencia_pais_id">QUENIA</li>
+                              <li id="187" data-id="paisProcedenciaLabel" for="procendencia_pais_id">QUIRGUISTAO</li>
+                              <li id="188" data-id="paisProcedenciaLabel" for="procendencia_pais_id">REUNIAO</li>
+                              <li id="189" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ROMENIA</li>
+                              <li id="190" data-id="paisProcedenciaLabel" for="procendencia_pais_id">RUANDA</li>
+                              <li id="191" data-id="paisProcedenciaLabel" for="procendencia_pais_id">RUSSIA</li>
+                              <li id="192" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAARA OCIDENTAL</li>
+                              <li id="193" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAINT PIERRE ET MIGUELON</li>
+                              <li id="194" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SALOMAO (ILHAS)</li>
+                              <li id="195" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAMOA</li>
+                              <li id="196" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAMOA AMERICANA</li>
+                              <li id="197" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAN MARINO</li>
+                              <li id="198" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SANTA HELENA</li>
+                              <li id="199" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SANTA LUCIA</li>
+                              <li id="200" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAO CRITOVAO E NEVIS</li>
+                              <li id="201" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAO TOME E PRINCIPE</li>
+                              <li id="202" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SAO VICENTE E GRANADINAS</li>
+                              <li id="203" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SENEGAL</li>
+                              <li id="204" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SERRA LEOA</li>
+                              <li id="205" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SERVIA</li>
+                              <li id="206" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SEYCHELES</li>
+                              <li id="207" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SIRIA</li>
+                              <li id="208" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SOMALIA</li>
+                              <li id="209" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SRI LANKA</li>
+                              <li id="210" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SUAZILANDIA</li>
+                              <li id="211" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SUDAO</li>
+                              <li id="212" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SUECIA</li>
+                              <li id="213" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SUICA</li>
+                              <li id="214" data-id="paisProcedenciaLabel" for="procendencia_pais_id">SURINAME</li>
+                              <li id="215" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TADJIQUISTAO</li>
+                              <li id="216" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TAILANDIA</li>
+                              <li id="217" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TAIWAN</li>
+                              <li id="218" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TANZANIA</li>
+                              <li id="219" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TCHECA REPUBLICA</li>
+                              <li id="220" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TERRAS AUSTR. E ANTART. DA FR</li>
+                              <li id="221" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TIMOR LESTE</li>
+                              <li id="222" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TOGO</li>
+                              <li id="223" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TONGA</li>
+                              <li id="224" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TOQUELAU</li>
+                              <li id="225" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TRINIDAD E TOBAGO</li>
+                              <li id="226" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TRISTAO DA CUNHA</li>
+                              <li id="227" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TUNISIA</li>
+                              <li id="228" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TURCKS E CAICOS</li>
+                              <li id="229" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TURCOMENISTAO</li>
+                              <li id="230" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TURQUIA</li>
+                              <li id="231" data-id="paisProcedenciaLabel" for="procendencia_pais_id">TUVALU</li>
+                              <li id="232" data-id="paisProcedenciaLabel" for="procendencia_pais_id">UCRANIA</li>
+                              <li id="233" data-id="paisProcedenciaLabel" for="procendencia_pais_id">UGANDA</li>
+                              <li id="234" data-id="paisProcedenciaLabel" for="procendencia_pais_id">URUGUAI</li>
+                              <li id="235" data-id="paisProcedenciaLabel" for="procendencia_pais_id">UZBEQUISTAO</li>
+                              <li id="236" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VANUATU</li>
+                              <li id="237" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VATICANO</li>
+                              <li id="238" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VENEZUELA</li>
+                              <li id="239" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VIETNA</li>
+                              <li id="240" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VIRGENS AMERICANAS</li>
+                              <li id="241" data-id="paisProcedenciaLabel" for="procendencia_pais_id">VIRGENS BRITANICAS</li>
+                              <li id="242" data-id="paisProcedenciaLabel" for="procendencia_pais_id">WAKE</li>
+                              <li id="243" data-id="paisProcedenciaLabel" for="procendencia_pais_id">WALLIS E FUTUNA</li>
+                              <li id="244" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ZAMBIA</li>
+                              <li id="245" data-id="paisProcedenciaLabel" for="procendencia_pais_id">ZIMBABUE</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="procendencia_pais_id" name="procendencia_pais_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Com quem você fica na rua:</span>
+                  <div id="container_comquem">
+                     <div class="checkbox ">
+                        <span class="check " value="1"></span>
+                        <p>Companheiro (a)</p>
+                        <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox ">
+                        <span class="check " value="2"></span>
+                        <p>Sozinho</p>
+                        <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox ">
+                        <span class="check " value="3"></span>
+                        <p>Filhos</p>
+                        <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox ">
+                        <span class="check " value="4"></span>
+                        <p>Carrinheiros</p>
+                        <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox ">
+                        <span class="check " value="5"></span>
+                        <p>Grupo</p>
+                        <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                     </div>
+                     <div class="linhaForm">
+                        <div class="checkbox marg-label">
+                           <span class="check " value="6"></span>
+                           <p>Outros</p>
+                           <input type="hidden" name="acompanhante_rua[]" value="" class="valueCheck">
+                        </div>
+                        <input type="text" class="inputMed spacer-h" value="" name="acompanhante_rua_outros" placeholder="Outros">
+                     </div>
+                  </div>
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Tem filho:</span>
+                  <div id="infoTemFilho" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="tem_filhos" id="tem_filhos" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="qtdFilho" style="display:none"> 
+                  <span class="titLabel">Quantos filhos:</span>
+                  <input type="text" onblur="javascript:addFilhos(this)" class="inputGrande" value="" name="qtd_filhos" id="qtd_filhos">
+               </div>
+               <!-- CONTAINER QTD DE FILHO-->
+               <div id="containerQtdFilhos">
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Tem contato com a família:</span>
+                  <div id="infoTemContatoFamilia" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="contato_familia" id="contato_familia" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="contatoFamilia" style="display:none">
+                  <span class="titLabel">O contato é parente:</span>
+                  <div id="infoContatoFamilia" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="contato_parente" id="contato_parente" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="qualFamiliar" style="display:none">
+                  <span class="titLabel">Com qual familiar:</span>
+                  <div id="container_familiar">
+                     <div class="checkbox">
+                        <span class="check " value="1"></span>
+                        <p>Agregado</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="2"></span>
+                        <p>Avô/Avó</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="3"></span>
+                        <p>Bisavô/Bisavó</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="4"></span>
+                        <p>Bisneto(a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="5"></span>
+                        <p>Cônjuge</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="6"></span>
+                        <p>Cunhado(a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="7"></span>
+                        <p>Enteado(a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="8"></span>
+                        <p>Filho (a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="9"></span>
+                        <p>Genro/Nora</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="10"></span>
+                        <p>Irmão/Irmã</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="11"></span>
+                        <p>Mãe/Pai</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="12"></span>
+                        <p>Não Informado</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="13"></span>
+                        <p>Neto (a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="14"></span>
+                        <p>Padrasto/Madrasta</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="15"></span>
+                        <p>Primo(a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="16"></span>
+                        <p>Sobrinho(a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="17"></span>
+                        <p>Sogro (a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox">
+                        <span class="check " value="18"></span>
+                        <p>Tio (a)</p>
+                        <input type="hidden" name="qual_familiar[]" value="" class="valueCheck">
+                     </div>
+                     <div class="linhaForm"> 
+                        <input type="text" class="inputMed" value="" name="contato_familia_outros" id="contato_familia_outros" placeholder="Outros">
+                     </div>
+                  </div>
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Referência familiar:</span>
+                  <input type="text" class="inputGrande" value="" name="referencia_familiar" id="referencia_familiar">
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Telefone:</span>
+                  <input type="text" class="inputGrande" value="" name="telefone" id="telefone">
+               </div>
+            </div>
+            <!--SITUAÇÃO DE RUA-->
+            <!--TRABALHO E EDUCAÇÃO-->
+            <div class="contentAbaBorda">
+               <h3>TRABALHO E EDUCAÇÃO</h3>
+               <div class="linhaForm">
+                  <span class="titLabel">Está trabalhando atualmente:</span>
+                  <div id="infoTrabalhando" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="trabalhando" id="trabalhando" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Profissão/Atividade:</span>
+                  <input type="text" class="inputGrande" value="" name="profissao_atividade" id="profissao_atividade">
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Outras habilidades:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="habilidadesLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="habilidadesLabel" for="habilidades_id">Artesão</li>
+                              <li id="2" data-id="habilidadesLabel" for="habilidades_id">Auxiliar de vendas e vendedor geral</li>
+                              <li id="3" data-id="habilidadesLabel" for="habilidades_id">Catador de material reciclável</li>
+                              <li id="4" data-id="habilidadesLabel" for="habilidades_id">Chapeiro Carregador de Caminhão Mercadorias</li>
+                              <li id="5" data-id="habilidadesLabel" for="habilidades_id">Cobrador de Passagens</li>
+                              <li id="6" data-id="habilidadesLabel" for="habilidades_id">Engraxate</li>
+                              <li id="7" data-id="habilidadesLabel" for="habilidades_id">Enxugador Lavador e ou Polidor de Veiculos</li>
+                              <li id="8" data-id="habilidadesLabel" for="habilidades_id">Faz Bico</li>
+                              <li id="9" data-id="habilidadesLabel" for="habilidades_id">Guariteiro ou Porteiro</li>
+                              <li id="10" data-id="habilidadesLabel" for="habilidades_id">Jardineiro</li>
+                              <li id="11" data-id="habilidadesLabel" for="habilidades_id">Outros Artistas de Circo</li>
+                              <li id="12" data-id="habilidadesLabel" for="habilidades_id">Outros Cozinheiros e Trabalhadores Assemelhados</li>
+                              <li id="13" data-id="habilidadesLabel" for="habilidades_id">Outros Lavadeiros Tintureiros e Trabalhadores Assemelhados</li>
+                              <li id="14" data-id="habilidadesLabel" for="habilidades_id">Pedreiro em Geral</li>
+                              <li id="15" data-id="habilidadesLabel" for="habilidades_id">Pintor</li>
+                              <li id="16" data-id="habilidadesLabel" for="habilidades_id">Rondante Vigia ou vigilante</li>
+                              <li id="17" data-id="habilidadesLabel" for="habilidades_id">Servente construção Civil Ou ajudante de Obras</li>
+                              <li id="18" data-id="habilidadesLabel" for="habilidades_id">Serviços Gerais Conservação Manutenção e ou Limpeza</li>
+                              <li id="19" data-id="habilidadesLabel" for="habilidades_id">Vendedor Ambulante.</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="habilidades_id" name="habilidades_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Fonte de renda:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="fonteRendaLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="4" data-id="fonteRendaLabel" for="fonte_renda_id">Aposentadoria</li>
+                              <li id="3" data-id="fonteRendaLabel" for="fonte_renda_id">Familia</li>
+                              <li id="5" data-id="fonteRendaLabel" for="fonte_renda_id">Pensão</li>
+                              <li id="2" data-id="fonteRendaLabel" for="fonte_renda_id">Programa Social</li>
+                              <li id="1" data-id="fonteRendaLabel" for="fonte_renda_id">Trabalho</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="fonte_renda_id" name="fonte_renda_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Escolaridade:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="escolaridadeLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Não alfabetizado</li>
+                              <li id="2" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Alfabetizado</li>
+                              <li id="3" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino fundamental incompleto</li>
+                              <li id="4" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino fundamental completo</li>
+                              <li id="5" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino médio incompleto</li>
+                              <li id="6" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino médio completo</li>
+                              <li id="7" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino superior incompleto</li>
+                              <li id="8" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Ensino superior completo</li>
+                              <li id="9" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Pós-graduação</li>
+                              <li id="10" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Outros</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" name="tipo_escolaridade_id" id="tipo_escolaridade_id" value="">
+                     </div>
+                  </label>
+               </div>
+               <div class="linhaForm"> 
+                  <span class="titLabel">Outros:<br>(Escolaridade)</span>
+                  <input type="text" class="inputGrande" value="" name="escolaridades_outros">
+               </div>
+               <div class="linhaForm">
+                  <label class="selectDefault">
+                     <span class="titSang">Situação profissional:</span> 
+                     <div class="comboStilo">
+                        <span class="selectInicial" id="situacaoProfissionalLabel">Selecione</span>
+                        <ul class="selectPersonalizado">
+                           <div class="lista-box-scroll">
+                              <li id="1" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Empreendedor(a)</li>
+                              <li id="2" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Assalariado com Carteira</li>
+                              <li id="3" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Assalariado sem Carteira</li>
+                              <li id="4" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Autônomo com previdência social</li>
+                              <li id="5" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Autônomo sem previdência social</li>
+                              <li id="6" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Informal permanente</li>
+                              <li id="7" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Informal temporário</li>
+                              <li id="8" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Desempregado(a)</li>
+                              <li id="9" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Dona de Casa</li>
+                              <li id="10" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Nunca trabalhou</li>
+                              <li id="11" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Faz estágio remunerado</li>
+                           </div>
+                        </ul>
+                        <input type="hidden" id="situacao_profissional_id" name="situacao_profissional_id" value="">
+                     </div>
+                  </label>
+               </div>
+            </div>
+            <!--TRABALHO E EDUCAÇÃO-->
+            <!--SAÚDE-->
+            <div class="contentAbaBorda">
+               <h3>SAÚDE</h3>
+               <div class="linhaForm">
+                  <span class="titLabel">Condições de saúde:</span>
+                  <div id="container_cond_saude">
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="1"></span>
+                        <p>S/ sintomas</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="2"></span>
+                        <p>Transtornos Mentais</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="3"></span>
+                        <p>DST/AIDS</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="4"></span>
+                        <p>Tuberculose</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="5"></span>
+                        <p>Hepatite</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="checkbox spacer-r">
+                        <span class="check " value="6"></span>
+                        <p>Outros</p>
+                        <input type="hidden" name="condicao_saude[]" value="" class="valueCheck">
+                     </div>
+                     <div class="linhaForm">
+                        <input type="text" class="inputMed" value="" name="condicao_saude_outros" id="condicao_saude_outros" placeholder="Outros">
+                     </div>
+                  </div>
+               </div>
+               <div class="linhaForm">
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Gestante:</span>
+                  <div id="infoGestante" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="gestante" id="gestante" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Deficiências:</span>
+                  <div id="infoDeficiencias" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="possui_deficiencia" id="possui_deficiencia" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="quaisDeficiencias" style="display:none"> 
+                  <span class="titLabel">Quais deficiências:</span>
+                  <textarea name="quais_deficiencias" id="quais_deficiencias" rows="5" class="inputTextArea"></textarea>
+               </div>
+               <div class="linhaForm">
+                  <span class="titLabel">Usuário de Álcool ou Drogas:</span>
+                  <div id="infoAlcoolDroga" class="radioButton">
+                     <span class="radio active" title=""></span>
+                     <p>Não Informado</p>
+                     <span class="radio " title="0"></span>
+                     <p>Não</p>
+                     <span class="radio " title="1"></span>
+                     <p>Sim</p>
+                     <input type="hidden" value="" name="alcool_droga" id="alcool_droga" class="valueCheck">
+                  </div>
+               </div>
+               <div class="linhaForm" id="quaisDrogas" style="display:none"> 
+                  <span class="titLabel">Quais Drogas:</span>
+                  <textarea name="nome_drogas" id="nome_drogas" rows="5" class="inputTextArea"></textarea>
+               </div>
+               <div class="linhaForm" id="qualFrequencia" style="display:none"> 
+                  <span class="titLabel">Qual Frequência:</span>
+                  <textarea name="frequencia_drogas" id="frequencia_drogas" rows="5" class="inputTextArea"></textarea>
+               </div>
+            </div>
+            <!--SAÚDE-->
+            <input type="button" onclick="salvarFormInfoBasicas()" class="btnAlterar" value="Salvar Alterações">
+         </fieldset>
+        </form>
+      </div>  
       <!-- FIM INFO BASICAS -->
 
       <!-- INF COMPLEMENTARES -->
