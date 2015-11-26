@@ -137,8 +137,6 @@
       <!-- INFO BASICAS -->
       <div id="info_basicas">
         <form id="formInfoBasicas" action="actions/formInfoBasicas/cadastrar.php" method="post" class="cadastro">
-         <fieldset>
-            <legend>Formulario Cadastro</legend>
             <!--GENERO-->
             <div class="contentAbaBorda">
                <div class="msgAtencao" style="display:none">
@@ -153,18 +151,16 @@
                   <span class="ico"></span>
                   <p>Erro ao processar as informações.</p>
                </div>
+               <h3>INFORMAÇÕES BÁSICAS</h3>
                <h3>GÊNERO</h3>
                <div class="linhaForm">
                   <label class="selectDefault">
-                     <span class="titSang">Sexo:</span> 
-                     <div class="comboStilo">
-                        <span class="selectInicial" id="sexoLabel">Selecione</span>
-                        <ul class="selectPersonalizado">
-                           <div class="lista-box-scroll">
-                              <li id="1" data-id="sexoLabel" for="sexo_id">Masculino</li>
-                              <li id="2" data-id="sexoLabel" for="sexo_id">Feminino</li>
-                           </div>
-                        </ul>
+                    <span class="titSang">Sexo:</span> 
+                    <div class="comboStilo">
+                      <select class="selectPersonalizado">
+                        <option value="" id="1" data-id="sexoLabel" for="sexo_id">Masculino</option>
+                        <option value="" id="2" data-id="sexoLabel" for="sexo_id">Feminino</option>
+                      </select>
                         <input type="hidden" name="sexo_id" id="sexo_id" value="">
                      </div>
                   </label>
@@ -1132,7 +1128,6 @@
             </div>
             <!--SAÚDE-->
             <input type="button" onclick="salvarFormInfoBasicas()" class="btnAlterar" value="Salvar Alterações">
-         </fieldset>
         </form>
       </div>  
       <!-- FIM INFO BASICAS -->

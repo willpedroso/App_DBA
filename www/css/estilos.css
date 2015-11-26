@@ -470,18 +470,18 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	width:60%;
 }
 .selectDefault.dias{
-	width:236px;
+	width:100%;
 }
 .selectDefault.dias .selectInicial{
 	width:120px;
 	float:right;
 }
 .selectDefault .titSang{
-	float:left;
-	width:176px;
-	text-align:right;
-	padding:0 5px 0 0;
-	margin:8px 5px 0 0;
+	float: left;
+    width: 100%;
+    /* text-align: right; */
+    padding: 0 5px 0 0;
+    margin: 8px 5px 8px 0;
 }
 .selectDefault .titExibir{
 	float:left;

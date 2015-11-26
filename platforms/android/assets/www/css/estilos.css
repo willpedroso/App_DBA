@@ -477,8 +477,8 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	float:right;
 }
 .selectDefault .titSang{
-	float:left;
-	width:176px;
+	
+	width:100%;
 	text-align:right;
 	padding:0 5px 0 0;
 	margin:8px 5px 0 0;
