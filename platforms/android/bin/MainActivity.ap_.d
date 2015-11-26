@@ -33,6 +33,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\cordova_plugins.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\fonts \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\identificacao.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\img \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\index - saude.html \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\index.html \
