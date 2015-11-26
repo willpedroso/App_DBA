@@ -31,7 +31,7 @@ var PageManager = (function(window,document,$){
        $.ajax({url: (tmpl+'.html'), success: function(result){
             
             //container que inserimos o conteudo
-            $('#container').append(result);
+            $('#div_conteudo').append(result);
             
             //mostra o template
             showTmpl(tmpl);

@@ -85,7 +85,7 @@
               <li class="active ">Atividades</li>
               <li class="active ">Smads</li>
               <li class="active ">Trabalho</li>
-              <li class="active">Saúde</li>
+              <li class="active" onclick="console.log('clk');PageManager.loadTmpl('identificacaoTeste');">Saúde </li>
             </ul>
           </div>
         </div>
@@ -131,58 +131,14 @@
     <!-- incio paginas submenu ABAS -->
 
       <!-- IDENTIFICAÇÃO -->
-        <!-- cabeçalho identificação -->
-        <div class="menuFixo">
-          <p class="nomeSocial">
-          Nome Social: <strong>Adao</strong>
-          </p>
-          <p class="nomeCompleto">Nome Completo: <strong>ADAO CARLOS SANTOS RODRIGUES</strong>
-          </p>
-        </div>
-          <form id="formIdentificacao" action="actions/formIdentificacao/cadastrar.php" method="post" class="cadastro">
-                <div class="contentAbaBorda">
-                   <div class="msgAtencao" style="display:none">
-                      <span class="ico"></span>
-                      <p>Atenção! Verifique os campos.</p>
-                   </div>
-                   <div class="msgParabens" style="display:none">
-                      <span class="ico"></span>
-                      <p>Operação realizada com sucesso.</p>
-                   </div>
-                   <div class="msgErro" style="display:none">
-                      <span class="ico"></span>
-                      <p>Erro ao processar as informações.</p>
-                   </div>
-                   <h3>IDENTIFICAÇÃO</h3>
-                   <div class="linhaForm"> 
-                      <span class="titLabel">Nome Completo: (sem abreviação)</span>
-                      <input type="text" class="inputGrande" value="ADAO CARLOS SANTOS RODRIGUES" id="nome" name="nome">
-                   </div>
-                   <div class="linhaForm"> 
-                      <span class="titLabel">Nome Social:</span>
-                      <input type="text" class="inputGrande" value="Adao" name="nome_social">
-                   </div>
-                   <div class="linhaForm"> 
-                      <span class="titLabel">Nome da Mãe:</span>
-                      <input type="text" class="inputGrande" value="TEREZINHA DE JESUS SANTOS" id="nome_mae" name="nome_mae">
-                   </div>
-                   <div class="linhaForm"> 
-                      <span class="titLabel">Número SISA:</span>
-                      <input type="text" class="inputGrande" value="" name="sisrua">
-                   </div>
-                   <div class="linhaForm"> 
-                      <span class="titLabel">Data de Nascimento: (dd/mm/aaaa)</span>
-                      <input type="date" class="inputPeq float-nn" value="" id="data_nascimento" name="data_nascimento" placeholder="dd/mm/aaaa">
-                      <!-- /<input type="date" class="inputPeq float-nn" value="03" id="mes_nascimento" name="mes_nascimento" placeholder="mês">
-                      /<input type="date" class="inputPeq float-nn" value="1967" id="ano_nascimento" name="ano_nascimento" placeholder="ano"> -->
-                   </div>
-                </div>
-                <input type="button" onclick="salvarFormIdentificacao()" class="btnAlterar" value="Salvar Alterações">
-             </fieldset>
-          </form>
+     
       <!-- FIM IDENTIFICAÇÃO -->
 
       <!-- INFO BASICAS -->
+      <div id="div_conteudo">
+        
+      </div>
+
       <!-- FIM INFO BASICAS -->
 
       <!-- INF COMPLEMENTARES -->
@@ -213,4 +169,11 @@
       </div>
 
   </body>
+  <script src="js/PageManager.js" ></script>
+  <script >
+        //DEBUG
+        $(document).ready(function(){
+          PageManager.loadTmpl('identificacao');
+        });
+      </script>
 </html>
