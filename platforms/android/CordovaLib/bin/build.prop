@@ -1,5 +1,9 @@
 #Last build type
+<<<<<<< HEAD
 #Wed, 25 Nov 2015 17:03:43 -0200
+=======
+#Mon, 30 Nov 2015 15:49:21 -0200
+>>>>>>> form-infoBasicas
 
 build.last.target=debug
 
