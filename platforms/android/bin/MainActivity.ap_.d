@@ -106,6 +106,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\index.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\jquery-1.11.3.min.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\jquery-ui.js \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\jquery.mask.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\PageManager.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\UIS.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\plugins\cordova-plugin-whitelist \

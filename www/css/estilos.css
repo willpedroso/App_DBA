@@ -57,6 +57,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 
 .container{
+	background-color: #ebebeb;
     float: left;
     clear: both;
     width: 100%;
@@ -479,8 +480,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .selectDefault .titSang{
 	float: left;
     width: 100%;
-    /* text-align: right; */
-    padding: 0 5px 0 0;
+    padding: 20px 5px 0 0;
     margin: 8px 5px 8px 0;
 }
 .selectDefault .titExibir{
@@ -506,7 +506,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .linhaForm{
 	float:left;
 	clear:both;
-	margin:13px 0 0 57px;
+	margin:13px 0 0 3px;
 	width:100%;
 }
 .linhaForm .readOnly{
@@ -558,7 +558,7 @@ span.unidade{
 	float: right;
 	width: 60%;
 	padding: 3%;
-	margin: 8px 102px 0 0px;
+	margin: 8px 68px 0 0px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -587,14 +587,14 @@ span.unidade{
 
 .inputMed{
 	background:#ebebeb;
-    height: 32px;
+    height: 60px;
 	padding:3px 0 0 10px;
 	color: #454545;
 	border-top: 2px solid #dedede;
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:375px;
+	width:100%;
 	float:left;
 }
 .inputFocus{
@@ -636,7 +636,7 @@ span.unidade{
 	border-left: none;
 	border-right: none;
 	border-bottom: none;
-	width: 100%;
+	width: 97%;
 	float: left;
 }
 .inputAdiciona{
@@ -843,6 +843,8 @@ span.unidade{
 	float:left;
 }
 .menuAbas li{
+	height: 75px;
+	width: 254px;
 	list-style:none;
 	background:#efefef;
 	margin:0 5px 0 0;
@@ -869,9 +871,8 @@ span.unidade{
 
 .active{
     background: #F7F7F7;
-    height: 80px;
+    height: 40px;
     line-height: 27px;
-    /* margin-top: -5px; */
     width: 100%;
     padding: 3px 0 0 4px;
     float: left;
@@ -879,9 +880,10 @@ span.unidade{
     font-size: 24px;
     color: #b9b9b9;
     text-decoration: none;
-    /* background: #efefef; */
-    margin: 0 5px 0 0;
+    margin: 10px 5px 0 0;
     padding: 11px 18px 10px 18px;
+    word-wrap: break-word;
+
 
 }
 .btnEntrar{
@@ -894,7 +896,7 @@ span.unidade{
 	border: none;
 	padding: 5px 32px 0 32px;
 	cursor: pointer;
-	margin: 15px 41px 15px 0;
+	margin: 15px -8% 15px 0;
 	clear: both;
 	float: right;
 }
@@ -1070,21 +1072,23 @@ span.unidade{
 }
 .checkbox .check{
 	background: url(../img/icoCheck.gif) no-repeat;
-	width:19px;
-	height:19px;
+	width:40px;
+	height:40px;
 	float:left;
-	margin:8px 0 0 0;
+	margin: 10px 8px 10px 0;
 	cursor:pointer;
-    border: 1px solid #d4d4d4;	
+    
 }
 .checkbox p{
 	float:left;
-	padding:10px 0 3px 5px;
+	padding: 10px 68px 10px 5px;
+	margin-right: 57px;
+	width: 110px;
 }
 .checkbox .check.active{
 	background: url(../img/icoCheck-on.gif) no-repeat;
-	width:19px;
-	height:19px;
+	width:40px;
+	height:40px;
 	float:left;
 }
 .radioButton{
@@ -1093,20 +1097,21 @@ span.unidade{
 }
 .radioButton .radio{
 	background: url(../img/icoRadio.png) no-repeat;
-	width:26px;
-	height:24px;
+	width:40px;
+	height:40px;
 	float:left;
 	margin:8px 0 0 0;
 	cursor:pointer;
 }
 .radioButton p{
 	float:left;
-	padding:10px 10px 3px 2px;
+    padding: 17px 10px 3px 6px;
+    margin-right: 20px;
 }
 .radioButton .radio.active{
 	background: url(../img/icoRadio-on.png) no-repeat;
-	width:26px;
-	height:24px;
+	width:40px;
+	height:40px;
 	float:left;
 }
 .divMiolo .divLogin form fieldset{
@@ -1125,7 +1130,7 @@ span.unidade{
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:360px;
+	width:100%;
 	height:70px;
 	padding:4px 16px 4px 16px;
 	float:left;
@@ -1138,7 +1143,7 @@ span.unidade{
 	border-left:none;
 	border-right:none;
 	border-bottom:none;
-	width:360px;
+	width:100%;
 	height:70px;
 	padding:4px 16px 4px 16px;
 	float:left;
@@ -1611,7 +1616,7 @@ span.phone-img {
 }
 
 .spacer-h{
-	margin-left: 16px;
+	margin-left: 0;
 }
 
 
@@ -1644,7 +1649,7 @@ span.phone-img {
 
 #container_familiar{
 
-	width: 665px;
+	width: 100%;
     height: auto;
     /* background-color: aqua; */
     overflow: hidden;
@@ -1652,7 +1657,7 @@ span.phone-img {
 #container_familiar .checkbox p{
 	/*word-break: break-word;*/
 	word-break: inherit;
-	width: 110px;
+	
 }
 
 #container_comquem .checkbox{
@@ -1664,8 +1669,7 @@ span.phone-img {
 }
 
 #container_cond_saude{
-	width: 400px;
-    overflow: hidden;
+	width: 100%;
 
 }
 
@@ -2017,7 +2021,7 @@ span.phone-img {
 }
 #container_abas{
 	
-	width: 1038px;
+	width: 1028px;
 }
 /*anima telas*/
 .hideme{
@@ -2028,7 +2032,7 @@ span.phone-img {
 	display: block;
 }
 .container_hide{
-    margin-left: -32%;
+    margin-left: -33%;
     -webkit-transition: all 0.5s; /* For Safari 3.1 to 6.0 */
     transition: all 0.5s;
     -webkit-transform: translate3d(0, 0, 0);
@@ -2042,7 +2046,7 @@ span.phone-img {
 }
 .button_aba{
     height: 60px;
-    margin: 41px -40px 60px -42px;
+    margin: 41px -40px 60px -39px;
     width: 142px;
     background: none repeat scroll 0% 0% #EB8202;
     border: medium none;
@@ -2103,3 +2107,19 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     float: right;
     margin: -40px 10px 0 0;
 }
+
+
+
+/*teste  check*/
+
+
+/*
+input[type="radio" ], input[type="checkbox" ] {
+    background-color: red;
+    float: left;
+    color: red;
+   	width: 44px;
+   	height: 44px;
+    padding: initial;
+    border: 1px solid #000;
+}*/
