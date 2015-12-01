@@ -4,24 +4,15 @@ function btLogin(user, pass){
 	
 	// Chama função de login
 	USUARIO.login(user, pass, retLogin);
-	
-     //     PageManager.loadTmpl('div_busca_inicio');
-    
-
-    // hideTela('#div_login');
-    // showTela('#div_header');
-   //showTela('#container_abas');
-    //showTela('#div_busca_inicio');
-  
 }
 
 function retLogin (retCode) {
 
 	if (retCode == USUARIO.login_return.OK) {
 		alert("Sucesso");
-		PageManager.loadTmpl('identificacao');
+		PageManager.loadTmpl('div_busca_inicio');
 		hideTela('#div_login');
-		showTela('#container_abas');
+		showTela('#div_header');
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
 		alert("Senha incorreta");
