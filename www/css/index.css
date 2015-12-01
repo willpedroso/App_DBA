@@ -43,8 +43,8 @@ body {
     font-style: italic;
     font-size: 15px;
     padding: 13px 0 0 10px;
-    width: 136px;
-    height: 60px;
+    width: 50%;
+    height: 100%;
     float: left;
 }
 .selectPersonalizado{
@@ -53,8 +53,8 @@ body {
     font-style: italic;
     font-size: 15px;
     padding: 7px 0 0 10px;
-    width: 100px;
-    height: 26px;
+    width: 100%;
+    height: 60px;
     background: transparent;
     outline-style: none;
     left: 185px;

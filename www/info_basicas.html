@@ -1,4 +1,4 @@
-<!-- INFO BASICAS -->
+ <!-- INFO BASICAS -->
       <div id="info_basicas">
         <form id="formInfoBasicas" action="actions/formInfoBasicas/cadastrar.php" method="post" class="cadastro">
             <!--GENERO-->
@@ -33,11 +33,11 @@
                <div class="linhaForm">
                   <span class="titLabel">Informar orientação sexual/orientação de gênero:</span>
                   <div id="infoOrientacaoSexual" class="radioButton" >
-                      <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Não Informado" checked>
+                      <input onclick="abreOrientSexual()" class="radio active" type="radio" name="infoOrientacaoSexual" value="Não Informado" checked>
                       <p>Não Informado</p>
-                      <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Não" >
+                      <input onclick="abreOrientSexual()" class="radio active" type="radio" name="infoOrientacaoSexual" value="Não" >
                       <p>Não</p> 
-                      <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Sim" >
+                      <input onclick="abreOrientSexual()" class="radio active" type="radio" name="infoOrientacaoSexual" value="Sim" >
                       <p>Sim</p> 
 
 
@@ -427,11 +427,11 @@
                <div class="linhaForm">
                   <span class="titLabel">Tem filho:</span>
                   <div id="temFilho" class="radioButton">
-                  <input class="radio active " type="radio" name="temFilho" value="NãoInformado" checked>
+                  <input onclick="abreQtdFilhos()" class="radio active " type="radio" name="temFilho" value="NãoInformado" checked>
                      <p>Não Informado</p>
-                     <input class="radio active " type="radio" name="temFilho" value="Não" >
+                     <input onclick="abreQtdFilhos()" class="radio active " type="radio" name="temFilho" value="Não" >
                      <p>Não</p>
-                     <input class="radio active " type="radio" name="temFilho" value="Sim" >
+                     <input onclick="abreQtdFilhos()" class="radio active " type="radio" name="temFilho" value="Sim" >
                      <p>Sim</p>
                   </div>
                </div>
@@ -445,11 +445,11 @@
                <div class="linhaForm">
                   <span class="titLabel">Tem contato com a família:</span>
                   <div id="infoTemContatoFamilia" class="radioButton">
-                     <input id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="NãoInformado" checked>
+                     <input onclick="abreQualFamiliar()" id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="NãoInformado" checked>
                      <p>Não Informado</p>
-                     <input id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="Não" >
+                     <input onclick="abreQualFamiliar()" id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="Não" >
                      <p>Não</p>
-                     <input id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="Sim" >
+                     <input onclick="abreQualFamiliar()" id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="Sim" >
                      <p>Sim</p>
                   </div>
                </div>
@@ -564,7 +564,7 @@
                <div class="linhaForm">
                   <span class="titLabel">Está trabalhando atualmente:</span>
                   <div id="infoTrabalhando" class="radioButton">
-                     <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active" checked><p>Não Informado</p>
                      <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Não</p>
                      <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Sim</p>
                   </div>
@@ -713,7 +713,7 @@
                <div class="linhaForm">
                   <span class="titLabel">Gestante:</span>
                   <div id="infoGestante" class="radioButton">
-                     <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active" checked><p>Não Informado</p>
                      <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Não</p>
                      <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Sim</p>
                   </div>
@@ -721,9 +721,9 @@
                <div id="possui_deficiencia" class="linhaForm">
                   <span class="titLabel">Deficiências:</span>
                   <div id="infoDeficiencias" class="radioButton">
-                     <input type="radio" value="NãoInformado" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Não Informado</p>
-                     <input type="radio" value="Não" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Não</p>
-                     <input type="radio" value="Sim" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Sim</p>
+                     <input onclick="abreQualDeficiencia()" type="radio" value="NãoInformado" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active" checked><p>Não Informado</p>
+                     <input onclick="abreQualDeficiencia()" type="radio" value="Não" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Não</p>
+                     <input onclick="abreQualDeficiencia()" type="radio" value="Sim" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Sim</p>
                   </div>
                </div>
                <div id="quaisDeficiencias" class="linhaForm"  style="display:none"> 
@@ -733,7 +733,7 @@
                <div class="linhaForm">
                   <span class="titLabel">Usuário de Álcool ou Drogas:</span>
                   <div id="infoAlcoolDroga" class="radioButton">
-                     <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active" checked><p>Não Informado</p>
                      <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não</p>
                      <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Sim</p>
                   </div>
