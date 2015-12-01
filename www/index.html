@@ -30,6 +30,8 @@
     <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
     <script src="js/funcoes.js" type="text/javascript"></script>
     <script src="js/anima.js" type="text/javascript"></script>
+    <script src="js/PageManager.js" ></script>
+    <script src="js/login.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="js/jquery.mask.js" type="text/javascript"></script>
     <!--CSS-->
@@ -52,7 +54,7 @@
       </div>
       <!-- fim menu topo -->
       <!-- inicio tela login -->
-      <div id="div_login" class="hideme">
+      <div id="div_login" class="showme">
         <div class="wrapLogin">
           <div class="divLogin">
             <div id="container_form">
@@ -65,7 +67,7 @@
                 <form id="formLogin" action="actions/formLogin/autenticar.php" method="post">
                     <input type="text" name="user" id="user" class="usuario" placeholder="Login">
                     <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
-                    <input type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                    <input onclick="btLogin();" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
                 </form>
               </div>
             </div>
@@ -73,7 +75,7 @@
         </div>
       </div>
       <!-- fim tela login -->
-      <div id="container_abas" class="container_hide showme">
+      <div id="container_abas" class="container_hide hideme">
         <!--ABAS-->
         <div id="div_abas" class="fl_left">
           <div id="menu_abas" class="wrapInternas fl_left showme">
@@ -96,7 +98,9 @@
           </div>
         </div>
         <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
-
+        <div id="div_conteudo">
+          
+        </div>
       <!--FIM ABAS-->
 
       <!-- inicio tela busca inicio -->
@@ -143,12 +147,14 @@
 
 
   </body>
-  <script src="js/PageManager.js" ></script>
+  
   <script >
         //DEBUG
         $(document).ready(function(){
           PageManager.loadTmpl('identificacao');
         });
-      </script>
+  </script>
+ 
+  
 
 </html>
