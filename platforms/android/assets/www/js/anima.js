@@ -28,17 +28,17 @@ $('#bt_cidadao').click(function(){
     console.log('show div_busca_inicio');
 });
 
-$('#bt_login').click(function(){
-    hideTela('#div_login');
-    showTela('#div_header');
-    showTela('#container_abas');
-    //showTela('#div_busca_inicio');
-     console.log(array_Divs);
-});
+
 
 var transitionsevents = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'; 
 
-    function showTela(tela){
+    
+
+
+
+
+});
+function showTela(tela){
         
 
         $(tela).removeClass('hideme');
@@ -59,13 +59,12 @@ var transitionsevents = 'webkitTransitionEnd otransitionend oTransitionEnd msTra
         //     UIS.aguardaTransicaoTela = false;
         //     console.log("Liberando click!!!");
          }
-
           function hideTela(tela){
         
 
         $(tela).removeClass('showme');
         $(tela).addClass('hideme');
-        console.log("SHOWTELA(): ");
+        console.log("HIDETELA(): ");
     }
     
 
@@ -106,11 +105,6 @@ var transitionsevents = 'webkitTransitionEnd otransitionend oTransitionEnd msTra
         }
         console.log("VOLTAR() - Saida: ",UIS.array_Divs.length );
     }
-
-
-});
-
-
 
 
 

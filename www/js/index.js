@@ -33,16 +33,43 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+		console.log("onDeviceReady1");
         app.receivedEvent('deviceready');
+		console.log("onDeviceReady2");
+		BANCODADOS.openDB(app.openDBSuccess, app.openDBFail);
     },
+	
+	openDBSuccess: function () {
+		// todo: verificar de criar se o banco já existe
+		// Cria tabelas e dados
+		BANCODADOS.cbSuccess_f = app.createDBSuccess;
+		BANCODADOS.cbFail_f = app.createDBFail;
+		BANCODADOS.createDB();
+	},
+	
+	createDBSuccess: function () {
+		// Banco criado com sucesso
+		console.log("Banco criado com sucesso.");
+	},
+	
+	createDBFail: function (err) {
+		// todo: definir o comportamento do app neste caso de erro
+		alert("Houve falha na criação do banco de dados. Erro: " + err);
+	},
+	
+	openDBFail: function (err) {
+		// todo: definir o comportamento do app neste caso de erro
+		alert("Houve falha na abertura do banco de dados. Erro: " + err);
+	},
+	
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+//        var parentElement = document.getElementById(id);
+//        var listeningElement = parentElement.querySelector('.listening');
+//        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+//        listeningElement.setAttribute('style', 'display:none;');
+//        receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
     }

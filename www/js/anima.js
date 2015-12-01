@@ -32,7 +32,13 @@ $('#bt_cidadao').click(function(){
 
 var transitionsevents = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'; 
 
-    function showTela(tela){
+    
+
+
+
+
+});
+function showTela(tela){
         
 
         $(tela).removeClass('hideme');
@@ -53,18 +59,12 @@ var transitionsevents = 'webkitTransitionEnd otransitionend oTransitionEnd msTra
         //     UIS.aguardaTransicaoTela = false;
         //     console.log("Liberando click!!!");
          }
-
-
-
-
-});
-
           function hideTela(tela){
         
 
         $(tela).removeClass('showme');
         $(tela).addClass('hideme');
-        console.log("SHOWTELA(): ");
+        console.log("HIDETELA(): ");
     }
     
 
