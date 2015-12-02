@@ -528,65 +528,7 @@ $(document).ready(function(){
 	
 	});
 
-	//abre input orientação sexual
-	jQuery("#infoOrientacaoSexual .radio").click(function(){
-		if ($( "input:radio[name=infoOrientacaoSexual]:checked" ).val() == "Sim")
-		{
-		jQuery('#orientacaoSexual').show();
-
-		}
-		else{
-		jQuery('#orientacaoSexual').hide();
-
-		}
-
-});
-
-	//abre input quantos filhos
-	jQuery("#temFilho .radio").click(function(){
-		if ($( "input:radio[name=temFilho]:checked" ).val() == "Sim")
-		{
-		
-		jQuery('#qtdFilho').show();
-
-		}
-		else{
-		
-		jQuery('#qtdFilho').hide();
-
-		}
-
-});
-
-	//abre input qual familiar
-	jQuery("#infoTemContatoFamilia .radio").click(function(){
-		if ($( "input:radio[name=infoTemContatoFamilia]:checked" ).val() == "Sim")
-		{
-		jQuery('#contatoFamilia').show();	
-		jQuery('#qualFamiliar').show();
-
-		}
-		else{
-		jQuery('#contatoFamilia').hide();
-		jQuery('#qualFamiliar').hide();
-
-		}
-
-});
-
-	//abre input qual deficiencia
-	jQuery("#possui_deficiencia .radio").click(function(){
-		if ($( "input:radio[name=possui_deficiencia]:checked" ).val() == "Sim")
-		{
-		jQuery('#quaisDeficiencias').show();	
-
-		}
-		else{
-		jQuery('#quaisDeficiencias').hide();
-
-		}
-
-});
+	
 
 });
 

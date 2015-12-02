@@ -557,11 +557,11 @@ span.unidade{
 }
 .contentAbaBorda{
 	border-top: 7px solid #eb8202;
-    background: #fff;
+	background: #fff;
 	float: right;
-	width: 60%;
+	width: 67%;
 	padding: 3% 3% 5% 3%;
-	margin: 8px 68px 50px 0px;
+	margin: 8px 0px 50px 0px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -575,6 +575,17 @@ span.unidade{
 	border-bottom: none;
 	width: 56%;
 	
+}
+
+#ficha-statica #info-basica {
+    margin: 0 0 20px 0;
+    min-height: 270px;
+}
+
+.foto-cidadao {
+    float: left;
+    margin: 0 70px 5px 0;
+    max-width: 220px;
 }
 /*.usuario{
     height: 60px;
@@ -2065,7 +2076,7 @@ span.phone-img {
 
 }
 #div_busca_inicio{
-	padding: 100px 0 40px 30px;
+	padding: 100px 10px 40px 25px;
 	}
 
 

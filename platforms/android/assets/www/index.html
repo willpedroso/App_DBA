@@ -32,15 +32,18 @@
     <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
     <script src="js/index.js" type="text/javascript"></script>
     <script src="js/BancoDados.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/md5.js"></script>
+	  <script type="text/javascript" src="js/md5.js"></script>
     <script src="js/BancoDadosDTO.js" type="text/javascript"></script>
     <script src="js/Usuario.js" type="text/javascript"></script>
     <script src="js/funcoes.js" type="text/javascript"></script>
     <script src="js/anima.js" type="text/javascript"></script>
     <script src="js/PageManager.js" ></script>
-    <script src="js/login.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="js/jquery.mask.js" type="text/javascript"></script>
+    <script src="js/login.js" type="text/javascript"></script>
+    <script src="js/busca_inicio.js" type="text/javascript"></script>
+    <script src="js/info_basicas.js" type="text/javascript"></script>
+    
     <!--CSS-->
     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
        <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"> -->
@@ -82,7 +85,7 @@
         </div>
       </div>
       <!-- fim tela login -->
-      <div id="container_abas" class="container_hide hideme">
+      <div id="container_abas" class="container_hide showme">
         <!--ABAS-->
         <div id="div_abas" class="fl_left">
           <div id="menu_abas" class="wrapInternas fl_left showme">
@@ -105,12 +108,44 @@
           </div>
         </div>
         <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
+    <div id="ficha-statica" class="contentAbaBorda hideme" >
+      <h3>FICHA DO CIDADÃO</h3>
+      <div id="info-basica">
+        <img class="foto-cidadao" src="img/user1.png">
+        <p class="info-basica" lingdex="0">
+        Nome completo: <strong>AAAA</strong>
+        <br>
+        Nome social: <strong>Cidadao de Teste</strong>
+        <br>
+        Nome da mãe: <strong>Mae de teste</strong>
+        <br>
+        Número SISA: <strong>123456</strong>
+        <br>
+        Data de nascimento: <strong>01/01/1950</strong>
+        <br>
+        Situação Cadastral: <strong>Ativo</strong>
+        <br>
+        Prioridade: <strong>Sim</strong>
+        <br>
+        Autoriza Programa DBA: <strong>Sim</strong>
+        <br>
+        Local de Acolhida: <strong>Albergue XYZ</strong>
+        <br>
+        </p>
+      </div>      
+    </div>
+      
+      
+        
+
+
         <div id="div_conteudo">
           
         </div>
       <!--FIM ABAS-->
 
       <!-- inicio tela busca inicio -->
+      
      
       <!-- fim tela busca inicio -->
       <!--inicio tela frequencia-->
@@ -123,9 +158,11 @@
       <!-- FIM IDENTIFICAÇÃO -->
 
       <!-- INFO BASICAS -->
+     
       <!-- FIM INFO BASICAS -->
 
       <!-- HISTORICO ALTERAÇÕES -->
+     
       <!-- FIM HISTORICO ALTERAÇÕES -->
 
       <!-- SITUAÇÃO DBA -->
