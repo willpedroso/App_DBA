@@ -1,49 +1,11 @@
  <!-- inicio tela busca inicio -->
-       <div id="div_busca_inicio" class="contentAbaBorda ">
-         
+       <div id="div_busca_inicio" class="fl_left">
           <h1>Bem Vindo</h1>
           <h2>Encontre o Cidadão no campo de busca abaixo.</h2>
-          <div class="linhaForm">
-            <div>
-              <input type="text" class="inputGrande input_busca" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
-              <input type="submit" onclick="btBusca($('input[type=text]#textoBusca').val());" class="btnAdicionar" value="Pesquisar" id="btBusca" autofocus="">
-            </div>
-            <div class="checkbox checkbox_busca">
-              <input type="checkbox" name="situacao_cadastral_ativo" value="checked" class="check  radio active " checked>
-              <p>Ativos</p>
-            </div>
-            <div class="checkbox checkbox_busca">
-              <input type="checkbox" name="situacao_cadastral_ativo" value="checked" class="check  radio active" checked>
-              <p>Inativos</p>
-            </div>
-          </div>
-          <div class="tableCadastro">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tbody>
-                      <tr style="background-color: rgb(249, 249, 249);">
-                        <th width="25%">Nome Completo</th>
-                        <th width="20%">Nome Social</th>
-                        <th width="20%">Nome da Mãe</th>
-                        <th width="10%">Data de Nascimento</th>
-                        <th width="10%">Situação Cadastral</th>
-                        <th width="10%">Programa DBA</th>
-                        <th width="5%"></th>
-                      </tr>
-                      <tr style="background-color: rgb(238, 238, 238);">
-                        <td><a href="#" onclick="exibirFicha(520)">aaaaaa</a></td>
-                        <td>teste</td>
-                        <td>teste</td>
-                        <td>01/01/1900</td>
-                        <td>Ativo</td>
-                        <td>Não</td>
-                        <td>
-                                                <!--<a href="#"  onclick="programaDba(520, 1)" title="Adicionar ao Programa DBA" class="icoBandeira "></a>-->
-                            <a href="#" onclick="alterarCidadao(520)" title="Editar" class="icoEdit"></a>
-                            <!--<a href="#" onclick="alterarSituacaoCadastral(520)" title="Alterar Situação Cadastral" class="icoDelete" ></a>-->
-                                            </td>
-                      </tr>
-
-                    </tbody>
-            </table>
+          
+          <div>
+            <input type="text" class="inputGrande" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
+            <input type="submit" class="btnAdicionar" value="Pesquisar" autofocus="">
         </div>
-      </div>  <!-- fim tela busca inicio -->
+       </div>
+        <!-- fim tela busca inicio -->
