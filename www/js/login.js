@@ -13,6 +13,7 @@ function retLogin (retCode) {
 		PageManager.loadTmpl('div_busca_inicio');
 		hideTela('#div_login');
 		showTela('#div_header');
+		showTela('#container_abas');
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
 		alert("Senha incorreta");

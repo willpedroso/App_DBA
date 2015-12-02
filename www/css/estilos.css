@@ -2128,6 +2128,11 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 
-.marg_top_35px{
+.checkbox_busca{
 	margin-top: 35px !important;
+	width: 50%;
+}
+
+.input_busca{
+	width: 59%;
 }
