@@ -1,47 +1,7 @@
 // JavaScript Document
 $(document).ready(function(){
-	/* INICIO - RADIO SITUACAO CADASTRAL */
-	jQuery("#infoSituacaoDba .radio").click(function(){
-		if ($( "input:radio[name=infoSituacaoDba]:checked" ).val() == "Ativo")
-		{
-			jQuery('#motivoInativacao').hide();
-	        jQuery('#autorizaDba').show();
-	        jQuery('#localDba').show();
-		}
-		else{
-			jQuery('#motivoInativacao').show();
-	        jQuery('#autorizaDba').hide();
-	        jQuery('#localDba').hide();
-		}
-	});
+	
 
-  var valRadio = '';
-  jQuery("#infoSituacaoDba .radio").click(function(){
-    jQuery(this).addClass('active');    
-    if(jQuery('#infoSituacaoDba > span.radio').hasClass('active')){
-      jQuery('#infoSituacaoDba > span.radio').removeClass('active');  
-      jQuery(this).addClass('active');
-      valRadio = jQuery(this).attr('title');
-      jQuery(this).parent().find('#situacao_cadastral').val(valRadio);
-      
-      if ( valRadio == '1' )
-      {
-        jQuery('#motivoInativacao').hide();
-        jQuery('#autorizaDba').show();
-        jQuery('#localDba').show();
-      }
-      else
-      {
-        jQuery('#motivoInativacao').show();
-        jQuery('#autorizaDba').hide();
-        jQuery('#localDba').hide();
-      }
-            
-    }
-    else{
-      jQuery(this).parent().find('#situacao_cadastral').val('');
-    }
-  });
   /* FIM - RADIO SITUACAO CADASTRAL */
   
   
@@ -528,7 +488,65 @@ $(document).ready(function(){
 	
 	});
 
-	
+	//abre input orientação sexual
+	jQuery("#infoOrientacaoSexual .radio").click(function(){
+		if ($( "input:radio[name=infoOrientacaoSexual]:checked" ).val() == "Sim")
+		{
+		jQuery('#orientacaoSexual').show();
+
+		}
+		else{
+		jQuery('#orientacaoSexual').hide();
+
+		}
+
+});
+
+	//abre input quantos filhos
+	jQuery("#temFilho .radio").click(function(){
+		if ($( "input:radio[name=temFilho]:checked" ).val() == "Sim")
+		{
+		
+		jQuery('#qtdFilho').show();
+
+		}
+		else{
+		
+		jQuery('#qtdFilho').hide();
+
+		}
+
+});
+
+	//abre input qual familiar
+	jQuery("#infoTemContatoFamilia .radio").click(function(){
+		if ($( "input:radio[name=infoTemContatoFamilia]:checked" ).val() == "Sim")
+		{
+		jQuery('#contatoFamilia').show();	
+		jQuery('#qualFamiliar').show();
+
+		}
+		else{
+		jQuery('#contatoFamilia').hide();
+		jQuery('#qualFamiliar').hide();
+
+		}
+
+});
+
+	//abre input qual deficiencia
+	jQuery("#possui_deficiencia .radio").click(function(){
+		if ($( "input:radio[name=possui_deficiencia]:checked" ).val() == "Sim")
+		{
+		jQuery('#quaisDeficiencias').show();	
+
+		}
+		else{
+		jQuery('#quaisDeficiencias').hide();
+
+		}
+
+});
 
 });
 
@@ -566,3 +584,64 @@ function removeMe(obl){
 	console.log("remove")
 	$("#"+obl).remove();	
 }
+
+function infoSitDba(){
+	/* INICIO - RADIO SITUACAO CADASTRAL */
+	jQuery("#infoSituacaoDba .radio").click(function(){
+		if ($( "input:radio[name=infoSituacaoDba]:checked" ).val() == "Ativo")
+		{
+			jQuery('#motivoInativacao').hide();
+	        jQuery('#autorizaDba').show();
+	        jQuery('#localDba').show();
+		}
+		else{
+			jQuery('#motivoInativacao').show();
+	        jQuery('#autorizaDba').hide();
+	        jQuery('#localDba').hide();
+		}
+	});
+}
+
+function infoPrDba() {
+    if ($( "input:radio[name=infoProgramaDba]:checked" ).val() == "Sim")
+  {
+    jQuery('#localAcolhida').attr('style','display:block');
+  }
+  else{
+    jQuery('#localAcolhida').attr('style','display:none');
+  }
+}
+
+function infoDiaInteiro(){
+	jQuery("#infoDiaInteiro .radio").click(function(){
+		if ($( "input:radio[name=infoDiaInteiro]:checked" ).val() == "Sim")
+		{
+			jQuery('#divHoraInicio').hide();
+	        jQuery('#divHoraTermino').hide();
+		}
+		else{
+			jQuery('#divHoraInicio').show();
+	        jQuery('#divHoraTermino').show();
+		}
+	});
+}
+function infoPermanente(){
+	jQuery("#infoPermanente .radio").click(function(){
+		if ($( "input:radio[name=infoPermanente]:checked" ).val() == "Sim")
+		{
+			jQuery('#divDataTermino').hide();
+	        jQuery('#divHoraTermino').hide();
+		}
+		else{
+			jQuery('#divDataTermino').show();
+		}
+	});
+}
+
+
+
+function abas(){
+    $('#menu_abas').toggleClass('showme');
+    $('#container_abas').toggleClass('container_show');
+}
+  

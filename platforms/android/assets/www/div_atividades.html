@@ -1,0 +1,51 @@
+
+   
+<!-- ATIVIDADES -->
+      <div id="div_atividades">
+          <div class="menuFixo">
+            <p class="nomeSocial">
+            Nome Social: <strong>Adao</strong>
+            </p>
+            <p class="nomeCompleto">Nome Completo: <strong>ADAO CARLOS SANTOS RODRIGUES</strong>
+            </p>
+          </div>
+
+
+      <div id="infoAtividade" title="Informações da Atividade">
+      </div>
+
+      <!--FIM CONTEUDO-->
+
+          
+          <!--FORM-->
+          <form id="formIdentificacao" action="actions/formIdentificacao/cadastrar.php" method="post" class="cadastro">
+              
+              <div class="contentAbaBorda">
+              
+                <h3>ATIVIDADES</h3>
+                
+                <div id="calendarioAtividades">
+                </div>
+                
+              </div>
+              
+              <input type="button" onclick="PageManager.loadTmpl('div_atividades_add');" class="btnAlterar" value="Nova atividade" />
+              
+          </form>
+          <!--FIM FORM-->
+      </div>
+<script>
+    $(document).ready(function() {
+        $('#calendarioAtividades').fullCalendar({
+            header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,basicWeek,basicDay'
+    },
+    defaultDate: 'today',
+    lang: 'pt-br',
+    editable: false,
+    eventLimit: true
+        });
+    });
+</script>
