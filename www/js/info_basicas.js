@@ -57,3 +57,9 @@ function abreQualDeficiencia(){
 		}
 
 };
+
+function btLimpar(){
+
+document.getElementById('informacoes_complementares').value = "";
+
+};
