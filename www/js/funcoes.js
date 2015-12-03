@@ -611,3 +611,37 @@ function infoPrDba() {
     jQuery('#localAcolhida').attr('style','display:none');
   }
 }
+
+function infoDiaInteiro(){
+	jQuery("#infoDiaInteiro .radio").click(function(){
+		if ($( "input:radio[name=infoDiaInteiro]:checked" ).val() == "Sim")
+		{
+			jQuery('#divHoraInicio').hide();
+	        jQuery('#divHoraTermino').hide();
+		}
+		else{
+			jQuery('#divHoraInicio').show();
+	        jQuery('#divHoraTermino').show();
+		}
+	});
+}
+function infoPermanente(){
+	jQuery("#infoPermanente .radio").click(function(){
+		if ($( "input:radio[name=infoPermanente]:checked" ).val() == "Sim")
+		{
+			jQuery('#divDataTermino').hide();
+	        jQuery('#divHoraTermino').hide();
+		}
+		else{
+			jQuery('#divDataTermino').show();
+		}
+	});
+}
+
+
+
+function abas(){
+    $('#menu_abas').toggleClass('showme');
+    $('#container_abas').toggleClass('container_show');
+}
+  

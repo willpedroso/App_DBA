@@ -15,12 +15,10 @@
       </div>
 
       <!--FIM CONTEUDO-->
-      <div class="divMiolo">
+
           
           <!--FORM-->
           <form id="formIdentificacao" action="actions/formIdentificacao/cadastrar.php" method="post" class="cadastro">
-            <fieldset>
-              <legend>Formulario Cadastro</legend>
               
               <div class="contentAbaBorda">
               
@@ -31,14 +29,12 @@
                 
               </div>
               
-              <input type="button" onclick="addAtividade()" class="btnAlterar" value="Nova atividade" />
+              <input type="button" onclick="PageManager.loadTmpl('div_atividades_add');" class="btnAlterar" value="Nova atividade" />
               
-            </fieldset>
           </form>
           <!--FIM FORM-->
-          
       </div>
-      <script>
+<script>
     $(document).ready(function() {
         $('#calendarioAtividades').fullCalendar({
             header: {

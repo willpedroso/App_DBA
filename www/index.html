@@ -99,19 +99,15 @@
         <div id="div_abas" class="fl_left">
           <div id="menu_abas" class="wrapInternas fl_left showme">
             <ul class="menuAbas">
-              <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao');">Identificação</li>
-              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas');">Informações Básicas</li>
-              <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA');">Situação DBA</li>
-              <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');$('#calendarioAtividades').fullCalendar();">Atividades</li>
-              <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social');">Social</li>
+              <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao'); abas();">Identificação</li>
+              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas'); abas();">Informações Básicas</li>
+              <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA'); abas();">Situação DBA</li>
+              <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');$('#calendarioAtividades').fullCalendar(); abas();">Atividades</li>
+              <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social'); abas();">Social</li>
               <li class="active ">Trabalho</li>
-              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste');">Saúde </li>
-              <li class="active">Situação DBA</li>
+              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste'); abas();">Saúde </li>
               <li class="active">Historico de alterações</li>
-              <li class="active">Atividades</li>
-              <li class="active">Smads</li>
-              <li class="active">Trabalho</li>
-              <li class="active">Saúde</li>
+
             </ul>
           </div>
         </div>
