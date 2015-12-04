@@ -587,7 +587,6 @@ function removeMe(obl){
 
 function infoSitDba(){
 	/* INICIO - RADIO SITUACAO CADASTRAL */
-	jQuery("#infoSituacaoDba .radio").click(function(){
 		if ($( "input:radio[name=infoSituacaoDba]:checked" ).val() == "Ativo")
 		{
 			jQuery('#motivoInativacao').hide();
@@ -599,11 +598,10 @@ function infoSitDba(){
 	        jQuery('#autorizaDba').hide();
 	        jQuery('#localDba').hide();
 		}
-	});
 }
 
 function infoPrDba() {
-    if ($( "input:radio[name=infoProgramaDba]:checked" ).val() == "Sim")
+if ($( "input:radio[name=infoProgramaDba]:checked" ).val() == "Sim")
   {
     jQuery('#localAcolhida').attr('style','display:block');
   }
@@ -612,36 +610,112 @@ function infoPrDba() {
   }
 }
 
-function infoDiaInteiro(){
-	jQuery("#infoDiaInteiro .radio").click(function(){
-		if ($( "input:radio[name=infoDiaInteiro]:checked" ).val() == "Sim")
-		{
-			jQuery('#divHoraInicio').hide();
-	        jQuery('#divHoraTermino').hide();
+function infoDiaInt(){
+	if ($( "input:radio[name=infoDiaInteiro]:checked" ).val() == "Sim")
+	{
+		jQuery('#divHoraInicio').hide();
+        jQuery('#divHoraTermino').hide();
+	}
+	else{
+		if ($( "input:radio[name=infoPermanente]:checked" ).val() == "Sim"){
+			jQuery('#divHoraTermino').hide();
 		}
 		else{
-			jQuery('#divHoraInicio').show();
-	        jQuery('#divHoraTermino').show();
+			jQuery('#divHoraTermino').show();
 		}
-	});
+		jQuery('#divHoraInicio').show();
+	}
 }
-function infoPermanente(){
-	jQuery("#infoPermanente .radio").click(function(){
-		if ($( "input:radio[name=infoPermanente]:checked" ).val() == "Sim")
-		{
-			jQuery('#divDataTermino').hide();
-	        jQuery('#divHoraTermino').hide();
+
+function infoPerma(){
+	if ($( "input:radio[name=infoPermanente]:checked" ).val() == "Sim")
+	{
+		jQuery('#divDataTermino').hide();
+        jQuery('#divHoraTermino').hide();
+	}
+	else{
+		if ($( "input:radio[name=infoDiaInteiro]:checked" ).val() == "Não"){
+			jQuery('#divHoraTermino').show();
 		}
-		else{
-			jQuery('#divDataTermino').show();
-		}
-	});
+		jQuery('#divDataTermino').show();
+	}
 }
 
 
+function infoRep(){
+	if ($( "input:radio[name=infoRepetir]:checked" ).val() == "dia da semana")
+	{
+		jQuery('#divDiasSemanaRadio').show();
+        jQuery('#divDiasMes').hide();
+	}
+	else{
+		jQuery('#divDiasSemanaRadio').hide();
+        jQuery('#divDiasMes').show();
+	}
+}
 
 function abas(){
     $('#menu_abas').toggleClass('showme');
     $('#container_abas').toggleClass('container_show');
 }
   
+
+function exibePeriodo(){
+	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){
+		console.log("exibe");
+	}
+	if($('#tipoPeriodicidadeLabel').val() == 'Diário'){
+		jQuery('#divDiaInteiro').show();  
+		jQuery('#divDataInicio').show();  
+		jQuery('#divHoraInicio').show();  
+		jQuery('#divPermanente').show();  
+		jQuery('#divDataTermino').show();
+		jQuery('#divHoraTermino').show();
+		jQuery('#divRepetir').hide();
+		jQuery('#divDiaRepetir').hide();
+		jQuery('#divDiasMes').hide();
+		jQuery('#divDiasSemana').hide();
+		jQuery('#divDiasSemanaRadio').hide();
+	}
+	if($('#tipoPeriodicidadeLabel').val() == 'Semanal'){
+		jQuery('#divDiaInteiro').show();  
+		jQuery('#divDataInicio').show();  
+		jQuery('#divHoraInicio').show();  
+		jQuery('#divPermanente').show();  
+		jQuery('#divDataTermino').show();
+		jQuery('#divHoraTermino').show();
+		jQuery('#divRepetir').hide();
+		jQuery('#divDiaRepetir').hide();
+		jQuery('#divDiasMes').hide();
+		jQuery('#divDiasSemana').show();
+		jQuery('#divDiasSemanaRadio').hide();
+		
+	}
+	if($('#tipoPeriodicidadeLabel').val() == 'Mensal'){
+      jQuery('#divDiaInteiro').show();  
+      jQuery('#divDataInicio').show();  
+      jQuery('#divHoraInicio').show();  
+      jQuery('#divPermanente').show();  
+      jQuery('#divDataTermino').show();
+      jQuery('#divHoraTermino').show();
+      jQuery('#divRepetir').show();
+      jQuery('#divDiaRepetir').hide();
+      jQuery('#divDiasMes').show();
+      jQuery('#divDiasSemana').hide();
+      jQuery('#divDiasSemanaRadio').hide();
+		
+	}
+	if($('#tipoPeriodicidadeLabel').val() == 'Anual'){
+		jQuery('#divDiaInteiro').show();  
+		jQuery('#divDataInicio').show();  
+		jQuery('#divHoraInicio').show();  
+		jQuery('#divPermanente').show();  
+		jQuery('#divDataTermino').show();
+		jQuery('#divHoraTermino').show();
+		jQuery('#divRepetir').hide();
+		jQuery('#divDiaRepetir').show();
+		jQuery('#divDiasMes').hide();
+		jQuery('#divDiasSemana').hide();
+		jQuery('#divDiasSemanaRadio').hide();
+	}
+}
