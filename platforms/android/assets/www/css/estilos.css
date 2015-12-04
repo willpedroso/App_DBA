@@ -68,12 +68,15 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	width:100%;
 }
 .divHeader {
+	height:auto;
 	position: fixed;
 	top: 0;
 	z-index: 90;
 	float: left;
 	width: 100%;
+	left:0;
 }
+
 
 .divHeader .logo a{
 	text-indent:-9999px;
@@ -564,10 +567,10 @@ span.unidade{
 .contentAbaBorda{
 	border-top: 7px solid #eb8202;
 	background: #fff;
-	float: right;
-	width: 67%;
+	float: left;
+	width: 91%;
 	padding: 3% 3% 5% 3%;
-	margin: 8px 0px 25px 0px;
+	margin: 8px 0px 25px 55px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -860,6 +863,8 @@ span.unidade{
 	font-style:italic;
 }
 .menuAbas{
+	margin-top: -42px;
+	height: 1255px;
 	float:left;
 }
 .menuAbas li{
@@ -1512,8 +1517,7 @@ span.phone-img {
 		float: left;
 		margin: -34px 0 30px 358px;
 	}
-	.contentAbaBorda{
-		width:525px;
+	
 	}
 	.selectDefault.tipo .selectInicial{
 		width:100%;
@@ -1541,20 +1545,12 @@ span.phone-img {
 		color: #fff;
 		padding: 8px 15px 0 40px;
 	}
-	.divHeader{
-		height:auto;
-		position: fixed;
-		z-index: 90;
-		top: 0
-		left:0;
-	}
+
 	.divHeader .divMenu ul{
 		padding:0;
 	}
 	.divHeader .divMenu button{
-		float:left;
-		clear:both;
-		border:none;
+		
 	}
 	.divHeader .menuTop{
 		bottom: -64px;
@@ -2079,7 +2075,7 @@ span.phone-img {
     position: fixed;
     z-index: 85;
 	height: 60px;
-	margin: 0 -40px 60px -41px;
+	margin: 42px -40px 60px -41px;
     width: 142px;
     background: none repeat scroll 0% 0% #EB8202;
     border: medium none;
@@ -2151,5 +2147,17 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 	width: 67%;
 }
 #div_conteudo{
-	margin-top: 105px;
+	width: 90%;
+	margin: 105px 0 0 37px;
+}
+
+.botao_header{
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	color: #fff;
+	text-decoration: none;
+	padding: 0;
+	float: left;
+	background: none;
+	border: none;
 }
