@@ -62,12 +62,17 @@
   </head>
   <title>De Braços Abertos</title>
   <body>
-    <div class="container ">
+  <!--   <div class="container "> -->
       <!-- inicio menu topo -->
       <div id="div_header" class="divHeader hideme">
         <div class="divMenu">
+<<<<<<< HEAD
           <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abas();">CIDADÃOS</button>
           <button id="bt_frequencia">FREQUENCIA</button>
+=======
+          <button id="bt_cidadao" class="botao_header">CIDADÃOS</button>
+          <button id="bt_frequencia" class="botao_header">FREQUENCIA</button>
+>>>>>>> ajuste_layout_navegacao
         </div>
       </div>
       <!-- fim menu topo -->
@@ -96,9 +101,9 @@
       <!-- fim tela login -->
       <div id="container_abas" class="container_hide hideme">
         <!--ABAS-->
-        <div id="div_abas" class="fl_left">
-          <div id="menu_abas" class="wrapInternas fl_left showme">
-            <ul class="menuAbas">
+        <div id="div_abas" class="menuAbas">
+          <div id="menu_abas" class="showme">
+            <ul class="">
               <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao'); abas();">Identificação</li>
               <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas'); abas();">Informações Básicas</li>
               <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA'); abas();">Situação DBA</li>
@@ -110,8 +115,37 @@
 
             </ul>
           </div>
+           <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
         </div>
-        <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
+      </div>  
+        
+		 <div id="ficha-statica" class="contentAbaBorda hideme" >
+      <h3>FICHA DO CIDADÃO</h3>
+      <div id="info-basica">
+        <img class="foto-cidadao" src="img/user1.png">
+        <p class="info-basica" lingdex="0">
+        Nome completo: <strong>AAAA</strong>
+        <br>
+        Nome social: <strong>Cidadao de Teste</strong>
+        <br>
+        Nome da mãe: <strong>Mae de teste</strong>
+        <br>
+        Número SISA: <strong>123456</strong>
+        <br>
+        Data de nascimento: <strong>01/01/1950</strong>
+        <br>
+        Situação Cadastral: <strong>Ativo</strong>
+        <br>
+        Prioridade: <strong>Sim</strong>
+        <br>
+        Autoriza Programa DBA: <strong>Sim</strong>
+        <br>
+        Local de Acolhida: <strong>Albergue XYZ</strong>
+        <br>
+        </p>
+      </div>      
+    </div>
+	
         <div id="div_conteudo">
           
         </div>
@@ -156,8 +190,8 @@
     <!-- fim paginas submenu ABAS -->
 
 
-        </div>
-      </div>
+<!--         </div> -->
+      
 
 
   </body>

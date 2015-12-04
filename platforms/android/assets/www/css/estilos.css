@@ -61,15 +61,23 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     float: left;
     clear: both;
     width: 100%;
+    min-height: 1255px;
 }
 .wrap{
 	margin:0 auto;
 	width:100%;
 }
-.divHeader{
-	float:left;
-	width:100%;
+.divHeader {
+	height:auto;
+	position: fixed;
+	top: 0;
+	z-index: 90;
+	float: left;
+	width: 100%;
+	left:0;
 }
+
+
 .divHeader .logo a{
 	text-indent:-9999px;
 	background:url(../img/logo.png) no-repeat;
@@ -187,6 +195,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin:15px 0 20px 35px;
 }
 .wrapLogin{
+	border-top:5px solid #eb8202;
 	background-color: #fff;
 	margin:0;
 	width:93%;
@@ -194,7 +203,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	padding: 90px;
 }
 .divLogin{
-	border-top:5px solid #eb8202;
+	/*border-top:5px solid #eb8202;*/
 	margin-top:49px;
 	margin-bottom:50px;
 	background:#fff;
@@ -558,10 +567,10 @@ span.unidade{
 .contentAbaBorda{
 	border-top: 7px solid #eb8202;
 	background: #fff;
-	float: right;
-	width: 67%;
+	float: left;
+	width: 91%;
 	padding: 3% 3% 5% 3%;
-	margin: 8px 0px 50px 0px;
+	margin: 8px 0px 25px 55px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -854,6 +863,8 @@ span.unidade{
 	font-style:italic;
 }
 .menuAbas{
+	margin-top: -42px;
+	height: 1255px;
 	float:left;
 }
 .menuAbas li{
@@ -927,7 +938,7 @@ span.unidade{
 	color: #fff;
 	padding: 8px 16px 8px 16px;
 	cursor: pointer;
-	margin: 100px 80px 15px 0;
+	margin: 100px 0 15px 0;
 	clear: both;
 	float: right;
 
@@ -1055,8 +1066,8 @@ span.unidade{
 .tableCadastro .icoEdit{
 	background:url(../img/icoEdit.png) no-repeat 0 1px;
 	float:left;
-	width:27px;
-	height:22px;
+	width:30px;
+	height:30px;
 	padding:0 8px 0 0;	
 }
 .tableCadastro .icoAdd{
@@ -1506,8 +1517,7 @@ span.phone-img {
 		float: left;
 		margin: -34px 0 30px 358px;
 	}
-	.contentAbaBorda{
-		width:525px;
+	
 	}
 	.selectDefault.tipo .selectInicial{
 		width:100%;
@@ -1535,16 +1545,12 @@ span.phone-img {
 		color: #fff;
 		padding: 8px 15px 0 40px;
 	}
-	.divHeader{
-		height:auto;
-	}
+
 	.divHeader .divMenu ul{
 		padding:0;
 	}
 	.divHeader .divMenu button{
-		float:left;
-		clear:both;
-		border:none;
+		
 	}
 	.divHeader .menuTop{
 		bottom: -64px;
@@ -1873,7 +1879,7 @@ span.phone-img {
     border: none;
     float: left;
     font-size: 28px;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 10px;
     color: #fff;
     height: 70px;
     width: 176px;
@@ -2035,11 +2041,13 @@ span.phone-img {
 }
 
 #div_abas{
+	position: fixed;
+	z-index: 80;
     width: 24%;
     background-color: #efefef;
 }
 #container_abas{
-	
+	position: fixed;
 	width: 1028px;
 }
 /*anima telas*/
@@ -2064,8 +2072,10 @@ span.phone-img {
     -webkit-transform: translate3d(0, 0, 0);
 }
 .button_aba{
-    height: 60px;
-    margin: 41px -40px 60px -39px;
+    position: fixed;
+    z-index: 85;
+	height: 60px;
+	margin: 42px -40px 60px -41px;
     width: 142px;
     background: none repeat scroll 0% 0% #EB8202;
     border: medium none;
@@ -2134,5 +2144,20 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 .input_busca{
-	width: 59%;
+	width: 67%;
+}
+#div_conteudo{
+	width: 90%;
+	margin: 105px 0 0 37px;
+}
+
+.botao_header{
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	color: #fff;
+	text-decoration: none;
+	padding: 0;
+	float: left;
+	background: none;
+	border: none;
 }

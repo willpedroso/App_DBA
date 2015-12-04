@@ -6,7 +6,7 @@
           <div class="linhaForm">
             <div>
               <input type="text" class="inputGrande input_busca" value="" name="textoBusca" id="textoBusca" placeholder="Comece digitando o nome" autofocus="">
-              <input type="submit" onclick="btBusca($('input[type=text]#textoBusca').val());" class="btnAdicionar" value="Pesquisar" id="btBusca" autofocus="">
+              <input type="submit" class="btnAdicionar" value="Pesquisar" id="btBusca"autofocus="">
             </div>
             <div class="checkbox checkbox_busca">
               <input type="checkbox" name="situacao_cadastral_ativo" value="checked" class="check  radio active " checked>
@@ -30,7 +30,7 @@
                         <th width="5%"></th>
                       </tr>
                       <tr style="background-color: rgb(238, 238, 238);">
-                        <td><a href="#" onclick="exibirFicha(520)">aaaaaa</a></td>
+                        <td><a href="#" onclick="showTela('#ficha-statica');PageManager.loadTmpl('identificacao');">aaaaaa</a></td>
                         <td>teste</td>
                         <td>teste</td>
                         <td>01/01/1900</td>
@@ -38,7 +38,7 @@
                         <td>Não</td>
                         <td>
                                                 <!--<a href="#"  onclick="programaDba(520, 1)" title="Adicionar ao Programa DBA" class="icoBandeira "></a>-->
-                            <a href="#" onclick="alterarCidadao(520)" title="Editar" class="icoEdit"></a>
+                            <button onclick="showTela('#ficha-statica');PageManager.loadTmpl('identificacao');" title="Editar" class="icoEdit"></a>
                             <!--<a href="#" onclick="alterarSituacaoCadastral(520)" title="Alterar Situação Cadastral" class="icoDelete" ></a>-->
                                             </td>
                       </tr>
