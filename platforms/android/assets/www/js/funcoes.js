@@ -610,6 +610,7 @@ function infoPrDba() {
   else{
     jQuery('#localAcolhida').attr('style','display:none');
   }
+<<<<<<< HEAD
 }
 
 function infoDiaInteiro(){
@@ -645,3 +646,6 @@ function abas(){
     $('#container_abas').toggleClass('container_show');
 }
   
+=======
+}
+>>>>>>> integracao_busca
