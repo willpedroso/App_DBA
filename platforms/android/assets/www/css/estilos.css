@@ -556,12 +556,11 @@ span.unidade{
 	width:40px;
 }
 .contentAbaBorda{
-	border-top: 7px solid #eb8202;
-	background: #fff;
+    background: #fff;
 	float: right;
-	width: 67%;
-	padding: 3% 3% 5% 3%;
-	margin: 8px 0px 50px 0px;
+	width: 60%;
+	padding: 3%;
+	margin: 8px 68px 0 0px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -575,17 +574,6 @@ span.unidade{
 	border-bottom: none;
 	width: 56%;
 	
-}
-
-#ficha-statica #info-basica {
-    margin: 0 0 20px 0;
-    min-height: 270px;
-}
-
-.foto-cidadao {
-    float: left;
-    margin: 0 70px 5px 0;
-    max-width: 220px;
 }
 /*.usuario{
     height: 60px;
@@ -1010,7 +998,6 @@ span.unidade{
 	clear:both;
 	width:100%;
 	margin:30px 0 0 0;
-	padding: 0 20px 0 0;
 }
 .tableCadastro table{
 	width:100%;
@@ -1022,7 +1009,7 @@ span.unidade{
 	background:#999999;
 	color:#fff;
 	text-align:left;
-	padding:8px 8px 8px 18px;
+	padding:8px 8px 8px 20px;
 }
 .tableCadastro table tr th a{
 	color:#fff;
@@ -1873,7 +1860,7 @@ span.phone-img {
     border: none;
     float: left;
     font-size: 28px;
-    margin: 0 0 0 5px;
+    margin: 10px 0 0 5px;
     color: #fff;
     height: 70px;
     width: 176px;
@@ -2076,7 +2063,7 @@ span.phone-img {
 
 }
 #div_busca_inicio{
-	padding: 100px 10px 40px 25px;
+	padding: 100px 0 16px 30px;
 	}
 
 
@@ -2128,11 +2115,17 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 
-.checkbox_busca{
-	margin-top: 35px !important;
-	width: 50%;
-}
 
-.input_busca{
-	width: 59%;
-}
+/*teste  check*/
+
+
+/*
+input[type="radio" ], input[type="checkbox" ] {
+    background-color: red;
+    float: left;
+    color: red;
+   	width: 44px;
+   	height: 44px;
+    padding: initial;
+    border: 1px solid #000;
+}*/

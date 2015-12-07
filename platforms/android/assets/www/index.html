@@ -17,6 +17,9 @@
        specific language governing permissions and limitations
        under the License.
    -->
+   
+   
+   
 <html>
   <head>
     <meta name="format-detection" content="telephone=no">
@@ -28,23 +31,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <!--JS-->
+       <link href='js/fullcalendar/fullcalendar.css' rel='stylesheet' />
+   <link href='js/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+   
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script> 
-    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/fullcalendar/lib/jquery.min.js" type="text/javascript"></script> 
+    <!--<script src="js/index.js" type="text/javascript"></script>
     <script src="js/BancoDados.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/md5.js"></script>
-    <script src="js/Cidadao.js" type="text/javascript"></script>
+	  <script type="text/javascript" src="js/md5.js"></script>
     <script src="js/BancoDadosDTO.js" type="text/javascript"></script>
-    <script src="js/Usuario.js" type="text/javascript"></script>
+    <script src="js/Usuario.js" type="text/javascript"></script>-->
     <script src="js/funcoes.js" type="text/javascript"></script>
     <script src="js/anima.js" type="text/javascript"></script>
     <script src="js/PageManager.js" ></script>
+    <script src="js/login.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="js/jquery.mask.js" type="text/javascript"></script>
-    <script src="js/login.js" type="text/javascript"></script>
-    <script src="js/busca_inicio.js" type="text/javascript"></script>
-    <script src="js/info_basicas.js" type="text/javascript"></script>
-    
+    <script src='js/fullcalendar/lib/moment.min.js'></script>
+   <script src='js/fullcalendar/lang/pt-br.js'></script>
+   <script src='js/fullcalendar/fullcalendar.min.js'></script>
+   
     <!--CSS-->
     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
        <link href="//fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" type="text/css"> -->
@@ -52,6 +58,7 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> -->
+
   </head>
   <title>De Braços Abertos</title>
   <body>
@@ -78,7 +85,8 @@
                 <form id="formLogin" method="post">
                     <input type="text" name="user" id="user" class="usuario" placeholder="Login">
                     <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
-                    <input onclick="btLogin($('input[type=text]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                    <!--<input onclick="btLogin($('input[type=text]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">-->
+                    <input onclick="console.log('clk');PageManager.loadTmpl('div_busca_inicio');hideTela('#div_login');showTela('#container_abas');showTela('#div_header');" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
                 </form>
               </div>
             </div>
@@ -91,14 +99,13 @@
         <div id="div_abas" class="fl_left">
           <div id="menu_abas" class="wrapInternas fl_left showme">
             <ul class="menuAbas">
-              <li class="active">Identificação</li>
-              <li class="active">Informações Básicas</li>
-              <li class="active ">Inf. Complementares</li>
-              <li class="active ">Situação DBA</li>
-              <li class="active ">Atividades</li>
-              <li class="active ">Smads</li>
+              <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao');">Identificação</li>
+              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas');">Informações Básicas</li>
+              <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA');">Situação DBA</li>
+              <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');$('#calendarioAtividades').fullCalendar();">Atividades</li>
+              <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social');">Social</li>
               <li class="active ">Trabalho</li>
-              <li class="active" onclick="console.log('clk');PageManager.loadTmpl('identificacaoTeste');">Saúde </li>
+              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste');">Saúde </li>
               <li class="active">Situação DBA</li>
               <li class="active">Historico de alterações</li>
               <li class="active">Atividades</li>
@@ -109,44 +116,12 @@
           </div>
         </div>
         <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
-    <div id="ficha-statica" class="contentAbaBorda hideme" >
-      <h3>FICHA DO CIDADÃO</h3>
-      <div id="info-basica">
-        <img class="foto-cidadao" src="img/user1.png">
-        <p class="info-basica" lingdex="0">
-        Nome completo: <strong>AAAA</strong>
-        <br>
-        Nome social: <strong>Cidadao de Teste</strong>
-        <br>
-        Nome da mãe: <strong>Mae de teste</strong>
-        <br>
-        Número SISA: <strong>123456</strong>
-        <br>
-        Data de nascimento: <strong>01/01/1950</strong>
-        <br>
-        Situação Cadastral: <strong>Ativo</strong>
-        <br>
-        Prioridade: <strong>Sim</strong>
-        <br>
-        Autoriza Programa DBA: <strong>Sim</strong>
-        <br>
-        Local de Acolhida: <strong>Albergue XYZ</strong>
-        <br>
-        </p>
-      </div>      
-    </div>
-      
-      
-        
-
-
         <div id="div_conteudo">
           
         </div>
       <!--FIM ABAS-->
 
       <!-- inicio tela busca inicio -->
-      
      
       <!-- fim tela busca inicio -->
       <!--inicio tela frequencia-->
@@ -159,11 +134,9 @@
       <!-- FIM IDENTIFICAÇÃO -->
 
       <!-- INFO BASICAS -->
-     
       <!-- FIM INFO BASICAS -->
 
       <!-- HISTORICO ALTERAÇÕES -->
-     
       <!-- FIM HISTORICO ALTERAÇÕES -->
 
       <!-- SITUAÇÃO DBA -->
