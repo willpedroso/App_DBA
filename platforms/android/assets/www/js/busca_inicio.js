@@ -8,6 +8,9 @@ function btBusca(textoBusca){
 	// Testes
 	var Print = "Lista dos " + CIDADAO.listaCidadaosDadosBusca.length + " cidadãos encontrados:";
 	// Testes
+	
+	// todo: o que apresentar caso não encontre cidadãos na busca
+	
 	var node = "";
 	for (var i = 0; i < CIDADAO.listaCidadaosDadosBusca.length; i++) {
 		// Testes
