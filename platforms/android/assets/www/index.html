@@ -31,16 +31,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <!--JS-->
-       <link href='js/fullcalendar/fullcalendar.css' rel='stylesheet' />
-   <link href='js/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <link href='js/fullcalendar/fullcalendar.css' rel='stylesheet' />
+    <link href='js/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
    
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/fullcalendar/lib/jquery.min.js" type="text/javascript"></script> 
-    <!--<script src="js/index.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
     <script src="js/BancoDados.js" type="text/javascript"></script>
-	  <script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
+    <script src="js/Cidadao.js" type="text/javascript"></script>
     <script src="js/BancoDadosDTO.js" type="text/javascript"></script>
-    <script src="js/Usuario.js" type="text/javascript"></script>-->
+    <script src="js/Usuario.js" type="text/javascript"></script>
     <script src="js/funcoes.js" type="text/javascript"></script>
     <script src="js/anima.js" type="text/javascript"></script>
     <script src="js/PageManager.js" ></script>
@@ -48,8 +49,10 @@
     <script src="js/jquery-ui.js" type="text/javascript"></script>
     <script src="js/jquery.mask.js" type="text/javascript"></script>
     <script src='js/fullcalendar/lib/moment.min.js'></script>
-   <script src='js/fullcalendar/lang/pt-br.js'></script>
-   <script src='js/fullcalendar/fullcalendar.min.js'></script>
+    <script src='js/fullcalendar/lang/pt-br.js'></script>
+    <script src='js/fullcalendar/fullcalendar.min.js'></script>
+    <script src="js/busca_inicio.js" type="text/javascript"></script>
+    <script src="js/info_basicas.js" type="text/javascript"></script>
    
     <!--CSS-->
     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -66,6 +69,8 @@
       <!-- inicio menu topo -->
       <div id="div_header" class="divHeader hideme">
         <div class="divMenu">
+          <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abas();">CIDADÃOS</button>
+          <button id="bt_frequencia">FREQUENCIA</button>
           <button id="bt_cidadao" class="botao_header">CIDADÃOS</button>
           <button id="bt_frequencia" class="botao_header">FREQUENCIA</button>
         </div>
@@ -85,8 +90,8 @@
                 <form id="formLogin" method="post">
                     <input type="text" name="user" id="user" class="usuario" placeholder="Login">
                     <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
-                    <!--<input onclick="btLogin($('input[type=text]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">-->
-                    <input onclick="console.log('clk');PageManager.loadTmpl('div_busca_inicio');hideTela('#div_login');showTela('#container_abas');showTela('#div_header');" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                    <input onclick="btLogin($('input[type=text]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                    <!--<input onclick="console.log('clk');PageManager.loadTmpl('div_busca_inicio');hideTela('#div_login');showTela('#container_abas');showTela('#div_header');" type="button"  value="Entrar" id="bt_login" class="btnEntrar">-->
                 </form>
               </div>
             </div>
@@ -96,7 +101,6 @@
       <!-- fim tela login -->
       <div id="container_abas" class="container_hide hideme">
         <!--ABAS-->
-<<<<<<< HEAD
         <div id="div_abas" class="menuAbas">
           <div id="menu_abas" class="showme">
             <ul class="">
@@ -107,26 +111,12 @@
               <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social'); abas();">Social</li>
               <li class="active ">Trabalho</li>
               <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste'); abas();">Saúde </li>
-=======
-        <div id="div_abas" class="fl_left">
-          <div id="menu_abas" class="wrapInternas fl_left showme">
-            <ul class="menuAbas">
-              <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao');">Identificação</li>
-              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas');">Informações Básicas</li>
-              <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA');">Situação DBA</li>
-              <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');$('#calendarioAtividades').fullCalendar();">Atividades</li>
-              <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social');">Social</li>
-              <li class="active ">Trabalho</li>
-              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste');">Saúde </li>
-              <li class="active">Situação DBA</li>
->>>>>>> integracao_busca
               <li class="active">Historico de alterações</li>
 
             </ul>
           </div>
            <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
         </div>
-<<<<<<< HEAD
       </div>  
         
 		 <div id="ficha-statica" class="contentAbaBorda hideme" >
@@ -156,9 +146,6 @@
       </div>      
     </div>
 	
-=======
-        <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
->>>>>>> integracao_busca
         <div id="div_conteudo">
           
         </div>

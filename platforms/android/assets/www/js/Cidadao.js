@@ -68,7 +68,7 @@
 		}
 
 		// Obtém dados dos cidadãos
-		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaDadosCidadaosSuccess: function (trans, res) {
@@ -84,6 +84,7 @@
 			ano_nascimento: res.rows.item(0).ano_nascimento,
 			situacao_cadastral: res.rows.item(0).situacao_cadastral,
 			sisrua: res.rows.item(0).sisrua,
+			programa_dba: res.rows.item(0).programa_dba,
 		};
 		CIDADAO.listaCidadaosDados.push(cdados);
 		if (CIDADAO.countListaCidadaosId == CIDADAO.listaCidadaosId.length) {
@@ -99,6 +100,7 @@
 				Print += "Data do Nascimento: " +  CIDADAO.listaCidadaosDados[i].dia_nascimento + "/" + CIDADAO.listaCidadaosDados[i].mes_nascimento + "/" + CIDADAO.listaCidadaosDados[i].ano_nascimento + "\r\n";
 				Print += "Situação Cadastral: " +  (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 0 ? "inativo" : "ativo") + "\r\n";
 				Print += "Número SISA: " +  CIDADAO.listaCidadaosDados[i].sisrua + "\r\n";
+				Print += "Programa DBA: " +  (CIDADAO.listaCidadaosDados[i].programa_dba == 0 ? "Não" : "Sim") + "\r\n";
 				Print += "\r\n";
 			}
 			console.log (Print);

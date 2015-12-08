@@ -22,6 +22,8 @@
 		ALTERAR_SENHA: 5,
 		ERRO_BD: 6
 	},
+	
+	usuario_id: null,
 
     // ****************** Efetua o login do usuário *********************
 	loginFail: function(error) {
@@ -62,15 +64,27 @@
 			}
 			// todo: Salva o perfil do usuário
 			
-//			alert("Login OK");
-			USUARIO.cbRet_f(USUARIO.login_return.OK);
+			USUARIO.usuario_id = res.rows.item(0).id;
+			// Carrega dados dos cidadãos
+			CIDADAO.dadosEntrada(USUARIO.usuario_id, USUARIO.cargaCidadaosSucesso, USUARIO.cargaCidadaosFail);
+//			USUARIO.cbRet_f(USUARIO.login_return.OK);
 		}
+	},
+	
+	cargaCidadaosSucesso: function () {
+		console.log("cargaCidadaosSucesso");
+		USUARIO.cbRet_f(USUARIO.login_return.OK);
+	},
+	
+	cargaCidadaosFail: function (err) {
+		console.log("cargaCidadaosFail - erro = " + err);
+		USUARIO.cbRet_f(USUARIO.login_return.ERRO_BD);
 	},
 	
     login: function(usuario, senha, cbRet) {
 	    console.log("login");
 		USUARIO.cbRet_f = cbRet;
 		USUARIO.auxVar_1 = senha;
-		BANCODADOS.sqlCmdDB("SELECT senha, status, nome, dt_expirar_senha, perfil_id FROM usuario WHERE login = ?", [usuario], USUARIO.loginSuccess, USUARIO.loginFail);
+		BANCODADOS.sqlCmdDB("SELECT id, senha, status, nome, dt_expirar_senha, perfil_id FROM usuario WHERE login = ?", [usuario], USUARIO.loginSuccess, USUARIO.loginFail);
 	},
 }

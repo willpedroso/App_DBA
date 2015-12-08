@@ -73,12 +73,12 @@
               <div class="linhaForm"> 
                 <span class="titLabel">Periodicidade<strong>*</strong>:</span>
                 <div class="comboStilo"> 
-                  <select name="tipoPeriodicidadeLabel" id="tipoPeriodicidadeLabel">
+                  <select name="tipoPeriodicidadeLabel" id="tipoPeriodicidadeLabel" onChange="exibePeriodo()">
                     <option value="Selecione">Selecione</option>
-                    <option value="Diário" id="1" onclick="exibeCampos(1)" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Diário</option>
-                    <option value="Semanal" id="2" onclick="exibeCampos(2)" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Semanal</option>
-                    <option value="Mensal" id="3" onclick="exibeCampos(3)" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Mensal</option>
-                    <option value="Anual" id="4" onclick="exibeCampos(4)" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Anual</option>
+                    <option value="Diário" id="1" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Diário</option>
+                    <option value="Semanal" id="2" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Semanal</option>
+                    <option value="Mensal" id="3" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Mensal</option>
+                    <option value="Anual" id="4" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Anual</option>
                   </select>
                 </div>
               </div>
@@ -87,9 +87,9 @@
                 <div class="linhaForm">
                   <span class="titLabel">Dia inteiro:</span>
                   <div id="infoDiaInteiro" class="radioButton">
-                    <input type="radio" name="infoDiaInteiro" value="Não" class="radio" onchange="infoDiaInteiro()">
+                    <input type="radio" name="infoDiaInteiro" value="Não" class="radio" onchange="infoDiaInt();">
                     <p>Não</p>
-                    <input type="radio" name="infoDiaInteiro" value="Sim" class="radio" onchange="infoDiaInteiro()">
+                    <input type="radio" name="infoDiaInteiro" value="Sim" class="radio" onchange="infoDiaInt();">
                     <p>Sim</p>
                   </div>
                 </div>
@@ -113,9 +113,9 @@
                 <div class="linhaForm">
                   <span class="titLabel">Permanente:</span>
                   <div id="infoPermanente" class="radioButton">
-                    <input type="radio" name="infoPermanente" value="Não" class="radio" onchange="infoPermanente()">
+                    <input type="radio" name="infoPermanente" value="Não" class="radio" onchange="infoPerma();">
                     <p>Não</p>
-                    <input type="radio" name="infoPermanente" value="Sim" class="radio" onchange="infoPermanente()">
+                    <input type="radio" name="infoPermanente" value="Sim" class="radio" onchange="infoPerma();">
                     <p>Sim</p>
                   </div>
                 </div>
@@ -139,11 +139,10 @@
                 <div class="linhaForm">
                   <span class="titLabel">Repetir:</span>
                   <div id="infoRepetir" class="radioButton">
-                    <span class="radio active" title="0"></span>
+                    <input type="radio" name="infoRepetir" value="dia do mês" class="radio" onchange="infoRep();">
                     <p>dia do mês</p>
-                    <span class="radio " title="1"></span>
+                    <input type="radio" name="infoRepetir" value="dia da semana" class="radio" onchange="infoRep();">
                     <p>dia da semana (primeira ocorrência)</p>
-                    <input type="hidden" value="0" name="repetir" id="repetir" class="valueCheck">
                   </div>
                 </div>
               </div>
@@ -230,3 +229,4 @@
 
 
       </div>
+
