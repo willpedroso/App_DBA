@@ -11,7 +11,15 @@ function btBusca(textoBusca){
 	
 	// todo: o que apresentar caso não encontre cidadãos na busca
 	
-	var node = "";
+	// Cabeçalho
+	var node = "<li>";
+		node += "<div>Nome Completo</div>";
+		node += "<div>Nome Social</div>";
+		node += "<div>Nome da Mãe</div>";
+		node += "<div>Data de Nascimento</div>";
+		node += "<div>Situação Cadastral</div>";
+		node += "<div>Programa DBA</div>";
+		node += "</li>";
 	for (var i = 0; i < CIDADAO.listaCidadaosDadosBusca.length; i++) {
 		// Testes
 		Print += "Nome: " + CIDADAO.listaCidadaosDadosBusca[i].nome + "\r\n";
