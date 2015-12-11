@@ -33,24 +33,29 @@
 
               <div class="linhaForm"> 
                 <span class="titLabel">Ponto de serviço<strong>*</strong>:</span>
-                <div class="comboStilo"> 
-                  <select name="pontoServicoLabel" id="pontoServicoLabel">
-                    <option value="Selecione">Selecione</option>
-                    <option value="Curso de pintura" id="6" data-id="pontoServicoLabel" for="ponto_servico_id">Curso de pintura</option>
-                    <option value="Dentista Dr. Xyz" id="7" data-id="pontoServicoLabel" for="ponto_servico_id">Dentista Dr. Xyz</option>
+
+                <div class="comboStilo selectInicial"> 
+                  <select name="pontoServicoLabel" id="pontoServicoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione">Selecione</option>
+                      <option value="Curso de pintura" id="6" data-id="pontoServicoLabel" for="ponto_servico_id">Curso de pintura</option>
+                      <option value="Dentista Dr. Xyz" id="7" data-id="pontoServicoLabel" for="ponto_servico_id">Dentista Dr. Xyz</option>
+                    </div>
                   </select>
                 </div>
               </div>
 
               <div class="linhaForm"> 
                 <span class="titLabel">Área de atuação<strong>*</strong>:</span>
-                <div class="comboStilo"> 
-                  <select name="tipoAtuacaoLabel" id="tipoAtuacaoLabel">
-                    <option value="Selecione">Selecione</option>
-                    <option value="Saúde" id="1" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Saúde</option>
-                    <option value="Trabalho" id="2" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Trabalho</option>
-                    <option value="Social" id="3" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Social</option>
-                    <option value="Todas" id="4" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Todas</option>
+                <div class="comboStilo selectInicial"> 
+                  <select name="tipoAtuacaoLabel" id="tipoAtuacaoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione">Selecione</option>
+                      <option value="Saúde" id="1" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Saúde</option>
+                      <option value="Trabalho" id="2" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Trabalho</option>
+                      <option value="Social" id="3" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Social</option>
+                      <option value="Todas" id="4" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Todas</option>
+                    </div>
                   </select>
                 </div>
               </div>
@@ -72,13 +77,15 @@
 
               <div class="linhaForm"> 
                 <span class="titLabel">Periodicidade<strong>*</strong>:</span>
-                <div class="comboStilo"> 
-                  <select name="tipoPeriodicidadeLabel" id="tipoPeriodicidadeLabel" onChange="exibePeriodo()">
-                    <option value="Selecione">Selecione</option>
-                    <option value="Diário" id="1" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Diário</option>
-                    <option value="Semanal" id="2" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Semanal</option>
-                    <option value="Mensal" id="3" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Mensal</option>
-                    <option value="Anual" id="4" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Anual</option>
+                <div class="comboStilo selectInicial"> 
+                  <select name="tipoPeriodicidadeLabel" id="tipoPeriodicidadeLabel" onChange="exibePeriodo()" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione">Selecione</option>
+                      <option value="Diário" id="1" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Diário</option>
+                      <option value="Semanal" id="2" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Semanal</option>
+                      <option value="Mensal" id="3" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Mensal</option>
+                      <option value="Anual" id="4" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Anual</option>
+                    </div>
                   </select>
                 </div>
               </div>

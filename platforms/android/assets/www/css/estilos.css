@@ -472,7 +472,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin:20px 0 20px 0;
 }
 .comboStilo{
-	position:relative;
+	/*position:relative;*/
 }
 .selectDefault{
 	float:left;
@@ -545,8 +545,9 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 .linhaForm .checkbox{
 	float:left;
-	padding:0 0 0 20px;
+	padding:0;
 	margin:-5px 0 0 0;
+	width: 50%;
 }
 .leftForm{
 	float:left;
@@ -872,7 +873,7 @@ span.unidade{
 	width: 254px;
 	list-style:none;
 	background:#efefef;
-	margin:0 5px 0 0;
+	margin:0 1% 0 0;
     padding: 11px 0 10px 18px;	
     cursor:pointer;
 	display: block;
@@ -941,7 +942,19 @@ span.unidade{
 	margin: 100px 0 15px 0;
 	clear: both;
 	float: right;
-
+}
+.btnLimpar{
+	font-family: "Roboto", Arial;
+	font-size: 24px;
+	height: 70px;
+	background: #eb8202;
+	border: none;
+	color: #fff;
+	padding: 8px 16px 8px 16px;
+	cursor: pointer;
+	margin: 10px 0 15px 0;
+	clear: both;
+	float: right;
 }
 
 /* Pagination */
@@ -1111,9 +1124,10 @@ span.unidade{
 }
 .checkbox p{
 	float:left;
-	padding: 10px 68px 10px 5px;
-	margin-right: 57px;
-	width: 110px;
+	padding: 10px 0px 10px 5px;
+	
+	width: auto;
+	line-height: 40px;
 }
 .checkbox .check.active{
 	background: url(../img/icoCheck-on.gif) no-repeat;
@@ -1135,7 +1149,8 @@ span.unidade{
 }
 .radioButton p{
 	float:left;
-    padding: 17px 10px 3px 6px;
+    padding: 0px 10px 0px 6px;
+    line-height: 60px;
     margin-right: 20px;
 }
 .radioButton .radio.active{
@@ -1558,8 +1573,62 @@ span.phone-img {
 		z-index: 1;
 	}
 	.tableCadastro{
-		width:531px;
+		width:100%;
+
 	}
+	ul#ullistaCidadaos{
+		list-style: none;
+	}
+	ul#ullistaCidadaos li{
+		width: 100%;
+		display: block;
+		height: auto;
+		overflow:hidden;
+		padding: 4px 0 4px 0;
+	}
+	ul#ullistaCidadaos li:nth-child(odd){
+		background: #ccc;
+	}
+	ul#ullistaCidadaos li div{
+		width: auto;
+		display: inline-block;
+		float: left;
+		line-height: 22px;
+		height:auto;
+		min-width: 5%;
+	}
+	ul#ullistaCidadaos li div:nth-child(1){
+		width: calc(20% - 3px);
+		padding: 0 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaCidadaos li div:nth-child(2){
+		width: calc(20% - 3px);
+		padding: 0 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaCidadaos li div:nth-child(3){
+		width: calc(20% - 3px);
+		padding: 0 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaCidadaos li div:nth-child(4){
+		width: 15%;
+		text-align: center;
+	}
+	ul#ullistaCidadaos li div:nth-child(5){
+		width: 10%;
+		text-align: center;
+	}
+	ul#ullistaCidadaos li div:nth-child(6){
+		width: 15%;
+		text-align: center;
+	}
+	ul#ullistaCidadaos li div:last-child{
+		float: right;
+		width: 15%;
+	}
+
 	.selectDefault .titExibir{
 	    padding: 0 5px 0 83px;	
 	}
@@ -1625,7 +1694,8 @@ span.phone-img {
 
 .inputTextArea{
 	background:#ebebeb;
-    width:500px;
+    max-width:100%;
+    width: calc(100% - 10px);
 	padding:0px 0 0 10px;
 	color: #454545;
 	border-top: 2px solid #dedede;
@@ -2043,12 +2113,13 @@ span.phone-img {
 #div_abas{
 	position: fixed;
 	z-index: 80;
-    width: 24%;
+    width: 25%;
     background-color: #efefef;
 }
 #container_abas{
 	position: fixed;
 	width: 1028px;
+	z-index: 999;
 }
 /*anima telas*/
 .hideme{
@@ -2146,9 +2217,22 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 .input_busca{
 	width: 67%;
 }
+#div_cidado_nome{
+	width: calc(100% - 145px);
+	margin: 105px 0 0 92px;
+	background: #ccc;
+	padding: 15px 0 5px 5px;
+	height: 45px;
+}
+#div_cidado_nome p{
+	font-size: 28px;
+	color: #fff;
+	font-weight: bold;
+}
+
 #div_conteudo{
 	width: 90%;
-	margin: 105px 0 0 37px;
+	margin: 0px 0 0 37px;
 }
 
 .botao_header{

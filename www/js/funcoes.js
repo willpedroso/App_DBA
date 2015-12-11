@@ -658,7 +658,16 @@ function abas(){
     $('#menu_abas').toggleClass('showme');
     $('#container_abas').toggleClass('container_show');
 }
-  
+function abasmenu(){
+	if($('#menu_abas').hasClass('showme')){
+		
+	}
+	else{
+		$('#menu_abas').toggleClass('showme');
+    	$('#container_abas').toggleClass('container_show');
+	}
+    
+}  
 
 function exibePeriodo(){
 	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){
