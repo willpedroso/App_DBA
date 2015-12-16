@@ -43,7 +43,7 @@ body {
     font-style: italic;
     font-size: 15px;
     padding: 13px 0 0 10px;
-    width: 136px;
+    width: 200px;
     height: 60px;
     float: left;
 }
@@ -53,7 +53,7 @@ body {
     font-style: italic;
     font-size: 15px;
     padding: 7px 0 0 10px;
-    width: 100px;
+    width: 180px;
     height: 26px;
     background: transparent;
     outline-style: none;

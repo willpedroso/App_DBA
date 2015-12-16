@@ -46,10 +46,18 @@
               <div class="linhaForm" id="motivoInativacao" style="display:none;"> 
                 <span class="titLabel">Motivo da inativação:</span>
                   <div id="container_cond_saude2" class="Checker">
-                    <input type="checkbox" name="motivoInativacao" value="Fora da Rua" class="valueCheck"><p>Fora da Rua</p><br>
-                    <input type="checkbox" name="motivoInativacao" value="Não localizado há + de 3 meses" class="valueCheck"><p>Não localizado há + de 3 meses</p>
-                    <input type="checkbox" name="motivoInativacao" value="Óbito" class="valueCheck"><p>Óbito</p>
-                    <input type="checkbox" name="motivoInativacao" value="Outros" class="valueCheck"><p>Outros</p>
+                    <div class="checkbox">
+                      <input type="checkbox" name="motivoInativacao" value="Fora da Rua"  class="checkbox check"><p>Fora da Rua</p><br>
+                    </div>
+                    <div class="checkbox">
+                      <input type="checkbox" name="motivoInativacao" value="Não localizado há + de 3 meses" class="checkbox check"><p>Não localizado há + de 3 meses</p>
+                    </div>                    
+                    <div class="checkbox">
+                      <input type="checkbox" name="motivoInativacao" value="Óbito" class="checkbox check"><p>Óbito</p>
+                    </div>                    
+                    <div class="checkbox">
+                      <input type="checkbox" name="motivoInativacao" value="Outros" class="checkbox check"><p>Outros</p>
+                    </div>
                       <div class="linhaForm">
                         <input type="text" class="inputMed" value="" name="motivo_inativacao_outros" id="motivo_inativacao_outros" placeholder="Outros">
                       </div>
@@ -90,14 +98,18 @@
                 </div>
                   
                   
+
+
                   <div class="linhaForm" id="localDba">
                     <label class="selectDefault" id="localAcolhida" style="display:block">
                       <span class="titSang">Local de Acolhida<strong>*</strong>:</span> 
-                      <div class="comboStilo"> 
-                        <select name="tipoDispositivoContato" id="tipoDispositivoContato">
-                          <option value="Selecione">Selecione</option>
-                          <option value="Albergue XYZ" id="1" data-id="localAcolhidaLabel" for="ponto_servico_id">Albergue XYZ</option>
-                          <option value="Casa de apoio ACB" id="3" data-id="localAcolhidaLabel" for="ponto_servico_id">Casa de apoio ACB</option>
+                      <div class="comboStilo selectInicial"> 
+                        <select name="tipoDispositivoContato" id="tipoDispositivoContato" class="selectPersonalizado">
+                          <div class="lista-box-scroll">
+                            <option value="Selecione">Selecione</option>
+                            <option value="Albergue XYZ" id="1" data-id="localAcolhidaLabel" for="ponto_servico_id">Albergue XYZ</option>
+                            <option value="Casa de apoio ACB" id="3" data-id="localAcolhidaLabel" for="ponto_servico_id">Casa de apoio ACB</option>
+                          </div>
                         </select>
 
                         <input type="hidden" name="ponto_servico_id" id="ponto_servico_id" value="">

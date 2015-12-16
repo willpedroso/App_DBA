@@ -25,4 +25,5 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <preference name="orientation" value="portrait" />
+	<preference name="android-minSdkVersion" value="14" />
 </widget>

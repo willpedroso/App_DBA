@@ -30,22 +30,32 @@
               </div>
               
               <input type="button" onclick="PageManager.loadTmpl('div_atividades_add');" class="btnAlterar" value="Nova atividade" />
+              <!--<input type="button" onclick="preparaListaOpt();" class="btnAlterar" value="Nova atividade" />-->
               
           </form>
           <!--FIM FORM-->
       </div>
 <script>
+	/*
     $(document).ready(function() {
+		console.log("Ready de fullCalendar");
         $('#calendarioAtividades').fullCalendar({
             header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,basicWeek,basicDay'
-    },
-    defaultDate: 'today',
-    lang: 'pt-br',
-    editable: false,
-    eventLimit: true
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			//defaultDate: new Date().toISOString(),
+			lang: 'pt-br',
+			editable: false,
+			events: function(start, end, timezone, callback) {
+				console.log("start: " + start + " - end: " + end + " - timezone: " + timezone + " - callback: " + callback);
+				var js = [];
+				js = ATIVIDADE.montaCalendario();
+				callback(js);
+			},
+			eventLimit: true
         });
     });
+	*/
 </script>
