@@ -117,6 +117,7 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\BancoDadosDTO.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\busca_inicio.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\Cidadao.js \
+C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\CidadaoAtividade.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\fullcalendar \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\funcoes.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\js\index.js \
