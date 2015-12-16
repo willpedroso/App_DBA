@@ -796,14 +796,14 @@
 
 		// cidadao_id já está armazenado em ATIVIDADE.cidadao_id
 		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
-			// Salva novos dados na atividade da lista
+			// todo: Salva novos dados na atividade da lista
 			ATIVIDADE.listaAtividades[indexAtividade].ponto_servico_id = ponto_servico_id;
 			ATIVIDADE.listaAtividades[indexAtividade].tipo_atuacao_id = tipo_atuacao_id;
 
 			// Atualiza atividade
 			BANCODADOS.sqlCmdDB("UPDATE atividade SET ponto_servico_id = ?, tipo_atuacao_id = ?, privada = ?, descricao = ?, status = ?, dt_criacao = ? WHERE id = ?",
 								[ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao, ATIVIDADE.listaAtividades[indexAtividade].id], 
-								ATIVIDADE.salvaAtividadeSuccess, ATIVIDADE.salvaAtividadeFail);
+								ATIVIDADE.salvaPeriodicidade, ATIVIDADE.salvaAtividadeFail);
 		}
 		else {
 			// Nova atividade
@@ -816,6 +816,23 @@
 	salvaPeriodicidade: function (trans, res) {
 		console.log("salvaPeriodicidade");
 		
+		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
+			// todo: Salva novos dados na periodicidade da atividade da lista
+
+			
+			// Atualiza periodicidade da atividade
+			BANCODADOS.sqlCmdDB("UPDATE periodicidade SET tipo_periodicidade_id = ?, data_inicio = ?, hora_inicio = ?, data_termino = ?, hora_termino = ?, dia_inteiro = ?, \
+								permanente = ?, dia_ano_repetir = ?, dia_mes_repetir = ?, dia_semana_repetir = ?, dt_criacao = ?, status = ? \
+								WHERE id = ?",
+								[ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao, ATIVIDADE.listaAtividades[indexAtividade].periodicidade_id], 
+								ATIVIDADE.salvaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
+		}
+		else {
+			// Nova atividade
+			BANCODADOS.sqlCmdDB("INSERT iNTO atividade (cidadao_id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao) VALUES (?, ?, ?, ?, ?, ?, ?)",
+								[ATIVIDADE.cidadao_id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao], 
+								ATIVIDADE.salvaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
+		}
 	},
 	
 	salvaPeriodicidadeDiasSemana: function (trans, res) {

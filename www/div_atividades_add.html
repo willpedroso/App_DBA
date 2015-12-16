@@ -34,7 +34,8 @@
               <div class="linhaForm"> 
                 <span class="titLabel">Ponto de serviço<strong>*</strong>:</span>
 
-                <div class="comboStilo selectInicial"> 
+                <div class="comboStilo selectInicial" id="listaPontosServicos"> 
+				  <!--
                   <select name="pontoServicoLabel" id="pontoServicoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione">Selecione</option>
@@ -42,12 +43,14 @@
                       <option value="Dentista Dr. Xyz" id="7" data-id="pontoServicoLabel" for="ponto_servico_id">Dentista Dr. Xyz</option>
                     </div>
                   </select>
+				  -->
                 </div>
               </div>
 
               <div class="linhaForm"> 
                 <span class="titLabel">Área de atuação<strong>*</strong>:</span>
-                <div class="comboStilo selectInicial"> 
+                <div class="comboStilo selectInicial" id="listaTiposAtuacao"> 
+				  <!--
                   <select name="tipoAtuacaoLabel" id="tipoAtuacaoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione">Selecione</option>
@@ -57,6 +60,7 @@
                       <option value="Todas" id="4" data-id="tipoAtuacaoLabel" for="tipo_atuacao_id">Todas</option>
                     </div>
                   </select>
+				  -->
                 </div>
               </div>
               
@@ -77,7 +81,8 @@
 
               <div class="linhaForm"> 
                 <span class="titLabel">Periodicidade<strong>*</strong>:</span>
-                <div class="comboStilo selectInicial"> 
+                <div class="comboStilo selectInicial" id="ListaTiposPeriodicidade"> 
+				  <!--
                   <select name="tipoPeriodicidadeLabel" id="tipoPeriodicidadeLabel" onChange="exibePeriodo()" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione">Selecione</option>
@@ -87,6 +92,7 @@
                       <option value="Anual" id="4" data-id="tipoPeriodicidadeLabel" for="tipo_periodicidade_id">Anual</option>
                     </div>
                   </select>
+				  -->
                 </div>
               </div>
               
@@ -235,7 +241,7 @@
 
             </div> 
           
-            <input type="button" onclick="salvarFormSituacaoDba()" class="btnAlterar" value="Salvar Alterações">
+            <input type="button" onclick="validaCampos()" class="btnAlterar" value="Salvar Alterações">
                     
           
         </form>
@@ -243,4 +249,107 @@
 
 
       </div>
-
+<script>
+    $(document).ready(function() {
+		preparaListasOpt();
+	});
+	
+	function validaCampos() {
+		// todo: colocar esta função em atividades.js
+		alert("validaCampos");
+		var erro = false;
+		
+		// Avalia ponto de serviço
+		if ($("#pontoServicoLabel").val() == "selecione") {
+			$("#pontoServicoLabel").addClass("inputFocus");
+			erro = true;
+		}
+		else $("#pontoServicoLabel").removeClass("inputFocus");
+		
+		// Avalia tipo de atuação
+		if ($("#listaTiposAtuacao").val() == "selecione") {
+			$("#listaTiposAtuacao").addClass("inputFocus");
+			erro = true;
+		}
+		else $("#listaTiposAtuacao").removeClass("inputFocus");
+		
+		// Avalia tipo de periodicidade
+		if ($("#ListaTiposPeriodicidade").val() == "selecione") {
+			$("#ListaTiposPeriodicidade").addClass("inputFocus");
+			erro = true;
+		}
+		else $("#ListaTiposPeriodicidade").removeClass("inputFocus");
+		
+		// Havendo algum tipo de periodiciade
+		if ($("#ListaTiposPeriodicidade").val() != "selecione") {
+			// Avalia data de início
+			if ($('#data_inicio').val() == '')
+			{
+				$('#data_inicio').addClass('inputFocus');	
+				erro = true;
+			}
+			else $('#data_inicio').removeClass('inputFocus');	
+			
+			// Se não for dia inteiro
+			if ($('#dia_inteiro').val() == '0')
+			{
+				// Avalia hora de início
+				if ( $('#hora_inicio').val() == '' || $('#hora_inicio').val().length != 5)
+				{
+					$('#hora_inicio').addClass('inputFocus');	
+					erro = true;
+				}
+				else $('#hora_inicio').removeClass('inputFocus');
+			}
+				
+			// Se não for permanente
+			if ($('#permanente').val() == '0') {
+				// Avalia data de término
+				if ($('#data_termino').val() == '')
+				{
+					$('#data_termino').addClass('inputFocus');	
+					erro = true;
+				} 
+				else $('#data_termino').removeClass('inputFocus');		
+				
+				// Se não for dia inteiro
+				if ($('#dia_inteiro').val() == '0') {
+					// Avalia hora de término
+					if ($('#hora_termino').val() == '' || $('#hora_termino').val().length != 5)
+					{
+						$('#hora_termino').addClass('inputFocus');	
+						erro = true;
+					}
+					else $('#hora_termino').removeClass('inputFocus');
+				}
+			}			
+			else {
+				$('#data_termino').removeClass('inputFocus');
+				$('#hora_termino').removeClass('inputFocus');
+			}
+		}
+		
+		switch ($('#tipo_periodicidade_id').val()) {
+		// Periodiciade semanal
+		case 2:
+			// Avalia se pelo menos um dia de semana foi selecionado
+		break;
+		
+		// Periodicidade mensal
+		case 3:
+			// Se "repetir" for igual a 0
+				// Avalia dia do mês a repetir
+			
+			// Se "repetir" for igual a 1
+				// Avalia dia da semana a repetir
+		break;
+		
+		// Periodicidades anual
+		case 4:
+			// Avalia dia do ano a repetir
+		break;	
+			
+		// Se houve erro
+			// Apresenta mensagem "msgAtencao"
+	}
+</script>
