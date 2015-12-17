@@ -751,7 +751,7 @@
 			// Salva as informações
 			ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_tipo_ds.push(res.rows.item(i).tipo_dias_semana_id);
 		}
-
+/*
 		// Testes - apresenta dados da atividade selecionada
 		alert ("Dados da atividade: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].id);
 		var dadosAtividadePrint = "Tipo de serviço: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_servico_nome + "\r\n";
@@ -768,7 +768,7 @@
 		dadosAtividadePrint += "Permanente: " + (ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_permanente == 1 ? "Sim" : "Não") + "\r\n";
 		dadosAtividadePrint += "Data de término: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_data_termino + "\r\n";
 		console.log(dadosAtividadePrint);
-
+*/
 		// Retorna se não houver mais atividades
 		if (ATIVIDADE.atividadesCounter == ATIVIDADE.listaAtividades.length) {
 			ATIVIDADE.cbSuccess_f();

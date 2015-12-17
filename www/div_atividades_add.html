@@ -72,7 +72,7 @@
               <div class="linhaForm">
                 <span class="titLabel">Atividade privada:</span>
                 <div id="infoPrivada" class="radioButton">
-                  <input type="radio" name="infoPrivada" value="Não" class="radio">
+                  <input type="radio" name="infoPrivada" value="Não" class="radio" checked>
                   <p>Não</p>
                   <input type="radio" name="infoPrivada" value="Sim" class="radio">
                   <p>Sim</p>
@@ -100,7 +100,7 @@
                 <div class="linhaForm">
                   <span class="titLabel">Dia inteiro:</span>
                   <div id="infoDiaInteiro" class="radioButton">
-                    <input type="radio" name="infoDiaInteiro" value="Não" class="radio" onchange="infoDiaInt();">
+                    <input type="radio" name="infoDiaInteiro" value="Não" class="radio" onchange="infoDiaInt();" checked>
                     <p>Não</p>
                     <input type="radio" name="infoDiaInteiro" value="Sim" class="radio" onchange="infoDiaInt();">
                     <p>Sim</p>
@@ -111,8 +111,9 @@
               <div id="divDataInicio" style="display:none">
                 <div class="linhaForm"> 
                   <span class="titLabel">Data de início<strong>*</strong>:</span>
-                  <input type="text" class="inputPeq hasDatepicker" readonly="" value="" id="data_inicio" name="data_inicio">
-                </div>
+                  <!--<input type="text" class="inputPeq hasDatepicker" readonly="" value="" id="data_inicio" name="data_inicio">-->
+                  <input type="date" class="inputPeq hasDatepicker" value="" id="data_inicio" name="data_inicio" placeholder="dd/mm/aaaa">
+				</div>
               </div>
               
               <div id="divHoraInicio" style="display:none">
@@ -126,7 +127,7 @@
                 <div class="linhaForm">
                   <span class="titLabel">Permanente:</span>
                   <div id="infoPermanente" class="radioButton">
-                    <input type="radio" name="infoPermanente" value="Não" class="radio" onchange="infoPerma();">
+                    <input type="radio" name="infoPermanente" value="Não" class="radio" onchange="infoPerma();" checked>
                     <p>Não</p>
                     <input type="radio" name="infoPermanente" value="Sim" class="radio" onchange="infoPerma();">
                     <p>Sim</p>
@@ -137,7 +138,8 @@
               <div id="divDataTermino" style="display:none">
                 <div class="linhaForm"> 
                   <span class="titLabel">Data de término<strong>*</strong>:</span>
-                  <input type="text" class="inputPeq hasDatepicker" readonly="" value="" id="data_termino" name="data_termino">
+                  <!--<input type="text" class="inputPeq hasDatepicker" readonly="" value="" id="data_termino" name="data_termino">-->
+                  <input type="date" class="inputPeq hasDatepicker" value="" id="data_termino" name="data_termino" placeholder="dd/mm/aaaa">
                 </div>
               </div>
               
@@ -152,7 +154,7 @@
                 <div class="linhaForm">
                   <span class="titLabel">Repetir:</span>
                   <div id="infoRepetir" class="radioButton">
-                    <input type="radio" name="infoRepetir" value="dia do mês" class="radio" onchange="infoRep();">
+                    <input type="radio" name="infoRepetir" value="dia do mês" class="radio" onchange="infoRep();"  checked>
                     <p>dia do mês</p>
                     <input type="radio" name="infoRepetir" value="dia da semana" class="radio" onchange="infoRep();">
                     <p>dia da semana (primeira ocorrência)</p>
@@ -178,7 +180,8 @@
                 <div class="linhaForm"> 
                   <span class="titLabel">Repetir no dia da semana<strong>*</strong>:</span>
                   <div id="infoDiasSemanaRadio" class="radioButton">
-                    <input type="radio" name="infoDiasSemanaRadio" value="Dom" class="radio" onchange="infoDiasSemanaRadio()">
+					<!--
+                    <input type="radio" name="infoDiasSemanaRadio" value="Dom" class="radio" onchange="infoDiasSemanaRadio()" checked>
                     <p>Dom</p>
 
                     <input type="radio" name="infoDiasSemanaRadio" value="Seg" class="radio" onchange="infoDiasSemanaRadio()">
@@ -198,6 +201,7 @@
 
                     <input type="radio" name="infoDiasSemanaRadio" value="Sab" class="radio" onchange="infoDiasSemanaRadio()">
                     <p>Sab</p>
+					-->
                   </div>
                 </div>
               </div>
@@ -206,6 +210,7 @@
                 <div class="linhaForm"> 
                   <span class="titLabel">Repetir nos dias da semana<strong>*</strong>:</span>
                   <div id="container_dias_semana" class="Checker">
+					<!--
                     <div class="checkbox">
                       <input type="checkbox" name="dias_semana[]" value="Dom"  class="checkbox check" onchange="container_dias_semana()">
                       <p>Dom</p>
@@ -234,14 +239,14 @@
                     <input type="checkbox" name="dias_semana[]" value="Sab"  class="checkbox check" onchange="container_dias_semana()">
                     <p>Sab</p>
                     </div>
-                      
-                  </div>
+                    
+                  </div>-->
                 </div>
               </div>
 
             </div> 
           
-            <input type="button" onclick="validaCampos()" class="btnAlterar" value="Salvar Alterações">
+            <input type="button" onclick="validaCampos();" class="btnAlterar" value="Salvar Alterações">
                     
           
         </form>
@@ -253,103 +258,4 @@
     $(document).ready(function() {
 		preparaListasOpt();
 	});
-	
-	function validaCampos() {
-		// todo: colocar esta função em atividades.js
-		alert("validaCampos");
-		var erro = false;
-		
-		// Avalia ponto de serviço
-		if ($("#pontoServicoLabel").val() == "selecione") {
-			$("#pontoServicoLabel").addClass("inputFocus");
-			erro = true;
-		}
-		else $("#pontoServicoLabel").removeClass("inputFocus");
-		
-		// Avalia tipo de atuação
-		if ($("#listaTiposAtuacao").val() == "selecione") {
-			$("#listaTiposAtuacao").addClass("inputFocus");
-			erro = true;
-		}
-		else $("#listaTiposAtuacao").removeClass("inputFocus");
-		
-		// Avalia tipo de periodicidade
-		if ($("#ListaTiposPeriodicidade").val() == "selecione") {
-			$("#ListaTiposPeriodicidade").addClass("inputFocus");
-			erro = true;
-		}
-		else $("#ListaTiposPeriodicidade").removeClass("inputFocus");
-		
-		// Havendo algum tipo de periodiciade
-		if ($("#ListaTiposPeriodicidade").val() != "selecione") {
-			// Avalia data de início
-			if ($('#data_inicio').val() == '')
-			{
-				$('#data_inicio').addClass('inputFocus');	
-				erro = true;
-			}
-			else $('#data_inicio').removeClass('inputFocus');	
-			
-			// Se não for dia inteiro
-			if ($('#dia_inteiro').val() == '0')
-			{
-				// Avalia hora de início
-				if ( $('#hora_inicio').val() == '' || $('#hora_inicio').val().length != 5)
-				{
-					$('#hora_inicio').addClass('inputFocus');	
-					erro = true;
-				}
-				else $('#hora_inicio').removeClass('inputFocus');
-			}
-				
-			// Se não for permanente
-			if ($('#permanente').val() == '0') {
-				// Avalia data de término
-				if ($('#data_termino').val() == '')
-				{
-					$('#data_termino').addClass('inputFocus');	
-					erro = true;
-				} 
-				else $('#data_termino').removeClass('inputFocus');		
-				
-				// Se não for dia inteiro
-				if ($('#dia_inteiro').val() == '0') {
-					// Avalia hora de término
-					if ($('#hora_termino').val() == '' || $('#hora_termino').val().length != 5)
-					{
-						$('#hora_termino').addClass('inputFocus');	
-						erro = true;
-					}
-					else $('#hora_termino').removeClass('inputFocus');
-				}
-			}			
-			else {
-				$('#data_termino').removeClass('inputFocus');
-				$('#hora_termino').removeClass('inputFocus');
-			}
-		}
-		
-		switch ($('#tipo_periodicidade_id').val()) {
-		// Periodiciade semanal
-		case 2:
-			// Avalia se pelo menos um dia de semana foi selecionado
-		break;
-		
-		// Periodicidade mensal
-		case 3:
-			// Se "repetir" for igual a 0
-				// Avalia dia do mês a repetir
-			
-			// Se "repetir" for igual a 1
-				// Avalia dia da semana a repetir
-		break;
-		
-		// Periodicidades anual
-		case 4:
-			// Avalia dia do ano a repetir
-		break;	
-			
-		// Se houve erro
-			// Apresenta mensagem "msgAtencao"
-	}
 </script>
