@@ -56,6 +56,16 @@ function preparaListasOpt () {
 	$("#infoDiasSemanaRadio").append(opts);
 }
 
+function salvaAtividadeSuccess () {
+	console.log("salvaAtividadeSuccess");
+	
+}
+
+function salvaAtividadeFail () {
+	console.log("salvaAtividadeFail");
+	
+}
+
 function validaCampos() {
 	console.log("validaCampos");
 
@@ -199,33 +209,29 @@ function validaCampos() {
 
 		// Salva a atividade
 		var diasSemanaRepetir = [];
-		if ($('#tipoPeriodicidadeLabel').val() == "Semanal") {
-			for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-				if ($("#dias_semana_" + i).is(":checked") == true) {
-					diasSemanaRepetir.push($("#dias_semana_" + i).val());
-				}
+		for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
+			if ($("#dias_semana_" + i).is(":checked") == true) {
+				diasSemanaRepetir.push($("#dias_semana_" + i).val());
 			}
-		}
-		else if ($('#tipoPeriodicidadeLabel').val() == "Mensal" && $("input:radio[name=infoRepetir]:checked").val() != "dia do mês") {
-			diasSemanaRepetir.push($("input:radio[name=infoDiasSemanaRadio]:checked").val());
 		}
 		
 		// todo: testes retirar
-		console.log(			 "Índice da atividade: " + null +
-								 "Ponto de serviço: " + $("#pontoServicoLabel").val() +
-								 "Tipo de Atuação: " + $("#tipoAtuacaoLabel").val() +
-								 "Privada: " + $("input:radio[name=infoPrivada]:checked").val() == "Não" ? 0 : 1 +
-								 "Título: " + $("#descricao").val() +
-								 "Periodicidade: " + $("#tipoPeriodicidadeLabel").val() +
-								 "Dia inteiro: " + $("input:radio[name=infoDiaInteiro]:checked").val() == "Não" ? 0 : 1 +
-								 "Data de início: " + $('#data_inicio').val() +
-								 "Hora de início: " + $('#hora_inicio').val() +
-								 "Permanente: " + $("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1 +
-								 "Data de término: " + $('#data_termino').val() +
-								 "Hora de término: " + $('#hora_termino').val() +
-								 "Dias da semana: " + diasSemanaRepetir + 
-								 "Dia do mês repetir: " + $("dia_mes_repetir").val() +
-								 "Dia do ano repetir: " + $('#dia_ano_repetir').val());
+		console.log("Índice da atividade: " + null +
+					 "\r\nPonto de serviço: " + $("#pontoServicoLabel").val() +
+					 "\r\nTipo de Atuação: " + $("#tipoAtuacaoLabel").val() +
+					 "\r\nPrivada: " + ($("input:radio[name=infoPrivada]:checked").val() == "Não" ? 0 : 1) +
+					 "\r\nTítulo: " + $("#descricao").val() +
+					 "\r\nPeriodicidade: " + $("#tipoPeriodicidadeLabel").val() +
+					 "\r\nDia inteiro: " + ($("input:radio[name=infoDiaInteiro]:checked").val() == "Não" ? 0 : 1) +
+					 "\r\nData de início: " + $('#data_inicio').val() +
+					 "\r\nHora de início: " + $('#hora_inicio').val() +
+					 "\r\nPermanente: " + ($("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1) +
+					 "\r\nData de término: " + $('#data_termino').val() +
+					 "\r\nHora de término: " + $('#hora_termino').val() +
+					 "\r\nDias da semana: " + diasSemanaRepetir + 
+					 "\r\nDia da semana: " + $("input:radio[name=infoDiasSemanaRadio]:checked").val() + 
+					 "\r\nDia do mês repetir: " + $("#dia_mes_repetir").val() +
+					 "\r\nDia do ano repetir: " + $('#dia_ano_repetir').val());
 		alert("Ver console");
 		// todo: testes retirar
 		
@@ -241,20 +247,11 @@ function validaCampos() {
 								 $("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1,			// permanente
 								 $('#data_termino').val(),														// data de término
 								 $('#hora_termino').val(),														// hora de término
-								 diasSemanaRepetir,																// repetir nos dias da semana ou no dia da semana
-								 $("dia_mes_repetir").val(),													// repetir no dia do mês
-								 $('#dia_ano_repetir').val()													// repetir no dia do ano
+								 diasSemanaRepetir,																// repetir nos dias da semana
+								 $("input:radio[name=infoDiasSemanaRadio]:checked").val(),						// repetir no dia da semana
+								 $("#dia_mes_repetir").val(),													// repetir no dia do mês
+								 $('#dia_ano_repetir').val(),													// repetir no dia do ano
 								 this.salvaAtividadeSuccess,
 								 this.salvaAtividadeFail);
 	}
-}
-
-function salvaAtividadeSuccess () {
-	console.log("salvaAtividadeSuccess");
-	
-}
-
-function salvaAtividadeFail () {
-	console.log("salvaAtividadeFail");
-	
 }
