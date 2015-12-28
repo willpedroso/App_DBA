@@ -1,6 +1,10 @@
 function preparaListasOpt () {
 	console.log("preparaListasOpt");
-
+	
+	if(ATIVIDADE.editIndexAtividade != null) {
+		// todo: edição, preenche campos e seleciona opções
+	}
+	
 	// Lista de pontos de serviço
 	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposServico.length; i++) {
@@ -235,7 +239,7 @@ function validaCampos() {
 		alert("Ver console");
 		// todo: testes retirar
 		
-		ATIVIDADE.salvaAtividade(null,																			// índice da atividade
+		ATIVIDADE.salvaAtividade(ATIVIDADE.editIndexAtividade,													// índice da atividade
 								 $("#pontoServicoLabel").val(),													// ponto de serviço (nome)
 								 $("#tipoAtuacaoLabel").val(),													// tipo de atuação (nome)
 								 $("input:radio[name=infoPrivada]:checked").val() == "Não" ? 0 : 1,				// privada

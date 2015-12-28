@@ -8,6 +8,7 @@
 	cidadao_nome: null,
 	cidadao_nome_social: null,
 	indexAtividade: null,
+	editIndexAtividade: null,
 	listaAtividades: [],
 	listaTiposServico: [],
 	listaTiposAtuacao: [],
@@ -312,6 +313,8 @@
 			},
 			eventClik: function(calEvent, jsEvent, view) {
 				// todo: edição de atividade (id ou índice da atividade => calEvent.id)
+				ATIVIDADE.editIndexAtividade = calEvent.id;
+				PageManager.loadTmpl('div_atividades_add');
 			},
 			eventLimit: true
         });
@@ -839,7 +842,10 @@
 			dt_criacao: null,
 			periodicidade_id: null,
 		};
-		ATIVIDADE.auxDados = a; 
+		ATIVIDADE.auxDados = a;
+
+		// todo: limpa flag indicadora de edição
+		ATIVIDADE.editIndexAtividade = null;
 
 		// cidadao_id já está armazenado em ATIVIDADE.cidadao_id
 		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
