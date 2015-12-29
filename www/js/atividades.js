@@ -1,16 +1,40 @@
 function preparaListasOpt () {
-	console.log("preparaListasOpt");
+	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
 	
-	if(ATIVIDADE.editIndexAtividade != null) {
-		// todo: edição, preenche campos e seleciona opções
+	var edit = false;
+	if(edit = (ATIVIDADE.editIndexAtividade != null)) {
+		// todo: edição, preenche campos
+		// Título
+		$("#descricao").val(ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].descricao);
+		
+		// Atividade privada
+		
+		// Dia inteiro
+		
+		// Data de início
+		
+		// Hora de início
+		
+		// Permanente
+		
+		// Data de término
+		
+		// Hora de término
+		
+		// Repetir (dia do mês ou dia da semana para a primeira ocorrência)
+		
+		// Repetir no dia (dd/mm para periodicidade anual)
 	}
 	
 	// Lista de pontos de serviço
 	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposServico.length; i++) {
-		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'>" + ATIVIDADE.listaTiposServico[i].nome + "</option>";
+	//	opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'>" + ATIVIDADE.listaTiposServico[i].nome + "</option>";
+		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
+		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_servico_nome == ATIVIDADE.listaTiposServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposServico[i].nome + "</option>";
 	}
 	opts += "</div></select>";
+	//console.log(opts + "\r\n");
 	
 	$("#listaPontosServicos").empty();
 	$("#listaPontosServicos").append(opts);
@@ -18,9 +42,12 @@ function preparaListasOpt () {
 	// Lista de tipos de atuação
 	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>" + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
+	//	opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>" + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
+		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
+		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == ATIVIDADE.listaTiposAtuacao[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
 	}
 	opts += "</div></select>";
+	//console.log(opts + "\r\n");
 	
 	$("#listaTiposAtuacao").empty();
 	$("#listaTiposAtuacao").append(opts);
@@ -28,8 +55,9 @@ function preparaListasOpt () {
 	// Lista de tipos de periodicidade
 	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
-		//opts += "<option value='" + i + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
-		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
+	//	opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
+		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'";
+		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == ATIVIDADE.listaTiposPeriodicidade[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
 	}
 	opts += "</div></select>";
 	
@@ -39,10 +67,20 @@ function preparaListasOpt () {
 	// Lista de dias da semana para checkbox
 	opts = "";
 	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<div class='checkbox'>" +
-				//"<input type='checkbox' id='dias_semana_" + i + "' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='checkbox check' onchange='container_dias_semana()'>" + 
-				"<input type='checkbox' id='dias_semana_" + i + "' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='checkbox check'>" + 
-                "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p></div>";
+		opts += "<div class='checkbox'>";
+		opts += "<input type='checkbox' id='dias_semana_" + i + "' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='checkbox check'";
+		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Semanal") {
+			for (var j = 0; j < ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_ds.length; j++) {
+				if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_ds[j] == ATIVIDADE.listaTiposDiaSemana[i].id) {
+					opts += " checked>";
+					break;
+				}
+			}
+		}
+		else {
+			opts += ">";
+		}
+        opts += "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p></div>";
 	}
 	
 	$("#container_dias_semana").empty();
@@ -51,13 +89,23 @@ function preparaListasOpt () {
 	// Lista de dias da semana para radio
 	opts = "";
 	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + 
-				ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio'" +  (i == 0 ? " checked>" : ">") +
-                "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p>";
+		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio'";
+		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal" &&
+			ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir == ATIVIDADE.listaTiposDiaSemana[i].id) {
+			opts += " checked>";
+		}
+		else {
+			opts += (i == 0 ? " checked>" : ">");
+		}
+        opts += "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p>";
 	}
 	
 	$("#infoDiasSemanaRadio").empty();
 	$("#infoDiasSemanaRadio").append(opts);
+	
+	// Corrige campos que devem ser apresentados
+	exibePeriodo();
+	infoRep();
 }
 
 function salvaAtividadeSuccess () {

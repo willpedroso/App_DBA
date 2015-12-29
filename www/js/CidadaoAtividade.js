@@ -311,10 +311,12 @@
 				js = ATIVIDADE.montaCalendario(start, end);
 				callback(js);
 			},
-			eventClik: function(calEvent, jsEvent, view) {
+			eventClick: function(calEvent, jsEvent, view) {
+				console.log("fullCalendar/eventClick: atividade = " + calEvent.id);
 				// todo: edição de atividade (id ou índice da atividade => calEvent.id)
 				ATIVIDADE.editIndexAtividade = calEvent.id;
 				PageManager.loadTmpl('div_atividades_add');
+				preparaListasOpt();
 			},
 			eventLimit: true
         });
