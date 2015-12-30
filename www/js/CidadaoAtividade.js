@@ -906,14 +906,28 @@
 				break;
 			}
 		}
+		console.log("salvaPeriodicidade entrando");
 		
-		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
+		if (ATIVIDADE.indexAtividade != null) {
 			// Atualiza periodicidade da atividade
 			BANCODADOS.sqlCmdDB("UPDATE periodicidade SET tipo_periodicidade_id = ?, data_inicio = ?, hora_inicio = ?, data_termino = ?, hora_termino = ?, dia_inteiro = ?, \
 								permanente = ?, dia_ano_repetir = ?, dia_mes_repetir = ?, dia_semana_repetir = ?, dt_criacao = ?, status = ? \
 								WHERE id = ?",
-								[ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao, ATIVIDADE.auxDados.periodicidade_id = ATIVIDADE.listaAtividades[indexAtividade].periodicidade_id], 
+								[ATIVIDADE.auxDados.tipo_periodicidade_id,
+								ATIVIDADE.auxDados.data_inicio,
+								ATIVIDADE.auxDados.hora_inicio,
+								ATIVIDADE.auxDados.data_termino,
+								ATIVIDADE.auxDados.hora_termino,
+								ATIVIDADE.auxDados.dia_inteiro,
+								ATIVIDADE.auxDados.permanente,
+								ATIVIDADE.auxDados.dia_ano_repetir,
+								ATIVIDADE.auxDados.dia_mes_repetir,
+								ATIVIDADE.auxDados.dia_semana_repetir,
+								ATIVIDADE.auxDados.dt_criacao,
+								/*todo: avaliar melhor status*/1,
+								ATIVIDADE.auxDados.periodicidade_id = ATIVIDADE.listaAtividades[indexAtividade].periodicidade_id], 
 								ATIVIDADE.limpaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
+			console.log("salvaPeriodicidade update");
 		}
 		else {
 			// Nova atividade
@@ -937,6 +951,7 @@
 								// verifica se o tipo da periodicidade é semanal
 								(ATIVIDADE.auxDados.periodicidade_nome == "Semanal" && ATIVIDADE.auxDados.diasSemana.length > 0) ? ATIVIDADE.recuperaIdPeriodicidade : ATIVIDADE.salvaAtividadeSuccess, 
 								ATIVIDADE.salvaAtividadeFail);
+			console.log("salvaPeriodicidade - nova");
 		}
 	},
 	

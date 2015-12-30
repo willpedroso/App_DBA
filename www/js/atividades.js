@@ -3,27 +3,50 @@ function preparaListasOpt () {
 	
 	var edit = false;
 	if(edit = (ATIVIDADE.editIndexAtividade != null)) {
-		// todo: edição, preenche campos
+		var auxVar;
 		// Título
-		$("#descricao").val(ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].descricao);
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].descricao;
+		$("#descricao").val(auxVar == null ? "" : auxVar);
 		
 		// Atividade privada
-		
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].privada;
+		$("input[name='infoPrivada'][value='Não']").prop("checked", auxVar == null || auxVar == 0 ? true : false);
+		$("input[name='infoPrivada'][value='Sim']").prop("checked", auxVar == 1 ? true : false);
+
 		// Dia inteiro
+		$("input[name='infoDiaInteiro'][value='Não']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_inteiro == 0 ? true : false);
+		$("input[name='infoDiaInteiro'][value='Sim']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_inteiro == 1 ? true : false);
 		
 		// Data de início
+		$("#data_inicio").val(ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_inicio);
 		
 		// Hora de início
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_inicio;
+		$("#hora_inicio").val(auxVar == null ? "" : auxVar);
 		
 		// Permanente
+		$("input[name='infoPermanente'][value='Não']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_permanente == 0 ? true : false);
+		$("input[name='infoPermanente'][value='Sim']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_permanente == 1 ? true : false);
 		
 		// Data de término
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino;
+		$("#data_termino").val(auxVar == null ? "" : auxVar);
 		
 		// Hora de término
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_termino;
+		$("#hora_termino").val(auxVar == null ? "" : auxVar);
 		
 		// Repetir (dia do mês ou dia da semana para a primeira ocorrência)
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_mes_repetir;
+		$("input[name='infoRepetir'][value='dia do mês']").prop("checked", auxVar != null ? true : false);
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir;
+		$("input[name='infoRepetir'][value='dia da semana']").prop("checked", auxVar != null ? true : false);
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_mes_repetir;
+		$("#dia_mes_repetir").val(auxVar == null ? "" : auxVar);
 		
 		// Repetir no dia (dd/mm para periodicidade anual)
+		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_ano_repetir;
+		$("#dia_ano_repetir").val(auxVar == null ? "" : auxVar);
 	}
 	
 	// Lista de pontos de serviço
@@ -104,8 +127,10 @@ function preparaListasOpt () {
 	$("#infoDiasSemanaRadio").append(opts);
 	
 	// Corrige campos que devem ser apresentados
-	exibePeriodo();
 	infoRep();
+	exibePeriodo();
+	infoDiaInt();
+	infoPerma();
 }
 
 function salvaAtividadeSuccess () {
