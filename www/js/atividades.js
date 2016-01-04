@@ -51,13 +51,13 @@ function preparaListasOpt () {
 	
 	// Lista de pontos de serviço
 	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
-	for (var i = 0; i < ATIVIDADE.listaTiposServico.length; i++) {
-	//	opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'>" + ATIVIDADE.listaTiposServico[i].nome + "</option>";
+	for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
 		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
-		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_servico_nome == ATIVIDADE.listaTiposServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposServico[i].nome + "</option>";
+		//opts += "<option value='" + ATIVIDADE.listaTiposServico[i].id + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
+		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].ponto_servico_nome == ATIVIDADE.listaPontosServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaPontosServico[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	//console.log(opts + "\r\n");
+	console.log(opts + "\r\n");
 	
 	$("#listaPontosServicos").empty();
 	$("#listaPontosServicos").append(opts);
@@ -65,8 +65,8 @@ function preparaListasOpt () {
 	// Lista de tipos de atuação
 	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
-	//	opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>" + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
 		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
+		//opts += "<option value='" + ATIVIDADE.listaTiposAtuacao[i].id + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
 		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == ATIVIDADE.listaTiposAtuacao[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -138,8 +138,8 @@ function salvaAtividadeSuccess () {
 	
 }
 
-function salvaAtividadeFail () {
-	console.log("salvaAtividadeFail");
+function salvaAtividadeFail (err) {
+	console.log("atividades.salvaAtividadeFail: " + err);
 	
 }
 
