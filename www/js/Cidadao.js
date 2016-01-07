@@ -125,6 +125,9 @@
     dadosCidadao: function(indice, cbSuccess, cbFail) {
 	    console.log("dadosCidadao");
 		
+		// Salva o índice
+		CIDADAO.indiceListaCidadao = indice;
+
 		// Retorna os dados do cidadão - pela listaCidadaosDadosBusca
 		return CIDADAO.listaCidadaosDadosBusca[indice];
 	},

@@ -25,7 +25,7 @@ function btBusca(textoBusca){
 		Print += "Nome: " + CIDADAO.listaCidadaosDadosBusca[i].nome + "\r\n";
 		// Testes
 		// Preenche com os dados
-		node += "<li onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');\">";
+		node += "<li " + ("cidadaoIndex='" + i + "' ") + "onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');CIDADAO.dadosCidadao(" + i + ");\">";
 		//node += "<li onclick=\"console.log('clique LI');\">";
 		node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome + "</div>";
 		node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_social + "</div>";
