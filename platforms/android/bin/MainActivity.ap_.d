@@ -1,6 +1,5 @@
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\MainActivity.ap_ \
- : C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable\icon.png \
-C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-hdpi\icon.png \
+ : C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-hdpi\icon.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-land-hdpi\screen.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-land-ldpi\screen.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-land-mdpi\screen.png \
@@ -14,7 +13,6 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawab
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\drawable-xhdpi\icon.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\values\strings.xml \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\res\xml\config.xml \
-C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable\icon.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable-hdpi\icon.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable-land-hdpi\screen.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable-land-ldpi\screen.png \
@@ -28,7 +26,6 @@ C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\dr
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable-port-xhdpi\screen.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\bin\res\drawable-xhdpi\icon.png \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www \
-C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\_where-is-www.txt \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\cordova.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\cordova_plugins.js \
 C:\Users\p051234\Documents\Android\Projetos\App_DBA\platforms\android\assets\www\css \

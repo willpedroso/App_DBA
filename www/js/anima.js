@@ -45,66 +45,54 @@ function showTela(tela){
         $(tela).addClass('showme');
         console.log(tela);
 
+}
 
-
-        //     if (((UIS.array_Divs.length - 1) == 1) && (UIS.array_Divs[0] === UIS.div_metasObjetivos)) {
-        //         //oculta a tela metas por objetivos transição para lista de metas
-        //         UIS.div_metasObjetivos.attr("style", "display: none");
-        //         //console.log("div_metasObjetivos - none");
-        //     }
-
-        //     console.log("Mostra a tela!!");
-
-        //     // Libera uso do click
-        //     UIS.aguardaTransicaoTela = false;
-        //     console.log("Liberando click!!!");
-         }
-          function hideTela(tela){
+function hideTela(tela){
         
 
         $(tela).removeClass('showme');
         $(tela).addClass('hideme');
         console.log("HIDETELA(): ");
-    }
+}
     
 
-    function voltar(){
-        console.log("VOLTAR() - Entrada: ",UIS.array_Divs.length );
+function voltar(){
+    console.log("VOLTAR() - Entrada: ",UIS.array_Divs.length );
 
-        //tela para voltar
-        if (array_Divs.length == 1){
-             return;
-        }else{
+    //tela para voltar
+    if (array_Divs.length == 1){
+         return;
+    }else{
 
-            UIS.animandovoltar = true;
+        UIS.animandovoltar = true;
 
-            //excluir tela atual da lista
-            if (((UIS.array_Divs.length - 1) == 1) && (UIS.array_Divs[0] === UIS.div_metasObjetivos)) {
-                //mostra a tela metas por objetivos na volta da lista de metas
-                UIS.div_metasObjetivos.attr("style", "display: block");
-                console.log("div_metasObjetivos - block");
+        //excluir tela atual da lista
+        if (((UIS.array_Divs.length - 1) == 1) && (UIS.array_Divs[0] === UIS.div_metasObjetivos)) {
+            //mostra a tela metas por objetivos na volta da lista de metas
+            UIS.div_metasObjetivos.attr("style", "display: block");
+            console.log("div_metasObjetivos - block");
+        }
+
+        UIS.array_Divs[UIS.array_Divs.length -1].removeClass('showme');
+        UIS.array_Divs[UIS.array_Divs.length -1].addClass('hideme').one(transitionsevents,function(){
+
+            UIS.array_Divs[UIS.array_Divs.length -1].addClass('box-escondido');
+            UIS.array_Divs[UIS.array_Divs.length -1].removeClass('box-ativo');
+
+            UIS.array_Divs.pop();
+            console.log("VOLTAR() - Apos pop: ",UIS.array_Divs.length );
+
+            //se clicou voltar de tela de metas para a home, esconde o div container relativo
+            if(UIS.array_Divs.length == 1){
+                $('#container_relativo').css({"height":"0"});
             }
 
-            UIS.array_Divs[UIS.array_Divs.length -1].removeClass('showme');
-            UIS.array_Divs[UIS.array_Divs.length -1].addClass('hideme').one(transitionsevents,function(){
+            UIS.animandovoltar = false;
 
-                UIS.array_Divs[UIS.array_Divs.length -1].addClass('box-escondido');
-                UIS.array_Divs[UIS.array_Divs.length -1].removeClass('box-ativo');
-
-                UIS.array_Divs.pop();
-                console.log("VOLTAR() - Apos pop: ",UIS.array_Divs.length );
-
-                //se clicou voltar de tela de metas para a home, esconde o div container relativo
-                if(UIS.array_Divs.length == 1){
-                    $('#container_relativo').css({"height":"0"});
-                }
-
-                UIS.animandovoltar = false;
-
-            });
-        }
-        console.log("VOLTAR() - Saida: ",UIS.array_Divs.length );
+        });
     }
+    console.log("VOLTAR() - Saida: ",UIS.array_Divs.length );
+}
 
 
 
