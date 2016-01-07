@@ -25,7 +25,8 @@ function btBusca(textoBusca){
 		Print += "Nome: " + CIDADAO.listaCidadaosDadosBusca[i].nome + "\r\n";
 		// Testes
 		// Preenche com os dados
-		node += "<li>";
+		node += "<li onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');\">";
+		//node += "<li onclick=\"console.log('clique LI');\">";
 		node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome + "</div>";
 		node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_social + "</div>";
 		node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_mae + "</div>";
@@ -34,6 +35,7 @@ function btBusca(textoBusca){
 		node += "<div>" + (CIDADAO.listaCidadaosDados[i].programa_dba == 0 ? "Não" : "Sim") + "</div>";
 		node += "</li>";
 	}
+	console.log(node);
 	$("#ullistaCidadaos").empty();
 	$("#ullistaCidadaos").append(node);
 	
