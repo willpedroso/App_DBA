@@ -41,13 +41,21 @@ function validaCamposIdentificacao() {
 		// todo: testes retirar
 
 		// todo: testes retirar
+		// prepara data de nascimento
+		var dnascimento = new Date($('#data_nascimento').val());
+		
+		// todo: testes retirar
+		console.log(dnascimento);
+		// todo: testes retirar
 		
 		CIDADAO.salvaCidadao(/*todo: indice do cidadao*/,									// índice do cidadão
 								 $("#nome").val(),											// nome
 								 $("#nome_social").val(),									// nome social
 								 $("#nome_mae").val(),										// nome da mãe
 								 $("#sisrua").val(),										// sisrua
-								 $('#data_nascimento').val(),								// data de início todo: separar ano, mês e dia
+								 dnascimento.getDate(),										// dia do nascimento
+								 dnascimento.getMonth()+1,									// mês do nascimento
+								 dnascimento.getFullYear(),									// ano do nascimento
 								 this.salvaCidadaoSuccess,
 								 this.salvaCidadaoFail);
 	}
