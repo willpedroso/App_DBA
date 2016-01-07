@@ -571,7 +571,7 @@ span.unidade{
 	float: left;
 	width: 91%;
 	padding: 3% 3% 5% 3%;
-	margin: 8px 0px 25px 55px;
+	margin: 45px 0px 25px 55px;
 }
 .inputPeq{
 	font-size: 20px;
@@ -588,7 +588,7 @@ span.unidade{
 }
 
 #ficha-statica #info-basica {
-    margin: 0 0 20px 0;
+    margin: 0 0 -65px 0;
     min-height: 270px;
 }
 
@@ -939,7 +939,7 @@ span.unidade{
 	color: #fff;
 	padding: 8px 16px 8px 16px;
 	cursor: pointer;
-	margin: 100px 0 15px 0;
+	margin: 42px 0 15px 0;
 	clear: both;
 	float: right;
 }
@@ -2120,6 +2120,7 @@ span.phone-img {
 	position: fixed;
 	width: 1028px;
 	z-index: 999;
+	margin-top: 105px;
 }
 /*anima telas*/
 .hideme{
