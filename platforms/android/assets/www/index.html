@@ -55,6 +55,7 @@
     <script src='js/fullcalendar/lang/pt-br.js'></script>
     <script src='js/fullcalendar/fullcalendar.min.js'></script>
     <script src="js/busca_inicio.js" type="text/javascript"></script>
+    <script src="js/CidadaoInfoBasicas.js" type="text/javascript"></script>
     <script src="js/info_basicas.js" type="text/javascript"></script>
    
     <!--CSS-->
@@ -106,7 +107,8 @@
           <div id="menu_abas" class="showme">
             <ul class="">
               <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao'); abas();">Identificação</li>
-              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas'); abas();">Informações Básicas</li>
+<!--              <li class="active" onclick="console.log('InfoBasica');PageManager.loadTmpl('info_basicas'); abas();">Informações Básicas</li>-->
+              <li class="active" onclick="console.log('InfoBasica'); INFOBASICAS.dadosEntrada(); abas();">Informações Básicas</li>
               <li class="active" onclick="console.log('Situacao DBA');PageManager.loadTmpl('div_sitDBA'); abas();">Situação DBA</li>
               <!--<li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');$('#calendarioAtividades').fullCalendar(); abas();">Atividades</li>-->
               <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');ATIVIDADE.dadosEntrada(55, ATIVIDADE.apresentaCalendario, null); abas();">Atividades</li>

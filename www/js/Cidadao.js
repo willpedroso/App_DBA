@@ -158,7 +158,7 @@
 	
     // ****************** Salva os dados de identificação de um cidadão *********************
 	// Salva no banco e atualiza memória
-	salvaCidadao: function(indice, nome, nome_social, nome_mae, numero_sisa, dia_nascimento, mes_nascimento, ano_nascimento, cbSuccess, cbFail) {
+	salvaCidadao: function(nome, nome_social, nome_mae, numero_sisa, dia_nascimento, mes_nascimento, ano_nascimento, cbSuccess, cbFail) {
 		console.log("salvaCidadao");
 		
 		// Salva funções de retorno
@@ -166,7 +166,7 @@
 		CIDADAO.cbFail_f = cbFail;
 
 		// Salva o índice
-		CIDADAO.indiceListaCidadao = indice;
+		//CIDADAO.indiceListaCidadao = indice;
 		
 		// Salva os dados
 		var cdados = {
@@ -181,16 +181,16 @@
 		CIDADAO.auxCidadaoDados = cdados;
 		
 		// Salva no banco de dados
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE cidadao_id = ?",
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE id = ?",
 							[
-							CIDADAO.listaCidadaosDados[indice].nome,
-							CIDADAO.listaCidadaosDados[indice].nome_social,
-							CIDADAO.listaCidadaosDados[indice].nome_mae,
-							CIDADAO.listaCidadaosDados[indice].sisrua,
-							CIDADAO.listaCidadaosDados[indice].dia_nascimento,
-							CIDADAO.listaCidadaosDados[indice].mes_nascimento,
-							CIDADAO.listaCidadaosDados[indice].ano_nascimento,
-							CIDADAO.listaCidadaosId[indice]
+							nome,
+							nome_social,
+							nome_mae,
+							numero_sisa,
+							dia_nascimento,
+							mes_nascimento,
+							ano_nascimento,
+							CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao]
 							], CIDADAO.salvaCidadaoSuccess, CIDADAO.salvaCidadaoFail);
 	},
 	
@@ -198,13 +198,13 @@
 		console.log("salvaCidadaoSuccess");
 		
 		// Atualiza dados na memória
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].nome = CIDADAO.auxCidadaoDados.nome;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].nome_social = CIDADAO.auxCidadaoDados.nome_social;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].nome_mae = CIDADAO.auxCidadaoDados.nome_mae;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].sisrua = CIDADAO.auxCidadaoDados.sisrua;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
-		CIDADAO.listaCidadaosDados[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome = CIDADAO.auxCidadaoDados.nome;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social = CIDADAO.auxCidadaoDados.nome_social;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae = CIDADAO.auxCidadaoDados.nome_mae;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua = CIDADAO.auxCidadaoDados.sisrua;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
 		
 		// Retorna
 		CIDADAO.cbSuccess_f();

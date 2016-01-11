@@ -20,35 +20,35 @@
                <div class="linhaForm">
                   <label class="selectDefault">
                     <span class="titSang">Sexo:</span> 
-                    <div class="comboStilo selectInicial">
-                      <select class="selectPersonalizado ">
+                    <div class="comboStilo selectInicial" id="listaSexos">
+					  <!--
+                      <select class="selectPersonalizado" id="sexoLabel">
                         <option  value="" id="" data-id="sexoLabel" for="sexo_id">selecione</option>
                         <option  value="" id="1" data-id="sexoLabel" for="sexo_id">Masculino</option>
                         <option  value="" id="2" data-id="sexoLabel" for="sexo_id">Feminino</option>
                       </select>
                         <input type="hidden" name="sexo_id" id="sexo_id" value="">
-                     </div>
+					  -->
+                    </div>
                   </label>
                </div>
                <div class="linhaForm">
                   <span class="titLabel">Informar orientação sexual/orientação de gênero:</span>
-                  <div id="infoOrientacaoSexual" class="radioButton" >
+                  <div id="infoOrientacaoSexual" class="radioButton" onclick="abreOrientSexual();">
                       <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Não Informado" checked>
                       <p>Não Informado</p>
                       <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Não" >
                       <p>Não</p> 
                       <input class="radio active" type="radio" name="infoOrientacaoSexual" value="Sim" >
                       <p>Sim</p> 
-
-
-
                      <input type="hidden" value="" name="info_orientacao_sexual_genero" id="info_orientacao_sexual_genero" class="valueCheck">
                   </div>
                </div>
                <div  id="orientacaoSexual" class="linhaForm" style="display:none">
                   <label class="selectDefault">
                      <span class="titSang">Orientação Sexual:</span> 
-                     <div id="orientacaoSexualLabel" class="comboStilo selectInicial">
+                     <div class="comboStilo selectInicial" id="listaOrientacaoSexual">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option id="0" data-id="orientacaoSexualLabel" for="orientacao_sexual_id" value="">Selecione
@@ -61,6 +61,7 @@
                            </div>
                         </select>
                         <input type="hidden" id="orientacao_sexual_id" name="orientacao_sexual_id" value="">
+						-->
                      </div>
                   </label>
                </div>
@@ -80,7 +81,8 @@
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Estado Civil:</span> 
-                     <div class="comboStilo selectInicial">
+                     <div class="comboStilo selectInicial" id="listaEstadoCivil">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option id="0" data-id="estadoCivilLabel" for="estado_civil_id">Selecione
@@ -93,6 +95,7 @@
                            </div>
                         </select>
                         <input type="hidden" id="estado_civil_id" name="estado_civil_id" value="">
+						-->
                      </div>
                   </label>
                </div>
@@ -107,7 +110,8 @@
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Estado de Nascimento:</span>
-                     <div id="nascimentoEstadoLabel" class="comboStilo selectInicial">
+                     <div id="listaEstado" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="0" data-id="nascimentoEstadoLabel" for="nascimento_estado_id">Selecione
@@ -141,6 +145,7 @@
                            </div>
                         </select>
                         <input type="hidden" id="nascimento_estado_id" name="nascimento_estado_id" value="">
+						-->
                      </div>
                   </label>
                </div>
@@ -157,7 +162,7 @@
                            <select class="selectPersonalizado pos-inh w-100-pct">
                               <div class="lista-box-scroll">
                                  <option value="" id="" data-id="diasLabel" for="dias_situaca_rua">Dias
-                                 <option value="" id="1" data-id="diasLabel" for="dias_situaca_rua">1 dias
+                                 <option value="" id="1" data-id="diasLabel" for="dias_situaca_rua">1 dia
                                  <option value="" id="2" data-id="diasLabel" for="dias_situaca_rua">2 dias
                                  <option value="" id="3" data-id="diasLabel" for="dias_situaca_rua">3 dias
                                  <option value="" id="4" data-id="diasLabel" for="dias_situaca_rua">4 dias
@@ -195,7 +200,8 @@
                         <div id="mesesLabel" class="container-cb marg-r-10 selectInicial w-inh">
                            <select class="selectPersonalizado pos-inh w-100-pct">
                               <div class="lista-box-scroll">
-                                 <option value="" id="1" data-id="mesesLabel" for="meses_situacao_rua">Meses
+                                 <option value="" id="" data-id="mesesLabel" for="meses_situacao_rua">Meses
+                                 <option value="" id="1" data-id="mesesLabel" for="meses_situacao_rua">1 mês
                                  <option value="" id="2" data-id="mesesLabel" for="meses_situacao_rua">2 meses
                                  <option value="" id="3" data-id="mesesLabel" for="meses_situacao_rua">3 meses
                                  <option value="" id="4" data-id="mesesLabel" for="meses_situacao_rua">4 meses
@@ -295,7 +301,8 @@
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Estado de procedência:</span> 
-                     <div id="estadoProcedenciaLabel" class="comboStilo selectInicial">
+                     <div id="listaEstadoProcedencia" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="0"  data-id="estadoProcedenciaLabel" for="nascimento_estado_id">Selecione
@@ -329,13 +336,15 @@
                            </div>
                         </select>                        
                         <input type="hidden" id="procedencia_estado_id" name="procedencia_estado_id" value="">
+						-->
                      </div>
                   </label>
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">País de procedência:</span> 
-                     <div id="paisProcedenciaLabel" class="comboStilo selectInicial">
+                     <div id="listaPaisProcedencia" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="0" data-id="paisProcedenciaLabel" for="procendencia_pais_id">Selecione
@@ -388,13 +397,15 @@
                               <option value="" id="47" data-id="paisProcedenciaLabel" for="procendencia_pais_id">CENTRO AFRICANA
                            </div>
                         </select>
+						-->
                      </div>
                   </label>
-                  <input type="hidden" id="procendencia_pais_id" name="procendencia_pais_id" value="">
+                  <!--<input type="hidden" id="procendencia_pais_id" name="procendencia_pais_id" value="">-->
                </div>
                <div class="linhaForm">
                   <span class="titLabel">Com quem você fica na rua:</span>
                   <div id="container_comquem">
+					 <!--
                      <div class="checkbox">
                         <input type="checkbox" name="acompanhante_rua[]" value="1" class="checkbox check ">
                         <p>Companheiro (a)</p>
@@ -419,14 +430,15 @@
                         <input type="checkbox" name="acompanhante_rua[]" value="6" class="checkbox check ">
                            <p>Outros</p>
                     </div>
-                    <div class=" ">
+					-->
+                    <!--<div class=" ">-->
                         <input type="text" class="inputMed spacer-h" value="" name="acompanhante_rua_outros" placeholder="Outros">
-                    </div>
+                    <!--</div>-->
                   </div>
                </div>
                <div class="linhaForm">
                   <span class="titLabel">Tem filho:</span>
-                  <div id="temFilho" class="radioButton">
+                  <div id="temFilho" class="radioButton" onclick="abreQtdFilhos();">
                   <input class="radio active " type="radio" name="temFilho" value="NãoInformado" checked>
                      <p>Não Informado</p>
                      <input class="radio active " type="radio" name="temFilho" value="Não" >
@@ -444,7 +456,7 @@
                </div>
                <div class="linhaForm">
                   <span class="titLabel">Tem contato com a família:</span>
-                  <div id="infoTemContatoFamilia" class="radioButton">
+                  <div id="infoTemContatoFamilia" class="radioButton" onclick="abreQualFamiliar();">
                      <input id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="NãoInformado" checked>
                      <p>Não Informado</p>
                      <input id="contato_familia" class="radio active" type="radio" name="infoTemContatoFamilia" value="Não" >
@@ -720,7 +732,7 @@
                </div>
                <div id="possui_deficiencia" class="linhaForm">
                   <span class="titLabel">Deficiências:</span>
-                  <div id="infoDeficiencias" class="radioButton">
+                  <div id="infoDeficiencias" class="radioButton" onclick="abreQualDeficiencia();">
                      <input type="radio" value="NãoInformado" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Não Informado</p>
                      <input type="radio" value="Não" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Não</p>
                      <input type="radio" value="Sim" name="possui_deficiencia" id="possui_deficiencia" class="radioButton radio active"><p>Sim</p>
@@ -766,3 +778,8 @@
         </form>
       </div>  
       <!-- FIM INFO BASICAS -->
+<script>
+    $(document).ready(function() {
+		infoBasicasOpcoes();
+	});
+</script>

@@ -384,7 +384,8 @@
 		INFOBASICAS.cbFail_f = cbFail;
 		
 		// Salva cidadão
-		INFOBASICAS.cidadao_id = cidadao;
+		//INFOBASICAS.cidadao_id = cidadao;
+		INFOBASICAS.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
 
 		// Obtém dados básicos
 		INFOBASICAS.dadosBasicos();
@@ -424,7 +425,7 @@
 				bairro: res.rows.item(0).bairro,
 				municipio_procendencia: res.rows.item(0).municipio_procendencia,
 				procedencia_estado_id: res.rows.item(0).procedencia_estado_id,
-				procedencia_pais_id: res.rows.item(0).procedencia_pais_id,
+				procedencia_pais_id: res.rows.item(0).procendencia_pais_id,
 				acompanhante_rua_outros: res.rows.item(0).acompanhante_rua_outros,
 				// todo: com quem você fica na rua
 				acompanhante_rua: [],
@@ -518,125 +519,10 @@
 			lista.push(res.rows.item(i).tipo_condicao_saude_id);
 		}
 		INFOBASICAS.saudeCidadao.condicoes_saude = lista;
-		
-		// Testes
-		var Print = "Informações básicas:\r\n";
-		// GÊNERO
-		Print += "GÊNERO\r\n";
-		Print += "Sexo: " + INFOBASICAS.tipoSexo[INFOBASICAS.generoCidadao.sexo_id].nome + "\r\n";
-		Print += "Informação de orientação sexual: " + (INFOBASICAS.generoCidadao.info_orientacao_sexual_genero == 1 ? "Sim" : "Não") + "\r\n";
-		if (INFOBASICAS.generoCidadao.orientacao_sexual_id == null) {
-			Print += "Orientação sexual: " + "NÃO INFORMADA" + "\r\n";
-		}
-		else {
-			Print += "Orientação sexual: " + INFOBASICAS.tipoOrientacaoSexual[INFOBASICAS.generoCidadao.orientacao_sexual_id].nome + "\r\n";
-		}
-		
-		// INFORMAÇÕES ADICIONAIS
-		Print += "INFORMAÇÕES ADICIONAIS\r\n";
-		Print += "CPF: " + INFOBASICAS.infoAdicionaisCidadao.cpf + "\r\n";
-		if (INFOBASICAS.infoAdicionaisCidadao.estado_civil_id == null) {
-			Print += "Estado Civil: " + "NÃO INFORMADO" + "\r\n";
-		}
-		else {
-			Print += "Estado Civil: " + INFOBASICAS.tipoEstadoCivil[INFOBASICAS.infoAdicionaisCidadao.estado_civil_id].nome + "\r\n";
-		}
-		Print += "Nome do pai: " + INFOBASICAS.infoAdicionaisCidadao.nome_pai + "\r\n";
-		Print += "Cidade de Nascimento: " + INFOBASICAS.infoAdicionaisCidadao.cidade_nascimento + "\r\n";
-		if (INFOBASICAS.infoAdicionaisCidadao.nascimento_estado_id == null) {
-			Print += "Estado de Nascimento: " + "NÃO INFORMADO" + "\r\n";
-		}
-		else {
-			Print += "Estado de Nascimento: " + INFOBASICAS.tipoEstado[INFOBASICAS.infoAdicionaisCidadao.nascimento_estado_id].nome + "\r\n";
-		}
-
-		// SITUAÇÃO DE RUA
-		Print += "SITUAÇÃO DE RUA\r\n";
-		Print += "Quanto tempo: " + INFOBASICAS.situacaoRuaCidadao.dias_situaca_rua + " dias, " + INFOBASICAS.situacaoRuaCidadao.meses_situacao_rua + " meses e " + INFOBASICAS.situacaoRuaCidadao.anos_situacao_rua + " anos " +"\r\n";
-		Print += "Outros: " + INFOBASICAS.situacaoRuaCidadao.outros_situacao_rua + "\r\n";
-		Print += "Local que se encontra: " + INFOBASICAS.situacaoRuaCidadao.local_onde_encontra + "\r\n";
-		Print += "Onde morava: " + INFOBASICAS.situacaoRuaCidadao.onde_morava_antes_rua + "\r\n";
-		Print += "Bairro: " + INFOBASICAS.situacaoRuaCidadao.bairro + "\r\n";
-		Print += "Município de procedência: " + INFOBASICAS.situacaoRuaCidadao.municipio_procendencia + "\r\n";
-		if (INFOBASICAS.infoAdicionaisCidadao.nascimento_estado_id == null) {
-			Print += "Estado de Nascimento: " + "NÃO INFORMADO" + "\r\n";
-		}
-		else {
-			Print += "Estado de procedência: " + INFOBASICAS.tipoEstado[INFOBASICAS.situacaoRuaCidadao.procedencia_estado_id].nome + "\r\n";
-		}
-		if (INFOBASICAS.infoAdicionaisCidadao.procedencia_pais_id == null) {
-			Print += "País de procedência: " + "NÃO INFORMADO" + "\r\n";
-		}
-		else {
-			Print += "País de procedência: " + INFOBASICAS.tipoPais[INFOBASICAS.situacaoRuaCidadao.procedencia_pais_id].nome + "\r\n";
-		}
-		Print += "Com quem fica na rua:\r\n";
-		for (var i = 0; i < INFOBASICAS.situacaoRuaCidadao.acompanhante_rua.length; i++) {
-			Print += INFOBASICAS.tipoAcompanhanteRua[INFOBASICAS.situacaoRuaCidadao.acompanhante_rua[i]].nome + "\r\n";
-		}
-		Print += "Outros acompanhantes: " + INFOBASICAS.situacaoRuaCidadao.acompanhante_rua_outros + "\r\n";
-		Print += "Tem filhos: " + (INFOBASICAS.situacaoRuaCidadao.tem_filhos == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Quantos filhos: " + INFOBASICAS.situacaoRuaCidadao.qtd_filhos + "\r\n";
-		Print += "Tem contato com a família: " + (INFOBASICAS.situacaoRuaCidadao.contato_familia == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "O contato é parente: " + (INFOBASICAS.situacaoRuaCidadao.contato_parente == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Quais familiares:\r\n";
-		for (var i = 0; i < INFOBASICAS.situacaoRuaCidadao.quais_familiares.length; i++) {
-			Print += INFOBASICAS.tipoParentesco[INFOBASICAS.situacaoRuaCidadao.quais_familiares[i]].nome + "\r\n";
-		}
-		Print += "Outros familiares: " + INFOBASICAS.situacaoRuaCidadao.contato_familia_outros + "\r\n";
-		Print += "Referência familiar: " + INFOBASICAS.situacaoRuaCidadao.referencia_familiar + "\r\n";
-		Print += "Telefone: " + INFOBASICAS.situacaoRuaCidadao.telefone + "\r\n";
-		
-		// TRABALHO E EDUCAÇÃO
-		Print += "TRABALHO E EDUCAÇÃO\r\n";
-		Print += "Está trabalhando atualmente: " + (INFOBASICAS.trabalhoEducacaoCidadao.trabalhando == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Profissão/Atividade: " + INFOBASICAS.trabalhoEducacaoCidadao.profissao_atividade + "\r\n";
-		if (INFOBASICAS.trabalhoEducacaoCidadao.habilidades_id != null) {
-			Print += "Outras habilidades: " + INFOBASICAS.tipoHabilidade[INFOBASICAS.trabalhoEducacaoCidadao.habilidades_id].nome + "\r\n";
-		}
-		else {
-			Print += "Outras habilidades: " + "NÃO INFORMADO" + "\r\n";
-		}
-		if (INFOBASICAS.trabalhoEducacaoCidadao.fonte_renda_id != null) {
-			Print += "Fonte de renda: " + INFOBASICAS.tipoFonteRenda[INFOBASICAS.trabalhoEducacaoCidadao.fonte_renda_id].nome + "\r\n";
-		}
-		else {
-			Print += "Fonte de renda: " + "NÃO INFORMADA" + "\r\n";
-		}
-		if (INFOBASICAS.trabalhoEducacaoCidadao.tipo_escolaridade_id != null) {
-			Print += "Escolaridade: " + INFOBASICAS.tipoEscolaridade[INFOBASICAS.trabalhoEducacaoCidadao.tipo_escolaridade_id].nome + "\r\n";
-		}
-		else {
-			Print += "Escolaridade: " + "NÃO INFORMADA" + "\r\n";
-		}
-		Print += "Outros (escolaridade): " + INFOBASICAS.trabalhoEducacaoCidadao.escolaridades_outros + "\r\n";
-		if (INFOBASICAS.trabalhoEducacaoCidadao.situacao_profissional_id != null) {
-			Print += "Situação Profissional: " + INFOBASICAS.tipoSituacaoProfissional[INFOBASICAS.trabalhoEducacaoCidadao.situacao_profissional_id].nome + "\r\n";
-		}
-		else {
-			Print += "Situação Profissional: " + "NÃO INFORMADA" + "\r\n";
-		}
-		
-		// CONDIÇÕES DE SAÚDE
-		Print += "CONDIÇÕES DE SAÚDE\r\n";
-		Print += "Condições de Saúde:\r\n";
-		for (var i = 0; i < INFOBASICAS.saudeCidadao.condicoes_saude.length; i++) {
-			Print += INFOBASICAS.tipoCondicaoSaude[INFOBASICAS.saudeCidadao.condicoes_saude[i]].nome + "\r\n";
-		}
-		Print += "Outros: " + INFOBASICAS.saudeCidadao.condicoes_saude_outros + "\r\n";
-		Print += "Gestante: " + (INFOBASICAS.saudeCidadao.gestante == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Possui deficiência: " + (INFOBASICAS.saudeCidadao.possui_deficiencia == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Quais deficiências: " + INFOBASICAS.saudeCidadao.quais_deficiencias + "\r\n";
-		Print += "Usuário de álcool ou drogas: " + (INFOBASICAS.saudeCidadao.alcool_droga == 1 ? "Sim" : "Não") + "\r\n";
-		Print += "Quais drogas: " + INFOBASICAS.saudeCidadao.nome_drogas + "\r\n";
-		Print += "Qual frequência: " + INFOBASICAS.saudeCidadao.frequencia_drogas + "\r\n";
-
-		Print += "\r\n";
-		console.log (Print);
-		// Testes
 
 		// Retorna
-		INFOBASICAS.cbSuccess_f();
+		//INFOBASICAS.cbSuccess_f();
+		PageManager.loadTmpl('info_basicas');
 	},
 	
 	dadosEntradaInfoBasicasFail: function (err) {
