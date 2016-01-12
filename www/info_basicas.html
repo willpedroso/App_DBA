@@ -101,11 +101,11 @@
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Nome do Pai:</span>
-                  <input type="text" class="inputGrande" value="" name="nome_pai">
+                  <input type="text" class="inputGrande" value="" id="nome_pai" name="nome_pai">
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Cidade de Nascimento:</span>
-                  <input type="text" class="inputGrande" value="" name="cidade_nascimento">
+                  <input type="text" class="inputGrande" value="" id="cidade_nascimento" name="cidade_nascimento">
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
@@ -158,7 +158,8 @@
                   <label class="selectDefault">
                      <div class="comboStilo">
                         <span class="titSang">Quanto tempo em situação de rua:</span> 
-                        <div id="diasLabel" class="container-cb marg-r-10 selectInicial w-inh">
+                        <div id="listaDias" class="container-cb marg-r-10 selectInicial w-inh">
+						   <!--
                            <select class="selectPersonalizado pos-inh w-100-pct">
                               <div class="lista-box-scroll">
                                  <option value="" id="" data-id="diasLabel" for="dias_situaca_rua">Dias
@@ -196,8 +197,10 @@
                               </div>
                            </select>
                            <input type="hidden" id="dias_situaca_rua" name="dias_situaca_rua" value="">
+						   -->
                         </div>
-                        <div id="mesesLabel" class="container-cb marg-r-10 selectInicial w-inh">
+                        <div id="listaMeses" class="container-cb marg-r-10 selectInicial w-inh">
+						   <!--
                            <select class="selectPersonalizado pos-inh w-100-pct">
                               <div class="lista-box-scroll">
                                  <option value="" id="" data-id="mesesLabel" for="meses_situacao_rua">Meses
@@ -216,8 +219,10 @@
                               </div>
                            </select>
                            <input type="hidden" id="meses_situacao_rua" name="meses_situacao_rua" value="">
+						   -->
                         </div>
-                        <div id="anosLabel" class="container-cb marg-r-10 selectInicial w-inh">
+                        <div id="listaAnos" class="container-cb marg-r-10 selectInicial w-inh">
+						   <!--
                            <select class="selectPersonalizado pos-inh w-100-pct">
                               <div class="lista-box-scroll">
                                  <option value="" id="0" data-id="anosLabel" for="anos_situacao_rua">Anos
@@ -274,29 +279,30 @@
                               </div>
                            </select>
                            <input type="hidden" id="anos_situacao_rua" name="anos_situacao_rua" value="">
+						   -->
                         </div>
                         <div class="linhaForm"> 
                            <span class="titSang"></span> 
                         </div>
                      </div>
                   </label>
-                  <input type="text" class="inputGrande" value="" name="outros_situacao_rua" placeholder="Outros">
+                  <input type="text" class="inputGrande" value="" name="outros_situacao_rua" id="outros_situacao_rua" placeholder="Outros">
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Local que se encontra:</span>
-                  <input type="text" class="inputGrande" value="" name="local_onde_encontra">
+                  <input type="text" class="inputGrande" value="" name="local_onde_encontra" id="local_onde_encontra">
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Onde morava antes de vir pra rua:</span>
-                  <input type="text" class="inputGrande" value="" name="onde_morava_antes_rua">
+                  <input type="text" class="inputGrande" value="" name="onde_morava_antes_rua" id="onde_morava_antes_rua">
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Bairro:</span>
-                  <input type="text" class="inputGrande" value="" name="bairro">
+                  <input type="text" class="inputGrande" value="" name="bairro" id="bairro">
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Município de procedência:</span>
-                  <input type="text" class="inputGrande" value="" name="municipio_procendencia">
+                  <input type="text" class="inputGrande" value="" name="municipio_procendencia" id="municipio_procendencia">
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
@@ -430,10 +436,10 @@
                         <input type="checkbox" name="acompanhante_rua[]" value="6" class="checkbox check ">
                            <p>Outros</p>
                     </div>
-					-->
-                    <!--<div class=" ">-->
+					<div class=" ">
                         <input type="text" class="inputMed spacer-h" value="" name="acompanhante_rua_outros" placeholder="Outros">
-                    <!--</div>-->
+                    </div>
+                    -->
                   </div>
                </div>
                <div class="linhaForm">
@@ -480,6 +486,7 @@
                <div class="linhaForm" id="qualFamiliar" style="display:none">
                   <span class="titLabel">Com qual familiar:</span>
                   <div id="container_familiar">
+					<!--
                      <div class="checkbox">
                        <input type="checkbox" name="qual_familiar[]" value="" class="checkbox check radio active">
                         <p>Agregado</p>
@@ -554,10 +561,11 @@
                         <input type="checkbox" name="qual_familiar[]" value="" class="checkbox check radio active">
                         <p>Tio (a)</p>
                      </div>
+					 -->
                    </div>
 
-                        <input type="text" class="inputMed" value="" name="contato_familia_outros" id="contato_familia_outros" placeholder="Outros">
-                    
+                        <!--<input type="text" class="inputMed" value="" name="contato_familia_outros" id="contato_familia_outros" placeholder="Outros">
+                    -->
                 </div>   
                      
                <div class="linhaForm"> 
@@ -576,9 +584,9 @@
                <div class="linhaForm">
                   <span class="titLabel">Está trabalhando atualmente:</span>
                   <div id="infoTrabalhando" class="radioButton">
-                     <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Não Informado</p>
-                     <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Não</p>
-                     <input type="radio" value="" name="trabalhando" id="trabalhando" class="valueCheck radioButton radio active"><p>Sim</p>
+                     <input type="radio" value="NãoInformado" name="infoTrabalhando" id="infoTrabalhando" class="valueCheck radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="Não" name="infoTrabalhando" id="infoTrabalhando" class="valueCheck radioButton radio active"><p>Não</p>
+                     <input type="radio" value="Sim" name="infoTrabalhando" id="infoTrabalhando" class="valueCheck radioButton radio active"><p>Sim</p>
                   </div>
                </div>
                <div class="linhaForm"> 
@@ -588,7 +596,8 @@
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Outras habilidades:</span> 
-                     <div id="habilidadesLabel" class="comboStilo selectInicial">
+                     <div id="listaHabilidades" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="1" data-id="habilidadesLabel" for="habilidades_id">Selecione
@@ -614,13 +623,15 @@
                            </div>
                         </select>
                         <input type="hidden" id="habilidades_id" name="habilidades_id" value="">
+						-->
                      </div>
                   </label>
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Fonte de renda:</span> 
-                     <div id="fonteRendaLabel" class="comboStilo selectInicial">
+                     <div id="listaFonteRenda" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="4" data-id="fonteRendaLabel" for="fonte_renda_id">Aposentadoria
@@ -631,13 +642,15 @@
                            </div>
                         </select>
                         <input type="hidden" id="fonte_renda_id" name="fonte_renda_id" value="">
+						-->
                      </div>
                   </label>
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Escolaridade:</span> 
-                     <div id="escolaridadeLabel" class="comboStilo selectInicial">
+                     <div id="listaEscolaridade" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option value="" id="1" data-id="escolaridadeLabel" for="tipo_escolaridade_id">Selecione
@@ -654,17 +667,19 @@
                            </div>
                         </select>
                         <input type="hidden" name="tipo_escolaridade_id" id="tipo_escolaridade_id" value="">
+						-->
                      </div>
                   </label>
                </div>
                <div class="linhaForm"> 
                   <span class="titLabel">Outros:<br>(Escolaridade)</span>
-                  <input type="text" class="inputGrande" value="" name="escolaridades_outros">
+                  <input type="text" class="inputGrande" value="" name="escolaridades_outros" id="escolaridades_outros">
                </div>
                <div class="linhaForm">
                   <label class="selectDefault">
                      <span class="titSang">Situação profissional:</span> 
-                     <div id="situacaoProfissionalLabel" class="comboStilo selectInicial">
+                     <div id="listaSituacaoProfissional" class="comboStilo selectInicial">
+						<!--
                         <select class="selectPersonalizado">
                            <div class="lista-box-scroll">
                               <option id="1" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Empreendedor(a)
@@ -680,6 +695,7 @@
                               <option id="11" data-id="situacaoProfissionalLabel" for="situacao_profissional_id">Faz estágio remunerado
                            </div>
                         </select>
+						-->
                      </div>
                   </label>
                </div>
@@ -691,6 +707,7 @@
                <div class="linhaForm">
                   <span class="titLabel">Condições de saúde:</span>
                   <div id="container_cond_saude">
+					<!--
                      <div class="checkbox">
                         <input type="checkbox" name="condicao_saude[]" value="1" class="checkbox check  radio active">
                         <p>S/ sintomas</p>
@@ -718,16 +735,17 @@
                      <div class="">
                         <input type="text" class="inputMed" value="" name="condicao_saude_outros" id="condicao_saude_outros" placeholder="Outros">
                      </div>
+					-->
                   </div>
                </div>
                <div class="linhaForm">
                </div>
-               <div class="linhaForm">
+               <div id="gestante" class="linhaForm">
                   <span class="titLabel">Gestante:</span>
                   <div id="infoGestante" class="radioButton">
-                     <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Não Informado</p>
-                     <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Não</p>
-                     <input type="radio" value="" name="gestante" id="gestante" class="radioButton radio active"><p>Sim</p>
+                     <input type="radio" value="NãoInformado" name="infoGestante" id="gestante" class="radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="Não" name="infoGestante" id="gestante" class="radioButton radio active"><p>Não</p>
+                     <input type="radio" value="Sim" name="infoGestante" id="gestante" class="radioButton radio active"><p>Sim</p>
                   </div>
                </div>
                <div id="possui_deficiencia" class="linhaForm">
@@ -742,12 +760,12 @@
                   <span class="titLabel">Quais deficiências:</span>
                   <textarea name="quais_deficiencias" id="quais_deficiencias" rows="5" class="inputTextArea"></textarea>
                </div>
-               <div class="linhaForm">
+               <div id="alcool_droga" class="linhaForm">
                   <span class="titLabel">Usuário de Álcool ou Drogas:</span>
                   <div id="infoAlcoolDroga" class="radioButton">
-                     <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não Informado</p>
-                     <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não</p>
-                     <input type="radio" value="" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Sim</p>
+                     <input type="radio" value="NãoInformado" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não Informado</p>
+                     <input type="radio" value="Não" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Não</p>
+                     <input type="radio" value="Sim" name="alcool_droga" id="alcool_droga" class="radioButton radio active"><p>Sim</p>
                   </div>
                </div>
                <div class="linhaForm" id="quaisDrogas" style="display:block"> 

@@ -46,14 +46,12 @@
 							INFOBASICAS.dadosBasicosTipoSexoSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
 */
-		alert("Buscando lista de tipos de sexo no DTO");
 		BD_DTO.tipo_sexo_carrega(INFOBASICAS.dadosBasicosTipoSexoSuccess, INFOBASICAS.dadosEntradaInfoBasicasFail)
 	},
 	
 	dadosBasicosTipoSexoSuccess: function (trans, res) {
 		console.log("dadosBasicosTipoSexoSuccess");
 		
-		alert("Busca OK");
 		INFOBASICAS.tipoSexo = BD_DTO.tipo_sexo_data;
 /*		
 		// Limpa a lista
@@ -360,7 +358,7 @@
 							// Gênero
 							"info_orientacao_sexual_genero, sexo_id, orientacao_sexual_id" +
 							// Informações Adicionais
-							", cpf, estado_civil_id, nome_pai, cidade_nascimento, nascimento_estado_id" +
+							", rg_rne, cpf, estado_civil_id, nome_pai, cidade_nascimento, nascimento_estado_id" +
 							// Situação de Rua
 							", dias_situaca_rua, meses_situacao_rua, anos_situacao_rua, outros_situacao_rua, local_onde_encontra, onde_morava_antes_rua, bairro, municipio_procendencia, procedencia_estado_id, procendencia_pais_id, acompanhante_rua_outros, tem_filhos, qtd_filhos" +
 							", contato_familia, contato_parente, contato_familia_outros, referencia_familiar, telefone" +
@@ -407,6 +405,7 @@
 			INFOBASICAS.generoCidadao = gc;
 			
 			var iac = {
+				rg: res.rows.item(0).rg_rne,
 				cpf: res.rows.item(0).cpf,
 				estado_civil_id: res.rows.item(0).estado_civil_id,
 				nome_pai: res.rows.item(0).nome_pai,
@@ -427,14 +426,13 @@
 				procedencia_estado_id: res.rows.item(0).procedencia_estado_id,
 				procedencia_pais_id: res.rows.item(0).procendencia_pais_id,
 				acompanhante_rua_outros: res.rows.item(0).acompanhante_rua_outros,
-				// todo: com quem você fica na rua
 				acompanhante_rua: [],
 				
 				tem_filhos: res.rows.item(0).tem_filhos,
 				qtd_filhos: res.rows.item(0).qtd_filhos,
+				// todo: falta implementar idade dos filhos
 				contato_familia: res.rows.item(0).contato_familia,
 				contato_parente: res.rows.item(0).contato_parente,
-				// todo: com quais familiares
 				quais_familiares: [],
 				
 				contato_familia_outros: res.rows.item(0).contato_familia_outros,
