@@ -48,7 +48,7 @@ function btLimpar(){
 };
 
 /******************************************************************
-********** CONTROLE DE LISTAS DE OPÇÕES
+********** CARREGA DADOS DO CIDADÃO
 /******************************************************************/
 function carregaDadosInfoBasicas() {
 	console.log("carregaDadosInfoBasicas");
@@ -229,7 +229,7 @@ function carregaDadosInfoBasicas() {
 	$("#frequencia_drogas").val(auxVar == null ? "" : auxVar);
 	
 	// INFORMAÇÕES COMPLEMENTARES
-	auxVar = INFOBASICAS.saudeCidadao.frequencia_drogas;
+	auxVar = INFOCOMPLE.infoComplementares;
 	$("#informacoes_complementares").val(auxVar == null ? "" : auxVar);	
 };
 
@@ -242,7 +242,7 @@ function infoBasicasOpcoes() {
 	var edit = true;		// todo: apenas edição, por enquanto
 	
 	// GÊNERO
-	var opts = "<select id='listaSexo' class='selectPersonalizado'><option value='selecione' data-id='sexoLabel' for='sexo_id'>Selecione</option>";
+	var opts = "<select id='sexoLabel' class='selectPersonalizado'><option value='Selecione' data-id='sexoLabel' for='sexo_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoSexo.length; i++) {
 		opts += "<option value='" + i + "' data-id='sexoLabel' for='sexo_id'";
 		opts += ((edit == true && INFOBASICAS.generoCidadao.sexo_id == INFOBASICAS.tipoSexo[i].id) ? " selected>" : ">") + INFOBASICAS.tipoSexo[i].nome + "</option>";
@@ -253,7 +253,7 @@ function infoBasicasOpcoes() {
 	$("#listaSexos").empty();
 	$("#listaSexos").append(opts);
 
-	var opts = "<select id='orientacaoSexualLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='orientacaoSexualLabel' for='orientacao_sexual_id'>Selecione</option>";
+	var opts = "<select id='orientacaoSexualLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='orientacaoSexualLabel' for='orientacao_sexual_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoOrientacaoSexual.length; i++) {
 		opts += "<option value='" + i + "' data-id='orientacaoSexualLabel' for='orientacao_sexual_id'";
 		opts += ((edit == true && INFOBASICAS.generoCidadao.orientacao_sexual_id == INFOBASICAS.tipoOrientacaoSexual[i].id) ? " selected>" : ">") + INFOBASICAS.tipoOrientacaoSexual[i].nome + "</option>";
@@ -265,7 +265,7 @@ function infoBasicasOpcoes() {
 	$("#listaOrientacaoSexual").append(opts);
 	
 	// INFORMAÇÕES ADICIONAIS
-	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
+	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEstadoCivil.length; i++) {
 		opts += "<option value='" + i + "' data-id='estadoCivilLabel' for='estado_civil_id'";
 		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.estado_civil_id == INFOBASICAS.tipoEstadoCivil[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstadoCivil[i].nome + "</option>";
@@ -276,7 +276,7 @@ function infoBasicasOpcoes() {
 	$("#listaEstadoCivil").empty();
 	$("#listaEstadoCivil").append(opts);
 	
-	var opts = "<select id='nascimentoEstadoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='nascimentoEstadoLabel' for='nascimento_estado_id'>Selecione</option>";
+	var opts = "<select id='nascimentoEstadoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='nascimentoEstadoLabel' for='nascimento_estado_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEstado.length; i++) {
 		opts += "<option value='" + i + "' data-id='nascimentoEstadoLabel' for='nascimento_estado_id'";
 		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.nascimento_estado_id == INFOBASICAS.tipoEstado[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstado[i].nome + "</option>";
@@ -288,7 +288,7 @@ function infoBasicasOpcoes() {
 	$("#listaEstado").append(opts);
 
 	// SITUAÇÃO DE RUA
-	var opts = "<select id='diasLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Dias' data-id='diasLabel' for='dias_situacao_rua'>Selecione</option>";
+	var opts = "<select id='diasLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Dias' data-id='diasLabel' for='dias_situacao_rua'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasLabel' for='nascimento_estado_id'";
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.dias_situaca_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
@@ -299,7 +299,7 @@ function infoBasicasOpcoes() {
 	$("#listaDias").empty();
 	$("#listaDias").append(opts);
 
-	var opts = "<select id='mesesLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Meses' data-id='mesesLabel' for='meses_situacao_rua'>Selecione</option>";
+	var opts = "<select id='mesesLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Meses' data-id='mesesLabel' for='meses_situacao_rua'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesLabel' for='meses_situacao_rua'";
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.meses_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
@@ -310,7 +310,7 @@ function infoBasicasOpcoes() {
 	$("#listaMeses").empty();
 	$("#listaMeses").append(opts);
 
-	var opts = "<select id='anosLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Anos' data-id='anosLabel' for='anos_situacao_rua'>Selecione</option>";
+	var opts = "<select id='anosLabel' class='selectPersonalizado pos-inh w-100-pct'><div class='lista-box-scroll'><option value='Anos' data-id='anosLabel' for='anos_situacao_rua'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosLabel' for='anos_situacao_rua'";
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.anos_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
@@ -321,7 +321,7 @@ function infoBasicasOpcoes() {
 	$("#listaAnos").empty();
 	$("#listaAnos").append(opts);
 
-	var opts = "<select id='estadoProcedenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='estadoProcedenciaLabel' for='nascimento_estado_id'>Selecione</option>";
+	var opts = "<select id='estadoProcedenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoProcedenciaLabel' for='nascimento_estado_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEstado.length; i++) {
 		opts += "<option value='" + i + "' data-id='estadoProcedenciaLabel' for='nascimento_estado_id'";
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.procedencia_estado_id == INFOBASICAS.tipoEstado[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstado[i].nome + "</option>";
@@ -332,7 +332,7 @@ function infoBasicasOpcoes() {
 	$("#listaEstadoProcedencia").empty();
 	$("#listaEstadoProcedencia").append(opts);
 
-	var opts = "<select id='paisProcedenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='paisProcedenciaLabel' for='procendencia_pais_id'>Selecione</option>";
+	var opts = "<select id='paisProcedenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='paisProcedenciaLabel' for='procendencia_pais_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoPais.length; i++) {
 		opts += "<option value='" + i + "' data-id='paisProcedenciaLabel' for='procendencia_pais_id'";
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.procedencia_pais_id == INFOBASICAS.tipoPais[i].id) ? " selected>" : ">") + INFOBASICAS.tipoPais[i].nome + "</option>";
@@ -352,7 +352,7 @@ function infoBasicasOpcoes() {
 				break;
 			}
 		}
-		opts += "<div class='checkbox'><input type='checkbox' value='" + i + "' class='checkbox check'" + (encontrou == true ? "checked" : "") + ">";
+		opts += "<div class='checkbox'><input type='checkbox' name='tipoAcompanhanteRua" + i + "' value='" + i + "' class='checkbox check'" + (encontrou == true ? "checked" : "") + ">";
 		opts += "<p>" + INFOBASICAS.tipoAcompanhanteRua[i].nome + "</p></div>";
 	}
 	opts += "<input type='text' class='inputMed spacer-h' value='' name='acompanhante_rua_outros' placeholder='Outros' id='acompanhante_rua_outros'>";
@@ -371,7 +371,7 @@ function infoBasicasOpcoes() {
 				break;
 			}
 		}
-		opts += "<div class='checkbox'><input type='checkbox' value='" + i + "' class='checkbox check radio active'" + (encontrou == true ? "checked" : "") + ">";
+		opts += "<div class='checkbox'><input type='checkbox' name='tipoParentesco" + i + "' value='" + i + "' class='checkbox check radio active'" + (encontrou == true ? "checked" : "") + ">";
 		opts += "<p>" + INFOBASICAS.tipoParentesco[i].nome + "</p></div>";
 	}
 	opts += "<input type='text' class='inputMed' value='' name='contato_familia_outros' id='contato_familia_outros' placeholder='Outros'>";
@@ -382,7 +382,7 @@ function infoBasicasOpcoes() {
 	$("#container_familiar").append(opts);
 	
 	// TRABALHO E EDUCAÇÃO
-	var opts = "<select id='habilidadesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='habilidadesLabel' for='habilidades_id'>Selecione</option>";
+	var opts = "<select id='habilidadesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='habilidadesLabel' for='habilidades_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoHabilidade.length; i++) {
 		opts += "<option value='" + i + "' data-id='habilidadesLabel' for='habilidades_id'";
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.habilidades_id == INFOBASICAS.tipoHabilidade[i].id) ? " selected>" : ">") + INFOBASICAS.tipoHabilidade[i].nome + "</option>";
@@ -393,7 +393,7 @@ function infoBasicasOpcoes() {
 	$("#listaHabilidades").empty();
 	$("#listaHabilidades").append(opts);
 		
-	var opts = "<select id='fonteRendaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='fonteRendaLabel' for='fonte_renda_id'>Selecione</option>";
+	var opts = "<select id='fonteRendaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='fonteRendaLabel' for='fonte_renda_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoFonteRenda.length; i++) {
 		opts += "<option value='" + i + "' data-id='fonteRendaLabel' for='fonte_renda_id'";
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.fonte_renda_id == INFOBASICAS.tipoFonteRenda[i].id) ? " selected>" : ">") + INFOBASICAS.tipoFonteRenda[i].nome + "</option>";
@@ -404,7 +404,7 @@ function infoBasicasOpcoes() {
 	$("#listaFonteRenda").empty();
 	$("#listaFonteRenda").append(opts);
 		
-	var opts = "<select id='escolaridadeLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='escolaridadeLabel' for='tipo_escolaridade_id'>Selecione</option>";
+	var opts = "<select id='escolaridadeLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='escolaridadeLabel' for='tipo_escolaridade_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEscolaridade.length; i++) {
 		opts += "<option value='" + i + "' data-id='escolaridadeLabel' for='tipo_escolaridade_id'";
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.tipo_escolaridade_id == INFOBASICAS.tipoEscolaridade[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEscolaridade[i].nome + "</option>";
@@ -415,7 +415,7 @@ function infoBasicasOpcoes() {
 	$("#listaEscolaridade").empty();
 	$("#listaEscolaridade").append(opts);
 		
-	var opts = "<select id='situacaoProfissionalLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='situacaoProfissionalLabel' for='situacao_profissional_id'>Selecione</option>";
+	var opts = "<select id='situacaoProfissionalLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='situacaoProfissionalLabel' for='situacao_profissional_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoSituacaoProfissional.length; i++) {
 		opts += "<option value='" + i + "' data-id='situacaoProfissionalLabel' for='situacao_profissional_id'";
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.situacao_profissional_id == INFOBASICAS.tipoSituacaoProfissional[i].id) ? " selected>" : ">") + INFOBASICAS.tipoSituacaoProfissional[i].nome + "</option>";
@@ -436,7 +436,7 @@ function infoBasicasOpcoes() {
 				break;
 			}
 		}
-		opts += "<div class='checkbox'><input type='checkbox' value='" + i + "' class='checkbox check radio active'" + (encontrou == true ? "checked" : "") + ">";
+		opts += "<div class='checkbox'><input type='checkbox' name='tipoCondicaoSaude" + i + "' value='" + i + "' class='checkbox check radio active'" + (encontrou == true ? "checked" : "") + ">";
 		opts += "<p>" + INFOBASICAS.tipoCondicaoSaude[i].nome + "</p></div>";
 	}
 	opts += "<input type='text' class='inputMed' value='' name='condicao_saude_outros' id='condicao_saude_outros' placeholder='Outros'>";
@@ -449,4 +449,274 @@ function infoBasicasOpcoes() {
 	if (edit == true) {
 		carregaDadosInfoBasicas();
 	}	
+};
+
+/******************************************************************
+********** VALIDAÇÃO DE CAMPOS PARA SALVAMENTO
+/******************************************************************/
+function infoBasicasSalva() {
+	console.log("infoBasicasSalva");
+	
+	var erro = false;
+	
+	// GÊNERO
+	
+	// INFORMAÇÕES ADICIONAIS
+		
+	// SITUAÇÃO DE RUA
+	// Quantidade de filhos
+	if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
+		// Avalia quantos filhos
+		if ($('#qtd_filhos').val() == '' || isNaN($('#qtd_filhos').val()))
+		{
+			$('#qtd_filhos').addClass('inputFocus');	
+			erro = true;
+		}
+		else $('#qtd_filhos').removeClass('inputFocus');
+	}
+	
+	// todo: idade dos filhos
+	
+	// TRABALHO E EDUCAÇÃO
+	
+	// SAÚDE
+	// Quais deficiências
+	if ($("input:radio[name=possui_deficiencia]:checked").val() == "Sim") {
+		if ($('#quais_deficiencias').val() == '')
+		{
+			$('#quais_deficiencias').addClass('inputFocus');	
+			erro = true;
+		}
+		else $('#quais_deficiencias').removeClass('inputFocus');
+	}
+	
+	// Quais drogas e qual frequência
+	if ($("input:radio[name=alcool_droga]:checked").val() == "Sim") {
+		if ($('#nome_drogas').val() == '')
+		{
+			$('#nome_drogas').addClass('inputFocus');	
+			erro = true;
+		}
+		else $('#nome_drogas').removeClass('inputFocus');
+		if ($('#frequencia_drogas').val() == '')
+		{
+			$('#frequencia_drogas').addClass('inputFocus');	
+			erro = true;
+		}
+		else $('#frequencia_drogas').removeClass('inputFocus');
+	}	
+	// INFORMAÇÕES COMPLEMENTARES
+	
+	if (erro == true) {
+		// Apresenta mensagem "msgAtencao"
+		$('.msgAtencao').removeAttr('style');
+		$('.msgParabens').attr('style', 'display:none');
+		$('.msgErro').attr('style', 'display:none');
+	}
+	else {
+		$('.msgAtencao').attr('style', 'display:none');
+		$('.msgParabens').attr('style', 'display:none');
+		$('.msgErro').attr('style', 'display:none');
+
+		// Salva
+		// Lista de acompanhante_rua
+		var ar = [];
+		for (var i = 0; i < INFOBASICAS.tipoAcompanhanteRua.length; i++) {
+			if ($("input:checkbox[name=tipoAcompanhanteRua" + i + "]:checked").val()) {
+				// Está marcado
+				ar.push(INFOBASICAS.tipoAcompanhanteRua[i].id);
+			}
+		}
+		// Lista de familiares
+		var qf = [];
+		for (var i = 0; i < INFOBASICAS.tipoParentesco.length; i++) {
+			if ($("input:checkbox[name=tipoParentesco" + i + "]:checked").val()) {
+				// Está marcado
+				qf.push(INFOBASICAS.tipoParentesco[i].id);
+			}
+		}
+		// Lista de condições de saúde
+		var cs = [];
+		for (var i = 0; i < INFOBASICAS.tipoCondicaoSaude.length; i++) {
+			if ($("input:checkbox[name=tipoCondicaoSaude" + i + "]:checked").val()) {
+				// Está marcado
+				cs.push(INFOBASICAS.tipoCondicaoSaude[i].id);
+			}
+		}
+		
+		var infoOrientacaoSexual = null;
+		if ($("input:radio[name=infoOrientacaoSexual]:checked").val() == "Sim") {
+			infoOrientacaoSexual = 1;
+		}
+		else if ($("input:radio[name=infoOrientacaoSexual]:checked").val() == "Não") {
+			infoOrientacaoSexual = 0;
+		}
+		
+		var temFilho = null;
+		if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
+			temFilho = 1;
+		}
+		else if ($("input:radio[name=temFilho]:checked").val() == "Não") {
+			temFilho = 0;
+		}
+		
+		var infoTemContatoFamilia = null;
+		if ($("input:radio[name=infoTemContatoFamilia]:checked").val() == "Sim") {
+			infoTemContatoFamilia = 1;
+		}
+		else if ($("input:radio[name=infoTemContatoFamilia]:checked").val() == "Não") {
+			infoTemContatoFamilia = 0;
+		}
+		
+		var infoContatoFamilia = null;
+		if ($("input:radio[name=infoContatoFamilia]:checked").val() == "Sim") {
+			infoContatoFamilia = 1;
+		}
+		else if ($("input:radio[name=infoContatoFamilia]:checked").val() == "Não") {
+			infoContatoFamilia = 0;
+		}
+		
+		var infoTrabalhando = null;
+		if ($("input:radio[name=infoTrabalhando]:checked").val() == "Sim") {
+			infoTrabalhando = 1;
+		}
+		else if ($("input:radio[name=infoTrabalhando]:checked").val() == "Não") {
+			infoTrabalhando = 0;
+		}
+		
+		var infoGestante = null;
+		if ($("input:radio[name=infoGestante]:checked").val() == "Sim") {
+			infoGestante = 1;
+		}
+		else if ($("input:radio[name=infoGestante]:checked").val() == "Não") {
+			infoGestante = 0;
+		}
+		
+		var possui_deficiencia = null;
+		if ($("input:radio[name=possui_deficiencia]:checked").val() == "Sim") {
+			possui_deficiencia = 1;
+		}
+		else if ($("input:radio[name=possui_deficiencia]:checked").val() == "Não") {
+			possui_deficiencia = 0;
+		}
+		
+		var alcool_droga = null;
+		if ($("input:radio[name=alcool_droga]:checked").val() == "Sim") {
+			alcool_droga = 1;
+		}
+		else if ($("input:radio[name=alcool_droga]:checked").val() == "Não") {
+			alcool_droga = 0;
+		}
+		
+		INFOBASICAS.salvaCidadao(// info_orientacao_sexual_genero
+								 infoOrientacaoSexual,
+								 // sexo_id
+								 $("#sexoLabel").val() == "Selecione" ? null : INFOBASICAS.tipoSexo[$("#sexoLabel").val()].id,
+								 // orientacao_sexual_id
+								 $("#orientacaoSexualLabel").val() == "Selecione" ? null : INFOBASICAS.tipoOrientacaoSexual[$("#orientacaoSexualLabel").val()].id,
+								 
+								 // rg_rne
+								 $("#rg_rne").val(),
+								 // cpf
+								 $("#cpf").val(),
+								 // estado_civil_id
+								 $("#estadoCivilLabel").val() == "Selecione" ? null : INFOBASICAS.tipoEstadoCivil[$("#estadoCivilLabel").val()].id,
+								 // nome_pai
+								 $("#nome_pai").val(),
+								 // cidade_nascimento
+								 $("#cidade_nascimento").val(),
+								 // nascimento_estado_id
+								 $("#nascimentoEstadoLabel").val() == "Selecione" ? null : INFOBASICAS.tipoEstado[$("#nascimentoEstadoLabel").val()].id,
+								 
+								 // dias_situaca_rua
+								 $("#diasLabel").val() == "Dias" ? "" : $("#diasLabel").val(),
+								 // meses_situacao_rua
+								 $("#mesesLabel").val() == "Meses" ? "" : $("#mesesLabel").val(),
+								 // anos_situacao_rua
+								 $("#anosLabel").val() == "Anos" ? "" : $("#anosLabel").val(),
+								 // outros_situacao_rua
+								 $("#outros_situacao_rua").val(),
+								 // local_onde_encontra
+								 $("#local_onde_encontra").val(),
+								 // onde_morava_antes_rua
+								 $("#onde_morava_antes_rua").val(),
+								 // bairro
+								 $("#bairro").val(),
+								 // municipio_procendencia
+								 $("#municipio_procendencia").val(),
+								 // procedencia_estado_id
+								 $("#estadoProcedenciaLabel").val() == "Selecione" ? null : INFOBASICAS.tipoEstado[$("#estadoProcedenciaLabel").val()].id,
+								 // procedencia_pais_id
+								 $("#paisProcedenciaLabel").val() == "Selecione" ? null : INFOBASICAS.tipoPais[$("#paisProcedenciaLabel").val()].id,
+								 // acompanhante_rua_outros
+								 $("#acompanhante_rua_outros").val(),
+								 // acompanhante_rua []
+								 ar,
+								 // tem_filhos
+ 								 temFilho,
+								 // qtd_filhos
+								 $("#qtd_filhos").val(),
+								 // todo: idade dos filhos
+								 // contato_familia
+ 								 infoTemContatoFamilia,
+								 // contato_parente
+ 								 infoContatoFamilia,
+								 // quais_familiares []
+								 qf,
+								 // contato_familia_outros
+								 $("#contato_familia_outros").val(),
+								 // referencia_familiar
+								 $("#referencia_familiar").val(),
+								 // telefone
+								 $("#telefone").val(),
+								 
+								 // trabalhando
+ 								 infoTrabalhando,
+								 // profissao_atividade
+								 $("#profissao_atividade").val(),
+								 // habilidades_id
+								 $("#habilidadesLabel").val() == "Selecione" ? null : INFOBASICAS.tipoHabilidade[$("#habilidadesLabel").val()].id,
+								 // fonte_renda_id
+								 $("#fonteRendaLabel").val() == "Selecione" ? null : INFOBASICAS.tipoFonteRenda[$("#fonteRendaLabel").val()].id,
+								 // tipo_escolaridade_id
+								 $("#escolaridadeLabel").val() == "Selecione" ? null : INFOBASICAS.tipoEscolaridade[$("#escolaridadeLabel").val()].id,
+								 // escolaridades_outros
+								 $("#escolaridades_outros").val(),
+								 // situacao_profissional_id
+								 $("#situacaoProfissionalLabel").val() == "Selecione" ? null : INFOBASICAS.tipoSituacaoProfissional[$("#situacaoProfissionalLabel").val()].id,
+								 
+								 // condicoes_saude []
+								 cs,
+								 // condicoes_saude_outros
+								 $("#condicao_saude_outros").val(),
+								 // gestante
+ 								 infoGestante,
+								 // possui_deficiencia
+ 								 possui_deficiencia,
+								 // quais_deficiencias
+								 $("#quais_deficiencias").val(),
+								 // alcool_droga
+ 								 alcool_droga,
+								 // nome_drogas
+								 $("#nome_drogas").val(),
+								 // frequencia_drogas
+								 $("#frequencia_drogas").val(),
+								 
+								 // informacoes_complementares
+								 $("#informacoes_complementares").val(),
+								 
+								 this.salvaDadosBasicosSuccess,
+								 this.salvaDadosBasicosFail
+								 );
+	}
+};
+	
+function salvaDadosBasicosSuccess () {
+	console.log("salvaDadosBasicosSuccess");
+	// todo: revisar
+};
+
+function salvaDadosBasicosFail (err) {
+	console.log("salvaDadosBasicosFail: " + err);
+	// todo: revisar
 };

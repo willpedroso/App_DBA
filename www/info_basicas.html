@@ -455,7 +455,7 @@
                </div>
                <div class="linhaForm" id="qtdFilho" style="display:none"> 
                   <span class="titLabel">Quantos filhos:</span>
-                  <input type="text" onblur="javascript:addFilhos(this)" class="inputGrande" value="" name="qtd_filhos" id="qtd_filhos">
+                  <input type="text" onblur="javascript:addFilhos(this)" class="inputGrande" value="" name="qtd_filhos" id="qtd_filhos" maxlength="2">
                </div>
                <!-- CONTAINER QTD DE FILHO-->
                <div id="containerQtdFilhos">
@@ -779,7 +779,7 @@
             </div>
             <div class="contentAbaBorda">
                <form>
-              <div id="informacoes_complementares" >
+              <div id="informacoes_complementares_div" >
                  <h3>INFORMAÇÕES COMPLEMENTARES</h3>
                  <div class="linhaForm"> 
                     <span class="titLabel">Informações Complementares:</span>
@@ -792,7 +792,7 @@
             </div>
 
             <!--SAÚDE-->
-            <input type="button" onclick="salvarFormInfoBasicas()" class="btnAlterar" value="Salvar Alterações">
+            <input type="button" onclick="infoBasicasSalva();" class="btnAlterar" value="Salvar Alterações">
         </form>
       </div>  
       <!-- FIM INFO BASICAS -->

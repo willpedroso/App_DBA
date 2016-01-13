@@ -23,6 +23,13 @@
 	tipoAcompanhanteRua: [],
 	tipoParentesco: [],
 	tipoCondicaoSaude: [],
+	
+	auxAcompanhanteRua: [],
+	acompanhanteRuaCounter: 0,
+	auxQuaisFamiliares: [],
+	quaisFamiliaresCounter: 0,
+	auxCondicoesSaude: [],
+	condicoesSaudeCounter: 0,
 
     // ****************** Obtém os dados básicos *********************
 	// Lista de tipos de sexo
@@ -453,7 +460,6 @@
 			INFOBASICAS.trabalhoEducacaoCidadao = tec;
 			
 			var sc = {
-				// todo: Condições de saúde
 				condicoes_saude: [],
 				
 				condicoes_saude_outros: res.rows.item(0).condicoes_saude_outros,
@@ -519,22 +525,302 @@
 		INFOBASICAS.saudeCidadao.condicoes_saude = lista;
 
 		// Retorna
+		// todo: revisar
 		//INFOBASICAS.cbSuccess_f();
-		PageManager.loadTmpl('info_basicas');
+		//PageManager.loadTmpl('info_basicas');
+		INFOCOMPLE.dadosEntrada(INFOBASICAS.cidadao_id, null, null);
 	},
 	
 	dadosEntradaInfoBasicasFail: function (err) {
 		console.log("dadosEntradaInfoBasicasFail");
 		
 		// Retorna
+		// todo: revisar
+		alert("Houve falha na obtenção de informações básicas do cidadão.");
+
 		INFOBASICAS.cbFail_f(err);
 	},
 	
     // ****************** Obtém os dados de um cidadão *********************
-    salvaCidadao: function(cidadao, cbSuccess, cbFail) {
+    salvaCidadao: function (info_orientacao_sexual_genero,
+							sexo_id,
+							orientacao_sexual_id,
+								 
+							rg_rne,
+							cpf,
+							estado_civil_id,
+							nome_pai,
+							cidade_nascimento,
+							nascimento_estado_id,
+								 
+							dias_situaca_rua,
+							meses_situacao_rua,
+							anos_situacao_rua,
+							outros_situacao_rua,
+							local_onde_encontra,
+							onde_morava_antes_rua,
+							bairro,
+							municipio_procendencia,
+							procedencia_estado_id,
+							procedencia_pais_id,
+							acompanhante_rua_outros,
+							acompanhante_rua, // []
+							tem_filhos,
+							qtd_filhos,
+							//todo: idade dos filhos
+							contato_familia,
+							contato_parente,
+							quais_familiares, // []
+							contato_familia_outros,
+							referencia_familiar,
+							telefone,
+								 
+							trabalhando,
+							profissao_atividade,
+							habilidades_id,
+							fonte_renda_id,
+							tipo_escolaridade_id,
+							escolaridades_outros,
+							situacao_profissional_id,
+								 
+							condicoes_saude, // []
+							condicoes_saude_outros,
+							gestante,
+							possui_deficiencia,
+							quais_deficiencias,
+							alcool_droga,
+							nome_drogas,
+							frequencia_drogas,
+							informacoes_complementares,
+
+							cbSuccess, cbFail) {
 	    console.log("salvaCidadao");
-		// ** Dados
-		// 				
-		// ** Dados
+		
+		INFOBASICAS.auxAcompanhanteRua = acompanhante_rua;
+		INFOBASICAS.auxQuaisFamiliares = quais_familiares;
+		INFOBASICAS.auxCondicoesSaude = condicoes_saude;
+		
+		// todo: testes retirar
+		var Print = "";
+		Print += "info_orientacao_sexual_genero: " + info_orientacao_sexual_genero + "\r\n";
+		Print += "sexo_id: " + sexo_id + "\r\n";
+		Print += "orientacao_sexual_id: " + orientacao_sexual_id + "\r\n";
+								 
+		Print += "rg_rne: " + rg_rne + "\r\n";
+		Print += "cpf: " + cpf + "\r\n";
+		Print += "estado_civil_id: " + estado_civil_id + "\r\n";
+		Print += "nome_pai: " + nome_pai + "\r\n";
+		Print += "cidade_nascimento: " + cidade_nascimento + "\r\n";
+		Print += "nascimento_estado_id: " + nascimento_estado_id + "\r\n";
+								 
+		Print += "dias_situaca_rua: " + dias_situaca_rua + "\r\n";
+		Print += "meses_situacao_rua: " + meses_situacao_rua + "\r\n";
+		Print += "anos_situacao_rua: " + anos_situacao_rua + "\r\n";
+		Print += "outros_situacao_rua: " + outros_situacao_rua + "\r\n";
+		Print += "local_onde_encontra: " + local_onde_encontra + "\r\n";
+		Print += "onde_morava_antes_rua: " + onde_morava_antes_rua + "\r\n";
+		Print += "bairro: " + bairro + "\r\n";
+		Print += "municipio_procendencia: " + municipio_procendencia + "\r\n";
+		Print += "procedencia_estado_id: " + procedencia_estado_id + "\r\n";
+		Print += "procedencia_pais_id: " + procedencia_pais_id + "\r\n";
+		Print += "acompanhante_rua_outros: " + acompanhante_rua_outros + "\r\n";
+		
+		Print += "acompanhante_rua:\r\n";
+		for (var i = 0; i < acompanhante_rua.length; i++) {
+			Print += "\tacompanhante_rua" + i + ": " + acompanhante_rua[i] + "\r\n"; // []
+		}
+		
+		Print += "tem_filhos: " + tem_filhos + "\r\n";
+		Print += "qtd_filhos: " + qtd_filhos + "\r\n";
+		//todo: idade dos filhos
+		Print += "contato_familia: " + contato_familia + "\r\n";
+		Print += "contato_parente: " + contato_parente + "\r\n";
+		
+		Print += "quais_familiares:\r\n";
+		for (var i = 0; i < quais_familiares.length; i++) {
+			Print += "\tquais_familiares" + i + ": " + quais_familiares[i] + "\r\n"; // []
+		}
+		
+		Print += "contato_familia_outros: " + contato_familia_outros + "\r\n";
+		Print += "referencia_familiar: " + referencia_familiar + "\r\n";
+		Print += "telefone: " + telefone + "\r\n";
+								 
+		Print += "trabalhando: " + trabalhando + "\r\n";
+		Print += "profissao_atividade: " + profissao_atividade + "\r\n";
+		Print += "habilidades_id: " + habilidades_id + "\r\n";
+		Print += "fonte_renda_id: " + fonte_renda_id + "\r\n";
+		Print += "tipo_escolaridade_id: " + tipo_escolaridade_id + "\r\n";
+		Print += "escolaridades_outros: " + escolaridades_outros + "\r\n";
+		Print += "situacao_profissional_id: " + situacao_profissional_id + "\r\n";
+								 
+		Print += "condicoes_saude:\r\n";
+		for (var i = 0; i < condicoes_saude.length; i++) {
+			Print += "\tcondicoes_saude" + i + ": " + condicoes_saude[i] + "\r\n"; // []
+		}
+		
+		Print += "condicoes_saude_outros: " + condicoes_saude_outros + "\r\n";
+		Print += "gestante: " + gestante + "\r\n";
+		Print += "possui_deficiencia: " + possui_deficiencia + "\r\n";
+		Print += "quais_deficiencias: " + quais_deficiencias + "\r\n";
+		Print += "alcool_droga: " + alcool_droga + "\r\n";
+		Print += "nome_drogas: " + nome_drogas + "\r\n";
+		Print += "frequencia_drogas: " + frequencia_drogas + "\r\n";
+
+		Print += "informacoes_complementares: " + informacoes_complementares + "\r\n";
+		console.log(Print);
+		alert("aguardando...");
+		// testes retirar
+		
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET " +
+					// Gênero
+					"info_orientacao_sexual_genero = ?, sexo_id = ?, orientacao_sexual_id = ?" +
+					// Informações Adicionais
+					", rg_rne = ?, cpf = ?, estado_civil_id = ?, nome_pai = ?, cidade_nascimento = ?, nascimento_estado_id = ?" +
+					// Situação de Rua
+					", dias_situaca_rua = ?, meses_situacao_rua = ?, anos_situacao_rua = ?, outros_situacao_rua = ?, local_onde_encontra = ?" +
+					", onde_morava_antes_rua = ?, bairro = ?, municipio_procendencia = ?, procedencia_estado_id = ?, procendencia_pais_id = ?" + 
+					", acompanhante_rua_outros = ?, tem_filhos = ?, qtd_filhos = ?, contato_familia = ?, contato_parente = ?, contato_familia_outros = ?" +
+					", referencia_familiar = ?, telefone = ?" +
+					// Trabalho e Educação
+					", trabalhando = ?, profissao_atividade = ?, habilidades_id = ?, fonte_renda_id = ?, tipo_escolaridade_id = ?, escolaridades_outros = ?" +
+					", situacao_profissional_id = ?" +
+					// Saúde
+					", condicao_saude_outros = ?, gestante = ?, possui_deficiencia = ?, quais_deficiencias = ?, alcool_droga = ?, nome_drogas = ?, frequencia_drogas = ?" +
+					// Informações Complementares
+					", informacoes_complementares = ?" +
+					" WHERE id = ?",
+					[info_orientacao_sexual_genero,
+					 sexo_id,
+					 orientacao_sexual_id,
+					 
+					 rg_rne,
+					 cpf,
+					 estado_civil_id,
+					 nome_pai,
+					 cidade_nascimento,
+					 nascimento_estado_id,
+					 
+					 dias_situaca_rua,
+					 meses_situacao_rua,
+					 anos_situacao_rua,
+					 outros_situacao_rua,
+					 local_onde_encontra,
+					 onde_morava_antes_rua,
+					 bairro,
+					 municipio_procendencia,
+					 procedencia_estado_id,
+					 procedencia_pais_id,
+					 acompanhante_rua_outros,
+					 tem_filhos,
+					 qtd_filhos,
+					 contato_familia,
+					 contato_parente,
+					 contato_familia_outros,
+					 referencia_familiar,
+					 telefone,
+					 
+					 trabalhando,
+					 profissao_atividade,
+					 habilidades_id,
+					 fonte_renda_id,
+					 tipo_escolaridade_id,
+					 escolaridades_outros,
+					 situacao_profissional_id,
+					 
+					 condicoes_saude_outros,
+					 gestante,
+					 possui_deficiencia,
+					 quais_deficiencias,
+					 alcool_droga,
+					 nome_drogas,
+					 frequencia_drogas,
+					 
+					 informacoes_complementares,
+					 
+					 INFOBASICAS.cidadao_id], 
+					INFOBASICAS.excluiAcompanhanteRua, 
+					INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	salvaCidadaoSuccess: function () {
+		console.log("salvaCidadaoSuccess");
+		
+		alert("Dados básicos do cidadão foram salvos com sucesso.");
+	},
+	
+	salvaCidadaoFail: function (err) {
+		console.log("saudeCidadaoFail");
+	},
+	
+	excluiAcompanhanteRua: function () {
+		console.log("excluiAcompanhanteRua");
+
+		// Exclui acompanhante_rua
+		INFOBASICAS.acompanhanteRuaCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM acompanhantes_rua WHERE cidadao_id = ?",
+							[INFOBASICAS.cidadao_id],
+							INFOBASICAS.auxAcompanhanteRua.length > 0 ? INFOBASICAS.excluiAcompanhanteRuaSuccess : INFOBASICAS.excluiQuaisFamiliares,
+							INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	excluiAcompanhanteRuaSuccess: function () {
+		console.log("excluiAcompanhanteRuaSuccess");
+		
+		// Salva acompanhante_rua
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO acompanhantes_rua (cidadao_id, tipo_acompanhante_rua_id, dt_criacao) VALUES (?, ?, ?)",
+							[INFOBASICAS.cidadao_id,
+							 INFOBASICAS.auxAcompanhanteRua[INFOBASICAS.acompanhanteRuaCounter++],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							INFOBASICAS.acompanhanteRuaCounter < INFOBASICAS.auxAcompanhanteRua.length ? INFOBASICAS.excluiAcompanhanteRuaSuccess : INFOBASICAS.excluiQuaisFamiliares,
+							INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	excluiQuaisFamiliares: function () {
+		console.log("excluiQuaisFamiliares");
+		
+		// Exclui quais_familiares
+		INFOBASICAS.quaisFamiliaresCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM contato_familia WHERE cidadao_id = ?",
+							[INFOBASICAS.cidadao_id],
+							INFOBASICAS.auxQuaisFamiliares.length > 0 ? INFOBASICAS.excluiQuaisFamiliaresSuccess : INFOBASICAS.excluiCondicoesSaude,
+							INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	excluiQuaisFamiliaresSuccess: function () {
+		console.log("excluiQuaisFamiliaresSuccess");
+
+		// Salva quais_familiares
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO contato_familia (cidadao_id, tipo_parentesco_id, dt_criacao) VALUES (?, ?, ?)",
+							[INFOBASICAS.cidadao_id,
+							 INFOBASICAS.auxQuaisFamiliares[INFOBASICAS.quaisFamiliaresCounter++],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							INFOBASICAS.quaisFamiliaresCounter < INFOBASICAS.auxQuaisFamiliares.length ? INFOBASICAS.excluiQuaisFamiliaresSuccess : INFOBASICAS.excluiCondicoesSaude,
+							INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	excluiCondicoesSaude: function () {
+		console.log("excluiCondicoesSaude");
+
+		// Exclui condicao_saude
+		INFOBASICAS.condicoesSaudeCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM condicao_saude WHERE cidadao_id = ?",
+							[INFOBASICAS.cidadao_id],
+							INFOBASICAS.auxCondicoesSaude.length > 0 ? INFOBASICAS.excluiCondicoesSaudeSuccess : INFOBASICAS.salvaCidadaoSuccess,
+							INFOBASICAS.salvaCidadaoFail);	
+	},
+	
+	excluiCondicoesSaudeSuccess: function () {
+		console.log("excluiCondicoesSaudeSuccess");
+
+		// Salva condicao_saude
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO condicao_saude (cidadao_id, tipo_condicao_saude_id, dt_criacao) VALUES (?, ?, ?)",
+							[INFOBASICAS.cidadao_id,
+							 INFOBASICAS.auxCondicoesSaude[INFOBASICAS.condicoesSaudeCounter++],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							INFOBASICAS.condicoesSaudeCounter < INFOBASICAS.auxCondicoesSaude.length ? INFOBASICAS.excluiCondicoesSaudeSuccess : INFOBASICAS.salvaCidadaoSuccess,
+							INFOBASICAS.salvaCidadaoFail);
 	},
 }

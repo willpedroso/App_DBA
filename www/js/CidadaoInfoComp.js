@@ -20,9 +20,9 @@
 
 		// Obtém informações complementares
 		BANCODADOS.sqlCmdDB("SELECT informacoes_complementares FROM cidadao WHERE id = ?",
-							[INFOBASICAS.cidadao_id], 
-							INFOBASICAS.dadosEntradaInfoCompleSuccess, 
-							INFOBASICAS.dadosEntradaInfoCompleFail);
+							[INFOCOMPLE.cidadao_id], 
+							INFOCOMPLE.dadosEntradaInfoCompleSuccess, 
+							INFOCOMPLE.dadosEntradaInfoCompleFail);
 	},
 
 	dadosEntradaInfoCompleSuccess: function (trans, res) {
@@ -32,7 +32,9 @@
 		if (res.rows.length == 1) {
 			INFOCOMPLE.infoComplementares = res.rows.item(0).informacoes_complementares;
 			// Retorna
-			INFOCOMPLE.cbSuccess_f();
+			// todo: revisar
+			//INFOCOMPLE.cbSuccess_f();
+			PageManager.loadTmpl('info_basicas');
 		}
 		else {
 			// Não encontrou o registro
@@ -44,6 +46,9 @@
 		console.log("dadosEntradaInfoCompleFail");
 		
 		// Retorna
+		// todo: revisar
+		alert("Houve falha na obtenção de informações complementares do cidadão.");
+		
 		INFOCOMPLE.cbFail_f(err);
 	},
 	

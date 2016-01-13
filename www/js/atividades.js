@@ -135,12 +135,12 @@ function preparaListasOpt () {
 
 function salvaAtividadeSuccess () {
 	console.log("salvaAtividadeSuccess");
-	
+	// todo: revisar
 }
 
 function salvaAtividadeFail (err) {
 	console.log("atividades.salvaAtividadeFail: " + err);
-	
+	// todo: revisar
 }
 
 function validaCampos() {
