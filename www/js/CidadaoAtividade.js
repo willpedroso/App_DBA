@@ -218,7 +218,9 @@
 		ATIVIDADE.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		ATIVIDADE.cidadao_id = cidadao_id;
+		//ATIVIDADE.cidadao_id = cidadao_id;
+		alert("Índice do cidadão: " + CIDADAO.indiceListaCidadao);
+		ATIVIDADE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
 		
 		// Desvia para carregar dados básicos
 		ATIVIDADE.dadosBasicos();

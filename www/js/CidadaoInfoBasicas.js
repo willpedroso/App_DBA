@@ -46,36 +46,15 @@
 	// Lista de tipos de condição de saúde
 	dadosBasicos: function () {
 		console.log("dadosBasicos");
-/*
-		// Obtém os dados básicos - tipos de sexo
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_sexo",
-							[], 
-							INFOBASICAS.dadosBasicosTipoSexoSuccess, 
-							INFOBASICAS.dadosEntradaInfoBasicasFail);
-*/
-		BD_DTO.tipo_sexo_carrega(INFOBASICAS.dadosBasicosTipoSexoSuccess, INFOBASICAS.dadosEntradaInfoBasicasFail)
+
+		BD_DTO.tipo_sexo_carrega(INFOBASICAS.dadosBasicosTipoSexoSuccess, INFOBASICAS.dadosEntradaInfoBasicasFail);
 	},
 	
 	dadosBasicosTipoSexoSuccess: function (trans, res) {
 		console.log("dadosBasicosTipoSexoSuccess");
 		
 		INFOBASICAS.tipoSexo = BD_DTO.tipo_sexo_data;
-/*		
-		// Limpa a lista
-		while (INFOBASICAS.tipoSexo.length > 0) {
-			INFOBASICAS.tipoSexo.pop();
-		}
 		
-		// Salva
-		for (var i = 0; i < res.rows.length; i++) {
-			var tSexo = {
-				id: res.rows.item(i).id,
-				nome: res.rows.item(i).nome,
-				status: res.rows.item(i).status,
-			};
-			INFOBASICAS.tipoSexo.push(tSexo);
-		}
-*/		
 		// Obtém os dados básicos - tipos de orientação sexual
 		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_orientacao_sexual",
 							[], 

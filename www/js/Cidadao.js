@@ -9,6 +9,7 @@
 	listaCidadaosId: [],
 	listaCidadaosDados: [],
 	listaCidadaosDadosBusca: [],
+	listaPontosServico: [],
 	auxCidadaoDados: null,
 	countListaCidadaosId: 0,
 
@@ -39,9 +40,18 @@
 			CIDADAO.cbFail_f("O usuário não foi encontrado na equipe técnica");
 		}
 		else {
-			// Obtém a lista de cidadãos
-			BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", [res.rows.item(0).equipe_coordenacao_id], CIDADAO.dadosEntradaCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			// Obtém a lista de pontos de serviço
+			BD_DTO.ponto_servico_carrega(CIDADAO.dadosEntradaPontosServicoSuccess, CIDADAO.dadosEntradaFail);
 		}
+	},
+	
+	dadosEntradaPontosServicoSuccess: function (trans, res) {
+		console.log("dadosEntradaPontosServicoSuccess");
+
+		CIDADAO.listaPontosServico = BD_DTO.ponto_servico_data;
+
+		// Obtém a lista de cidadãos
+		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", [res.rows.item(0).equipe_coordenacao_id], CIDADAO.dadosEntradaCidadaosSuccess, CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaCidadaosSuccess: function(trans, res) {
@@ -68,7 +78,7 @@
 		}
 
 		// Obtém dados dos cidadãos
-		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaDadosCidadaosSuccess: function (trans, res) {
@@ -85,6 +95,8 @@
 			situacao_cadastral: res.rows.item(0).situacao_cadastral,
 			sisrua: res.rows.item(0).sisrua,
 			programa_dba: res.rows.item(0).programa_dba,
+			ponto_servico_id: res.rows.item(0).ponto_servico_id,
+			prioridade: res.rows.item(0).prioridade,
 		};
 		CIDADAO.listaCidadaosDados.push(cdados);
 		if (CIDADAO.countListaCidadaosId == CIDADAO.listaCidadaosId.length) {
@@ -110,7 +122,7 @@
 			CIDADAO.cbSuccess_f();
 		}
 		else {
-			BANCODADOS.sqlCmdDB("SELECT nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 		}
 	},
 	

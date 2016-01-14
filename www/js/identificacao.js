@@ -8,6 +8,34 @@ function carregaDadosCidadao () {
 	$("#data_nascimento").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento + "-" +
 							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento + "-" +
 							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento);
+							  
+	// Preenche a ficha do cidadão
+	var dadosFichaCidadao = "";
+	dadosFichaCidadao += "<img class='foto-cidadao' src='img/user1.png'>";
+    dadosFichaCidadao += "<p class='info-basica' lingdex='0'>";
+    dadosFichaCidadao += "Nome completo: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Nome social: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Nome da mãe: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Número SISA: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Data de nascimento: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento + "/" +
+														  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento + "/" +
+														  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Situação Cadastral: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral == 1 ? "Ativa" : "Inativa") + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Prioridade: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade == 1 ? "Sim" : "Não") + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Autoriza Programa DBA: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].programa_dba == 1 ? "Sim" : "Não") + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "Local de Acolhida: <strong>" + CIDADAO.listaPontosServico[CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ponto_servico_id].nome + "</strong>";
+    dadosFichaCidadao += "<br>";
+    dadosFichaCidadao += "</p>";
+	$("#info-basica").empty();
+	$("#info-basica").append(dadosFichaCidadao);
 }	
 
 function salvaCidadaoSuccess () {
