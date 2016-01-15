@@ -1,13 +1,5 @@
 <!-- SITUACAO DBA -->
         <div id="div_sitDBA">
-          <!-- <div class="menuFixo">
-            <p class="nomeSocial">
-            Nome Social: <strong>Adao</strong>
-            </p>
-            <p class="nomeCompleto">Nome Completo: <strong>ADAO CARLOS SANTOS RODRIGUES</strong>
-            </p>
-          </div> -->
-
           <form id="formSituacaoDba" action="actions/formSituacaoDba/cadastrar.php" method="post" class="cadastro">
             
             <div class="contentAbaBorda">
@@ -45,28 +37,11 @@
             <!-- BLOCO 1 -->
               <div class="linhaForm" id="motivoInativacao" style="display:none;"> 
                 <span class="titLabel">Motivo da inativação:</span>
-                  <div id="container_cond_saude2" class="Checker">
-                    <div class="checkbox">
-                      <input type="checkbox" name="motivoInativacao" value="Fora da Rua"  class="checkbox check"><p>Fora da Rua</p><br>
-                    </div>
-                    <div class="checkbox">
-                      <input type="checkbox" name="motivoInativacao" value="Não localizado há + de 3 meses" class="checkbox check"><p>Não localizado há + de 3 meses</p>
-                    </div>                    
-                    <div class="checkbox">
-                      <input type="checkbox" name="motivoInativacao" value="Óbito" class="checkbox check"><p>Óbito</p>
-                    </div>                    
-                    <div class="checkbox">
-                      <input type="checkbox" name="motivoInativacao" value="Outros" class="checkbox check"><p>Outros</p>
-                    </div>
-                      <div class="linhaForm">
-                        <input type="text" class="inputMed" value="" name="motivo_inativacao_outros" id="motivo_inativacao_outros" placeholder="Outros">
-                      </div>
+                  <div id="listaMotivoInativacao" class="Checker">
+				    <!--
+					-->
                   </div>
                 </div>
-              
-              
-              
-                        
               
               <!-- BLOCO 2 -->
               
@@ -82,7 +57,6 @@
                         <input type="hidden" value="" name="prioridade" id="prioridade" class="valueCheck">
                       </div>
                 </div>
-                
               
                 <div class="linhaForm" id="autorizaDba">
                     <span class="titLabel">Autoriza Programa DBA:</span>
@@ -96,34 +70,26 @@
                         <input type="hidden" value="1" name="programa_dba" id="programa_dba" class="valueCheck">
                       </div>
                 </div>
-                  
-                  
-
 
                   <div class="linhaForm" id="localDba">
                     <label class="selectDefault" id="localAcolhida" style="display:block">
                       <span class="titSang">Local de Acolhida<strong>*</strong>:</span> 
-                      <div class="comboStilo selectInicial"> 
-                        <select name="tipoDispositivoContato" id="tipoDispositivoContato" class="selectPersonalizado">
-                          <div class="lista-box-scroll">
-                            <option value="Selecione">Selecione</option>
-                            <option value="Albergue XYZ" id="1" data-id="localAcolhidaLabel" for="ponto_servico_id">Albergue XYZ</option>
-                            <option value="Casa de apoio ACB" id="3" data-id="localAcolhidaLabel" for="ponto_servico_id">Casa de apoio ACB</option>
-                          </div>
-                        </select>
-
-                        <input type="hidden" name="ponto_servico_id" id="ponto_servico_id" value="">
+                      <div class="comboStilo selectInicial" id="listaLocalAcolhida"> 
+					    <!--
+						-->
                       </div>
                     </label>
                   </div>
                                     
             </div>  
           
-            <input type="button" onclick="salvarFormSituacaoDba()" class="btnAlterar" value="Salvar Alterações">
-                    
+            <input type="button" onclick="validaCamposSituacaoDBA()" class="btnAlterar" value="Salvar Alterações">
           
         </form>
 
-
-
       </div>
+<script>
+    $(document).ready(function() {
+		carregaSituacaoDBA();
+	});
+</script>

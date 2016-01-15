@@ -112,5 +112,51 @@
 //*******************************************************************************************************************
 // Informações dos pontos de serviço
 //*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Motivo de Inativacao
+//*******************************************************************************************************************
+	tipo_motivo_inativacao_data: [],
+	tipo_motivo_inativacao_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_motivo_inativacao_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_motivo_inativacao_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_motivo_inativacao_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de motivo de inativação
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_motivo_inativacao",
+								[], 
+								BD_DTO.tipo_motivo_inativacao_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_motivo_inativacao_carrega_success: function (trans, res) {
+		console.log("tipo_motivo_inativacao_carrega_success");
+		
+		var tmi;
+		while (BD_DTO.tipo_motivo_inativacao_data.length > 0) {
+			BD_DTO.tipo_motivo_inativacao_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tmi = new BD_DTO.tipo_motivo_inativacao_DTO();
+			tmi.id = res.rows.item(i).id;
+			tmi.nome = res.rows.item(i).nome;
+			tmi.status = res.rows.item(i).status;
+			BD_DTO.tipo_motivo_inativacao_data.push(tmi);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Sexo
+//*******************************************************************************************************************
 
 }

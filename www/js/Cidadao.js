@@ -10,8 +10,10 @@
 	listaCidadaosDados: [],
 	listaCidadaosDadosBusca: [],
 	listaPontosServico: [],
+	listaTipoMotivoInativacao: [],
 	auxCidadaoDados: null,
 	countListaCidadaosId: 0,
+	equipe_coordenacao_id: null,
 
     // ****************** Obtém os dados de entrada *********************
 	// 				      Lista de cidadãos do usuário
@@ -40,6 +42,7 @@
 			CIDADAO.cbFail_f("O usuário não foi encontrado na equipe técnica");
 		}
 		else {
+			CIDADAO.equipe_coordenacao_id = res.rows.item(0).equipe_coordenacao_id;
 			// Obtém a lista de pontos de serviço
 			BD_DTO.ponto_servico_carrega(CIDADAO.dadosEntradaPontosServicoSuccess, CIDADAO.dadosEntradaFail);
 		}
@@ -50,8 +53,17 @@
 
 		CIDADAO.listaPontosServico = BD_DTO.ponto_servico_data;
 
+		// Obtém a lista de tipos de motivo de inativação
+		BD_DTO.tipo_motivo_inativacao_carrega(CIDADAO.dadosEntradaTipoMotivoInativacaoSuccess, CIDADAO.dadosEntradaFail);
+	},
+	
+	dadosEntradaTipoMotivoInativacaoSuccess: function (trans, res) {
+		console.log("dadosEntradaTipoMotivoInativacaoSuccess");
+		
+		CIDADAO.listaTipoMotivoInativacao = BD_DTO.tipo_motivo_inativacao_data;
+
 		// Obtém a lista de cidadãos
-		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", [res.rows.item(0).equipe_coordenacao_id], CIDADAO.dadosEntradaCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", [CIDADAO.equipe_coordenacao_id], CIDADAO.dadosEntradaCidadaosSuccess, CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaCidadaosSuccess: function(trans, res) {
