@@ -4,6 +4,7 @@ function carregaDadosCidadao () {
 	// todo: testes retirar
 	CIDADAOSAUDE.dadosEntrada(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id, null, null);
 	CIDADAOTRABALHO.dadosEntrada(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id, null, null);
+	CIDADAOSOCIAL.dadosEntrada(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id, null, null);
 	// testes retirar
 	
 	$("#nome").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome);
