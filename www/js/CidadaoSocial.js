@@ -5,6 +5,8 @@
 	
 	cidadao_id: null,
 	dadosSocial: null,
+	newSmadsId: 0,
+	auxVar: null,
 	
 	// Listas de tipos
 	listaTipoCertidao: null,
@@ -15,6 +17,8 @@
 	listaContatosEmpresa: [],
 	listaCertidoes: [],
 	listaProvidencias: [],
+	
+	auxCounter: 0,
 	
 	// Carrega dados básicos
 	dadosBasicos: function () {
@@ -333,13 +337,18 @@
 	
     // ****************** Salva os dados  *********************
 	// Salva no banco e atualiza memória
-	salvaCidadaoSocial: function(dadosLista, cbSuccess, cbFail) {
+	salvaCidadaoSocial: function(dadosLista, contatosLista, contatosEmpresaLista, certidoesLista, providenciasLista, cbSuccess, cbFail) {
 		console.log("salvaCidadaoSocial");
 		
 		// Salva funções de retorno
 		CIDADAOSOCIAL.cbSuccess_f = cbSuccess;
 		CIDADAOSOCIAL.cbFail_f = cbFail;
 
+		CIDADAOSOCIAL.listaContatos = contatosLista;
+		CIDADAOSOCIAL.listaContatosEmpresa = contatosEmpresaLista;
+		CIDADAOSOCIAL.listaCertidoes = certidoesLista;
+		CIDADAOSOCIAL.listaProvidencias = providenciasLista;
+		
 		// Salva no banco de dados
 		var hoje = new Date();
 		BANCODADOS.sqlCmdDB("INSERT INTO smads " +
@@ -399,17 +408,118 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAOSOCIAL.auxVar = (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
 							1														
 							], 
-							CIDADAOSOCIAL.salvaCidadaoSocialSuccess, CIDADAOSOCIAL.salvaCidadaoSocialFail);
+							CIDADAOSOCIAL.obtemNovoSmadsID, CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	obtemNovoSmadsID: function () {
+		console.log("obtemNovoSmadsID");
+		
+		BANCODADOS.sqlCmdDB("SELECT id FROM smads WHERE dt_criacao = ?",
+							[CIDADAOSOCIAL.auxVar], CIDADAOSOCIAL.excluiContatos, CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	excluiContatos: function (trans, res) {
+		console.log("excluiContatos");
+		
+		CIDADAOSOCIAL.newSmadsId = res.rows.item(0).id;
+		
+		CIDADAOSOCIAL.auxCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM smads_contato WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial.id],
+							CIDADAOSOCIAL.listaContatos.length > 0 ? CIDADAOSOCIAL.salvaContatos : CIDADAOSOCIAL.excluiContatosEmpresa,
+							CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	salvaContatos: function () {
+		console.log("salvaContatos");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao) VALUES (?, ?, ?, ?)",
+							[CIDADAOSOCIAL.newSmadsId,
+							 CIDADAOSOCIAL.listaContatos[CIDADAOSOCIAL.auxCounter].tipo_dispositivo_contato_id,
+							 CIDADAOSOCIAL.listaContatos[CIDADAOSOCIAL.auxCounter].numero_descricao,
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.listaContatos.length ? CIDADAOSOCIAL.salvaContatos : CIDADAOSOCIAL.excluiContatosEmpresa,
+							CIDADAOSOCIAL.salvaCidadaoFail);
+	},
+	
+	excluiContatosEmpresa: function () {
+		console.log("excluiContatosEmpresa");
+		
+		CIDADAOSOCIAL.auxCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM smads_contato_empresa WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial.id],
+							CIDADAOSOCIAL.listaContatosEmpresa.length > 0 ? CIDADAOSOCIAL.salvaContatosEmpresa : CIDADAOSOCIAL.excluiCertidoes,
+							CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	salvaContatosEmpresa: function () {
+		console.log("salvaContatosEmpresa");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato_empresa (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao) VALUES (?, ?, ?, ?)",
+							[CIDADAOSOCIAL.newSmadsId,
+							 CIDADAOSOCIAL.listaContatosEmpresa[CIDADAOSOCIAL.auxCounter].tipo_dispositivo_contato_id,
+							 CIDADAOSOCIAL.listaContatosEmpresa[CIDADAOSOCIAL.auxCounter].numero_descricao,
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.listaContatosEmpresa.length ? CIDADAOSOCIAL.salvaContatosEmpresa : CIDADAOSOCIAL.excluiCertidoes,
+							CIDADAOSOCIAL.salvaCidadaoFail);
+	},
+	
+	excluiCertidoes: function () {
+		console.log("excluiCertidoes");
+		
+		CIDADAOSOCIAL.auxCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM smads_certidao WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial.id],
+							CIDADAOSOCIAL.listaCertidoes.length > 0 ? CIDADAOSOCIAL.salvaCertidoes : CIDADAOSOCIAL.excluiProvidencias,
+							CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	salvaCertidoes: function () {
+		console.log("salvaCertidoes");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_certidao (smads_id, tipo_certidao_id, numero, dt_criacao) VALUES (?, ?, ?, ?)",
+							[CIDADAOSOCIAL.newSmadsId,
+							 CIDADAOSOCIAL.listaCertidoes[CIDADAOSOCIAL.auxCounter].tipo_certidao_id,
+							 CIDADAOSOCIAL.listaCertidoes[CIDADAOSOCIAL.auxCounter].numero,
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.listaCertidoes.length ? CIDADAOSOCIAL.salvaCertidoes : CIDADAOSOCIAL.excluiProvidencias,
+							CIDADAOSOCIAL.salvaCidadaoFail);
+	},
+	
+	excluiProvidencias: function () {
+		console.log("excluiProvidencias");
+		
+		CIDADAOSOCIAL.auxCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM smads_providencia WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial.id],
+							CIDADAOSOCIAL.listaProvidencias.length > 0 ? CIDADAOSOCIAL.salvaProvidencias : CIDADAOSOCIAL.salvaCidadaoSocialSuccess,
+							CIDADAOSOCIAL.salvaCidadaoSocialFail);
+	},
+	
+	salvaProvidencias: function () {
+		console.log("salvaProvidencias");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_providencia (smads_id, tipo, situacao, observacao, dt_criacao) VALUES (?, ?, ?, ?)",
+							[CIDADAOSOCIAL.newSmadsId,
+							 CIDADAOSOCIAL.listaProvidencias[CIDADAOSOCIAL.auxCounter].tipo,
+							 CIDADAOSOCIAL.listaProvidencias[CIDADAOSOCIAL.auxCounter].situacao,
+							 CIDADAOSOCIAL.listaProvidencias[CIDADAOSOCIAL.auxCounter].observacao,
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.listaProvidencias.length ? CIDADAOSOCIAL.salvaProvidencias : CIDADAOSOCIAL.salvaCidadaoSocialSuccess,
+							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
 	
 	salvaCidadaoSocialSuccess: function (trans, res) {
 		console.log("salvaCidadaoSocialSuccess");
 		
 		// Atualiza dados na memória
-		// todo: faltam salvamentos nas tabelas smads_certidao, smads_contato, smads_contato_empresa e smads_providencia
 		CIDADAOSOCIAL.dadosEntrada(CIDADAOSOCIAL.cidadao_id, CIDADAOSOCIAL.cbSuccess_f, CIDADAOSOCIAL.cbFail_f);
 	},
 	
