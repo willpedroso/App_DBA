@@ -364,65 +364,231 @@
 
 		CIDADAOSAUDE.cbFail_f (err);
 	},
-/*	
+	
     // ****************** Salva os dados  *********************
 	// Salva no banco e atualiza memória
-	salvaCidadao: function(nome, nome_social, nome_mae, numero_sisa, dia_nascimento, mes_nascimento, ano_nascimento, cbSuccess, cbFail) {
+	salvaCidadaoSaude: function(dadosLista, cbSuccess, cbFail) {
 		console.log("salvaCidadao");
 		
 		// Salva funções de retorno
-		CIDADAO.cbSuccess_f = cbSuccess;
-		CIDADAO.cbFail_f = cbFail;
+		CIDADAOSAUDE.cbSuccess_f = cbSuccess;
+		CIDADAOSAUDE.cbFail_f = cbFail;
 
-		// Salva o índice
-		//CIDADAO.indiceListaCidadao = indice;
-		
-		// Salva os dados
-		var cdados = {
-			nome: nome,
-			nome_social: nome_social,
-			nome_mae: nome_mae,
-			dia_nascimento: dia_nascimento,
-			mes_nascimento: mes_nascimento,
-			ano_nascimento: ano_nascimento,
-			sisrua: numero_sisa,
-		};
-		CIDADAO.auxCidadaoDados = cdados;
-		
 		// Salva no banco de dados
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE id = ?",
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO saude " +
+							"(numero_sus " +
+							", cadastro_acompanhamento_ubs " +
+							", acompanhamento_caps " +
+							", qual_acompanhamento_caps " +
+							", tipo_frequencia_caps_id " +
+							", nome_tecnico_referencia_caps " +
+							", esteve_internado " +
+							", como_chegou_situacao_rua " +
+							", dias_situacao_rua " +
+							", meses_situacao_rua " +
+							", anos_situacao_rua " +
+							", drogas_antes_depois_situacao_rua " +
+							", sono_antes_programa " +
+							", sono_depois_programa " +
+							", tem_amigos " +
+							", tem_companheiro " +
+							", companheiro_programa " +
+							", tem_familia " +
+							", tem_contato_familia " +
+							", tipo_estado_id " +
+							", descricao_reside_familia " +
+							", dias_faz_uso_crack " +
+							", meses_faz_uso_crack " +
+							", anos_faz_uso_crack " +
+							", numero_pedras_antes_programa " +
+							", numero_pedras_atualmente " +
+							", drogas_alem_crack " +
+							", uso_drogas_injetaveis " +
+							", dias_uso_drogas_injetaveis " +
+							", meses_uso_drogas_injetaveis " +
+							", anos_uso_drogas_injetaveis " +
+							", abstinencia_apos_programa " +
+							", dias_abstinencia_apos_programa " +
+							", meses_abstinencia_apos_programa " +
+							", anos_abstinencia_apos_programa " +
+							", controle_glicemia " +
+							", controle_pressao_arterial " +
+							", controle_peso " +
+							", teste_rapido_dst_aids " +
+							", local_teste_rapido_dst_aids " +
+							", acompanhamento_dst " +
+							", local_acompanhamento_dst " +
+							", diagnostico_hiv_aids " +
+							", tratamento_hiv_aids " +
+							", local_tratamento_hiv_aids " +
+							", diagnostico_sifilis " +
+							", tratamento_sifilis " +
+							", local_tratamento_sifilis " +
+							", alta_tratamento_sifilis " +
+							", passou_avaliacao_odontologica " +
+							", local_passou_avaliacao_odontologica " +
+							", tratamento_odontologico " +
+							", sintomas_respiratorios " +
+							", tratamento_sintomas_respiratorios " +
+							", local_tratamento_sintomas_respiratorios " +
+							", realizou_teste_tuberculose " +
+							", diagnostico_tuberculose " +
+							", em_tratamento_tuberculose " +
+							", teve_tuberculose " +
+							", fez_tratamento_tuberculose " +
+							", local_fez_tratamento_tuberculose " +
+							", teve_alta_tratamento_tuberculose " +
+							", lesoes_pele " +
+							", vacinacao_em_dia " +
+							", outros_sinais_sintomas_criticos " +
+							", avaliacao_ginecologica " +
+							", local_avaliacao_ginecologica " +
+							", metodo_anticoncepcional " +
+							", qual_metodo_anticoncepcional " +
+							", teve_aborto " +
+							", planejamento_familiar " +
+							", local_planejamento_familiar " +
+							", gestante " +
+							", pre_natal " +
+							", local_pre_natal " +
+							", amparo_maternal " +
+							", amamentando " +
+							", consulta_saude_hoje " +
+							", compareceu_trabalho_hoje " +
+							", motivo_falta_trabalho " +
+							", participou_oficina_hoje " +
+							", motivo_nao_particiou_oficina_hoje " +
+							", atividade_recreativa_externa " +
+							", dias_mantido_abstinencia " +
+							", meses_mantido_abstinencia " +
+							", anos_mantido_abstinencia " +
+							", usou_droga_hoje " +
+							", usou_crack_hoje " +
+							", quantas_pedras " +
+							", observacoes_importantes " +
+							", observacoes_gerais " +
+							", dt_criacao " +
+							", status) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
-							nome,
-							nome_social,
-							nome_mae,
-							numero_sisa,
-							dia_nascimento,
-							mes_nascimento,
-							ano_nascimento,
-							CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao]
-							], CIDADAO.salvaCidadaoSuccess, CIDADAO.salvaCidadaoFail);
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							1
+							], 
+							CIDADAOSAUDE.salvaCidadaoSaudeSuccess, CIDADAOSAUDE.salvaCidadaoSaudeFail);
 	},
 	
-	salvaCidadaoSuccess: function (trans, res) {
-		console.log("salvaCidadaoSuccess");
+	salvaCidadaoSaudeSuccess: function (trans, res) {
+		console.log("salvaCidadaoSaudeSuccess");
 		
 		// Atualiza dados na memória
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome = CIDADAO.auxCidadaoDados.nome;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social = CIDADAO.auxCidadaoDados.nome_social;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae = CIDADAO.auxCidadaoDados.nome_mae;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua = CIDADAO.auxCidadaoDados.sisrua;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
-		
-		// Retorna
-		CIDADAO.cbSuccess_f();
+		CIDADAOSAUDE.dadosEntrada(CIDADAOSAUDE.cidadao_id, CIDADAOSAUDE.cbSuccess_f, CIDADAOSAUDE.cbFail_f);
 	},
 	
-	salvaCidadaoFail: function (err) {
-		console.log("salvaCidadaoFail");
+	salvaCidadaoSaudeFail: function (err) {
+		console.log("salvaCidadaoSaudeFail");
 		
 		// Retorna
-		CIDADAO.cbFail_f(err);
-	},*/
+		CIDADAOSAUDE.cbFail_f(err);
+	},
 }

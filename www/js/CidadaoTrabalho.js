@@ -307,65 +307,124 @@
 
 		CIDADAOTRABALHO.cbFail_f (err);
 	},
-/*	
+	
     // ****************** Salva os dados  *********************
 	// Salva no banco e atualiza memória
-	salvaCidadao: function(nome, nome_social, nome_mae, numero_sisa, dia_nascimento, mes_nascimento, ano_nascimento, cbSuccess, cbFail) {
-		console.log("salvaCidadao");
+	salvaCidadaoTrabalho: function(dadosLista, cbSuccess, cbFail) {
+		console.log("salvaCidadaoTrabalho");
 		
 		// Salva funções de retorno
-		CIDADAO.cbSuccess_f = cbSuccess;
-		CIDADAO.cbFail_f = cbFail;
+		CIDADAOTRABALHO.cbSuccess_f = cbSuccess;
+		CIDADAOTRABALHO.cbFail_f = cbFail;
 
-		// Salva o índice
-		//CIDADAO.indiceListaCidadao = indice;
-		
-		// Salva os dados
-		var cdados = {
-			nome: nome,
-			nome_social: nome_social,
-			nome_mae: nome_mae,
-			dia_nascimento: dia_nascimento,
-			mes_nascimento: mes_nascimento,
-			ano_nascimento: ano_nascimento,
-			sisrua: numero_sisa,
-		};
-		CIDADAO.auxCidadaoDados = cdados;
-		
 		// Salva no banco de dados
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE id = ?",
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO trabalho " +
+							"(frente_trabalho " +
+							", grupo " +
+							", orientador " +
+							", hotel " +
+							", dias_empregado " +
+							", meses_empregado " +
+							", anos_empregado " +
+							", procurou_emprego " +
+							", procurou_programa_pmsp " +
+							", qual_programa_pmsp " +
+							", ocupacao_pretendida " +
+							", ultima_atual_ocupacao " +
+							", carteira_assinada " +
+							", nome_empresa " +
+							", dia_inicio_ocupacao " +
+							", mes_inicio_ocupacao " +
+							", ano_inicio_ocupacao " +
+							", dia_ternino_ocupacao " +
+							", mes_termino_ocupacao " +
+							", ano_termino_ocupacao " +
+							", teve_negocio_proprio " +
+							", justificativa_teve_negocio_proprio " +
+							", trabalhar_conta_propria_autonomo " +
+							", conhecimento_negocio_proprio " +
+							", tipo_trabalho_coletivo_id " +
+							", meses_trabalho_coletivo " +
+							", anos_trabalho_coletivo " +
+							", outra_atividade_bico " +
+							", qual_outra_atividade_bico " +
+							", profissao_atividade " +
+							", tipo_onde_aprendeu_profissao_id " +
+							", tipo_comprovante_conhecimento_profissional_id " +
+							", curso_qualificacao_profissional " +
+							", qual_curso_qualificacao_profissional " +
+							", tipo_ramo_curso_id " +
+							", outros_ramo_curso " +
+							", tipo_pretencao_cursos_id " +
+							", qual_curso_pretencao " +
+							", outros_atividade_tempo_livre " +
+							", tipo_primeira_escolha_id " +
+							", outros_primeira_escolha " +
+							", observacoes_gerais " +
+							", dt_criacao " +
+							", status) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
-							nome,
-							nome_social,
-							nome_mae,
-							numero_sisa,
-							dia_nascimento,
-							mes_nascimento,
-							ano_nascimento,
-							CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao]
-							], CIDADAO.salvaCidadaoSuccess, CIDADAO.salvaCidadaoFail);
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							1							
+							], 
+							CIDADAOTRABALHO.salvaCidadaoTrabalhoSuccess, CIDADAOTRABALHO.salvaCidadaoTrabalhoFail);
 	},
 	
-	salvaCidadaoSuccess: function (trans, res) {
-		console.log("salvaCidadaoSuccess");
+	salvaCidadaoTrabalhoSuccess: function (trans, res) {
+		console.log("salvaCidadaoTrabalhoSuccess");
 		
 		// Atualiza dados na memória
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome = CIDADAO.auxCidadaoDados.nome;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social = CIDADAO.auxCidadaoDados.nome_social;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae = CIDADAO.auxCidadaoDados.nome_mae;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua = CIDADAO.auxCidadaoDados.sisrua;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
-		
-		// Retorna
-		CIDADAO.cbSuccess_f();
+		CIDADAOTRABALHO.dadosEntrada(CIDADAOTRABALHO.cidadao_id, CIDADAOTRABALHO.cbSuccess_f, CIDADAOTRABALHO.cbFail_f);
 	},
 	
-	salvaCidadaoFail: function (err) {
-		console.log("salvaCidadaoFail");
+	salvaCidadaoTrabalhoFail: function (err) {
+		console.log("salvaCidadaoTrabalhoFail");
 		
 		// Retorna
-		CIDADAO.cbFail_f(err);
-	},*/
+		CIDADAOTRABALHO.cbFail_f(err);
+	},
 }

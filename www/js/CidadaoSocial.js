@@ -6,9 +6,72 @@
 	cidadao_id: null,
 	dadosSocial: null,
 	
-    // ****************** Obtém os dados de entrada *********************
+	// Listas de tipos
+	listaTipoCertidao: null,
+	listaTipoDispositivoContato: null,
+
+	// Listas de dados
+	listaContatos: [],
+	listaContatosEmpresa: [],
+	listaCertidoes: [],
+	listaProvidencias: [],
+	
+	// Carrega dados básicos
+	dadosBasicos: function () {
+		console.log("dadosBasicos");
+		
+		BD_DTO.tipo_certidao_carrega(CIDADAOSOCIAL.dadosBasicosCertidao, CIDADAOSOCIAL.dadosBasicosFail);
+	},
+	
+	dadosBasicosCertidao: function () {
+		console.log("dadosBasicosCertidao");
+
+		CIDADAOSOCIAL.listaTipoCertidao = BD_DTO.tipo_certidao_data;
+	
+		// todo: testes retirar
+		var Print = "Tipos de Certidão:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaTipoCertidao.length; i++) {
+			Print += "\tID: " + CIDADAOSOCIAL.listaTipoCertidao[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOSOCIAL.listaTipoCertidao[i].nome + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BD_DTO.tipo_dispositivo_contato_carrega(CIDADAOSOCIAL.dadosBasicosSuccess, CIDADAOSOCIAL.dadosBasicosFail);
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOSOCIAL.listaTipoDispositivoContato = BD_DTO.tipo_dispositivo_contato_data;
+	
+		// todo: testes retirar
+		var Print = "Tipos de Dispositivo de Contato:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaTipoDispositivoContato.length; i++) {
+			Print += "\tID: " + CIDADAOSOCIAL.listaTipoDispositivoContato[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		CIDADAOSOCIAL.cbSuccess_f();
+	},
+	
+	dadosBasicosFail: function (err) {
+		console.log("dadosBasicosFail: " + err);
+		
+		CIDADAOSOCIAL.cbFail_f(err);
+	},
+	// ****************** Obtém os dados de entrada *********************
 	// 	
     // ******************************************************************
+	
+	// todo: faltam os seguintes carregamentos:
+	//		.lista de dispositivos de contato do cidadão: tabela smads_contato (tipo_dispositivo_contato_id e numero_descricao por meio do smads_id)
+	//		.lista de dispositivos de contato da empresa: tabela smads_contato_empresa (tipo_dispositivo_contato_id e numero_descricao por meio do smads_id)
+	//		.lista de certidões: tabela smads_certidao (tipo_certidao_id e numero por meio de smads_id)
+	//		.lista de providências: tabela smads_providencia (tipo, situacao e observacao por meio do smads_id)
+	
     dadosEntrada: function(cidadao, cbSuccess, cbFail) {
 	    console.log("dadosEntrada");
 		
@@ -124,8 +187,142 @@
 		console.log(Print);
 		// testes retirar
 		
-		// retorna
-		CIDADAOSOCIAL.cbSuccess_f();
+		// Carrega contatos
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao FROM smads_contato WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial].id, 
+							CIDADAOSOCIAL.dadosEntradaContatoSuccess, 
+							CIDADAOSOCIAL.dadosEntradaFail);
+	},
+	
+	dadosEntradaContatoSuccess: function (trans, res) {
+		console.log("dadosEntradaContatoSuccess");
+		
+		// Salva dados
+		for (var i = 0; i < res.rows.length; i++) {
+			var lc = {
+				id: res.rows.item(i).id,
+				tipo_dispositivo_contato_id: res.rows.item(i).tipo_dispositivo_contato_id,
+				numero_descricao: res.rows.item(i).numero_descricao,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSOCIAL.listaContatos.push(lc);
+		}
+
+		// todo: testes retirar
+		var Print = "Contatos do Cidadão:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaContatos.length; i++) {
+			Print += "\tid: " + CIDADAOSOCIAL.listaContatos[i].id + "\r\n";
+			Print += "\ttipo_dispositivo_contato_id: " + CIDADAOSOCIAL.listaContatos[i].tipo_dispositivo_contato_id + "\r\n";
+			Print += "\tnumero_descricao: " + CIDADAOSOCIAL.listaContatos[i].numero_descricao + "\r\n";
+			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaContatos[i].dt_criacao + "\r\n";
+		}
+
+		console.log(Print);
+		// testes retirar
+
+		// Carrega contatos empresa
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao FROM smads_contato_empresa WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial].id, 
+							CIDADAOSOCIAL.dadosEntradaContatoEmpresaSuccess, 
+							CIDADAOSOCIAL.dadosEntradaFail);
+	},
+	
+	dadosEntradaContatoEmpresaSuccess: function (trans, res) {
+		console.log("dadosEntradaContatoEmpresaSuccess");
+
+		// Salva dados
+		for (var i = 0; i < res.rows.length; i++) {
+			var lce = {
+				id: res.rows.item(i).id,
+				tipo_dispositivo_contato_id: res.rows.item(i).tipo_dispositivo_contato_id,
+				numero_descricao: res.rows.item(i).numero_descricao,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSOCIAL.listaContatosEmpresa.push(lce);
+		}
+
+		// todo: testes retirar
+		var Print = "Contatos da Empresa:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaContatosEmpresa.length; i++) {
+			Print += "\tid: " + CIDADAOSOCIAL.listaContatosEmpresa[i].id + "\r\n";
+			Print += "\ttipo_dispositivo_contato_id: " + CIDADAOSOCIAL.listaContatosEmpresa[i].tipo_dispositivo_contato_id + "\r\n";
+			Print += "\tnumero_descricao: " + CIDADAOSOCIAL.listaContatosEmpresa[i].numero_descricao + "\r\n";
+			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaContatosEmpresa[i].dt_criacao + "\r\n";
+		}
+
+		console.log(Print);
+		// testes retirar
+
+		// Carrega certidões
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_certidao_id, numero, dt_criacao FROM smads_certidao WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial].id, 
+							CIDADAOSOCIAL.dadosEntradaCertidaoSuccess, 
+							CIDADAOSOCIAL.dadosEntradaFail);
+	},
+	
+	dadosEntradaCertidaoSuccess: function (trans, res) {
+		console.log("dadosEntradaCertidaoSuccess");
+
+		// Salva dados
+		for (var i = 0; i < res.rows.length; i++) {
+			var lc = {
+				id: res.rows.item(i).id,
+				tipo_certidao_id: res.rows.item(i).tipo_certidao_id,
+				numero: res.rows.item(i).numero,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSOCIAL.listaCertidoes.push(lc);
+		}
+
+		// todo: testes retirar
+		var Print = "Certidões:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaCertidoes.length; i++) {
+			Print += "\tid: " + CIDADAOSOCIAL.listaCertidoes[i].id + "\r\n";
+			Print += "\ttipo_certidao_id: " + CIDADAOSOCIAL.listaCertidoes[i].tipo_certidao_id + "\r\n";
+			Print += "\tnumero: " + CIDADAOSOCIAL.listaCertidoes[i].numero + "\r\n";
+			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaCertidoes[i].dt_criacao + "\r\n";
+		}
+
+		console.log(Print);
+		// testes retirar
+
+		// Carrega providências
+		BANCODADOS.sqlCmdDB("SELECT id, tipo, situacao, observacao, dt_criacao FROM smads_providencia WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial].id, 
+							CIDADAOSOCIAL.dadosEntradaProvidenciaSuccess, 
+							CIDADAOSOCIAL.dadosEntradaFail);
+	},
+	
+	dadosEntradaProvidenciaSuccess: function (trans, res) {
+		console.log("dadosEntradaProvidenciaSuccess");
+		
+		// Salva dados
+		for (var i = 0; i < res.rows.length; i++) {
+			var lp = {
+				id: res.rows.item(i).id,
+				tipo: res.rows.item(i).tipo,
+				situacao: res.rows.item(i).situacao,
+				observacao: res.rows.item(i).observacao,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSOCIAL.listaProvidencias.push(lp);
+		}
+
+		// todo: testes retirar
+		var Print = "Providências:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaProvidencias.length; i++) {
+			Print += "\tid: " + CIDADAOSOCIAL.listaProvidencias[i].id + "\r\n";
+			Print += "\ttipo: " + CIDADAOSOCIAL.listaProvidencias[i].tipo + "\r\n";
+			Print += "\tsituacao: " + CIDADAOSOCIAL.listaProvidencias[i].situacao + "\r\n";
+			Print += "\tobservacao: " + CIDADAOSOCIAL.listaProvidencias[i].observacao + "\r\n";
+			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaProvidencias[i].dt_criacao + "\r\n";
+		}
+
+		console.log(Print);
+		// testes retirar
+		
+		// carrega dados básicos
+		CIDADAOSOCIAL.dadosBasicos();
 	},
 	
 	dadosEntradaFail: function(err) {
@@ -133,65 +330,93 @@
 
 		CIDADAOSOCIAL.cbFail_f (err);
 	},
-/*	
+	
     // ****************** Salva os dados  *********************
 	// Salva no banco e atualiza memória
-	salvaCidadao: function(nome, nome_social, nome_mae, numero_sisa, dia_nascimento, mes_nascimento, ano_nascimento, cbSuccess, cbFail) {
-		console.log("salvaCidadao");
+	salvaCidadaoSocial: function(dadosLista, cbSuccess, cbFail) {
+		console.log("salvaCidadaoSocial");
 		
 		// Salva funções de retorno
-		CIDADAO.cbSuccess_f = cbSuccess;
-		CIDADAO.cbFail_f = cbFail;
+		CIDADAOSOCIAL.cbSuccess_f = cbSuccess;
+		CIDADAOSOCIAL.cbFail_f = cbFail;
 
-		// Salva o índice
-		//CIDADAO.indiceListaCidadao = indice;
-		
-		// Salva os dados
-		var cdados = {
-			nome: nome,
-			nome_social: nome_social,
-			nome_mae: nome_mae,
-			dia_nascimento: dia_nascimento,
-			mes_nascimento: mes_nascimento,
-			ano_nascimento: ano_nascimento,
-			sisrua: numero_sisa,
-		};
-		CIDADAO.auxCidadaoDados = cdados;
-		
 		// Salva no banco de dados
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE id = ?",
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads " +
+							"()nome_contato " +
+							", endereco_contato " +
+							", tipo_estado_id " +
+							", municipio_contato " +
+							", local_referencia " +
+							", formacao_profissional " +
+							", atividade_profissional " +
+							", nome_empresa " +
+							", data_admissao " +
+							", cargo " +
+							", faixa_renda " +
+							", endereco_empresa " +
+							", problemas_saude " +
+							", uso_medicamentos " +
+							", qual_medicamento " +
+							", encaminhamento " +
+							", unidade_saude " +
+							", nome_unidade_saude " +
+							", entrevista_projeto_vida " +
+							", houve_providencias " +
+							", numero_nis " +
+							", ctps " +
+							", titulo_eleitor " +
+							", numero_portaria_naturalizacao " +
+							", observacoes_gerais " +
+							", dt_criacao " +
+							", status) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
-							nome,
-							nome_social,
-							nome_mae,
-							numero_sisa,
-							dia_nascimento,
-							mes_nascimento,
-							ano_nascimento,
-							CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao]
-							], CIDADAO.salvaCidadaoSuccess, CIDADAO.salvaCidadaoFail);
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							1														
+							], 
+							CIDADAOSOCIAL.salvaCidadaoSocialSuccess, CIDADAOSOCIAL.salvaCidadaoSocialFail);
 	},
 	
-	salvaCidadaoSuccess: function (trans, res) {
-		console.log("salvaCidadaoSuccess");
+	salvaCidadaoSocialSuccess: function (trans, res) {
+		console.log("salvaCidadaoSocialSuccess");
 		
 		// Atualiza dados na memória
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome = CIDADAO.auxCidadaoDados.nome;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social = CIDADAO.auxCidadaoDados.nome_social;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae = CIDADAO.auxCidadaoDados.nome_mae;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua = CIDADAO.auxCidadaoDados.sisrua;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
-		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
-		
-		// Retorna
-		CIDADAO.cbSuccess_f();
+		// todo: faltam salvamentos nas tabelas smads_certidao, smads_contato, smads_contato_empresa e smads_providencia
+		CIDADAOSOCIAL.dadosEntrada(CIDADAOSOCIAL.cidadao_id, CIDADAOSOCIAL.cbSuccess_f, CIDADAOSOCIAL.cbFail_f);
 	},
 	
-	salvaCidadaoFail: function (err) {
-		console.log("salvaCidadaoFail");
+	salvaCidadaoSocialFail: function (err) {
+		console.log("salvaCidadaoSocialFail");
 		
 		// Retorna
-		CIDADAO.cbFail_f(err);
-	},*/
+		CIDADAOSOCIAL.cbFail_f(err);
+	},
 }

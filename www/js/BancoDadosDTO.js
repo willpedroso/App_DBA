@@ -480,4 +480,96 @@
 //*******************************************************************************************************************
 // Tipos Primeira Escolha
 //*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Certidão
+//*******************************************************************************************************************
+	tipo_certidao_data: [],
+	tipo_certidao_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_certidao_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_certidao_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_certidao_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de certidão
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_certidao",
+								[], 
+								BD_DTO.tipo_certidao_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_certidao_carrega_success: function (trans, res) {
+		console.log("tipo_certidao_carrega_success");
+		
+		var tc;
+		while (BD_DTO.tipo_certidao_data.length > 0) {
+			BD_DTO.tipo_certidao_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tc = new BD_DTO.tipo_certidao_DTO();
+			tc.id = res.rows.item(i).id;
+			tc.nome = res.rows.item(i).nome;
+			tc.status = res.rows.item(i).status;
+			BD_DTO.tipo_certidao_data.push(tc);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Certidão
+//*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Dispositivo de Contato
+//*******************************************************************************************************************
+	tipo_dispositivo_contato_data: [],
+	tipo_dispositivo_contato_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_dispositivo_contato_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_dispositivo_contato_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_dispositivo_contato_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de dispositivo de contato
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_dispositivo_contato",
+								[], 
+								BD_DTO.tipo_dispositivo_contato_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_dispositivo_contato_carrega_success: function (trans, res) {
+		console.log("tipo_dispositivo_contato_carrega_success");
+		
+		var tdc;
+		while (BD_DTO.tipo_dispositivo_contato_data.length > 0) {
+			BD_DTO.tipo_dispositivo_contato_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tdc = new BD_DTO.tipo_dispositivo_contato_DTO();
+			tdc.id = res.rows.item(i).id;
+			tdc.nome = res.rows.item(i).nome;
+			tdc.status = res.rows.item(i).status;
+			BD_DTO.tipo_dispositivo_contato_data.push(tdc);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Dispositivo de Contato
+//*******************************************************************************************************************
 }
