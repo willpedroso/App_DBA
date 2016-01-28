@@ -672,6 +672,17 @@ function abasmenu(){
 function exibePeriodo(){
 	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){
 		console.log("exibe");
+		jQuery('#divDiaInteiro').hide();  
+		jQuery('#divDataInicio').hide();  
+		jQuery('#divHoraInicio').hide();  
+		jQuery('#divPermanente').hide();  
+		jQuery('#divDataTermino').hide();
+		jQuery('#divHoraTermino').hide();
+		jQuery('#divRepetir').hide();
+		jQuery('#divDiaRepetir').hide();
+		jQuery('#divDiasMes').hide();
+		jQuery('#divDiasSemana').hide();
+		jQuery('#divDiasSemanaRadio').hide();
 	}
 	if($('#tipoPeriodicidadeLabel').val() == 'Diário'){
 		jQuery('#divDiaInteiro').show();  

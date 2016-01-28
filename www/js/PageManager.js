@@ -17,12 +17,18 @@ var PageManager = (function(window,document,$){
         //template exist?
         if(arrTempls[tmpl]){
             //console.log('YEP')
-            showTmpl(tmpl);
-        }else{
+            //showTmpl(tmpl);
+			unloadTmplFromFile(tmpl);
+        }//else{
             //console.log('NOP')
             arrTempls[tmpl] = true;
             loadTmplFromFile(tmpl);
-        }
+//        }
+    }
+	
+	// retira o templante para recarregamento
+    function unloadTmplFromFile(tmpl){
+		$('#'+tmpl).remove();
     }
 
     //carrega o template de uma URL local ou web
