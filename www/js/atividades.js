@@ -216,7 +216,7 @@ function validaCampos() {
 			// Se não for dia inteiro
 			if ($("input:radio[name=infoDiaInteiro]:checked").val() == "Não") {
 				// Avalia hora de término
-				var aux = $('#hora_termino').val();
+				var auxVar = $('#hora_termino').val();
 				if (auxVar == '' || 
 					auxVar.length != 5 ||
 					isNaN(auxVar.substring(0, 2)) ||
@@ -339,16 +339,16 @@ function validaCampos() {
 								 $("#tipoPeriodicidadeLabel").val(),											// periodicidade (nome)
 								 $("input:radio[name=infoDiaInteiro]:checked").val() == "Não" ? 0 : 1,			// dia inteiro
 								 $('#data_inicio').val(),														// data de início
-								 $('#hora_inicio').val(),														// hora de início
+								 $('#hora_inicio').val() == "" ? null : $('#hora_inicio').val(),				// hora de início
 								 $("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1,			// permanente
 								 $('#data_termino').val(),														// data de término
-								 $('#hora_termino').val(),														// hora de término
+								 $('#hora_termino').val() == "" ? null : $('#hora_termino').val(),				// hora de término
 								 diasSemanaRepetir,																// repetir nos dias da semana
 								 // repetir no dia da semana (mensal)
 								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? null : $("input:radio[name=infoDiasSemanaRadio]:checked").val(),
 								 // repetir no dia do mês
 								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? $("#dia_mes_repetir").val() : null,
-								 $('#dia_ano_repetir').val(),													// repetir no dia do ano
+								 $('#dia_ano_repetir').val() == "" ? null :$('#dia_ano_repetir').val(),			// repetir no dia do ano
 								 this.salvaAtividadeSuccess,
 								 this.salvaAtividadeFail);
 	}

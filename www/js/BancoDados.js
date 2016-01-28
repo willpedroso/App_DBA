@@ -424,9 +424,10 @@ var BANCODADOS = {
 							dt_criacao TEXT NOT NULL, \
 							status INTEGER NOT NULL DEFAULT 1, \
 							FOREIGN KEY (tipo_periodicidade_id) REFERENCES tipo_periodicidade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (dia_semana_repetir) REFERENCES tipo_dias_semana (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 						)",
+//							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//							FOREIGN KEY (dia_semana_repetir) REFERENCES tipo_dias_semana (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 	
 	/*db_create_periodicidade_htds : */"CREATE TABLE periodicidade_has_tipo_dias_semana ( \
 									periodicidade_id INTEGER NOT NULL, \

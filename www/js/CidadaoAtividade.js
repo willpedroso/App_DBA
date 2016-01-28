@@ -408,7 +408,10 @@
 						for (var j = 0; j < diff; j++) {
 							if (data_inicio >= dstart && dend >= data_inicio) {
 								var aux = new Date(data_inicio*1000);
-								start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+								//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+								start = end = aux.getUTCFullYear() + "-" +
+											  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+											  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 								
 								// adiciona atividade
 								var jfc = {
@@ -430,7 +433,10 @@
 						for (var j = 0; j < diff; j++) {
 							if (dstart >= data_inicio && dend >= data_inicio) {
 								var aux = new Date(data_inicio*1000);
-								start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+								//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+								start = end = aux.getUTCFullYear() + "-" +
+											  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+											  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 								
 								// adiciona atividade
 								var jfc = {
@@ -461,7 +467,10 @@
 								diaSemanaCorrente = (new Date(data_inicio*1000)).getDay()+1;
 								if (ATIVIDADE.listaAtividades[i].periodicidade_tipo_ds.indexOf(diaSemanaCorrente) != -1) {
 									var aux = new Date(data_inicio*1000);
-									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									start = end = aux.getUTCFullYear() + "-" +
+												  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+												  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 									
 									// adiciona atividade
 									var jfc = {
@@ -487,7 +496,10 @@
 								diaSemanaCorrente = (new Date(data_inicio*1000)).getDay()+1;
 								if (ATIVIDADE.listaAtividades[i].periodicidade_tipo_ds.indexOf(diaSemanaCorrente) != -1) {
 									var aux = new Date(data_inicio*1000);
-									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									start = end = aux.getUTCFullYear() + "-" +
+												  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+												  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 									
 									// adiciona atividade
 									var jfc = {
@@ -519,7 +531,10 @@
 									var diaMesCorrente = aux.getUTCDate();
 									
 									if (diaMesCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir) {
-										start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										start = end = aux.getUTCFullYear() + "-" +
+													  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+													  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 										
 										// adiciona atividade
 										var jfc = {
@@ -539,7 +554,10 @@
 									var diaSemanaCorrente = aux.getUTCDay()+1;
 									
 									if (diaSemanaCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir) {
-										start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										start = end = aux.getUTCFullYear() + "-" +
+													  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+													  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 										
 										// adiciona atividade
 										var jfc = {
@@ -569,7 +587,10 @@
 									var diaMesCorrente = aux.getUTCDate();
 									
 									if (diaMesCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir) {
-										start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										start = end = aux.getUTCFullYear() + "-" +
+													  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+													  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 										
 										// adiciona atividade
 										var jfc = {
@@ -592,7 +613,10 @@
 									var diaSemanaCorrente = aux.getUTCDay()+1;
 									
 									if (diaSemanaCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir) {
-										start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+										start = end = aux.getUTCFullYear() + "-" +
+													  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+													  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 										
 										// adiciona atividade
 										var jfc = {
@@ -625,7 +649,10 @@
 								var diaAnoCorrente = aux.getUTCDate() + "/" + ( (aux.getUTCMonth() + 1) < 10 ? "0" + (aux.getUTCMonth() + 1) : (aux.getUTCMonth() + 1) );
 								
 								if (diaAnoCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_ano_repetir) {
-									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									start = end = aux.getUTCFullYear() + "-" +
+												  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+												  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 									
 									// adiciona atividade
 									var jfc = {
@@ -652,7 +679,10 @@
 								var diaAnoCorrente = aux.getUTCDate() + "/" + ( (aux.getUTCMonth() + 1) < 10 ? "0" + (aux.getUTCMonth() + 1) : (aux.getUTCMonth() + 1) );
 								
 								if (diaAnoCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_ano_repetir) {
-									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
+									start = end = aux.getUTCFullYear() + "-" +
+												  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
+												  (aux.getUTCDate() < 10 ? "0" + aux.getUTCDate(): aux.getUTCDate());
 									
 									// adiciona atividade
 									var jfc = {
@@ -996,11 +1026,15 @@
 	recuperaIdPeriodicidade: function (trans, res) {
 		console.log("recuperaIdPeriodicidade");
 
+		/* Retirados por problemas com o SELECT
 		BANCODADOS.sqlCmdDB("SELECT id FROM periodicidade WHERE atividade_id = ? and tipo_periodicidade_id = ? and data_inicio = ? and hora_inicio = ? and data_termino = ? \
 							and hora_termino = ? and dia_inteiro = ? and permanente = ? and dia_ano_repetir = ? and dia_mes_repetir = ? and dia_semana_repetir = ? \
 							and dt_criacao = ? and status = ?",
+		*/
+		BANCODADOS.sqlCmdDB("SELECT id FROM periodicidade WHERE atividade_id = ? and tipo_periodicidade_id = ? and dt_criacao = ? and status = ?",
 							[ATIVIDADE.auxDados.idAtividade,
 							ATIVIDADE.auxDados.tipo_periodicidade_id,
+							/* Retirados por problemas com o SELECT
 							ATIVIDADE.auxDados.data_inicio,
 							ATIVIDADE.auxDados.hora_inicio,
 							ATIVIDADE.auxDados.data_termino,
@@ -1010,6 +1044,7 @@
 							ATIVIDADE.auxDados.dia_ano_repetir,
 							ATIVIDADE.auxDados.dia_mes_repetir,
 							ATIVIDADE.auxDados.dia_semana_repetir,
+							*/
 							ATIVIDADE.auxDados.dt_criacao,
 							1],
 							ATIVIDADE.recuperaIdPeriodicidadeSuccess,
@@ -1019,6 +1054,9 @@
 	recuperaIdPeriodicidadeSuccess: function (trans, res) {
 		console.log("recuperaIdPeriodicidadeSuccess");
 		
+		// todo: testes retirar
+		console.log("Registro de periodicidade " + (res.rows.length > 0 ? "" : "não") + " encontrado.");
+		
 		ATIVIDADE.auxDados.periodicidade_id = res.rows.item(0).id;
 		ATIVIDADE.diasSemanaCounter = 0;
 		ATIVIDADE.salvaPeriodicidadeDiasSemana(trans,res);
@@ -1027,6 +1065,7 @@
 	limpaPeriodicidadeDiasSemana: function (trans, res) {
 		console.log("limpaPeriodicidadeDiasSemana");
 		
+		ATIVIDADE.diasSemanaCounter = 0;
 		BANCODADOS.sqlCmdDB("DELETE FROM periodicidade_has_tipo_dias_semana WHERE periodicidade_id = ?", [ATIVIDADE.auxDados.periodicidade_id], 
 							// verifica se o tipo da periodicidade é semanal
 							(ATIVIDADE.auxDados.periodicidade_nome == "Semanal" && ATIVIDADE.auxDados.diasSemana.length > 0) ? ATIVIDADE.salvaPeriodicidadeDiasSemana : ATIVIDADE.salvaAtividadeSuccess, 
