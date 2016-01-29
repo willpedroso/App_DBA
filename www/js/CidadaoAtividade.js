@@ -916,7 +916,8 @@
 		ATIVIDADE.auxDados = a;
 
 		// todo: limpa flag indicadora de edição
-		ATIVIDADE.editIndexAtividade = null;
+		// Esta flag é limpa no momento em que o usuário clica sobre uma atividade no calendário/agenda
+		//ATIVIDADE.editIndexAtividade = null;
 
 		// cidadao_id já está armazenado em ATIVIDADE.cidadao_id
 		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
@@ -1084,6 +1085,9 @@
 		console.log ("salvaAtividadeSuccess");
 
 		ATIVIDADE.dadosEntrada(ATIVIDADE.cidadao_id, ATIVIDADE.cbSuccess_f, ATIVIDADE.cbFail_f);
+		
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
 	},
 	
 	salvaAtividadeFail: function (err) {

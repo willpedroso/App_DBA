@@ -1,4 +1,50 @@
+function calculaTamanhos () {
+	var TamTotal = 1000;
+	var TamMinimo = 80;
+
+	var linhas = [63, 10, 26, 36];
+
+	var percents = [];
+	var alturas = [];
+	var total = 0;
+	var TamRestante = TamTotal;
+	
+	// calcula a quantidade total e inicializa alturas
+	for (var i = 0; i < linhas.length; i++) {
+		total += linhas[i];
+		alturas.push(0);
+	}
+	
+	// separa as linhas que são proporcionalmente menores que o mínimo
+	for (var i = 0; i < linhas.length; i++) {
+		if (linhas[i] / total * TamTotal <= TamMinimo) {
+			alturas[i] = TamMinimo;
+			TamRestante -= TamMinimo;
+			total -= linhas[i];				// retira do total
+		}
+	}
+	
+	// calcula a altura de cada linha, exceto aquelas que já possuem altura mínima
+	for (var i = 0; i < linhas.length; i++) {
+		if (alturas[i] != 0) {
+			continue;
+		}
+		alturas[i] = linhas[i] / total  * TamRestante;
+	}
+	
+	var Print = "Resultado:\r\n";
+	for (var i = 0; i < alturas.length; i++) {
+		Print += "Altura " + i + ": " + alturas[i] + "\r\n";
+	}
+	console.log(Print);
+}
+
+
 function preparaListasOpt () {
+	// todo: testes retirar
+	calculaTamanhos();
+	// testes retirar
+	
 	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
 	
 	var edit = false;

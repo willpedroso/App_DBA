@@ -683,6 +683,7 @@ function exibePeriodo(){
 		jQuery('#divDiasMes').hide();
 		jQuery('#divDiasSemana').hide();
 		jQuery('#divDiasSemanaRadio').hide();
+		return;
 	}
 	if($('#tipoPeriodicidadeLabel').val() == 'Diário'){
 		jQuery('#divDiaInteiro').show();  
@@ -723,6 +724,7 @@ function exibePeriodo(){
       jQuery('#divDiasMes').show();
       jQuery('#divDiasSemana').hide();
       jQuery('#divDiasSemanaRadio').hide();
+	  infoRep();
 		
 	}
 	if($('#tipoPeriodicidadeLabel').val() == 'Anual'){
@@ -738,6 +740,9 @@ function exibePeriodo(){
 		jQuery('#divDiasSemana').hide();
 		jQuery('#divDiasSemanaRadio').hide();
 	}
+	
+	infoDiaInt();
+	infoPerma();
 }
 
 // funcao fomrulario questao qtos filhos

@@ -40,7 +40,7 @@ function carregaSituacaoDBA () {
 		$("input[name='infoPrioridade'][value='Não']").prop("checked", true);
 	}
 	else {
-		$("input[name='infoPrioridade'][value='NãoInformado']").prop("checked", true);
+		$("input[name='infoPrioridade'][value='Não Informado']").prop("checked", true);
 	}
 	
 	// Autoriza Programa DBA
@@ -72,16 +72,10 @@ function carregaSituacaoDBA () {
 
 function salvaSituacaoDBASuccess () {
 	console.log("salvaSituacaoDBASuccess");
-	// todo: testes retirar
-	alert("Situação DBA foi salva com sucesso.");
-	// todo: testes retirar
 }
 
 function salvaSituacaoDBAFail (err) {
 	console.log("salvaSituacaoDBAFail: " + err);
-	// todo: testes retirar
-	alert("Houve erro no salvamento da situação DBA: " + err);
-	// todo: testes retirar
 }
 
 function validaCamposSituacaoDBA() {

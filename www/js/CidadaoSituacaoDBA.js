@@ -69,6 +69,14 @@
 		
 		// Retorna
 		//SITUACAODBA.cbSuccess_f();
+
+		// Atualiza ficha
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral = SITUACAODBA.situacaoCadastral;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade = SITUACAODBA.prioridade;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].programa_dba = SITUACAODBA.programaDBA;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ponto_servico_id = SITUACAODBA.pontoServicoId;		
+		atualizaFichaCidadao();
+
 		PageManager.loadTmpl('div_sitDBA');
 	},
 
@@ -160,20 +168,17 @@
 	salvaSituacaoDBASuccess: function (trans, res) {
 		console.log("salvaSituacaoDBASuccess");
 		
-/*		// todo: testes retirar
-		alert("Situação DBA foi salva com sucesso!");
-		// todo: testes retirar*/
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
 		
 		// Retorna
-		SITUACAODBA.cbSuccess_f();
+		//SITUACAODBA.cbSuccess_f();
+		// atualiza dados
+		SITUACAODBA.dadosEntrada(0, SITUACAODBA.cbSuccess_f, salvaSituacaoDBAFail);		
 	},
 	
 	salvaSituacaoDBAFail: function (err) {
 		console.log("salvaSituacaoDBAFail");
-		
-/*		// todo: testes retirar
-		alert("Houve falha no salvamento da situação DBA!");
-		// todo: testes retirar*/
 		
 		// Retorna
 		SITUACAODBA.cbFail_f(err);
