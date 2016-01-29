@@ -915,10 +915,6 @@
 		};
 		ATIVIDADE.auxDados = a;
 
-		// todo: limpa flag indicadora de edição
-		// Esta flag é limpa no momento em que o usuário clica sobre uma atividade no calendário/agenda
-		//ATIVIDADE.editIndexAtividade = null;
-
 		// cidadao_id já está armazenado em ATIVIDADE.cidadao_id
 		if ((ATIVIDADE.indexAtividade = indexAtividade) != null) {
 			// Atualiza atividade
@@ -1054,9 +1050,6 @@
 	
 	recuperaIdPeriodicidadeSuccess: function (trans, res) {
 		console.log("recuperaIdPeriodicidadeSuccess");
-		
-		// todo: testes retirar
-		console.log("Registro de periodicidade " + (res.rows.length > 0 ? "" : "não") + " encontrado.");
 		
 		ATIVIDADE.auxDados.periodicidade_id = res.rows.item(0).id;
 		ATIVIDADE.diasSemanaCounter = 0;

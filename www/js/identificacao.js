@@ -138,16 +138,9 @@ function validaCamposIdentificacao() {
 		$('.msgParabens').attr('style', 'display:none');
 		$('.msgErro').attr('style', 'display:none');
 
-		// todo: testes retirar
-
-		// todo: testes retirar
 		// prepara data de nascimento
 		var dnascimento = new Date($('#data_nascimento').val());
-		
-		// todo: testes retirar
-		console.log(dnascimento);
-		// todo: testes retirar
-		
+	
 		CIDADAO.salvaCidadao($("#nome").val(),											// nome
 							 $("#nome_social").val(),									// nome social
 							 $("#nome_mae").val(),										// nome da mãe
