@@ -157,8 +157,12 @@
 	},
 	
     // ****************** procura cidadão na lista *********************
-    buscaCidadao: function(buscaTxt, cbSuccess, cbFail) {
+    buscaCidadao: function(buscaTxt, ativos, inativos, cbSuccess, cbFail) {
 		console.log("buscaCidadao");
+		
+		// todo: testes retirar
+		console.log("\r\nAtivos = " + ativos + " - Inativos = " + inativos);
+		// testes retirar
 		
 		// Limpa a lista de busca
 		while (CIDADAO.listaCidadaosDadosBusca.length > 0) {
@@ -167,14 +171,53 @@
 		
 		// Procura
 		if (buscaTxt == "") {
-			CIDADAO.listaCidadaosDadosBusca = CIDADAO.listaCidadaosDados.slice();
+			if ((ativos && inativos) || (!ativos && !inativos)) {
+				CIDADAO.listaCidadaosDadosBusca = CIDADAO.listaCidadaosDados.slice();
+			}
+			else {
+				for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+					if (!ativos) {
+						// apenas os inativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 0) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+					else // (!inativos) 
+					{
+						// apenas os ativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 1) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+				}
+			}
 		}
 		else {
 			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
 				//if (CIDADAO.listaCidadaosDados[i].nome.search(buscaTxt) != -1) {
 				if (CIDADAO.listaCidadaosDados[i].nome.search(new RegExp(buscaTxt, "i")) != -1) {
-					// Encontrou, coloca na lista de busca
-					CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+					// Encontrou, verifica ativos/inativos
+
+					// todo: testes retirar
+					console.log("\r\nSituação cadastral: " + CIDADAO.listaCidadaosDados[i].situacao_cadastral);
+					// testes retirar
+
+					if ((ativos && inativos) || (!ativos && !inativos)) {
+						CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+					}
+					else if (!ativos) {
+						// apenas os inativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 0) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+					else // (!inativos) 
+					{
+						// apenas os ativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 1) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
 				}
 			}
 		}
