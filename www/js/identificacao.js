@@ -145,9 +145,11 @@ function validaCamposIdentificacao() {
 							 $("#nome_social").val(),									// nome social
 							 $("#nome_mae").val(),										// nome da mãe
 							 $("#sisrua").val(),										// sisrua
-							 dnascimento.getDate(),										// dia do nascimento
-							 dnascimento.getMonth()+1,									// mês do nascimento
-							 dnascimento.getFullYear(),									// ano do nascimento
+							 // dia do nascimento							 
+							 dnascimento.getDate() < 10 ? "0" + dnascimento.getDate() : dnascimento.getDate(),
+							 // mês do nascimento
+							 (dnascimento.getMonth()+1) < 10 ? "0" + (dnascimento.getMonth()+1) : dnascimento.getMonth()+1,
+							 dnascimento.getFullYear(),									// ano do nascimento 
 							 this.salvaCidadaoSuccess,
 							 this.salvaCidadaoFail);
 	}

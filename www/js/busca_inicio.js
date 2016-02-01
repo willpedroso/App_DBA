@@ -4,11 +4,6 @@ function btBusca(textoBusca, ativos, inativos){
 	// Chama função de login
 	CIDADAO.buscaCidadao(textoBusca, ativos == "checked" ? true : false, inativos == "checked" ? true : false);
 	
-	// Listas no console
-	// Testes
-	var Print = "Lista dos " + CIDADAO.listaCidadaosDadosBusca.length + " cidadãos encontrados:";
-	// Testes
-	
 	// Cabeçalho
 	var node = "<li class='li-header'>";
 		node += "<div>Nome Completo</div>";
@@ -23,12 +18,8 @@ function btBusca(textoBusca, ativos, inativos){
 	}
 	else {
 		for (var i = 0; i < CIDADAO.listaCidadaosDadosBusca.length; i++) {
-			// Testes
-			Print += "Nome: " + CIDADAO.listaCidadaosDadosBusca[i].nome + "\r\n";
-			// Testes
 			// Preenche com os dados
 			node += "<li " + ("cidadaoIndex='" + i + "' ") + "onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');CIDADAO.dadosCidadao(" + i + ");\">";
-			//node += "<li onclick=\"console.log('clique LI');\">";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome + "</div>";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_social + "</div>";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_mae + "</div>";

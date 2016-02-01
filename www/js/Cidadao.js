@@ -160,10 +160,6 @@
     buscaCidadao: function(buscaTxt, ativos, inativos, cbSuccess, cbFail) {
 		console.log("buscaCidadao");
 		
-		// todo: testes retirar
-		console.log("\r\nAtivos = " + ativos + " - Inativos = " + inativos);
-		// testes retirar
-		
 		// Limpa a lista de busca
 		while (CIDADAO.listaCidadaosDadosBusca.length > 0) {
 			CIDADAO.listaCidadaosDadosBusca.pop();
@@ -197,11 +193,6 @@
 				//if (CIDADAO.listaCidadaosDados[i].nome.search(buscaTxt) != -1) {
 				if (CIDADAO.listaCidadaosDados[i].nome.search(new RegExp(buscaTxt, "i")) != -1) {
 					// Encontrou, verifica ativos/inativos
-
-					// todo: testes retirar
-					console.log("\r\nSituação cadastral: " + CIDADAO.listaCidadaosDados[i].situacao_cadastral);
-					// testes retirar
-
 					if ((ativos && inativos) || (!ativos && !inativos)) {
 						CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
 					}
