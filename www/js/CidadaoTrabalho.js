@@ -193,11 +193,12 @@
 	
 	dadosEntradaSuccess: function(trans, res) {
 		console.log("dadosEntradaSuccess");
-		
+		/*
 		if (res.rows.length != 1) {
-			// todo: há mais de um registro de saúde para o cidadão
+			// todo: há mais de um registro de trabalho para o cidadão
+			alert ("Erro: Há mais de um registro de trabalho para o cidadão!");
 		}
-		
+		*/
 		var dt = {
 			id: res.rows.item(0).id,
 			frente_trabalho: res.rows.item(0).frente_trabalho,

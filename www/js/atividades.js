@@ -43,14 +43,14 @@ function preparaListasOpt () {
 		$("input[name='infoRepetir'][value='dia da semana']").prop("checked", auxVar != null ? true : false);
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_mes_repetir;
 		$("#dia_mes_repetir").val(auxVar == null ? "" : auxVar);
-		
+	
 		// Repetir no dia (dd/mm para periodicidade anual)
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_ano_repetir;
 		$("#dia_ano_repetir").val(auxVar == null ? "" : auxVar);
 	}
 	
 	// Lista de pontos de serviço
-	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
+	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
 		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
 		//opts += "<option value='" + ATIVIDADE.listaTiposServico[i].id + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
@@ -63,7 +63,7 @@ function preparaListasOpt () {
 	$("#listaPontosServicos").append(opts);
 	
 	// Lista de tipos de atuação
-	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
+	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
 		//opts += "<option value='" + ATIVIDADE.listaTiposAtuacao[i].id + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
@@ -76,7 +76,7 @@ function preparaListasOpt () {
 	$("#listaTiposAtuacao").append(opts);
 	
 	// Lista de tipos de periodicidade
-	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'><div class='lista-box-scroll'><option value='selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
+	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
 	//	opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
 		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'";
@@ -127,10 +127,15 @@ function preparaListasOpt () {
 	$("#infoDiasSemanaRadio").append(opts);
 	
 	// Corrige campos que devem ser apresentados
-	infoRep();
 	exibePeriodo();
-	infoDiaInt();
-	infoPerma();
+	if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal") {
+		infoRep();
+	}
+//	exibePeriodo();
+	if (edit)
+		infoDiaInt();
+	if (edit)
+		infoPerma();
 }
 
 function salvaAtividadeSuccess () {
@@ -149,28 +154,28 @@ function validaCampos() {
 	var erro = false;
 	
 	// Avalia ponto de serviço
-	if ($("#pontoServicoLabel").val() == "selecione") {
+	if ($("#pontoServicoLabel").val() == "Selecione") {
 		$("#pontoServicoLabel").addClass("inputFocus");
 		erro = true;
 	}
 	else $("#pontoServicoLabel").removeClass("inputFocus");
 	
 	// Avalia tipo de atuação
-	if ($("#tipoAtuacaoLabel").val() == "selecione") {
+	if ($("#tipoAtuacaoLabel").val() == "Selecione") {
 		$("#tipoAtuacaoLabel").addClass("inputFocus");
 		erro = true;
 	}
 	else $("#tipoAtuacaoLabel").removeClass("inputFocus");
 	
 	// Avalia tipo de periodicidade
-	if ($("#tipoPeriodicidadeLabel").val() == "selecione") {
+	if ($("#tipoPeriodicidadeLabel").val() == "Selecione") {
 		$("#tipoPeriodicidadeLabel").addClass("inputFocus");
 		erro = true;
 	}
 	else $("#tipoPeriodicidadeLabel").removeClass("inputFocus");
 	
 	// Havendo algum tipo de periodiciade
-	if ($("#tipoPeriodicidadeLabel").val() != "selecione") {
+	if ($("#tipoPeriodicidadeLabel").val() != "Selecione") {
 		// Avalia data de início
 		if ($('#data_inicio').val() == '')
 		{
@@ -183,7 +188,14 @@ function validaCampos() {
 		if ($("input:radio[name=infoDiaInteiro]:checked").val() == "Não")
 		{
 			// Avalia hora de início
-			if ( $('#hora_inicio').val() == '' || $('#hora_inicio').val().length != 5)
+			var auxVar = $('#hora_inicio').val();
+			if (auxVar == '' || 
+				auxVar.length != 5 ||
+				isNaN(auxVar.substring(0, 2)) ||
+				isNaN(auxVar.substring(3, 5)) ||
+				auxVar.substring(2, 3) != ":" ||
+				auxVar.substring(0, 2) > 23 ||
+				auxVar.substring(3, 5) > 59)
 			{
 				$('#hora_inicio').addClass('inputFocus');	
 				erro = true;
@@ -204,7 +216,14 @@ function validaCampos() {
 			// Se não for dia inteiro
 			if ($("input:radio[name=infoDiaInteiro]:checked").val() == "Não") {
 				// Avalia hora de término
-				if ($('#hora_termino').val() == '' || $('#hora_termino').val().length != 5)
+				var aux = $('#hora_termino').val();
+				if (auxVar == '' || 
+					auxVar.length != 5 ||
+					isNaN(auxVar.substring(0, 2)) ||
+					isNaN(auxVar.substring(3, 5)) ||
+					auxVar.substring(2, 3) != ":" ||
+					auxVar.substring(0, 2) > 23 ||
+					auxVar.substring(3, 5) > 59)
 				{
 					$('#hora_termino').addClass('inputFocus');	
 					erro = true;
@@ -309,7 +328,7 @@ function validaCampos() {
 					 "\r\nDia da semana: " + $("input:radio[name=infoDiasSemanaRadio]:checked").val() + 
 					 "\r\nDia do mês repetir: " + $("#dia_mes_repetir").val() +
 					 "\r\nDia do ano repetir: " + $('#dia_ano_repetir').val());
-		alert("Ver console");
+		//alert("Ver console");
 		// todo: testes retirar
 		
 		ATIVIDADE.salvaAtividade(ATIVIDADE.editIndexAtividade,													// índice da atividade
@@ -325,8 +344,10 @@ function validaCampos() {
 								 $('#data_termino').val(),														// data de término
 								 $('#hora_termino').val(),														// hora de término
 								 diasSemanaRepetir,																// repetir nos dias da semana
-								 $("input:radio[name=infoDiasSemanaRadio]:checked").val(),						// repetir no dia da semana
-								 $("#dia_mes_repetir").val(),													// repetir no dia do mês
+								 // repetir no dia da semana (mensal)
+								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? null : $("input:radio[name=infoDiasSemanaRadio]:checked").val(),
+								 // repetir no dia do mês
+								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? $("#dia_mes_repetir").val() : null,
 								 $('#dia_ano_repetir').val(),													// repetir no dia do ano
 								 this.salvaAtividadeSuccess,
 								 this.salvaAtividadeFail);

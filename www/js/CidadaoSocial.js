@@ -70,12 +70,6 @@
 	// 	
     // ******************************************************************
 	
-	// todo: faltam os seguintes carregamentos:
-	//		.lista de dispositivos de contato do cidadão: tabela smads_contato (tipo_dispositivo_contato_id e numero_descricao por meio do smads_id)
-	//		.lista de dispositivos de contato da empresa: tabela smads_contato_empresa (tipo_dispositivo_contato_id e numero_descricao por meio do smads_id)
-	//		.lista de certidões: tabela smads_certidao (tipo_certidao_id e numero por meio de smads_id)
-	//		.lista de providências: tabela smads_providencia (tipo, situacao e observacao por meio do smads_id)
-	
     dadosEntrada: function(cidadao, cbSuccess, cbFail) {
 	    console.log("dadosEntrada");
 		
@@ -120,11 +114,12 @@
 	
 	dadosEntradaSuccess: function(trans, res) {
 		console.log("dadosEntradaSuccess");
-		
+		/*
 		if (res.rows.length != 1) {
-			// todo: há mais de um registro de saúde para o cidadão
+			// todo: há mais de um registro social para o cidadão
+			alert ("Erro: Há mais de um registro social para o cidadão!");
 		}
-		
+		*/
 		var ds = {
 			id: res.rows.item(0).id,
 			nome_contato: res.rows.item(0).nome_contato,

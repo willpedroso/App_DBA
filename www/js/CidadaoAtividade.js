@@ -219,7 +219,6 @@
 		
 		// Salva identificação do cidadão
 		//ATIVIDADE.cidadao_id = cidadao_id;
-		alert("Índice do cidadão: " + CIDADAO.indiceListaCidadao);
 		ATIVIDADE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
 		
 		// Desvia para carregar dados básicos
@@ -356,7 +355,7 @@
 				// todo: edição de atividade (id ou índice da atividade => calEvent.id)
 				ATIVIDADE.editIndexAtividade = calEvent.id;
 				PageManager.loadTmpl('div_atividades_add');
-				preparaListasOpt();
+				//preparaListasOpt();
 			},
 			eventLimit: true
         });
@@ -381,11 +380,11 @@
 			//id = ATIVIDADE.listaAtividades[i].id;
 			id = i;
 			
-			// Privacidade
-			if (ATIVIDADE.listaAtividades[i].privada == 1) {
+			// Privacidade (todo: revisar)
+			//if (ATIVIDADE.listaAtividades[i].privada == 1) {
 				color = '#e1e1e1';
 				title = ATIVIDADE.listaAtividades[i].ponto_servico_nome + (ATIVIDADE.listaAtividades[i].descricao != "" ? " - " + ATIVIDADE.listaAtividades[i].descricao : "");
-			}
+			//}
 			
 			// Prepara datas
 			var dstart = lstart / 1000;
@@ -511,13 +510,13 @@
 					console.log("Mensal");
 					if (ATIVIDADE.listaAtividades[i].periodicidade_permanente == 0) {
 						diff = Math.ceil((data_termino - data_inicio + 1) / (24*60*60));
-					
+						
 						for (var j = 0; j < diff; j++) {
 							if (data_inicio >= dstart && dend >= data_inicio) {
 
-								if (ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != null || ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != "") {
+								if (ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != null && ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != "") {
 									var aux = new Date(data_inicio*1000);
-									var diaMesCorrente = aux.getUTCMonth()+1;
+									var diaMesCorrente = aux.getUTCDate();
 									
 									if (diaMesCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir) {
 										start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
@@ -534,7 +533,7 @@
 										jsonFullCalendar.push(jfc);
 									}
 								}
-								else if (ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != null || ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != "") {
+								else if (ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != null && ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != "") {
 									var aux = new Date(data_inicio*1000);
 									//var diaSemanaCorrente = (new Date(data_inicio*1000)).getDay()+1;
 									var diaSemanaCorrente = aux.getUTCDay()+1;
@@ -563,7 +562,7 @@
 					
 						for (var j = 0; j < diff; j++) {
 
-							if (ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != null || ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != "") {
+							if (ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != null && ATIVIDADE.listaAtividades[i].periodicidade_dia_mes_repetir != "") {
 
 								if (dstart >= data_inicio) {
 									var aux = new Date(dstart*1000);
@@ -585,7 +584,7 @@
 									}
 								}
 							}
-							else if (ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != null || ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != "") {
+							else if (ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != null && ATIVIDADE.listaAtividades[i].periodicidade_dia_semana_repetir != "") {
 
 								if (dstart >= data_inicio) {
 									var aux = new Date(dstart*1000);
@@ -623,7 +622,7 @@
 						for (var j = 0; j < diff; j++) {
 							if (dstart >= data_inicio && dstart <= data_termino) {
 								var aux = new Date(dstart*1000);
-								var diaAnoCorrente = aux.getUTCDate() + "/" + (aux.getUTCMonth() + 1);
+								var diaAnoCorrente = aux.getUTCDate() + "/" + ( (aux.getUTCMonth() + 1) < 10 ? "0" + (aux.getUTCMonth() + 1) : (aux.getUTCMonth() + 1) );
 								
 								if (diaAnoCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_ano_repetir) {
 									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
@@ -650,7 +649,7 @@
 						for (var j = 0; j < diff; j++) {
 							if (dstart >= data_inicio) {
 								var aux = new Date(dstart*1000);
-								var diaAnoCorrente = aux.getUTCDate() + "/" + (aux.getUTCMonth() + 1);
+								var diaAnoCorrente = aux.getUTCDate() + "/" + ( (aux.getUTCMonth() + 1) < 10 ? "0" + (aux.getUTCMonth() + 1) : (aux.getUTCMonth() + 1) );
 								
 								if (diaAnoCorrente == ATIVIDADE.listaAtividades[i].periodicidade_dia_ano_repetir) {
 									start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
@@ -853,7 +852,7 @@
 							  diasSemana,
 							  diaSemana,
 							  dia_mes_repetir,
-							  dia_ano_repetrir,
+							  dia_ano_repetir,
 							  cbSuccess, cbFail) {
 		console.log ("salvaAtividade");
 		
@@ -878,9 +877,9 @@
 			data_termino: data_termino,
 			hora_termino: hora_termino,
 			diasSemana: diasSemana,
-			diaSemana: diaSemana,
+			dia_semana_repetir: diaSemana,
 			dia_mes_repetir: dia_mes_repetir,
-			dia_ano_repetrir: dia_ano_repetrir,
+			dia_ano_repetir: dia_ano_repetir,
 			dt_criacao: null,
 			periodicidade_id: null,
 		};
@@ -976,7 +975,7 @@
 								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 								[ATIVIDADE.auxDados.idAtividade,
 								ATIVIDADE.auxDados.tipo_periodicidade_id,
-								ATIVIDADE.auxDados.data_inicio,
+								ATIVIDADE.auxDados.data_inicio ,
 								ATIVIDADE.auxDados.hora_inicio,
 								ATIVIDADE.auxDados.data_termino,
 								ATIVIDADE.auxDados.hora_termino,
@@ -1013,7 +1012,7 @@
 							ATIVIDADE.auxDados.dia_semana_repetir,
 							ATIVIDADE.auxDados.dt_criacao,
 							1],
-							ATIVIDADE.recuperaIdAtividadeSuccess,
+							ATIVIDADE.recuperaIdPeriodicidadeSuccess,
 							ATIVIDADE.salvaAtividadeFail);
 	},
 	
@@ -1037,7 +1036,7 @@
 	salvaPeriodicidadeDiasSemana: function (trans, res) {
 		console.log("salvaPeriodicidadeDiasSemana");
 		
-		BANCODADOS.sqlCmdDB("INSERT INTO periodicidade_has_tipo_dias_semana (tipo_periodicidade_id, tipo_dias_semana_id) VALUES (?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO periodicidade_has_tipo_dias_semana (periodicidade_id, tipo_dias_semana_id) VALUES (?, ?)",
 							[ATIVIDADE.auxDados.periodicidade_id, ATIVIDADE.auxDados.diasSemana[ATIVIDADE.diasSemanaCounter++]], 
 							ATIVIDADE.diasSemanaCounter == ATIVIDADE.auxDados.diasSemana.length ? ATIVIDADE.salvaAtividadeSuccess : ATIVIDADE.salvaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
 	},

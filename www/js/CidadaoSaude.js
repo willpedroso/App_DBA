@@ -152,11 +152,12 @@
 	
 	dadosEntradaSuccess: function(trans, res) {
 		console.log("dadosEntradaSuccess");
-		
+		/*		
 		if (res.rows.length != 1) {
-			// todo: há mais de um registro de saúde para o cidadão
+			// Há mais de um registro de saúde para o cidadão
+			alert ("Erro: Há mais de um registro de saúde para o cidadão!");
 		}
-		
+		*/
 		var ds = {
 			id: res.rows.item(0).id,
 			numero_sus: res.rows.item(0).numero_sus,
