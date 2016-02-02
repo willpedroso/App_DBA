@@ -1,0 +1,2128 @@
+<!-- SITUACAO DBA -->
+        <div id="div_sitDBA">
+          <form id="formSituacaoDba" action="actions/formSituacaoDba/cadastrar.php" method="post" class="cadastro">
+            <!--INICIO - PRIMEIRO BLOCO-->
+            <div class="contentAbaBorda">
+          
+              <div class="msgAtencao" style="display:none">
+                <span class="ico"></span><p>Atenção! Verifique os campos.</p>
+              </div>
+            
+              <div class="msgParabens" style="display:none">
+                <span class="ico"></span><p>Operação realizada com sucesso.</p>
+              </div>
+              
+              <div class="msgErro" style="display:none">
+                <span class="ico"></span><p>Erro ao processar as informações.</p>
+              </div>
+            
+              <h3>SAÚDE | ACOMPANHAMENTO</h3>
+              
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Nº SUS:</span>
+                <input type="text" class="inputGrande" value="123412" id="numero_sus" name="numero_sus">
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Tem cadastro/acompanhamento em alguma UBS:</span>
+                <div id="infoCadastroAcompanhamentoUbs" class="radioButton">
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não Informado" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <p>Não</p>
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Sim" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="cadastro_acompanhamento_ubs" id="cadastro_acompanhamento_ubs" class="valueCheck">
+                </div>
+              </div>
+            
+              <div id="ubsAcompanhamentoCadasdtro" style="display:block"> 
+                <div class="linhaForm alinhaObsProv">
+                  <input type="text" class="inputGrande adicionaQualUbsSaude" value="" id="inputteste" placeholder="Nome da UBS">
+                  <input type="text" class="inputGrande adicionaTecnicoReferenciaUbsSaude" value="" placeholder="Técnico de referência">
+                  
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputUbs" value="Adicionar">
+                </div>
+                <textarea rows="4" cols="50" class="textareaEspecialidadeUbsSaude" placeholder="Especialidades"></textarea>
+                <div class="adicionaInputUbsSaude"></div>
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Já fez ou faz acompanhamento em Caps:</span>
+                <div id="infoAcompanhamentoCaps" class="radioButton">
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Não Informado" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Não" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <p>Não</p>
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Sim" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="acompanhamento_caps" id="acompanhamento_caps" class="valueCheck">
+                </div>
+              </div>
+              
+              <div class="linhaForm" id="qualAcompanhamentoCaps"> 
+                <span class="titLabel">Qual:</span>
+                <input type="text" class="inputGrande" value="nao lembra" id="qual_acompanhamento_caps" name="qual_acompanhamento_caps">
+              </div>
+            
+              <div class="linhaForm" id="tipoFrequenciaCaps"> 
+                <label class="selectDefault">
+                  <span class="titSang">Quantas vezes por semana frequenta o serviço ou recebe atendimento no território (Caps na Rua):</span>
+
+                  <div class="comboStilo"> 
+                    <select name="tipoAtuacaoLabel" id="tipoFrequenciaCapsLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione">Selecione</option>
+                        <option value="Todos os dias" id="1" data-id="tipoFrequenciaCapsLabel" for="tipo_frequencia_caps_id">Todos os dias</option>
+                        <option value="4x/Semana" id="2" data-id="tipoFrequenciaCapsLabel" for="tipo_frequencia_caps_id">4x/Semana</option>
+                        <option value="3x/Semana" id="3" data-id="tipoFrequenciaCapsLabel" for="tipo_frequencia_caps_id">3x/Semana</option>
+                        <option value="2x/Semana" id="4" data-id="tipoFrequenciaCapsLabel" for="tipo_frequencia_caps_id">2x/Semana</option>
+                        <option value="1x/Semana" id="5" data-id="tipoFrequenciaCapsLabel" for="tipo_frequencia_caps_id">1x/Semana</option>
+                      </div>
+                    </select>
+                    <input type="hidden" id="tipo_frequencia_caps_id" name="tipo_frequencia_caps_id" value="2">
+                  </div>
+                </label>
+              </div>
+            
+              <div class="linhaForm" id="nomeTecnicoReferenciaCaps"> 
+                <span class="titLabel">Nome do técnico de referência:</span>
+                <input type="text" class="inputGrande" value="fulano caps" id="nome_tecnico_referencia_caps" name="nome_tecnico_referencia_caps">
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Já esteve internado:</span>
+                <div id="infoEsteveInternado" class="radioButton">
+                  <input type="radio" name="infoEsteveInternado" value="Não Informado" class="radio" onchange="infoEsteveInternado()">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoEsteveInternado" value="Não" class="radio" onchange="infoEsteveInternado()">
+                  <p>Não</p>
+                  <input type="radio" name="infoEsteveInternado" value="Sim" class="radio" onchange="infoEsteveInternado()">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="esteve_internado" id="esteve_internado" class="valueCheck">
+                </div>
+              </div>
+              
+              <div id="internacao"> 
+                <div class="linhaForm alinhaObsProv">
+                  <input type="text" class="inputGrande adicionaQuantasVezesInternado" value="" id="inputteste" placeholder="Quantas vezes">
+                  <input type="text" class="inputGrande adicionaLocalInternacao" value="" placeholder="Local da internação">
+                  
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputInternacao" value="Adicionar">
+                </div>
+                <textarea rows="4" cols="50" class="textareaMotivoInternacao" placeholder="Motivo da internação"></textarea>
+                <div class="adicionaInputInternacao">
+                  <div id="div_internacao_14">
+                    <input type="text" value="2" name="quantidade_internacao[]" class="inputAdicionaProvidenciaSelect" readonly="" id="input__internacao_14">
+                    <input type="text" value="HC" name="local_internacao[]" class="inputAdicionaProvidencia" readonly="" id="input__internacao_14">
+                    <textarea name="motivo_internacao[]" class="textareaAdicionaInternacao " readonly="" id="input__internacao_14">overdose</textarea>
+                    <span class="btn-remover" onclick="removeMe('div_internacao_14')"></span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Como chegou à situação de rua:</span>
+                <input type="text" class="inputGrande" value="usando droga" id="como_chegou_situacao_rua" name="como_chegou_situacao_rua">
+              </div>
+              
+              <div class="linhaForm"> 
+                <label class="selectDefault">
+
+                  <div class="comboStilo"> 
+                    <span class="titSang">Por quanto tempo permaneceu em situação de rua:</span> 
+                    <select name="diasLabel" id="diasLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 dia" id="1" data-id="diasLabel" for="dias_situacao_rua">1 dia</option>
+                        <option value="2 dias" id="2" data-id="diasLabel" for="dias_situacao_rua">2 dias</option>
+                        <option value="3 dias" id="3" data-id="diasLabel" for="dias_situacao_rua">3 dias</option>
+                        <option value="4 dias" id="4" data-id="diasLabel" for="dias_situacao_rua">4 dias</option>
+                        <option value="5 dias" id="5" data-id="diasLabel" for="dias_situacao_rua">5 dias</option>
+                        <option value="6 dias" id="6" data-id="diasLabel" for="dias_situacao_rua">6 dias</option>
+                        <option value="7 dias" id="7" data-id="diasLabel" for="dias_situacao_rua">7 dias</option>
+                        <option value="8 dias" id="8" data-id="diasLabel" for="dias_situacao_rua">8 dias</option>
+                        <option value="9 dias" id="9" data-id="diasLabel" for="dias_situacao_rua">9 dias</option>
+                        <option value="10 dias" id="10" data-id="diasLabel" for="dias_situacao_rua">10 dias</option>
+                        <option value="11 dias" id="11" data-id="diasLabel" for="dias_situacao_rua">11 dias</option>
+                        <option value="12 dias" id="12" data-id="diasLabel" for="dias_situacao_rua">12 dias</option>
+                        <option value="13 dias" id="13" data-id="diasLabel" for="dias_situacao_rua">13 dias</option>
+                        <option value="14 dias" id="14" data-id="diasLabel" for="dias_situacao_rua">14 dias</option>
+                        <option value="15 dias" id="15" data-id="diasLabel" for="dias_situacao_rua">15 dias</option>
+                        <option value="16 dias" id="16" data-id="diasLabel" for="dias_situacao_rua">16 dias</option>
+                        <option value="17 dias" id="17" data-id="diasLabel" for="dias_situacao_rua">17 dias</option>
+                        <option value="18 dias" id="18" data-id="diasLabel" for="dias_situacao_rua">18 dias</option>
+                        <option value="19 dias" id="19" data-id="diasLabel" for="dias_situacao_rua">19 dias</option>
+                        <option value="20 dias" id="20" data-id="diasLabel" for="dias_situacao_rua">20 dias</option>
+                        <option value="21 dias" id="21" data-id="diasLabel" for="dias_situacao_rua">21 dias</option>
+                        <option value="22 dias" id="22" data-id="diasLabel" for="dias_situacao_rua">22 dias</option>
+                        <option value="23 dias" id="23" data-id="diasLabel" for="dias_situacao_rua">23 dias</option>
+                        <option value="24 dias" id="24" data-id="diasLabel" for="dias_situacao_rua">24 dias</option>
+                        <option value="25 dias" id="25" data-id="diasLabel" for="dias_situacao_rua">25 dias</option>
+                        <option value="26 dias" id="26" data-id="diasLabel" for="dias_situacao_rua">26 dias</option>
+                        <option value="27 dias" id="27" data-id="diasLabel" for="dias_situacao_rua">27 dias</option>
+                        <option value="28 dias" id="28" data-id="diasLabel" for="dias_situacao_rua">28 dias</option>
+                        <option value="29 dias" id="29" data-id="diasLabel" for="dias_situacao_rua">29 dias</option>
+                        <option value="30 dias" id="30" data-id="diasLabel" for="dias_situacao_rua">30 dias</option>
+                        <option value="31 dias" id="31" data-id="diasLabel" for="dias_situacao_rua">31 dias</option>
+                      </div>
+                    </select>
+
+                    <select name="mesesLabel" id="mesesLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 mês" id="1" data-id="mesesLabel" for="meses_situacao_rua">1 mês</option>
+                        <option value="2 meses" id="2" data-id="mesesLabel" for="meses_situacao_rua">2 meses</option>
+                        <option value="3 meses" id="3" data-id="mesesLabel" for="meses_situacao_rua">3 meses</option>
+                        <option value="4 meses" id="4" data-id="mesesLabel" for="meses_situacao_rua">4 meses</option>
+                        <option value="5 meses" id="5" data-id="mesesLabel" for="meses_situacao_rua">5 meses</option>
+                        <option value="6 meses" id="6" data-id="mesesLabel" for="meses_situacao_rua">6 meses</option>
+                        <option value="7 meses" id="7" data-id="mesesLabel" for="meses_situacao_rua">7 meses</option>
+                        <option value="8 meses" id="8" data-id="mesesLabel" for="meses_situacao_rua">8 meses</option>
+                        <option value="9 meses" id="9" data-id="mesesLabel" for="meses_situacao_rua">9 meses</option>
+                        <option value="10 meses" id="10" data-id="mesesLabel" for="meses_situacao_rua">10 meses</option>
+                        <option value="11 meses" id="11" data-id="mesesLabel" for="meses_situacao_rua">11 meses</option>
+                        <option value="12 meses" id="12" data-id="mesesLabel" for="meses_situacao_rua">12 meses</option>
+                      </div>
+                    </select>
+
+                    <select name="anosLabel" id="anosLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 ano" id="1" data-id="anosLabel" for="anos_situacao_rua">1 ano</option>
+                        <option value="2 anos" id="2" data-id="anosLabel" for="anos_situacao_rua">2 anos</option>
+                        <option value="3 anos" id="3" data-id="anosLabel" for="anos_situacao_rua">3 anos</option>
+                        <option value="4 anos" id="4" data-id="anosLabel" for="anos_situacao_rua">4 anos</option>
+                        <option value="5 anos" id="5" data-id="anosLabel" for="anos_situacao_rua">5 anos</option>
+                        <option value="6 anos" id="6" data-id="anosLabel" for="anos_situacao_rua">6 anos</option>
+                        <option value="7 anos" id="7" data-id="anosLabel" for="anos_situacao_rua">7 anos</option>
+                        <option value="8 anos" id="8" data-id="anosLabel" for="anos_situacao_rua">8 anos</option>
+                        <option value="9 anos" id="9" data-id="anosLabel" for="anos_situacao_rua">9 anos</option>
+                        <option value="10 anos" id="10" data-id="anosLabel" for="anos_situacao_rua">10 anos</option>
+                        <option value="11 anos" id="11" data-id="anosLabel" for="anos_situacao_rua">11 anos</option>
+                        <option value="12 anos" id="12" data-id="anosLabel" for="anos_situacao_rua">12 anos</option>
+                        <option value="13 anos" id="13" data-id="anosLabel" for="anos_situacao_rua">13 anos</option>
+                        <option value="14 anos" id="14" data-id="anosLabel" for="anos_situacao_rua">14 anos</option>
+                        <option value="15 anos" id="15" data-id="anosLabel" for="anos_situacao_rua">15 anos</option>
+                        <option value="16 anos" id="16" data-id="anosLabel" for="anos_situacao_rua">16 anos</option>
+                        <option value="17 anos" id="17" data-id="anosLabel" for="anos_situacao_rua">17 anos</option>
+                        <option value="18 anos" id="18" data-id="anosLabel" for="anos_situacao_rua">18 anos</option>
+                        <option value="19 anos" id="19" data-id="anosLabel" for="anos_situacao_rua">19 anos</option>
+                        <option value="20 anos" id="20" data-id="anosLabel" for="anos_situacao_rua">20 anos</option>
+                        <option value="21 anos" id="21" data-id="anosLabel" for="anos_situacao_rua">21 anos</option>
+                        <option value="22 anos" id="22" data-id="anosLabel" for="anos_situacao_rua">22 anos</option>
+                        <option value="23 anos" id="23" data-id="anosLabel" for="anos_situacao_rua">23 anos</option>
+                        <option value="24 anos" id="24" data-id="anosLabel" for="anos_situacao_rua">24 anos</option>
+                        <option value="25 anos" id="25" data-id="anosLabel" for="anos_situacao_rua">25 anos</option>
+                        <option value="26 anos" id="26" data-id="anosLabel" for="anos_situacao_rua">26 anos</option>
+                        <option value="27 anos" id="27" data-id="anosLabel" for="anos_situacao_rua">27 anos</option>
+                        <option value="28 anos" id="28" data-id="anosLabel" for="anos_situacao_rua">28 anos</option>
+                        <option value="29 anos" id="29" data-id="anosLabel" for="anos_situacao_rua">29 anos</option>
+                        <option value="30 anos" id="30" data-id="anosLabel" for="anos_situacao_rua">30 anos</option>
+                        <option value="31 anos" id="31" data-id="anosLabel" for="anos_situacao_rua">31 anos</option>
+                        <option value="32 anos" id="32" data-id="anosLabel" for="anos_situacao_rua">32 anos</option>
+                        <option value="33 anos" id="33" data-id="anosLabel" for="anos_situacao_rua">33 anos</option>
+                        <option value="34 anos" id="34" data-id="anosLabel" for="anos_situacao_rua">34 anos</option>
+                        <option value="35 anos" id="35" data-id="anosLabel" for="anos_situacao_rua">35 anos</option>
+                        <option value="36 anos" id="36" data-id="anosLabel" for="anos_situacao_rua">36 anos</option>
+                        <option value="37 anos" id="37" data-id="anosLabel" for="anos_situacao_rua">37 anos</option>
+                        <option value="38 anos" id="38" data-id="anosLabel" for="anos_situacao_rua">38 anos</option>
+                        <option value="39 anos" id="39" data-id="anosLabel" for="anos_situacao_rua">39 anos</option>
+                        <option value="40 anos" id="40" data-id="anosLabel" for="anos_situacao_rua">40 anos</option>
+                        <option value="41 anos" id="41" data-id="anosLabel" for="anos_situacao_rua">41 anos</option>
+                        <option value="42 anos" id="42" data-id="anosLabel" for="anos_situacao_rua">42 anos</option>
+                        <option value="43 anos" id="43" data-id="anosLabel" for="anos_situacao_rua">43 anos</option>
+                        <option value="44 anos" id="44" data-id="anosLabel" for="anos_situacao_rua">44 anos</option>
+                        <option value="45 anos" id="45" data-id="anosLabel" for="anos_situacao_rua">45 anos</option>
+                        <option value="46 anos" id="46" data-id="anosLabel" for="anos_situacao_rua">46 anos</option>
+                        <option value="47 anos" id="47" data-id="anosLabel" for="anos_situacao_rua">47 anos</option>
+                        <option value="48 anos" id="48" data-id="anosLabel" for="anos_situacao_rua">48 anos</option>
+                        <option value="49 anos" id="49" data-id="anosLabel" for="anos_situacao_rua">49 anos</option>
+                        <option value="50 anos" id="50" data-id="anosLabel" for="anos_situacao_rua">50 anos</option>
+                      </div>
+                    </select>
+                </label>
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Iniciou o uso de drogas antes ou após ficar em situação de rua:</span>
+                <div id="infoDrogasAntesDepoisSituacaoRua" class="radioButton">
+                  <input type="radio" name="infoDrogasAntesDepoisSituacaoRua" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoDrogasAntesDepoisSituacaoRua" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoDrogasAntesDepoisSituacaoRua" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="0" name="drogas_antes_depois_situacao_rua" id="drogas_antes_depois_situacao_rua" class="valueCheck">
+                </div>
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Horas de sono por dia antes da inserção no programa:</span>
+                <input type="text" class="inputGrande" value="4" id="sono_antes_programa" name="sono_antes_programa">
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Horas de sono por dia depois da inserção no programa:</span>
+                <input type="text" class="inputGrande" value="9" id="sono_depois_programa" name="sono_depois_programa">
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Tem amigos:</span>
+
+                <div id="infoTemAmigos" class="radioButton">
+                  <input type="radio" name="infoTemAmigos" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoTemAmigos" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoTemAmigos" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="tem_amigos" id="tem_amigos" class="valueCheck">
+                </div>
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Tem companheiro(a):</span>
+                <div id="infoTemCompanheiro" class="radioButton">
+                  <input type="radio" name="infoTemCompanheiro" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoTemCompanheiro" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoTemCompanheiro" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="tem_companheiro" id="tem_companheiro" class="valueCheck">
+                </div>
+              </div>
+              
+              <div id="companheiroInseridoPrograma"> 
+                <div class="linhaForm">
+                  <span class="titLabel">Companheiro(a) inserido no programa:</span>
+                  <div id="infoTemCompanheiroPrograma" class="radioButton">
+                    <input type="radio" name="infoTemCompanheiroPrograma" value="Não Informado" class="radio" onchange="">
+                    <p>Não Informado</p>
+                    <input type="radio" name="infoTemCompanheiroPrograma" value="Não" class="radio" onchange="">
+                    <p>Não</p>
+                    <input type="radio" name="infoTemCompanheiroPrograma" value="Sim" class="radio" onchange="">
+                    <p>Sim</p>
+                    <input type="hidden" value="0" name="companheiro_programa" id="companheiro_programa" class="valueCheck">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Tem família:</span>
+                <div id="infoTemFamilia" class="radioButton">
+                  <input type="radio" name="infoTemFamilia" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoTemFamilia" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoTemFamilia" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="0" name="tem_familia" id="tem_familia" class="valueCheck">
+                </div>
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Tem contato com a família:</span>
+                <div id="infoTemContatoFamilia" class="radioButton">
+                  <input type="radio" name="infoTemContatoFamilia" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoTemContatoFamilia" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoTemContatoFamilia" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="tem_contato_familia" id="tem_contato_familia" class="valueCheck">
+                </div>
+              </div>
+              
+              <div class="linhaForm">
+                <label class="selectDefault">
+                  <span class="titSang">UF de onde reside sua família:</span>
+                  <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
+                  <div class="comboStilo"> 
+                    <option value="Selecione" id="0" data-id="estadoNomeLabel" for="tipo_estado_id">Selecione</option>
+                    <option value="AC - Acre" id="1" data-id="estadoNomeLabel" for="tipo_estado_id">AC - Acre</option>
+                    <option value="AL - Alagoas" id="2" data-id="estadoNomeLabel" for="tipo_estado_id">AL - Alagoas</option>
+                    <option value="AM - Amazonas" id="4" data-id="estadoNomeLabel" for="tipo_estado_id">AM - Amazonas</option>
+                    <option value="AP - Amapá" id="3" data-id="estadoNomeLabel" for="tipo_estado_id">AP - Amapá</option>
+                    <option value="BA - Bahia" id="5" data-id="estadoNomeLabel" for="tipo_estado_id">BA - Bahia</option>
+                    <option value="CE - Ceara" id="6" data-id="estadoNomeLabel" for="tipo_estado_id">CE - Ceara</option>
+                    <option value="DF - Distrito Federal" id="7" data-id="estadoNomeLabel" for="tipo_estado_id">DF - Distrito Federal</option>
+                    <option value="ES - Espírito Santo" id="8" data-id="estadoNomeLabel" for="tipo_estado_id">ES - Espírito Santo</option>
+                    <option value="GO - Goiás" id="9" data-id="estadoNomeLabel" for="tipo_estado_id">GO - Goiás</option>
+                    <option value="MA - Maranhão" id="10" data-id="estadoNomeLabel" for="tipo_estado_id">MA - Maranhão</option>
+                    <option value="MG - Minas Gerais" id="13" data-id="estadoNomeLabel" for="tipo_estado_id">MG - Minas Gerais</option>
+                    <option value="MS - Mato Grosso do Sul" id="12" data-id="estadoNomeLabel" for="tipo_estado_id">MS - Mato Grosso do Sul</option>
+                    <option value="MT - Mato Grosso" id="11" data-id="estadoNomeLabel" for="tipo_estado_id">MT - Mato Grosso</option>
+                    <option value="PA - Pará" id="14" data-id="estadoNomeLabel" for="tipo_estado_id">PA - Pará</option>
+                    <option value="PB - Paraíba" id="15" data-id="estadoNomeLabel" for="tipo_estado_id">PB - Paraíba</option>
+                    <option value="PE - Pernambuco" id="17" data-id="estadoNomeLabel" for="tipo_estado_id">PE - Pernambuco</option>
+                    <option value="PI - Piauí" id="18" data-id="estadoNomeLabel" for="tipo_estado_id">PI - Piauí</option>
+                    <option value="PR - Paraná" id="16" data-id="estadoNomeLabel" for="tipo_estado_id">PR - Paraná</option>
+                    <option value="RJ - Rio de Janeiro" id="19" data-id="estadoNomeLabel" for="tipo_estado_id">RJ - Rio de Janeiro</option>
+                    <option value="RN - Rio Grande do Norte" id="20" data-id="estadoNomeLabel" for="tipo_estado_id">RN - Rio Grande do Norte</option>
+                    <option value="RO - Rondônia" id="22" data-id="estadoNomeLabel" for="tipo_estado_id">RO - Rondônia</option>
+                    <option value="RR - Roraima" id="23" data-id="estadoNomeLabel" for="tipo_estado_id">RR - Roraima</option>
+                    <option value="RS - Rio Grande do Sul" id="21" data-id="estadoNomeLabel" for="tipo_estado_id">RS - Rio Grande do Sul</option>
+                    <option value="SC - Santa Catarina" id="24" data-id="estadoNomeLabel" for="tipo_estado_id">SC - Santa Catarina</option>
+                    <option value="SE - Sergipe" id="26" data-id="estadoNomeLabel" for="tipo_estado_id">SE - Sergipe</option>
+                    <option value="SP - São Paulo" id="25" data-id="estadoNomeLabel" for="tipo_estado_id">SP - São Paulo</option>
+                    <option value="TO - Tocantins" id="27" data-id="estadoNomeLabel" for="tipo_estado_id">TO - Tocantins</option>
+                    <input type="hidden" id="tipo_estado_id" name="tipo_estado_id" value="1">
+                  </div>
+                  </select>
+                </label>
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Descrição de onde reside sua família:</span>
+                <input type="text" class="inputGrande" value="testolandia abc" id="descricao_reside_familia" name="descricao_reside_familia">
+              </div>
+              
+              <div class="linhaForm"> 
+                <label class="selectDefault alinhaLeftSelect">
+                <div class="comboStilo"> 
+                  <span class="titSang">Telefone de algum familiar:</span> 
+                  <select name="tipoParentescoLabel" id="tipoParentescoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                        <option value="" id="0" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Selecione</option>
+                        <option value="" id="1" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Agregado</option>
+                        <option value="" id="2" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Avô/Avó</option>
+                        <option value="" id="3" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Bisavô/Bisavó</option>
+                        <option value="" id="4" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Bisneto(a)</option>
+                        <option value="" id="5" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Cônjuge</option>
+                        <option value="" id="6" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Cunhado(a)</option>
+                        <option value="" id="7" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Enteado(a)</option>
+                        <option value="" id="8" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Filho (a)</option>
+                        <option value="" id="9" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Genro/Nora</option>
+                        <option value="" id="10" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Irmão/Irmã</option>
+                        <option value="" id="11" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Mãe/Pai</option>
+                        <option value="" id="12" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Não Informado</option>
+                        <option value="" id="13" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Neto (a)</option>
+                        <option value="" id="14" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Padrasto/Madrasta</option>
+                        <option value="" id="15" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Primo(a)</option>
+                        <option value="" id="16" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Sobrinho(a)</option>
+                        <option value="" id="17" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Sogro (a)</option>
+                        <option value="" id="18" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Tio (a)</option>               
+                    </div>
+                  <input type="hidden" id="tipo_parentesco_id" name="tipo_parentesco_id" value="">
+                  </select>
+                </div>
+                </label>
+                <div class="linhaForm alinhaObsCert">
+                  <input type="text" class="inputGrande adicionaNumContatoFamiliar" value="" id="numeroContatoFamiliarLabel" placeholder="Número">
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoFamiliar" value="Adicionar">
+                </div>
+                <div class="adicionaInputContatoFamiliar">
+                      <div id="div_telefone_familiar_18">
+                        <input type="text" value="Agregado" name="input__telefone_familiar_18" class="inputAdicionaContatoSelect" readonly="" id="input__telefone_familiar_18">
+                        <input type="hidden" value="1" name="tipo_familiar[]">
+                        <input type="text" value="3121231" name="input__telefone_familiar_18" class="inputAdicionaContato" readonly="" id="input__telefone_familiar_18">
+                        <input type="hidden" value="3121231" name="numero_familiar[]">
+                        <span class="btn-remover" onclick="removeMe('div_telefone_familiar_18')"></span>
+                      </div>
+                </div>
+              </div>
+              
+            </div>  
+            <!--FIM - PRIMEIRO BLOCO-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--INICIO - SEGUNDO BLOCO-->
+        <div class="contentAbaBorda">
+          
+            <label class="selectDefault lblUso">
+              <div class="comboStilo"> 
+                <span class="titSang">De quais drogas você faz uso:</span>
+                <input type="text" class="inputGrande adicionaDrogas" value="" id="inputteste" placeholder="Qual droga">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogas" value="Adicionar">
+              </div>
+            </label>
+            <label class="selectDefault">
+              <div class="comboStilo"> 
+                <span class="titSang">Há quanto tempo?</span> 
+
+                <select name="diaDrogasFazUsoLabel" id="diaDrogasFazUsoLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 dia" id="1" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">1 dia</option>
+                    <option value="2 dias" id="2" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">2 dias</option>
+                    <option value="3 dias" id="3" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">3 dias</option>
+                    <option value="4 dias" id="4" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">4 dias</option>
+                    <option value="5 dias" id="5" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">5 dias</option>
+                    <option value="6 dias" id="6" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">6 dias</option>
+                    <option value="7 dias" id="7" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">7 dias</option>
+                    <option value="8 dias" id="8" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">8 dias</option>
+                    <option value="9 dias" id="9" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">9 dias</option>
+                    <option value="10 dias" id="10" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">10 dias</option>
+                    <option value="11 dias" id="11" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">11 dias</option>
+                    <option value="12 dias" id="12" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">12 dias</option>
+                    <option value="13 dias" id="13" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">13 dias</option>
+                    <option value="14 dias" id="14" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">14 dias</option>
+                    <option value="15 dias" id="15" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">15 dias</option>
+                    <option value="16 dias" id="16" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">16 dias</option>
+                    <option value="17 dias" id="17" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">17 dias</option>
+                    <option value="18 dias" id="18" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">18 dias</option>
+                    <option value="19 dias" id="19" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">19 dias</option>
+                    <option value="20 dias" id="20" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">20 dias</option>
+                    <option value="21 dias" id="21" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">21 dias</option>
+                    <option value="22 dias" id="22" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">22 dias</option>
+                    <option value="23 dias" id="23" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">23 dias</option>
+                    <option value="24 dias" id="24" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">24 dias</option>
+                    <option value="25 dias" id="25" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">25 dias</option>
+                    <option value="26 dias" id="26" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">26 dias</option>
+                    <option value="27 dias" id="27" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">27 dias</option>
+                    <option value="28 dias" id="28" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">28 dias</option>
+                    <option value="29 dias" id="29" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">29 dias</option>
+                    <option value="30 dias" id="30" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">30 dias</option>
+                    <option value="31 dias" id="31" data-id="diaDrogasFazUsoLabel" for="dias_dorgas_faz_uso">31 dias</option>
+                  </div>
+                </select>
+
+                <select name="mesesDrogasFazUsoLabel" id="mesesDrogasFazUsoLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 mês" id="1" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">1 mês</option>
+                    <option value="2 meses" id="2" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">2 meses</option>
+                    <option value="3 meses" id="3" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">3 meses</option>
+                    <option value="4 meses" id="4" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">4 meses</option>
+                    <option value="5 meses" id="5" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">5 meses</option>
+                    <option value="6 meses" id="6" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">6 meses</option>
+                    <option value="7 meses" id="7" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">7 meses</option>
+                    <option value="8 meses" id="8" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">8 meses</option>
+                    <option value="9 meses" id="9" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">9 meses</option>
+                    <option value="10 meses" id="10" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">10 meses</option>
+                    <option value="11 meses" id="11" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">11 meses</option>
+                    <option value="12 meses" id="12" data-id="mesesDrogasFazUsoLabel" for="meses_dorgas_faz_uso">12 meses</option>
+                  </div>
+                </select>
+
+
+                <select name="anosDrogasFazUsoLabel" id="anosDrogasFazUsoLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 ano" id="1" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">1 ano</option>
+                    <option value="2 anos" id="2" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">2 anos</option>
+                    <option value="3 anos" id="3" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">3 anos</option>
+                    <option value="4 anos" id="4" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">4 anos</option>
+                    <option value="5 anos" id="5" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">5 anos</option>
+                    <option value="6 anos" id="6" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">6 anos</option>
+                    <option value="7 anos" id="7" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">7 anos</option>
+                    <option value="8 anos" id="8" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">8 anos</option>
+                    <option value="9 anos" id="9" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">9 anos</option>
+                    <option value="10 anos" id="10" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">10 anos</option>
+                    <option value="11 anos" id="11" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">11 anos</option>
+                    <option value="12 anos" id="12" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">12 anos</option>
+                  </div>
+                </select>
+      
+              </div>
+            </label>
+            <div class="adicionaInputDrogas">
+              <div id="div_drogas_faz_uso_52">
+                <input type="text" value="maconha" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly="" id="input__drogas_faz_uso_52">
+                <div class="inputsTempo">
+                  <input type="text" value="" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_52">
+                  <input type="text" value="" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_52">
+                  <input type="text" value="3 anos anos anos anos anos" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_52">
+                </div>
+                <span class="btn-remover" onclick="removeMe('div_drogas_faz_uso_52')"></span>
+              </div>
+                          <div id="div_drogas_faz_uso_53">
+                <input type="text" value="cigarro" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly="" id="input__drogas_faz_uso_53">
+                <div class="inputsTempo">
+                  <input type="text" value="2 dias dias dias dias dias" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_53">
+                  <input type="text" value="2 meses meses meses meses meses" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_53">
+                  <input type="text" value="2 anos anos anos anos anos" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_53">
+                </div>
+                <span class="btn-remover" onclick="removeMe('div_drogas_faz_uso_53')"></span>
+              </div>
+            </div>
+        
+        </div>
+
+
+
+
+
+
+        <div class="contentAbaBorda">
+          
+          <div class="linhaForm">
+            <span class="titLabel">Esta em tratamento de saúde:</span>
+            <div id="infoTratamentoSaude" class="radioButton">
+              <input type="radio" name="infoTratamentoSaude" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTratamentoSaude" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoTratamentoSaude" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="tratamento_saude" id="tratamento_saude" class="valueCheck">
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="contentAbaBorda">
+          <div class="linhaForm">
+            <span class="titLabel">Você percebe uma redução no uso de drogas após a inserção no programa:</span>
+            <div id="infoReducaoDrogasDepoisPrograma" class="radioButton">
+              <input type="radio" name="infoReducaoDrogasDepoisPrograma" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoReducaoDrogasDepoisPrograma" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoReducaoDrogasDepoisPrograma" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="reducao_drogas_depois_programa" id="reducao_drogas_depois_programa" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Antes do ingresso no programa, quanto tempo do seu dia você ficava sob efeito de droga:</span>
+            <div id="infoTempoEfeitoDrogaAntesPrograma" class="radioButton">
+              <input type="radio" name="infoTempoEfeitoDrogaAntesPrograma" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTempoEfeitoDrogaAntesPrograma" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoTempoEfeitoDrogaAntesPrograma" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="tempo_efeito_droga_antes_programa" id="tempo_efeito_droga_antes_programa" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">E depois do ingresso no programa, quanto tempo do seu dia você fica sob efeito de droga:</span>
+            <div id="infoTempoEfeitoDrogaDepoisPrograma" class="radioButton">
+              <input type="radio" name="infoTempoEfeitoDrogaDepoisPrograma" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTempoEfeitoDrogaDepoisPrograma" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoTempoEfeitoDrogaDepoisPrograma" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="tempo_efeito_droga_depois_programa" id="tempo_efeito_droga_depois_programa" class="valueCheck">
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <label class="selectDefault">
+              <div class="comboStilo"> 
+                <span class="titSang">Há quanto tempo usa crack:</span> 
+                <select name="diasFazUsoCrackLabel" id="diasFazUsoCrackLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 dia" id="1" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">1 dia</option>
+                    <option value="2 dias" id="2" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">2 dias</option>
+                    <option value="3 dias" id="3" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">3 dias</option>
+                    <option value="4 dias" id="4" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">4 dias</option>
+                    <option value="5 dias" id="5" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">5 dias</option>
+                    <option value="6 dias" id="6" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">6 dias</option>
+                    <option value="7 dias" id="7" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">7 dias</option>
+                    <option value="8 dias" id="8" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">8 dias</option>
+                    <option value="9 dias" id="9" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">9 dias</option>
+                    <option value="10 dias" id="10" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">10 dias</option>
+                    <option value="11 dias" id="11" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">11 dias</option>
+                    <option value="12 dias" id="12" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">12 dias</option>
+                    <option value="13 dias" id="13" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">13 dias</option>
+                    <option value="14 dias" id="14" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">14 dias</option>
+                    <option value="15 dias" id="15" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">15 dias</option>
+                    <option value="16 dias" id="16" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">16 dias</option>
+                    <option value="17 dias" id="17" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">17 dias</option>
+                    <option value="18 dias" id="18" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">18 dias</option>
+                    <option value="19 dias" id="19" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">19 dias</option>
+                    <option value="20 dias" id="20" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">20 dias</option>
+                    <option value="21 dias" id="21" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">21 dias</option>
+                    <option value="22 dias" id="22" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">22 dias</option>
+                    <option value="23 dias" id="23" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">23 dias</option>
+                    <option value="24 dias" id="24" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">24 dias</option>
+                    <option value="25 dias" id="25" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">25 dias</option>
+                    <option value="26 dias" id="26" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">26 dias</option>
+                    <option value="27 dias" id="27" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">27 dias</option>
+                    <option value="28 dias" id="28" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">28 dias</option>
+                    <option value="29 dias" id="29" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">29 dias</option>
+                    <option value="30 dias" id="30" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">30 dias</option>
+                    <option value="31 dias" id="31" data-id="diasFazUsoCrackLabel" for="dias_faz_uso_crack">31 dias</option>
+                  </div>
+                  <input type="hidden" id="dias_faz_uso_crack" name="dias_faz_uso_crack" value="4">
+                </select>
+
+                <select name="mesesFazUsoCrackLabel" id="mesesFazUsoCrackLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 mês" id="1" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">1 mês</option>
+                    <option value="2 meses" id="2" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">2 meses</option>
+                    <option value="3 meses" id="3" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">3 meses</option>
+                    <option value="4 meses" id="4" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">4 meses</option>
+                    <option value="5 meses" id="5" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">5 meses</option>
+                    <option value="6 meses" id="6" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">6 meses</option>
+                    <option value="7 meses" id="7" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">7 meses</option>
+                    <option value="8 meses" id="8" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">8 meses</option>
+                    <option value="9 meses" id="9" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">9 meses</option>
+                    <option value="10 meses" id="10" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">10 meses</option>
+                    <option value="11 meses" id="11" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">11 meses</option>
+                    <option value="12 meses" id="12" data-id="mesesFazUsoCrackLabel" for="meses_faz_uso_crack">12 meses</option>
+                  </div>
+                </select>
+
+
+
+
+                
+                <select name="anosUsoDrogasInjetaveisLabel" id="anosUsoDrogasInjetaveisLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="Selecione" id="0">Selecione</option>
+                    <option value="1 ano" id="1" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">1 ano</option>
+                    <option value="2 anos" id="2" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">2 anos</option>
+                    <option value="3 anos" id="3" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">3 anos</option>
+                    <option value="4 anos" id="4" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">4 anos</option>
+                    <option value="5 anos" id="5" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">5 anos</option>
+                    <option value="6 anos" id="6" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">6 anos</option>
+                    <option value="7 anos" id="7" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">7 anos</option>
+                    <option value="8 anos" id="8" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">8 anos</option>
+                    <option value="9 anos" id="9" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">9 anos</option>
+                    <option value="10 anos" id="10" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">10 anos</option>
+                    <option value="11 anos" id="11" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">11 anos</option>
+                    <option value="12 anos" id="12" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">12 anos</option>
+                    <option value="13 anos" id="13" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">13 anos</option>
+                    <option value="14 anos" id="14" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">14 anos</option>
+                    <option value="15 anos" id="15" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">15 anos</option>
+                    <option value="16 anos" id="16" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">16 anos</option>
+                    <option value="17 anos" id="17" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">17 anos</option>
+                    <option value="18 anos" id="18" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">18 anos</option>
+                    <option value="19 anos" id="19" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">19 anos</option>
+                    <option value="20 anos" id="20" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">20 anos</option>
+                    <option value="21 anos" id="21" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">21 anos</option>
+                    <option value="22 anos" id="22" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">22 anos</option>
+                    <option value="23 anos" id="23" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">23 anos</option>
+                    <option value="24 anos" id="24" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">24 anos</option>
+                    <option value="25 anos" id="25" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">25 anos</option>
+                    <option value="26 anos" id="26" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">26 anos</option>
+                    <option value="27 anos" id="27" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">27 anos</option>
+                    <option value="28 anos" id="28" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">28 anos</option>
+                    <option value="29 anos" id="29" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">29 anos</option>
+                    <option value="30 anos" id="30" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">30 anos</option>
+                    <option value="31 anos" id="31" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">31 anos</option>
+                    <option value="32 anos" id="32" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">32 anos</option>
+                    <option value="33 anos" id="33" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">33 anos</option>
+                    <option value="34 anos" id="34" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">34 anos</option>
+                    <option value="35 anos" id="35" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">35 anos</option>
+                    <option value="36 anos" id="36" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">36 anos</option>
+                    <option value="37 anos" id="37" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">37 anos</option>
+                    <option value="38 anos" id="38" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">38 anos</option>
+                    <option value="39 anos" id="39" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">39 anos</option>
+                    <option value="40 anos" id="40" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">40 anos</option>
+                    <option value="41 anos" id="41" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">41 anos</option>
+                    <option value="42 anos" id="42" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">42 anos</option>
+                    <option value="43 anos" id="43" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">43 anos</option>
+                    <option value="44 anos" id="44" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">44 anos</option>
+                    <option value="45 anos" id="45" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">45 anos</option>
+                    <option value="46 anos" id="46" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">46 anos</option>
+                    <option value="47 anos" id="47" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">47 anos</option>
+                    <option value="48 anos" id="48" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">48 anos</option>
+                    <option value="49 anos" id="49" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">49 anos</option>
+                    <option value="50 anos" id="50" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">50 anos</option>
+                  </div>
+                </select>               
+              </div>
+            </label>
+          </div>
+          
+          <div class="linhaForm"> 
+            
+            <label class="selectDefault">
+              <span class="titSang">Quantas pedras de crack você utilizava antes da inserção no programa:</span>
+              <div class="comboStilo"> 
+                <select name="numeroPedrasAntesProgramaLabel" id="numeroPedrasAntesProgramaLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                    <option value="1 por semana" id="1" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">1 por semana</option> 
+                    <option value="2 por semana" id="2" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">2 por semana</option> 
+                    <option value="3 por semana" id="3" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">3 por semana</option> 
+                    <option value="4 por semana" id="4" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">4 por semana</option> 
+                    <option value="5 por semana" id="5" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">5 por semana</option> 
+                    <option value="6 por semana" id="6" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">6 por semana</option> 
+                    <option value="7 por semana" id="7" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">7 por semana</option> 
+                    <option value="8 por semana" id="8" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">8 por semana</option> 
+                    <option value="9 por semana" id="9" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">9 por semana</option> 
+                    <option value="10 por semana" id="10" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">10 por semana</option> 
+                    <option value="11 por semana" id="11" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">11 por semana</option> 
+                    <option value="12 por semana" id="12" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">12 por semana</option> 
+                    <option value="13 por semana" id="13" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">13 por semana</option> 
+                    <option value="14 por semana" id="14" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">14 por semana</option> 
+                    <option value="15 por semana" id="15" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">15 por semana</option> 
+                    <option value="16 por semana" id="16" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">16 por semana</option> 
+                    <option value="17 por semana" id="17" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">17 por semana</option> 
+                    <option value="18 por semana" id="18" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">18 por semana</option> 
+                    <option value="19 por semana" id="19" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">19 por semana</option> 
+                    <option value="20 por semana" id="20" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">20 por semana</option> 
+                    <option value="21 por semana" id="21" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">21 por semana</option> 
+                    <option value="22 por semana" id="22" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">22 por semana</option> 
+                    <option value="23 por semana" id="23" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">23 por semana</option> 
+                    <option value="24 por semana" id="24" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">24 por semana</option> 
+                    <option value="25 por semana" id="25" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">25 por semana</option> 
+                    <option value="26 por semana" id="26" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">26 por semana</option> 
+                    <option value="27 por semana" id="27" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">27 por semana</option> 
+                    <option value="28 por semana" id="28" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">28 por semana</option> 
+                    <option value="29 por semana" id="29" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">29 por semana</option> 
+                    <option value="30 por semana" id="30" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">30 por semana</option> 
+                    <option value="31 por semana" id="31" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">31 por semana</option> 
+                    <option value="32 por semana" id="32" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">32 por semana</option> 
+                    <option value="33 por semana" id="33" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">33 por semana</option> 
+                    <option value="34 por semana" id="34" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">34 por semana</option> 
+                    <option value="35 por semana" id="35" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">35 por semana</option> 
+                    <option value="36 por semana" id="36" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">36 por semana</option> 
+                    <option value="37 por semana" id="37" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">37 por semana</option> 
+                    <option value="38 por semana" id="38" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">38 por semana</option> 
+                    <option value="39 por semana" id="39" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">39 por semana</option> 
+                    <option value="40 por semana" id="40" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">40 por semana</option> 
+                    <option value="41 por semana" id="41" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">41 por semana</option> 
+                    <option value="42 por semana" id="42" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">42 por semana</option> 
+                    <option value="43 por semana" id="43" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">43 por semana</option> 
+                    <option value="44 por semana" id="44" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">44 por semana</option> 
+                    <option value="45 por semana" id="45" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">45 por semana</option> 
+                    <option value="46 por semana" id="46" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">46 por semana</option> 
+                    <option value="47 por semana" id="47" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">47 por semana</option> 
+                    <option value="48 por semana" id="48" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">48 por semana</option> 
+                    <option value="49 por semana" id="49" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">49 por semana</option> 
+                    <option value="50 por semana" id="50" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">50 por semana</option> 
+                    <option value="51 por semana" id="51" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">51 por semana</option> 
+                    <option value="52 por semana" id="52" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">52 por semana</option> 
+                    <option value="53 por semana" id="53" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">53 por semana</option> 
+                    <option value="54 por semana" id="54" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">54 por semana</option> 
+                    <option value="55 por semana" id="55" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">55 por semana</option> 
+                    <option value="56 por semana" id="56" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">56 por semana</option> 
+                    <option value="57 por semana" id="57" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">57 por semana</option> 
+                    <option value="58 por semana" id="58" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">58 por semana</option> 
+                    <option value="59 por semana" id="59" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">59 por semana</option> 
+                    <option value="60 por semana" id="60" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">60 por semana</option> 
+                    <option value="61 por semana" id="61" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">61 por semana</option> 
+                    <option value="62 por semana" id="62" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">62 por semana</option> 
+                    <option value="63 por semana" id="63" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">63 por semana</option> 
+                    <option value="64 por semana" id="64" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">64 por semana</option> 
+                    <option value="65 por semana" id="65" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">65 por semana</option> 
+                    <option value="66 por semana" id="66" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">66 por semana</option> 
+                    <option value="67 por semana" id="67" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">67 por semana</option> 
+                    <option value="68 por semana" id="68" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">68 por semana</option> 
+                    <option value="69 por semana" id="69" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">69 por semana</option> 
+                    <option value="70 por semana" id="70" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">70 por semana</option> 
+                    <option value="71 por semana" id="71" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">71 por semana</option> 
+                    <option value="72 por semana" id="72" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">72 por semana</option> 
+                    <option value="73 por semana" id="73" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">73 por semana</option> 
+                    <option value="74 por semana" id="74" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">74 por semana</option> 
+                    <option value="75 por semana" id="75" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">75 por semana</option> 
+                    <option value="76 por semana" id="76" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">76 por semana</option> 
+                    <option value="77 por semana" id="77" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">77 por semana</option> 
+                    <option value="78 por semana" id="78" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">78 por semana</option> 
+                    <option value="79 por semana" id="79" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">79 por semana</option> 
+                    <option value="80 por semana" id="80" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">80 por semana</option> 
+                    <option value="81 por semana" id="81" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">81 por semana</option> 
+                    <option value="82 por semana" id="82" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">82 por semana</option> 
+                    <option value="83 por semana" id="83" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">83 por semana</option> 
+                    <option value="84 por semana" id="84" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">84 por semana</option> 
+                    <option value="85 por semana" id="85" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">85 por semana</option> 
+                    <option value="86 por semana" id="86" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">86 por semana</option> 
+                    <option value="87 por semana" id="87" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">87 por semana</option> 
+                    <option value="88 por semana" id="88" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">88 por semana</option> 
+                    <option value="89 por semana" id="89" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">89 por semana</option> 
+                    <option value="90 por semana" id="90" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">90 por semana</option> 
+                    <option value="91 por semana" id="91" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">91 por semana</option> 
+                    <option value="92 por semana" id="92" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">92 por semana</option> 
+                    <option value="93 por semana" id="93" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">93 por semana</option> 
+                    <option value="94 por semana" id="94" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">94 por semana</option> 
+                    <option value="95 por semana" id="95" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">95 por semana</option> 
+                    <option value="96 por semana" id="96" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">96 por semana</option> 
+                    <option value="97 por semana" id="97" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">97 por semana</option> 
+                    <option value="98 por semana" id="98" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">98 por semana</option> 
+                    <option value="99 por semana" id="99" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">99 por semana</option> 
+                    <option value="100 por semana" id="100" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">Mais de 100 por semana</option>
+                  </div>
+                </select>
+                <input type="hidden" id="numero_pedras_antes_programa" name="numero_pedras_antes_programa" value="15">
+              </div>
+            </label>
+          </div>
+          
+          <div class="linhaForm"> 
+            <label class="selectDefault">
+              <span class="titSang">Quantas pedras de crack usa atualmente:</span>
+              <div class="comboStilo"> 
+                <select name="numeroPedrasAtualmenteLabel" id="numeroPedrasAtualmenteLabel" class="selectPersonalizado">
+                  <div class="lista-box-scroll">
+                      <option value="1 por semana" id="1" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">1 por semana</option> 
+                      <option value="2 por semana" id="2" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">2 por semana</option> 
+                      <option value="3 por semana" id="3" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">3 por semana</option> 
+                      <option value="4 por semana" id="4" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">4 por semana</option> 
+                      <option value="5 por semana" id="5" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">5 por semana</option> 
+                      <option value="6 por semana" id="6" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">6 por semana</option> 
+                      <option value="7 por semana" id="7" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">7 por semana</option> 
+                      <option value="8 por semana" id="8" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">8 por semana</option> 
+                      <option value="9 por semana" id="9" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">9 por semana</option> 
+                      <option value="10 por semana" id="10" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">10 por semana</option> 
+                      <option value="11 por semana" id="11" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">11 por semana</option> 
+                      <option value="12 por semana" id="12" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">12 por semana</option> 
+                      <option value="13 por semana" id="13" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">13 por semana</option> 
+                      <option value="14 por semana" id="14" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">14 por semana</option> 
+                      <option value="15 por semana" id="15" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">15 por semana</option> 
+                      <option value="16 por semana" id="16" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">16 por semana</option> 
+                      <option value="17 por semana" id="17" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">17 por semana</option> 
+                      <option value="18 por semana" id="18" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">18 por semana</option> 
+                      <option value="19 por semana" id="19" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">19 por semana</option> 
+                      <option value="20 por semana" id="20" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">20 por semana</option> 
+                      <option value="21 por semana" id="21" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">21 por semana</option> 
+                      <option value="22 por semana" id="22" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">22 por semana</option> 
+                      <option value="23 por semana" id="23" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">23 por semana</option> 
+                      <option value="24 por semana" id="24" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">24 por semana</option> 
+                      <option value="25 por semana" id="25" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">25 por semana</option> 
+                      <option value="26 por semana" id="26" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">26 por semana</option> 
+                      <option value="27 por semana" id="27" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">27 por semana</option> 
+                      <option value="28 por semana" id="28" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">28 por semana</option> 
+                      <option value="29 por semana" id="29" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">29 por semana</option> 
+                      <option value="30 por semana" id="30" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">30 por semana</option> 
+                      <option value="31 por semana" id="31" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">31 por semana</option> 
+                      <option value="32 por semana" id="32" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">32 por semana</option> 
+                      <option value="33 por semana" id="33" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">33 por semana</option> 
+                      <option value="34 por semana" id="34" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">34 por semana</option> 
+                      <option value="35 por semana" id="35" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">35 por semana</option> 
+                      <option value="36 por semana" id="36" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">36 por semana</option> 
+                      <option value="37 por semana" id="37" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">37 por semana</option> 
+                      <option value="38 por semana" id="38" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">38 por semana</option> 
+                      <option value="39 por semana" id="39" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">39 por semana</option> 
+                      <option value="40 por semana" id="40" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">40 por semana</option> 
+                      <option value="41 por semana" id="41" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">41 por semana</option> 
+                      <option value="42 por semana" id="42" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">42 por semana</option> 
+                      <option value="43 por semana" id="43" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">43 por semana</option> 
+                      <option value="44 por semana" id="44" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">44 por semana</option> 
+                      <option value="45 por semana" id="45" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">45 por semana</option> 
+                      <option value="46 por semana" id="46" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">46 por semana</option> 
+                      <option value="47 por semana" id="47" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">47 por semana</option> 
+                      <option value="48 por semana" id="48" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">48 por semana</option> 
+                      <option value="49 por semana" id="49" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">49 por semana</option> 
+                      <option value="50 por semana" id="50" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">50 por semana</option> 
+                      <option value="51 por semana" id="51" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">51 por semana</option> 
+                      <option value="52 por semana" id="52" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">52 por semana</option> 
+                      <option value="53 por semana" id="53" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">53 por semana</option> 
+                      <option value="54 por semana" id="54" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">54 por semana</option> 
+                      <option value="55 por semana" id="55" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">55 por semana</option> 
+                      <option value="56 por semana" id="56" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">56 por semana</option> 
+                      <option value="57 por semana" id="57" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">57 por semana</option> 
+                      <option value="58 por semana" id="58" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">58 por semana</option> 
+                      <option value="59 por semana" id="59" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">59 por semana</option> 
+                      <option value="60 por semana" id="60" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">60 por semana</option> 
+                      <option value="61 por semana" id="61" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">61 por semana</option> 
+                      <option value="62 por semana" id="62" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">62 por semana</option> 
+                      <option value="63 por semana" id="63" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">63 por semana</option> 
+                      <option value="64 por semana" id="64" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">64 por semana</option> 
+                      <option value="65 por semana" id="65" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">65 por semana</option> 
+                      <option value="66 por semana" id="66" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">66 por semana</option> 
+                      <option value="67 por semana" id="67" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">67 por semana</option> 
+                      <option value="68 por semana" id="68" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">68 por semana</option> 
+                      <option value="69 por semana" id="69" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">69 por semana</option> 
+                      <option value="70 por semana" id="70" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">70 por semana</option> 
+                      <option value="71 por semana" id="71" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">71 por semana</option> 
+                      <option value="72 por semana" id="72" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">72 por semana</option> 
+                      <option value="73 por semana" id="73" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">73 por semana</option> 
+                      <option value="74 por semana" id="74" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">74 por semana</option> 
+                      <option value="75 por semana" id="75" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">75 por semana</option> 
+                      <option value="76 por semana" id="76" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">76 por semana</option> 
+                      <option value="77 por semana" id="77" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">77 por semana</option> 
+                      <option value="78 por semana" id="78" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">78 por semana</option> 
+                      <option value="79 por semana" id="79" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">79 por semana</option> 
+                      <option value="80 por semana" id="80" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">80 por semana</option> 
+                      <option value="81 por semana" id="81" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">81 por semana</option> 
+                      <option value="82 por semana" id="82" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">82 por semana</option> 
+                      <option value="83 por semana" id="83" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">83 por semana</option> 
+                      <option value="84 por semana" id="84" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">84 por semana</option> 
+                      <option value="85 por semana" id="85" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">85 por semana</option> 
+                      <option value="86 por semana" id="86" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">86 por semana</option> 
+                      <option value="87 por semana" id="87" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">87 por semana</option> 
+                      <option value="88 por semana" id="88" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">88 por semana</option> 
+                      <option value="89 por semana" id="89" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">89 por semana</option> 
+                      <option value="90 por semana" id="90" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">90 por semana</option> 
+                      <option value="91 por semana" id="91" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">91 por semana</option> 
+                      <option value="92 por semana" id="92" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">92 por semana</option> 
+                      <option value="93 por semana" id="93" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">93 por semana</option> 
+                      <option value="94 por semana" id="94" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">94 por semana</option> 
+                      <option value="95 por semana" id="95" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">95 por semana</option> 
+                      <option value="96 por semana" id="96" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">96 por semana</option> 
+                      <option value="97 por semana" id="97" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">97 por semana</option> 
+                      <option value="98 por semana" id="98" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">98 por semana</option> 
+                      <option value="99 por semana" id="99" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">99 por semana</option> 
+                      <option value="100 por semana" id="100" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">Mais de 100 por semana</option>
+                    </div>
+                  </select>
+                <input type="hidden" id="numero_pedras_atualmente" name="numero_pedras_atualmente" value="3">
+              </div>
+            </label>            
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Faz uso de outras drogas além do crack:</span>
+            <div id="infoDrogasAlemCrack" class="radioButton">
+              <input type="radio" name="infoDrogasAlemCrack" value="Não Informado" class="radio" onchange="drogasAlemCrack()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoDrogasAlemCrack" value="Não" class="radio" onchange="drogasAlemCrack()">
+              <p>Não</p>
+              <input type="radio" name="infoDrogasAlemCrack" value="Sim" class="radio" onchange="drogasAlemCrack()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="drogas_alem_crack" id="drogas_alem_crack" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="drogasAlemCrack"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Quais:</span>
+              <div class="linhaForm alinhaObsCert">
+                <input type="text" class="inputGrande adicionaDrogasAlemCrack" value="" id="drogasAlemCrack">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogasAlemCrack" value="Adicionar">
+              </div>
+              <div class="adicionaInputDrogasAlemCrack">
+                    <div id="div_drogas_alem_crack_54">
+                      <input type="text" value="maconha" name="descricao_drogas_alem_crack[]" class="inputAdicionaDrogasAlemCrack" readonly="" id="input__drogas_alem_crack_54">
+                      <span class="btn-remover" onclick="removeMe('div_drogas_alem_crack_54')"></span>
+                    </div>
+                                    
+              </div>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Já fez uso de droga injetável:</span>
+            <div id="infoUsoDrogasInjetaveis" class="radioButton">
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não Informado" class="radio" onchange="usoDrogasInjetaveis()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não" class="radio" onchange="usoDrogasInjetaveis()">
+              <p>Não</p>
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Sim" class="radio" onchange="usoDrogasInjetaveis()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="uso_drogas_injetaveis" id="uso_drogas_injetaveis" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="usoDrogasInjetaveis"> 
+            <div class="linhaForm"> 
+              <label class="selectDefault">
+                <div class="comboStilo"> 
+                  <span class="titSang">Quanto tempo:</span> 
+                  <select name="diasUsoDrogasInjetaveisLabel" id="diasUsoDrogasInjetaveisLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 dia" id="1" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">1 dia</option>
+                      <option value="2 dias" id="2" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">2 dias</option>
+                      <option value="3 dias" id="3" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">3 dias</option>
+                      <option value="4 dias" id="4" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">4 dias</option>
+                      <option value="5 dias" id="5" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">5 dias</option>
+                      <option value="6 dias" id="6" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">6 dias</option>
+                      <option value="7 dias" id="7" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">7 dias</option>
+                      <option value="8 dias" id="8" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">8 dias</option>
+                      <option value="9 dias" id="9" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">9 dias</option>
+                      <option value="10 dias" id="10" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">10 dias</option>
+                      <option value="11 dias" id="11" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">11 dias</option>
+                      <option value="12 dias" id="12" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">12 dias</option>
+                      <option value="13 dias" id="13" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">13 dias</option>
+                      <option value="14 dias" id="14" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">14 dias</option>
+                      <option value="15 dias" id="15" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">15 dias</option>
+                      <option value="16 dias" id="16" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">16 dias</option>
+                      <option value="17 dias" id="17" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">17 dias</option>
+                      <option value="18 dias" id="18" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">18 dias</option>
+                      <option value="19 dias" id="19" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">19 dias</option>
+                      <option value="20 dias" id="20" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">20 dias</option>
+                      <option value="21 dias" id="21" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">21 dias</option>
+                      <option value="22 dias" id="22" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">22 dias</option>
+                      <option value="23 dias" id="23" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">23 dias</option>
+                      <option value="24 dias" id="24" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">24 dias</option>
+                      <option value="25 dias" id="25" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">25 dias</option>
+                      <option value="26 dias" id="26" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">26 dias</option>
+                      <option value="27 dias" id="27" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">27 dias</option>
+                      <option value="28 dias" id="28" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">28 dias</option>
+                      <option value="29 dias" id="29" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">29 dias</option>
+                      <option value="30 dias" id="30" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">30 dias</option>
+                      <option value="31 dias" id="31" data-id="diasUsoDrogasInjetaveisLabel" for="dias_uso_drogas_injetaveis">31 dias</option>
+                    </div>
+                    <input type="hidden" id="dias_uso_drogas_injetaveis" name="dias_uso_drogas_injetaveis" value="">
+                  </select>
+
+
+                  <select name="mesesUsoDrogasInjetaveisLabel" id="mesesUsoDrogasInjetaveisLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 mês" id="1" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">1 mês</option>
+                      <option value="2 meses" id="2" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">2 meses</option>
+                      <option value="3 meses" id="3" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">3 meses</option>
+                      <option value="4 meses" id="4" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">4 meses</option>
+                      <option value="5 meses" id="5" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">5 meses</option>
+                      <option value="6 meses" id="6" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">6 meses</option>
+                      <option value="7 meses" id="7" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">7 meses</option>
+                      <option value="8 meses" id="8" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">8 meses</option>
+                      <option value="9 meses" id="9" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">9 meses</option>
+                      <option value="10 meses" id="10" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">10 meses</option>
+                      <option value="11 meses" id="11" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">11 meses</option>
+                      <option value="12 meses" id="12" data-id="mesesUsoDrogasInjetaveisLabel" for="meses_uso_drogas_injetaveis">12 meses</option>
+                    </div>
+                    <input type="hidden" id="meses_uso_drogas_injetaveis" name="meses_uso_drogas_injetaveis" value="7">
+                  </select>
+
+
+
+                  <select name="anosUsoDrogasInjetaveisLabel" id="anosUsoDrogasInjetaveisLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 ano" id="1" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">1 ano</option>
+                      <option value="2 anos" id="2" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">2 anos</option>
+                      <option value="3 anos" id="3" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">3 anos</option>
+                      <option value="4 anos" id="4" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">4 anos</option>
+                      <option value="5 anos" id="5" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">5 anos</option>
+                      <option value="6 anos" id="6" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">6 anos</option>
+                      <option value="7 anos" id="7" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">7 anos</option>
+                      <option value="8 anos" id="8" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">8 anos</option>
+                      <option value="9 anos" id="9" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">9 anos</option>
+                      <option value="10 anos" id="10" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">10 anos</option>
+                      <option value="11 anos" id="11" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">11 anos</option>
+                      <option value="12 anos" id="12" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">12 anos</option>
+                      <option value="13 anos" id="13" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">13 anos</option>
+                      <option value="14 anos" id="14" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">14 anos</option>
+                      <option value="15 anos" id="15" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">15 anos</option>
+                      <option value="16 anos" id="16" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">16 anos</option>
+                      <option value="17 anos" id="17" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">17 anos</option>
+                      <option value="18 anos" id="18" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">18 anos</option>
+                      <option value="19 anos" id="19" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">19 anos</option>
+                      <option value="20 anos" id="20" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">20 anos</option>
+                      <option value="21 anos" id="21" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">21 anos</option>
+                      <option value="22 anos" id="22" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">22 anos</option>
+                      <option value="23 anos" id="23" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">23 anos</option>
+                      <option value="24 anos" id="24" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">24 anos</option>
+                      <option value="25 anos" id="25" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">25 anos</option>
+                      <option value="26 anos" id="26" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">26 anos</option>
+                      <option value="27 anos" id="27" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">27 anos</option>
+                      <option value="28 anos" id="28" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">28 anos</option>
+                      <option value="29 anos" id="29" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">29 anos</option>
+                      <option value="30 anos" id="30" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">30 anos</option>
+                      <option value="31 anos" id="31" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">31 anos</option>
+                      <option value="32 anos" id="32" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">32 anos</option>
+                      <option value="33 anos" id="33" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">33 anos</option>
+                      <option value="34 anos" id="34" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">34 anos</option>
+                      <option value="35 anos" id="35" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">35 anos</option>
+                      <option value="36 anos" id="36" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">36 anos</option>
+                      <option value="37 anos" id="37" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">37 anos</option>
+                      <option value="38 anos" id="38" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">38 anos</option>
+                      <option value="39 anos" id="39" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">39 anos</option>
+                      <option value="40 anos" id="40" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">40 anos</option>
+                      <option value="41 anos" id="41" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">41 anos</option>
+                      <option value="42 anos" id="42" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">42 anos</option>
+                      <option value="43 anos" id="43" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">43 anos</option>
+                      <option value="44 anos" id="44" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">44 anos</option>
+                      <option value="45 anos" id="45" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">45 anos</option>
+                      <option value="46 anos" id="46" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">46 anos</option>
+                      <option value="47 anos" id="47" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">47 anos</option>
+                      <option value="48 anos" id="48" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">48 anos</option>
+                      <option value="49 anos" id="49" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">49 anos</option>
+                      <option value="50 anos" id="50" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">50 anos</option>
+                    </div>
+                  </select>         
+                </div>
+              </label>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Está ou esteve abstinente após a inserção no programa:</span>
+            <div id="infoAbstinenciaAposPrograma" class="radioButton">
+              <input type="radio" name="infoAbstinenciaAposPrograma" value="Não Informado" class="radio" onchange="abstinenciaAposPrograma()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoAbstinenciaAposPrograma" value="Não" class="radio" onchange="abstinenciaAposPrograma()">
+              <p>Não</p>
+              <input type="radio" name="infoAbstinenciaAposPrograma" value="Sim" class="radio" onchange="abstinenciaAposPrograma()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="abstinencia_apos_programa" id="abstinencia_apos_programa" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="abstinenciaAposPrograma"> 
+            <div class="linhaForm"> 
+              <label class="selectDefault">
+                <div class="comboStilo"> 
+                  <span class="titSang">Quanto tempo:</span> 
+                  <select name="diasAbstinenciaAposProgramaLabel" id="diasAbstinenciaAposProgramaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 dia" id="1" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">1 dia</option>
+                      <option value="2 dias" id="2" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">2 dias</option>
+                      <option value="3 dias" id="3" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">3 dias</option>
+                      <option value="4 dias" id="4" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">4 dias</option>
+                      <option value="5 dias" id="5" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">5 dias</option>
+                      <option value="6 dias" id="6" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">6 dias</option>
+                      <option value="7 dias" id="7" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">7 dias</option>
+                      <option value="8 dias" id="8" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">8 dias</option>
+                      <option value="9 dias" id="9" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">9 dias</option>
+                      <option value="10 dias" id="10" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">10 dias</option>
+                      <option value="11 dias" id="11" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">11 dias</option>
+                      <option value="12 dias" id="12" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">12 dias</option>
+                      <option value="13 dias" id="13" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">13 dias</option>
+                      <option value="14 dias" id="14" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">14 dias</option>
+                      <option value="15 dias" id="15" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">15 dias</option>
+                      <option value="16 dias" id="16" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">16 dias</option>
+                      <option value="17 dias" id="17" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">17 dias</option>
+                      <option value="18 dias" id="18" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">18 dias</option>
+                      <option value="19 dias" id="19" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">19 dias</option>
+                      <option value="20 dias" id="20" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">20 dias</option>
+                      <option value="21 dias" id="21" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">21 dias</option>
+                      <option value="22 dias" id="22" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">22 dias</option>
+                      <option value="23 dias" id="23" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">23 dias</option>
+                      <option value="24 dias" id="24" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">24 dias</option>
+                      <option value="25 dias" id="25" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">25 dias</option>
+                      <option value="26 dias" id="26" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">26 dias</option>
+                      <option value="27 dias" id="27" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">27 dias</option>
+                      <option value="28 dias" id="28" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">28 dias</option>
+                      <option value="29 dias" id="29" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">29 dias</option>
+                      <option value="30 dias" id="30" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">30 dias</option>
+                      <option value="31 dias" id="31" data-id="diasAbstinenciaAposProgramaLabel" for="dias_abstinencia_apos_programa">31 dias</option>
+                    </div>
+                    <input type="hidden" id="dias_abstinencia_apos_programa" name="dias_abstinencia_apos_programa" value="">
+                  </select>
+                  
+                  <select name="mesesAbstinenciaAposProgramaLabel" id="mesesAbstinenciaAposProgramaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 mês" id="1" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">1 mês</option>
+                      <option value="2 meses" id="2" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">2 meses</option>
+                      <option value="3 meses" id="3" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">3 meses</option>
+                      <option value="4 meses" id="4" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">4 meses</option>
+                      <option value="5 meses" id="5" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">5 meses</option>
+                      <option value="6 meses" id="6" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">6 meses</option>
+                      <option value="7 meses" id="7" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">7 meses</option>
+                      <option value="8 meses" id="8" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">8 meses</option>
+                      <option value="9 meses" id="9" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">9 meses</option>
+                      <option value="10 meses" id="10" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">10 meses</option>
+                      <option value="11 meses" id="11" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">11 meses</option>
+                      <option value="12 meses" id="12" data-id="mesesAbstinenciaAposProgramaLabel" for="meses_abstinencia_apos_programa">12 meses</option>
+                    </div>
+                    <input type="hidden" id="meses_abstinencia_apos_programa" name="meses_abstinencia_apos_programa" value="7">
+                  </select>
+                  
+                  <select name="anosAbstinenciaAposProgramaLabel" id="anosAbstinenciaAposProgramaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 ano" id="1" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">1 ano</option>
+                      <option value="2 anos" id="2" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">2 anos</option>
+                      <option value="3 anos" id="3" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">3 anos</option>
+                      <option value="4 anos" id="4" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">4 anos</option>
+                      <option value="5 anos" id="5" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">5 anos</option>
+                      <option value="6 anos" id="6" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">6 anos</option>
+                      <option value="7 anos" id="7" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">7 anos</option>
+                      <option value="8 anos" id="8" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">8 anos</option>
+                      <option value="9 anos" id="9" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">9 anos</option>
+                      <option value="10 anos" id="10" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">10 anos</option>
+                      <option value="11 anos" id="11" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">11 anos</option>
+                      <option value="12 anos" id="12" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">12 anos</option>
+                      <option value="13 anos" id="13" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">13 anos</option>
+                      <option value="14 anos" id="14" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">14 anos</option>
+                      <option value="15 anos" id="15" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">15 anos</option>
+                      <option value="16 anos" id="16" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">16 anos</option>
+                      <option value="17 anos" id="17" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">17 anos</option>
+                      <option value="18 anos" id="18" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">18 anos</option>
+                      <option value="19 anos" id="19" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">19 anos</option>
+                      <option value="20 anos" id="20" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">20 anos</option>
+                      <option value="21 anos" id="21" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">21 anos</option>
+                      <option value="22 anos" id="22" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">22 anos</option>
+                      <option value="23 anos" id="23" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">23 anos</option>
+                      <option value="24 anos" id="24" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">24 anos</option>
+                      <option value="25 anos" id="25" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">25 anos</option>
+                      <option value="26 anos" id="26" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">26 anos</option>
+                      <option value="27 anos" id="27" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">27 anos</option>
+                      <option value="28 anos" id="28" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">28 anos</option>
+                      <option value="29 anos" id="29" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">29 anos</option>
+                      <option value="30 anos" id="30" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">30 anos</option>
+                      <option value="31 anos" id="31" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">31 anos</option>
+                      <option value="32 anos" id="32" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">32 anos</option>
+                      <option value="33 anos" id="33" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">33 anos</option>
+                      <option value="34 anos" id="34" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">34 anos</option>
+                      <option value="35 anos" id="35" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">35 anos</option>
+                      <option value="36 anos" id="36" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">36 anos</option>
+                      <option value="37 anos" id="37" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">37 anos</option>
+                      <option value="38 anos" id="38" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">38 anos</option>
+                      <option value="39 anos" id="39" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">39 anos</option>
+                      <option value="40 anos" id="40" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">40 anos</option>
+                      <option value="41 anos" id="41" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">41 anos</option>
+                      <option value="42 anos" id="42" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">42 anos</option>
+                      <option value="43 anos" id="43" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">43 anos</option>
+                      <option value="44 anos" id="44" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">44 anos</option>
+                      <option value="45 anos" id="45" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">45 anos</option>
+                      <option value="46 anos" id="46" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">46 anos</option>
+                      <option value="47 anos" id="47" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">47 anos</option>
+                      <option value="48 anos" id="48" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">48 anos</option>
+                      <option value="49 anos" id="49" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">49 anos</option>
+                      <option value="50 anos" id="50" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">50 anos</option>
+                    </div>
+                    <input type="hidden" id="anos_abstinencia_apos_programa" name="anos_abstinencia_apos_programa" value="2">
+                  </select>         
+                </div>
+              </label>
+            </div>
+          </div>
+          
+        </div>
+
+
+        <!--FIM - SEGUNDO BLOCO-->
+
+
+        <!--INICIO - TERCEIRO BLOCO-->
+        <div class="contentAbaBorda">
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">Controle glicemia:</span>
+            <input type="text" class="inputGrande" value="150" id="controle_glicemia" name="controle_glicemia">
+          </div>
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">Controle de pressão arterial:</span>
+            <input type="text" class="inputGrande" value="10/9" id="controle_pressao_arterial" name="controle_pressao_arterial">
+          </div>
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">Controle de peso:</span>
+            <input type="text" class="inputGrande" value="56,3" id="controle_peso" name="controle_peso">
+          </div>
+          
+        </div> 
+        <!--FIM - TERCEIRO BLOCO-->
+
+
+
+
+        <!--INICIO - QUARTO BLOCO-->
+        <div class="contentAbaBorda">
+          
+          <div class="linhaForm">
+            <span class="titLabel">Já fez teste rápido de DST/Aids:</span>
+            <div id="infoTesteRapidoDstAids" class="radioButton">
+              <input type="radio" name="infoTesteRapidoDstAids" value="Não Informado" class="radio" onchange="testeRapidoDstAids()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTesteRapidoDstAids" value="Não" class="radio" onchange="testeRapidoDstAids()">
+              <p>Não</p>
+              <input type="radio" name="infoTesteRapidoDstAids" value="Sim" class="radio" onchange="testeRapidoDstAids()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="teste_rapido_dst_aids" id="teste_rapido_dst_aids" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="testeRapidoDstAids"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="local aids" id="local_teste_rapido_dst_aids" name="local_teste_rapido_dst_aids">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Está em acompanhamento de alguma DST:</span>
+            <div id="infoAcompanhamentoDst" class="radioButton">
+              <input type="radio" name="infoAcompanhamentoDst" value="Não Informado" class="radio" onchange="acompanhamentoDst()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoAcompanhamentoDst" value="Não" class="radio" onchange="acompanhamentoDst()">
+              <p>Não</p>
+              <input type="radio" name="infoAcompanhamentoDst" value="Sim" class="radio" onchange="acompanhamentoDst()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="acompanhamento_dst" id="acompanhamento_dst" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="acompanhamentoDst"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="acompanhamento DST" id="local_acompanhamento_dst" name="local_acompanhamento_dst">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Tem diagnóstico de HIV/Aids:</span>
+            <div id="infoDiagnosticoHivAids" class="radioButton">
+              <input type="radio" name="infoDiagnosticoHivAids" value="Não Informado" class="radio" onchange="diagnosticoHivAids()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoDiagnosticoHivAids" value="Não" class="radio" onchange="diagnosticoHivAids()">
+              <p>Não</p>
+              <input type="radio" name="infoDiagnosticoHivAids" value="Sim" class="radio" onchange="diagnosticoHivAids()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="diagnostico_hiv_aids" id="diagnostico_hiv_aids" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="diagnosticoHivAids"> 
+            <div class="linhaForm">
+              <span class="titLabel">Esta em tratamento:</span>
+              <div id="infoTratamentoHivAids" class="radioButton">
+                <input type="radio" name="infoTratamentoHivAids" value="Não Informado" class="radio" onchange="tratamentoHivAids()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTratamentoHivAids" value="Não" class="radio" onchange="tratamentoHivAids()">
+                <p>Não</p>
+                <input type="radio" name="infoTratamentoHivAids" value="Sim" class="radio" onchange="tratamentoHivAids()">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="tratamento_hiv_aids" id="tratamento_hiv_aids" class="valueCheck">
+              </div>
+            </div>
+            
+            <div id="tratamentoHivAids"> 
+              <div class="linhaForm"> 
+                <span class="titLabel">Onde:</span>
+                <input type="text" class="inputGrande" value="tratamento hiv" id="local_tratamento_hiv_aids" name="local_tratamento_hiv_aids">
+              </div>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Tem diagnóstico de Sífilis:</span>
+            <div id="infoDiagnosticoSifilis" class="radioButton">
+              <input type="radio" name="infoDiagnosticoSifilis" value="Não Informado" class="radio" onchange="diagnosticoSifilis()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoDiagnosticoSifilis" value="Não" class="radio" onchange="diagnosticoSifilis()">
+              <p>Não</p>
+              <input type="radio" name="infoDiagnosticoSifilis" value="Sim" class="radio" onchange="diagnosticoSifilis()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="diagnostico_sifilis" id="diagnostico_sifilis" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="diagnosticoSifilis"> 
+            <div class="linhaForm">
+              <span class="titLabel">Esta em tratamento:</span>
+              <div id="infoTratamentoSifilis" class="radioButton">
+                <input type="radio" name="infoTratamentoSifilis" value="Não Informado" class="radio" onchange="tratamentoSifilis()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTratamentoSifilis" value="Não" class="radio" onchange="tratamentoSifilis()">
+                <p>Não</p>
+                <input type="radio" name="infoTratamentoSifilis" value="Sim" class="radio" onchange="tratamentoSifilis()">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="tratamento_sifilis" id="tratamento_sifilis" class="valueCheck">
+              </div>
+            </div>
+            
+            <div id="tratamentoSifilis"> 
+              <div class="linhaForm"> 
+                <span class="titLabel">Onde:</span>
+                <input type="text" class="inputGrande" value="tratamento sifilis" id="local_tratamento_sifilis" name="local_tratamento_sifilis">
+              </div>
+              
+              <div class="linhaForm">
+                <span class="titLabel">Teve alta:</span>
+                <div id="infoAltaTratamentoSifilis" class="radioButton">
+                  <input type="radio" name="infoAltaTratamentoSifilis" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoAltaTratamentoSifilis" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoAltaTratamentoSifilis" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="1" name="alta_tratamento_sifilis" id="alta_tratamento_sifilis" class="valueCheck">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Já passou por avaliação odontológica:</span>
+            <div id="infoPassouAvaliacaoOdontologica" class="radioButton">
+              <input type="radio" name="infoPassouAvaliacaoOdontologica" value="Não Informado" class="radio" onchange="passouAvaliacaoOdontologica()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoPassouAvaliacaoOdontologica" value="Não" class="radio" onchange="passouAvaliacaoOdontologica()">
+              <p>Não</p>
+              <input type="radio" name="infoPassouAvaliacaoOdontologica" value="Sim" class="radio" onchange="passouAvaliacaoOdontologica()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="passou_avaliacao_odontologica" id="passou_avaliacao_odontologica" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="passouAvaliacaoOdontologica"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="clinica dos dentes" id="local_passou_avaliacao_odontologica" name="local_passou_avaliacao_odontologica">
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Encontra-se em tratamento odontológico:</span>
+              <div id="infoAltaTratamentoOdontologico" class="radioButton">
+                <input type="radio" name="infoAltaTratamentoOdontologico" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoAltaTratamentoOdontologico" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoAltaTratamentoOdontologico" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="tratamento_odontologico" id="tratamento_odontologico" class="valueCheck">
+              </div>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Tem sintomas respiratórios (bronquite, asma...):</span>
+            <div id="infoSintomasRespiratorios" class="radioButton">
+              <input type="radio" name="infoSintomasRespiratorios" value="Não Informado" class="radio" onchange="sintomasRespiratorios()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoSintomasRespiratorios" value="Não" class="radio" onchange="sintomasRespiratorios()">
+              <p>Não</p>
+              <input type="radio" name="infoSintomasRespiratorios" value="Sim" class="radio" onchange="sintomasRespiratorios()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="sintomas_respiratorios" id="sintomas_respiratorios" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="sintomasRespiratorios"> 
+            <div class="linhaForm">
+              <span class="titLabel">Está em tratamento:</span>
+              <div id="infoTratamentoSintomasRespiratorios" class="radioButton">
+                <input type="radio" name="infoTratamentoSintomasRespiratorios" value="Não Informado" class="radio" onchange="tratamentoSintomasRespiratorios()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTratamentoSintomasRespiratorios" value="Não" class="radio" onchange="tratamentoSintomasRespiratorios()">
+                <p>Não</p>
+                <input type="radio" name="infoTratamentoSintomasRespiratorios" value="Sim" class="radio" onchange="tratamentoSintomasRespiratorios()">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="tratamento_sintomas_respiratorios" id="tratamento_sintomas_respiratorios" class="valueCheck">
+              </div>
+            </div>
+          </div>
+          
+          <div id="tratamentoSintomasRespiratorios"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="nao lembra" id="local_tratamento_sintomas_respiratorios" name="local_tratamento_sintomas_respiratorios">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Já realizou teste de tuberculose:</span>
+            <div id="infoRealizouTesteTuberculose" class="radioButton">
+              <input type="radio" name="infoRealizouTesteTuberculose" value="Não Informado" class="radio" onchange="realizouTesteTuberculose()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoRealizouTesteTuberculose" value="Não" class="radio" onchange="realizouTesteTuberculose()">
+              <p>Não</p>
+              <input type="radio" name="infoRealizouTesteTuberculose" value="Sim" class="radio" onchange="realizouTesteTuberculose()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="realizou_teste_tuberculose" id="realizou_teste_tuberculose" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="realizouTesteTuberculose"> 
+            <div class="linhaForm">
+              <span class="titLabel">Tem diagnóstico de tuberculose:</span>
+              <div id="infoDiagnosticoTuberculose" class="radioButton">
+                <input type="radio" name="infoDiagnosticoTuberculose" value="Não Informado" class="radio" onchange="diagnosticoTuberculose()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoDiagnosticoTuberculose" value="Não" class="radio" onchange="diagnosticoTuberculose()">
+                <p>Não</p>
+                <input type="radio" name="infoDiagnosticoTuberculose" value="Sim" class="radio" onchange="diagnosticoTuberculose()">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="diagnostico_tuberculose" id="diagnostico_tuberculose" class="valueCheck">
+              </div>
+            </div>
+          </div>
+          
+          <div id="diagnosticoTuberculose"> 
+            <div class="linhaForm">
+              <span class="titLabel">Está em tratamento para tuberulose:</span>
+              <div id="infoEmTratamentoTuberculose" class="radioButton">
+                <input type="radio" name="infoEmTratamentoTuberculose" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoEmTratamentoTuberculose" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoEmTratamentoTuberculose" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="em_tratamento_tuberculose" id="em_tratamento_tuberculose" class="valueCheck">
+              </div>
+            </div>
+          </div>
+            
+          <div class="linhaForm">
+            <span class="titLabel">Já teve tuberculose:</span>
+            <div id="infoTeveTuberculose" class="radioButton">
+              <input type="radio" name="infoTeveTuberculose" value="Não Informado" class="radio" onchange="teveTuberculose()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTeveTuberculose" value="Não" class="radio" onchange="teveTuberculose()">
+              <p>Não</p>
+              <input type="radio" name="infoTeveTuberculose" value="Sim" class="radio" onchange="teveTuberculose()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="teve_tuberculose" id="teve_tuberculose" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="teveTuberculose"> 
+            <div class="linhaForm">
+              <span class="titLabel">Fez tratamento:</span>
+              <div id="infoFezTratamentoTuberculose" class="radioButton">
+                <input type="radio" name="infoFezTratamentoTuberculose" value="Não Informado" class="radio" onchange="fezTratamentoTuberculose()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoFezTratamentoTuberculose" value="Não" class="radio" onchange="fezTratamentoTuberculose()">
+                <p>Não</p>
+                <input type="radio" name="infoFezTratamentoTuberculose" value="Sim" class="radio" onchange="fezTratamentoTuberculose()">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="fez_tratamento_tuberculose" id="fez_tratamento_tuberculose" class="valueCheck">
+              </div>
+            </div>
+          </div>
+          
+          <div id="fezTratamentoTuberculose"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="tramento tuberculose" id="local_fez_tratamento_tuberculose" name="local_fez_tratamento_tuberculose">
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Teve alta:</span>
+              <div id="infoTeveAltaTratamentoTuberculose" class="radioButton">
+                <input type="radio" name="infoTeveAltaTratamentoTuberculose" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTeveAltaTratamentoTuberculose" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoTeveAltaTratamentoTuberculose" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="1" name="teve_alta_tratamento_tuberculose" id="teve_alta_tratamento_tuberculose" class="valueCheck">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!--FIM - QUARTO BLOCO-->
+
+
+        <!--INICIO - QUINTO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm">
+            <span class="titLabel">Apresenta lesões na pele:</span>
+            <div id="infoLesoesPele" class="radioButton">
+              <input type="radio" name="infoLesoesPele" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoLesoesPele" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoLesoesPele" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="lesoes_pele" id="lesoes_pele" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Encontra-se com a sua vacinação em dia:</span>
+            <div id="infoVacinacaoEmDia" class="radioButton">
+              <input type="radio" name="infoVacinacaoEmDia" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoVacinacaoEmDia" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoVacinacaoEmDia" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="vacinacao_em_dia" id="vacinacao_em_dia" class="valueCheck">
+            </div>
+          </div>
+        
+        </div>
+        <!--FIM - QUINTO BLOCO-->
+
+        <!--INICIO - SEXTO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Outros sinais e sintomas clínicos:</span>
+            <textarea name="outros_sinais_sintomas_criticos" id="outros_sinais_sintomas_criticos" rows="5" class="inputTextArea">Um caroço  no pescoço. </textarea>
+          </div>
+        
+        </div>
+        <!--FIM - SEXTO BLOCO-->
+
+        <!--INICIO - SETIMO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm">
+            <span class="titLabel">Avaliação ginecológica:</span>
+            <div id="infoAvaliacaoGinecologica" class="radioButton">
+              <input type="radio" name="infoAvaliacaoGinecologica" value="Não Informado" class="radio" onchange="avaliacaoGinecologica()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoAvaliacaoGinecologica" value="Não" class="radio" onchange="avaliacaoGinecologica()">
+              <p>Não</p>
+              <input type="radio" name="infoAvaliacaoGinecologica" value="Sim" class="radio" onchange="avaliacaoGinecologica()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="avaliacao_ginecologica" id="avaliacao_ginecologica" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="avaliacaoGinecologica" style="display:none">
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="" id="local_avaliacao_ginecologica" name="local_avaliacao_ginecologica">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Faz uso de algum método anticoncepcional:</span>
+            <div id="infoMetodoAnticoncepcional" class="radioButton">
+              <input type="radio" name="infoMetodoAnticoncepcional" value="Não Informado" class="radio" onchange="metodoAnticoncepcional()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoMetodoAnticoncepcional" value="Não" class="radio" onchange="metodoAnticoncepcional()">
+              <p>Não</p>
+              <input type="radio" name="infoMetodoAnticoncepcional" value="Sim" class="radio" onchange="metodoAnticoncepcional()">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="metodo_anticoncepcional" id="metodo_anticoncepcional" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="metodoAnticoncepcional" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual:</span>
+              <input type="text" class="inputGrande" value="" id="qual_metodo_anticoncepcional" name="qual_metodo_anticoncepcional">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Teve algum aborto:</span>
+            <div id="infoTeveAborto" class="radioButton">
+              <input type="radio" name="infoTeveAborto" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoTeveAborto" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoTeveAborto" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="teve_aborto" id="teve_aborto" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Já fez planejamento familiar:</span>
+            <div id="infoPlanejamentoFamiliar" class="radioButton">
+              <input type="radio" name="infoPlanejamentoFamiliar" value="Não Informado" class="radio" onchange="planejamentoFamiliar()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoPlanejamentoFamiliar" value="Não" class="radio" onchange="planejamentoFamiliar()">
+              <p>Não</p>
+              <input type="radio" name="infoPlanejamentoFamiliar" value="Sim" class="radio" onchange="planejamentoFamiliar()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="planejamento_familiar" id="planejamento_familiar" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="planejamentoFamiliar" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="" id="local_planejamento_familiar" name="local_planejamento_familiar">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Está grávida:</span>
+            <div id="infoGestante" class="radioButton">
+              <input type="radio" name="infoGestante" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoGestante" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoGestante" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="gestante" id="gestante" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Está fazendo pré natal:</span>
+            <div id="infoPreNatal" class="radioButton">
+              <input type="radio" name="infoPreNatal" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoPreNatal" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoPreNatal" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="pre_natal" id="pre_natal" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="preNatal" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Onde:</span>
+              <input type="text" class="inputGrande" value="" id="local_pre_natal" name="local_pre_natal">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Vai necessitar de amparo maternal:</span>
+            <div id="infoAmparoMaternal" class="radioButton">
+              <input type="radio" name="infoAmparoMaternal" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoAmparoMaternal" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoAmparoMaternal" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="amparo_maternal" id="amparo_maternal" class="valueCheck">
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Está amamentando:</span>
+            <div id="infoAmamentando" class="radioButton">
+              <input type="radio" name="infoAmamentando" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoAmamentando" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoAmamentando" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="" name="amamentando" id="amamentando" class="valueCheck">
+            </div>
+          </div>
+          
+        </div>
+        <!--FIM - SETIMO BLOCO-->
+
+
+        <!--INICIO - OITAVO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm">
+            <span class="titLabel">Fez alguma consulta de saúde na data de hoje:</span>
+            <div id="infoConsultaSaudeHoje" class="radioButton">
+              <input type="radio" name="infoConsultaSaudeHoje" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoConsultaSaudeHoje" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoConsultaSaudeHoje" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="0" name="consulta_saude_hoje" id="consulta_saude_hoje" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="consultaSaudeHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual especialidade:</span>
+              <div class="linhaForm alinhaObsCert">
+                <input type="text" class="inputGrande adicionaEspecialidade" value="" id="especialidades">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputEspecialidade" value="Adicionar">
+              </div>
+              <div class="adicionaInputEspecialidadeConsulta">
+                              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <!--FIM - OITAVO BLOCO-->
+
+
+        <!--INICIO - NONO BLOCO-->
+        <div class="contentAbaBorda">
+          <div class="linhaForm">
+            <span class="titLabel">Compareceu ao local de trabalho na data de hoje:</span>
+            <div id="infoCompareceuTrabalhoHoje" class="radioButton">
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="1" name="compareceu_trabalho_hoje" id="compareceu_trabalho_hoje" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="compareceuTrabalhoHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual motivo:</span>
+              <input type="text" class="inputGrande" value="" id="motivo_falta_trabalho" name="motivo_falta_trabalho">
+            </div>
+          </div>
+        
+        </div>
+
+
+        <!--FIM - NONO BLOCO-->
+
+        <!--INICIO - DECIMO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm">
+            <span class="titLabel">Participou de alguma oficina oferecida pelo programa na data de hoje:</span>
+            <div id="infoParticipouOficinaHoje" class="radioButton">
+              <input type="radio" name="infoParticipouOficinaHoje" value="Não Informado" class="radio" onchange="infoParticipouOficinaHoje()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoParticipouOficinaHoje" value="Não" class="radio" onchange="infoParticipouOficinaHoje()">
+              <p>Não</p>
+              <input type="radio" name="infoParticipouOficinaHoje" value="Sim" class="radio" onchange="infoParticipouOficinaHoje()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="participou_oficina_hoje" id="participou_oficina_hoje" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="participouOficinaHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel"></span>
+              <div class="linhaForm alinhaObsParticipou">
+                <input type="text" class="inputGrande adicionaQualOficina" value="" id="QualOficina" placeholder="Qual oficina">
+                <input type="text" class="inputGrande adicionaLocalOficina" value="" id="LocalOficina" placeholder="Local da oficina">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputOficinaParticiou" value="Adicionar">
+              </div>
+              <div class="adicionaInputOficinasParticipou">
+              </div>
+            </div>
+          </div>
+          
+          <div id="naoParticipouOficinaHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual motivo:</span>
+              <input type="text" class="inputGrande" value="" id="motivo_nao_particiou_oficina_hoje" name="motivo_nao_particiou_oficina_hoje">
+            </div>
+          </div>
+        
+        </div>
+        <!--FIM - DECIMO BLOCO-->
+
+        <!--INICIO - DECIMO PRIMEIRO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm">
+            <span class="titLabel">Realizou alguma atividade recreativa externa ao programa:</span>
+            <div id="infoParticipouAtividadeHoje" class="radioButton">
+              <input type="radio" name="infoParticipouAtividadeHoje" value="Não Informado" class="radio" onchange="atividadeRecreativaExterna()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoParticipouAtividadeHoje" value="Não" class="radio" onchange="atividadeRecreativaExterna()">
+              <p>Não</p>
+              <input type="radio" name="infoParticipouAtividadeHoje" value="Sim" class="radio" onchange="atividadeRecreativaExterna()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="atividade_recreativa_externa" id="atividade_recreativa_externa" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="atividadeRecreativaExterna" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel"></span>
+              <div class="linhaForm alinhaObsParticipou">
+                <input type="text" class="inputGrande adicionaQualAtividade" value="" id="QualOficina" placeholder="Qual atividade">
+                <input type="text" class="inputGrande adicionaLocalAtividade" value="" id="LocalOficina" placeholder="Local da atividade">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputAtividadeParticiou" value="Adicionar">
+              </div>
+              <div class="adicionaInputAtividadesParticipou">
+                              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!--FIM - DECIMO PRIMEIRO BLOCO-->
+
+        <!--INICIO - DECIMO SEGUNDO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <label class="selectDefault">
+              <div class="comboStilo"> 
+                <span class="titSang">Há quanto tempo tem se mantido abstinente:</span>
+
+
+                <select name="diasAbstinenciaAposProgramaLabel" id="diasAbstinenciaAposProgramaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 dia" id="1" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">1 dia</option>
+                      <option value="2 dias" id="2" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">2 dias</option>
+                      <option value="3 dias" id="3" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">3 dias</option>
+                      <option value="4 dias" id="4" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">4 dias</option>
+                      <option value="5 dias" id="5" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">5 dias</option>
+                      <option value="6 dias" id="6" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">6 dias</option>
+                      <option value="7 dias" id="7" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">7 dias</option>
+                      <option value="8 dias" id="8" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">8 dias</option>
+                      <option value="9 dias" id="9" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">9 dias</option>
+                      <option value="10 dias" id="10" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">10 dias</option>
+                      <option value="11 dias" id="11" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">11 dias</option>
+                      <option value="12 dias" id="12" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">12 dias</option>
+                      <option value="13 dias" id="13" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">13 dias</option>
+                      <option value="14 dias" id="14" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">14 dias</option>
+                      <option value="15 dias" id="15" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">15 dias</option>
+                      <option value="16 dias" id="16" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">16 dias</option>
+                      <option value="17 dias" id="17" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">17 dias</option>
+                      <option value="18 dias" id="18" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">18 dias</option>
+                      <option value="19 dias" id="19" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">19 dias</option>
+                      <option value="20 dias" id="20" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">20 dias</option>
+                      <option value="21 dias" id="21" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">21 dias</option>
+                      <option value="22 dias" id="22" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">22 dias</option>
+                      <option value="23 dias" id="23" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">23 dias</option>
+                      <option value="24 dias" id="24" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">24 dias</option>
+                      <option value="25 dias" id="25" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">25 dias</option>
+                      <option value="26 dias" id="26" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">26 dias</option>
+                      <option value="27 dias" id="27" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">27 dias</option>
+                      <option value="28 dias" id="28" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">28 dias</option>
+                      <option value="29 dias" id="29" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">29 dias</option>
+                      <option value="30 dias" id="30" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">30 dias</option>
+                      <option value="31 dias" id="31" data-id="diasMantidoAbstinenciaLabel" for="dias_mantido_abstinencia">31 dias</option>
+                    </div>
+                    <input type="hidden" id="dias_mantido_abstinencia" name="dias_mantido_abstinencia" value="">
+                  </select>
+
+
+
+
+                  <select name="mesesMantidoAbstinenciaLabel" id="mesesMantidoAbstinenciaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 mês" id="1" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">1 mês</option>
+                      <option value="2 meses" id="2" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">2 meses</option>
+                      <option value="3 meses" id="3" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">3 meses</option>
+                      <option value="4 meses" id="4" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">4 meses</option>
+                      <option value="5 meses" id="5" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">5 meses</option>
+                      <option value="6 meses" id="6" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">6 meses</option>
+                      <option value="7 meses" id="7" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">7 meses</option>
+                      <option value="8 meses" id="8" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">8 meses</option>
+                      <option value="9 meses" id="9" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">9 meses</option>
+                      <option value="10 meses" id="10" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">10 meses</option>
+                      <option value="11 meses" id="11" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">11 meses</option>
+                      <option value="12 meses" id="12" data-id="mesesMantidoAbstinenciaLabel" for="meses_mantido_abstinencia">12 meses</option>
+                    </div>
+                    <input type="hidden" id="meses_mantido_abstinencia" name="meses_mantido_abstinencia" value="7">
+                  </select>
+
+
+                  <select name="anosMantidoAbstinenciaLabel" id="anosMantidoAbstinenciaLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 ano" id="1" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">1 ano</option>
+                      <option value="2 anos" id="2" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">2 anos</option>
+                      <option value="3 anos" id="3" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">3 anos</option>
+                      <option value="4 anos" id="4" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">4 anos</option>
+                      <option value="5 anos" id="5" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">5 anos</option>
+                      <option value="6 anos" id="6" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">6 anos</option>
+                      <option value="7 anos" id="7" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">7 anos</option>
+                      <option value="8 anos" id="8" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">8 anos</option>
+                      <option value="9 anos" id="9" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">9 anos</option>
+                      <option value="10 anos" id="10" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">10 anos</option>
+                      <option value="11 anos" id="11" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">11 anos</option>
+                      <option value="12 anos" id="12" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">12 anos</option>
+                      <option value="13 anos" id="13" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">13 anos</option>
+                      <option value="14 anos" id="14" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">14 anos</option>
+                      <option value="15 anos" id="15" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">15 anos</option>
+                      <option value="16 anos" id="16" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">16 anos</option>
+                      <option value="17 anos" id="17" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">17 anos</option>
+                      <option value="18 anos" id="18" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">18 anos</option>
+                      <option value="19 anos" id="19" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">19 anos</option>
+                      <option value="20 anos" id="20" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">20 anos</option>
+                      <option value="21 anos" id="21" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">21 anos</option>
+                      <option value="22 anos" id="22" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">22 anos</option>
+                      <option value="23 anos" id="23" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">23 anos</option>
+                      <option value="24 anos" id="24" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">24 anos</option>
+                      <option value="25 anos" id="25" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">25 anos</option>
+                      <option value="26 anos" id="26" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">26 anos</option>
+                      <option value="27 anos" id="27" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">27 anos</option>
+                      <option value="28 anos" id="28" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">28 anos</option>
+                      <option value="29 anos" id="29" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">29 anos</option>
+                      <option value="30 anos" id="30" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">30 anos</option>
+                      <option value="31 anos" id="31" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">31 anos</option>
+                      <option value="32 anos" id="32" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">32 anos</option>
+                      <option value="33 anos" id="33" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">33 anos</option>
+                      <option value="34 anos" id="34" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">34 anos</option>
+                      <option value="35 anos" id="35" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">35 anos</option>
+                      <option value="36 anos" id="36" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">36 anos</option>
+                      <option value="37 anos" id="37" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">37 anos</option>
+                      <option value="38 anos" id="38" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">38 anos</option>
+                      <option value="39 anos" id="39" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">39 anos</option>
+                      <option value="40 anos" id="40" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">40 anos</option>
+                      <option value="41 anos" id="41" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">41 anos</option>
+                      <option value="42 anos" id="42" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">42 anos</option>
+                      <option value="43 anos" id="43" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">43 anos</option>
+                      <option value="44 anos" id="44" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">44 anos</option>
+                      <option value="45 anos" id="45" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">45 anos</option>
+                      <option value="46 anos" id="46" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">46 anos</option>
+                      <option value="47 anos" id="47" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">47 anos</option>
+                      <option value="48 anos" id="48" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">48 anos</option>
+                      <option value="49 anos" id="49" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">49 anos</option>
+                      <option value="50 anos" id="50" data-id="anosMantidoAbstinenciaLabel" for="anos_mantido_abstinencia">50 anos</option>
+                    </div>
+                    <input type="hidden" id="anos_mantido_abstinencia" name="anos_mantido_abstinencia" value="2">
+                  </select>
+                </div>
+              </div>
+            </label>
+          </div>
+          
+          
+          <div class="linhaForm">
+            <span class="titLabel">Fez uso de alguma droga neste dia:</span>
+            <div id="infoUsouDrogaHoje" class="radioButton">
+              <input type="radio" name="infoUsouDrogaHoje" value="Não Informado" class="radio" onchange="usouDrogaHoje()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoUsouDrogaHoje" value="Não" class="radio" onchange="usouDrogaHoje()">
+              <p>Não</p>
+              <input type="radio" name="infoUsouDrogaHoje" value="Sim" class="radio" onchange="usouDrogaHoje()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="usou_droga_hoje" id="usou_droga_hoje" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="usouDrogaHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual:</span>
+              <div class="linhaForm alinhaObsCert">
+                <input type="text" class="inputGrande adicionaDrogaHoje" value="" id="droga_hoje">
+                <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogaHoje" value="Adicionar">
+              </div>
+              <div class="adicionaInputDrogaHoje">
+                              </div>
+            </div>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Fez uso de crack neste dia:</span>
+            <div id="infoUsouCrackHoje" class="radioButton">
+              <input type="radio" name="infoUsouCrackHoje" value="Não Informado" class="radio" onchange="">
+              <p>Não Informado</p>
+              <input type="radio" name="infoUsouCrackHoje" value="Não" class="radio" onchange="">
+              <p>Não</p>
+              <input type="radio" name="infoUsouCrackHoje" value="Sim" class="radio" onchange="">
+              <p>Sim</p>
+              <input type="hidden" value="0" name="usou_crack_hoje" id="usou_crack_hoje" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="usouCrackHoje" style="display:none"> 
+            <div class="linhaForm"> 
+              <span class="titLabel">Quantas pedras:</span>
+              <input type="text" class="inputGrande" value="" id="quantas_pedras" name="quantas_pedras">
+            </div>
+          </div>
+        
+        </div>
+
+        <!--FIM - DECIMO SEGUNDO BLOCO-->
+
+        <!--INICIO - DECIMO TERCEIRO BLOCO-->
+        <div class="contentAbaBorda">
+          <div class="linhaForm"> 
+            <span class="titLabel">Observações importantes:<br>(Sinais e sintomas clínicos relacionados ao uso de drogas, ocorrência de ideias delirantes e persecutórias e encaminhamentos realizados)</span>
+            <textarea name="observacoes_importantes" id="observacoes_importantes" rows="15" class="inputTextArea"></textarea>
+          </div>
+        </div>
+        <!--FIM - DECIMO TERCEIRO BLOCO-->
+
+        <!--INICIO - DECIMO QUARTO BLOCO-->
+        <div class="contentAbaBorda">
+          <div class="linhaForm"> 
+            <span class="titLabel">Observações:</span>
+            <textarea name="observacoes_gerais" id="observacoes_gerais" rows="15" class="inputTextArea">Refere ter um caroço  no pescoço  e deseja saber o que é. Foi agendado uma consulta com o clinico  para o d inteiro a 03/02/2016 as 10:30 com dr  Márcio.</textarea>
+          </div>
+        
+        </div>
+        <!--FIM - DECIMO QUARTO BLOCO-->
+        <input type="submit" class="btnAlterar" value="Salvar">
+          
+        </form>
+
+      </div>
+<script>
+    $(document).ready(function() {
+		carregaSituacaoDBA();
+	});
+</script>
