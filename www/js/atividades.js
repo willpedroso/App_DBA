@@ -1,4 +1,50 @@
+function calculaTamanhos () {
+	var TamTotal = 1000;
+	var TamMinimo = 80;
+
+	var linhas = [63, 10, 26, 36];
+
+	var percents = [];
+	var alturas = [];
+	var total = 0;
+	var TamRestante = TamTotal;
+	
+	// calcula a quantidade total e inicializa alturas
+	for (var i = 0; i < linhas.length; i++) {
+		total += linhas[i];
+		alturas.push(0);
+	}
+	
+	// separa as linhas que são proporcionalmente menores que o mínimo
+	for (var i = 0; i < linhas.length; i++) {
+		if (linhas[i] / total * TamTotal <= TamMinimo) {
+			alturas[i] = TamMinimo;
+			TamRestante -= TamMinimo;
+			total -= linhas[i];				// retira do total
+		}
+	}
+	
+	// calcula a altura de cada linha, exceto aquelas que já possuem altura mínima
+	for (var i = 0; i < linhas.length; i++) {
+		if (alturas[i] != 0) {
+			continue;
+		}
+		alturas[i] = linhas[i] / total  * TamRestante;
+	}
+	
+	var Print = "Resultado:\r\n";
+	for (var i = 0; i < alturas.length; i++) {
+		Print += "Altura " + i + ": " + alturas[i] + "\r\n";
+	}
+	console.log(Print);
+}
+
+
 function preparaListasOpt () {
+	// todo: testes retirar
+	calculaTamanhos();
+	// testes retirar
+	
 	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
 	
 	var edit = false;
@@ -216,7 +262,7 @@ function validaCampos() {
 			// Se não for dia inteiro
 			if ($("input:radio[name=infoDiaInteiro]:checked").val() == "Não") {
 				// Avalia hora de término
-				var aux = $('#hora_termino').val();
+				var auxVar = $('#hora_termino').val();
 				if (auxVar == '' || 
 					auxVar.length != 5 ||
 					isNaN(auxVar.substring(0, 2)) ||
@@ -339,16 +385,16 @@ function validaCampos() {
 								 $("#tipoPeriodicidadeLabel").val(),											// periodicidade (nome)
 								 $("input:radio[name=infoDiaInteiro]:checked").val() == "Não" ? 0 : 1,			// dia inteiro
 								 $('#data_inicio').val(),														// data de início
-								 $('#hora_inicio').val(),														// hora de início
+								 $('#hora_inicio').val() == "" ? null : $('#hora_inicio').val(),				// hora de início
 								 $("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1,			// permanente
 								 $('#data_termino').val(),														// data de término
-								 $('#hora_termino').val(),														// hora de término
+								 $('#hora_termino').val() == "" ? null : $('#hora_termino').val(),				// hora de término
 								 diasSemanaRepetir,																// repetir nos dias da semana
 								 // repetir no dia da semana (mensal)
 								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? null : $("input:radio[name=infoDiasSemanaRadio]:checked").val(),
 								 // repetir no dia do mês
 								 $("input:radio[name=infoRepetir]:checked").val() == "dia do mês" ? $("#dia_mes_repetir").val() : null,
-								 $('#dia_ano_repetir').val(),													// repetir no dia do ano
+								 $('#dia_ano_repetir').val() == "" ? null :$('#dia_ano_repetir').val(),			// repetir no dia do ano
 								 this.salvaAtividadeSuccess,
 								 this.salvaAtividadeFail);
 	}

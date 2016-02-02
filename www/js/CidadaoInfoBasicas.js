@@ -647,7 +647,6 @@
 
 		Print += "informacoes_complementares: " + informacoes_complementares + "\r\n";
 		console.log(Print);
-		alert("aguardando...");
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB("UPDATE cidadao SET " +
@@ -724,7 +723,8 @@
 	salvaCidadaoSuccess: function () {
 		console.log("salvaCidadaoSuccess");
 		
-		alert("Dados básicos do cidadão foram salvos com sucesso.");
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
 	},
 	
 	salvaCidadaoFail: function (err) {

@@ -6,10 +6,15 @@
 	cidadao_id: null,
 	
 	situacaoCadastral: null,
+	auxsituacaoCadastral: null,
 	motivoInativacaoOutros: null,
+	auxmotivoInativacaoOutros: null,
 	prioridade: null,
+	auxprioridade: null,
 	programaDBA: null,
+	auxprogramaDBA: null,
 	pontoServicoId: null,
+	auxpontoServicoId: null,
 	listaMotivoInativacao: [],
 	auxListaMotivoInativacao: null,
 	listaMotivoInativacaoCounter: 0,
@@ -67,8 +72,6 @@
 			SITUACAODBA.listaMotivoInativacao.push(res.rows.item(i).tipo_motivo_inativacao_id);
 		}
 		
-		// Retorna
-		//SITUACAODBA.cbSuccess_f();
 		PageManager.loadTmpl('div_sitDBA');
 	},
 
@@ -94,33 +97,11 @@
 		SITUACAODBA.cbFail_f = cbFail;
 
 		SITUACAODBA.auxListaMotivoInativacao = listaMotivoInativacao;
-		
-/*		// todo: testes retirar
-		var Print = "Salvar Situação DBA\r\n";
-		Print += "Situação cadastral: " + (situacaoCadastral == 1 ? "Ativo" : "Inativo") + "\r\n";
-		Print += "Motivos da inativação: \r\n";
-		for (var i = 0; i < listaMotivoInativacao.length; i++) {
-			Print += "Motivo" + i + ": " + CIDADAO.listaTipoMotivoInativacao[i].nome + "\r\n";
-		}
-		Print += "Outros: " + motivoInativacaoOutros + "\r\n";
-		var pri = "Não informado";
-		if (prioridade == 1) {
-			pri = "Sim";
-		}
-		else {
-			pri = "Não";
-		}
-		Print += "Prioridade: " + pri + "\r\n";
-		var la = "";
-		for (var i = 0; i < CIDADAO.listaPontosServico.length; i++) {
-			if (pontoServicoId == CIDADAO.listaPontosServico[i].id) {
-				la = CIDADAO.listaPontosServico[i].nome;
-				break;
-			}
-		}
-		Print += "Local de acolhida: " + la + "\r\n";
-		alert(Print);
-		// todo: testes retirar*/
+		SITUACAODBA.auxsituacaoCadastral = situacaoCadastral;
+		SITUACAODBA.auxmotivoInativacaoOutros = motivoInativacaoOutros;
+		SITUACAODBA.auxprioridade = prioridade;
+		SITUACAODBA.auxprogramaDBA = programaDBA;
+		SITUACAODBA.auxpontoServicoId = pontoServicoId;
 		
 		// Atualiza
 		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ? WHERE id = ?",
@@ -160,20 +141,30 @@
 	salvaSituacaoDBASuccess: function (trans, res) {
 		console.log("salvaSituacaoDBASuccess");
 		
-/*		// todo: testes retirar
-		alert("Situação DBA foi salva com sucesso!");
-		// todo: testes retirar*/
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
 		
+		// atualiza dados
+		SITUACAODBA.situacaoCadastral = SITUACAODBA.auxsituacaoCadastral;
+		SITUACAODBA.motivoInativacaoOutros = SITUACAODBA.auxmotivoInativacaoOutros;
+		SITUACAODBA.prioridade = SITUACAODBA.auxprioridade;
+		SITUACAODBA.programaDBA = SITUACAODBA.auxprogramaDBA;
+		SITUACAODBA.pontoServicoId = SITUACAODBA.auxpontoServicoId;
+		SITUACAODBA.listaMotivoInativacao = SITUACAODBA.auxListaMotivoInativacao;
+
+		// Atualiza ficha
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral = SITUACAODBA.situacaoCadastral;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade = SITUACAODBA.prioridade;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].programa_dba = SITUACAODBA.programaDBA;
+		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ponto_servico_id = SITUACAODBA.pontoServicoId;		
+		atualizaFichaCidadao();
+
 		// Retorna
 		SITUACAODBA.cbSuccess_f();
 	},
 	
 	salvaSituacaoDBAFail: function (err) {
 		console.log("salvaSituacaoDBAFail");
-		
-/*		// todo: testes retirar
-		alert("Houve falha no salvamento da situação DBA!");
-		// todo: testes retirar*/
 		
 		// Retorna
 		SITUACAODBA.cbFail_f(err);

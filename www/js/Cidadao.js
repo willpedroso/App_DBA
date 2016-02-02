@@ -157,7 +157,7 @@
 	},
 	
     // ****************** procura cidadão na lista *********************
-    buscaCidadao: function(buscaTxt, cbSuccess, cbFail) {
+    buscaCidadao: function(buscaTxt, ativos, inativos, cbSuccess, cbFail) {
 		console.log("buscaCidadao");
 		
 		// Limpa a lista de busca
@@ -167,14 +167,48 @@
 		
 		// Procura
 		if (buscaTxt == "") {
-			CIDADAO.listaCidadaosDadosBusca = CIDADAO.listaCidadaosDados.slice();
+			if ((ativos && inativos) || (!ativos && !inativos)) {
+				CIDADAO.listaCidadaosDadosBusca = CIDADAO.listaCidadaosDados.slice();
+			}
+			else {
+				for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+					if (!ativos) {
+						// apenas os inativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 0) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+					else // (!inativos) 
+					{
+						// apenas os ativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 1) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+				}
+			}
 		}
 		else {
 			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
 				//if (CIDADAO.listaCidadaosDados[i].nome.search(buscaTxt) != -1) {
 				if (CIDADAO.listaCidadaosDados[i].nome.search(new RegExp(buscaTxt, "i")) != -1) {
-					// Encontrou, coloca na lista de busca
-					CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+					// Encontrou, verifica ativos/inativos
+					if ((ativos && inativos) || (!ativos && !inativos)) {
+						CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+					}
+					else if (!ativos) {
+						// apenas os inativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 0) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
+					else // (!inativos) 
+					{
+						// apenas os ativos
+						if (CIDADAO.listaCidadaosDados[i].situacao_cadastral == 1) {
+							CIDADAO.listaCidadaosDadosBusca.push(CIDADAO.listaCidadaosDados[i]);
+						}
+					}
 				}
 			}
 		}
@@ -229,6 +263,11 @@
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento = CIDADAO.auxCidadaoDados.dia_nascimento;
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
+
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+		
+		atualizaFichaCidadao();
 		
 		// Retorna
 		CIDADAO.cbSuccess_f();
