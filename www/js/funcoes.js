@@ -21,7 +21,35 @@ $(document).ready(function(){
   });
   /* FIM - RADIO PRIORIDADE */
   
-  
+  /* INICIO - infoAcompanhamentoCaps */
+  var valRadio = '';
+  jQuery("#infoAcompanhamentoCaps .radio").click(function(){
+  	if ($( "input:radio[name=infoAcompanhamentoCaps]:checked" ).val() == "Sim")
+	{
+		jQuery('#qualAcompanhamentoCaps').attr('style','display:block');
+	}
+	else{
+		jQuery('#qualAcompanhamentoCaps').attr('style','display:none');
+	}
+  });
+  /* FIM - infoAcompanhamentoCaps */
+
+
+
+  /* INICIO - infoCadastroAcompanhamentoUbs */
+  var valRadio = '';
+  jQuery("#infoCadastroAcompanhamentoUbs .radio").click(function(){
+  	if ($( "input:radio[name=infoCadastroAcompanhamentoUbs]:checked" ).val() == "Sim")
+	{
+		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:block');
+	}
+	else{
+		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:none');
+	}
+  });
+  /* FIM - infoCadastroAcompanhamentoUbs */
+
+
   /* INICIO - RADIO PROGRAMA DBA */
   var valRadio = '';
   jQuery("#infoProgramaDba .radio").click(function(){
@@ -32,7 +60,6 @@ $(document).ready(function(){
 	else{
 		jQuery('#localAcolhida').attr('style','display:none');
 	}
-
   });
   /* FIM - RADIO PROGRAMA DBA */
 	//CheckBox Personalizado
@@ -744,4 +771,545 @@ function addFilhos(qtd)
 	}
 	
 	$('#containerQtdFilhos').html(str);
+}
+
+
+
+//Saude
+
+/* INICIO - usouCrackHoje */
+function usouCrackHoje()
+{
+  var valRadio = '';
+  jQuery("#infoUsouCrackHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoUsouCrackHoje]:checked" ).val() == "Não")
+	{
+		jQuery('#usouCrackHoje').attr('style','display:block');
+	}
+	else{
+		jQuery('#usouCrackHoje').attr('style','display:none');
+	}
+  });
+}
+/* FIM - usouCrackHoje */
+
+/* INICIO - usouDrogaHoje */
+function usouDrogaHoje()
+{
+  var valRadio = '';
+  jQuery("#infoUsouDrogaHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoUsouDrogaHoje]:checked" ).val() == "Não")
+	{
+		jQuery('#usouDrogaHoje').attr('style','display:block');
+	}
+	else{
+		jQuery('#usouDrogaHoje').attr('style','display:none');
+	}
+  });
+}
+/* FIM - usouDrogaHoje */
+
+/* INICIO - atividadeRecreativaExterna */
+function atividadeRecreativaExterna()
+{
+  var valRadio = '';
+  jQuery("#infoParticipouAtividadeHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoParticipouAtividadeHoje]:checked" ).val() == "Não")
+	{
+		jQuery('#atividadeRecreativaExterna').attr('style','display:block');
+	}
+	else{
+		jQuery('#atividadeRecreativaExterna').attr('style','display:none');
+	}
+  });
+}
+/* FIM - atividadeRecreativaExterna */
+
+
+/* INICIO - infoParticipouOficinaHoje */
+function infoParticipouOficinaHoje()
+{
+  var valRadio = '';
+  jQuery("#infoParticipouOficinaHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoParticipouOficinaHoje]:checked" ).val() == "Sim")
+	{
+		jQuery('#participouOficinaHoje').attr('style','display:block');
+		jQuery('#naoParticipouOficinaHoje').attr('style','display:none');
+	}
+	if else($( "input:radio[name=infoParticipouOficinaHoje]:checked" ).val() == "Não")
+	{
+		jQuery('#naoParticipouOficinaHoje').attr('style','display:block');
+		jQuery('#participouOficinaHoje').attr('style','display:none');
+	}
+	else{
+		jQuery('#naoParticipouOficinaHoje').attr('style','display:none');
+		jQuery('#participouOficinaHoje').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoParticipouOficinaHoje */
+
+
+
+/* INICIO - compareceuTrabalhoHoje */
+function compareceuTrabalhoHoje()
+{
+  var valRadio = '';
+  jQuery("#infoCompareceuTrabalhoHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoCompareceuTrabalhoHoje]:checked" ).val() == "Não")
+	{
+		jQuery('#compareceuTrabalhoHoje').attr('style','display:block');
+	}
+	else{
+		jQuery('#compareceuTrabalhoHoje').attr('style','display:none');
+	}
+  });
+}
+/* FIM - compareceuTrabalhoHoje */
+
+/* INICIO - consultaSaudeHoje */
+function consultaSaudeHoje()
+{
+  var valRadio = '';
+  jQuery("#infoConsultaSaudeHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoConsultaSaudeHoje]:checked" ).val() == "Sim")
+	{
+		jQuery('#consultaSaudeHoje').attr('style','display:block');
+	}
+	else{
+		jQuery('#consultaSaudeHoje').attr('style','display:none');
+	}
+  });
+}
+/* FIM - consultaSaudeHoje */
+
+
+
+
+/* INICIO - preNatal */
+function preNatal()
+{
+  var valRadio = '';
+  jQuery("#infoPreNatal .radio").click(function(){
+  	if ($( "input:radio[name=infoPreNatal]:checked" ).val() == "Sim")
+	{
+		jQuery('#preNatal').attr('style','display:block');
+	}
+	else{
+		jQuery('#preNatal').attr('style','display:none');
+	}
+  });
+}
+/* FIM - preNatal */
+
+/* INICIO - planejamentoFamiliar */
+function planejamentoFamiliar()
+{
+  var valRadio = '';
+  jQuery("#infoPlanejamentoFamiliar .radio").click(function(){
+  	if ($( "input:radio[name=infoPlanejamentoFamiliar]:checked" ).val() == "Sim")
+	{
+		jQuery('#planejamentoFamiliar').attr('style','display:block');
+	}
+	else{
+		jQuery('#planejamentoFamiliar').attr('style','display:none');
+	}
+  });
+}
+/* FIM - planejamentoFamiliar */
+
+/* INICIO - metodoAnticoncepcional */
+function metodoAnticoncepcional()
+{
+  var valRadio = '';
+  jQuery("#infoMetodoAnticoncepcional .radio").click(function(){
+  	if ($( "input:radio[name=infoMetodoAnticoncepcional]:checked" ).val() == "Sim")
+	{
+		jQuery('#metodoAnticoncepcional').attr('style','display:block');
+	}
+	else{
+		jQuery('#metodoAnticoncepcional').attr('style','display:none');
+	}
+  });
+}
+/* FIM - metodoAnticoncepcional */
+
+/* INICIO - avaliacaoGinecologica */
+function avaliacaoGinecologica()
+{
+  var valRadio = '';
+  jQuery("#infoAvaliacaoGinecologica .radio").click(function(){
+  	if ($( "input:radio[name=infoAvaliacaoGinecologica]:checked" ).val() == "Sim")
+	{
+		jQuery('#avaliacaoGinecologica').attr('style','display:block');
+	}
+	else{
+		jQuery('#avaliacaoGinecologica').attr('style','display:none');
+	}
+  });
+}
+/* FIM - avaliacaoGinecologica */
+
+
+
+
+
+
+
+
+/* INICIO - fezTratamentoTuberculose */
+function fezTratamentoTuberculose()
+{
+  var valRadio = '';
+  jQuery("#infoFezTratamentoTuberculose .radio").click(function(){
+  	if ($( "input:radio[name=infoFezTratamentoTuberculose]:checked" ).val() == "Sim")
+	{
+		jQuery('#fezTratamentoTuberculose').attr('style','display:block');
+	}
+	else{
+		jQuery('#fezTratamentoTuberculose').attr('style','display:none');
+	}
+  });
+}
+/* FIM - fezTratamentoTuberculose */
+
+/* INICIO - teveTuberculose */
+function teveTuberculose()
+{
+  var valRadio = '';
+  jQuery("#infoTeveTuberculose .radio").click(function(){
+  	if ($( "input:radio[name=infoTeveTuberculose]:checked" ).val() == "Sim")
+	{
+		jQuery('#teveTuberculose').attr('style','display:block');
+	}
+	else{
+		jQuery('#teveTuberculose').attr('style','display:none');
+	}
+  });
+}
+/* FIM - teveTuberculose */
+
+
+
+/* INICIO - diagnosticoTuberculose */
+function diagnosticoTuberculose()
+{
+  var valRadio = '';
+  jQuery("#infoDiagnosticoTuberculose .radio").click(function(){
+  	if ($( "input:radio[name=infoDiagnosticoTuberculose]:checked" ).val() == "Sim")
+	{
+		jQuery('#diagnosticoTuberculose').attr('style','display:block');
+	}
+	else{
+		jQuery('#diagnosticoTuberculose').attr('style','display:none');
+	}
+  });
+}
+/* FIM - diagnosticoTuberculose */
+
+/* INICIO - realizouTesteTuberculose */
+function realizouTesteTuberculose()
+{
+  var valRadio = '';
+  jQuery("#infoRealizouTesteTuberculose .radio").click(function(){
+  	if ($( "input:radio[name=infoRealizouTesteTuberculose]:checked" ).val() == "Sim")
+	{
+		jQuery('#realizouTesteTuberculose').attr('style','display:block');
+	}
+	else{
+		jQuery('#realizouTesteTuberculose').attr('style','display:none');
+	}
+  });
+}
+/* FIM - realizouTesteTuberculose */
+
+
+
+
+
+
+
+
+
+
+
+/* INICIO - tratamentoSintomasRespiratorios */
+function tratamentoSintomasRespiratorios()
+{
+  var valRadio = '';
+  jQuery("#infoTratamentoSintomasRespiratorios .radio").click(function(){
+  	if ($( "input:radio[name=infoTratamentoSintomasRespiratorios]:checked" ).val() == "Sim")
+	{
+		jQuery('#tratamentoSintomasRespiratorios').attr('style','display:block');
+	}
+	else{
+		jQuery('#tratamentoSintomasRespiratorios').attr('style','display:none');
+	}
+  });
+}
+/* FIM - tratamentoSintomasRespiratorios */
+
+/* INICIO - sintomasRespiratorios */
+function sintomasRespiratorios()
+{
+  var valRadio = '';
+  jQuery("#infoSintomasRespiratorios .radio").click(function(){
+  	if ($( "input:radio[name=infoSintomasRespiratorios]:checked" ).val() == "Sim")
+	{
+		jQuery('#sintomasRespiratorios').attr('style','display:block');
+	}
+	else{
+		jQuery('#sintomasRespiratorios').attr('style','display:none');
+	}
+  });
+}
+/* FIM - sintomasRespiratorios */
+
+
+/* INICIO - tratamentoSifilis */
+function passouAvaliacaoOdontologica()
+{
+  var valRadio = '';
+  jQuery("#infoPassouAvaliacaoOdontologica .radio").click(function(){
+  	if ($( "input:radio[name=infoPassouAvaliacaoOdontologica]:checked" ).val() == "Sim")
+	{
+		jQuery('#passouAvaliacaoOdontologica').attr('style','display:block');
+	}
+	else{
+		jQuery('#passouAvaliacaoOdontologica').attr('style','display:none');
+	}
+  });
+}
+/* FIM - tratamentoSifilis */
+
+
+/* INICIO - tratamentoSifilis */
+function tratamentoSifilis()
+{
+  var valRadio = '';
+  jQuery("#infoTratamentoSifilis .radio").click(function(){
+  	if ($( "input:radio[name=infoTratamentoSifilis]:checked" ).val() == "Sim")
+	{
+		jQuery('#tratamentoSifilis').attr('style','display:block');
+	}
+	else{
+		jQuery('#tratamentoSifilis').attr('style','display:none');
+	}
+  });
+}
+/* FIM - tratamentoSifilis */
+
+
+/* INICIO - diagnosticoSifilis */
+function diagnosticoSifilis()
+{
+  var valRadio = '';
+  jQuery("#infoDiagnosticoSifilis .radio").click(function(){
+  	if ($( "input:radio[name=infoDiagnosticoSifilis]:checked" ).val() == "Sim")
+	{
+		jQuery('#diagnosticoSifilis').attr('style','display:block');
+	}
+	else{
+		jQuery('#diagnosticoSifilis').attr('style','display:none');
+	}
+  });
+}
+/* FIM - diagnosticoSifilis */
+
+
+
+/* INICIO - infoAcompanhamentoDst */
+function tratamentoHivAids()
+{
+  var valRadio = '';
+  jQuery("#infoTratamentoHivAids .radio").click(function(){
+  	if ($( "input:radio[name=infoTratamentoHivAids]:checked" ).val() == "Sim")
+	{
+		jQuery('#tratamentoHivAids').attr('style','display:block');
+	}
+	else{
+		jQuery('#tratamentoHivAids').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoAcompanhamentoDst */
+
+
+/* INICIO - infoAcompanhamentoDst */
+function diagnosticoHivAids()
+{
+  var valRadio = '';
+  jQuery("#infoDiagnosticoHivAids .radio").click(function(){
+  	if ($( "input:radio[name=infoDiagnosticoHivAids]:checked" ).val() == "Sim")
+	{
+		jQuery('#diagnosticoHivAids').attr('style','display:block');
+	}
+	else{
+		jQuery('#diagnosticoHivAids').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoAcompanhamentoDst */
+
+
+
+/* INICIO - infoAcompanhamentoDst */
+function acompanhamentoDst()
+{
+  var valRadio = '';
+  jQuery("#infoAcompanhamentoDst .radio").click(function(){
+  	if ($( "input:radio[name=infoAcompanhamentoDst]:checked" ).val() == "Sim")
+	{
+		jQuery('#acompanhamentoDst').attr('style','display:block');
+	}
+	else{
+		jQuery('#acompanhamentoDst').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoAcompanhamentoDst */
+
+
+
+/* INICIO - infoTesteRapidoDstAids */
+function testeRapidoDstAids()
+{
+  var valRadio = '';
+  jQuery("#infoTesteRapidoDstAids .radio").click(function(){
+  	if ($( "input:radio[name=infoTesteRapidoDstAids]:checked" ).val() == "Sim")
+	{
+		jQuery('#testeRapidoDstAids').attr('style','display:block');
+	}
+	else{
+		jQuery('#testeRapidoDstAids').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoTesteRapidoDstAids */
+
+
+
+
+
+
+/* INICIO - infoAbstinenciaAposPrograma */
+function abstinenciaAposPrograma()
+{
+  var valRadio = '';
+  jQuery("#infoAbstinenciaAposPrograma .radio").click(function(){
+  	if ($( "input:radio[name=infoAbstinenciaAposPrograma]:checked" ).val() == "Sim")
+	{
+		jQuery('#abstinenciaAposPrograma').attr('style','display:block');
+	}
+	else{
+		jQuery('#abstinenciaAposPrograma').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoAbstinenciaAposPrograma */
+
+
+/* INICIO - infoUsoDrogasInjetaveis */
+function usoDrogasInjetaveis()
+{
+  var valRadio = '';
+  jQuery("#infoUsoDrogasInjetaveis .radio").click(function(){
+  	if ($( "input:radio[name=infoUsoDrogasInjetaveis]:checked" ).val() == "Sim")
+	{
+		jQuery('#usoDrogasInjetaveis').attr('style','display:block');
+	}
+	else{
+		jQuery('#usoDrogasInjetaveis').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoUsoDrogasInjetaveis */
+
+
+
+/* INICIO - infoDrogasAlemCrack */
+function drogasAlemCrack()
+{
+  var valRadio = '';
+  jQuery("#infoDrogasAlemCrack .radio").click(function(){
+  	if ($( "input:radio[name=infoDrogasAlemCrack]:checked" ).val() == "Sim")
+	{
+		jQuery('#drogasAlemCrack').attr('style','display:block');
+	}
+	else{
+		jQuery('#drogasAlemCrack').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoDrogasAlemCrack */
+
+
+
+
+
+
+
+
+/* INICIO - infoTemCompanheiro */
+function infoTemCompanheiro()
+{
+  var valRadio = '';
+  jQuery("#infoTemCompanheiro .radio").click(function(){
+  	if ($( "input:radio[name=infoTemCompanheiro]:checked" ).val() == "Sim")
+	{
+		jQuery('#companheiroInseridoPrograma').attr('style','display:block');
+	}
+	else{
+		jQuery('#companheiroInseridoPrograma').attr('style','display:none');
+	}
+  });
+  /* FIM - infoTemCompanheiro */
+}
+
+/* INICIO - infoEsteveInternado */
+function infoEsteveInternado()
+{
+  var valRadio = '';
+  jQuery("#infoEsteveInternado .radio").click(function(){
+  	if ($( "input:radio[name=infoEsteveInternado]:checked" ).val() == "Sim")
+	{
+		jQuery('#internacao').attr('style','display:block');
+	}
+	else{
+		jQuery('#internacao').attr('style','display:none');
+	}
+  });
+  /* FIM - infoEsteveInternado */
+}
+
+/* INICIO - infoAcompanhamentoCaps */
+function infoAcompanhamentoCaps()
+{
+  var valRadio = '';
+  jQuery("#infoAcompanhamentoCaps .radio").click(function(){
+  	if ($( "input:radio[name=infoAcompanhamentoCaps]:checked" ).val() == "Sim")
+	{
+		jQuery('#qualAcompanhamentoCaps').attr('style','display:block');
+	}
+	else{
+		jQuery('#qualAcompanhamentoCaps').attr('style','display:none');
+	}
+  });
+  /* FIM - infoAcompanhamentoCaps */
+}
+
+function infoCadastroAcompanhamentoUbs()
+{  
+  /* INICIO - infoCadastroAcompanhamentoUbs */
+  var valRadio = '';
+  jQuery("#infoCadastroAcompanhamentoUbs .radio").click(function(){
+  	if ($( "input:radio[name=infoCadastroAcompanhamentoUbs]:checked" ).val() == "Sim")
+	{
+		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:block');
+	}
+	else{
+		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:none');
+	}
+  });
+  /* FIM - infoCadastroAcompanhamentoUbs */
 }

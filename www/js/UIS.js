@@ -67,6 +67,17 @@ function salvarFormLogin()
                    });
                    /* FIM - infoCadastroAcompanhamentoUbs */
 
+
+
+
+
+
+
+
+
+
+
+
                    /* INICIO - infoAcompanhamentoCaps */
                    var valRadio = '';
                    jQuery("#infoAcompanhamentoCaps .radio").click(function(){
