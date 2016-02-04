@@ -133,7 +133,7 @@
 		}
 		else {
 			// Carrega todos os tipos de motivo de inativação
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_frequencia_caps",
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_motivo_inativacao",
 								[], 
 								BD_DTO.tipo_motivo_inativacao_carrega_success, 
 								BD_DTO.cbFail_f);
@@ -571,5 +571,99 @@
 	},
 //*******************************************************************************************************************
 // Tipos de Dispositivo de Contato
+//*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Estado
+//*******************************************************************************************************************
+	tipo_estado_data: [],
+	tipo_estado_DTO: function () {
+		id: null;
+		sigla: null;
+		nome: null;
+		status: null;
+	},
+	tipo_estado_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_estado_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_estado_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de estado
+			BANCODADOS.sqlCmdDB("SELECT id, sigla, nome, status FROM tipo_estado",
+								[], 
+								BD_DTO.tipo_estado_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_estado_carrega_success: function (trans, res) {
+		console.log("tipo_estado_carrega_success");
+		
+		var te;
+		while (BD_DTO.tipo_estado_data.length > 0) {
+			BD_DTO.tipo_estado_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			te = new BD_DTO.tipo_estado_DTO();
+			te.id = res.rows.item(i).id;
+			te.sigla = res.rows.item(i).sigla;
+			te.nome = res.rows.item(i).nome;
+			te.status = res.rows.item(i).status;
+			BD_DTO.tipo_estado_data.push(te);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Estado
+//*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Parentesco
+//*******************************************************************************************************************
+	tipo_parentesco_data: [],
+	tipo_parentesco_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_parentesco_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_parentesco_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_parentesco_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de parentesco
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_parentesco",
+								[], 
+								BD_DTO.tipo_parentesco_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_parentesco_carrega_success: function (trans, res) {
+		console.log("tipo_parentesco_carrega_success");
+		
+		var tp;
+		while (BD_DTO.tipo_parentesco_data.length > 0) {
+			BD_DTO.tipo_parentesco_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.tipo_parentesco_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.nome = res.rows.item(i).nome;
+			tp.status = res.rows.item(i).status;
+			BD_DTO.tipo_parentesco_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Parentesco
 //*******************************************************************************************************************
 }

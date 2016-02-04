@@ -5,21 +5,42 @@
 	
 	cidadao_id: null,
 	dadosSaude: null,
+	listaCadastroAcompanhamentoUBS: [],
+	listaInternacao: [],
+	listaTelefoneFamiliar: [],
 	
 	// Tipo de frequência CAPS
 	listaTipoFrequenciaCaps: null,
+	listaEstados: null,
+	listaTipoParentesco: null,
 	
 	// Carrega dados básicos
 	dadosBasicos: function () {
 		console.log("dadosBasicos");
 		
-		BD_DTO.tipo_motivo_inativacao_carrega(CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosBasicosFail);
+		BD_DTO.tipo_parentesco_carrega(CIDADAOSAUDE.dadosListaTipoParentesco, CIDADAOSAUDE.dadosBasicosFail);
+	},
+
+	dadosListaTipoParentesco: function () {
+		console.log("dadosListaTipoParentesco");
+		
+		CIDADAOSAUDE.listaTipoParentesco = BD_DTO.tipo_parentesco_data;
+
+		BD_DTO.tipo_estado_carrega(CIDADAOSAUDE.dadosListaEstados, CIDADAOSAUDE.dadosBasicosFail);
 	},
 	
-	dadosBasicosSuccess: function (trans, res) {
-		console.log("dadosBasicosSuccess");
+	dadosListaEstados: function () {
+		console.log("dadosListaEstados");
 		
-		CIDADAOSAUDE.listaTipoFrequenciaCaps = BD_DTO.tipo_motivo_inativacao_data;
+		CIDADAOSAUDE.listaEstados = BD_DTO.tipo_estado_data;
+
+		BD_DTO.tipo_frequencia_caps_carrega(CIDADAOSAUDE.dadosListaCadastroAcompanhamentoUBS, CIDADAOSAUDE.dadosBasicosFail);
+	},
+	
+	dadosListaCadastroAcompanhamentoUBS: function () {
+		console.log("dadosListaCadastroAcompanhamentoUBS");
+		
+		CIDADAOSAUDE.listaTipoFrequenciaCaps = BD_DTO.tipo_frequencia_caps_data;
 	
 		// todo: testes retirar
 		var Print = "Tipos de Frequência CAPS:\r\n";
@@ -30,7 +51,103 @@
 		console.log(Print);
 		// testes retirar
 
-		CIDADAOSAUDE.cbSuccess_f();
+		BANCODADOS.sqlCmdDB("SELECT id, nome_ubs, especialidade, nome_tecnico_referencia, dt_criacao " +		
+							"FROM cadastro_acompanhamento_ubs WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosListaInternacao, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosListaInternacao: function (trans, res) {
+		console.log("dadosListaInternacao");
+
+		CIDADAOSAUDE.listaCadastroAcompanhamentoUBS = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var cau = {
+				id: res.rows.item(i).id,
+				nome_ubs: res.rows.item(i).nome_ubs,
+				especialidade: res.rows.item(i).especialidade,
+				nome_tecnico_referencia: res.rows.item(i).nome_tecnico_referencia,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaCadastroAcompanhamentoUBS.push(cau);
+		}
+
+		// todo: testes retirar
+		var Print = "Acompanhamentos UBS:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaCadastroAcompanhamentoUBS.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].id + "\r\n";
+			Print += "\tNome UBS: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].nome_ubs + "\r\n";			
+			Print += "\tEspecialidade: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].especialidade + "\r\n";			
+			Print += "\tNome Técnico Referência: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].nome_tecnico_referencia + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, quantas_vezes, local, motivo, dt_criacao " +		
+							"FROM internacao WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosTelefoneFamiliar, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosTelefoneFamiliar: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOSAUDE.listaInternacao = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var inter = {
+				id: res.rows.item(i).id,
+				quantas_vezes: res.rows.item(i).quantas_vezes,
+				local: res.rows.item(i).local,
+				motivo: res.rows.item(i).motivo,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaInternacao.push(inter);
+		}
+
+		// todo: testes retirar
+		var Print = "Internações:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaInternacao.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaInternacao[i].id + "\r\n";
+			Print += "\tQuantas vezes: " + CIDADAOSAUDE.listaInternacao[i].quantas_vezes + "\r\n";			
+			Print += "\tLocal: " + CIDADAOSAUDE.listaInternacao[i].local + "\r\n";			
+			Print += "\tMotivo: " + CIDADAOSAUDE.listaInternacao[i].motivo + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaInternacao[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_parentesco_id, numero, dt_criacao " +		
+							"FROM telefone_familiar WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosEntradaFail);
+
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOSAUDE.listaTelefoneFamiliar = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var tf = {
+				id: res.rows.item(i).id,
+				tipo_parentesco_id: res.rows.item(i).tipo_parentesco_id,
+				numero: res.rows.item(i).numero,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaTelefoneFamiliar.push(tf);
+		}
+
+		// todo: testes retirar
+		var Print = "Telefones Familiares:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaTelefoneFamiliar.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].id + "\r\n";
+			Print += "\tTipo de Parentesco: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].tipo_parentesco_id + "\r\n";			
+			Print += "\tNúmero: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].numero + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		//CIDADAOSAUDE.cbSuccess_f();
+		PageManager.loadTmpl('saude');
 	},
 	
 	dadosBasicosFail: function (err) {
@@ -50,7 +167,8 @@
 		CIDADAOSAUDE.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		CIDADAOSAUDE.cidadao_id = cidadao;
+		//CIDADAOSAUDE.cidadao_id = cidadao;
+		CIDADAOSAUDE.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +

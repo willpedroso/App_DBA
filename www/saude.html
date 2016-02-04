@@ -1,6 +1,6 @@
-<!-- SITUACAO DBA -->
-        <div id="div_sitDBA">
-          <form id="formSituacaoDba" action="actions/formSituacaoDba/cadastrar.php" method="post" class="cadastro">
+<!-- SAUDE -->
+     <div id="saude">
+        <form id="formSaude" class="cadastro">
             <!--INICIO - PRIMEIRO BLOCO-->
             <div class="contentAbaBorda">
           
@@ -27,11 +27,11 @@
               <div class="linhaForm">
                 <span class="titLabel">Tem cadastro/acompanhamento em alguma UBS:</span>
                 <div id="infoCadastroAcompanhamentoUbs" class="radioButton">
-                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não Informado" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não Informado" class="radio" onchange="infoCadastroAcompanhamentoUbsf()">
                   <p>Não Informado</p>
-                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Não" class="radio" onchange="infoCadastroAcompanhamentoUbsf()">
                   <p>Não</p>
-                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Sim" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                  <input type="radio" name="infoCadastroAcompanhamentoUbs" value="Sim" class="radio" onchange="infoCadastroAcompanhamentoUbsf()">
                   <p>Sim</p>
                   <input type="hidden" value="1" name="cadastro_acompanhamento_ubs" id="cadastro_acompanhamento_ubs" class="valueCheck">
                 </div>
@@ -48,14 +48,14 @@
                 <div class="adicionaInputUbsSaude"></div>
               </div>
               
-              <div class="linhaForm">
+              <div class="linhaForm" id="divInfoAcompanhamentoCaps">
                 <span class="titLabel">Já fez ou faz acompanhamento em Caps:</span>
                 <div id="infoAcompanhamentoCaps" class="radioButton">
-                  <input type="radio" name="infoAcompanhamentoCaps" value="Não Informado" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Não Informado" class="radio" onchange="infoAcompanhamentoCapsf()">
                   <p>Não Informado</p>
-                  <input type="radio" name="infoAcompanhamentoCaps" value="Não" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Não" class="radio" onchange="infoAcompanhamentoCapsf()">
                   <p>Não</p>
-                  <input type="radio" name="infoAcompanhamentoCaps" value="Sim" class="radio" onchange="infoAcompanhamentoCaps()">
+                  <input type="radio" name="infoAcompanhamentoCaps" value="Sim" class="radio" onchange="infoAcompanhamentoCapsf()">
                   <p>Sim</p>
                   <input type="hidden" value="1" name="acompanhamento_caps" id="acompanhamento_caps" class="valueCheck">
                 </div>
@@ -70,7 +70,8 @@
                 <label class="selectDefault">
                   <span class="titSang">Quantas vezes por semana frequenta o serviço ou recebe atendimento no território (Caps na Rua):</span>
 
-                  <div class="comboStilo"> 
+                  <div id="listaTiposFrequenciaCaps" class="comboStilo"> 
+				    <!--
                     <select name="tipoAtuacaoLabel" id="tipoFrequenciaCapsLabel" class="selectPersonalizado">
                       <div class="lista-box-scroll">
                         <option value="Selecione">Selecione</option>
@@ -82,6 +83,7 @@
                       </div>
                     </select>
                     <input type="hidden" id="tipo_frequencia_caps_id" name="tipo_frequencia_caps_id" value="2">
+					-->
                   </div>
                 </label>
               </div>
@@ -94,11 +96,11 @@
               <div class="linhaForm">
                 <span class="titLabel">Já esteve internado:</span>
                 <div id="infoEsteveInternado" class="radioButton">
-                  <input type="radio" name="infoEsteveInternado" value="Não Informado" class="radio" onchange="infoEsteveInternado()">
+                  <input type="radio" name="infoEsteveInternado" value="Não Informado" class="radio" onchange="infoEsteveInternadof()">
                   <p>Não Informado</p>
-                  <input type="radio" name="infoEsteveInternado" value="Não" class="radio" onchange="infoEsteveInternado()">
+                  <input type="radio" name="infoEsteveInternado" value="Não" class="radio" onchange="infoEsteveInternadof()">
                   <p>Não</p>
-                  <input type="radio" name="infoEsteveInternado" value="Sim" class="radio" onchange="infoEsteveInternado()">
+                  <input type="radio" name="infoEsteveInternado" value="Sim" class="radio" onchange="infoEsteveInternadof()">
                   <p>Sim</p>
                   <input type="hidden" value="1" name="esteve_internado" id="esteve_internado" class="valueCheck">
                 </div>
@@ -113,24 +115,25 @@
                 </div>
                 <textarea rows="4" cols="50" class="textareaMotivoInternacao" placeholder="Motivo da internação"></textarea>
                 <div class="adicionaInputInternacao">
+				  <!--
                   <div id="div_internacao_14">
                     <input type="text" value="2" name="quantidade_internacao[]" class="inputAdicionaProvidenciaSelect" readonly="" id="input__internacao_14">
                     <input type="text" value="HC" name="local_internacao[]" class="inputAdicionaProvidencia" readonly="" id="input__internacao_14">
                     <textarea name="motivo_internacao[]" class="textareaAdicionaInternacao " readonly="" id="input__internacao_14">overdose</textarea>
                     <span class="btn-remover" onclick="removeMe('div_internacao_14')"></span>
                   </div>
+				  -->
                 </div>
               </div>
               
               <div class="linhaForm"> 
                 <span class="titLabel">Como chegou à situação de rua:</span>
-                <input type="text" class="inputGrande" value="usando droga" id="como_chegou_situacao_rua" name="como_chegou_situacao_rua">
+                <input type="text" class="inputGrande" value="" id="como_chegou_situacao_rua" name="como_chegou_situacao_rua">
               </div>
               
               <div class="linhaForm"> 
-                <label class="selectDefault">
-
-                  <div class="comboStilo"> 
+                  <div class="comboStilo" id="listaDiasMesesAnosRua">
+					<!--
                     <span class="titSang">Por quanto tempo permaneceu em situação de rua:</span> 
                     <select name="diasLabel" id="diasLabel" class="selectPersonalizado">
                       <div class="lista-box-scroll">
@@ -242,7 +245,7 @@
                         <option value="50 anos" id="50" data-id="anosLabel" for="anos_situacao_rua">50 anos</option>
                       </div>
                     </select>
-                </label>
+					-->
               </div>
               
               <div class="linhaForm">
@@ -260,12 +263,12 @@
               
               <div class="linhaForm"> 
                 <span class="titLabel">Horas de sono por dia antes da inserção no programa:</span>
-                <input type="text" class="inputGrande" value="4" id="sono_antes_programa" name="sono_antes_programa">
+                <input type="text" class="inputGrande" value="" id="sono_antes_programa" name="sono_antes_programa">
               </div>
               
               <div class="linhaForm"> 
                 <span class="titLabel">Horas de sono por dia depois da inserção no programa:</span>
-                <input type="text" class="inputGrande" value="9" id="sono_depois_programa" name="sono_depois_programa">
+                <input type="text" class="inputGrande" value="" id="sono_depois_programa" name="sono_depois_programa">
               </div>
               
               <div class="linhaForm">
@@ -336,7 +339,8 @@
                 </div>
               </div>
               
-              <div class="linhaForm">
+            <div class="linhaForm" id="listaEstadosFamiliaReside">
+			  <!--
                 <label class="selectDefault">
                   <span class="titSang">UF de onde reside sua família:</span>
                   <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
@@ -373,18 +377,24 @@
                   </div>
                   </select>
                 </label>
-              </div>
+				-->
+            </div>
               
               <div class="linhaForm"> 
                 <span class="titLabel">Descrição de onde reside sua família:</span>
-                <input type="text" class="inputGrande" value="testolandia abc" id="descricao_reside_familia" name="descricao_reside_familia">
+                <input type="text" class="inputGrande" value="" id="descricao_reside_familia" name="descricao_reside_familia">
               </div>
               
               <div class="linhaForm"> 
                 <label class="selectDefault alinhaLeftSelect">
                 <div class="comboStilo"> 
                   <span class="titSang">Telefone de algum familiar:</span> 
+				  <!--
                   <select name="tipoParentescoLabel" id="tipoParentescoLabel" class="selectPersonalizado">
+                  <select name="tipoParentescoLabelSelect" id="tipoParentescoLabelSelect" class="selectPersonalizado">
+				  -->
+                  <select name="selectTipoParente" id="selectTipoParente" class="selectPersonalizado">
+					<!--
                     <div class="lista-box-scroll">
                         <option value="" id="0" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Selecione</option>
                         <option value="" id="1" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Agregado</option>
@@ -406,7 +416,8 @@
                         <option value="" id="17" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Sogro (a)</option>
                         <option value="" id="18" data-id="tipoParentescoLabel" for="tipo_parentesco_id">Tio (a)</option>               
                     </div>
-                  <input type="hidden" id="tipo_parentesco_id" name="tipo_parentesco_id" value="">
+					<input type="hidden" id="tipo_parentesco_id" name="tipo_parentesco_id" value="">
+				  -->
                   </select>
                 </div>
                 </label>
@@ -415,6 +426,7 @@
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoFamiliar" value="Adicionar">
                 </div>
                 <div class="adicionaInputContatoFamiliar">
+					  <!--
                       <div id="div_telefone_familiar_18">
                         <input type="text" value="Agregado" name="input__telefone_familiar_18" class="inputAdicionaContatoSelect" readonly="" id="input__telefone_familiar_18">
                         <input type="hidden" value="1" name="tipo_familiar[]">
@@ -422,6 +434,7 @@
                         <input type="hidden" value="3121231" name="numero_familiar[]">
                         <span class="btn-remover" onclick="removeMe('div_telefone_familiar_18')"></span>
                       </div>
+					  -->
                 </div>
               </div>
               
@@ -2046,7 +2059,6 @@
                 </div>
               </div>
             </label>
-          </div>
           
           
           <div class="linhaForm">
@@ -2120,9 +2132,10 @@
           
         </form>
 
-      </div>
+    </div>
+
 <script>
     $(document).ready(function() {
-		carregaSituacaoDBA();
+		carregaSaude();
 	});
 </script>

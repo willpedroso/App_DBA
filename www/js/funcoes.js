@@ -312,6 +312,8 @@ $(document).ready(function(){
 	
 	//ADICIONA CONTATO familiar
 	$( document ).on( "click", ".btnAdicionaInputContatoFamiliar", function() {
+		adicionaTelefoneFamiliar(null);
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -332,6 +334,7 @@ $(document).ready(function(){
 			$('input.tipo_parentesco_id').val('');
 			$('.selectTipoParente').text('Tipo');
 		}
+		*/
 	});
 	
 	
@@ -419,6 +422,8 @@ $(document).ready(function(){
 	
 	//ADICIONA ACOMPANHAMENTO/CADASTRO UBS
 	$( document ).on( "click", ".btnAdicionaInputUbs", function() {
+		adicionaAcompanhamentoUBS();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -438,7 +443,7 @@ $(document).ready(function(){
 			$('input.adicionaTecnicoReferenciaUbsSaude').val('');
 			$('textarea.textareaEspecialidadeUbsSaude').val('');
 		}
-
+		*/
 		
 	});
 	
@@ -446,6 +451,8 @@ $(document).ready(function(){
 	
 	//ADICIONA INTERNACAO
 	$( document ).on( "click", ".btnAdicionaInputInternacao", function() {
+		adicionaInternacao();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -459,6 +466,7 @@ $(document).ready(function(){
 		$('input.adicionaQuantasVezesInternado').val('');
 		$('input.adicionaLocalInternacao').val('');
 		$('textarea.textareaMotivoInternacao').val('');
+		*/
 	});
 
 	
@@ -577,10 +585,69 @@ $(document).ready(function(){
 
 });
 
+function adicionaTelefoneFamiliar(parentesco) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if($('input.adicionaNumContatoFamiliar').val()  == '' || $('.selectTipoParente').text() == 'Selecione'){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+
+		(parentesco == null ? $("#selectTipoParente option:selected").text() : parentesco)+
+		'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$("#tipo_parentesco_id").val()+'" name="tipo_familiar[]">'+
+		'<input type="text" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="numero_familiar[]">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputContatoFamiliar').append(	html2insert);
+		$('input.adicionaNumContatoFamiliar').val('');
+		$('input.tipo_parentesco_id').val('');
+		$('#selectTipoParente').val('Tipo');
+	}
+}
 
+function adicionaInternacao() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	var html2insert ='<div id="div'+idobj+'">'+
+	'<input type="text" value="'+$(".adicionaQuantasVezesInternado").val()+'" name="quantidade_internacao[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+	'<input type="text" value="'+$(".adicionaLocalInternacao").val()+'" name="local_internacao[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+	'<textarea name="motivo_internacao[]" class="textareaAdicionaInternacao " readonly id="input_'+idobj+'">' + $(".textareaMotivoInternacao").val() + '</textarea>'+
+	'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+		
+	$('.adicionaInputInternacao').append(	html2insert);
+	$('input.adicionaQuantasVezesInternado').val('');
+	$('input.adicionaLocalInternacao').val('');
+	$('textarea.textareaMotivoInternacao').val('');
+}
 
-
-
+function adicionaAcompanhamentoUBS() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaQualUbsSaude').val()  == '' || $('input.adicionaTecnicoReferenciaUbsSaude').val() == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualUbsSaude").val()+'" name="nome_ubs[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaTecnicoReferenciaUbsSaude").val()+'" name="tecnico_referencia_ubs[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+		'<textarea name="especialidade_ubs[]" class="textareaAdicionaEspecialidadeUbs " readonly id="input_'+idobj+'">' + $(".textareaEspecialidadeUbsSaude").val() + '</textarea>'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+		
+		$('.adicionaInputUbsSaude').append(	html2insert);
+		$('input.adicionaQualUbsSaude').val('');
+		$('input.adicionaTecnicoReferenciaUbsSaude').val('');
+		$('textarea.textareaEspecialidadeUbsSaude').val('');
+	}		
+}
+	
 function salvarFormSituacaoDba()
 {
   var flag = true;
@@ -852,7 +919,7 @@ function infoParticipouOficinaHoje()
 		jQuery('#participouOficinaHoje').attr('style','display:block');
 		jQuery('#naoParticipouOficinaHoje').attr('style','display:none');
 	}
-	if else($( "input:radio[name=infoParticipouOficinaHoje]:checked" ).val() == "Não")
+	else if($( "input:radio[name=infoParticipouOficinaHoje]:checked" ).val() == "Não")
 	{
 		jQuery('#naoParticipouOficinaHoje').attr('style','display:block');
 		jQuery('#participouOficinaHoje').attr('style','display:none');
@@ -1283,7 +1350,7 @@ function infoTemCompanheiro()
 }
 
 /* INICIO - infoEsteveInternado */
-function infoEsteveInternado()
+function infoEsteveInternadof()
 {
   var valRadio = '';
   jQuery("#infoEsteveInternado .radio").click(function(){
@@ -1299,22 +1366,26 @@ function infoEsteveInternado()
 }
 
 /* INICIO - infoAcompanhamentoCaps */
-function infoAcompanhamentoCaps()
+function infoAcompanhamentoCapsf()
 {
   var valRadio = '';
   jQuery("#infoAcompanhamentoCaps .radio").click(function(){
   	if ($( "input:radio[name=infoAcompanhamentoCaps]:checked" ).val() == "Sim")
 	{
 		jQuery('#qualAcompanhamentoCaps').attr('style','display:block');
+		jQuery('#tipoFrequenciaCaps').attr('style','display:block');
+		jQuery('#nomeTecnicoReferenciaCaps').attr('style','display:block');
 	}
 	else{
 		jQuery('#qualAcompanhamentoCaps').attr('style','display:none');
+		jQuery('#tipoFrequenciaCaps').attr('style','display:none');
+		jQuery('#nomeTecnicoReferenciaCaps').attr('style','display:none');
 	}
   });
   /* FIM - infoAcompanhamentoCaps */
 }
 
-function infoCadastroAcompanhamentoUbs()
+function infoCadastroAcompanhamentoUbsf()
 {  
   /* INICIO - infoCadastroAcompanhamentoUbs */
   var valRadio = '';

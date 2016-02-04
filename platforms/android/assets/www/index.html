@@ -67,6 +67,7 @@
     <script src="js/CidadaoSituacaoDBA.js" type="text/javascript"></script>
     <script src="js/sitDBA.js" type="text/javascript"></script>
     <script src="js/info_basicas.js" type="text/javascript"></script>
+    <script src="js/saude.js" type="text/javascript"></script>
    
     <!--CSS-->
     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -125,7 +126,8 @@
               <li class="active" onclick="console.log('Atividades');PageManager.loadTmpl('div_atividades');ATIVIDADE.dadosEntrada(55, ATIVIDADE.apresentaCalendario, null); abas();">Atividades</li>
               <li class="active" onclick="console.log('Social');PageManager.loadTmpl('div_Social'); abas();">Social</li>
               <li class="active ">Trabalho</li>
-              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('identificacaoTeste'); abas();">Saúde </li>
+<!--              <li class="active" onclick="console.log('Saude');PageManager.loadTmpl('saude'); abas();">Saúde </li>-->
+              <li class="active" onclick="console.log('Saude');CIDADAOSAUDE.dadosEntrada(); abas();">Saúde </li>
               <li class="active">Historico de alterações</li>
 
             </ul>
