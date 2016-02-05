@@ -468,9 +468,9 @@
               </div>
             </label>
             <label class="selectDefault">
-              <div class="comboStilo"> 
+              <div class="comboStilo" id="listaDiasMesesAnosUsoDrogas"> 
+				<!--
                 <span class="titSang">Há quanto tempo?</span> 
-
                 <select name="diaDrogasFazUsoLabel" id="diaDrogasFazUsoLabel" class="selectPersonalizado">
                   <div class="lista-box-scroll">
                     <option value="Selecione" id="0">Selecione</option>
@@ -544,12 +544,13 @@
                     <option value="12 anos" id="12" data-id="anosDrogasFazUsoLabel" for="anos_dorgas_faz_uso">12 anos</option>
                   </div>
                 </select>
-      
+				-->
               </div>
             </label>
             <div class="adicionaInputDrogas">
+			  <!--
               <div id="div_drogas_faz_uso_52">
-                <input type="text" value="maconha" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly="" id="input__drogas_faz_uso_52">
+                <input type="text" value="" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly="" id="input__drogas_faz_uso_52">
                 <div class="inputsTempo">
                   <input type="text" value="" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_52">
                   <input type="text" value="" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly="" id="input__drogas_faz_uso_52">
@@ -566,8 +567,8 @@
                 </div>
                 <span class="btn-remover" onclick="removeMe('div_drogas_faz_uso_53')"></span>
               </div>
+			  -->
             </div>
-        
         </div>
 
 
@@ -646,7 +647,8 @@
         
           <div class="linhaForm"> 
             <label class="selectDefault">
-              <div class="comboStilo"> 
+              <div class="comboStilo" id="listaDiasMesesAnosFazUsoCrack">
+				<!--
                 <span class="titSang">Há quanto tempo usa crack:</span> 
                 <select name="diasFazUsoCrackLabel" id="diasFazUsoCrackLabel" class="selectPersonalizado">
                   <div class="lista-box-scroll">
@@ -762,7 +764,8 @@
                     <option value="49 anos" id="49" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">49 anos</option>
                     <option value="50 anos" id="50" data-id="anosFazUsoCrackLabel" for="anos_faz_uso_crack">50 anos</option>
                   </div>
-                </select>               
+                </select>  
+				-->
               </div>
             </label>
           </div>
@@ -771,7 +774,8 @@
             
             <label class="selectDefault">
               <span class="titSang">Quantas pedras de crack você utilizava antes da inserção no programa:</span>
-              <div class="comboStilo"> 
+              <div class="comboStilo" id="listaNumeroPedrasAntesPrograma">
+				<!--
                 <select name="numeroPedrasAntesProgramaLabel" id="numeroPedrasAntesProgramaLabel" class="selectPersonalizado">
                   <div class="lista-box-scroll">
                     <option value="1 por semana" id="1" data-id="numeroPedrasAntesProgramaLabel" for="numero_pedras_antes_programa">1 por semana</option> 
@@ -877,6 +881,7 @@
                   </div>
                 </select>
                 <input type="hidden" id="numero_pedras_antes_programa" name="numero_pedras_antes_programa" value="15">
+				-->
               </div>
             </label>
           </div>
@@ -884,7 +889,8 @@
           <div class="linhaForm"> 
             <label class="selectDefault">
               <span class="titSang">Quantas pedras de crack usa atualmente:</span>
-              <div class="comboStilo"> 
+              <div class="comboStilo" id="listaNumeroPedrasAtualmentePrograma"> 
+				<!--
                 <select name="numeroPedrasAtualmenteLabel" id="numeroPedrasAtualmenteLabel" class="selectPersonalizado">
                   <div class="lista-box-scroll">
                       <option value="1 por semana" id="1" data-id="numeroPedrasAtualmenteLabel" for="numero_pedras_atualmente">1 por semana</option> 
@@ -990,6 +996,7 @@
                     </div>
                   </select>
                 <input type="hidden" id="numero_pedras_atualmente" name="numero_pedras_atualmente" value="3">
+				-->
               </div>
             </label>            
           </div>

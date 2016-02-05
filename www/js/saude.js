@@ -97,21 +97,21 @@ function carregaSaude () {
 	$("#como_chegou_situacao_rua").val(auxVar == null ? "" : auxVar);
 	
 	var opts = "<span class='titSang'>Por quanto tempo permaneceu em situação de rua:</span>" + 
-			   "<select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+			   "<select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasLabel' for='dias_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
 	opts += "</div></select>";
 	
-	opts += "<select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	opts += "<select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesLabel' for='meses_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
 	opts += "</div></select>";
 	
-	opts += "<select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Anos</option>";
+	opts += "<select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosLabel' for='anos_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
@@ -252,6 +252,147 @@ function carregaSaude () {
 		adicionaTelefoneFamiliar(parentesco);
 	}
 	
+	// Uso de drogas
+	var opts = "<span class='titSang'>Há quanto tempo?</span>" + 
+			   "<select name='diaDrogasFazUsoLabel' id='diaDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	for (var i = 1; i < 32; i++) {
+		opts += "<option value='" + i + "' data-id='diaDrogasFazUsoLabel' for='dias_dorgas_faz_uso'>";
+		opts += i + (i == 1 ? " dia" : " dias") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='mesesDrogasFazUsoLabel' id='mesesDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	for (var i = 1; i < 13; i++) {
+		opts += "<option value='" + i + "' data-id='mesesDrogasFazUsoLabel' for='meses_dorgas_faz_uso'>";
+		opts += i + (i == 1 ? " mês" : " meses") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='anosDrogasFazUsoLabel' id='anosDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	for (var i = 1; i < 51; i++) {
+		opts += "<option value='" + i + "' data-id='anosDrogasFazUsoLabel' for='anos_dorgas_faz_uso'>";
+		opts += i + (i == 1 ? " ano" : " anos") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	$("#listaDiasMesesAnosUsoDrogas").empty();
+	$("#listaDiasMesesAnosUsoDrogas").append(opts);
+	
+	for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
+		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
+		$('.adicionaDrogas').val(auxVar == null ? "" : auxVar);
+		adicionaDrogas(CIDADAOSAUDE.listaDrogasFazUso[i].dias_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].meses_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].anos_frequencia);
+	}
+	
+	// Está em tratamento de saúde
+	if (CIDADAOSAUDE.dadosSaude.tratamento_saude == 1) {
+		// Sim
+		$("input[name='infoTratamentoSaude'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_saude == 0) {
+		// Não
+		$("input[name='infoTratamentoSaude'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTratamentoSaude'][value='Não Informado']").prop("checked", true);
+	}
+	
+	if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa == 1) {
+		// Sim
+		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa == 0) {
+		// Não
+		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Não Informado']").prop("checked", true);
+	}
+	
+	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 1) {
+		// Sim
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 0) {
+		// Não
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Não Informado']").prop("checked", true);
+	}
+	
+	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 1) {
+		// Sim
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 0) {
+		// Não
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Não Informado']").prop("checked", true);
+	}
+		
+	// Há quanto tempo usa crack
+	var opts = "<span class='titSang'>Há quanto tempo usa crack:</span>" + 
+			   "<select name='diasFazUsoCrackLabel' id='diasFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	for (var i = 1; i < 32; i++) {
+		opts += "<option value='" + i + "' data-id='diasFazUsoCrackLabel' for='dias_faz_uso_crack'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='mesesFazUsoCrackLabel' id='mesesFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	for (var i = 1; i < 13; i++) {
+		opts += "<option value='" + i + "' data-id='mesesFazUsoCrackLabel' for='meses_faz_uso_crack'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='anosFazUsoCrackLabel' id='anosFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	for (var i = 1; i < 51; i++) {
+		opts += "<option value='" + i + "' data-id='anosFazUsoCrackLabel' for='anos_faz_uso_crack'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	$("#listaDiasMesesAnosFazUsoCrack").empty();
+	$("#listaDiasMesesAnosFazUsoCrack").append(opts);
+	
+	// Quantas pedras antes
+	var opts = "<select name='numeroPedrasAntesProgramaLabel' id='numeroPedrasAntesProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	for (var i = 1; i < 101; i++) {
+		opts += "<option value='" + i + "' data-id='numeroPedrasAntesProgramaLabel' for='numero_pedras_antes_programa'";
+		var label = "";
+		if (i < 100)
+			label = i + " por semana";
+		else label = "Mais de " + i + " por semana";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.numero_pedras_antes_programa == i) ? " selected>" : ">") + label + "</option>";
+	}
+	opts += "</div></select>";	
+	
+	$("#listaNumeroPedrasAntesPrograma").empty();
+	$("#listaNumeroPedrasAntesPrograma").append(opts);
+
+	// Quantas pedras atualmente
+	var opts = "<select name='numeroPedrasAtualmenteLabel' id='numeroPedrasAtualmenteLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	for (var i = 1; i < 101; i++) {
+		opts += "<option value='" + i + "' data-id='numeroPedrasAtualmenteLabel' for='numero_pedras_atualmente'";
+		var label = "";
+		if (i < 100)
+			label = i + " por semana";
+		else label = "Mais de " + i + " por semana";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.numero_pedras_atualmente == i) ? " selected>" : ">") + label + "</option>";
+	}
+	opts += "</div></select>";	
+	
+	$("#listaNumeroPedrasAtualmentePrograma").empty();
+	$("#listaNumeroPedrasAtualmentePrograma").append(opts);
+
 	/*	
 	// Lista de pontos de serviço
 	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";

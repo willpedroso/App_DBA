@@ -340,6 +340,8 @@ $(document).ready(function(){
 	
 	//ADICIONA DROGAS
 	$( document ).on( "click", ".btnAdicionaInputDrogas", function() {
+		adicionaDrogas(null, null, null);
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -362,6 +364,7 @@ $(document).ready(function(){
 			$('#mesesDrogasFazUsoLabel').text('Meses');
 			$('#anosDrogasFazUsoLabel').text('Anos');
 		}
+		*/
 	});
 	
 	
@@ -584,6 +587,42 @@ $(document).ready(function(){
 });
 
 });
+
+function adicionaDrogas(dias, meses, anos) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if($('input.adicionaDrogas').val()  == ''){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		var vdias = dias != null ? dias : $("#diaDrogasFazUsoLabel option:selected").text();
+		var vmeses = meses != null ? meses : $("#mesesDrogasFazUsoLabel option:selected").text();
+		var vanos = anos != null ? anos : $("#anosDrogasFazUsoLabel option:selected").text();
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+
+		'<div class="inputsTempo">'+
+		
+//		'<input type="text" value="'+(($("#diaDrogasFazUsoLabel").text() == 'Dias')? '':$("#diaDrogasFazUsoLabel").text()) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vdias == 'Dias')? '':vdias) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		
+//		'<input type="text" value="'+(($("#mesesDrogasFazUsoLabel").text() == 'Meses')? '':$("#mesesDrogasFazUsoLabel").text())+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vmeses == 'Meses')? '':vmeses)+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		
+//		'<input type="text" value="'+(($("#anosDrogasFazUsoLabel").text() == 'Anos')? '':$("#anosDrogasFazUsoLabel").text())+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vanos == 'Anos')? '':vanos)+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		
+		'</div>'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+
+		$('.adicionaInputDrogas').append(	html2insert);
+		$('input.adicionaDrogas').val('');
+		$('#diaDrogasFazUsoLabel').val('Dias');
+		$('#mesesDrogasFazUsoLabel').val('Meses');
+		$('#anosDrogasFazUsoLabel').val('Anos');
+	}
+}
 
 function adicionaTelefoneFamiliar(parentesco) {
 	var d = new Date();

@@ -8,6 +8,7 @@
 	listaCadastroAcompanhamentoUBS: [],
 	listaInternacao: [],
 	listaTelefoneFamiliar: [],
+	listaDrogasFazUso: [],
 	
 	// Tipo de frequência CAPS
 	listaTipoFrequenciaCaps: null,
@@ -116,13 +117,13 @@
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_parentesco_id, numero, dt_criacao " +		
-							"FROM telefone_familiar WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosEntradaFail);
+							"FROM telefone_familiar WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosDrogasFazUso, CIDADAOSAUDE.dadosEntradaFail);
 
 	},
 	
-	dadosBasicosSuccess: function (trans, res) {
-		console.log("dadosBasicosSuccess");
-		
+	dadosDrogasFazUso: function (trans, res) {
+		console.log("dadosDrogasFazUso");
+
 		CIDADAOSAUDE.listaTelefoneFamiliar = [];
 		
 		for (var i = 0; i < res.rows.length; i++) {
@@ -142,6 +143,42 @@
 			Print += "\tTipo de Parentesco: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].tipo_parentesco_id + "\r\n";			
 			Print += "\tNúmero: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].numero + "\r\n";			
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao " +		
+							"FROM drogas_faz_uso WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOSAUDE.listaDrogasFazUso = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var dfu = {
+				id: res.rows.item(i).id,
+				tipo_pergunta: res.rows.item(i).tipo_pergunta,
+				nome_droga: res.rows.item(i).nome_droga,
+				dias_frequencia: res.rows.item(i).dias_frequencia,
+				meses_frequencia: res.rows.item(i).meses_frequencia,
+				anos_frequencia: res.rows.item(i).anos_frequencia,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaDrogasFazUso.push(dfu);
+		}
+
+		// todo: testes retirar
+		var Print = "Uso de Drogras:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaDrogasFazUso[i].id + "\r\n";
+			Print += "\tTipo da Pergunta: " + CIDADAOSAUDE.listaDrogasFazUso[i].tipo_pergunta + "\r\n";			
+			Print += "\tNome da Droga: " + CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga + "\r\n";			
+			Print += "\tDias: " + CIDADAOSAUDE.listaDrogasFazUso[i].dias_frequencia + "\r\n";			
+			Print += "\tMeses: " + CIDADAOSAUDE.listaDrogasFazUso[i].meses_frequencia + "\r\n";			
+			Print += "\tAnos: " + CIDADAOSAUDE.listaDrogasFazUso[i].anos_frequencia + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaDrogasFazUso[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
 		// testes retirar
@@ -263,6 +300,10 @@
 							", quantas_pedras " +
 							", observacoes_importantes " +
 							", observacoes_gerais " +
+							", reducao_drogas_depois_programa " +
+							", tempo_efeito_droga_antes_programa " +
+							", tempo_efeito_droga_depois_programa " +
+							", tratamento_saude " +
 							", MAX(dt_criacao) as dt_criacao " +
 							", status " +
 							"FROM saude WHERE cidadao_id = ? and status = ?", [CIDADAOSAUDE.cidadao_id, 1], CIDADAOSAUDE.dadosEntradaSuccess, CIDADAOSAUDE.dadosEntradaFail);
@@ -369,6 +410,10 @@
 			quantas_pedras: res.rows.item(0).quantas_pedras,
 			observacoes_importantes: res.rows.item(0).observacoes_importantes,
 			observacoes_gerais: res.rows.item(0).observacoes_gerais,
+			reducao_drogas_depois_programa: res.rows.item(0).reducao_drogas_depois_programa,
+			tempo_efeito_droga_antes_programa: res.rows.item(0).tempo_efeito_droga_antes_programa,
+			tempo_efeito_droga_depois_programa: res.rows.item(0).tempo_efeito_droga_depois_programa,
+			tratamento_saude: res.rows.item(0).tratamento_saude,
 			dt_criacao: res.rows.item(0).dt_criacao,
 			status: res.rows.item(0).status,
 		};
@@ -468,6 +513,10 @@
 		Print += "quantas_pedras: " + CIDADAOSAUDE.dadosSaude.quantas_pedras + "\r\n";
 		Print += "observacoes_importantes: " + CIDADAOSAUDE.dadosSaude.observacoes_importantes + "\r\n";
 		Print += "observacoes_gerais: " + CIDADAOSAUDE.dadosSaude.observacoes_gerais + "\r\n";
+		Print += "reducao_drogas_depois_programa: " + CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa + "\r\n";
+		Print += "tempo_efeito_droga_antes_programa: " + CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa + "\r\n";
+		Print += "tempo_efeito_droga_depois_programa: " + CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa + "\r\n";
+		Print += "tratamento_saude: " + CIDADAOSAUDE.dadosSaude.tratamento_saude + "\r\n";
 		Print += "dt_criacao: " + CIDADAOSAUDE.dadosSaude.dt_criacao + "\r\n";
 		Print += "status: " + CIDADAOSAUDE.dadosSaude.status + "\r\n";
 		
@@ -587,10 +636,18 @@
 							", quantas_pedras " +
 							", observacoes_importantes " +
 							", observacoes_gerais " +
+							", reducao_drogas_depois_programa " +
+							", tempo_efeito_droga_antes_programa " +
+							", tempo_efeito_droga_depois_programa " +
+							", tratamento_saude " +
 							", dt_criacao " +
 							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
+							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
