@@ -178,6 +178,8 @@ $(document).ready(function(){
 	
 	//ADICIONA DROGAS ALEM DO CRACK
 	$( document ).on( "click", ".btnAdicionaInputDrogasAlemCrack", function() {
+		adicionaDrogasAlemCrack();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -193,7 +195,7 @@ $(document).ready(function(){
 			$('.adicionaInputDrogasAlemCrack').append(	html2insert);
 			$('input.adicionaDrogasAlemCrack').val('');
 		}
-
+		*/
 		
 	});
 	
@@ -587,6 +589,24 @@ $(document).ready(function(){
 });
 
 });
+
+function adicionaDrogasAlemCrack() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaDrogasAlemCrack').val()  == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogasAlemCrack").val()+'" name="descricao_drogas_alem_crack[]" class="inputAdicionaDrogasAlemCrack" readonly id="input_'+idobj+'">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputDrogasAlemCrack').append(	html2insert);
+		$('input.adicionaDrogasAlemCrack').val('');
+	}	
+}
 
 function adicionaDrogas(dias, meses, anos) {
 	var d = new Date();
@@ -1332,7 +1352,7 @@ function abstinenciaAposPrograma()
 
 
 /* INICIO - infoUsoDrogasInjetaveis */
-function usoDrogasInjetaveis()
+function usoDrogasInjetaveisf()
 {
   var valRadio = '';
   jQuery("#infoUsoDrogasInjetaveis .radio").click(function(){
@@ -1350,7 +1370,7 @@ function usoDrogasInjetaveis()
 
 
 /* INICIO - infoDrogasAlemCrack */
-function drogasAlemCrack()
+function drogasAlemCrackf()
 {
   var valRadio = '';
   jQuery("#infoDrogasAlemCrack .radio").click(function(){

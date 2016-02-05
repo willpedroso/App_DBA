@@ -392,7 +392,395 @@ function carregaSaude () {
 	
 	$("#listaNumeroPedrasAtualmentePrograma").empty();
 	$("#listaNumeroPedrasAtualmentePrograma").append(opts);
+	
+	// Faz uso de outras drogas
+	if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack == 1) {
+		// Sim
+		$("input[name='infoDrogasAlemCrack'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack == 0) {
+		// Não
+		$("input[name='infoDrogasAlemCrack'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoDrogasAlemCrack'][value='Não Informado']").prop("checked", true);
+	}
+	drogasAlemCrackf();
+	
+	// todo: onde estão as drogas alem do crack???
+	//for (var i = 0; i < 0; i++) {
+		//auxVar = CIDADAOSAUDE.listaTelefoneFamiliar[i].numero;
+		//$('input.adicionaDrogasAlemCrack').val(auxVar == null ? "" : auxVar);
+		//adicionaDrogasAlemCrack();
+	//}
+	
+	// Já fez uso de droga injetável
+	if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis == 1) {
+		// Sim
+		$("input[name='infoUsoDrogasInjetaveis'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis == 0) {
+		// Não
+		$("input[name='infoUsoDrogasInjetaveis'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoUsoDrogasInjetaveis'][value='Não Informado']").prop("checked", true);
+	}
+	drogasAlemCrackf();
+	var opts = "<span class='titSang'>Quanto tempo:</span>" + 
+			   "<select name='diasUsoDrogasInjetaveisLabel' id='diasUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	for (var i = 1; i < 32; i++) {
+		opts += "<option value='" + i + "' data-id='diasUsoDrogasInjetaveisLabel' for='dias_uso_drogas_injetaveis'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='mesesUsoDrogasInjetaveisLabel' id='mesesUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	for (var i = 1; i < 13; i++) {
+		opts += "<option value='" + i + "' data-id='mesesUsoDrogasInjetaveisLabel' for='meses_uso_drogas_injetaveis'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='anosUsoDrogasInjetaveisLabel' id='anosUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	for (var i = 1; i < 51; i++) {
+		opts += "<option value='" + i + "' data-id='anosUsoDrogasInjetaveisLabel' for='anos_uso_drogas_injetaveis'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	$("#listaDiasMesesAnosDrogasInjetaveis").empty();
+	$("#listaDiasMesesAnosDrogasInjetaveis").append(opts);
+	
+	// Abstinente
+	if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa == 1) {
+		// Sim
+		$("input[name='infoAbstinenciaAposPrograma'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa == 0) {
+		// Não
+		$("input[name='infoAbstinenciaAposPrograma'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAbstinenciaAposPrograma'][value='Não Informado']").prop("checked", true);
+	}
+	abstinenciaAposPrograma();
+	var opts = "<span class='titSang'>Quanto tempo:</span>" + 
+			   "<select name='diasAbstinenciaAposProgramaLabel' id='diasAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	for (var i = 1; i < 32; i++) {
+		opts += "<option value='" + i + "' data-id='diasAbstinenciaAposProgramaLabel' for='dias_abstinencia_apos_programa'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='mesesAbstinenciaAposProgramaLabel' id='mesesAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	for (var i = 1; i < 13; i++) {
+		opts += "<option value='" + i + "' data-id='mesesAbstinenciaAposProgramaLabel' for='meses_abstinencia_apos_programa'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	opts += "<select name='anosAbstinenciaAposProgramaLabel' id='anosAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	for (var i = 1; i < 51; i++) {
+		opts += "<option value='" + i + "' data-id='anosAbstinenciaAposProgramaLabel' for='anos_abstinencia_apos_programa'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
+	}
+	opts += "</div></select>";
+	
+	$("#listaDiasMesesAnosAbstinente").empty();
+	$("#listaDiasMesesAnosAbstinente").append(opts);
+	
+	// Glicemia, pressão arterial e peso
+	auxVar = CIDADAOSAUDE.dadosSaude.controle_glicemia;
+	$("#controle_glicemia").val(auxVar == null ? "" : auxVar);
+	auxVar = CIDADAOSAUDE.dadosSaude.controle_pressao_arterial;
+	$("#controle_pressao_arterial").val(auxVar == null ? "" : auxVar);
+	auxVar = CIDADAOSAUDE.dadosSaude.controle_peso;
+	$("#controle_peso").val(auxVar == null ? "" : auxVar);
+	
+	// Fez teste rápido de DST
+	if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids == 1) {
+		// Sim
+		$("input[name='infoTesteRapidoDstAids'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids == 0) {
+		// Não
+		$("input[name='infoTesteRapidoDstAids'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTesteRapidoDstAids'][value='Não Informado']").prop("checked", true);
+	}
+	testeRapidoDstAids();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_teste_rapido_dst_aids;
+	$("#local_teste_rapido_dst_aids").val(auxVar == null ? "" : auxVar);
+	
+	// Acompanhamento DST
+	if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst == 1) {
+		// Sim
+		$("input[name='infoAcompanhamentoDst'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst == 0) {
+		// Não
+		$("input[name='infoAcompanhamentoDst'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAcompanhamentoDst'][value='Não Informado']").prop("checked", true);
+	}
+	acompanhamentoDst();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_acompanhamento_dst;
+	$("#local_acompanhamento_dst").val(auxVar == null ? "" : auxVar);
+	
+	// Tem diagnóstico HIV
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids == 1) {
+		// Sim
+		$("input[name='infoDiagnosticoHivAids'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids == 0) {
+		// Não
+		$("input[name='infoDiagnosticoHivAids'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoDiagnosticoHivAids'][value='Não Informado']").prop("checked", true);
+	}
+	diagnosticoHivAids();
+	// Em tratamento
+	if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids == 1) {
+		// Sim
+		$("input[name='infoTratamentoHivAids'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids == 0) {
+		// Não
+		$("input[name='infoTratamentoHivAids'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTratamentoHivAids'][value='Não Informado']").prop("checked", true);
+	}
+	tratamentoHivAids();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_hiv_aids;
+	$("#local_tratamento_hiv_aids").val(auxVar == null ? "" : auxVar);
+	
+	// Diagnóstico de Sífilis
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis == 1) {
+		// Sim
+		$("input[name='infoDiagnosticoSifilis'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis == 0) {
+		// Não
+		$("input[name='infoDiagnosticoSifilis'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoDiagnosticoSifilis'][value='Não Informado']").prop("checked", true);
+	}
+	diagnosticoSifilis();
+	// Em tratamento
+	if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis == 1) {
+		// Sim
+		$("input[name='infoTratamentoSifilis'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis == 0) {
+		// Não
+		$("input[name='infoTratamentoSifilis'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTratamentoSifilis'][value='Não Informado']").prop("checked", true);
+	}
+	tratamentoSifilis();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_sifilis;
+	$("#local_tratamento_sifilis").val(auxVar == null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis == 1) {
+		// Sim
+		$("input[name='infoAltaTratamentoSifilis'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis == 0) {
+		// Não
+		$("input[name='infoAltaTratamentoSifilis'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAltaTratamentoSifilis'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Avaliação Odontológica
+	if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica == 1) {
+		// Sim
+		$("input[name='infoPassouAvaliacaoOdontologica'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica == 0) {
+		// Não
+		$("input[name='infoPassouAvaliacaoOdontologica'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoPassouAvaliacaoOdontologica'][value='Não Informado']").prop("checked", true);
+	}
+	passouAvaliacaoOdontologica();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_passou_avaliacao_odontologica;
+	$("#local_passou_avaliacao_odontologica").val(auxVar == null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico == 1) {
+		// Sim
+		$("input[name='infoAltaTratamentoOdontologico'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico == 0) {
+		// Não
+		$("input[name='infoAltaTratamentoOdontologico'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAltaTratamentoOdontologico'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Sintomas respiratórios
+	if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios == 1) {
+		// Sim
+		$("input[name='infoSintomasRespiratorios'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios == 0) {
+		// Não
+		$("input[name='infoSintomasRespiratorios'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoSintomasRespiratorios'][value='Não Informado']").prop("checked", true);
+	}
+	sintomasRespiratorios();
+	if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios == 1) {
+		// Sim
+		$("input[name='infoTratamentoSintomasRespiratorios'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios == 0) {
+		// Não
+		$("input[name='infoTratamentoSintomasRespiratorios'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTratamentoSintomasRespiratorios'][value='Não Informado']").prop("checked", true);
+	}
+	tratamentoSintomasRespiratorios();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_sintomas_respiratorios;
+	$("#local_tratamento_sintomas_respiratorios").val(auxVar == null ? "" : auxVar);
+	
+	// Teste de tuberculose
+	if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose == 1) {
+		// Sim
+		$("input[name='infoRealizouTesteTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose == 0) {
+		// Não
+		$("input[name='infoRealizouTesteTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoRealizouTesteTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	realizouTesteTuberculose();
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose == 1) {
+		// Sim
+		$("input[name='infoDiagnosticoTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose == 0) {
+		// Não
+		$("input[name='infoDiagnosticoTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoDiagnosticoTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	diagnosticoTuberculose();
+	if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose == 1) {
+		// Sim
+		$("input[name='infoEmTratamentoTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose == 0) {
+		// Não
+		$("input[name='infoEmTratamentoTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoEmTratamentoTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Já teve tuberculose
+	if (CIDADAOSAUDE.dadosSaude.teve_tuberculose == 1) {
+		// Sim
+		$("input[name='infoTeveTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.teve_tuberculose == 0) {
+		// Não
+		$("input[name='infoTeveTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTeveTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	teveTuberculose();
+	if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose == 1) {
+		// Sim
+		$("input[name='infoFezTratamentoTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose == 0) {
+		// Não
+		$("input[name='infoFezTratamentoTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoFezTratamentoTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	fezTratamentoTuberculose();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_fez_tratamento_tuberculose;
+	$("#local_fez_tratamento_tuberculose").val(auxVar == null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose == 1) {
+		// Sim
+		$("input[name='infoTeveAltaTratamentoTuberculose'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose == 0) {
+		// Não
+		$("input[name='infoTeveAltaTratamentoTuberculose'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTeveAltaTratamentoTuberculose'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Lesões na pele
+	if (CIDADAOSAUDE.dadosSaude.lesoes_pele == 1) {
+		// Sim
+		$("input[name='infoLesoesPele'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.lesoes_pele == 0) {
+		// Não
+		$("input[name='infoLesoesPele'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoLesoesPele'][value='Não Informado']").prop("checked", true);
+	}
 
+	// Vacinação em dia
+	if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia == 1) {
+		// Sim
+		$("input[name='infoVacinacaoEmDia'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia == 0) {
+		// Não
+		$("input[name='infoVacinacaoEmDia'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoVacinacaoEmDia'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Outros sinais e sintomas clínicos
+	auxVar = CIDADAOSAUDE.dadosSaude.outros_sinais_sintomas_criticos;
+	$("#outros_sinais_sintomas_criticos").val(auxVar == null ? "" : auxVar);
 	/*	
 	// Lista de pontos de serviço
 	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";

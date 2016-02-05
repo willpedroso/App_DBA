@@ -1004,11 +1004,11 @@
           <div class="linhaForm">
             <span class="titLabel">Faz uso de outras drogas além do crack:</span>
             <div id="infoDrogasAlemCrack" class="radioButton">
-              <input type="radio" name="infoDrogasAlemCrack" value="Não Informado" class="radio" onchange="drogasAlemCrack()">
+              <input type="radio" name="infoDrogasAlemCrack" value="Não Informado" class="radio" onchange="drogasAlemCrackf()">
               <p>Não Informado</p>
-              <input type="radio" name="infoDrogasAlemCrack" value="Não" class="radio" onchange="drogasAlemCrack()">
+              <input type="radio" name="infoDrogasAlemCrack" value="Não" class="radio" onchange="drogasAlemCrackf()">
               <p>Não</p>
-              <input type="radio" name="infoDrogasAlemCrack" value="Sim" class="radio" onchange="drogasAlemCrack()">
+              <input type="radio" name="infoDrogasAlemCrack" value="Sim" class="radio" onchange="drogasAlemCrackf()">
               <p>Sim</p>
               <input type="hidden" value="1" name="drogas_alem_crack" id="drogas_alem_crack" class="valueCheck">
             </div>
@@ -1034,11 +1034,11 @@
           <div class="linhaForm">
             <span class="titLabel">Já fez uso de droga injetável:</span>
             <div id="infoUsoDrogasInjetaveis" class="radioButton">
-              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não Informado" class="radio" onchange="usoDrogasInjetaveis()">
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não Informado" class="radio" onchange="usoDrogasInjetaveisf()">
               <p>Não Informado</p>
-              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não" class="radio" onchange="usoDrogasInjetaveis()">
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Não" class="radio" onchange="usoDrogasInjetaveisf()">
               <p>Não</p>
-              <input type="radio" name="infoUsoDrogasInjetaveis" value="Sim" class="radio" onchange="usoDrogasInjetaveis()">
+              <input type="radio" name="infoUsoDrogasInjetaveis" value="Sim" class="radio" onchange="usoDrogasInjetaveisf()">
               <p>Sim</p>
               <input type="hidden" value="1" name="uso_drogas_injetaveis" id="uso_drogas_injetaveis" class="valueCheck">
             </div>
@@ -1047,7 +1047,8 @@
           <div id="usoDrogasInjetaveis"> 
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaDiasMesesAnosDrogasInjetaveis">
+				  <!--
                   <span class="titSang">Quanto tempo:</span> 
                   <select name="diasUsoDrogasInjetaveisLabel" id="diasUsoDrogasInjetaveisLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -1163,7 +1164,8 @@
                       <option value="49 anos" id="49" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">49 anos</option>
                       <option value="50 anos" id="50" data-id="anosUsoDrogasInjetaveisLabel" for="anos_uso_drogas_injetaveis">50 anos</option>
                     </div>
-                  </select>         
+                  </select>
+				  -->
                 </div>
               </label>
             </div>
@@ -1185,7 +1187,8 @@
           <div id="abstinenciaAposPrograma"> 
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaDiasMesesAnosAbstinente"> 
+				  <!--
                   <span class="titSang">Quanto tempo:</span> 
                   <select name="diasAbstinenciaAposProgramaLabel" id="diasAbstinenciaAposProgramaLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -1299,7 +1302,8 @@
                       <option value="50 anos" id="50" data-id="anosAbstinenciaAposProgramaLabel" for="anos_abstinencia_apos_programa">50 anos</option>
                     </div>
                     <input type="hidden" id="anos_abstinencia_apos_programa" name="anos_abstinencia_apos_programa" value="2">
-                  </select>         
+                  </select>
+				  -->
                 </div>
               </label>
             </div>
@@ -1316,17 +1320,17 @@
           
           <div class="linhaForm"> 
             <span class="titLabel">Controle glicemia:</span>
-            <input type="text" class="inputGrande" value="150" id="controle_glicemia" name="controle_glicemia">
+            <input type="text" class="inputGrande" value="" id="controle_glicemia" name="controle_glicemia">
           </div>
           
           <div class="linhaForm"> 
             <span class="titLabel">Controle de pressão arterial:</span>
-            <input type="text" class="inputGrande" value="10/9" id="controle_pressao_arterial" name="controle_pressao_arterial">
+            <input type="text" class="inputGrande" value="" id="controle_pressao_arterial" name="controle_pressao_arterial">
           </div>
           
           <div class="linhaForm"> 
             <span class="titLabel">Controle de peso:</span>
-            <input type="text" class="inputGrande" value="56,3" id="controle_peso" name="controle_peso">
+            <input type="text" class="inputGrande" value="" id="controle_peso" name="controle_peso">
           </div>
           
         </div> 
@@ -1354,7 +1358,7 @@
           <div id="testeRapidoDstAids"> 
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
-              <input type="text" class="inputGrande" value="local aids" id="local_teste_rapido_dst_aids" name="local_teste_rapido_dst_aids">
+              <input type="text" class="inputGrande" value="" id="local_teste_rapido_dst_aids" name="local_teste_rapido_dst_aids">
             </div>
           </div>
           
@@ -1374,7 +1378,7 @@
           <div id="acompanhamentoDst"> 
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
-              <input type="text" class="inputGrande" value="acompanhamento DST" id="local_acompanhamento_dst" name="local_acompanhamento_dst">
+              <input type="text" class="inputGrande" value="" id="local_acompanhamento_dst" name="local_acompanhamento_dst">
             </div>
           </div>
           
@@ -1408,7 +1412,7 @@
             <div id="tratamentoHivAids"> 
               <div class="linhaForm"> 
                 <span class="titLabel">Onde:</span>
-                <input type="text" class="inputGrande" value="tratamento hiv" id="local_tratamento_hiv_aids" name="local_tratamento_hiv_aids">
+                <input type="text" class="inputGrande" value="" id="local_tratamento_hiv_aids" name="local_tratamento_hiv_aids">
               </div>
             </div>
           </div>
@@ -1443,7 +1447,7 @@
             <div id="tratamentoSifilis"> 
               <div class="linhaForm"> 
                 <span class="titLabel">Onde:</span>
-                <input type="text" class="inputGrande" value="tratamento sifilis" id="local_tratamento_sifilis" name="local_tratamento_sifilis">
+                <input type="text" class="inputGrande" value="" id="local_tratamento_sifilis" name="local_tratamento_sifilis">
               </div>
               
               <div class="linhaForm">
@@ -1477,7 +1481,7 @@
           <div id="passouAvaliacaoOdontologica"> 
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
-              <input type="text" class="inputGrande" value="clinica dos dentes" id="local_passou_avaliacao_odontologica" name="local_passou_avaliacao_odontologica">
+              <input type="text" class="inputGrande" value="" id="local_passou_avaliacao_odontologica" name="local_passou_avaliacao_odontologica">
             </div>
             
             <div class="linhaForm">
@@ -1525,7 +1529,7 @@
           <div id="tratamentoSintomasRespiratorios"> 
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
-              <input type="text" class="inputGrande" value="nao lembra" id="local_tratamento_sintomas_respiratorios" name="local_tratamento_sintomas_respiratorios">
+              <input type="text" class="inputGrande" value="" id="local_tratamento_sintomas_respiratorios" name="local_tratamento_sintomas_respiratorios">
             </div>
           </div>
           
@@ -1603,7 +1607,7 @@
           <div id="fezTratamentoTuberculose"> 
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
-              <input type="text" class="inputGrande" value="tramento tuberculose" id="local_fez_tratamento_tuberculose" name="local_fez_tratamento_tuberculose">
+              <input type="text" class="inputGrande" value="" id="local_fez_tratamento_tuberculose" name="local_fez_tratamento_tuberculose">
             </div>
             
             <div class="linhaForm">
@@ -1661,7 +1665,7 @@
         
           <div class="linhaForm"> 
             <span class="titLabel">Outros sinais e sintomas clínicos:</span>
-            <textarea name="outros_sinais_sintomas_criticos" id="outros_sinais_sintomas_criticos" rows="5" class="inputTextArea">Um caroço  no pescoço. </textarea>
+            <textarea name="outros_sinais_sintomas_criticos" id="outros_sinais_sintomas_criticos" rows="5" class="inputTextArea"></textarea>
           </div>
         
         </div>
