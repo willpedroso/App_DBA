@@ -288,11 +288,11 @@
               <div class="linhaForm">
                 <span class="titLabel">Tem companheiro(a):</span>
                 <div id="infoTemCompanheiro" class="radioButton">
-                  <input type="radio" name="infoTemCompanheiro" value="Não Informado" class="radio" onchange="">
+                  <input type="radio" name="infoTemCompanheiro" value="Não Informado" class="radio" onchange="infoTemCompanheiro()">
                   <p>Não Informado</p>
-                  <input type="radio" name="infoTemCompanheiro" value="Não" class="radio" onchange="">
+                  <input type="radio" name="infoTemCompanheiro" value="Não" class="radio" onchange="infoTemCompanheiro()">
                   <p>Não</p>
-                  <input type="radio" name="infoTemCompanheiro" value="Sim" class="radio" onchange="">
+                  <input type="radio" name="infoTemCompanheiro" value="Sim" class="radio" onchange="infoTemCompanheiro()">
                   <p>Sim</p>
                   <input type="hidden" value="1" name="tem_companheiro" id="tem_companheiro" class="valueCheck">
                 </div>
@@ -1022,11 +1022,12 @@
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogasAlemCrack" value="Adicionar">
               </div>
               <div class="adicionaInputDrogasAlemCrack">
+					<!--
                     <div id="div_drogas_alem_crack_54">
                       <input type="text" value="maconha" name="descricao_drogas_alem_crack[]" class="inputAdicionaDrogasAlemCrack" readonly="" id="input__drogas_alem_crack_54">
                       <span class="btn-remover" onclick="removeMe('div_drogas_alem_crack_54')"></span>
                     </div>
-                                    
+                    -->                
               </div>
             </div>
           </div>
@@ -1687,7 +1688,7 @@
             </div>
           </div>
           
-          <div id="avaliacaoGinecologica" style="display:none">
+          <div id="avaliacaoGinecologica" style="display:block">
             <div class="linhaForm"> 
               <span class="titLabel">Onde:</span>
               <input type="text" class="inputGrande" value="" id="local_avaliacao_ginecologica" name="local_avaliacao_ginecologica">
@@ -1763,11 +1764,11 @@
           <div class="linhaForm">
             <span class="titLabel">Está fazendo pré natal:</span>
             <div id="infoPreNatal" class="radioButton">
-              <input type="radio" name="infoPreNatal" value="Não Informado" class="radio" onchange="">
+              <input type="radio" name="infoPreNatal" value="Não Informado" class="radio" onchange="preNatal()">
               <p>Não Informado</p>
-              <input type="radio" name="infoPreNatal" value="Não" class="radio" onchange="">
+              <input type="radio" name="infoPreNatal" value="Não" class="radio" onchange="preNatal()">
               <p>Não</p>
-              <input type="radio" name="infoPreNatal" value="Sim" class="radio" onchange="">
+              <input type="radio" name="infoPreNatal" value="Sim" class="radio" onchange="preNatal()">
               <p>Sim</p>
               <input type="hidden" value="" name="pre_natal" id="pre_natal" class="valueCheck">
             </div>
@@ -1816,11 +1817,11 @@
           <div class="linhaForm">
             <span class="titLabel">Fez alguma consulta de saúde na data de hoje:</span>
             <div id="infoConsultaSaudeHoje" class="radioButton">
-              <input type="radio" name="infoConsultaSaudeHoje" value="Não Informado" class="radio" onchange="">
+              <input type="radio" name="infoConsultaSaudeHoje" value="Não Informado" class="radio" onchange="consultaSaudeHoje()">
               <p>Não Informado</p>
-              <input type="radio" name="infoConsultaSaudeHoje" value="Não" class="radio" onchange="">
+              <input type="radio" name="infoConsultaSaudeHoje" value="Não" class="radio" onchange="consultaSaudeHoje()">
               <p>Não</p>
-              <input type="radio" name="infoConsultaSaudeHoje" value="Sim" class="radio" onchange="">
+              <input type="radio" name="infoConsultaSaudeHoje" value="Sim" class="radio" onchange="consultaSaudeHoje()">
               <p>Sim</p>
               <input type="hidden" value="0" name="consulta_saude_hoje" id="consulta_saude_hoje" class="valueCheck">
             </div>
@@ -1848,11 +1849,11 @@
           <div class="linhaForm">
             <span class="titLabel">Compareceu ao local de trabalho na data de hoje:</span>
             <div id="infoCompareceuTrabalhoHoje" class="radioButton">
-              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não Informado" class="radio" onchange="">
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não Informado" class="radio" onchange="compareceuTrabalhoHoje()">
               <p>Não Informado</p>
-              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não" class="radio" onchange="">
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Não" class="radio" onchange="compareceuTrabalhoHoje()">
               <p>Não</p>
-              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Sim" class="radio" onchange="">
+              <input type="radio" name="infoCompareceuTrabalhoHoje" value="Sim" class="radio" onchange="compareceuTrabalhoHoje()">
               <p>Sim</p>
               <input type="hidden" value="1" name="compareceu_trabalho_hoje" id="compareceu_trabalho_hoje" class="valueCheck">
             </div>
@@ -1876,11 +1877,11 @@
           <div class="linhaForm">
             <span class="titLabel">Participou de alguma oficina oferecida pelo programa na data de hoje:</span>
             <div id="infoParticipouOficinaHoje" class="radioButton">
-              <input type="radio" name="infoParticipouOficinaHoje" value="Não Informado" class="radio" onchange="infoParticipouOficinaHoje()">
+              <input type="radio" name="infoParticipouOficinaHoje" value="Não Informado" class="radio" onchange="infoParticipouOficinaHojef()">
               <p>Não Informado</p>
-              <input type="radio" name="infoParticipouOficinaHoje" value="Não" class="radio" onchange="infoParticipouOficinaHoje()">
+              <input type="radio" name="infoParticipouOficinaHoje" value="Não" class="radio" onchange="infoParticipouOficinaHojef()">
               <p>Não</p>
-              <input type="radio" name="infoParticipouOficinaHoje" value="Sim" class="radio" onchange="infoParticipouOficinaHoje()">
+              <input type="radio" name="infoParticipouOficinaHoje" value="Sim" class="radio" onchange="infoParticipouOficinaHojef()">
               <p>Sim</p>
               <input type="hidden" value="" name="participou_oficina_hoje" id="participou_oficina_hoje" class="valueCheck">
             </div>
@@ -1946,7 +1947,8 @@
         
           <div class="linhaForm"> 
             <label class="selectDefault">
-              <div class="comboStilo"> 
+              <div class="comboStilo" id="listaDiasMesesAnosAbstinencia">
+				<!--
                 <span class="titSang">Há quanto tempo tem se mantido abstinente:</span>
 
 
@@ -2067,6 +2069,7 @@
                     </div>
                     <input type="hidden" id="anos_mantido_abstinencia" name="anos_mantido_abstinencia" value="2">
                   </select>
+				  -->
                 </div>
               </div>
             </label>
@@ -2100,11 +2103,11 @@
           <div class="linhaForm">
             <span class="titLabel">Fez uso de crack neste dia:</span>
             <div id="infoUsouCrackHoje" class="radioButton">
-              <input type="radio" name="infoUsouCrackHoje" value="Não Informado" class="radio" onchange="">
+              <input type="radio" name="infoUsouCrackHoje" value="Não Informado" class="radio" onchange="usouCrackHoje()">
               <p>Não Informado</p>
-              <input type="radio" name="infoUsouCrackHoje" value="Não" class="radio" onchange="">
+              <input type="radio" name="infoUsouCrackHoje" value="Não" class="radio" onchange="usouCrackHoje()">
               <p>Não</p>
-              <input type="radio" name="infoUsouCrackHoje" value="Sim" class="radio" onchange="">
+              <input type="radio" name="infoUsouCrackHoje" value="Sim" class="radio" onchange="usouCrackHoje()">
               <p>Sim</p>
               <input type="hidden" value="0" name="usou_crack_hoje" id="usou_crack_hoje" class="valueCheck">
             </div>

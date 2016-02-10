@@ -203,6 +203,8 @@ $(document).ready(function(){
 	
 	//ADICIONA ESPECIALIDADE CONSULTA HOJE
 	$( document ).on( "click", ".btnAdicionaInputEspecialidade", function() {
+		adicionaEspecialidadeConsultaHoje();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -218,12 +220,15 @@ $(document).ready(function(){
 			$('.adicionaInputEspecialidadeConsulta').append(	html2insert);
 			$('input.adicionaEspecialidade').val('');
 		}
+		*/
 	});
 	
 	
 	
 	//ADICIONA USOU DROGA HOJE
 	$( document ).on( "click", ".btnAdicionaInputDrogaHoje", function() {
+		adicionaDrogaHoje();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -239,12 +244,15 @@ $(document).ready(function(){
 			$('.adicionaInputDrogaHoje').append(	html2insert);
 			$('input.adicionaDrogaHoje').val('');
 		}
+		*/
 	});
 	
 	
 	
 	//ADICIONA OFICINA PARTICIOU
 	$( document ).on( "click", ".btnAdicionaInputOficinaParticiou", function() {
+		adicionaOficinaParticipou();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -262,10 +270,13 @@ $(document).ready(function(){
 			$('input.adicionaQualOficina').val('');
 			$('input.adicionaLocalOficina').val('');
 		}
+		*/
 	});
 	
 	//ADICIONA ATIVIDADE PARTICIOU
 	$( document ).on( "click", ".btnAdicionaInputAtividadeParticiou", function() {
+		adicionaAtividadeRecreativa();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -283,6 +294,7 @@ $(document).ready(function(){
 			$('input.adicionaQualAtividade').val('');
 			$('input.adicionaLocalAtividade').val('');
 		}
+		*/
 	});
 	
 	
@@ -589,6 +601,82 @@ $(document).ready(function(){
 });
 
 });
+
+function adicionaDrogaHoje() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaDrogaHoje').val()  == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogaHoje").val()+'" name="usou_drogas_hoje[]" class="inputAdicionaDrogaHoje" readonly id="input_'+idobj+'">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputDrogaHoje').append(	html2insert);
+		$('input.adicionaDrogaHoje').val('');
+	}
+}
+
+function adicionaAtividadeRecreativa() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaQualAtividade').val()  == '' || $('input.adicionaLocalAtividade').val()  == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualAtividade").val()+'" name="qual_atividade_particiou[]" class="inputAdicionaQualAtividadeParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaLocalAtividade").val()+'" name="local_atividade_particiou[]" class="inputAdicionaLocalAtividadeParticiou" readonly id="input_'+idobj+'">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputAtividadesParticipou').append(	html2insert);
+		$('input.adicionaQualAtividade').val('');
+		$('input.adicionaLocalAtividade').val('');
+	}	
+}
+
+function adicionaOficinaParticipou() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaQualOficina').val()  == '' || $('input.adicionaLocalOficina').val()  == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualOficina").val()+'" name="qual_oficina_particiou[]" class="inputAdicionaQualOficinaParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaLocalOficina").val()+'" name="local_oficina_particiou[]" class="inputAdicionaLocalOficinaParticiou" readonly id="input_'+idobj+'">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputOficinasParticipou').append(	html2insert);
+		$('input.adicionaQualOficina').val('');
+		$('input.adicionaLocalOficina').val('');
+	}
+}
+
+function adicionaEspecialidadeConsultaHoje() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	if( $('input.adicionaEspecialidade').val()  == '' ){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaEspecialidade").val()+'" name="especialidades_consulta_hoje[]" class="inputAdicionaEspecialidade" readonly id="input_'+idobj+'">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputEspecialidadeConsulta').append(	html2insert);
+		$('input.adicionaEspecialidade').val('');
+	}
+}
 
 function adicionaDrogasAlemCrack() {
 	var d = new Date();
@@ -923,15 +1011,15 @@ function addFilhos(qtd)
 function usouCrackHoje()
 {
   var valRadio = '';
-  jQuery("#infoUsouCrackHoje .radio").click(function(){
-  	if ($( "input:radio[name=infoUsouCrackHoje]:checked" ).val() == "Não")
+//  jQuery("#infoUsouCrackHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoUsouCrackHoje]:checked" ).val() == "Sim")
 	{
 		jQuery('#usouCrackHoje').attr('style','display:block');
 	}
 	else{
 		jQuery('#usouCrackHoje').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - usouCrackHoje */
 
@@ -939,15 +1027,15 @@ function usouCrackHoje()
 function usouDrogaHoje()
 {
   var valRadio = '';
-  jQuery("#infoUsouDrogaHoje .radio").click(function(){
-  	if ($( "input:radio[name=infoUsouDrogaHoje]:checked" ).val() == "Não")
+//  jQuery("#infoUsouDrogaHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoUsouDrogaHoje]:checked" ).val() == "Sim")
 	{
 		jQuery('#usouDrogaHoje').attr('style','display:block');
 	}
 	else{
 		jQuery('#usouDrogaHoje').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - usouDrogaHoje */
 
@@ -955,24 +1043,24 @@ function usouDrogaHoje()
 function atividadeRecreativaExterna()
 {
   var valRadio = '';
-  jQuery("#infoParticipouAtividadeHoje .radio").click(function(){
-  	if ($( "input:radio[name=infoParticipouAtividadeHoje]:checked" ).val() == "Não")
+//  jQuery("#infoParticipouAtividadeHoje .radio").click(function(){
+  	if ($( "input:radio[name=infoParticipouAtividadeHoje]:checked" ).val() == "Sim")
 	{
 		jQuery('#atividadeRecreativaExterna').attr('style','display:block');
 	}
 	else{
 		jQuery('#atividadeRecreativaExterna').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - atividadeRecreativaExterna */
 
 
 /* INICIO - infoParticipouOficinaHoje */
-function infoParticipouOficinaHoje()
+function infoParticipouOficinaHojef()
 {
   var valRadio = '';
-  jQuery("#infoParticipouOficinaHoje .radio").click(function(){
+//  jQuery("#infoParticipouOficinaHoje .radio").click(function(){
   	if ($( "input:radio[name=infoParticipouOficinaHoje]:checked" ).val() == "Sim")
 	{
 		jQuery('#participouOficinaHoje').attr('style','display:block');
@@ -987,7 +1075,7 @@ function infoParticipouOficinaHoje()
 		jQuery('#naoParticipouOficinaHoje').attr('style','display:none');
 		jQuery('#participouOficinaHoje').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoParticipouOficinaHoje */
 
@@ -997,7 +1085,7 @@ function infoParticipouOficinaHoje()
 function compareceuTrabalhoHoje()
 {
   var valRadio = '';
-  jQuery("#infoCompareceuTrabalhoHoje .radio").click(function(){
+//  jQuery("#infoCompareceuTrabalhoHoje .radio").click(function(){
   	if ($( "input:radio[name=infoCompareceuTrabalhoHoje]:checked" ).val() == "Não")
 	{
 		jQuery('#compareceuTrabalhoHoje').attr('style','display:block');
@@ -1005,7 +1093,7 @@ function compareceuTrabalhoHoje()
 	else{
 		jQuery('#compareceuTrabalhoHoje').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - compareceuTrabalhoHoje */
 
@@ -1013,7 +1101,7 @@ function compareceuTrabalhoHoje()
 function consultaSaudeHoje()
 {
   var valRadio = '';
-  jQuery("#infoConsultaSaudeHoje .radio").click(function(){
+//  jQuery("#infoConsultaSaudeHoje .radio").click(function(){
   	if ($( "input:radio[name=infoConsultaSaudeHoje]:checked" ).val() == "Sim")
 	{
 		jQuery('#consultaSaudeHoje').attr('style','display:block');
@@ -1021,7 +1109,7 @@ function consultaSaudeHoje()
 	else{
 		jQuery('#consultaSaudeHoje').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - consultaSaudeHoje */
 
@@ -1032,7 +1120,7 @@ function consultaSaudeHoje()
 function preNatal()
 {
   var valRadio = '';
-  jQuery("#infoPreNatal .radio").click(function(){
+//  jQuery("#infoPreNatal .radio").click(function(){
   	if ($( "input:radio[name=infoPreNatal]:checked" ).val() == "Sim")
 	{
 		jQuery('#preNatal').attr('style','display:block');
@@ -1040,7 +1128,7 @@ function preNatal()
 	else{
 		jQuery('#preNatal').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - preNatal */
 
@@ -1048,7 +1136,7 @@ function preNatal()
 function planejamentoFamiliar()
 {
   var valRadio = '';
-  jQuery("#infoPlanejamentoFamiliar .radio").click(function(){
+//  jQuery("#infoPlanejamentoFamiliar .radio").click(function(){
   	if ($( "input:radio[name=infoPlanejamentoFamiliar]:checked" ).val() == "Sim")
 	{
 		jQuery('#planejamentoFamiliar').attr('style','display:block');
@@ -1056,7 +1144,7 @@ function planejamentoFamiliar()
 	else{
 		jQuery('#planejamentoFamiliar').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - planejamentoFamiliar */
 
@@ -1064,7 +1152,7 @@ function planejamentoFamiliar()
 function metodoAnticoncepcional()
 {
   var valRadio = '';
-  jQuery("#infoMetodoAnticoncepcional .radio").click(function(){
+//  jQuery("#infoMetodoAnticoncepcional .radio").click(function(){
   	if ($( "input:radio[name=infoMetodoAnticoncepcional]:checked" ).val() == "Sim")
 	{
 		jQuery('#metodoAnticoncepcional').attr('style','display:block');
@@ -1072,7 +1160,7 @@ function metodoAnticoncepcional()
 	else{
 		jQuery('#metodoAnticoncepcional').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - metodoAnticoncepcional */
 
@@ -1080,7 +1168,7 @@ function metodoAnticoncepcional()
 function avaliacaoGinecologica()
 {
   var valRadio = '';
-  jQuery("#infoAvaliacaoGinecologica .radio").click(function(){
+//  jQuery("#infoAvaliacaoGinecologica .radio").click(function(){
   	if ($( "input:radio[name=infoAvaliacaoGinecologica]:checked" ).val() == "Sim")
 	{
 		jQuery('#avaliacaoGinecologica').attr('style','display:block');
@@ -1088,7 +1176,7 @@ function avaliacaoGinecologica()
 	else{
 		jQuery('#avaliacaoGinecologica').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - avaliacaoGinecologica */
 
@@ -1103,7 +1191,7 @@ function avaliacaoGinecologica()
 function fezTratamentoTuberculose()
 {
   var valRadio = '';
-  jQuery("#infoFezTratamentoTuberculose .radio").click(function(){
+//  jQuery("#infoFezTratamentoTuberculose .radio").click(function(){
   	if ($( "input:radio[name=infoFezTratamentoTuberculose]:checked" ).val() == "Sim")
 	{
 		jQuery('#fezTratamentoTuberculose').attr('style','display:block');
@@ -1111,7 +1199,7 @@ function fezTratamentoTuberculose()
 	else{
 		jQuery('#fezTratamentoTuberculose').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - fezTratamentoTuberculose */
 
@@ -1119,7 +1207,7 @@ function fezTratamentoTuberculose()
 function teveTuberculose()
 {
   var valRadio = '';
-  jQuery("#infoTeveTuberculose .radio").click(function(){
+//  jQuery("#infoTeveTuberculose .radio").click(function(){
   	if ($( "input:radio[name=infoTeveTuberculose]:checked" ).val() == "Sim")
 	{
 		jQuery('#teveTuberculose').attr('style','display:block');
@@ -1127,7 +1215,7 @@ function teveTuberculose()
 	else{
 		jQuery('#teveTuberculose').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - teveTuberculose */
 
@@ -1137,7 +1225,7 @@ function teveTuberculose()
 function diagnosticoTuberculose()
 {
   var valRadio = '';
-  jQuery("#infoDiagnosticoTuberculose .radio").click(function(){
+//  jQuery("#infoDiagnosticoTuberculose .radio").click(function(){
   	if ($( "input:radio[name=infoDiagnosticoTuberculose]:checked" ).val() == "Sim")
 	{
 		jQuery('#diagnosticoTuberculose').attr('style','display:block');
@@ -1145,7 +1233,7 @@ function diagnosticoTuberculose()
 	else{
 		jQuery('#diagnosticoTuberculose').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - diagnosticoTuberculose */
 
@@ -1153,7 +1241,7 @@ function diagnosticoTuberculose()
 function realizouTesteTuberculose()
 {
   var valRadio = '';
-  jQuery("#infoRealizouTesteTuberculose .radio").click(function(){
+//  jQuery("#infoRealizouTesteTuberculose .radio").click(function(){
   	if ($( "input:radio[name=infoRealizouTesteTuberculose]:checked" ).val() == "Sim")
 	{
 		jQuery('#realizouTesteTuberculose').attr('style','display:block');
@@ -1161,7 +1249,7 @@ function realizouTesteTuberculose()
 	else{
 		jQuery('#realizouTesteTuberculose').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - realizouTesteTuberculose */
 
@@ -1179,7 +1267,7 @@ function realizouTesteTuberculose()
 function tratamentoSintomasRespiratorios()
 {
   var valRadio = '';
-  jQuery("#infoTratamentoSintomasRespiratorios .radio").click(function(){
+//  jQuery("#infoTratamentoSintomasRespiratorios .radio").click(function(){
   	if ($( "input:radio[name=infoTratamentoSintomasRespiratorios]:checked" ).val() == "Sim")
 	{
 		jQuery('#tratamentoSintomasRespiratorios').attr('style','display:block');
@@ -1187,7 +1275,7 @@ function tratamentoSintomasRespiratorios()
 	else{
 		jQuery('#tratamentoSintomasRespiratorios').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - tratamentoSintomasRespiratorios */
 
@@ -1195,7 +1283,7 @@ function tratamentoSintomasRespiratorios()
 function sintomasRespiratorios()
 {
   var valRadio = '';
-  jQuery("#infoSintomasRespiratorios .radio").click(function(){
+//  jQuery("#infoSintomasRespiratorios .radio").click(function(){
   	if ($( "input:radio[name=infoSintomasRespiratorios]:checked" ).val() == "Sim")
 	{
 		jQuery('#sintomasRespiratorios').attr('style','display:block');
@@ -1203,7 +1291,7 @@ function sintomasRespiratorios()
 	else{
 		jQuery('#sintomasRespiratorios').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - sintomasRespiratorios */
 
@@ -1212,7 +1300,7 @@ function sintomasRespiratorios()
 function passouAvaliacaoOdontologica()
 {
   var valRadio = '';
-  jQuery("#infoPassouAvaliacaoOdontologica .radio").click(function(){
+//  jQuery("#infoPassouAvaliacaoOdontologica .radio").click(function(){
   	if ($( "input:radio[name=infoPassouAvaliacaoOdontologica]:checked" ).val() == "Sim")
 	{
 		jQuery('#passouAvaliacaoOdontologica').attr('style','display:block');
@@ -1220,7 +1308,7 @@ function passouAvaliacaoOdontologica()
 	else{
 		jQuery('#passouAvaliacaoOdontologica').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - tratamentoSifilis */
 
@@ -1229,7 +1317,7 @@ function passouAvaliacaoOdontologica()
 function tratamentoSifilis()
 {
   var valRadio = '';
-  jQuery("#infoTratamentoSifilis .radio").click(function(){
+//  jQuery("#infoTratamentoSifilis .radio").click(function(){
   	if ($( "input:radio[name=infoTratamentoSifilis]:checked" ).val() == "Sim")
 	{
 		jQuery('#tratamentoSifilis').attr('style','display:block');
@@ -1237,7 +1325,7 @@ function tratamentoSifilis()
 	else{
 		jQuery('#tratamentoSifilis').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - tratamentoSifilis */
 
@@ -1246,7 +1334,7 @@ function tratamentoSifilis()
 function diagnosticoSifilis()
 {
   var valRadio = '';
-  jQuery("#infoDiagnosticoSifilis .radio").click(function(){
+//  jQuery("#infoDiagnosticoSifilis .radio").click(function(){
   	if ($( "input:radio[name=infoDiagnosticoSifilis]:checked" ).val() == "Sim")
 	{
 		jQuery('#diagnosticoSifilis').attr('style','display:block');
@@ -1254,7 +1342,7 @@ function diagnosticoSifilis()
 	else{
 		jQuery('#diagnosticoSifilis').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - diagnosticoSifilis */
 
@@ -1264,7 +1352,7 @@ function diagnosticoSifilis()
 function tratamentoHivAids()
 {
   var valRadio = '';
-  jQuery("#infoTratamentoHivAids .radio").click(function(){
+//  jQuery("#infoTratamentoHivAids .radio").click(function(){
   	if ($( "input:radio[name=infoTratamentoHivAids]:checked" ).val() == "Sim")
 	{
 		jQuery('#tratamentoHivAids').attr('style','display:block');
@@ -1272,7 +1360,7 @@ function tratamentoHivAids()
 	else{
 		jQuery('#tratamentoHivAids').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoAcompanhamentoDst */
 
@@ -1281,7 +1369,7 @@ function tratamentoHivAids()
 function diagnosticoHivAids()
 {
   var valRadio = '';
-  jQuery("#infoDiagnosticoHivAids .radio").click(function(){
+//  jQuery("#infoDiagnosticoHivAids .radio").click(function(){
   	if ($( "input:radio[name=infoDiagnosticoHivAids]:checked" ).val() == "Sim")
 	{
 		jQuery('#diagnosticoHivAids').attr('style','display:block');
@@ -1289,7 +1377,7 @@ function diagnosticoHivAids()
 	else{
 		jQuery('#diagnosticoHivAids').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoAcompanhamentoDst */
 
@@ -1299,7 +1387,7 @@ function diagnosticoHivAids()
 function acompanhamentoDst()
 {
   var valRadio = '';
-  jQuery("#infoAcompanhamentoDst .radio").click(function(){
+//  jQuery("#infoAcompanhamentoDst .radio").click(function(){
   	if ($( "input:radio[name=infoAcompanhamentoDst]:checked" ).val() == "Sim")
 	{
 		jQuery('#acompanhamentoDst').attr('style','display:block');
@@ -1307,7 +1395,7 @@ function acompanhamentoDst()
 	else{
 		jQuery('#acompanhamentoDst').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoAcompanhamentoDst */
 
@@ -1317,7 +1405,7 @@ function acompanhamentoDst()
 function testeRapidoDstAids()
 {
   var valRadio = '';
-  jQuery("#infoTesteRapidoDstAids .radio").click(function(){
+//  jQuery("#infoTesteRapidoDstAids .radio").click(function(){
   	if ($( "input:radio[name=infoTesteRapidoDstAids]:checked" ).val() == "Sim")
 	{
 		jQuery('#testeRapidoDstAids').attr('style','display:block');
@@ -1325,7 +1413,7 @@ function testeRapidoDstAids()
 	else{
 		jQuery('#testeRapidoDstAids').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoTesteRapidoDstAids */
 
@@ -1338,7 +1426,7 @@ function testeRapidoDstAids()
 function abstinenciaAposPrograma()
 {
   var valRadio = '';
-  jQuery("#infoAbstinenciaAposPrograma .radio").click(function(){
+//  jQuery("#infoAbstinenciaAposPrograma .radio").click(function(){
   	if ($( "input:radio[name=infoAbstinenciaAposPrograma]:checked" ).val() == "Sim")
 	{
 		jQuery('#abstinenciaAposPrograma').attr('style','display:block');
@@ -1346,7 +1434,7 @@ function abstinenciaAposPrograma()
 	else{
 		jQuery('#abstinenciaAposPrograma').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoAbstinenciaAposPrograma */
 
@@ -1355,7 +1443,7 @@ function abstinenciaAposPrograma()
 function usoDrogasInjetaveisf()
 {
   var valRadio = '';
-  jQuery("#infoUsoDrogasInjetaveis .radio").click(function(){
+//  jQuery("#infoUsoDrogasInjetaveis .radio").click(function(){
   	if ($( "input:radio[name=infoUsoDrogasInjetaveis]:checked" ).val() == "Sim")
 	{
 		jQuery('#usoDrogasInjetaveis').attr('style','display:block');
@@ -1363,7 +1451,7 @@ function usoDrogasInjetaveisf()
 	else{
 		jQuery('#usoDrogasInjetaveis').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoUsoDrogasInjetaveis */
 
@@ -1373,7 +1461,7 @@ function usoDrogasInjetaveisf()
 function drogasAlemCrackf()
 {
   var valRadio = '';
-  jQuery("#infoDrogasAlemCrack .radio").click(function(){
+//  jQuery("#infoDrogasAlemCrack .radio").click(function(){
   	if ($( "input:radio[name=infoDrogasAlemCrack]:checked" ).val() == "Sim")
 	{
 		jQuery('#drogasAlemCrack').attr('style','display:block');
@@ -1381,7 +1469,7 @@ function drogasAlemCrackf()
 	else{
 		jQuery('#drogasAlemCrack').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoDrogasAlemCrack */
 
@@ -1396,7 +1484,7 @@ function drogasAlemCrackf()
 function infoTemCompanheiro()
 {
   var valRadio = '';
-  jQuery("#infoTemCompanheiro .radio").click(function(){
+//  jQuery("#infoTemCompanheiro .radio").click(function(){
   	if ($( "input:radio[name=infoTemCompanheiro]:checked" ).val() == "Sim")
 	{
 		jQuery('#companheiroInseridoPrograma').attr('style','display:block');
@@ -1404,7 +1492,7 @@ function infoTemCompanheiro()
 	else{
 		jQuery('#companheiroInseridoPrograma').attr('style','display:none');
 	}
-  });
+//  });
   /* FIM - infoTemCompanheiro */
 }
 
@@ -1412,7 +1500,7 @@ function infoTemCompanheiro()
 function infoEsteveInternadof()
 {
   var valRadio = '';
-  jQuery("#infoEsteveInternado .radio").click(function(){
+//  jQuery("#infoEsteveInternado .radio").click(function(){
   	if ($( "input:radio[name=infoEsteveInternado]:checked" ).val() == "Sim")
 	{
 		jQuery('#internacao').attr('style','display:block');
@@ -1420,7 +1508,7 @@ function infoEsteveInternadof()
 	else{
 		jQuery('#internacao').attr('style','display:none');
 	}
-  });
+//  });
   /* FIM - infoEsteveInternado */
 }
 
@@ -1428,7 +1516,7 @@ function infoEsteveInternadof()
 function infoAcompanhamentoCapsf()
 {
   var valRadio = '';
-  jQuery("#infoAcompanhamentoCaps .radio").click(function(){
+//  jQuery("#infoAcompanhamentoCaps .radio").click(function(){
   	if ($( "input:radio[name=infoAcompanhamentoCaps]:checked" ).val() == "Sim")
 	{
 		jQuery('#qualAcompanhamentoCaps').attr('style','display:block');
@@ -1440,7 +1528,7 @@ function infoAcompanhamentoCapsf()
 		jQuery('#tipoFrequenciaCaps').attr('style','display:none');
 		jQuery('#nomeTecnicoReferenciaCaps').attr('style','display:none');
 	}
-  });
+//  });
   /* FIM - infoAcompanhamentoCaps */
 }
 
@@ -1448,7 +1536,7 @@ function infoCadastroAcompanhamentoUbsf()
 {  
   /* INICIO - infoCadastroAcompanhamentoUbs */
   var valRadio = '';
-  jQuery("#infoCadastroAcompanhamentoUbs .radio").click(function(){
+//  jQuery("#infoCadastroAcompanhamentoUbs .radio").click(function(){
   	if ($( "input:radio[name=infoCadastroAcompanhamentoUbs]:checked" ).val() == "Sim")
 	{
 		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:block');
@@ -1456,6 +1544,6 @@ function infoCadastroAcompanhamentoUbsf()
 	else{
 		jQuery('#ubsAcompanhamentoCadasdtro').attr('style','display:none');
 	}
-  });
+//  });
   /* FIM - infoCadastroAcompanhamentoUbs */
 }

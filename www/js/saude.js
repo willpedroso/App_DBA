@@ -279,6 +279,10 @@ function carregaSaude () {
 	$("#listaDiasMesesAnosUsoDrogas").append(opts);
 	
 	for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
+		// filtra as drogas para o tipo de pergunta = 1
+		if (CIDADAOSAUDE.listaDrogasFazUso[i].tipo_pergunta != 1) {
+			continue;
+		}
 		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
 		$('.adicionaDrogas').val(auxVar == null ? "" : auxVar);
 		adicionaDrogas(CIDADAOSAUDE.listaDrogasFazUso[i].dias_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].meses_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].anos_frequencia);
@@ -408,12 +412,15 @@ function carregaSaude () {
 	}
 	drogasAlemCrackf();
 	
-	// todo: onde estão as drogas alem do crack???
-	//for (var i = 0; i < 0; i++) {
-		//auxVar = CIDADAOSAUDE.listaTelefoneFamiliar[i].numero;
-		//$('input.adicionaDrogasAlemCrack').val(auxVar == null ? "" : auxVar);
-		//adicionaDrogasAlemCrack();
-	//}
+	for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
+		// filtra as drogas para o tipo de pergunta = 2
+		if (CIDADAOSAUDE.listaDrogasFazUso[i].tipo_pergunta != 2) {
+			continue;
+		}
+		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
+		$('input.adicionaDrogasAlemCrack').val(auxVar == null ? "" : auxVar);
+		adicionaDrogasAlemCrack();
+	}
 	
 	// Já fez uso de droga injetável
 	if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis == 1) {
@@ -781,95 +788,285 @@ function carregaSaude () {
 	// Outros sinais e sintomas clínicos
 	auxVar = CIDADAOSAUDE.dadosSaude.outros_sinais_sintomas_criticos;
 	$("#outros_sinais_sintomas_criticos").val(auxVar == null ? "" : auxVar);
-	/*	
-	// Lista de pontos de serviço
-	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
-	for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
-		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
-		//opts += "<option value='" + ATIVIDADE.listaTiposServico[i].id + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
-		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].ponto_servico_nome == ATIVIDADE.listaPontosServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaPontosServico[i].nome + "</option>";
+	
+	// Avaliação ginecológica
+	if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica == 1) {
+		// Sim
+		$("input[name='infoAvaliacaoGinecologica'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica == 0) {
+		// Não
+		$("input[name='infoAvaliacaoGinecologica'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAvaliacaoGinecologica'][value='Não Informado']").prop("checked", true);
+	}
+	avaliacaoGinecologica();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_avaliacao_ginecologica;
+	$("#local_avaliacao_ginecologica").val(auxVar == null ? "" : auxVar);
+
+	// Método anticoncepcional
+	if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional == 1) {
+		// Sim
+		$("input[name='infoMetodoAnticoncepcional'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional == 0) {
+		// Não
+		$("input[name='infoMetodoAnticoncepcional'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoMetodoAnticoncepcional'][value='Não Informado']").prop("checked", true);
+	}
+	metodoAnticoncepcional();
+	auxVar = CIDADAOSAUDE.dadosSaude.qual_metodo_anticoncepcional;
+	$("#qual_metodo_anticoncepcional").val(auxVar == null ? "" : auxVar);
+
+	// Teve algum aborto
+	if (CIDADAOSAUDE.dadosSaude.teve_aborto == 1) {
+		// Sim
+		$("input[name='infoTeveAborto'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.teve_aborto == 0) {
+		// Não
+		$("input[name='infoTeveAborto'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoTeveAborto'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Planejamento familiar
+	if (CIDADAOSAUDE.dadosSaude.planejamento_familiar == 1) {
+		// Sim
+		$("input[name='infoPlanejamentoFamiliar'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.planejamento_familiar == 0) {
+		// Não
+		$("input[name='infoPlanejamentoFamiliar'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoPlanejamentoFamiliar'][value='Não Informado']").prop("checked", true);
+	}
+	planejamentoFamiliar();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_planejamento_familiar;
+	$("#local_planejamento_familiar").val(auxVar == null ? "" : auxVar);
+
+	// Está grávida
+	if (CIDADAOSAUDE.dadosSaude.gestante == 1) {
+		// Sim
+		$("input[name='infoGestante'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.gestante == 0) {
+		// Não
+		$("input[name='infoGestante'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoGestante'][value='Não Informado']").prop("checked", true);
+	}
+	
+	// Está fazendo pré-natal
+	if (CIDADAOSAUDE.dadosSaude.pre_natal == 1) {
+		// Sim
+		$("input[name='infoPreNatal'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.pre_natal == 0) {
+		// Não
+		$("input[name='infoPreNatal'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoPreNatal'][value='Não Informado']").prop("checked", true);
+	}
+	preNatal();
+	auxVar = CIDADAOSAUDE.dadosSaude.local_pre_natal;
+	$("#local_pre_natal").val(auxVar == null ? "" : auxVar);
+
+	// Amparo maternal
+	if (CIDADAOSAUDE.dadosSaude.amparo_maternal == 1) {
+		// Sim
+		$("input[name='infoAmparoMaternal'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.amparo_maternal == 0) {
+		// Não
+		$("input[name='infoAmparoMaternal'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAmparoMaternal'][value='Não Informado']").prop("checked", true);
+	}
+
+	// Está amamentando
+	if (CIDADAOSAUDE.dadosSaude.amamentando == 1) {
+		// Sim
+		$("input[name='infoAmamentando'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.amamentando == 0) {
+		// Não
+		$("input[name='infoAmamentando'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoAmamentando'][value='Não Informado']").prop("checked", true);
+	}
+
+	// Consulta na data de hoje
+	if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje == 1) {
+		// Sim
+		$("input[name='infoConsultaSaudeHoje'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje == 0) {
+		// Não
+		$("input[name='infoConsultaSaudeHoje'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoConsultaSaudeHoje'][value='Não Informado']").prop("checked", true);
+	}
+	consultaSaudeHoje();
+	for (var i = 0; i < CIDADAOSAUDE.listaEspecialidadesConsultaHoje.length; i++) {
+		auxVar = CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].especialidade;
+		$('.adicionaEspecialidade').val(auxVar == null ? "" : auxVar);
+		adicionaEspecialidadeConsultaHoje();
+	}
+	
+	// Compareceu ao trabalho hoje
+	if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje == 1) {
+		// Sim
+		$("input[name='infoCompareceuTrabalhoHoje'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje == 0) {
+		// Não
+		$("input[name='infoCompareceuTrabalhoHoje'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoCompareceuTrabalhoHoje'][value='Não Informado']").prop("checked", true);
+	}
+	compareceuTrabalhoHoje();
+	auxVar = CIDADAOSAUDE.dadosSaude.motivo_falta_trabalho;
+	$("#motivo_falta_trabalho").val(auxVar == null ? "" : auxVar);
+
+	// Participou oficina hoje
+	if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje == 1) {
+		// Sim
+		$("input[name='infoParticipouOficinaHoje'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje == 0) {
+		// Não
+		$("input[name='infoParticipouOficinaHoje'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoParticipouOficinaHoje'][value='Não Informado']").prop("checked", true);
+	}
+	infoParticipouOficinaHojef();
+	for (var i = 0; i < CIDADAOSAUDE.listaOficinasParticipou.length; i++) {
+		auxVar = CIDADAOSAUDE.listaOficinasParticipou[i].nome;
+		$('.adicionaQualOficina').val(auxVar == null ? "" : auxVar);
+		auxVar = CIDADAOSAUDE.listaOficinasParticipou[i].local;
+		$('.adicionaLocalOficina').val(auxVar == null ? "" : auxVar);
+		adicionaOficinaParticipou();
+	}
+	auxVar = CIDADAOSAUDE.dadosSaude.motivo_nao_participou_oficina_hoje;
+	$("#motivo_nao_particiou_oficina_hoje").val(auxVar == null ? "" : auxVar);	
+
+	// Atividade recreativa externa
+	if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa == 1) {
+		// Sim
+		$("input[name='infoParticipouAtividadeHoje'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa == 0) {
+		// Não
+		$("input[name='infoParticipouAtividadeHoje'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoParticipouAtividadeHoje'][value='Não Informado']").prop("checked", true);
+	}
+	atividadeRecreativaExterna();
+	for (var i = 0; i < CIDADAOSAUDE.listaAtividadeRecreativaExterna.length; i++) {
+		auxVar = CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].nome;
+		$('.adicionaQualAtividade').val(auxVar == null ? "" : auxVar);
+		auxVar = CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].local;
+		$('.adicionaLocalAtividade').val(auxVar == null ? "" : auxVar);
+		adicionaAtividadeRecreativa();
+	}
+	
+	// Tempo de abstinência
+	var opts = "<span class='titSang'>Há quanto tempo tem se mantido abstinente:</span>" + 
+			   "<select name='diasAbstinenciaAposProgramaLabel' id='diasAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	for (var i = 1; i < 32; i++) {
+		opts += "<option value='" + i + "' data-id='diasAbstinenciaAposProgramaLabel' for='dias_mantido_abstinencia'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " dia" : " dias") + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
-	$("#listaPontosServicos").empty();
-	$("#listaPontosServicos").append(opts);
-	
-	// Lista de tipos de atuação
-	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
-	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
-		//opts += "<option value='" + ATIVIDADE.listaTiposAtuacao[i].id + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
-		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == ATIVIDADE.listaTiposAtuacao[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
-	}
-	opts += "</div></select>";
-	//console.log(opts + "\r\n");
-	
-	$("#listaTiposAtuacao").empty();
-	$("#listaTiposAtuacao").append(opts);
-	
-	// Lista de tipos de periodicidade
-	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
-	for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
-	//	opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
-		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'";
-		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == ATIVIDADE.listaTiposPeriodicidade[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
+	opts += "<select name='mesesMantidoAbstinenciaLabel' id='mesesMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	for (var i = 1; i < 13; i++) {
+		opts += "<option value='" + i + "' data-id='mesesMantidoAbstinenciaLabel' for='meses_mantido_abstinencia'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " mês" : " meses") + "</option>";
 	}
 	opts += "</div></select>";
 	
-	$("#ListaTiposPeriodicidade").empty();
-	$("#ListaTiposPeriodicidade").append(opts);
-	
-	// Lista de dias da semana para checkbox
-	opts = "";
-	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<div class='checkbox'>";
-		opts += "<input type='checkbox' id='dias_semana_" + i + "' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='checkbox check'";
-		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Semanal") {
-			for (var j = 0; j < ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_ds.length; j++) {
-				if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_ds[j] == ATIVIDADE.listaTiposDiaSemana[i].id) {
-					opts += " checked>";
-					break;
-				}
-			}
-		}
-		else {
-			opts += ">";
-		}
-        opts += "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p></div>";
+	opts += "<select name='anosMantidoAbstinenciaLabel' id='anosMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	for (var i = 1; i < 51; i++) {
+		opts += "<option value='" + i + "' data-id='anosMantidoAbstinenciaLabel' for='anos_mantido_abstinencia'";
+		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " ano" : " anos") + "</option>";
 	}
+	opts += "</div></select>";
 	
-	$("#container_dias_semana").empty();
-	$("#container_dias_semana").append(opts);
+	$("#listaDiasMesesAnosAbstinencia").empty();
+	$("#listaDiasMesesAnosAbstinencia").append(opts);
 	
-	// Lista de dias da semana para radio
-	opts = "";
-	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio'";
-		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal" &&
-			ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir == ATIVIDADE.listaTiposDiaSemana[i].id) {
-			opts += " checked>";
-		}
-		else {
-			opts += (i == 0 ? " checked>" : ">");
-		}
-        opts += "<p>" + ATIVIDADE.listaTiposDiaSemana[i].nome_abreviado + "</p>";
+	if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje == 1) {
+		// Sim
+		$("input[name='infoUsouDrogaHoje'][value='Sim']").prop("checked", true);
 	}
-	
-	$("#infoDiasSemanaRadio").empty();
-	$("#infoDiasSemanaRadio").append(opts);
-	
-	// Corrige campos que devem ser apresentados
-	exibePeriodo();
-	if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal") {
-		infoRep();
+	else if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje == 0) {
+		// Não
+		$("input[name='infoUsouDrogaHoje'][value='Não']").prop("checked", true);
 	}
-//	exibePeriodo();
-	if (edit)
-		infoDiaInt();
-	if (edit)
-		infoPerma();
-*/
+	else {
+		// null ou vazio
+		$("input[name='infoUsouDrogaHoje'][value='Não Informado']").prop("checked", true);
+	}
+	usouDrogaHoje();
+	for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
+		// filtra as drogas para o tipo de pergunta = 3
+		if (CIDADAOSAUDE.listaDrogasFazUso[i].tipo_pergunta != 3) {
+			continue;
+		}
+		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
+		$('.adicionaDrogaHoje').val(auxVar == null ? "" : auxVar);
+		adicionaDrogaHoje();
+	}
+	if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje == 1) {
+		// Sim
+		$("input[name='infoUsouCrackHoje'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje == 0) {
+		// Não
+		$("input[name='infoUsouCrackHoje'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoUsouCrackHoje'][value='Não Informado']").prop("checked", true);
+	}
+	usouCrackHoje();
+	auxVar = CIDADAOSAUDE.dadosSaude.quantas_pedras;
+	$("#quantas_pedras").val(auxVar == null ? "" : auxVar);	
+	
+	// Observações Importantes
+	auxVar = CIDADAOSAUDE.dadosSaude.observacoes_importantes;
+	$("#observacoes_importantes").val(auxVar == null ? "" : auxVar);	
+
+	// Observações
+	auxVar = CIDADAOSAUDE.dadosSaude.observacoes_gerais;
+	$("#observacoes_gerais").val(auxVar == null ? "" : auxVar);	
 }
 
 function salvaSaudeSuccess () {
@@ -1044,7 +1241,111 @@ function validaCampos() {
 				diasSemanaRepetir.push($("#dias_semana_" + i).val());
 			}
 		}
+*/
+
+	// Número do SUS
+	
+	// Cadastro UBS
+
+	// Acompanhamento CAPS
+
+	// Internação
+
+	// Como chegou à situação de rua
+	
+	// Iniciou o uso de drogras
+	
+	// Horas de Sono
+
+	// Tem amigos
+
+	// Tem companheiro
+
+	// Companheiro inserido no programa
+
+	// Tem família
+
+	// Tem contato com a família
+
+	// UF onde reside a família
+	
+	// Descrição de onde reside sua família
+	
+	// Telefone de algum familiar
+	
+	// Uso de drogas
+	
+	// Está em tratamento de saúde
 		
+	// Há quanto tempo usa crack
+	
+	// Quantas pedras antes
+
+	// Quantas pedras atualmente
+	
+	// Faz uso de outras drogas
+	
+	// Já fez uso de droga injetável
+	
+	// Abstinente
+	
+	// Glicemia, pressão arterial e peso
+	
+	// Fez teste rápido de DST
+	
+	// Acompanhamento DST
+	
+	// Tem diagnóstico HIV
+	// Em tratamento
+	
+	// Diagnóstico de Sífilis
+	// Em tratamento
+	
+	// Avaliação Odontológica
+	
+	// Sintomas respiratórios
+	
+	// Teste de tuberculose
+	
+	// Já teve tuberculose
+	
+	// Lesões na pele
+
+	// Vacinação em dia
+	
+	// Outros sinais e sintomas clínicos
+	
+	// Avaliação ginecológica
+
+	// Método anticoncepcional
+
+	// Teve algum aborto
+	
+	// Planejamento familiar
+
+	// Está grávida
+	
+	// Está fazendo pré-natal
+
+	// Amparo maternal
+
+	// Está amamentando
+
+	// Consulta na data de hoje
+	
+	// Compareceu ao trabalho hoje
+
+	// Participou oficina hoje
+
+	// Atividade recreativa externa
+	
+	// Tempo de abstinência
+	
+	// Observações Importantes
+
+	// Observações
+
+/*		
 		// todo: testes retirar
 		console.log("Índice da atividade: " + null +
 					 "\r\nPonto de serviço: " + $("#pontoServicoLabel").val() +

@@ -8,9 +8,16 @@
 	listaCadastroAcompanhamentoUBS: [],
 	listaInternacao: [],
 	listaTelefoneFamiliar: [],
-	listaDrogasFazUso: [],
 	
-	// Tipo de frequência CAPS
+	listaDrogasFazUso: [],				// tipo_pergunta = 1
+	listaOutrasDrogasAlemCrack: [], 	// tipo_pergunta = 2
+	listaAlgumaDrogaNesteDia: [],		// tipo_pergunta = 3
+	
+	listaEspecialidadesConsultaHoje: [],
+	listaOficinasParticipou: [],
+	listaAtividadeRecreativaExterna: [],
+	
+	// Tipo auxiliares
 	listaTipoFrequenciaCaps: null,
 	listaEstados: null,
 	listaTipoParentesco: null,
@@ -148,11 +155,11 @@
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao " +		
-							"FROM drogas_faz_uso WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosEntradaFail);
+							"FROM drogas_faz_uso WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosEspecialidadesConsultaHoje, CIDADAOSAUDE.dadosEntradaFail);
 	},
 	
-	dadosBasicosSuccess: function (trans, res) {
-		console.log("dadosBasicosSuccess");
+	dadosEspecialidadesConsultaHoje: function (trans, res) {
+		console.log("dadosEspecialidadesConsultaHoje");
 		
 		CIDADAOSAUDE.listaDrogasFazUso = [];
 		
@@ -179,6 +186,96 @@
 			Print += "\tMeses: " + CIDADAOSAUDE.listaDrogasFazUso[i].meses_frequencia + "\r\n";			
 			Print += "\tAnos: " + CIDADAOSAUDE.listaDrogasFazUso[i].anos_frequencia + "\r\n";			
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaDrogasFazUso[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, especialidade, local, dt_criacao " +		
+							"FROM consulta_saude WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosListaOficinasParticipou, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosListaOficinasParticipou: function (trans, res) {
+		console.log("dadosListaOficinasParticipou");
+
+		CIDADAOSAUDE.listaEspecialidadesConsultaHoje = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var dfu = {
+				id: res.rows.item(i).id,
+				especialidade: res.rows.item(i).especialidade,
+				local: res.rows.item(i).local,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaEspecialidadesConsultaHoje.push(dfu);
+		}
+
+		// todo: testes retirar
+		var Print = "Especialidades Consulta Saúde Hoje:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaEspecialidadesConsultaHoje.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].id + "\r\n";
+			Print += "\tEspecialidade: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].especialidade + "\r\n";			
+			Print += "\tLocal: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].local + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, nome, local, dt_criacao " +		
+							"FROM participacao_oficinas_oferecidas WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosAtividadeRecreativaExterna, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosAtividadeRecreativaExterna: function (trans, res) {
+		console.log("dadosAtividadeRecreativaExterna");
+		
+		CIDADAOSAUDE.listaOficinasParticipou = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var dfu = {
+				id: res.rows.item(i).id,
+				nome: res.rows.item(i).nome,
+				local: res.rows.item(i).local,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaOficinasParticipou.push(dfu);
+		}
+
+		// todo: testes retirar
+		var Print = "Oficinas que Participou:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaOficinasParticipou.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaOficinasParticipou[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOSAUDE.listaOficinasParticipou[i].nome + "\r\n";			
+			Print += "\tLocal: " + CIDADAOSAUDE.listaOficinasParticipou[i].local + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaOficinasParticipou[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, nome, local, dt_criacao " +		
+							"FROM atividades_recreativas_externas WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosBasicosSuccess, CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+	
+		CIDADAOSAUDE.listaAtividadeRecreativaExterna = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var dfu = {
+				id: res.rows.item(i).id,
+				nome: res.rows.item(i).nome,
+				local: res.rows.item(i).local,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSAUDE.listaAtividadeRecreativaExterna.push(dfu);
+		}
+
+		// todo: testes retirar
+		var Print = "Atividades Recreativas Externas:\r\n";
+		for (var i = 0; i < CIDADAOSAUDE.listaAtividadeRecreativaExterna.length; i++) {
+			Print += "\tID: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].nome + "\r\n";			
+			Print += "\tLocal: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].local + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
 		// testes retirar
