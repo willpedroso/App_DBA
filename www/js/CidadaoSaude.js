@@ -9,9 +9,7 @@
 	listaInternacao: [],
 	listaTelefoneFamiliar: [],
 	
-	listaDrogasFazUso: [],				// tipo_pergunta = 1
-	listaOutrasDrogasAlemCrack: [], 	// tipo_pergunta = 2
-	listaAlgumaDrogaNesteDia: [],		// tipo_pergunta = 3
+	listaDrogasFazUso: [],
 	
 	listaEspecialidadesConsultaHoje: [],
 	listaOficinasParticipou: [],
@@ -21,6 +19,9 @@
 	listaTipoFrequenciaCaps: null,
 	listaEstados: null,
 	listaTipoParentesco: null,
+	
+	// Auxiliares
+	auxDate: null,
 	
 	// Carrega dados básicos
 	dadosBasicos: function () {
@@ -642,7 +643,8 @@
 		// Salva no banco de dados
 		var hoje = new Date();
 		BANCODADOS.sqlCmdDB("INSERT INTO saude " +
-							"(numero_sus " +
+							"(cidadao_id " + 
+							", numero_sus " +
 							", cadastro_acompanhamento_ubs " +
 							", acompanhamento_caps " +
 							", qual_acompanhamento_caps " +
@@ -739,8 +741,9 @@
 							", tratamento_saude " +
 							", dt_criacao " +
 							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
+							CIDADAOSAUDE.cidadao_id,
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
@@ -836,20 +839,41 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							dadosLista.shift(),
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							(CIDADAOSAUDE.auxDate = hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
 							1
 							], 
-							CIDADAOSAUDE.salvaCidadaoSaudeSuccess, CIDADAOSAUDE.salvaCidadaoSaudeFail);
+							CIDADAOSAUDE.recuperaIDSaude, CIDADAOSAUDE.salvaCidadaoSaudeFail);
 	},
+	
+	recuperaIDSaude: function (trans, res) {
+		console.log("recuperaIDSaude");
+
+		BANCODADOS.sqlCmdDB("SELECT id " +		
+							"FROM saude WHERE dt_criacao = ? AND status = ?", [CIDADAOSAUDE.auxDate, 1],
+							// todo: verificar se há dados para salvar
+							CIDADAOSAUDE.salvalistaCadastroAcompanhamentoUBS, 
+							CIDADAOSAUDE.dadosEntradaFail);
+	},
+	
+	salvalistaCadastroAcompanhamentoUBS: function (trans, res) {
+		console.log("salvalistaCadastroAcompanhamentoUBS");
+		
+		// todo: testes retirar
+		console.log("Novo ID: " + res.rows.item(0).id);
+		// testes retirar
+	},
+
+	salvalistaInternacao: function (trans, res) {},
+	
+	salvalistaTelefoneFamiliar: function (trans, res) {},
+	
+	salvalistaDrogasFazUso: function (trans, res) {},
+	
+	salvalistaEspecialidadesConsultaHoje: function (trans, res) {},
+	
+	salvalistaOficinasParticipou: function (trans, res) {},
+	
+	salvalistaAtividadeRecreativaExterna: function (trans, res) {},
 	
 	salvaCidadaoSaudeSuccess: function (trans, res) {
 		console.log("salvaCidadaoSaudeSuccess");
