@@ -5,6 +5,13 @@ function saudeOpcoes () {
 function carregaSaude () {
 	console.log("carregaSaude");
 	
+	// Verifica se é salvamento
+	if (CIDADAOSAUDE.ehSalvamento == true) {
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+		CIDADAOSAUDE.ehSalvamento = false;
+	}
+	
 	var edit = true;		// todo: sempre em edição
 
 	var auxVar;
@@ -1663,16 +1670,154 @@ function saudeSalva() {
 		// testes retirar
 
 		// listaInternacao (quantas_vezes, local, motivo)
+		var internacao = [];
+		$(".adicionaInputInternacao").children().each(function () {
+			var v = {
+				quantas_vezes: this.children[0].value,
+				local: this.children[1].value,
+				motivo: this.children[2].value,
+			};
+			internacao.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Internação\r\n";
+		for (var i = 0; i < internacao.length; i++) {
+			Print += "Quantas vezes: " + internacao[i].quantas_vezes + " - Local: " + internacao[i].local + " - Motivo: " + internacao[i].motivo + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// listaTelefoneFamiliar (tipo_parentesco_id, numero)
+		var telefoneFamiliar = [];
+		$(".adicionaInputContatoFamiliar").children().each(function () {
+			var v = {
+				tipo_parentesco_nome: this.children[0].value,
+				//tipo_parentesco_id: this.children[1].value,
+				numero: this.children[2].value,
+			};
+			telefoneFamiliar.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Telefone Familiar\r\n";
+		for (var i = 0; i < telefoneFamiliar.length; i++) {
+			Print += /*"Tipo Parentesco ID: " + telefoneFamiliar[i].tipo_parentesco_id + */"Tipo Parentesco Nome: " + telefoneFamiliar[i].tipo_parentesco_nome + " - Número: " + telefoneFamiliar[i].numero + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// listaDrogasFazUso para tipo_pergunta 1, 2 e 3 (tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia)
+		// ********************************** TIPO 1: Quais drogras faz uso
+		var drogasTipo1 = [];
+		$(".adicionaInputDrogas").children().each(function () {
+			var v = {
+				nome_droga: this.children[0].value,
+				dias_frequencia: this.children[1].children[0].value,
+				meses_frequencia: this.children[1].children[1].value,
+				anos_frequencia: this.children[1].children[2].value,
+			};
+			drogasTipo1.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Quais drogas faz uso\r\n";
+		for (var i = 0; i < drogasTipo1.length; i++) {
+			Print += "Droga: " + drogasTipo1[i].nome_droga + " - Dias: " + drogasTipo1[i].dias_frequencia + " - Meses: " + drogasTipo1[i].meses_frequencia + " - Anos: " + drogasTipo1[i].anos_frequencia + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+		// ********************************** TIPO 1: Quais drogras faz uso
+		// ********************************** TIPO 2: Drogas além do crack
+		var drogasTipo2 = [];
+		$(".adicionaInputDrogasAlemCrack").children().each(function () {
+			var v = {
+				nome_droga: this.children[0].value,
+			};
+			drogasTipo2.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Drogas além do crack\r\n";
+		for (var i = 0; i < drogasTipo2.length; i++) {
+			Print += "Droga: " + drogasTipo2[i].nome_droga + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+		// ********************************** TIPO 2: Drogas além do crack
+		// ********************************** TIPO 3: Alguma droga neste dia
+		var drogasTipo3 = [];
+		$(".adicionaInputDrogaHoje").children().each(function () {
+			var v = {
+				nome_droga: this.children[0].value,
+			};
+			drogasTipo3.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Alguma droga neste dia\r\n";
+		for (var i = 0; i < drogasTipo3.length; i++) {
+			Print += "Droga: " + drogasTipo3[i].nome_droga + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+		// ********************************** TIPO 3: Alguma droga neste dia
 		
 		// listaEspecialidadesConsultaHoje (especialidade, local)
+		var especialidadesConsultaHoje = [];
+		$(".adicionaInputEspecialidadeConsulta").children().each(function () {
+			var v = {
+				especialidade: this.children[0].value,
+				//local: this.children[1].value,
+			};
+			especialidadesConsultaHoje.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Especialidades Consulta Hoje\r\n";
+		for (var i = 0; i < especialidadesConsultaHoje.length; i++) {
+			Print += "Especialidade: " + especialidadesConsultaHoje[i].especialidade/* + " - Local: " + especialidadesConsultaHoje[i].local*/ + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// listaOficinasParticipou (nome, local)
+		var oficinasParticipou = [];
+		$(".adicionaInputOficinasParticipou").children().each(function () {
+			var v = {
+				nome: this.children[0].value,
+				local: this.children[1].value,
+			};
+			oficinasParticipou.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Oficinas Participou\r\n";
+		for (var i = 0; i < oficinasParticipou.length; i++) {
+			Print += "Nome: " + oficinasParticipou[i].nome + " - Local: " + oficinasParticipou[i].local + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// listaAtividadeRecreativaExterna (nome, local)
+		var atividadeRecreativaExterna = [];
+		$(".adicionaInputAtividadesParticipou").children().each(function () {
+			var v = {
+				nome: this.children[0].value,
+				local: this.children[1].value,
+			};
+			atividadeRecreativaExterna.push(v);
+		});
+		// todo: testes retirar
+		var Print = "Atividades Recreativas Externas\r\n";
+		for (var i = 0; i < atividadeRecreativaExterna.length; i++) {
+			Print += "Nome: " + atividadeRecreativaExterna[i].nome + " - Local: " + atividadeRecreativaExterna[i].local + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+
+		CIDADAOSAUDE.auxcadastroAcompanhamentoUBS = cadastroAcompanhamentoUBS;
+		CIDADAOSAUDE.auxinternacao = internacao;
+		CIDADAOSAUDE.auxtelefoneFamiliar = telefoneFamiliar;
+		CIDADAOSAUDE.auxdrogasTipo1 = drogasTipo1;
+		CIDADAOSAUDE.auxdrogasTipo2 = drogasTipo2;
+		CIDADAOSAUDE.auxdrogasTipo3 = drogasTipo3;
+		CIDADAOSAUDE.auxespecialidadesConsultaHoje = especialidadesConsultaHoje;
+		CIDADAOSAUDE.auxoficinasParticipou = oficinasParticipou;
+		CIDADAOSAUDE.auxatividadeRecreativaExterna = atividadeRecreativaExterna;
 
 		CIDADAOSAUDE.salvaCidadaoSaude(listaDados,
 										this.salvaSaudeSuccess,

@@ -3,6 +3,9 @@
     cbSuccess_f: null,
     cbFail_f: null,
 	
+	novo_saude_id: null,
+	ehSalvamento: false,
+	
 	cidadao_id: null,
 	dadosSaude: null,
 	listaCadastroAcompanhamentoUBS: [],
@@ -22,6 +25,21 @@
 	
 	// Auxiliares
 	auxDate: null,
+	
+	auxcadastroAcompanhamentoUBS: null,
+	auxinternacao: null,
+	auxtelefoneFamiliar: null,
+	auxdrogasTipo1: null,
+	auxdrogasTipo2: null,
+	auxdrogasTipo3: null,
+	auxespecialidadesConsultaHoje: null,
+	auxoficinasParticipou: null,
+	auxatividadeRecreativaExterna: null,
+
+	auxCounter: null,
+	
+	// Lista de rotinas de salvamento
+	listaSalvamentoListas: [],
 	
 	// Carrega dados básicos
 	dadosBasicos: function () {
@@ -633,12 +651,45 @@
 	
     // ****************** Salva os dados  *********************
 	// Salva no banco e atualiza memória
-	salvaCidadaoSaude: function(dadosLista, cbSuccess, cbFail) {
+	salvaCidadaoSaude: function(dadosLista,
+								cbSuccess, 
+								cbFail) {
 		console.log("salvaCidadao");
 		
 		// Salva funções de retorno
 		CIDADAOSAUDE.cbSuccess_f = cbSuccess;
 		CIDADAOSAUDE.cbFail_f = cbFail;
+		
+		// Prepara lista de salvamento de listas
+		CIDADAOSAUDE.listaSalvamentoListas = [];
+		if (CIDADAOSAUDE.auxcadastroAcompanhamentoUBS.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaCadastroAcompanhamentoUBS);
+		}
+		if (CIDADAOSAUDE.auxinternacao.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaInternacao);
+		}
+		if (CIDADAOSAUDE.auxtelefoneFamiliar.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaTelefoneFamiliar);
+		}
+		if (CIDADAOSAUDE.auxdrogasTipo1.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaDrogasTipo1);
+		}
+		if (CIDADAOSAUDE.auxdrogasTipo2.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaDrogasTipo2);
+		}
+		if (CIDADAOSAUDE.auxdrogasTipo3.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaDrogasTipo3);
+		}
+		if (CIDADAOSAUDE.auxespecialidadesConsultaHoje.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaEspecialidadesConsultaHoje);
+		}
+		if (CIDADAOSAUDE.auxoficinasParticipou.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaOficinasParticipou);
+		}
+		if (CIDADAOSAUDE.auxatividadeRecreativaExterna.length) {
+			CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvalistaAtividadeRecreativaExterna);
+		}
+		CIDADAOSAUDE.listaSalvamentoListas.push(CIDADAOSAUDE.salvaCidadaoSaudeSuccess);
 
 		// Salva no banco de dados
 		var hoje = new Date();
@@ -851,34 +902,195 @@
 		BANCODADOS.sqlCmdDB("SELECT id " +		
 							"FROM saude WHERE dt_criacao = ? AND status = ?", [CIDADAOSAUDE.auxDate, 1],
 							// todo: verificar se há dados para salvar
-							CIDADAOSAUDE.salvalistaCadastroAcompanhamentoUBS, 
-							CIDADAOSAUDE.dadosEntradaFail);
+							CIDADAOSAUDE.recuperaIDSaudeSuccess, 
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
+	
+	recuperaIDSaudeSuccess: function (trans, res) {
+		console.log("recuperaIDSaudeSuccess");
+		
+		// Salva novo ID
+		CIDADAOSAUDE.novo_saude_id = res.rows.item(0).id;
+		
+		CIDADAOSAUDE.auxCounter = 0;
+		CIDADAOSAUDE.listaSalvamentoListas.shift()();
+	},
+	
+	fimSalvaLista: function (trans, res) {
+		console.log("fimSalvaLista");
+		
+		// Zera contador e segue salvamento
+		CIDADAOSAUDE.auxCounter = 0;
+		CIDADAOSAUDE.listaSalvamentoListas.shift()();
 	},
 	
 	salvalistaCadastroAcompanhamentoUBS: function (trans, res) {
 		console.log("salvalistaCadastroAcompanhamentoUBS");
 		
-		// todo: testes retirar
-		console.log("Novo ID: " + res.rows.item(0).id);
-		// testes retirar
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO cadastro_acompanhamento_ubs (saude_id, nome_ubs, especialidade, nome_tecnico_referencia, dt_criacao) " +
+							"VALUES (?, ?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].nome_ubs,
+							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].especialidade,
+							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].nome_tecnico_referencia,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxcadastroAcompanhamentoUBS.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaCadastroAcompanhamentoUBS,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
 	},
 
-	salvalistaInternacao: function (trans, res) {},
+	salvalistaInternacao: function (trans, res) {
+		console.log("salvalistaInternacao");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO internacao (saude_id, quantas_vezes, local, motivo, dt_criacao) " +
+							"VALUES (?, ?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].quantas_vezes,
+							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].local,
+							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].motivo,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxinternacao.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaInternacao,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
-	salvalistaTelefoneFamiliar: function (trans, res) {},
+	salvalistaTelefoneFamiliar: function (trans, res) {
+		console.log("salvalistaTelefoneFamiliar");
+		
+		// Obtém o id do parentesco
+		var idParentesco = 0;
+		for (var i = 0; i < CIDADAOSAUDE.listaTipoParentesco.length; i++) {
+			if (CIDADAOSAUDE.listaTipoParentesco[i].nome == CIDADAOSAUDE.auxtelefoneFamiliar[CIDADAOSAUDE.auxCounter].tipo_parentesco_nome) {
+				idParentesco = CIDADAOSAUDE.listaTipoParentesco[i].id;
+				break;
+			}
+		}
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO telefone_familiar (saude_id, tipo_parentesco_id, numero, dt_criacao) " +
+							"VALUES (?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							idParentesco,
+							CIDADAOSAUDE.auxtelefoneFamiliar[CIDADAOSAUDE.auxCounter].numero,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxtelefoneFamiliar.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaTelefoneFamiliar,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
-	salvalistaDrogasFazUso: function (trans, res) {},
+	salvalistaDrogasTipo1: function (trans, res) {
+		console.log("salvalistaDrogasTipo1");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao) " +
+							"VALUES (?, ?, ?, ?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							1,
+							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].nome_droga,
+							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].dias_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].dias_frequencia.indexOf(" ")),
+							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].meses_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].meses_frequencia.indexOf(" ")),
+							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].anos_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].anos_frequencia.indexOf(" ")),
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo1.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo1,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
-	salvalistaEspecialidadesConsultaHoje: function (trans, res) {},
+	salvalistaDrogasTipo2: function (trans, res) {
+		console.log("salvalistaDrogasTipo2");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao) " +
+							"VALUES (?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							2,
+							CIDADAOSAUDE.auxdrogasTipo2[CIDADAOSAUDE.auxCounter].nome_droga,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo2.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo2,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
+
+	salvalistaDrogasTipo3: function (trans, res) {
+		console.log("salvalistaDrogasTipo3");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao) " +
+							"VALUES (?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							3,
+							CIDADAOSAUDE.auxdrogasTipo3[CIDADAOSAUDE.auxCounter].nome_droga,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo3.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo3,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
-	salvalistaOficinasParticipou: function (trans, res) {},
+	salvalistaEspecialidadesConsultaHoje: function (trans, res) {
+		console.log("salvalistaEspecialidadesConsultaHoje");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO consulta_saude (saude_id, especialidade, dt_criacao) " +
+							"VALUES (?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							CIDADAOSAUDE.auxespecialidadesConsultaHoje[CIDADAOSAUDE.auxCounter].especialidade,
+							//CIDADAOSAUDE.auxespecialidadesConsultaHoje[CIDADAOSAUDE.auxCounter].local,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxespecialidadesConsultaHoje.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaEspecialidadesConsultaHoje,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
-	salvalistaAtividadeRecreativaExterna: function (trans, res) {},
+	salvalistaOficinasParticipou: function (trans, res) {
+		console.log("salvalistaOficinasParticipou");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO participacao_oficinas_oferecidas (saude_id, nome, local, dt_criacao) " +
+							"VALUES (?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							CIDADAOSAUDE.auxoficinasParticipou[CIDADAOSAUDE.auxCounter].nome,
+							CIDADAOSAUDE.auxoficinasParticipou[CIDADAOSAUDE.auxCounter].local,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxoficinasParticipou.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaOficinasParticipou,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
+	
+	salvalistaAtividadeRecreativaExterna: function (trans, res) {
+		console.log("salvalistaAtividadeRecreativaExterna");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO atividades_recreativas_externas (saude_id, nome, local, dt_criacao) " +
+							"VALUES (?, ?, ?, ?)",
+							[
+							CIDADAOSAUDE.novo_saude_id,
+							CIDADAOSAUDE.auxatividadeRecreativaExterna[CIDADAOSAUDE.auxCounter].nome,
+							CIDADAOSAUDE.auxatividadeRecreativaExterna[CIDADAOSAUDE.auxCounter].local,
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							],
+							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxatividadeRecreativaExterna.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaAtividadeRecreativaExterna,
+							CIDADAOSAUDE.salvaCidadaoSaudeFail);
+	},
 	
 	salvaCidadaoSaudeSuccess: function (trans, res) {
 		console.log("salvaCidadaoSaudeSuccess");
 		
+		// todo: testes retirar
+		//alert("Fim do salvamento de saúde");
+		// testes retirar
+		
 		// Atualiza dados na memória
+		CIDADAOSAUDE.ehSalvamento = true;
 		CIDADAOSAUDE.dadosEntrada(CIDADAOSAUDE.cidadao_id, CIDADAOSAUDE.cbSuccess_f, CIDADAOSAUDE.cbFail_f);
 	},
 	
