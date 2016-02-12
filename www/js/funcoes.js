@@ -1547,3 +1547,137 @@ function infoCadastroAcompanhamentoUbsf()
 //  });
   /* FIM - infoCadastroAcompanhamentoUbs */
 }
+
+//Social
+
+/* INICIO - providencias */
+function providencias()
+{
+  var valRadio = '';
+  jQuery("#infoHouveProvidencias .radio").click(function(){
+  	if ($( "input:radio[name=infoHouveProvidencias]:checked" ).val() == "Sim")
+	{
+		jQuery('#providencias').attr('style','display:block');
+	}
+	else{
+		jQuery('#providencias').attr('style','display:none');
+	}
+  });
+}
+/* FIM - providencias */
+
+/* INICIO - infoEncaminhamento */
+function infoEncaminhamento()
+{
+  var valRadio = '';
+  jQuery("#infoEncaminhamento .radio").click(function(){
+  	if ($( "input:radio[name=infoEncaminhamento]:checked" ).val() == "Sim")
+	{
+		jQuery('#unidadeSaude').attr('style','display:block');
+		jQuery('#nomeUnidadeSaude').attr('style','display:block');
+	}
+	else{
+		jQuery('#unidadeSaude').attr('style','display:none');
+		jQuery('#nomeUnidadeSaude').attr('style','display:none');
+	}
+  });
+}
+/* FIM - infoEncaminhamento */
+
+/* INICIO - quaisMedicamentos */
+function quaisMedicamentos()
+{
+  var valRadio = '';
+  jQuery("#infoUsoMedicamentos .radio").click(function(){
+  	if ($( "input:radio[name=infoUsoMedicamentos]:checked" ).val() == "Sim")
+	{
+		jQuery('#quaisMedicamentos').attr('style','display:block');
+	}
+	else{
+		jQuery('#quaisMedicamentos').attr('style','display:none');
+	}
+  });
+}
+/* FIM - quaisMedicamentos */
+
+/* INICIO - listaDocumentos */
+function listaDocumentos()
+{
+  var valRadio = '';
+  jQuery("#infoDocumentosAposPrograma .radio").click(function(){
+  	if ($( "input:radio[name=infoDocumentosAposPrograma]:checked" ).val() == "Sim")
+	{
+		jQuery('#listaDocumentos').attr('style','display:block');
+	}
+	else{
+		jQuery('#listaDocumentos').attr('style','display:none');
+	}
+  });
+}
+/* FIM - listaDocumentos */
+
+//Trabalho
+/* INICIO - quaisCursoQualificacaoProfissional */
+function quaisCursoQualificacaoProfissional()
+{
+  var valRadio = '';
+  jQuery("#infoCursoQualificacaoProfissional .radio").click(function(){
+  	if ($( "input:radio[name=infoCursoQualificacaoProfissional]:checked" ).val() == "Sim")
+	{
+		jQuery('#quaisCursoQualificacaoProfissional').attr('style','display:block');
+	}
+	else{
+		jQuery('#quaisCursoQualificacaoProfissional').attr('style','display:none');
+	}
+  });
+}
+/* FIM - quaisCursoQualificacaoProfissional */
+
+/* INICIO - quaisOutraAtividadeBico */
+function quaisOutraAtividadeBico()
+{
+  var valRadio = '';
+  jQuery("#infoOutraAtividadeBico .radio").click(function(){
+  	if ($( "input:radio[name=infoOutraAtividadeBico]:checked" ).val() == "Sim")
+	{
+		jQuery('#quaisOutraAtividadeBico').attr('style','display:block');
+	}
+	else{
+		jQuery('#quaisOutraAtividadeBico').attr('style','display:none');
+	}
+  });
+}
+/* FIM - quaisOutraAtividadeBico */
+
+
+/* INICIO - quaisTeveNegocioProprio */
+function quaisTeveNegocioProprio()
+{
+  var valRadio = '';
+  jQuery("#infoTeveNegocioProprio .radio").click(function(){
+  	if ($( "input:radio[name=infoTeveNegocioProprio]:checked" ).val() == "Sim")
+	{
+		jQuery('#quaisTeveNegocioProprio').attr('style','display:block');
+	}
+	else{
+		jQuery('#quaisTeveNegocioProprio').attr('style','display:none');
+	}
+  });
+}
+/* FIM - quaisTeveNegocioProprio */
+
+/* INICIO - quaisProcurouProgramaPmsp */
+function quaisProcurouProgramaPmsp()
+{
+  var valRadio = '';
+  jQuery("#infoProcurouProgramaPmsp .radio").click(function(){
+  	if ($( "input:radio[name=infoProcurouProgramaPmsp]:checked" ).val() == "Sim")
+	{
+		jQuery('#quaisProcurouProgramaPmsp').attr('style','display:block');
+	}
+	else{
+		jQuery('#quaisProcurouProgramaPmsp').attr('style','display:none');
+	}
+  });
+}
+/* FIM - quaisProcurouProgramaPmsp */

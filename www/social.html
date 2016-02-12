@@ -1,0 +1,393 @@
+<!-- SOCIAL -->
+        <div id="social">
+          <form id="formSocial" class="cadastro">
+
+            <!--INICIO - PRIMEIRO BLOCO-->
+            <div class="contentAbaBorda">
+        
+              <div class="msgAtencao" style="display:none">
+                <span class="ico"></span><p>Atenção! Verifique os campos.</p>
+              </div>
+            
+              <div class="msgParabens" style="display:none">
+                <span class="ico"></span><p>Operação realizada com sucesso.</p>
+              </div>
+              
+              <div class="msgErro" style="display:none">
+                <span class="ico"></span><p>Erro ao processar as informações.</p>
+              </div>
+            
+              <h3>SOCIAL | ACOMPANHAMENTO</h3>
+              
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Nome do contato:</span>
+                <input type="text" class="inputGrande" value="" id="nome_contato" name="nome_contato">
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Endereço do contato:</span>
+                <input type="text" class="inputGrande" value="" id="endereco_contato" name="endereco_contato">
+              </div>          
+              
+              <div class="linhaForm">
+                <label class="selectDefault">
+                  <span class="titSang">UF do contato:</span>
+                  <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
+                    <div class="comboStilo"> 
+                      <option value="Selecione" id="0" data-id="estadoNomeLabel" for="tipo_estado_id">Selecione</option>
+                      <option value="AC - Acre" id="1" data-id="estadoNomeLabel" for="tipo_estado_id">AC - Acre</option>
+                      <option value="AL - Alagoas" id="2" data-id="estadoNomeLabel" for="tipo_estado_id">AL - Alagoas</option>
+                      <option value="AM - Amazonas" id="4" data-id="estadoNomeLabel" for="tipo_estado_id">AM - Amazonas</option>
+                      <option value="AP - Amapá" id="3" data-id="estadoNomeLabel" for="tipo_estado_id">AP - Amapá</option>
+                      <option value="BA - Bahia" id="5" data-id="estadoNomeLabel" for="tipo_estado_id">BA - Bahia</option>
+                      <option value="CE - Ceara" id="6" data-id="estadoNomeLabel" for="tipo_estado_id">CE - Ceara</option>
+                      <option value="DF - Distrito Federal" id="7" data-id="estadoNomeLabel" for="tipo_estado_id">DF - Distrito Federal</option>
+                      <option value="ES - Espírito Santo" id="8" data-id="estadoNomeLabel" for="tipo_estado_id">ES - Espírito Santo</option>
+                      <option value="GO - Goiás" id="9" data-id="estadoNomeLabel" for="tipo_estado_id">GO - Goiás</option>
+                      <option value="MA - Maranhão" id="10" data-id="estadoNomeLabel" for="tipo_estado_id">MA - Maranhão</option>
+                      <option value="MG - Minas Gerais" id="13" data-id="estadoNomeLabel" for="tipo_estado_id">MG - Minas Gerais</option>
+                      <option value="MS - Mato Grosso do Sul" id="12" data-id="estadoNomeLabel" for="tipo_estado_id">MS - Mato Grosso do Sul</option>
+                      <option value="MT - Mato Grosso" id="11" data-id="estadoNomeLabel" for="tipo_estado_id">MT - Mato Grosso</option>
+                      <option value="PA - Pará" id="14" data-id="estadoNomeLabel" for="tipo_estado_id">PA - Pará</option>
+                      <option value="PB - Paraíba" id="15" data-id="estadoNomeLabel" for="tipo_estado_id">PB - Paraíba</option>
+                      <option value="PE - Pernambuco" id="17" data-id="estadoNomeLabel" for="tipo_estado_id">PE - Pernambuco</option>
+                      <option value="PI - Piauí" id="18" data-id="estadoNomeLabel" for="tipo_estado_id">PI - Piauí</option>
+                      <option value="PR - Paraná" id="16" data-id="estadoNomeLabel" for="tipo_estado_id">PR - Paraná</option>
+                      <option value="RJ - Rio de Janeiro" id="19" data-id="estadoNomeLabel" for="tipo_estado_id">RJ - Rio de Janeiro</option>
+                      <option value="RN - Rio Grande do Norte" id="20" data-id="estadoNomeLabel" for="tipo_estado_id">RN - Rio Grande do Norte</option>
+                      <option value="RO - Rondônia" id="22" data-id="estadoNomeLabel" for="tipo_estado_id">RO - Rondônia</option>
+                      <option value="RR - Roraima" id="23" data-id="estadoNomeLabel" for="tipo_estado_id">RR - Roraima</option>
+                      <option value="RS - Rio Grande do Sul" id="21" data-id="estadoNomeLabel" for="tipo_estado_id">RS - Rio Grande do Sul</option>
+                      <option value="SC - Santa Catarina" id="24" data-id="estadoNomeLabel" for="tipo_estado_id">SC - Santa Catarina</option>
+                      <option value="SE - Sergipe" id="26" data-id="estadoNomeLabel" for="tipo_estado_id">SE - Sergipe</option>
+                      <option value="SP - São Paulo" id="25" data-id="estadoNomeLabel" for="tipo_estado_id">SP - São Paulo</option>
+                      <option value="TO - Tocantins" id="27" data-id="estadoNomeLabel" for="tipo_estado_id">TO - Tocantins</option>
+                      <input type="hidden" id="tipo_estado_id" name="tipo_estado_id" value="1">
+                    </div>
+                  </select>
+                </label>
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Muncípio do contato:</span>
+                <input type="text" class="inputGrande" value="" id="municipio_contato" name="municipio_contato">
+              </div>
+              
+              <div class="linhaForm"> 
+                <label class="selectDefault alinhaLeftSelect">
+                <span class="titSang">Dispositivos de contato:</span>
+                <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
+                    <div class="comboStilo"> 
+                      <option value="Selecione" id="0" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Selecione</option>
+                      <option value="Celular" id="1" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Celular</option>
+                      <option value="Telefone Fixo" id="2" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Telefone Fixo</option>
+                      <option value="Pager" id="3" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Pager</option>
+                      <option value="Bip" id="4" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Bip</option>
+                      <option value="Caixa Postal" id="5" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Caixa Postal</option>
+                      <input type="hidden" id="tipo_dispositivo_contato_id" name="tipo_dispositivo_contato_id" value="">
+                    </div>
+                  </select>
+                </label>
+                <div class="linhaForm alinhaObsCert">
+                  <input type="text" class="inputGrande adicionaNumContato" value="" id="numeroContatoLabel" placeholder="Número ou descrição">
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputContato" value="Adicionar">
+                </div>
+                <div class="adicionaInputContato">
+                              </div>
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Local de referência:</span>
+                <input type="text" class="inputGrande" value="" id="local_referencia" name="local_referencia">
+              </div>  
+              
+            </div>
+            <!--FIM - PRIMEIRO BLOCO-->
+
+            <!--INICIO - NOVAS-->
+            <div class="contentAbaBorda">
+              <div class="linhaForm">
+                <span class="titLabel">A partir da inserção do Programa DBA, retirou documentos:</span>
+                <div id="infoDocumentosAposPrograma" class="radioButton">
+                  <input type="radio" name="infoDocumentosAposPrograma" value="Não Informado" class="radio" onchange="listaDocumentos()">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoDocumentosAposPrograma" value="Não" class="radio" onchange="listaDocumentos()">
+                  <p>Não</p>
+                  <input type="radio" name="infoDocumentosAposPrograma" value="Sim" class="radio" onchange="listaDocumentos()">
+                  <p>Sim</p>
+                  <input type="hidden" value="0" name="documentos_apos_programa" id="documentos_apos_programa" class="valueCheck">
+                </div>
+              </div>
+              
+              
+              <div id="listaDocumentos" class="linhaForm" style="display:none"> 
+                <label class="selectDefault alinhaLeftSelect">
+                <div class="comboStilo"> 
+                  <span class="titSang">Quais:</span> 
+                  <select name="tipoDocumentoLabel" id="tipoDocumentoLabel" class="selectPersonalizado">
+                    <div class="comboStilo"> 
+                      <option value="Selecione" id="0" data-id="tipoDocumentoLabel" for="tipo_documento_id">Selecione</option>
+                      <option value="RG" id="1" data-id="tipoDocumentoLabel" for="tipo_documento_id">RG</option>
+                      <option value="CPF" id="2" data-id="tipoDocumentoLabel" for="tipo_documento_id">CPF</option>
+                      <option value="Título Eleitor" id="3" data-id="tipoDocumentoLabel" for="tipo_documento_id">Título Eleitor</option>
+                      <option value="Carteira de Trabalho" id="4" data-id="tipoDocumentoLabel" for="tipo_documento_id">Carteira de Trabalho</option>
+                      <option value="Outros" id="5" data-id="tipoDocumentoLabel" for="tipo_documento_id">Outros</option>
+                      <input type="hidden" id="tipo_documento_id" name="tipo_documento_id" value="">
+                    </div>
+                  </select>
+
+
+                </div>
+                </label>
+                <div class="linhaForm alinhaObsCert">
+                  <input type="text" class="inputGrande adicionaNumDocumento" value="" id="numeroDocumentoLabel" placeholder="Número ou descrição">
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputDocumento" value="Adicionar">
+                </div>
+                <div class="adicionaInputDocumento">
+                              </div>
+              </div>
+            </div>
+
+
+            <div class="contentAbaBorda">
+              <div class="linhaForm">
+                <span class="titLabel">Houve restabelecimento de vínculos familiares:</span>
+                <div id="infoVinculoFamiliaRestabelecido" class="radioButton">
+                  <input type="radio" name="infoVinculoFamiliaRestabelecido" value="Não Informado" class="radio" onchange="">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoVinculoFamiliaRestabelecido" value="Não" class="radio" onchange="">
+                  <p>Não</p>
+                  <input type="radio" name="infoVinculoFamiliaRestabelecido" value="Sim" class="radio" onchange="">
+                  <p>Sim</p>
+                  <input type="hidden" value="0" name="vinculo_familia_restabelecido" id="vinculo_familia_restabelecido" class="valueCheck">
+                </div>
+              </div>
+            </div>
+            <!--FIM - NOVAS-->
+
+            <!--INICIO - SEGUNDO BLOCO-->
+            <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Formação profissional:</span>
+            <input type="text" class="inputGrande" value="" id="formacao_profissional" name="formacao_profissional">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Atividades profissionais:</span>
+            <input type="text" class="inputGrande" value="" id="atividade_profissional" name="atividade_profissional">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Nome da empresa:</span>
+            <input type="text" class="inputGrande" value="" id="nome_empresa" name="nome_empresa">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Data de admissão:<br>(dd/mm/aaaa)</span>
+            <input type="text" class="inputGrande" value="" id="data_admissao" name="data_admissao">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Cargo:</span>
+            <input type="text" class="inputGrande" value="" id="cargo" name="cargo">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Faixa de Renda:</span>
+            <input type="text" class="inputGrande" value="" id="faixa_renda" name="faixa_renda">
+          </div>  
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Endereço da empresa:</span>
+            <input type="text" class="inputGrande" value="" id="endereco_empresa" name="endereco_empresa">
+          </div>
+          
+          <div class="linhaForm"> 
+            <label class="selectDefault alinhaLeftSelect">
+              <span class="titSang">Dispositivos de contato da empresa:</span> 
+              <select name="tipoDispositivoContatoEmpresaLabel" id="tipoDispositivoContatoEmpresaLabel" class="selectPersonalizado">
+                    <div class="comboStilo"> 
+                      <option value="Selecione" id="0" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">Selecione</option>
+                      <option value="RG" id="1" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">RG</option>
+                      <option value="CPF" id="2" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">CPF</option>
+                      <option value="Título Eleitor" id="3" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">Título Eleitor</option>
+                      <option value="Carteira de Trabalho" id="4" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">Carteira de Trabalho</option>
+                      <option value="Outros" id="5" data-id="tipoDispositivoContatoEmpresaLabel" for="tipo_dispositivo_contato_empresa_id">Outros</option>
+                      <input type="hidden" id="tipo_dispositivo_contato_empresa_id" name="tipo_dispositivo_contato_empresa_id" value="">
+                    </div>
+                  </select>
+            </label>
+            <div class="linhaForm alinhaObsCert">
+              <input type="text" class="inputGrande adicionaNumContatoEmpresa" value="" id="numeroContatoEmpresaLabel" placeholder="Número ou descrição">
+              <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoEmpresa" value="Adicionar">
+            </div>
+            <div class="adicionaInputContatoEmpresa">
+                          </div>
+          </div>
+          
+        </div>
+        <!--FIM - SEGUNDO BLOCO-->
+
+
+
+        <!--INICIO - TERCEIRO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Problemas de saúde atribuidos ao cidadão:</span>
+            <textarea name="problemas_saude" id="problemas_saude" rows="5" class="inputTextArea"></textarea>
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Faz uso de medicamentos:</span>
+            <div id="infoUsoMedicamentos" class="radioButton">
+              <input type="radio" name="infoUsoMedicamentos" value="Não Informado" class="radio" onchange="quaisMedicamentos()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoUsoMedicamentos" value="Não" class="radio" onchange="quaisMedicamentos()">
+              <p>Não</p>
+              <input type="radio" name="infoUsoMedicamentos" value="Sim" class="radio" onchange="quaisMedicamentos()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="uso_medicamentos" id="uso_medicamentos" class="valueCheck">
+            </div>
+          </div>
+        
+          <div class="linhaForm" id="quaisMedicamentos" style="display:none"> 
+            <span class="titLabel">Quais medicamentos:</span>
+            <input type="text" class="inputGrande" value="" id="qual_medicamento" name="qual_medicamento">
+          </div>
+          
+          <div class="linhaForm">
+            <span class="titLabel">Houve encaminhamento:</span>
+            <div id="infoEncaminhamento" class="radioButton">
+              <input type="radio" name="infoEncaminhamento" value="Não Informado" class="radio" onchange="infoEncaminhamento()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoEncaminhamento" value="Não" class="radio" onchange="infoEncaminhamento()">
+              <p>Não</p>
+              <input type="radio" name="infoEncaminhamento" value="Sim" class="radio" onchange="infoEncaminhamento()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="encaminhamento" id="encaminhamento" class="valueCheck">
+            </div>
+          </div>
+        
+          <div class="linhaForm" id="unidadeSaude" style="display:none"> 
+            <span class="titLabel">Unidade de saúde:</span>
+            <input type="text" class="inputGrande" value="" id="unidade_saude" name="unidade_saude">
+          </div>
+        
+          <div class="linhaForm" id="nomeUnidadeSaude" style="display:none"> 
+            <span class="titLabel">Nome da unidade de saúde:</span>
+            <input type="text" class="inputGrande" value="" id="nome_unidade_saude" name="nome_unidade_saude">
+          </div>
+        
+        </div>
+
+        <!--FIM - TERCEIRO BLOCO-->
+
+
+        <!--INICIO - QUARTO BLOCO-->
+        <div class="contentAbaBorda">
+          <div class="linhaForm"> 
+            <span class="titLabel">Entrevistas - Projeto de vida:</span>
+            <textarea name="entrevista_projeto_vida" id="entrevista_projeto_vida" rows="20" class="inputTextArea"></textarea>
+          </div>
+        </div>
+        <div class="contentAbaBorda">
+          <div class="linhaForm">
+            <span class="titLabel">Houve providências:</span>
+            <div id="infoHouveProvidencias" class="radioButton">
+              <input type="radio" name="infoHouveProvidencias" value="Não Informado" class="radio" onchange="providencias()">
+              <p>Não Informado</p>
+              <input type="radio" name="infoHouveProvidencias" value="Não" class="radio" onchange="providencias()">
+              <p>Não</p>
+              <input type="radio" name="infoHouveProvidencias" value="Sim" class="radio" onchange="providencias()">
+              <p>Sim</p>
+              <input type="hidden" value="" name="houve_providencias" id="houve_providencias" class="valueCheck">
+            </div>
+          </div>
+          
+          <div id="providencias" style="display:none"> 
+            <div class="linhaForm alinhaObsProv">
+              <input type="text" class="inputGrande adicionaObsProvidencia" value="" id="inputteste" placeholder="Tipo">
+              <input type="text" class="inputGrande adicionaObsProvidenciaPeq" value="" placeholder="Status">
+              
+              <input type="button" class="btnIcoAdicionar btnAdicionaInputProvidencia" value="Adicionar">
+            </div>
+            <textarea rows="4" cols="50" class="textareaProvidencia" placeholder="Observações"></textarea>
+            <div class="adicionaInputProvidencia">
+                          </div>
+          </div>  
+        </div>
+        <!--FIM - QUARTO BLOCO-->
+
+
+        <!--INICIO - QUINTO BLOCO-->
+        <div class="contentAbaBorda">
+        
+          <div class="linhaForm"> 
+            <span class="titLabel">Número de NIS:</span>
+            <input type="text" class="inputGrande" value="" id="numero_nis" name="numero_nis">
+          </div>
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">CTPS:</span>
+            <input type="text" class="inputGrande" value="" id="ctps" name="ctps">
+          </div>
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">Título de eleitor:</span>
+            <input type="text" class="inputGrande" value="" id="titulo_eleitor" name="titulo_eleitor">
+          </div>
+          
+          <div class="linhaForm"> 
+            <label class="selectDefault alinhaLeftSelect">
+              <span class="titSang">Certidões:</span> 
+              <select name="tipoCertidaoLabel" id="tipoCertidaoLabel" class="selectPersonalizado">
+                <div class="comboStilo"> 
+                  <option value="Selecione" id="0" data-id="tipoCertidaoLabel" for="tipo_certidao_id">Selecione</option>
+                  <option value="Certidão de Casamento" id="1" data-id="tipoCertidaoLabel" for="tipo_certidao_id">Certidão de Casamento</option>
+                  <option value="Certidão de Nascimento" id="2" data-id="tipoCertidaoLabel" for="tipo_certidao_id">Certidão de Nascimento</option>
+                  <option value="Certidão de Óbito" id="3" data-id="tipoCertidaoLabel" for="tipo_certidao_id">Certidão de Óbito</option>
+                  <input type="hidden" id="tipo_certidao_id" name="tipo_certidao_id" value="">
+                </div>
+              </select>
+            </label>
+            <div class="linhaForm alinhaObsCert">
+              <input type="text" class="inputGrande adicionaObsCertidao" value="" id="numeroCertidaoLabel" placeholder="Número da certidão">
+              <input type="button" class="btnIcoAdicionar btnAdicionaInputCertidao" value="Adicionar">
+            </div>
+            <div class="adicionaInputCertidao">
+                          </div>
+          </div>
+          
+          <div class="linhaForm"> 
+            <span class="titLabel">Número da portaria naturalização:</span>
+            <input type="text" class="inputGrande" value="" id="numero_portaria_naturalizacao" name="numero_portaria_naturalizacao">
+          </div>
+        </div>
+        <!--FIM - QUINTO BLOCO-->
+
+
+        <!--INICIO - SEXTO BLOCO-->
+        <div class="contentAbaBorda">
+          <div class="linhaForm"> 
+            <span class="titLabel">Observações:</span>
+            <textarea name="observacoes_gerais" id="observacoes_gerais" rows="15" class="inputTextArea">ASSIM RELATOS O BENEFICIÁRIO DESDE QUE ENTROU NO PROGRAMA FOI ORIENTADO DIVERSAS VEZE PARA RETIRAR OS DOCUMENTOS MAS O MESMO NUNCA APARECE E QUANDO ENCONTRADO SE DIZ OCUPADO.O BENEFICIÁRIO E CARROCEIRO E DIFICILMENTE NÃO APARECE NO HOTEL.</textarea>
+          </div>
+        
+        </div>
+        <!--FIM - SEXTO BLOCO-->
+
+
+
+          <input type="submit" class="btnAlterar" value="Salvar">
+          
+        </form>
+
+      </div>
+<script>
+    $(document).ready(function() {
+		carregaSituacaoDBA();
+	});
+</script>

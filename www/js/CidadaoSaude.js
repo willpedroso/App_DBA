@@ -1085,10 +1085,6 @@
 	salvaCidadaoSaudeSuccess: function (trans, res) {
 		console.log("salvaCidadaoSaudeSuccess");
 		
-		// todo: testes retirar
-		//alert("Fim do salvamento de saúde");
-		// testes retirar
-		
 		// Atualiza dados na memória
 		CIDADAOSAUDE.ehSalvamento = true;
 		CIDADAOSAUDE.dadosEntrada(CIDADAOSAUDE.cidadao_id, CIDADAOSAUDE.cbSuccess_f, CIDADAOSAUDE.cbFail_f);

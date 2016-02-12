@@ -1,0 +1,610 @@
+<!-- TRABALHO -->
+        <div id="trabalho">
+          <form id="formTrabalho" class="cadastro">
+
+          <!--INICIO - PRIMEIRO BLOCO-->
+          <div class="contentAbaBorda">
+        
+            <div class="msgAtencao" style="display:none">
+              <span class="ico"></span><p>Atenção! Verifique os campos.</p>
+            </div>
+          
+            <div class="msgParabens" style="display:none">
+              <span class="ico"></span><p>Operação realizada com sucesso.</p>
+            </div>
+            
+            <div class="msgErro" style="display:none">
+              <span class="ico"></span><p>Erro ao processar as informações.</p>
+            </div>
+          
+            <h3>TRABALHO | ACOMPANHAMENTO</h3>
+            
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Frente de trabalho:</span>
+              <input type="text" class="inputGrande" value="Varrição" id="frente_trabalho" name="frente_trabalho">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Grupo:</span>
+              <input type="text" class="inputGrande" value="3" id="grupo" name="grupo">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Orientador:</span>
+              <input type="text" class="inputGrande" value="Michel" id="orientador" name="orientador">
+            </div>          
+            
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Hotel:</span>
+                <input type="text" class="inputGrande" readonly="readonly" value="HOTEL ALAIDE" id="hotel" name="hotel">
+              </label>
+            </div>
+            
+          </div>
+          <!--FIM - PRIMEIRO BLOCO-->
+
+
+          <!--INICIO - SEGUNDO BLOCO-->
+          <div class="contentAbaBorda">
+        
+            <div class="linhaForm"> 
+              <label class="selectDefault">
+                <div class="comboStilo"> 
+                  <span class="titSang">Se desempregado, por quanto tempo:</span> 
+
+
+                  <select name="diasLabel" id="diasLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 dia" id="1" data-id="diasLabel" for="dias_empregado">1 dia</option>
+                        <option value="2 dias" id="2" data-id="diasLabel" for="dias_empregado">2 dias</option>
+                        <option value="3 dias" id="3" data-id="diasLabel" for="dias_empregado">3 dias</option>
+                        <option value="4 dias" id="4" data-id="diasLabel" for="dias_empregado">4 dias</option>
+                        <option value="5 dias" id="5" data-id="diasLabel" for="dias_empregado">5 dias</option>
+                        <option value="6 dias" id="6" data-id="diasLabel" for="dias_empregado">6 dias</option>
+                        <option value="7 dias" id="7" data-id="diasLabel" for="dias_empregado">7 dias</option>
+                        <option value="8 dias" id="8" data-id="diasLabel" for="dias_empregado">8 dias</option>
+                        <option value="9 dias" id="9" data-id="diasLabel" for="dias_empregado">9 dias</option>
+                        <option value="10 dias" id="10" data-id="diasLabel" for="dias_empregado">10 dias</option>
+                        <option value="11 dias" id="11" data-id="diasLabel" for="dias_empregado">11 dias</option>
+                        <option value="12 dias" id="12" data-id="diasLabel" for="dias_empregado">12 dias</option>
+                        <option value="13 dias" id="13" data-id="diasLabel" for="dias_empregado">13 dias</option>
+                        <option value="14 dias" id="14" data-id="diasLabel" for="dias_empregado">14 dias</option>
+                        <option value="15 dias" id="15" data-id="diasLabel" for="dias_empregado">15 dias</option>
+                        <option value="16 dias" id="16" data-id="diasLabel" for="dias_empregado">16 dias</option>
+                        <option value="17 dias" id="17" data-id="diasLabel" for="dias_empregado">17 dias</option>
+                        <option value="18 dias" id="18" data-id="diasLabel" for="dias_empregado">18 dias</option>
+                        <option value="19 dias" id="19" data-id="diasLabel" for="dias_empregado">19 dias</option>
+                        <option value="20 dias" id="20" data-id="diasLabel" for="dias_empregado">20 dias</option>
+                        <option value="21 dias" id="21" data-id="diasLabel" for="dias_empregado">21 dias</option>
+                        <option value="22 dias" id="22" data-id="diasLabel" for="dias_empregado">22 dias</option>
+                        <option value="23 dias" id="23" data-id="diasLabel" for="dias_empregado">23 dias</option>
+                        <option value="24 dias" id="24" data-id="diasLabel" for="dias_empregado">24 dias</option>
+                        <option value="25 dias" id="25" data-id="diasLabel" for="dias_empregado">25 dias</option>
+                        <option value="26 dias" id="26" data-id="diasLabel" for="dias_empregado">26 dias</option>
+                        <option value="27 dias" id="27" data-id="diasLabel" for="dias_empregado">27 dias</option>
+                        <option value="28 dias" id="28" data-id="diasLabel" for="dias_empregado">28 dias</option>
+                        <option value="29 dias" id="29" data-id="diasLabel" for="dias_empregado">29 dias</option>
+                        <option value="30 dias" id="30" data-id="diasLabel" for="dias_empregado">30 dias</option>
+                        <option value="31 dias" id="31" data-id="diasLabel" for="dias_empregado">31 dias</option>
+                      </div>
+                    </select>
+
+
+                    <select name="mesesLabel" id="mesesLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 mês" id="1" data-id="mesesLabel" for="meses_empregado">1 mês</option>
+                        <option value="2 meses" id="2" data-id="mesesLabel" for="meses_empregado">2 meses</option>
+                        <option value="3 meses" id="3" data-id="mesesLabel" for="meses_empregado">3 meses</option>
+                        <option value="4 meses" id="4" data-id="mesesLabel" for="meses_empregado">4 meses</option>
+                        <option value="5 meses" id="5" data-id="mesesLabel" for="meses_empregado">5 meses</option>
+                        <option value="6 meses" id="6" data-id="mesesLabel" for="meses_empregado">6 meses</option>
+                        <option value="7 meses" id="7" data-id="mesesLabel" for="meses_empregado">7 meses</option>
+                        <option value="8 meses" id="8" data-id="mesesLabel" for="meses_empregado">8 meses</option>
+                        <option value="9 meses" id="9" data-id="mesesLabel" for="meses_empregado">9 meses</option>
+                        <option value="10 meses" id="10" data-id="mesesLabel" for="meses_empregado">10 meses</option>
+                        <option value="11 meses" id="11" data-id="mesesLabel" for="meses_empregado">11 meses</option>
+                        <option value="12 meses" id="12" data-id="mesesLabel" for="meses_empregado">12 meses</option>
+                      </div>
+                    </select>
+
+
+                    <select name="anosLabel" id="anosLabel" class="selectPersonalizado">
+                      <div class="lista-box-scroll">
+                        <option value="Selecione" id="0">Selecione</option>
+                        <option value="1 ano" id="1" data-id="anosLabel" for="anos_empregado">1 ano</option>
+                        <option value="2 anos" id="2" data-id="anosLabel" for="anos_empregado">2 anos</option>
+                        <option value="3 anos" id="3" data-id="anosLabel" for="anos_empregado">3 anos</option>
+                        <option value="4 anos" id="4" data-id="anosLabel" for="anos_empregado">4 anos</option>
+                        <option value="5 anos" id="5" data-id="anosLabel" for="anos_empregado">5 anos</option>
+                        <option value="6 anos" id="6" data-id="anosLabel" for="anos_empregado">6 anos</option>
+                        <option value="7 anos" id="7" data-id="anosLabel" for="anos_empregado">7 anos</option>
+                        <option value="8 anos" id="8" data-id="anosLabel" for="anos_empregado">8 anos</option>
+                        <option value="9 anos" id="9" data-id="anosLabel" for="anos_empregado">9 anos</option>
+                        <option value="10 anos" id="10" data-id="anosLabel" for="anos_empregado">10 anos</option>
+                        <option value="11 anos" id="11" data-id="anosLabel" for="anos_empregado">11 anos</option>
+                        <option value="12 anos" id="12" data-id="anosLabel" for="anos_empregado">12 anos</option>
+                        <option value="13 anos" id="13" data-id="anosLabel" for="anos_empregado">13 anos</option>
+                        <option value="14 anos" id="14" data-id="anosLabel" for="anos_empregado">14 anos</option>
+                        <option value="15 anos" id="15" data-id="anosLabel" for="anos_empregado">15 anos</option>
+                        <option value="16 anos" id="16" data-id="anosLabel" for="anos_empregado">16 anos</option>
+                        <option value="17 anos" id="17" data-id="anosLabel" for="anos_empregado">17 anos</option>
+                        <option value="18 anos" id="18" data-id="anosLabel" for="anos_empregado">18 anos</option>
+                        <option value="19 anos" id="19" data-id="anosLabel" for="anos_empregado">19 anos</option>
+                        <option value="20 anos" id="20" data-id="anosLabel" for="anos_empregado">20 anos</option>
+                        <option value="21 anos" id="21" data-id="anosLabel" for="anos_empregado">21 anos</option>
+                        <option value="22 anos" id="22" data-id="anosLabel" for="anos_empregado">22 anos</option>
+                        <option value="23 anos" id="23" data-id="anosLabel" for="anos_empregado">23 anos</option>
+                        <option value="24 anos" id="24" data-id="anosLabel" for="anos_empregado">24 anos</option>
+                        <option value="25 anos" id="25" data-id="anosLabel" for="anos_empregado">25 anos</option>
+                        <option value="26 anos" id="26" data-id="anosLabel" for="anos_empregado">26 anos</option>
+                        <option value="27 anos" id="27" data-id="anosLabel" for="anos_empregado">27 anos</option>
+                        <option value="28 anos" id="28" data-id="anosLabel" for="anos_empregado">28 anos</option>
+                        <option value="29 anos" id="29" data-id="anosLabel" for="anos_empregado">29 anos</option>
+                        <option value="30 anos" id="30" data-id="anosLabel" for="anos_empregado">30 anos</option>
+                        <option value="31 anos" id="31" data-id="anosLabel" for="anos_empregado">31 anos</option>
+                        <option value="32 anos" id="32" data-id="anosLabel" for="anos_empregado">32 anos</option>
+                        <option value="33 anos" id="33" data-id="anosLabel" for="anos_empregado">33 anos</option>
+                        <option value="34 anos" id="34" data-id="anosLabel" for="anos_empregado">34 anos</option>
+                        <option value="35 anos" id="35" data-id="anosLabel" for="anos_empregado">35 anos</option>
+                        <option value="36 anos" id="36" data-id="anosLabel" for="anos_empregado">36 anos</option>
+                        <option value="37 anos" id="37" data-id="anosLabel" for="anos_empregado">37 anos</option>
+                        <option value="38 anos" id="38" data-id="anosLabel" for="anos_empregado">38 anos</option>
+                        <option value="39 anos" id="39" data-id="anosLabel" for="anos_empregado">39 anos</option>
+                        <option value="40 anos" id="40" data-id="anosLabel" for="anos_empregado">40 anos</option>
+                        <option value="41 anos" id="41" data-id="anosLabel" for="anos_empregado">41 anos</option>
+                        <option value="42 anos" id="42" data-id="anosLabel" for="anos_empregado">42 anos</option>
+                        <option value="43 anos" id="43" data-id="anosLabel" for="anos_empregado">43 anos</option>
+                        <option value="44 anos" id="44" data-id="anosLabel" for="anos_empregado">44 anos</option>
+                        <option value="45 anos" id="45" data-id="anosLabel" for="anos_empregado">45 anos</option>
+                        <option value="46 anos" id="46" data-id="anosLabel" for="anos_empregado">46 anos</option>
+                        <option value="47 anos" id="47" data-id="anosLabel" for="anos_empregado">47 anos</option>
+                        <option value="48 anos" id="48" data-id="anosLabel" for="anos_empregado">48 anos</option>
+                        <option value="49 anos" id="49" data-id="anosLabel" for="anos_empregado">49 anos</option>
+                        <option value="50 anos" id="50" data-id="anosLabel" for="anos_empregado">50 anos</option>
+                      </div>
+                    </select>          
+                </div>
+              </label>
+            </div>
+          
+            <div class="linhaForm">
+              <span class="titLabel">Procurou emprego no último mês:</span>
+              <div id="infoProcurouEmprego" class="radioButton">
+                <input type="radio" name="infoProcurouEmprego" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoProcurouEmprego" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoProcurouEmprego" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="" name="procurou_emprego" id="procurou_emprego" class="valueCheck">
+              </div>
+            </div>
+          
+            <div class="linhaForm">
+              <span class="titLabel">Procurou por algum programa da PMSP:</span>
+              <div id="infoProcurouProgramaPmsp" class="radioButton">
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Não Informado" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Não" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <p>Não</p>
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Sim" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <p>Sim</p>
+                <input type="hidden" value="" name="procurou_programa_pmsp" id="procurou_programa_pmsp" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm" id="quaisProcurouProgramaPmsp" style="display:none"> 
+              <span class="titLabel">Qual programa:</span>
+              <input type="text" class="inputGrande" value="" id="qual_programa_pmsp" name="qual_programa_pmsp">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Ocupação pretendida:</span>
+              <input type="text" class="inputGrande" value="" id="ocupacao_pretendida" name="ocupacao_pretendida">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Última ou atual ocupação:</span>
+              <input type="text" class="inputGrande" value="" id="ultima_atual_ocupacao" name="ultima_atual_ocupacao">
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Neste trabalho teve carteira assinada:</span>
+              <div id="infoCarteiraAssinada" class="radioButton">
+                <input type="radio" name="infoCarteiraAssinada" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoCarteiraAssinada" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoCarteiraAssinada" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="" name="carteira_assinada" id="carteira_assinada" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Nome da empresa em que trabalha:</span>
+              <input type="text" class="inputGrande" value="" id="nome_empresa" name="nome_empresa">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Data de início da última ou atual ocupação:</span>
+              <input type="text" class="inputPeq float-nn" value="" id="dia_inicio_ocupacao" name="dia_inicio_ocupacao" placeholder="dia">
+              /<input type="text" class="inputPeq float-nn" value="" id="mes_inicio_ocupacao" name="mes_inicio_ocupacao" placeholder="mês">
+              /<input type="text" class="inputPeq float-nn" value="" id="ano_inicio_ocupacao" name="ano_inicio_ocupacao" placeholder="ano">
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Data de término da última ocupação:</span>
+              <input type="text" class="inputPeq float-nn" value="" id="dia_ternino_ocupacao" name="dia_ternino_ocupacao" placeholder="dia">
+              /<input type="text" class="inputPeq float-nn" value="" id="mes_termino_ocupacao" name="mes_termino_ocupacao" placeholder="mês">
+              /<input type="text" class="inputPeq float-nn" value="" id="ano_termino_ocupacao" name="ano_termino_ocupacao" placeholder="ano">
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Você já teve negócio próprio:</span>
+              <div id="infoTeveNegocioProprio" class="radioButton">
+                <input type="radio" name="infoTeveNegocioProprio" value="Não Informado" class="radio" onchange="quaisTeveNegocioProprio()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTeveNegocioProprio" value="Não" class="radio" onchange="quaisTeveNegocioProprio()">
+                <p>Não</p>
+                <input type="radio" name="infoTeveNegocioProprio" value="Sim" class="radio" onchange="quaisTeveNegocioProprio()">
+                <p>Sim</p>
+                <input type="hidden" value="" name="teve_negocio_proprio" id="teve_negocio_proprio" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm" id="quaisTeveNegocioProprio" style="display:none"> 
+              <span class="titLabel">Por que não tem mais:</span>
+              <input type="text" class="inputGrande" value="" id="justificativa_teve_negocio_proprio" name="justificativa_teve_negocio_proprio">
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Gostaria de trabalhar por conta própria ou como profissional autônomo:</span>
+              <div id="infoTrabalharContaPropriaAutonomo" class="radioButton">
+                <input type="radio" name="infoTrabalharContaPropriaAutonomo" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoTrabalharContaPropriaAutonomo" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoTrabalharContaPropriaAutonomo" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="" name="trabalhar_conta_propria_autonomo" id="trabalhar_conta_propria_autonomo" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Você tem conhecimento do que precisa para abrir um negócio próprio:</span>
+              <div id="infoConhecimentoNegocioProprio" class="radioButton">
+                <input type="radio" name="infoConhecimentoNegocioProprio" value="Não Informado" class="radio" onchange="">
+                <p>Não Informado</p>
+                <input type="radio" name="infoConhecimentoNegocioProprio" value="Não" class="radio" onchange="">
+                <p>Não</p>
+                <input type="radio" name="infoConhecimentoNegocioProprio" value="Sim" class="radio" onchange="">
+                <p>Sim</p>
+                <input type="hidden" value="" name="conhecimento_negocio_proprio" id="conhecimento_negocio_proprio" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Já trabalhou coletivamente em cooperativa, associação ou outro formato de trabalho coletivo:</span>
+                <div class="comboStilo"> 
+                  <select name="tipoTrabalhoColetivoLabel" id="tipoTrabalhoColetivoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="Cooperativa" id="1" data-id="tipoTrabalhoColetivoLabel" for="tipo_trabalho_coletivo_id">Cooperativa</option>
+                      <option value="Associação" id="2" data-id="tipoTrabalhoColetivoLabel" for="tipo_trabalho_coletivo_id">Associação</option>
+                      <option value="Outro formato de trabalho coletivo" id="3" data-id="tipoTrabalhoColetivoLabel" for="tipo_trabalho_coletivo_id">Outro formato de trabalho coletivo</option>
+                    </div>
+                    <input type="hidden" id="tipo_trabalho_coletivo_id" name="tipo_trabalho_coletivo_id" value="">
+                  </select>
+                </div>
+              </label>
+            </div>
+            
+            <div class="linhaForm"> 
+              <label class="selectDefault">
+                <div class="comboStilo"> 
+                  <span class="titSang">Por quanto tempo:</span>
+
+                  <select name="mesesTrabalhColetivoLabel" id="mesesTrabalhColetivoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 mês" id="1" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">1 mês</option>
+                      <option value="2 meses" id="2" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">2 meses</option>
+                      <option value="3 meses" id="3" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">3 meses</option>
+                      <option value="4 meses" id="4" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">4 meses</option>
+                      <option value="5 meses" id="5" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">5 meses</option>
+                      <option value="6 meses" id="6" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">6 meses</option>
+                      <option value="7 meses" id="7" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">7 meses</option>
+                      <option value="8 meses" id="8" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">8 meses</option>
+                      <option value="9 meses" id="9" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">9 meses</option>
+                      <option value="10 meses" id="10" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">10 meses</option>
+                      <option value="11 meses" id="11" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">11 meses</option>
+                      <option value="12 meses" id="12" data-id="mesesTrabalhColetivoLabel" for="meses_trabalho_coletivo">12 meses</option>
+                    </div>                      
+                  </select>
+                  <select name="anosTrabalhoColetivoLabel" id="anosTrabalhoColetivoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="1 ano" id="1" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">1 ano</option>
+                      <option value="2 anos" id="2" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">2 anos</option>
+                      <option value="3 anos" id="3" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">3 anos</option>
+                      <option value="4 anos" id="4" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">4 anos</option>
+                      <option value="5 anos" id="5" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">5 anos</option>
+                      <option value="6 anos" id="6" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">6 anos</option>
+                      <option value="7 anos" id="7" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">7 anos</option>
+                      <option value="8 anos" id="8" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">8 anos</option>
+                      <option value="9 anos" id="9" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">9 anos</option>
+                      <option value="10 anos" id="10" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">10 anos</option>
+                      <option value="11 anos" id="11" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">11 anos</option>
+                      <option value="12 anos" id="12" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">12 anos</option>
+                      <option value="13 anos" id="13" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">13 anos</option>
+                      <option value="14 anos" id="14" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">14 anos</option>
+                      <option value="15 anos" id="15" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">15 anos</option>
+                      <option value="16 anos" id="16" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">16 anos</option>
+                      <option value="17 anos" id="17" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">17 anos</option>
+                      <option value="18 anos" id="18" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">18 anos</option>
+                      <option value="19 anos" id="19" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">19 anos</option>
+                      <option value="20 anos" id="20" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">20 anos</option>
+                      <option value="21 anos" id="21" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">21 anos</option>
+                      <option value="22 anos" id="22" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">22 anos</option>
+                      <option value="23 anos" id="23" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">23 anos</option>
+                      <option value="24 anos" id="24" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">24 anos</option>
+                      <option value="25 anos" id="25" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">25 anos</option>
+                      <option value="26 anos" id="26" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">26 anos</option>
+                      <option value="27 anos" id="27" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">27 anos</option>
+                      <option value="28 anos" id="28" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">28 anos</option>
+                      <option value="29 anos" id="29" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">29 anos</option>
+                      <option value="30 anos" id="30" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">30 anos</option>
+                      <option value="31 anos" id="31" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">31 anos</option>
+                      <option value="32 anos" id="32" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">32 anos</option>
+                      <option value="33 anos" id="33" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">33 anos</option>
+                      <option value="34 anos" id="34" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">34 anos</option>
+                      <option value="35 anos" id="35" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">35 anos</option>
+                      <option value="36 anos" id="36" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">36 anos</option>
+                      <option value="37 anos" id="37" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">37 anos</option>
+                      <option value="38 anos" id="38" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">38 anos</option>
+                      <option value="39 anos" id="39" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">39 anos</option>
+                      <option value="40 anos" id="40" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">40 anos</option>
+                      <option value="41 anos" id="41" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">41 anos</option>
+                      <option value="42 anos" id="42" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">42 anos</option>
+                      <option value="43 anos" id="43" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">43 anos</option>
+                      <option value="44 anos" id="44" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">44 anos</option>
+                      <option value="45 anos" id="45" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">45 anos</option>
+                      <option value="46 anos" id="46" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">46 anos</option>
+                      <option value="47 anos" id="47" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">47 anos</option>
+                      <option value="48 anos" id="48" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">48 anos</option>
+                      <option value="49 anos" id="49" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">49 anos</option>
+                      <option value="50 anos" id="50" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">50 anos</option>
+                    </div>
+                  </select>             
+                </div>
+              </label>
+            </div>
+            
+            <div class="linhaForm">
+              <span class="titLabel">Além da ocupação atual, já exerceu outra atividade ou bico diferente da atual:</span>
+              <div id="infoOutraAtividadeBico" class="radioButton">
+                <input type="radio" name="infoOutraAtividadeBico" value="Não Informado" class="radio" onchange="quaisOutraAtividadeBico()">
+                  <p>Não Informado</p>
+                  <input type="radio" name="infoOutraAtividadeBico" value="Não" class="radio" onchange="quaisOutraAtividadeBico()">
+                  <p>Não</p>
+                  <input type="radio" name="infoOutraAtividadeBico" value="Sim" class="radio" onchange="quaisOutraAtividadeBico()">
+                  <p>Sim</p>
+                <input type="hidden" value="" name="outra_atividade_bico" id="outra_atividade_bico" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm" id="quaisOutraAtividadeBico" style="display:none"> 
+              <span class="titLabel">Qual:</span>
+              <input type="text" class="inputGrande" value="" id="qual_outra_atividade_bico" name="qual_outra_atividade_bico">
+            </div>
+          
+          </div>
+          <!--FIM - SEGUNDO BLOCO-->
+
+          <!--INICIO - TERCEIRO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Profissão:</span>
+                <input type="text" class="inputGrande" value="" id="profissao_atividade" name="profissao_atividade">
+              </label>
+            </div>
+          </div>
+          <!--FIM - TERCEIRO BLOCO-->
+
+          <!--INICIO - QUARTO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Onde você aprendeu esta profissão:</span>
+                <div class="comboStilo"> 
+                  <select name="tipoOndeAprendeuProfissaoLabel" id="tipoOndeAprendeuProfissaoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="Curso de Qualificação" id="1" data-id="tipoOndeAprendeuProfissaoLabel" for="tipo_onde_aprendeu_profissao_id">Curso de Qualificação</option>
+                    </div>                      
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <!--FIM - QUARTO BLOCO-->
+
+          <!--INICIO - QUINTO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Como você comprova seu conhecimento profissional:</span>
+                <div class="comboStilo"> 
+                  <select name="tipoComprovanteConhecimentoProfissionalLabel" id="tipoComprovanteConhecimentoProfissionalLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="Exercendo a tarefa" id="1" data-id="tipoComprovanteConhecimentoProfissionalLabel" for="tipo_comprovante_conhecimento_profissional_id">Exercendo a tarefa</option>
+                    </div>                      
+                  </select>
+                </div>
+              </label>
+            </div>
+          </div>
+          <!--FIM - QUINTO BLOCO-->
+
+          <!--INICIO - SEXTO BLOCO-->
+          <div class="contentAbaBorda">
+        
+            <div class="linhaForm">
+              <span class="titLabel">Você fez algum curso de qualificação profissional:</span>
+              <div id="infoCursoQualificacaoProfissional" class="radioButton">
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não Informado" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <p>Não Informado</p>
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <p>Não</p>
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Sim" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <p>Sim</p>
+                <input type="hidden" value="" name="curso_qualificacao_profissional" id="curso_qualificacao_profissional" class="valueCheck">
+              </div>
+            </div>
+            
+            <div class="linhaForm" id="quaisCursoQualificacaoProfissional" style="display:none"> 
+              <span class="titLabel">Qual:</span>
+              <input type="text" class="inputGrande" value="" id="qual_curso_qualificacao_profissional" name="qual_curso_qualificacao_profissional">
+            </div>
+            
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">A que ramo pertence esse curso:</span>
+                <div class="comboStilo"> 
+                  <select name="tipoRamoCursoLabel" id="tipoRamoCursoLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="Comércio" id="1" data-id="tipoRamoCursoLabel" for="tipo_ramo_curso_id">Comércio</option>
+                    </div>                      
+                  </select>
+                </div>
+              </label>
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Outro ramo que o cruso pertence:</span>
+              <input type="text" class="inputGrande" value="" id="outros_ramo_curso" name="outros_ramo_curso">
+            </div>
+            
+          </div>
+          <!--FIM - SEXTO BLOCO-->
+
+          <!--INICIO - SETIMO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm">
+              <label class="selectDefault">
+                <span class="titSang">Você pretende fazer novos cursos de qualificação profissional:</span>
+                <div class="comboStilo"> 
+                  <select name="tipoPretencaoCursosLabel" id="tipoPretencaoCursosLabel" class="selectPersonalizado">
+                    <div class="lista-box-scroll">
+                      <option value="Selecione" id="0">Selecione</option>
+                      <option value="Sim e estou procurando novos cursos" id="1" data-id="tipoPretencaoCursosLabel" for="tipo_pretencao_cursos_id">Sim e estou procurando novos cursos</option>
+                    </div>                      
+                  </select>
+                </div>
+              </label>
+            </div>
+            
+            <div class="linhaForm"> 
+              <span class="titLabel">Qual curso pretendido:</span>
+              <input type="text" class="inputGrande" value="" id="qual_curso_pretencao" name="qual_curso_pretencao">
+            </div>
+          </div>
+          <!--FIM - SETIMO BLOCO-->
+
+          <!--INICIO - OITAVO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm"> 
+              <span class="titLabel">O que gostaria de fazer em seu tempo livre:</span>
+              <div id="container_duasColunas">
+                <input type="checkbox" name="tipoatividadetempolivre" value="Leitura" class="checkbox" onchange="">
+                <p>Leitura</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Assistir televisão" class="checkbox" onchange="">
+                <p>Assistir televisão</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Praticar esportes" class="checkbox" onchange="">
+                <p>Praticar esportes</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Consertar coisas" class="checkbox" onchange="">
+                <p>Consertar coisas</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Cuidar de jardins ou horta" class="checkbox" onchange="">
+                <p>Cuidar de jardins ou horta</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Produzir coisas" class="checkbox" onchange="">
+                <p>Produzir coisas</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Reformar coisas" class="checkbox" onchange="">
+                <p>Reformar coisas</p>
+                <input type="checkbox" name="tipoatividadetempolivre" value="Criar arte (artesanato, teatro, música, outros)" class="checkbox" onchange="">
+                <p>Criar arte (artesanato, teatro, música, outros)</p>
+              </div>
+            </div>
+          </div>
+          <!--FIM - OITAVO BLOCO-->
+
+          <!--INICIO - NONO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm"> 
+              <span class="titLabel">Dentro da cidade de São Paulo/SP, quais locais você gostaria de visitar:</span>
+              <div id="container_duasColunas">
+                <input type="checkbox" name="tipolocalvisitar" value="Museus / Exposições" class="checkbox" onchange="">
+                <p>Museus / Exposições</p>
+                <input type="checkbox" name="tipolocalvisitar" value="Bibliotecas" class="checkbox" onchange="">
+                <p>Bibliotecas</p>
+                <input type="checkbox" name="tipolocalvisitar" value="Parques" class="checkbox" onchange="">
+                <p>Parques</p>
+                <input type="checkbox" name="tipolocalvisitar" value="Cinemas" class="checkbox" onchange="">
+                <p>Cinemas</p>
+               </div>
+            </div>
+          </div>
+          <!--FIM - NONO BLOCO-->
+
+          <!--INICIO - DECIMO BLOCO-->
+          <div class="contentAbaBorda">
+        
+            <div class="linhaForm"> 
+              <span class="titLabel">Dentre as opções abaixo, qual você escolheria em primeiro lugar:</span>
+              <div id="infoTipoPrimeiraEscolha" class="radioButton">
+                <input type="radio" name="infoTipoPrimeiraEscolha" value="Concluir os estudos formais" class="radio" onchange="">
+                <p>Concluir os estudos formais</p>
+                <input type="radio" name="infoTipoPrimeiraEscolha" value="Aprender uma profissão" class="radio" onchange="">
+                <p>Aprender uma profissão</p>
+                <input type="radio" name="infoTipoPrimeiraEscolha" value="Ter um emprego formal" class="radio" onchange="">
+                <p>Ter um emprego formal</p>
+                <input type="radio" name="infoTipoPrimeiraEscolha" value="Outros" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <p>Outros</p>
+              
+                <div class="linhaForm"> 
+                  <input type="text" class="inputMed" value="" name="outros_primeira_escolha" id="outros_primeira_escolha" placeholder="Outros">
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          <!--FIM - DECIMO BLOCO-->
+
+          <!--INICIO - DECIMO PRIMEIRO BLOCO-->
+          <div class="contentAbaBorda">
+            <div class="linhaForm"> 
+              <span class="titLabel">Observações:</span>
+              <textarea name="observacoes_gerais" id="observacoes_gerais" rows="15" class="inputTextArea"></textarea>
+            </div>
+          
+          </div>
+          <!--FIM - DECIMO PRIMEIRO BLOCO-->
+
+          <input type="submit" class="btnAlterar" value="Salvar">
+          
+        </form>
+
+      </div>
+<script>
+    $(document).ready(function() {
+		carregaSituacaoDBA();
+	});
+</script>
