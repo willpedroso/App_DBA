@@ -666,4 +666,96 @@
 //*******************************************************************************************************************
 // Tipos de Parentesco
 //*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Atividade Tempo Livre
+//*******************************************************************************************************************
+	tipo_atividade_tempo_livre_data: [],
+	tipo_atividade_tempo_livre_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_atividade_tempo_livre_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_atividade_tempo_livre_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_atividade_tempo_livre_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de atividade_tempo_livre
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_atividade_tempo_livre",
+								[], 
+								BD_DTO.tipo_atividade_tempo_livre_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_atividade_tempo_livre_carrega_success: function (trans, res) {
+		console.log("tipo_atividade_tempo_livre_carrega_success");
+		
+		var tp;
+		while (BD_DTO.tipo_atividade_tempo_livre_data.length > 0) {
+			BD_DTO.tipo_atividade_tempo_livre_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.tipo_atividade_tempo_livre_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.nome = res.rows.item(i).nome;
+			tp.status = res.rows.item(i).status;
+			BD_DTO.tipo_atividade_tempo_livre_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Atividade Tempo Livre
+//*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Local Visitar
+//*******************************************************************************************************************
+	tipo_local_visitar_data: [],
+	tipo_local_visitar_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_local_visitar_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_local_visitar_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_local_visitar_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de local_visitar
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_local_visitar",
+								[], 
+								BD_DTO.tipo_local_visitar_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_local_visitar_carrega_success: function (trans, res) {
+		console.log("tipo_local_visitar_carrega_success");
+		
+		var tp;
+		while (BD_DTO.tipo_local_visitar_data.length > 0) {
+			BD_DTO.tipo_local_visitar_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.tipo_local_visitar_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.nome = res.rows.item(i).nome;
+			tp.status = res.rows.item(i).status;
+			BD_DTO.tipo_local_visitar_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos Local Visitar
+//*******************************************************************************************************************
 }

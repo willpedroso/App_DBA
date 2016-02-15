@@ -1618,10 +1618,10 @@ function listaDocumentos()
 
 //Trabalho
 /* INICIO - quaisCursoQualificacaoProfissional */
-function quaisCursoQualificacaoProfissional()
+function quaisCursoQualificacaoProfissionalf()
 {
   var valRadio = '';
-  jQuery("#infoCursoQualificacaoProfissional .radio").click(function(){
+//  jQuery("#infoCursoQualificacaoProfissional .radio").click(function(){
   	if ($( "input:radio[name=infoCursoQualificacaoProfissional]:checked" ).val() == "Sim")
 	{
 		jQuery('#quaisCursoQualificacaoProfissional').attr('style','display:block');
@@ -1629,15 +1629,15 @@ function quaisCursoQualificacaoProfissional()
 	else{
 		jQuery('#quaisCursoQualificacaoProfissional').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - quaisCursoQualificacaoProfissional */
 
 /* INICIO - quaisOutraAtividadeBico */
-function quaisOutraAtividadeBico()
+function quaisOutraAtividadeBicof()
 {
   var valRadio = '';
-  jQuery("#infoOutraAtividadeBico .radio").click(function(){
+//  jQuery("#infoOutraAtividadeBico .radio").click(function(){
   	if ($( "input:radio[name=infoOutraAtividadeBico]:checked" ).val() == "Sim")
 	{
 		jQuery('#quaisOutraAtividadeBico').attr('style','display:block');
@@ -1645,16 +1645,16 @@ function quaisOutraAtividadeBico()
 	else{
 		jQuery('#quaisOutraAtividadeBico').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - quaisOutraAtividadeBico */
 
 
 /* INICIO - quaisTeveNegocioProprio */
-function quaisTeveNegocioProprio()
+function quaisTeveNegocioPropriof()
 {
   var valRadio = '';
-  jQuery("#infoTeveNegocioProprio .radio").click(function(){
+//  jQuery("#infoTeveNegocioProprio .radio").click(function(){
   	if ($( "input:radio[name=infoTeveNegocioProprio]:checked" ).val() == "Sim")
 	{
 		jQuery('#quaisTeveNegocioProprio').attr('style','display:block');
@@ -1662,15 +1662,15 @@ function quaisTeveNegocioProprio()
 	else{
 		jQuery('#quaisTeveNegocioProprio').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - quaisTeveNegocioProprio */
 
 /* INICIO - quaisProcurouProgramaPmsp */
-function quaisProcurouProgramaPmsp()
+function quaisProcurouProgramaPmspf()
 {
   var valRadio = '';
-  jQuery("#infoProcurouProgramaPmsp .radio").click(function(){
+//  jQuery("#infoProcurouProgramaPmsp .radio").click(function(){
   	if ($( "input:radio[name=infoProcurouProgramaPmsp]:checked" ).val() == "Sim")
 	{
 		jQuery('#quaisProcurouProgramaPmsp').attr('style','display:block');
@@ -1678,6 +1678,6 @@ function quaisProcurouProgramaPmsp()
 	else{
 		jQuery('#quaisProcurouProgramaPmsp').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - quaisProcurouProgramaPmsp */

@@ -5,14 +5,18 @@
 	
 	cidadao_id: null,
 	dadosTrabalho: null,
+	listaAtividadesTempoLivre: [],
+	listaLocaisVisitar: [],
 	
 	// Listas
 	listaTipoTrabalhoColetivo: null,
 	listaTipoOndeAprendeuProfissao: null,
 	listaTipoComprovanteConhecimentoProfissional: null,
 	listaTipoRamoCurso: null,
-	listaTipoPretencaoCurso: null, 
+	listaTipoPretencaoCurso: null,
+	listaTipoAtividadeTempoLivre: null,
 	listaTipoPrimeiraEscolha: null,
+	listaTipoLocalVisitar: null,
 		
 	// Carrega dados básicos
 	dadosBasicos: function () {
@@ -103,12 +107,12 @@
 		console.log(Print);
 		// testes retirar
 
-		BD_DTO.tipo_primeira_escolha_carrega(CIDADAOTRABALHO.dadosBasicosSuccess, CIDADAOTRABALHO.dadosBasicosFail);
+		BD_DTO.tipo_primeira_escolha_carrega(CIDADAOTRABALHO.dadosBasicosListaAtividadeTempoLivre, CIDADAOTRABALHO.dadosBasicosFail);
 	},
 	
-	dadosBasicosSuccess: function (trans, res) {
-		console.log("dadosBasicosSuccess");
-		
+	dadosBasicosListaAtividadeTempoLivre: function () {
+		console.log("dadosBasicosListaAtividadeTempoLivre");
+
 		CIDADAOTRABALHO.listaTipoPrimeiraEscolha = BD_DTO.tipo_primeira_escolha_data;
 	
 		// todo: testes retirar
@@ -120,7 +124,99 @@
 		console.log(Print);
 		// testes retirar
 
-		CIDADAOTRABALHO.cbSuccess_f();
+		BD_DTO.tipo_atividade_tempo_livre_carrega(CIDADAOTRABALHO.dadosBasicosAtividadesTempoLivre, CIDADAOTRABALHO.dadosBasicosFail);
+	},
+	
+	dadosBasicosAtividadesTempoLivre: function (trans, res) {
+		console.log("dadosBasicosAtividadesTempoLivre");
+		
+		CIDADAOTRABALHO.listaTipoAtividadeTempoLivre = BD_DTO.tipo_atividade_tempo_livre_data;
+	
+		// todo: testes retirar
+		var Print = "Tipos de Atividade Tempo Livre:\r\n";
+		for (var i = 0; i < CIDADAOTRABALHO.listaTipoAtividadeTempoLivre.length; i++) {
+			Print += "\tID: " + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].nome + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, trabalho_id, tipo_atividade_tempo_livre_id, dt_criacao " +		
+							"FROM atividade_tempo_livre WHERE trabalho_id = ?", [CIDADAOTRABALHO.dadosTrabalho.id], CIDADAOTRABALHO.dadosBasicosListaLocalVisitar, CIDADAOTRABALHO.dadosEntradaFail);
+	},
+	
+	dadosBasicosListaLocalVisitar: function (trans, res) {
+		console.log("dadosBasicosListaLocalVisitar");
+		
+		CIDADAOTRABALHO.listaAtividadesTempoLivre = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var atl = {
+				id: res.rows.item(i).id,
+				tipo_atividade_tempo_livre_id: res.rows.item(i).tipo_atividade_tempo_livre_id,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOTRABALHO.listaAtividadesTempoLivre.push(atl);
+		}
+
+		// todo: testes retirar
+		var Print = "Atividades Tempo Livre:\r\n";
+		for (var i = 0; i < CIDADAOTRABALHO.listaAtividadesTempoLivre.length; i++) {
+			Print += "\tID: " + CIDADAOTRABALHO.listaAtividadesTempoLivre[i].id + "\r\n";
+			Print += "\tTipo Atividade Tempo Livre: " + CIDADAOTRABALHO.listaAtividadesTempoLivre[i].tipo_atividade_tempo_livre_id + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOTRABALHO.listaAtividadesTempoLivre[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BD_DTO.tipo_local_visitar_carrega(CIDADAOTRABALHO.dadosBasicosLocaisVisitar, CIDADAOTRABALHO.dadosBasicosFail);
+	},
+	
+	dadosBasicosLocaisVisitar: function (trans, res) {
+		console.log("dadosBasicosLocaisVisitar");
+
+		CIDADAOTRABALHO.listaTipoLocalVisitar = BD_DTO.tipo_local_visitar_data;
+	
+		// todo: testes retirar
+		var Print = "Tipos de Local Visitar:\r\n";
+		for (var i = 0; i < CIDADAOTRABALHO.listaTipoLocalVisitar.length; i++) {
+			Print += "\tID: " + CIDADAOTRABALHO.listaTipoLocalVisitar[i].id + "\r\n";
+			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoLocalVisitar[i].nome + "\r\n";			
+			Print += "\tStatus: " + CIDADAOTRABALHO.listaTipoLocalVisitar[i].status + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		BANCODADOS.sqlCmdDB("SELECT id, trabalho_id, tipo_local_visitar_id, dt_criacao " +		
+							"FROM local_visitar WHERE trabalho_id = ?", [CIDADAOTRABALHO.dadosTrabalho.id], CIDADAOTRABALHO.dadosBasicosSuccess, CIDADAOTRABALHO.dadosEntradaFail);
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOTRABALHO.listaLocaisVisitar = [];
+		
+		for (var i = 0; i < res.rows.length; i++) {
+			var atl = {
+				id: res.rows.item(i).id,
+				tipo_local_visitar_id: res.rows.item(i).tipo_local_visitar_id,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOTRABALHO.listaLocaisVisitar.push(atl);
+		}
+
+		// todo: testes retirar
+		var Print = "Locais Visitar:\r\n";
+		for (var i = 0; i < CIDADAOTRABALHO.listaLocaisVisitar.length; i++) {
+			Print += "\tID: " + CIDADAOTRABALHO.listaLocaisVisitar[i].id + "\r\n";
+			Print += "\tTipo Local Visitar: " + CIDADAOTRABALHO.listaLocaisVisitar[i].tipo_local_visitar_id + "\r\n";			
+			Print += "\tData da Criação: " + CIDADAOTRABALHO.listaLocaisVisitar[i].dt_criacao + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		//CIDADAOTRABALHO.cbSuccess_f();
+		PageManager.loadTmpl('trabalho');
 	},
 	
 	dadosBasicosFail: function (err) {
@@ -140,7 +236,7 @@
 		CIDADAOTRABALHO.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		CIDADAOTRABALHO.cidadao_id = cidadao;
+		CIDADAOTRABALHO.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +
@@ -186,7 +282,10 @@
 							", tipo_primeira_escolha_id " +
 							", outros_primeira_escolha " +
 							", observacoes_gerais " +
-							", MAX(dt_criacao) as dt_criacao " +
+							// todo: apenas para testes, pois o banco não tem informações para o registro mais atual
+							//", MAX(dt_criacao) as dt_criacao " +
+							", MIN(dt_criacao) as dt_criacao " +
+							// todo: apenas para testes, pois o banco não tem informações para o registro mais atual
 							", status " +
 							"FROM trabalho WHERE cidadao_id = ? and status = ?", [CIDADAOTRABALHO.cidadao_id, 1], CIDADAOTRABALHO.dadosEntradaSuccess, CIDADAOTRABALHO.dadosEntradaFail);
 	},

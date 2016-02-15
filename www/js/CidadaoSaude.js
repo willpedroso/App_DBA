@@ -144,7 +144,6 @@
 
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_parentesco_id, numero, dt_criacao " +		
 							"FROM telefone_familiar WHERE saude_id = ?", [CIDADAOSAUDE.dadosSaude.id], CIDADAOSAUDE.dadosDrogasFazUso, CIDADAOSAUDE.dadosEntradaFail);
-
 	},
 	
 	dadosDrogasFazUso: function (trans, res) {

@@ -22,23 +22,23 @@
             
             <div class="linhaForm"> 
               <span class="titLabel">Frente de trabalho:</span>
-              <input type="text" class="inputGrande" value="Varrição" id="frente_trabalho" name="frente_trabalho">
+              <input type="text" class="inputGrande" value="" id="frente_trabalho" name="frente_trabalho">
             </div>
             
             <div class="linhaForm"> 
               <span class="titLabel">Grupo:</span>
-              <input type="text" class="inputGrande" value="3" id="grupo" name="grupo">
+              <input type="text" class="inputGrande" value="" id="grupo" name="grupo">
             </div>
             
             <div class="linhaForm"> 
               <span class="titLabel">Orientador:</span>
-              <input type="text" class="inputGrande" value="Michel" id="orientador" name="orientador">
+              <input type="text" class="inputGrande" value="" id="orientador" name="orientador">
             </div>          
             
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">Hotel:</span>
-                <input type="text" class="inputGrande" readonly="readonly" value="HOTEL ALAIDE" id="hotel" name="hotel">
+                <input type="text" class="inputGrande" readonly="readonly" value="" id="hotel" name="hotel">
               </label>
             </div>
             
@@ -51,10 +51,9 @@
         
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaDiasMesesAnosEmpregado"> 
+				  <!--
                   <span class="titSang">Se desempregado, por quanto tempo:</span> 
-
-
                   <select name="diasLabel" id="diasLabel" class="selectPersonalizado">
                       <div class="lista-box-scroll">
                         <option value="Selecione" id="0">Selecione</option>
@@ -166,7 +165,8 @@
                         <option value="49 anos" id="49" data-id="anosLabel" for="anos_empregado">49 anos</option>
                         <option value="50 anos" id="50" data-id="anosLabel" for="anos_empregado">50 anos</option>
                       </div>
-                    </select>          
+                    </select>
+					-->
                 </div>
               </label>
             </div>
@@ -187,11 +187,11 @@
             <div class="linhaForm">
               <span class="titLabel">Procurou por algum programa da PMSP:</span>
               <div id="infoProcurouProgramaPmsp" class="radioButton">
-                <input type="radio" name="infoProcurouProgramaPmsp" value="Não Informado" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Não Informado" class="radio" onchange="quaisProcurouProgramaPmspf()">
                 <p>Não Informado</p>
-                <input type="radio" name="infoProcurouProgramaPmsp" value="Não" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Não" class="radio" onchange="quaisProcurouProgramaPmspf()">
                 <p>Não</p>
-                <input type="radio" name="infoProcurouProgramaPmsp" value="Sim" class="radio" onchange="quaisProcurouProgramaPmsp()">
+                <input type="radio" name="infoProcurouProgramaPmsp" value="Sim" class="radio" onchange="quaisProcurouProgramaPmspf()">
                 <p>Sim</p>
                 <input type="hidden" value="" name="procurou_programa_pmsp" id="procurou_programa_pmsp" class="valueCheck">
               </div>
@@ -247,11 +247,11 @@
             <div class="linhaForm">
               <span class="titLabel">Você já teve negócio próprio:</span>
               <div id="infoTeveNegocioProprio" class="radioButton">
-                <input type="radio" name="infoTeveNegocioProprio" value="Não Informado" class="radio" onchange="quaisTeveNegocioProprio()">
+                <input type="radio" name="infoTeveNegocioProprio" value="Não Informado" class="radio" onchange="quaisTeveNegocioPropriof()">
                 <p>Não Informado</p>
-                <input type="radio" name="infoTeveNegocioProprio" value="Não" class="radio" onchange="quaisTeveNegocioProprio()">
+                <input type="radio" name="infoTeveNegocioProprio" value="Não" class="radio" onchange="quaisTeveNegocioPropriof()">
                 <p>Não</p>
-                <input type="radio" name="infoTeveNegocioProprio" value="Sim" class="radio" onchange="quaisTeveNegocioProprio()">
+                <input type="radio" name="infoTeveNegocioProprio" value="Sim" class="radio" onchange="quaisTeveNegocioPropriof()">
                 <p>Sim</p>
                 <input type="hidden" value="" name="teve_negocio_proprio" id="teve_negocio_proprio" class="valueCheck">
               </div>
@@ -291,7 +291,8 @@
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">Já trabalhou coletivamente em cooperativa, associação ou outro formato de trabalho coletivo:</span>
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaTipoTrabalhoColetivo"> 
+				  <!--
                   <select name="tipoTrabalhoColetivoLabel" id="tipoTrabalhoColetivoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
@@ -301,15 +302,16 @@
                     </div>
                     <input type="hidden" id="tipo_trabalho_coletivo_id" name="tipo_trabalho_coletivo_id" value="">
                   </select>
+				  -->
                 </div>
               </label>
             </div>
             
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaMesesAnosTrabalhoColetivo"> 
+				  <!--
                   <span class="titSang">Por quanto tempo:</span>
-
                   <select name="mesesTrabalhColetivoLabel" id="mesesTrabalhColetivoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
@@ -381,7 +383,8 @@
                       <option value="49 anos" id="49" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">49 anos</option>
                       <option value="50 anos" id="50" data-id="anosTrabalhoColetivoLabel" for="anos_trabalho_coletivo">50 anos</option>
                     </div>
-                  </select>             
+                  </select> 
+				  -->
                 </div>
               </label>
             </div>
@@ -389,11 +392,11 @@
             <div class="linhaForm">
               <span class="titLabel">Além da ocupação atual, já exerceu outra atividade ou bico diferente da atual:</span>
               <div id="infoOutraAtividadeBico" class="radioButton">
-                <input type="radio" name="infoOutraAtividadeBico" value="Não Informado" class="radio" onchange="quaisOutraAtividadeBico()">
+                <input type="radio" name="infoOutraAtividadeBico" value="Não Informado" class="radio" onchange="quaisOutraAtividadeBicof()">
                   <p>Não Informado</p>
-                  <input type="radio" name="infoOutraAtividadeBico" value="Não" class="radio" onchange="quaisOutraAtividadeBico()">
+                  <input type="radio" name="infoOutraAtividadeBico" value="Não" class="radio" onchange="quaisOutraAtividadeBicof()">
                   <p>Não</p>
-                  <input type="radio" name="infoOutraAtividadeBico" value="Sim" class="radio" onchange="quaisOutraAtividadeBico()">
+                  <input type="radio" name="infoOutraAtividadeBico" value="Sim" class="radio" onchange="quaisOutraAtividadeBicof()">
                   <p>Sim</p>
                 <input type="hidden" value="" name="outra_atividade_bico" id="outra_atividade_bico" class="valueCheck">
               </div>
@@ -423,13 +426,15 @@
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">Onde você aprendeu esta profissão:</span>
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaTipoOndeAprendeuProfissao"> 
+				  <!--
                   <select name="tipoOndeAprendeuProfissaoLabel" id="tipoOndeAprendeuProfissaoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
                       <option value="Curso de Qualificação" id="1" data-id="tipoOndeAprendeuProfissaoLabel" for="tipo_onde_aprendeu_profissao_id">Curso de Qualificação</option>
                     </div>                      
                   </select>
+				  -->
                 </div>
               </label>
             </div>
@@ -441,13 +446,15 @@
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">Como você comprova seu conhecimento profissional:</span>
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaTipoComprovanteConhecimentoProfissional">
+				  <!--
                   <select name="tipoComprovanteConhecimentoProfissionalLabel" id="tipoComprovanteConhecimentoProfissionalLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
                       <option value="Exercendo a tarefa" id="1" data-id="tipoComprovanteConhecimentoProfissionalLabel" for="tipo_comprovante_conhecimento_profissional_id">Exercendo a tarefa</option>
                     </div>                      
                   </select>
+				  -->
                 </div>
               </label>
             </div>
@@ -460,11 +467,11 @@
             <div class="linhaForm">
               <span class="titLabel">Você fez algum curso de qualificação profissional:</span>
               <div id="infoCursoQualificacaoProfissional" class="radioButton">
-                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não Informado" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não Informado" class="radio" onchange="quaisCursoQualificacaoProfissionalf()">
                 <p>Não Informado</p>
-                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Não" class="radio" onchange="quaisCursoQualificacaoProfissionalf()">
                 <p>Não</p>
-                <input type="radio" name="infoCursoQualificacaoProfissional" value="Sim" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <input type="radio" name="infoCursoQualificacaoProfissional" value="Sim" class="radio" onchange="quaisCursoQualificacaoProfissionalf()">
                 <p>Sim</p>
                 <input type="hidden" value="" name="curso_qualificacao_profissional" id="curso_qualificacao_profissional" class="valueCheck">
               </div>
@@ -478,19 +485,21 @@
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">A que ramo pertence esse curso:</span>
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaTipoRamoCurso">
+				  <!--
                   <select name="tipoRamoCursoLabel" id="tipoRamoCursoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
                       <option value="Comércio" id="1" data-id="tipoRamoCursoLabel" for="tipo_ramo_curso_id">Comércio</option>
                     </div>                      
                   </select>
+				  -->
                 </div>
               </label>
             </div>
             
             <div class="linhaForm"> 
-              <span class="titLabel">Outro ramo que o cruso pertence:</span>
+              <span class="titLabel">Outro ramo que o curso pertence:</span>
               <input type="text" class="inputGrande" value="" id="outros_ramo_curso" name="outros_ramo_curso">
             </div>
             
@@ -502,13 +511,15 @@
             <div class="linhaForm">
               <label class="selectDefault">
                 <span class="titSang">Você pretende fazer novos cursos de qualificação profissional:</span>
-                <div class="comboStilo"> 
+                <div class="comboStilo" id="listaTipoPretencaoCursos">
+				  <!--
                   <select name="tipoPretencaoCursosLabel" id="tipoPretencaoCursosLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
                       <option value="Selecione" id="0">Selecione</option>
                       <option value="Sim e estou procurando novos cursos" id="1" data-id="tipoPretencaoCursosLabel" for="tipo_pretencao_cursos_id">Sim e estou procurando novos cursos</option>
                     </div>                      
                   </select>
+				  -->
                 </div>
               </label>
             </div>
@@ -524,7 +535,8 @@
           <div class="contentAbaBorda">
             <div class="linhaForm"> 
               <span class="titLabel">O que gostaria de fazer em seu tempo livre:</span>
-              <div id="container_duasColunas">
+              <div id="container_duasColunas_atividade_tempo_livre">
+			    <!--
                 <input type="checkbox" name="tipoatividadetempolivre" value="Leitura" class="checkbox" onchange="">
                 <p>Leitura</p>
                 <input type="checkbox" name="tipoatividadetempolivre" value="Assistir televisão" class="checkbox" onchange="">
@@ -541,6 +553,7 @@
                 <p>Reformar coisas</p>
                 <input type="checkbox" name="tipoatividadetempolivre" value="Criar arte (artesanato, teatro, música, outros)" class="checkbox" onchange="">
                 <p>Criar arte (artesanato, teatro, música, outros)</p>
+				-->
               </div>
             </div>
           </div>
@@ -550,7 +563,8 @@
           <div class="contentAbaBorda">
             <div class="linhaForm"> 
               <span class="titLabel">Dentro da cidade de São Paulo/SP, quais locais você gostaria de visitar:</span>
-              <div id="container_duasColunas">
+              <div id="container_duasColunas_local_visitar">
+				<!--
                 <input type="checkbox" name="tipolocalvisitar" value="Museus / Exposições" class="checkbox" onchange="">
                 <p>Museus / Exposições</p>
                 <input type="checkbox" name="tipolocalvisitar" value="Bibliotecas" class="checkbox" onchange="">
@@ -559,6 +573,7 @@
                 <p>Parques</p>
                 <input type="checkbox" name="tipolocalvisitar" value="Cinemas" class="checkbox" onchange="">
                 <p>Cinemas</p>
+				-->
                </div>
             </div>
           </div>
@@ -569,19 +584,20 @@
         
             <div class="linhaForm"> 
               <span class="titLabel">Dentre as opções abaixo, qual você escolheria em primeiro lugar:</span>
-              <div id="infoTipoPrimeiraEscolha" class="radioButton">
+              <div id="divInfoTipoPrimeiraEscolha" class="radioButton">
+			  <!--
                 <input type="radio" name="infoTipoPrimeiraEscolha" value="Concluir os estudos formais" class="radio" onchange="">
                 <p>Concluir os estudos formais</p>
                 <input type="radio" name="infoTipoPrimeiraEscolha" value="Aprender uma profissão" class="radio" onchange="">
                 <p>Aprender uma profissão</p>
                 <input type="radio" name="infoTipoPrimeiraEscolha" value="Ter um emprego formal" class="radio" onchange="">
                 <p>Ter um emprego formal</p>
-                <input type="radio" name="infoTipoPrimeiraEscolha" value="Outros" class="radio" onchange="infoCadastroAcompanhamentoUbs()">
+                <input type="radio" name="infoTipoPrimeiraEscolha" value="Outros" class="radio" onchange="">
                 <p>Outros</p>
-              
                 <div class="linhaForm"> 
                   <input type="text" class="inputMed" value="" name="outros_primeira_escolha" id="outros_primeira_escolha" placeholder="Outros">
                 </div>
+              -->
               </div>
             </div>
           
@@ -598,13 +614,13 @@
           </div>
           <!--FIM - DECIMO PRIMEIRO BLOCO-->
 
-          <input type="submit" class="btnAlterar" value="Salvar">
+          <input class="btnAlterar" value="Salvar" onclick="trabalhoSalva();">
           
         </form>
 
       </div>
 <script>
     $(document).ready(function() {
-		carregaSituacaoDBA();
+		carregaTrabalho();
 	});
 </script>
