@@ -69,9 +69,57 @@ function carregaSocial () {
 	auxVar = CIDADAOSOCIAL.dadosSocial.local_referencia;
 	$("#local_referencia").val(auxVar == null ? "" : auxVar);
 	
-	// todo: A partir da inserção do Programa DBA, retirou documentos
+	// A partir da inserção do Programa DBA, retirou documentos
+	if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa == 1) {
+		// Sim
+		$("input[name='infoDocumentosAposPrograma'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa == 0) {
+		// Não
+		$("input[name='infoDocumentosAposPrograma'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoDocumentosAposPrograma'][value='Não Informado']").prop("checked", true);
+	}
+	listaDocumentosf();
+	var opts = "<span class='titSang'>Quais:</span>" + 
+			   "<select name='tipoDocumentoLabel' id='tipoDocumentoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	for (var i = 0; i < CIDADAOSOCIAL.listaTipoDocumento.length; i++) {
+		opts += "<option value='" + CIDADAOSOCIAL.listaTipoDocumento[i].id + "' data-id='tipoDocumentoLabel' for='tipo_documento_id'>";
+		opts += CIDADAOSOCIAL.listaTipoDocumento[i].nome + "</option>";
+	}
+	opts += "</div></select>";
+	console.log(opts);
+	
+	$("#listaDocumentos2").empty();
+	$("#listaDocumentos2").append(opts);
+	for (var i = 0; i < CIDADAOSOCIAL.listaDocumentos.length; i++) {
+		auxVar = CIDADAOSOCIAL.listaDocumentos[i].numero_descricao;
+		$('.adicionaInputDocumento').val(auxVar == null ? "" : auxVar);
+
+		// Obtém o nome do tipo de documento
+		for (j = 0; j < CIDADAOSOCIAL.listaTipoDocumento.length; j++) {
+			if (CIDADAOSOCIAL.listaTipoDocumento[j].id == CIDADAOSOCIAL.listaDocumentos[i].tipo_dispositivo_contato_id) {
+				adicionaContato(CIDADAOSOCIAL.listaTipoDocumento[j].nome);		
+				break;
+			}
+		}
+	}
 	
 	// todo: Houve restabelecimento de vínculos familiares
+	if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido == 1) {
+		// Sim
+		$("input[name='infoVinculoFamiliaRestabelecido'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido == 0) {
+		// Não
+		$("input[name='infoVinculoFamiliaRestabelecido'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoVinculoFamiliaRestabelecido'][value='Não Informado']").prop("checked", true);
+	}
 	
 	// Formação Profissional
 	auxVar = CIDADAOSOCIAL.dadosSocial.formacao_profissional;
@@ -383,6 +431,8 @@ function socialSalva() {
 			};
 			dispositivosContato.push(v);
 		});
+		CIDADAOSOCIAL.auxlistaContatos = dispositivosContato;
+		
 		// todo: testes retirar
 		var Print = "Dispositivos de Contato\r\n";
 		for (var i = 0; i < dispositivosContato.length; i++) {
@@ -392,20 +442,85 @@ function socialSalva() {
 		// testes retirar
 		
 		// Dispositivos de contato da empresa
+		var dispositivosContatoEmpresa = [];
+		var idTipoDispositivoContatoEmpresa = 0;
+		$(".adicionaInputContatoEmpresa").children().each(function () {
+			// Obtém o id do tipo de dispositivo de contato empresa
+			for (var i = 0; i < CIDADAOSOCIAL.listaTipoDispositivoContato.length; i++) {
+				if (CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome == this.children[0].value) {
+					idTipoDispositivoContatoEmpresa = CIDADAOSOCIAL.listaTipoDispositivoContato[i].id;
+					break;
+				}
+			}
+			var v = {
+				tipoDispositivoContatoEmpresa: idTipoDispositivoContatoEmpresa,
+				numeroContato: this.children[1].value,
+			};
+			dispositivosContatoEmpresa.push(v);
+		});
+		CIDADAOSOCIAL.auxlistaContatosEmpresa = dispositivosContatoEmpresa;
+
+		// todo: testes retirar
+		var Print = "Dispositivos de Contato Empresa\r\n";
+		for (var i = 0; i < dispositivosContatoEmpresa.length; i++) {
+			Print += "Tipo: " + dispositivosContatoEmpresa[i].tipoDispositivoContatoEmpresa + " - Número: " + dispositivosContatoEmpresa[i].numeroContato + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// Houve providências
+		var providencias = [];
+		$(".adicionaInputProvidencia").children().each(function () {
+			var v = {
+				tipo: this.children[0].value,
+				situacao: this.children[1].value,
+				observacao: this.children[2].value,
+			};
+			providencias.push(v);
+		});
+		CIDADAOSOCIAL.auxlistaProvidencias = providencias;
+
+		// todo: testes retirar
+		var Print = "Providências\r\n";
+		for (var i = 0; i < providencias.length; i++) {
+			Print += "Tipo: " + providencias[i].tipo + " - Situação: " + providencias[i].situacao + " - Observação: " + providencias[i].observacao + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 		
 		// Certidões
-		
+		var certidoes = [];
+		var idTipoCertidao = 0;
+		$(".adicionaInputCertidao").children().each(function () {
+			// Obtém o id do tipo de certidão
+			for (var i = 0; i < CIDADAOSOCIAL.listaTipoCertidao.length; i++) {
+				if (CIDADAOSOCIAL.listaTipoCertidao[i].nome == this.children[0].value) {
+					idTipoCertidao = CIDADAOSOCIAL.listaTipoCertidao[i].id;
+					break;
+				}
+			}
+			var v = {
+				id: idTipoCertidao,
+				numero: this.children[2].value,
+			};
+			certidoes.push(v);
+		});
+		CIDADAOSOCIAL.auxlistaCertidoes = certidoes;
+
+		// todo: testes retirar
+		var Print = "Certidões\r\n";
+		for (var i = 0; i < certidoes.length; i++) {
+			Print += "ID: " + certidoes[i].id + " - Número: " + certidoes[i].numero + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
 
 		//***************************
 		// LISTAS
 		//***************************
-
-		/*		
+				
 		CIDADAOSOCIAL.salvaCidadaoSocial(listaDados,
 											this.salvaSocialSuccess,
 											this.salvaSocialFail);
-		*/
 	}
 }

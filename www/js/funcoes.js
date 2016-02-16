@@ -1727,10 +1727,10 @@ function quaisMedicamentosf()
 /* FIM - quaisMedicamentos */
 
 /* INICIO - listaDocumentos */
-function listaDocumentos()
+function listaDocumentosf()
 {
   var valRadio = '';
-  jQuery("#infoDocumentosAposPrograma .radio").click(function(){
+//  jQuery("#infoDocumentosAposPrograma .radio").click(function(){
   	if ($( "input:radio[name=infoDocumentosAposPrograma]:checked" ).val() == "Sim")
 	{
 		jQuery('#listaDocumentos').attr('style','display:block');
@@ -1738,7 +1738,7 @@ function listaDocumentos()
 	else{
 		jQuery('#listaDocumentos').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - listaDocumentos */
 
