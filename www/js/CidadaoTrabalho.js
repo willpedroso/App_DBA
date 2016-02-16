@@ -2,11 +2,17 @@
     // Funções de retorno
     cbSuccess_f: null,
     cbFail_f: null,
+	ehSalvamento: false,
 	
 	cidadao_id: null,
 	dadosTrabalho: null,
 	listaAtividadesTempoLivre: [],
 	listaLocaisVisitar: [],
+	
+	// Auxiliares
+	auxDate: null,
+	auxlistaAtividadesTempoLivre: null,
+	auxlistaLocaisVisitar: null,
 	
 	// Listas
 	listaTipoTrabalhoColetivo: null,
@@ -282,10 +288,7 @@
 							", tipo_primeira_escolha_id " +
 							", outros_primeira_escolha " +
 							", observacoes_gerais " +
-							// todo: apenas para testes, pois o banco não tem informações para o registro mais atual
-							//", MAX(dt_criacao) as dt_criacao " +
-							", MIN(dt_criacao) as dt_criacao " +
-							// todo: apenas para testes, pois o banco não tem informações para o registro mais atual
+							", MAX(dt_criacao) as dt_criacao " +
 							", status " +
 							"FROM trabalho WHERE cidadao_id = ? and status = ?", [CIDADAOTRABALHO.cidadao_id, 1], CIDADAOTRABALHO.dadosEntradaSuccess, CIDADAOTRABALHO.dadosEntradaFail);
 	},
@@ -420,7 +423,8 @@
 		// Salva no banco de dados
 		var hoje = new Date();
 		BANCODADOS.sqlCmdDB("INSERT INTO trabalho " +
-							"(frente_trabalho " +
+							"(cidadao_id " +
+							", frente_trabalho " +
 							", grupo " +
 							", orientador " +
 							", hotel " +
@@ -464,8 +468,9 @@
 							", observacoes_gerais " +
 							", dt_criacao " +
 							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
+							CIDADAOTRABALHO.cidadao_id,
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
@@ -508,7 +513,7 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							(CIDADAOTRABALHO.auxDate = (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())),
 							1							
 							], 
 							CIDADAOTRABALHO.salvaCidadaoTrabalhoSuccess, CIDADAOTRABALHO.salvaCidadaoTrabalhoFail);
@@ -518,6 +523,7 @@
 		console.log("salvaCidadaoTrabalhoSuccess");
 		
 		// Atualiza dados na memória
+		CIDADAOTRABALHO.ehSalvamento = true;
 		CIDADAOTRABALHO.dadosEntrada(CIDADAOTRABALHO.cidadao_id, CIDADAOTRABALHO.cbSuccess_f, CIDADAOTRABALHO.cbFail_f);
 	},
 	

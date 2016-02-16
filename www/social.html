@@ -30,7 +30,8 @@
                 <input type="text" class="inputGrande" value="" id="endereco_contato" name="endereco_contato">
               </div>          
               
-              <div class="linhaForm">
+              <div class="linhaForm" id="ufContato">
+			    <!--
                 <label class="selectDefault">
                   <span class="titSang">UF do contato:</span>
                   <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
@@ -67,6 +68,7 @@
                     </div>
                   </select>
                 </label>
+				-->
               </div>
               
               <div class="linhaForm"> 
@@ -74,10 +76,11 @@
                 <input type="text" class="inputGrande" value="" id="municipio_contato" name="municipio_contato">
               </div>
               
-              <div class="linhaForm"> 
-                <label class="selectDefault alinhaLeftSelect">
+              <div class="linhaForm">
+                <label class="selectDefault alinhaLeftSelect" id="listaSelectTipoDispositivoContato">
+  			    <!--
                 <span class="titSang">Dispositivos de contato:</span>
-                <select name="estadoNomeLabel" id="estadoNomeLabel" class="selectPersonalizado">
+                <select name="tipoDispositivoContatoLabel" id="tipoDispositivoContatoLabel" class="selectPersonalizado">
                     <div class="comboStilo"> 
                       <option value="Selecione" id="0" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Selecione</option>
                       <option value="Celular" id="1" data-id="tipoDispositivoContatoLabel" for="tipo_dispositivo_contato_id">Celular</option>
@@ -88,13 +91,14 @@
                       <input type="hidden" id="tipo_dispositivo_contato_id" name="tipo_dispositivo_contato_id" value="">
                     </div>
                   </select>
+			    -->
                 </label>
                 <div class="linhaForm alinhaObsCert">
                   <input type="text" class="inputGrande adicionaNumContato" value="" id="numeroContatoLabel" placeholder="Número ou descrição">
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputContato" value="Adicionar">
                 </div>
                 <div class="adicionaInputContato">
-                              </div>
+                </div>
               </div>
               
               <div class="linhaForm"> 
@@ -205,7 +209,8 @@
           </div>
           
           <div class="linhaForm"> 
-            <label class="selectDefault alinhaLeftSelect">
+            <label class="selectDefault alinhaLeftSelect" id="listaSelectTipoDispositivoContatoEmpresa">
+			  <!--
               <span class="titSang">Dispositivos de contato da empresa:</span> 
               <select name="tipoDispositivoContatoEmpresaLabel" id="tipoDispositivoContatoEmpresaLabel" class="selectPersonalizado">
                     <div class="comboStilo"> 
@@ -218,13 +223,14 @@
                       <input type="hidden" id="tipo_dispositivo_contato_empresa_id" name="tipo_dispositivo_contato_empresa_id" value="">
                     </div>
                   </select>
+			  -->
             </label>
             <div class="linhaForm alinhaObsCert">
               <input type="text" class="inputGrande adicionaNumContatoEmpresa" value="" id="numeroContatoEmpresaLabel" placeholder="Número ou descrição">
               <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoEmpresa" value="Adicionar">
             </div>
             <div class="adicionaInputContatoEmpresa">
-                          </div>
+            </div>
           </div>
           
         </div>
@@ -243,11 +249,11 @@
           <div class="linhaForm">
             <span class="titLabel">Faz uso de medicamentos:</span>
             <div id="infoUsoMedicamentos" class="radioButton">
-              <input type="radio" name="infoUsoMedicamentos" value="Não Informado" class="radio" onchange="quaisMedicamentos()">
+              <input type="radio" name="infoUsoMedicamentos" value="Não Informado" class="radio" onchange="quaisMedicamentosf()">
               <p>Não Informado</p>
-              <input type="radio" name="infoUsoMedicamentos" value="Não" class="radio" onchange="quaisMedicamentos()">
+              <input type="radio" name="infoUsoMedicamentos" value="Não" class="radio" onchange="quaisMedicamentosf()">
               <p>Não</p>
-              <input type="radio" name="infoUsoMedicamentos" value="Sim" class="radio" onchange="quaisMedicamentos()">
+              <input type="radio" name="infoUsoMedicamentos" value="Sim" class="radio" onchange="quaisMedicamentosf()">
               <p>Sim</p>
               <input type="hidden" value="" name="uso_medicamentos" id="uso_medicamentos" class="valueCheck">
             </div>
@@ -297,11 +303,11 @@
           <div class="linhaForm">
             <span class="titLabel">Houve providências:</span>
             <div id="infoHouveProvidencias" class="radioButton">
-              <input type="radio" name="infoHouveProvidencias" value="Não Informado" class="radio" onchange="providencias()">
+              <input type="radio" name="infoHouveProvidencias" value="Não Informado" class="radio" onchange="providenciasf()">
               <p>Não Informado</p>
-              <input type="radio" name="infoHouveProvidencias" value="Não" class="radio" onchange="providencias()">
+              <input type="radio" name="infoHouveProvidencias" value="Não" class="radio" onchange="providenciasf()">
               <p>Não</p>
-              <input type="radio" name="infoHouveProvidencias" value="Sim" class="radio" onchange="providencias()">
+              <input type="radio" name="infoHouveProvidencias" value="Sim" class="radio" onchange="providenciasf()">
               <p>Sim</p>
               <input type="hidden" value="" name="houve_providencias" id="houve_providencias" class="valueCheck">
             </div>
@@ -311,12 +317,11 @@
             <div class="linhaForm alinhaObsProv">
               <input type="text" class="inputGrande adicionaObsProvidencia" value="" id="inputteste" placeholder="Tipo">
               <input type="text" class="inputGrande adicionaObsProvidenciaPeq" value="" placeholder="Status">
-              
               <input type="button" class="btnIcoAdicionar btnAdicionaInputProvidencia" value="Adicionar">
             </div>
             <textarea rows="4" cols="50" class="textareaProvidencia" placeholder="Observações"></textarea>
             <div class="adicionaInputProvidencia">
-                          </div>
+            </div>
           </div>  
         </div>
         <!--FIM - QUARTO BLOCO-->
@@ -341,7 +346,8 @@
           </div>
           
           <div class="linhaForm"> 
-            <label class="selectDefault alinhaLeftSelect">
+            <label class="selectDefault alinhaLeftSelect" id="listaTipoCertidao">
+			  <!--
               <span class="titSang">Certidões:</span> 
               <select name="tipoCertidaoLabel" id="tipoCertidaoLabel" class="selectPersonalizado">
                 <div class="comboStilo"> 
@@ -352,13 +358,14 @@
                   <input type="hidden" id="tipo_certidao_id" name="tipo_certidao_id" value="">
                 </div>
               </select>
+			  -->
             </label>
             <div class="linhaForm alinhaObsCert">
               <input type="text" class="inputGrande adicionaObsCertidao" value="" id="numeroCertidaoLabel" placeholder="Número da certidão">
               <input type="button" class="btnIcoAdicionar btnAdicionaInputCertidao" value="Adicionar">
             </div>
             <div class="adicionaInputCertidao">
-                          </div>
+            </div>
           </div>
           
           <div class="linhaForm"> 
@@ -373,7 +380,8 @@
         <div class="contentAbaBorda">
           <div class="linhaForm"> 
             <span class="titLabel">Observações:</span>
-            <textarea name="observacoes_gerais" id="observacoes_gerais" rows="15" class="inputTextArea">ASSIM RELATOS O BENEFICIÁRIO DESDE QUE ENTROU NO PROGRAMA FOI ORIENTADO DIVERSAS VEZE PARA RETIRAR OS DOCUMENTOS MAS O MESMO NUNCA APARECE E QUANDO ENCONTRADO SE DIZ OCUPADO.O BENEFICIÁRIO E CARROCEIRO E DIFICILMENTE NÃO APARECE NO HOTEL.</textarea>
+            <textarea name="observacoes_gerais" id="observacoes_gerais" rows="15" class="inputTextArea">
+			</textarea>
           </div>
         
         </div>
@@ -381,13 +389,13 @@
 
 
 
-          <input type="submit" class="btnAlterar" value="Salvar">
+          <input class="btnAlterar" value="Salvar" onclick="socialSalva();">
           
         </form>
 
       </div>
 <script>
     $(document).ready(function() {
-		carregaSituacaoDBA();
+		carregaSocial();
 	});
 </script>

@@ -11,6 +11,7 @@
 	// Listas de tipos
 	listaTipoCertidao: null,
 	listaTipoDispositivoContato: null,
+	listaEstados: null,
 
 	// Listas de dados
 	listaContatos: [],
@@ -41,12 +42,12 @@
 		console.log(Print);
 		// testes retirar
 
-		BD_DTO.tipo_dispositivo_contato_carrega(CIDADAOSOCIAL.dadosBasicosSuccess, CIDADAOSOCIAL.dadosBasicosFail);
+		BD_DTO.tipo_dispositivo_contato_carrega(CIDADAOSOCIAL.dadosBasicosListaEstados, CIDADAOSOCIAL.dadosBasicosFail);
 	},
 	
-	dadosBasicosSuccess: function (trans, res) {
-		console.log("dadosBasicosSuccess");
-		
+	dadosBasicosListaEstados: function (trans, res) {
+		console.log("dadosBasicosListaEstados");
+
 		CIDADAOSOCIAL.listaTipoDispositivoContato = BD_DTO.tipo_dispositivo_contato_data;
 	
 		// todo: testes retirar
@@ -58,7 +59,26 @@
 		console.log(Print);
 		// testes retirar
 
-		CIDADAOSOCIAL.cbSuccess_f();
+		BD_DTO.tipo_estado_carrega(CIDADAOSOCIAL.dadosBasicosSuccess, CIDADAOSOCIAL.dadosBasicosFail);
+	},
+	
+	dadosBasicosSuccess: function (trans, res) {
+		console.log("dadosBasicosSuccess");
+		
+		CIDADAOSOCIAL.listaEstados = BD_DTO.tipo_estado_data;
+	
+		// todo: testes retirar
+		var Print = "Estados:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaEstados.length; i++) {
+			Print += "\tID: " + CIDADAOSOCIAL.listaEstados[i].id + "\r\n";
+			Print += "\tSigla: " + CIDADAOSOCIAL.listaEstados[i].sigla + "\r\n";			
+			Print += "\tNome: " + CIDADAOSOCIAL.listaEstados[i].nome + "\r\n";			
+		}
+		console.log(Print);
+		// testes retirar
+
+		//CIDADAOSOCIAL.cbSuccess_f();
+		PageManager.loadTmpl('social');
 	},
 	
 	dadosBasicosFail: function (err) {
@@ -78,7 +98,7 @@
 		CIDADAOSOCIAL.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		CIDADAOSOCIAL.cidadao_id = cidadao;
+		CIDADAOSOCIAL.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +
@@ -188,7 +208,7 @@
 		
 		// Carrega contatos
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao FROM smads_contato WHERE smads_id = ?",
-							[CIDADAOSOCIAL.dadosSocial].id, 
+							[CIDADAOSOCIAL.dadosSocial.id], 
 							CIDADAOSOCIAL.dadosEntradaContatoSuccess, 
 							CIDADAOSOCIAL.dadosEntradaFail);
 	},
@@ -221,7 +241,7 @@
 
 		// Carrega contatos empresa
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao FROM smads_contato_empresa WHERE smads_id = ?",
-							[CIDADAOSOCIAL.dadosSocial].id, 
+							[CIDADAOSOCIAL.dadosSocial.id], 
 							CIDADAOSOCIAL.dadosEntradaContatoEmpresaSuccess, 
 							CIDADAOSOCIAL.dadosEntradaFail);
 	},
@@ -254,7 +274,7 @@
 
 		// Carrega certidões
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_certidao_id, numero, dt_criacao FROM smads_certidao WHERE smads_id = ?",
-							[CIDADAOSOCIAL.dadosSocial].id, 
+							[CIDADAOSOCIAL.dadosSocial.id], 
 							CIDADAOSOCIAL.dadosEntradaCertidaoSuccess, 
 							CIDADAOSOCIAL.dadosEntradaFail);
 	},
@@ -287,7 +307,7 @@
 
 		// Carrega providências
 		BANCODADOS.sqlCmdDB("SELECT id, tipo, situacao, observacao, dt_criacao FROM smads_providencia WHERE smads_id = ?",
-							[CIDADAOSOCIAL.dadosSocial].id, 
+							[CIDADAOSOCIAL.dadosSocial.id], 
 							CIDADAOSOCIAL.dadosEntradaProvidenciaSuccess, 
 							CIDADAOSOCIAL.dadosEntradaFail);
 	},

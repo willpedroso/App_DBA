@@ -151,6 +151,8 @@ $(document).ready(function(){
 
 	//ADICIONA OBS CERTIDOES
 	$( document ).on( "click", ".btnAdicionaInputCertidao", function() {
+		adicionaCertidao(null);
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -170,8 +172,7 @@ $(document).ready(function(){
 			$('input.adicionaObsCertidao').val('');
 			$('.selectCertidao').text('Tipo');
 		}
-
-		
+		*/
 	});
 	
 	
@@ -300,6 +301,8 @@ $(document).ready(function(){
 	
 	//ADICIONA CONTATO
 	$( document ).on( "click", ".btnAdicionaInputContato", function() {
+		adicionaContato(null);
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		//if($('input.adicionaNumContato').val()  == '' || $('.selectDispositivoContato').text() == 'Selecione'){
@@ -321,6 +324,7 @@ $(document).ready(function(){
 			$("select#tipoDispositivoContato").prop('selectedIndex', 0);
 			//$('#tipoDispositivoContato').val('');
 		}
+		*/
 	});
 	
 	
@@ -385,6 +389,8 @@ $(document).ready(function(){
 	
 	//ADICIONA CONTATO EMPRESA
 	$( document ).on( "click", ".btnAdicionaInputContatoEmpresa", function() {
+		adicionaContatoEmpresa(null);
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -405,13 +411,14 @@ $(document).ready(function(){
 			$("select#tipoDispositivoEmpresa").prop('selectedIndex', 0);
 			//$('.selectDispositivoContatoEmpresa').text('Tipo');
 		}
-
-		
+		*/
 	});
 	
 	
 	//ADICIONA PROVIDENCIA
 	$( document ).on( "click", ".btnAdicionaInputProvidencia", function() {
+		adicionaProvidencia();
+		/*
 		var d = new Date();
 		var idobj =  d.getTime();
 		
@@ -431,8 +438,7 @@ $(document).ready(function(){
 			$('input.adicionaObsProvidenciaPeq').val('');
 			$('textarea.textareaProvidencia').val('');
 		}
-
-		
+		*/
 	});
 	
 	
@@ -601,6 +607,126 @@ $(document).ready(function(){
 });
 
 });
+
+function adicionaCertidao(nome_certidao) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	var nomeCertidao;
+	if (nome_certidao == null) {
+		nomeCertidao = $("#tipoCertidaoLabel option:selected").text();
+	}
+	else {
+		nomeCertidao = nome_certidao;
+	}
+
+	if($('input.adicionaObsCertidao').val()  == '' || (nome_certidao == null ? ($("#tipoCertidaoLabel option:selected").text() == 'Selecione') : false)){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+ nomeCertidao +'" name="input_'+idobj+'" class="inputAdicionaCertidaoSelect" readonly id="input_'+idobj+'">'+
+//		'<input type="text" value="'+$(".selectCertidao").text()+'" name="input_'+idobj+'" class="inputAdicionaCertidaoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$("#tipo_certidao_id").val()+'" name="tipo_certidao_id[]">'+
+		'<input type="text" value="'+$(".adicionaObsCertidao").val()+'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$(".adicionaObsCertidao").val()+'" name="numero_certidao[]">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputCertidao').append(	html2insert);
+		$('input.adicionaObsCertidao').val('');
+		$('.selectCertidao').text('Tipo');
+	}
+}
+
+function adicionaProvidencia() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+//	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
+	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+		'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputProvidencia').append(	html2insert);
+		$('input.adicionaObsProvidencia').val('');
+		$('input.adicionaObsProvidenciaPeq').val('');
+		$('textarea.textareaProvidencia').val('');
+	}
+}
+
+function adicionaContatoEmpresa(nome_dispositivo_contato) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	var tipoDispositivo;
+	if (nome_dispositivo_contato == null) {
+		tipoDispositivo = $("#tipoDispositivoContatoEmpresaLabel option:selected").text();
+	}
+	else {
+		tipoDispositivo = nome_dispositivo_contato;
+	}
+	
+	if($('input.adicionaNumContatoEmpresa').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoEmpresaLabel').val() == 'Selecione') : false)){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		//'<input type="text" value="'+$("#tipoDispositivoEmpresa")[0].options[$("#tipoDispositivoEmpresa")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresaSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresaSelect" readonly id="input_'+idobj+'">'+
+		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_empresa_id").val()+'" name="tipo_dispositivo_contato_empresa_id[]">'+
+		'<input type="text" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="numero_descricao_empresa[]">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputContatoEmpresa').append(	html2insert);
+		$('input.adicionaNumContatoEmpresa').val('');
+		$("select#tipoDispositivoContatoEmpresaLabel").prop('selectedIndex', 0);
+		//$('.selectDispositivoContatoEmpresa').text('Tipo');
+	}
+}
+
+function adicionaContato (nome_dispositivo_contato) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	var tipoDispositivo;
+	if (nome_dispositivo_contato == null) {
+		tipoDispositivo = $("#tipoDispositivoContatoLabel option:selected").text();
+	}
+	else {
+		tipoDispositivo = nome_dispositivo_contato;
+	}
+	
+	//if($('input.adicionaNumContato').val()  == '' || $('.selectDispositivoContato').text() == 'Selecione'){
+	if($('input.adicionaNumContato').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoLabel').val() == 'Selecione') : false)){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		//'<input type="text" value="'+$("#tipoDispositivoContato")[0].options[$("#tipoDispositivoContato")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_id").val()+'" name="tipo_dispositivo_contato_id[]">'+
+		'<input type="text" value="'+$(".adicionaNumContato").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$(".adicionaNumContato").val()+'" name="numero_descricao[]">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputContato').append(	html2insert);
+		$('.adicionaNumContato').val('');
+		$("select#tipoDispositivoContatoLabel").prop('selectedIndex', 0);
+		//$('#tipoDispositivoContato').val('');
+	}
+}
 
 function adicionaDrogaHoje() {
 	var d = new Date();
@@ -1551,10 +1677,10 @@ function infoCadastroAcompanhamentoUbsf()
 //Social
 
 /* INICIO - providencias */
-function providencias()
+function providenciasf()
 {
   var valRadio = '';
-  jQuery("#infoHouveProvidencias .radio").click(function(){
+//  jQuery("#infoHouveProvidencias .radio").click(function(){
   	if ($( "input:radio[name=infoHouveProvidencias]:checked" ).val() == "Sim")
 	{
 		jQuery('#providencias').attr('style','display:block');
@@ -1562,7 +1688,7 @@ function providencias()
 	else{
 		jQuery('#providencias').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - providencias */
 
@@ -1570,7 +1696,7 @@ function providencias()
 function infoEncaminhamento()
 {
   var valRadio = '';
-  jQuery("#infoEncaminhamento .radio").click(function(){
+//  jQuery("#infoEncaminhamento .radio").click(function(){
   	if ($( "input:radio[name=infoEncaminhamento]:checked" ).val() == "Sim")
 	{
 		jQuery('#unidadeSaude').attr('style','display:block');
@@ -1580,15 +1706,15 @@ function infoEncaminhamento()
 		jQuery('#unidadeSaude').attr('style','display:none');
 		jQuery('#nomeUnidadeSaude').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - infoEncaminhamento */
 
 /* INICIO - quaisMedicamentos */
-function quaisMedicamentos()
+function quaisMedicamentosf()
 {
   var valRadio = '';
-  jQuery("#infoUsoMedicamentos .radio").click(function(){
+//  jQuery("#infoUsoMedicamentos .radio").click(function(){
   	if ($( "input:radio[name=infoUsoMedicamentos]:checked" ).val() == "Sim")
 	{
 		jQuery('#quaisMedicamentos').attr('style','display:block');
@@ -1596,7 +1722,7 @@ function quaisMedicamentos()
 	else{
 		jQuery('#quaisMedicamentos').attr('style','display:none');
 	}
-  });
+//  });
 }
 /* FIM - quaisMedicamentos */
 

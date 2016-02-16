@@ -5,14 +5,12 @@ function trabalhoOpcoes () {
 function carregaTrabalho () {
 	console.log("carregaTrabalho");
 	
-	/* todo: acertar
 	// Verifica se é salvamento
 	if (CIDADAOTRABALHO.ehSalvamento == true) {
 		$('.msgParabens').removeAttr('style');
 		$('html, body').animate({scrollTop:0}, 'slow');
 		CIDADAOTRABALHO.ehSalvamento = false;
 	}
-	*/
 	
 	var edit = true;		// todo: sempre em edição
 
@@ -180,7 +178,7 @@ function carregaTrabalho () {
 	// Já trabalhou coletivamente ...
 	var opts = "<select name='tipoTrabalhoColetivoLabel' id='tipoTrabalhoColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoTrabalhoColetivo.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoTrabalhoColetivoLabel' for='tipo_trabalho_coletivo_id'";
+		opts += "<option value='" + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "' data-id='tipoTrabalhoColetivoLabel' for='tipo_trabalho_coletivo_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_trabalho_coletivo_id == CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -231,7 +229,7 @@ function carregaTrabalho () {
 	// Onde aprendeu a profissão
 	var opts = "<select name='tipoOndeAprendeuProfissaoLabel' id='tipoOndeAprendeuProfissaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoOndeAprendeuProfissaoLabel' for='tipo_onde_aprendeu_profissao_id'";
+		opts += "<option value='" + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "' data-id='tipoOndeAprendeuProfissaoLabel' for='tipo_onde_aprendeu_profissao_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_onde_aprendeu_profissao_id == CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -243,7 +241,7 @@ function carregaTrabalho () {
 	// Como você comprova seu conhecimento profissional
 	var opts = "<select name='tipoComprovanteConhecimentoProfissionalLabel' id='tipoComprovanteConhecimentoProfissionalLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoComprovanteConhecimentoProfissionalLabel' for='tipo_comprovante_conhecimento_profissional_id'";
+		opts += "<option value='" + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "' data-id='tipoComprovanteConhecimentoProfissionalLabel' for='tipo_comprovante_conhecimento_profissional_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_comprovante_conhecimento_profissional_id == CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -271,7 +269,7 @@ function carregaTrabalho () {
 	// A que ramo pertence esse curso
 	var opts = "<select name='tipoRamoCursoLabel' id='tipoRamoCursoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoRamoCurso.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoRamoCursoLabel' for='tipo_ramo_curso_id'";
+		opts += "<option value='" + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "' data-id='tipoRamoCursoLabel' for='tipo_ramo_curso_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_ramo_curso_id == CIDADAOTRABALHO.listaTipoRamoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -286,7 +284,7 @@ function carregaTrabalho () {
 	// Você pretende fazer novos cursos...
 	var opts = "<select name='tipoPretencaoCursosLabel' id='tipoPretencaoCursosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoPretencaoCurso.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoPretencaoCursosLabel' for='tipo_pretencao_cursos_id'";
+		opts += "<option value='" + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "' data-id='tipoPretencaoCursosLabel' for='tipo_pretencao_cursos_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_pretencao_cursos_id == CIDADAOTRABALHO.listaTipoPretencaoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -486,7 +484,18 @@ function trabalhoSalva() {
 		listaDados.push(auxVar);
 		
 		// Já trabalhou coletivamente ...
-		listaDados.push($("#tipoTrabalhoColetivoLabel").val() == "Selecione" ? null : $("#tipoTrabalhoColetivoLabel").val());
+		if ($("#tipoTrabalhoColetivoLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOTRABALHO.listaTipoTrabalhoColetivo.length; i++) {
+				if (CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome == $("#tipoTrabalhoColetivoLabel").val()) {
+					listaDados.push(CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].id);
+					break;
+				}
+			}
+		}
 		// Por quanto tempo
 		listaDados.push($("#mesesTrabalhColetivoLabel").val() == "Meses" ? null : $("#mesesTrabalhColetivoLabel").val());
 		listaDados.push($("#anosTrabalhoColetivoLabel").val() == "Anos" ? null : $("#anosTrabalhoColetivoLabel").val());
@@ -506,10 +515,32 @@ function trabalhoSalva() {
 		listaDados.push($("#profissao_atividade").val());
 
 		// Onde aprendeu a profissão
-		listaDados.push($("#tipoOndeAprendeuProfissaoLabel").val() == "Selecione" ? null : $("#tipoOndeAprendeuProfissaoLabel").val());
+		if ($("#tipoOndeAprendeuProfissaoLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao.length; i++) {
+				if (CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome == $("#tipoOndeAprendeuProfissaoLabel").val()) {
+					listaDados.push(CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].id);
+					break;
+				}
+			}
+		}
 		
 		// Como você comprova seu conhecimento profissional
-		listaDados.push($("#tipoComprovanteConhecimentoProfissionalLabel").val() == "Selecione" ? null : $("#tipoComprovanteConhecimentoProfissionalLabel").val());
+		if ($("#tipoComprovanteConhecimentoProfissionalLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional.length; i++) {
+				if (CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome == $("#tipoComprovanteConhecimentoProfissionalLabel").val()) {
+					listaDados.push(CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].id);
+					break;
+				}
+			}
+		}
 		
 		// Fez algum curso de qualificação profissional
 		auxVar = null;
@@ -522,12 +553,34 @@ function trabalhoSalva() {
 		listaDados.push(auxVar);
 		listaDados.push($("#qual_curso_qualificacao_profissional").val());
 		// A que ramo pertence esse curso
-		listaDados.push($("#tipoRamoCursoLabel").val() == "Selecione" ? null : $("#tipoRamoCursoLabel").val());
+		if ($("#tipoRamoCursoLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOTRABALHO.listaTipoRamoCurso.length; i++) {
+				if (CIDADAOTRABALHO.listaTipoRamoCurso[i].nome == $("#tipoRamoCursoLabel").val()) {
+					listaDados.push(CIDADAOTRABALHO.listaTipoRamoCurso[i].id);
+					break;
+				}
+			}
+		}
 		// Outro ramo que o curso pertence
 		listaDados.push($("#outros_ramo_curso").val());
 		
 		// Você pretende fazer novos cursos...
-		listaDados.push($("#tipoPretencaoCursosLabel").val() == "Selecione" ? null : $("#tipoPretencaoCursosLabel").val());
+		if ($("#tipoPretencaoCursosLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOTRABALHO.listaTipoPretencaoCurso.length; i++) {
+				if (CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome == $("#tipoPretencaoCursosLabel").val()) {
+					listaDados.push(CIDADAOTRABALHO.listaTipoPretencaoCurso[i].id);
+					break;
+				}
+			}
+		}
 		// Qual curso pretendido
 		listaDados.push($("#qual_curso_pretencao").val());
 		
@@ -547,7 +600,8 @@ function trabalhoSalva() {
 			Print += "tempo_livre_id: " + tempoLivre[i].tempo_livre_id + "\r\n";
 		}
 		console.log(Print);
-		// testes retirar	
+		// testes retirar
+		CIDADAOTRABALHO.auxlistaAtividadesTempoLivre = tempoLivre;
 		
 		// Dentro da cidade de são paulo quais locais.....
 		var localVisitar = [];
@@ -567,6 +621,7 @@ function trabalhoSalva() {
 		}
 		console.log(Print);
 		// testes retirar	
+		CIDADAOTRABALHO.auxlistaLocaisVisitar = localVisitar;
 	
 		// Opções....primeiro lugar
 		var primeiroLugar;
@@ -588,19 +643,9 @@ function trabalhoSalva() {
 		}
 		console.log(Print);
 		// testes retirar
-/*			
-		CIDADAOSAUDE.auxcadastroAcompanhamentoUBS = cadastroAcompanhamentoUBS;
-		CIDADAOSAUDE.auxinternacao = internacao;
-		CIDADAOSAUDE.auxtelefoneFamiliar = telefoneFamiliar;
-		CIDADAOSAUDE.auxdrogasTipo1 = drogasTipo1;
-		CIDADAOSAUDE.auxdrogasTipo2 = drogasTipo2;
-		CIDADAOSAUDE.auxdrogasTipo3 = drogasTipo3;
-		CIDADAOSAUDE.auxespecialidadesConsultaHoje = especialidadesConsultaHoje;
-		CIDADAOSAUDE.auxoficinasParticipou = oficinasParticipou;
-		CIDADAOSAUDE.auxatividadeRecreativaExterna = atividadeRecreativaExterna;
-
-		CIDADAOSAUDE.salvaCidadaoSaude(listaDados,
-										this.salvaSaudeSuccess,
-										this.salvaSaudeFail);*/
+			
+		CIDADAOTRABALHO.salvaCidadaoTrabalho(listaDados,
+											this.salvaTrabalhoSuccess,
+											this.salvaTrabalhoFail);
 	}
 }

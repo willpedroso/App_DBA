@@ -47,7 +47,7 @@ function carregaSaude () {
 	// Acompanhamento CAPS
 	var opts = "<select name='tipoAtuacaoLabel' id='tipoFrequenciaCapsLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSAUDE.listaTipoFrequenciaCaps.length; i++) {
-		opts += "<option value='" + i + "' data-id='tipoFrequenciaCapsLabel' for='tipo_frequencia_caps_id'";
+		opts += "<option value='" + CIDADAOSAUDE.listaTipoFrequenciaCaps[i].nome + "' data-id='tipoFrequenciaCapsLabel' for='tipo_frequencia_caps_id'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.tipo_frequencia_caps_id == CIDADAOSAUDE.listaTipoFrequenciaCaps[i].id) ? " selected>" : ">") + CIDADAOSAUDE.listaTipoFrequenciaCaps[i].nome + "</option>";
 	}
 	opts += "</div></select>";
@@ -222,7 +222,7 @@ function carregaSaude () {
 	var opts = "<label class='selectDefault'><span class='titSang'>UF onde reside sua família:</span>" + 
 			   "<select name='estadoNomeLabel' id='estadoNomeLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSAUDE.listaEstados.length; i++) {
-		opts += "<option value='" + i + "' data-id='estadoNomeLabel' for='tipo_estado_id'";
+		opts += "<option value='" + CIDADAOSAUDE.listaEstados[i].id + "' data-id='estadoNomeLabel' for='tipo_estado_id'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.tipo_estado_id == CIDADAOSAUDE.listaEstados[i].id) ? " selected>" : ">") + CIDADAOSAUDE.listaEstados[i].sigla + " - " + CIDADAOSAUDE.listaEstados[i].nome + "</option>";
 	}
 	opts += "</div></select></label>";
@@ -1129,7 +1129,18 @@ function saudeSalva() {
 		}
 		listaDados.push(auxVar);
 		listaDados.push($("input[name='qual_acompanhamento_caps']").val());
-		listaDados.push($("#tipoFrequenciaCapsLabel").val() == "Selecione" ? null : CIDADAOSAUDE.listaTipoFrequenciaCaps[$("#tipoFrequenciaCapsLabel").val()].id);
+		if ($("#tipoFrequenciaCapsLabel").val() == "Selecione") {
+			listaDados.push(null);
+		}
+		else {
+			// Obtém id
+			for (var i = 0; i < CIDADAOSAUDE.listaTipoFrequenciaCaps.length; i++) {
+				if (CIDADAOSAUDE.listaTipoFrequenciaCaps[i].nome == $("#tipoFrequenciaCapsLabel").val()) {
+					listaDados.push(CIDADAOSAUDE.listaTipoFrequenciaCaps[i].id);
+					break;
+				}
+			}
+		}
 		listaDados.push($("input[name='nome_tecnico_referencia_caps']").val());
 		
 		// Internação (esteve_internado)
@@ -1213,7 +1224,7 @@ function saudeSalva() {
 		listaDados.push(auxVar);
 
 		// UF onde reside a família (tipo_estado_id)
-		listaDados.push($("#estadoNomeLabel").val() == "Selecione" ? null : CIDADAOSAUDE.listaEstados[$("#estadoNomeLabel").val()].id);
+		listaDados.push($("#estadoNomeLabel").val() == "Selecione" ? null : $("#estadoNomeLabel").val());
 		
 		// Descrição de onde reside sua família (descricao_reside_familia)
 		listaDados.push($("#descricao_reside_familia").val());
