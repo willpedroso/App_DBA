@@ -95,13 +95,13 @@ function carregaSocial () {
 	$("#listaDocumentos2").empty();
 	$("#listaDocumentos2").append(opts);
 	for (var i = 0; i < CIDADAOSOCIAL.listaDocumentos.length; i++) {
-		auxVar = CIDADAOSOCIAL.listaDocumentos[i].numero_descricao;
-		$('.adicionaInputDocumento').val(auxVar == null ? "" : auxVar);
+		auxVar = CIDADAOSOCIAL.listaDocumentos[i].numero_descricao_documento;
+		$('.adicionaNumDocumento').val(auxVar == null ? "" : auxVar);
 
 		// Obtém o nome do tipo de documento
 		for (j = 0; j < CIDADAOSOCIAL.listaTipoDocumento.length; j++) {
-			if (CIDADAOSOCIAL.listaTipoDocumento[j].id == CIDADAOSOCIAL.listaDocumentos[i].tipo_dispositivo_contato_id) {
-				adicionaContato(CIDADAOSOCIAL.listaTipoDocumento[j].nome);		
+			if (CIDADAOSOCIAL.listaTipoDocumento[j].id == CIDADAOSOCIAL.listaDocumentos[i].tipo_documento_id) {
+				adicionaDocumento(CIDADAOSOCIAL.listaTipoDocumento[j].nome);		
 				break;
 			}
 		}
@@ -334,10 +334,6 @@ function socialSalva() {
 		// Local de referência
 		listaDados.push($("#local_referencia").val());
 		
-		// todo: A partir da inserção do Programa DBA, retirou documentos
-		
-		// todo: Houve restabelecimento de vínculos familiares
-		
 		// Formação Profissional
 		listaDados.push($("#formacao_profissional").val());
 
@@ -387,6 +383,16 @@ function socialSalva() {
 
 		// Entrevistas - Projeto de vida
 		listaDados.push($("#entrevista_projeto_vida").val());
+		
+		// Houve providências
+		auxVar = null;
+		if ($("input:radio[name=infoHouveProvidencias]:checked").val() == "Sim") {
+			auxVar = 1;
+		}
+		else if ($("input:radio[name=infoHouveProvidencias]:checked").val() == "Não") {
+			auxVar = 0;
+		}
+		listaDados.push(auxVar);
 
 		// Número do NIS
 		listaDados.push($("#numero_nis").val());
@@ -403,6 +409,26 @@ function socialSalva() {
 		// Observações
 		listaDados.push($("#observacoes_gerais").val());
 
+		// A partir da inserção do Programa DBA, retirou documentos
+		auxVar = null;
+		if ($("input:radio[name=infoDocumentosAposPrograma]:checked").val() == "Sim") {
+			auxVar = 1;
+		}
+		else if ($("input:radio[name=infoDocumentosAposPrograma]:checked").val() == "Não") {
+			auxVar = 0;
+		}
+		listaDados.push(auxVar);
+		
+		// Houve restabelecimento de vínculos familiares
+		auxVar = null;
+		if ($("input:radio[name=infoVinculoFamiliaRestabelecido]:checked").val() == "Sim") {
+			auxVar = 1;
+		}
+		else if ($("input:radio[name=infoVinculoFamiliaRestabelecido]:checked").val() == "Não") {
+			auxVar = 0;
+		}
+		listaDados.push(auxVar);
+		
 		// todo: testes retirar
 		var Print = "Salvar em trabalho: " + listaDados.length + " campos.\r\n";
 		for (var i = 0; i < listaDados.length; i++) {
@@ -437,6 +463,33 @@ function socialSalva() {
 		var Print = "Dispositivos de Contato\r\n";
 		for (var i = 0; i < dispositivosContato.length; i++) {
 			Print += "Tipo: " + dispositivosContato[i].tipoDispositivoContato + " - Número: " + dispositivosContato[i].numeroContato + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+		
+		// Documentos
+		var documentos = [];
+		var idTipoDocumento = 0;
+		$(".adicionaInputDocumento").children().each(function () {
+			// Obtém o id do tipo de documento
+			for (var i = 0; i < CIDADAOSOCIAL.listaTipoDocumento.length; i++) {
+				if (CIDADAOSOCIAL.listaTipoDocumento[i].nome == this.children[0].value) {
+					idTipoDocumento = CIDADAOSOCIAL.listaTipoDocumento[i].id;
+					break;
+				}
+			}
+			var v = {
+				tipoDocumento: idTipoDocumento,
+				numero: this.children[1].value,
+			};
+			documentos.push(v);
+		});
+		CIDADAOSOCIAL.auxlistaDocumentos = documentos;
+		
+		// todo: testes retirar
+		var Print = "Documentos\r\n";
+		for (var i = 0; i < documentos.length; i++) {
+			Print += "Tipo: " + documentos[i].tipoDocumento + " - Número: " + documentos[i].numero + "\r\n";
 		}
 		console.log(Print);
 		// testes retirar

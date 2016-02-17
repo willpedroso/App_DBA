@@ -632,6 +632,14 @@ var BANCODADOS = {
 										CONSTRAINT fk_smads_contato_empresa_tipo_dispositivo_contato1 FOREIGN KEY (tipo_dispositivo_contato_id) REFERENCES tipo_dispositivo_contato (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 									)",
 
+	/*db_create_smads_documentos: */"CREATE TABLE smads_documentos ( \
+										id INTEGER PRIMARY KEY NOT NULL, \
+										smads_id INTEGER NOT NULL, \
+										tipo_documento_id INTEGER NOT NULL, \
+										numero_descricao_documento TEXT, \
+										dt_criacao TEXT NOT NULL \
+									)",
+
 	/*db_create_smads_providencia: */"CREATE TABLE smads_providencia ( \
 									id INTEGER PRIMARY KEY NOT NULL, \
 									smads_id INTEGER NOT NULL, \
@@ -1042,6 +1050,9 @@ var BANCODADOS = {
 
 	/*smads_contato_empresa*/
 	"INSERT INTO `smads_contato_empresa` (`id`, `smads_id`, `tipo_dispositivo_contato_id`, `numero_descricao`, `dt_criacao`) VALUES (1,9,2,'dasdas','2015-10-28 11:57:15'),(2,10,2,'dasdas','2015-10-28 11:57:38');",
+
+	/*smads_documentos*/
+	"INSERT INTO `smads_documentos` (`id`, `smads_id`, `tipo_documento_id`, `numero_descricao_documento`, `dt_criacao`) VALUES (1,10,1,'118302449','2016-01-12 15:26:29'),(2,10,3,'335980990167','2016-01-12 15:26:29'),(3,10,2,'18231573860','2016-01-12 15:26:29'),(4,10,3,'250029500124','2016-01-12 15:31:10'),(5,10,1,'247004819','2016-01-12 15:31:10')",
 
 	/*smads_providencia*/
 	"INSERT INTO `smads_providencia` (`id`, `smads_id`, `tipo`, `situacao`, `observacao`, `dt_criacao`) VALUES (1,10,' asda asdas ','dasdasdasdas','das asd asd asd asd as dasd','2015-10-28 11:57:38');",

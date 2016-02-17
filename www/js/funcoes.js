@@ -327,6 +327,11 @@ $(document).ready(function(){
 		*/
 	});
 	
+	//ADICIONA CONTATO
+	$( document ).on( "click", ".btnAdicionaInputDocumento", function() {
+		adicionaDocumento(null);
+	});
+	
 	
 	//ADICIONA CONTATO familiar
 	$( document ).on( "click", ".btnAdicionaInputContatoFamiliar", function() {
@@ -725,6 +730,34 @@ function adicionaContato (nome_dispositivo_contato) {
 		$('.adicionaNumContato').val('');
 		$("select#tipoDispositivoContatoLabel").prop('selectedIndex', 0);
 		//$('#tipoDispositivoContato').val('');
+	}
+}
+
+function adicionaDocumento (nome_documento) {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+	var nomeDocumento;
+	if (nome_documento == null) {
+		nomeDocumento = $("#tipoDocumentoLabel option:selected").text();
+	}
+	else {
+		nomeDocumento = nome_documento;
+	}
+	
+	if($('input.adicionaNumDocumento').val()  == '' || (nome_documento == null ? ($('#tipoDocumentoLabel').val() == 'Selecione') : false)){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+ nomeDocumento +'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaNumDocumento").val()+'" name="input_'+idobj+'" class="inputGrande" readonly id="input_'+idobj+'">'+
+		'<input type="hidden" value="'+$(".adicionaNumDocumento").val()+'" name="numeroDocumentoLabel[]">'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputDocumento').append(	html2insert);
+		$('.adicionaNumDocumento').val('');
+		$("select#tipoDocumentoLabel").prop('selectedIndex', 0);
 	}
 }
 

@@ -20,6 +20,7 @@
 	listaContatosEmpresa: [],
 	listaCertidoes: [],
 	listaProvidencias: [],
+	listaDocumentos: [],
 	
 	// auxiliares
 	auxCounter: 0,
@@ -27,6 +28,7 @@
 	auxlistaContatosEmpresa: null,
 	auxlistaCertidoes: null,
 	auxlistaProvidencias: null,
+	auxlistaDocumentos: null,
 	
 	// Lista de rotinas de salvamento
 	listaSalvamentoListas: [],
@@ -88,7 +90,7 @@
 		// testes retirar
 
 		BD_DTO.tipo_documento_carrega(CIDADAOSOCIAL.dadosBasicosSuccess, CIDADAOSOCIAL.dadosBasicosFail);
-	}
+	},
 	
 	dadosBasicosSuccess: function (trans, res) {
 		console.log("dadosBasicosSuccess");
@@ -250,6 +252,7 @@
 		console.log("dadosEntradaContatoSuccess");
 		
 		// Salva dados
+		CIDADAOSOCIAL.listaContatos = [];
 		for (var i = 0; i < res.rows.length; i++) {
 			var lc = {
 				id: res.rows.item(i).id,
@@ -283,6 +286,7 @@
 		console.log("dadosEntradaContatoEmpresaSuccess");
 
 		// Salva dados
+		CIDADAOSOCIAL.listaContatosEmpresa = [];
 		for (var i = 0; i < res.rows.length; i++) {
 			var lce = {
 				id: res.rows.item(i).id,
@@ -316,6 +320,7 @@
 		console.log("dadosEntradaCertidaoSuccess");
 
 		// Salva dados
+		CIDADAOSOCIAL.listaCertidoes = [];
 		for (var i = 0; i < res.rows.length; i++) {
 			var lc = {
 				id: res.rows.item(i).id,
@@ -349,6 +354,7 @@
 		console.log("dadosEntradaProvidenciaSuccess");
 		
 		// Salva dados
+		CIDADAOSOCIAL.listaProvidencias = [];
 		for (var i = 0; i < res.rows.length; i++) {
 			var lp = {
 				id: res.rows.item(i).id,
@@ -368,6 +374,40 @@
 			Print += "\tsituacao: " + CIDADAOSOCIAL.listaProvidencias[i].situacao + "\r\n";
 			Print += "\tobservacao: " + CIDADAOSOCIAL.listaProvidencias[i].observacao + "\r\n";
 			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaProvidencias[i].dt_criacao + "\r\n";
+		}
+
+		console.log(Print);
+		// testes retirar
+		
+		// Carrega documentos
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_documento_id, numero_descricao_documento, dt_criacao FROM smads_documentos WHERE smads_id = ?",
+							[CIDADAOSOCIAL.dadosSocial.id], 
+							CIDADAOSOCIAL.dadosEntradaDocumentoSuccess, 
+							CIDADAOSOCIAL.dadosEntradaFail);
+	},
+	
+	dadosEntradaDocumentoSuccess: function (trans, res) {
+		console.log("dadosEntradaDocumentoSuccess");
+
+		// Salva dados
+		CIDADAOSOCIAL.listaDocumentos = [];
+		for (var i = 0; i < res.rows.length; i++) {
+			var d = {
+				id: res.rows.item(i).id,
+				tipo_documento_id: res.rows.item(i).tipo_documento_id,
+				numero_descricao_documento: res.rows.item(i).numero_descricao_documento,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			CIDADAOSOCIAL.listaDocumentos.push(d);
+		}
+
+		// todo: testes retirar
+		var Print = "Documentos:\r\n";
+		for (var i = 0; i < CIDADAOSOCIAL.listaDocumentos.length; i++) {
+			Print += "\tid: " + CIDADAOSOCIAL.listaDocumentos[i].id + "\r\n";
+			Print += "\ttipo_documento_id: " + CIDADAOSOCIAL.listaDocumentos[i].tipo_documento_id + "\r\n";
+			Print += "\tnumero_descricao_documento: " + CIDADAOSOCIAL.listaDocumentos[i].numero_descricao_documento + "\r\n";
+			Print += "\tdt_criacao: " + CIDADAOSOCIAL.listaDocumentos[i].dt_criacao + "\r\n";
 		}
 
 		console.log(Print);
@@ -406,6 +446,9 @@
 		if (CIDADAOSOCIAL.auxlistaProvidencias.length) {
 			CIDADAOSOCIAL.listaSalvamentoListas.push(CIDADAOSOCIAL.salvaProvidencias);
 		}
+		if (CIDADAOSOCIAL.auxlistaDocumentos.length) {
+			CIDADAOSOCIAL.listaSalvamentoListas.push(CIDADAOSOCIAL.salvaDocumentos);
+		}
 		CIDADAOSOCIAL.listaSalvamentoListas.push(CIDADAOSOCIAL.salvaCidadaoSocialSuccess);
 		
 		// Salva no banco de dados
@@ -441,7 +484,7 @@
 							", vinculo_familia_restabelecido " +
 							", dt_criacao " +
 							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
 							CIDADAOSOCIAL.cidadao_id,
 							dadosLista.shift(),
@@ -553,11 +596,24 @@
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
 	
+	salvaDocumentos: function () {
+		console.log("salvaDocumentos");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_documentos (smads_id, tipo_documento_id, numero_descricao_documento, dt_criacao) VALUES (?, ?, ?, ?)",
+							[CIDADAOSOCIAL.newSmadsId,
+							 CIDADAOSOCIAL.auxlistaDocumentos[CIDADAOSOCIAL.auxCounter].tipoDocumento,
+							 CIDADAOSOCIAL.auxlistaDocumentos[CIDADAOSOCIAL.auxCounter].numero,
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaDocumentos.length ? CIDADAOSOCIAL.salvaDocumentos : CIDADAOSOCIAL.fimSalvaLista,
+							CIDADAOSOCIAL.salvaCidadaoFail);
+	},
+	
 	salvaCidadaoSocialSuccess: function (trans, res) {
 		console.log("salvaCidadaoSocialSuccess");
 		
 		// Atualiza dados na memória
-		CIDADAOSAUDE.ehSalvamento = true;
+		CIDADAOSOCIAL.ehSalvamento = true;
 		CIDADAOSOCIAL.dadosEntrada(CIDADAOSOCIAL.cidadao_id, CIDADAOSOCIAL.cbSuccess_f, CIDADAOSOCIAL.cbFail_f);
 	},
 	
