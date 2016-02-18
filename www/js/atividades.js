@@ -7,6 +7,7 @@ function calculaTamanhos () {
 	var percents = [];
 	var alturas = [];
 	var total = 0;
+	var totalSalvo = 0;
 	var TamRestante = TamTotal;
 	
 	// calcula a quantidade total e inicializa alturas
@@ -14,6 +15,7 @@ function calculaTamanhos () {
 		total += linhas[i];
 		alturas.push(0);
 	}
+	totalSalvo = total;
 	
 	// separa as linhas que são proporcionalmente menores que o mínimo
 	for (var i = 0; i < linhas.length; i++) {
@@ -32,10 +34,20 @@ function calculaTamanhos () {
 		alturas[i] = linhas[i] / total  * TamRestante;
 	}
 	
-	var Print = "Resultado:\r\n";
-	for (var i = 0; i < alturas.length; i++) {
-		Print += "Altura " + i + ": " + alturas[i] + "\r\n";
+	var Print = "Condições: \r\n\tTamanho Total = [" + TamTotal + "];\r\n\tTamanho Mínimo = [" + TamMinimo + "];\r\n";
+	total = 0;
+	for (var i = 0; i < linhas.length; i++) {
+		Print += "\tLinha " + (i+1) + ": " + linhas[i] +  " (" + (linhas[i] / totalSalvo * 100) + "%)\r\n";
+		total += linhas[i];
 	}
+	Print += "\tTOTAL DE LINHAS = " + total + "\r\n";
+	Print += "Resultados:\r\n";
+	total = 0;
+	for (var i = 0; i < alturas.length; i++) {
+		Print += "\tAltura " + (i+1) + ": " + alturas[i] +  " (" + (alturas[i] / TamTotal * 100) + "%)\r\n";
+		total += alturas[i];
+	}
+	Print += "\tTOTAL DE ALTURAS = " + total + "\r\n";
 	console.log(Print);
 }
 

@@ -29,7 +29,7 @@
 		CIDADAO.usuario_id = usuario;
 		
 		// Obtém a coordenação da qual pertence o usuário - todo: confirmar status = 1 na busca
-		// todo: testes
+		// todo: acertar "usuario_id"
 		//BANCODADOS.sqlCmdDB("SELECT equipe_coordenacao_id, dt_criacao FROM equipe_tecnica WHERE usuario_id = ? and status = ?", [CIDADAO.usuario_id, 1], CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, CIDADAO.dadosEntradaFail);
 		BANCODADOS.sqlCmdDB("SELECT equipe_coordenacao_id, dt_criacao FROM equipe_tecnica WHERE usuario_id = ? and status = ?", [34, 1], CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, CIDADAO.dadosEntradaFail);
 	},
