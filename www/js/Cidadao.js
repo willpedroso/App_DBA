@@ -63,7 +63,10 @@
 		CIDADAO.listaTipoMotivoInativacao = BD_DTO.tipo_motivo_inativacao_data;
 
 		// Obtém a lista de cidadãos
-		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", [CIDADAO.equipe_coordenacao_id], CIDADAO.dadosEntradaCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", 
+							[CIDADAO.equipe_coordenacao_id], 
+							CIDADAO.dadosEntradaCidadaosSuccess, 
+							CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaCidadaosSuccess: function(trans, res) {
@@ -90,7 +93,7 @@
 		}
 
 		// Obtém dados dos cidadãos
-		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ? AND situacao_cadastral = ? AND programa_dba = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++], 1, 1], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 	},
 	
 	dadosEntradaDadosCidadaosSuccess: function (trans, res) {
@@ -134,7 +137,7 @@
 			CIDADAO.cbSuccess_f();
 		}
 		else {
-			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ? AND situacao_cadastral = ? AND programa_dba = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++], 1, 1], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 		}
 	},
 	

@@ -804,4 +804,58 @@
 //*******************************************************************************************************************
 // Tipos de Documento
 //*******************************************************************************************************************
+//*******************************************************************************************************************
+// Perfis
+//*******************************************************************************************************************
+	perfis_data: [],
+	perfis_DTO: function () {
+		id: null;
+		codigo: null;
+		nome: null;
+		descricao: null;
+		perfil_tecnico: null;
+		status: null;
+		dt_criacao: null;
+	},
+	perfis_carrega: function (cbSuccess, cbFail) {
+		console.log("perfis_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.perfis_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os perfis
+			BANCODADOS.sqlCmdDB("SELECT id, codigo, nome, descricao, perfil_tecnico, status, dt_criacao FROM perfil WHERE status = ?",
+								[1], 
+								BD_DTO.perfis_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	perfis_carrega_success: function (trans, res) {
+		console.log("perfis_carrega_success");
+		
+		var tp;
+		while (BD_DTO.perfis_data.length > 0) {
+			BD_DTO.perfis_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.perfis_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.codigo = res.rows.item(i).codigo;
+			tp.nome = res.rows.item(i).nome;
+			tp.descricao = res.rows.item(i).descricao;
+			tp.perfil_tecnico = res.rows.item(i).perfil_tecnico;
+			tp.status = res.rows.item(i).status;
+			tp.dt_criacao = res.rows.item(i).dt_criacao;
+			BD_DTO.perfis_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Perfis
+//*******************************************************************************************************************
 }

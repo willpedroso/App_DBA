@@ -16,6 +16,8 @@
 		// Salva cidadão
 		FREQUENCIA.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
 
+		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
+		
 		// Obtém informações na tabela frequencia
 		BANCODADOS.sqlCmdDB("SELECT atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, status, dt_criacao " +
 							"FROM frequencia " +

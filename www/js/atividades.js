@@ -1,8 +1,4 @@
 function preparaListasOpt () {
-	// todo: testes retirar
-	calculaTamanhos();
-	// testes retirar
-	
 	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
 	
 	var edit = false;
