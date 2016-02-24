@@ -76,11 +76,47 @@
 	listaAtividadesSuccess: function (trans, res) {
 		console.log("listaAtividadesSuccess");
 		
+		var encontrou;
 		if (ATIVIDADE.listaAtividades.length > 0) {
 			// Filtra pela data
 			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData) * 1000, new Date(FREQUENCIA.auxData) * 1000);
 			console.log(jsonAtividades);
 			alert("Cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id);
+			
+			// todo: Adiciona na lista de frequencias, considerando atividades já presentes (na lista)
+			for (var j = 0; j < jsonAtividades.length; j++) {
+				encontrou = false;
+				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++) {
+					if (FREQUENCIA.listaFrequencia[i].id == jsonAtividade[j].id) {
+						// Atividade já está presente na lista
+						encontrou = true;
+						break;
+					}
+				}
+				if (encontrou) {
+					continue;
+				}
+				
+				// Adiciona na lista
+				for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
+					if (jsonAtividade[j].id = ATIVIDADE.listaAtividades[i].id) {
+						// Encontrou a atividade, insere na lita de frequencias
+						var dt = {
+							id: null,
+							cidadao_id: ATIVIDADE.listaAtividades[i].cidadao_id,
+							atividade_id: ATIVIDADE.listaAtividades[i].atividade_id,
+							tipo_atuacao_id: ATIVIDADE.listaAtividades[i].tipo_atuacao_id,
+							usuario_id: ATIVIDADE.listaAtividades[i].usuario_id,
+							data_frequencia: ATIVIDADE.listaAtividades[i].data_frequencia,
+							frequencia: null,
+							justificativa: null,
+							dt_criacao: null,
+						};
+						FREQUENCIA.listaFrequencia.push(dt);
+						break;
+					}
+				}
+			}
 		}
 		
 		// Há mais cidadãos na lista do usuário
@@ -89,10 +125,18 @@
 		}
 		else {
 			// todo:
-			alert("Acabaram os cidadãos")
+			alert("Acabaram os cidadãos");
+			
+			// Monta a tela
+			FREQUENCIA.montaFrequencia();
 		}
 	},
 
+	montaFrequencia: function () {
+		console.log("montaFrequencia");
+		
+		// todo: Percorre a lista de frequencias, cria HTML e insere
+	}
 	dadosEntradaFrequenciaFail: function (err) {
 		console.log("dadosEntradaFrequenciaFail");
 		
