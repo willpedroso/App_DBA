@@ -4,6 +4,52 @@ function btBusca(textoBusca, ativos, inativos){
 	// Chama função de login
 	CIDADAO.buscaCidadao(textoBusca, ativos == "checked" ? true : false, inativos == "checked" ? true : false);
 	
+	// Monta opções de aba de acompanhamento em função do tipo de usuário
+	var abaSaude = false;
+	var abaTrabalho = false;
+	var abaSocial = false;
+	if (USUARIO.perfil_tecnico == true) {
+		var i = 0;
+		var perfil = USUARIO.perfil_codigo;
+		do {
+			switch (perfil) {
+			case "TSAU":
+				abaSaude = true;
+				break;
+			case "TTRA":
+				abaTrabalho = true;
+				break;
+			case "TSOC":
+				abaSocial = true;
+				break;
+			}
+		} while (USUARIO.perfil_acumulado.length && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+	}
+	else {
+		// Apresenta todas as abas de acompanhamento
+		abaSaude = abaSocial = abaTrabalho = true;
+	}
+	var opcoesAba =
+			"<ul class=\"\">" +
+              "<li class=\"active\" onclick=\"console.log(\'Identificacao\');PageManager.loadTmpl(\'identificacao\'); abas();\">Identificação</li>" +
+              "<li class=\"active\" onclick=\"console.log(\'InfoBasica\'); INFOBASICAS.dadosEntrada(); abas();\">Informações Básicas</li>" +
+              "<li class=\"active\" onclick=\"console.log(\'Situacao DBA\');SITUACAODBA.dadosEntrada(); abas();\">Situação DBA</li>" +
+              "<li class=\"active\" onclick=\"console.log(\'Atividades\');PageManager.loadTmpl(\'div_atividades\');ATIVIDADE.dadosEntrada(null, ATIVIDADE.apresentaCalendario, null); abas();\">Atividades</li>";
+	if (abaSocial) {
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Social\');CIDADAOSOCIAL.dadosEntrada(); abas();\">Social</li>";
+	}
+	if (abaTrabalho) {
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Trabalho\');CIDADAOTRABALHO.dadosEntrada(); abas();\">Trabalho</li>";
+	}
+	if (abaSaude) {
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Saude\');CIDADAOSAUDE.dadosEntrada(); abas();\">Saúde </li>";
+	}
+    opcoesAba += "<li class=\"active\">Historico de alterações</li>" +
+				 "</ul>";
+				 
+	$("#menu_abas").empty();
+	$("#menu_abas").append(opcoesAba);
+	
 	// Cabeçalho
 	var node = "<li class='li-header'>";
 		node += "<div>Nome Completo</div>";

@@ -28,6 +28,7 @@
 	perfil_acumulado: [],
 	perfil_tecnico: false,
 	equipe_tecnica_id: null,
+	perfil_codigo: null,
 	listaPerfis: [],
 
     // ****************** Efetua o login do usuário *********************
@@ -107,6 +108,8 @@
 		for (var i = 0; i < USUARIO.listaPerfis.length; i++) {
 			if (USUARIO.perfil_id == USUARIO.listaPerfis[i].id) {
 				USUARIO.perfil_tecnico = USUARIO.listaPerfis[i].perfil_tecnico;
+				USUARIO.perfil_codigo = USUARIO.listaPerfis[i].codigo;
+				break;
 			}
 		}
 		
@@ -135,7 +138,7 @@
 			// Obtém perfil acumulado
 			BANCODADOS.sqlCmdDB("SELECT perfil_id, dt_criacao FROM perfil_acumulado WHERE equipe_tecnica_id = ? AND status = ?",
 								[USUARIO.equipe_tecnica_id, 1], 
-								USUARIO.loginSuccess, 
+								USUARIO.perfilAcumuladoSucesso, 
 								USUARIO.cargaCidadaosFail);
 		}
 		else {

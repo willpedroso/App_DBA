@@ -218,8 +218,8 @@
 		ATIVIDADE.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		//ATIVIDADE.cidadao_id = cidadao_id;
-		ATIVIDADE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
+		//ATIVIDADE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
+		ATIVIDADE.cidadao_id = (cidadao_id == null ? CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id : cidadao_id);
 		
 		// Desvia para carregar dados básicos
 		ATIVIDADE.dadosBasicos();

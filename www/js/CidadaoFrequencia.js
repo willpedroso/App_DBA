@@ -3,54 +3,102 @@
     cbSuccess_f: null,
     cbFail_f: null,
 	
-	cidadao_id: null,
+	listaFrequencia: [],
+	
+	// Auxiliares
+	auxData: null,
+	auxCounter: null,
 	
     // ****************** Obtém os dados de entrada *********************
-    dadosEntrada: function(cidadao, data, cbSuccess, cbFail) {
+    dadosEntrada: function(data, cbSuccess, cbFail) {
 	    console.log("dadosEntrada");
 
 		// Salva funções de retorno
 		FREQUENCIA.cbSuccess_f = cbSuccess;
 		FREQUENCIA.cbFail_f = cbFail;
 		
-		// Salva cidadão
-		FREQUENCIA.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
-
-		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
+		FREQUENCIA.auxData = data;
 		
-		// Obtém informações na tabela frequencia
-		BANCODADOS.sqlCmdDB("SELECT atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, status, dt_criacao " +
-							"FROM frequencia " +
-							" WHERE cidadao_id = ? AND tipo_atuacao_id = ? AND usuario_id = ? " +
-							(data != null ? "AND data_frequencia = ?" : ""),
-							[FREQUENCIA.cidadao_id], 
-							FREQUENCIA.dadosEntradaInfoCompleSuccess, 
-							FREQUENCIA.dadosEntradaInfoCompleFail);
+		// todo: Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
+		if (USUARIO.perfil_tecnico == false) {		// todo: mudar para true
+			// Obtém frequencias do usuário (tabela "frequencia"), com status = 1, para a data selecionada 
+			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, dt_criacao " +
+								"FROM frequencia " +
+								"WHERE usuario_id = ? " +
+								"AND data_frequencia = ?",
+								[USUARIO.usuario_id, data], 
+								FREQUENCIA.listaFrequenciaSuccess, 
+								FREQUENCIA.dadosEntradaFrequenciaFail);
+		// Inclui na lista
+		
+		// Usar a lista CIDADAO.listaCidadaosDados
+		// Para cada cidadão da lista CIDADAO.listaCidadaosDados buscar lista de atividades em ATIVIDADE.dadosEntrada([id do cidadao], [retorno de sucesso], [retorno de falha])
+		// Filtrar pela data
+		// Inclui na lista se não estiver na lista de frequencia obtida pela tabela "frequencia"
+		}
+		
+		// todo: Se o usuário não for perfil_tecnico apresenta a lista de cidadãos
 	},
 
-	dadosEntradaInfoCompleSuccess: function (trans, res) {
-		console.log("dadosEntradaInfoCompleSuccess");
+	listaFrequenciaSuccess: function (trans, res) {
+		console.log("listaFrequenciaSuccess");
 		
-		// Salva
-		if (res.rows.length == 1) {
-			FREQUENCIA.infoComplementares = res.rows.item(0).informacoes_complementares;
-			// Retorna
-			// todo: revisar
-			//INFOCOMPLE.cbSuccess_f();
-			PageManager.loadTmpl('info_basicas');
+		FREQUENCIA.listaFrequencia = [];
+
+		// Inclui na lista de frequencia
+		for (var i = 0; i < res.rows.length; i++) {
+			var dt = {
+				id: res.rows.item(i).id,
+				cidadao_id: res.rows.item(i).cidadao_id,
+				atividade_id: res.rows.item(i).atividade_id,
+				tipo_atuacao_id: res.rows.item(i).tipo_atuacao_id,
+				usuario_id: res.rows.item(i).usuario_id,
+				data_frequencia: res.rows.item(i).data_frequencia,
+				frequencia: res.rows.item(i).frequencia,
+				justificativa: res.rows.item(i).justificativa,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			FREQUENCIA.listaFrequencia.push(dt);
+		}
+		
+		// Obtém lista de atividades para cidadãos
+		FREQUENCIA.obtemListaAtividades();
+	},
+	
+	obtemListaAtividades: function () {
+		console.log("obtemListaAtividades");
+		
+		ATIVIDADE.dadosEntrada(CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id, 
+							   FREQUENCIA.listaAtividadesSuccess,
+							   FREQUENCIA.dadosEntradaFrequenciaFail);
+	},
+	
+	listaAtividadesSuccess: function (trans, res) {
+		console.log("listaAtividadesSuccess");
+		
+		if (ATIVIDADE.listaAtividades.length > 0) {
+			// Filtra pela data
+			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData) * 1000, new Date(FREQUENCIA.auxData) * 1000);
+			console.log(jsonAtividades);
+			alert("Cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id);
+		}
+		
+		// Há mais cidadãos na lista do usuário
+		if (FREQUENCIA.auxCounter < CIDADAO.listaCidadaosDados.length) {
+			FREQUENCIA.obtemListaAtividades();
 		}
 		else {
-			// Não encontrou o registro
-			FREQUENCIA.cbFail_f("O registro do cidadão não foi encontrado no banco de dados.");
+			// todo:
+			alert("Acabaram os cidadãos")
 		}
 	},
 
-	dadosEntradaInfoCompleFail: function (err) {
-		console.log("dadosEntradaInfoCompleFail");
+	dadosEntradaFrequenciaFail: function (err) {
+		console.log("dadosEntradaFrequenciaFail");
 		
 		// Retorna
 		// todo: revisar
-		alert("Houve falha na obtenção de informações complementares do cidadão.");
+		alert("Houve falha na obtenção de informações de frequência.");
 		
 		FREQUENCIA.cbFail_f(err);
 	},

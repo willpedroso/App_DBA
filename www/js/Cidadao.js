@@ -28,10 +28,37 @@
 		// Salva identificação do usuário
 		CIDADAO.usuario_id = usuario;
 		
-		// Obtém a coordenação da qual pertence o usuário - todo: confirmar status = 1 na busca
-		// todo: acertar "usuario_id"
-		//BANCODADOS.sqlCmdDB("SELECT equipe_coordenacao_id, dt_criacao FROM equipe_tecnica WHERE usuario_id = ? and status = ?", [CIDADAO.usuario_id, 1], CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, CIDADAO.dadosEntradaFail);
-		BANCODADOS.sqlCmdDB("SELECT equipe_coordenacao_id, dt_criacao FROM equipe_tecnica WHERE usuario_id = ? and status = ?", [34, 1], CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, CIDADAO.dadosEntradaFail);
+		// Prepara a busca por cidadãos
+		CIDADAO.equipe_coordenacao_id = null;
+		if (USUARIO.perfil_codigo == "TSAU" ||
+			USUARIO.perfil_codigo == "TTRA" ||
+			USUARIO.perfil_codigo == "TSOC" ||
+			USUARIO.perfil_codigo == "CORD") {
+			// Usuário é técnico ou coordenador
+			if (USUARIO.perfil_codigo == "TSAU" ||
+				USUARIO.perfil_codigo == "TTRA" ||
+				USUARIO.perfil_codigo == "TSOC") {
+				// Usuário é técnico, obtém a "equipe_coordenacao_id" em "equipe_tecnica"
+				BANCODADOS.sqlCmdDB("SELECT equipe_coordenacao_id FROM equipe_tecnica WHERE usuario_id = ? and status = ?",
+									[CIDADAO.usuario_id, 1], 
+									CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, 
+									CIDADAO.dadosEntradaFail);
+			}
+			else
+			{
+				// Usuário é coordenador, obtém a "equipe_coordenacao_id" em "equipe_coordenacao" (todo: testar "AS equipe_coordenacao_id")
+				BANCODADOS.sqlCmdDB("SELECT id AS equipe_coordenacao_id FROM equipe_coordenacao WHERE usuario_id = ? and status = ?",
+									[CIDADAO.usuario_id, 1], 
+									CIDADAO.dadosEntradaEquipeCoordenacaoSuccess, 
+									CIDADAO.dadosEntradaFail);
+			}
+		}
+		else
+		{
+			// Não precisa de "equipe_coordenacao_id" para listar cidadãos
+			// Obtém a lista de pontos de serviço
+			BD_DTO.ponto_servico_carrega(CIDADAO.dadosEntradaPontosServicoSuccess, CIDADAO.dadosEntradaFail);
+		}
 	},
 	
 	dadosEntradaEquipeCoordenacaoSuccess: function(trans, res) {
@@ -63,10 +90,29 @@
 		CIDADAO.listaTipoMotivoInativacao = BD_DTO.tipo_motivo_inativacao_data;
 
 		// Obtém a lista de cidadãos
-		BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ?", 
-							[CIDADAO.equipe_coordenacao_id], 
-							CIDADAO.dadosEntradaCidadaosSuccess, 
-							CIDADAO.dadosEntradaFail);
+		if (CIDADAO.equipe_coordenacao_id == null) {
+			// lista todos os cidadãos
+			// todo: regras:
+			//		 1. Inativo / Fora do Programa
+			//				.todo: apenas a tela de situação DBA pode ser editada, com restrições
+			//		 2. Inativo / No Programa
+			//				.IMPOSSÍVEL
+			//		 3. Ativo / Fora do Programa
+			//				.todo: verificar o caso do cidadão que é retirado do programa depois de pertencer a uma equipe técnica
+			//		 4. Ativo / No Programa
+			//				.uso normal
+			BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE status = ?", 
+								[1], 
+								CIDADAO.dadosEntradaCidadaosSuccess, 
+								CIDADAO.dadosEntradaFail);
+		}
+		else {
+			// lista cidadãos da coordenação, que estejam no programa (programa_dba = 1)
+			BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE equipe_coordenacao_id = ? AND status = ?", 
+								[CIDADAO.equipe_coordenacao_id, 1], 
+								CIDADAO.dadosEntradaCidadaosSuccess, 
+								CIDADAO.dadosEntradaFail);
+		}
 	},
 	
 	dadosEntradaCidadaosSuccess: function(trans, res) {
@@ -93,7 +139,12 @@
 		}
 
 		// Obtém dados dos cidadãos
-		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ? AND situacao_cadastral = ? AND programa_dba = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++], 1, 1], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		if (CIDADAO.equipe_coordenacao_id == null) {
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		}
+		else {
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE programa_dba = ? AND id = ?", [1, CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+		}
 	},
 	
 	dadosEntradaDadosCidadaosSuccess: function (trans, res) {
@@ -137,7 +188,12 @@
 			CIDADAO.cbSuccess_f();
 		}
 		else {
-			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ? AND situacao_cadastral = ? AND programa_dba = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++], 1, 1], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			if (CIDADAO.equipe_coordenacao_id == null) {
+				BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			}
+			else {
+				BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE programa_dba = ? AND id = ?", [1, CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			}
 		}
 	},
 	
