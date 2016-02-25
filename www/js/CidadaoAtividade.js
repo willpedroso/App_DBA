@@ -13,6 +13,7 @@
 	listaTiposServico: [],
 	listaPontosServico: [],
 	listaTiposAtuacao: [],
+	listaAtuacao_NomeVersusID: [],
 	listaTiposPeriodicidade: [],
 	listaTiposDiaSemana: [],
 	atividadesCounter: 0,
@@ -104,7 +105,7 @@
 		console.log (Print);
 
 		// Tipos de atuação
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_atuacao", [], ATIVIDADE.dadosBasicosTipoAtuacaoSuccess, ATIVIDADE.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_atuacao WHERE status = ?", [1], ATIVIDADE.dadosBasicosTipoAtuacaoSuccess, ATIVIDADE.dadosEntradaFail);
 	},
 	
 	dadosBasicosTipoAtuacaoSuccess: function (trans, res) {
@@ -124,7 +125,7 @@
 			ATIVIDADE.listaTiposAtuacao.push(lta);
 		}
 		
-		// Testes
+		// todo: testes retirar
 		var Print = "Tipos de Atuação" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 			Print += "TIPO DE ATUAÇÃO: " + i + "\r\n";
@@ -135,6 +136,22 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		// testes retirar
+
+		// Cria lista de nome x id para tipos de atuação
+		for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
+			if (ATIVIDADE.listaTiposAtuacao[i].status == 1) {
+				ATIVIDADE.listaAtuacao_NomeVersusID[ATIVIDADE.listaTiposAtuacao[i].nome] = ATIVIDADE.listaTiposAtuacao[i].id;
+			}
+		}
+		
+		// todo: testes retirar
+		var Print = "Tipos de Atuação - Nome Versus ID" + "\r\n";
+		for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
+			Print += "ID de " + ATIVIDADE.listaTiposAtuacao[i].nome + ": " + ATIVIDADE.listaAtuacao_NomeVersusID[ATIVIDADE.listaTiposAtuacao[i].nome] + "\r\n";
+		}
+		console.log (Print);
+		// testes retirar
 
 		// Tipos de periodicidade
 		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_periodicidade", [], ATIVIDADE.dadosBasicosTipoPeriodicidadeSuccess, ATIVIDADE.dadosEntradaFail);

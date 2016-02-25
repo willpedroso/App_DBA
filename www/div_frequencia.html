@@ -23,7 +23,13 @@
         </div>
 		<script>
 			$(document).ready(function() {
-				FREQUENCIA.dadosEntrada("2015-11-01");
+				var hoje = new Date();
+				var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+				// todo: testes
+				console.log(dataHoje);
+				//FREQUENCIA.dadosEntrada(dataHoje);
+				FREQUENCIA.iniFrequencia("2015-11-01");
+				// testes
 			});
 		</script>
       <!-- fim tela frequencia -->

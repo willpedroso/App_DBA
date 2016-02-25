@@ -4,13 +4,52 @@
     cbFail_f: null,
 	
 	listaFrequencia: [],
+	cidadao_id: null,
+	abas: [],
 	
 	// Auxiliares
 	auxData: null,
 	auxCounter: null,
+	auxCounterII: null,
+	
+	// ****************** Verifica entrada ******************************
+	iniFrequencia: function (data, cbSuccess, cbFail) {
+		console.log("iniFrequencia");
+		
+		FREQUENCIA.auxCounterII = 0;
+		if (USUARIO.perfil_tecnico == false) {		// todo: mudar para true
+			var i = 0;
+			var perfil = USUARIO.perfil_codigo;
+			do {
+				switch (perfil) {
+				case "TSAU":
+					abas.push("Saúde");
+					break;
+				case "TTRA":
+					abas.push("Trabalho");
+					break;
+				case "TSOC":
+					abas.push("Social");
+					break;
+				}
+			} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);		
+		
+			FREQUENCIA.dadosEntrada(data, null, cbSuccess, cbFail);
+		}
+		else {
+			// O usuário não possui perfil_tecnico, apresenta a lista de cidadãos do usuário
+			abas.push("Saúde");
+			abas.push("Trabalho");
+			abas.push("Social");
+			
+			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+				// Monta a lista de cidadãos e insere no HTML
+			}
+		}
+	},
 	
     // ****************** Obtém os dados de entrada *********************
-    dadosEntrada: function(data, cbSuccess, cbFail) {
+    dadosEntrada: function(data, cidadao, cbSuccess, cbFail) {
 	    console.log("dadosEntrada");
 
 		// Salva funções de retorno
@@ -18,26 +57,34 @@
 		FREQUENCIA.cbFail_f = cbFail;
 		
 		FREQUENCIA.auxData = data;
+		FREQUENCIA.cidadao_id = null;
 		
-		// todo: Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
+		var tipoAtuacao = ATIVIDADE.listaAtuacao_NomeVersusID[abas[FREQUENCIA.auxCounterII]];
+		
+		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
 		if (USUARIO.perfil_tecnico == false) {		// todo: mudar para true
 			// Obtém frequencias do usuário (tabela "frequencia"), com status = 1, para a data selecionada 
 			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, dt_criacao " +
 								"FROM frequencia " +
 								"WHERE usuario_id = ? " +
-								"AND data_frequencia = ?",
-								[USUARIO.usuario_id, data], 
+								"AND data_frequencia = ? " +
+								"AND (tipo_atuacao_id = ? OR tipo_atuacao_id = ?)",
+								[USUARIO.usuario_id, data, tipoAtuacao, ATIVIDADE.listaAtuacao_NomeVersusID["Todas"]], 
 								FREQUENCIA.listaFrequenciaSuccess, 
 								FREQUENCIA.dadosEntradaFrequenciaFail);
-		// Inclui na lista
-		
-		// Usar a lista CIDADAO.listaCidadaosDados
-		// Para cada cidadão da lista CIDADAO.listaCidadaosDados buscar lista de atividades em ATIVIDADE.dadosEntrada([id do cidadao], [retorno de sucesso], [retorno de falha])
-		// Filtrar pela data
-		// Inclui na lista se não estiver na lista de frequencia obtida pela tabela "frequencia"
 		}
-		
-		// todo: Se o usuário não for perfil_tecnico apresenta a lista de cidadãos
+		else {
+			// Obtém frequencias do usuário/cidadão (tabela "frequencia"), com status = 1, para a data selecionada 
+			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, dt_criacao " +
+								"FROM frequencia " +
+								"WHERE usuario_id = ? " +
+								"AND data_frequencia = ? " +
+								"AND cidadao_id = ? " +
+								"AND (tipo_atuacao_id = ? OR tipo_atuacao_id = ?)",
+								[USUARIO.usuario_id, data, FREQUENCIA.cidadao_id = cidadao, tipoAtuacao, ATIVIDADE.listaAtuacao_NomeVersusID["Todas"]], 
+								FREQUENCIA.listaFrequenciaSuccess, 
+								FREQUENCIA.dadosEntradaFrequenciaFail);
+		}
 	},
 
 	listaFrequenciaSuccess: function (trans, res) {
@@ -80,13 +127,14 @@
 		// testes retirar
 		
 		// Obtém lista de atividades para cidadãos
+		FREQUENCIA.auxCounter = 0;
 		FREQUENCIA.obtemListaAtividades();
 	},
 	
 	obtemListaAtividades: function () {
 		console.log("obtemListaAtividades");
 		
-		ATIVIDADE.dadosEntrada(CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id, 
+		ATIVIDADE.dadosEntrada(FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id : FREQUENCIA.cidadao_id, 
 							   FREQUENCIA.listaAtividadesSuccess,
 							   FREQUENCIA.dadosEntradaFrequenciaFail);
 	},
@@ -99,16 +147,17 @@
 			// Filtra pela data
 			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData), new Date(FREQUENCIA.auxData));
 			
+			/*
 			// todo: testes retirar
 			console.log("Quantidade: " + jsonAtividades.length);
 			console.log(jsonAtividades);
 			// testes retirar
-			
-			alert("Cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id);
+			*/
 			
 			// todo: Adiciona na lista de frequencias, considerando atividades já presentes (na lista)
 			for (var j = 0; j < jsonAtividades.length; j++) {
 				
+				/*
 				// todo: testes retirar
 				var Print = "Dados do JSON\r\n";
 				Print += "\tJSON " + j + "\r\n";
@@ -116,7 +165,7 @@
 				Print += "\tTítulo: " + jsonAtividades[j].title + "\r\n";
 				console.log(Print);
 				// testes retirar
-				
+				*/
 				encontrou = false;
 				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++) {
 					if (FREQUENCIA.listaFrequencia[i].id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
@@ -129,23 +178,9 @@
 					continue;
 				}
 				
-				// todo: testes retirar
-				console.log("1");
-				// testes retirar
-
 				// Adiciona na lista
 				for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
-
-					// todo: testes retirar
-					console.log("2");
-					// testes retirar
-
 					if (jsonAtividades[j].id == i/*ATIVIDADE.listaAtividades[i].id*/) {
-
-						// todo: testes retirar
-						console.log("3");
-						// testes retirar
-
 						// Encontrou a atividade, insere na lita de frequencias
 						var dt = {
 							id: null,
@@ -164,7 +199,7 @@
 				}
 				
 				// todo: testes retirar
-				var Print = "Frequências por atividades do cidadão: \r\n";
+				var Print = "Total de frequência para o cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id + "\r\n";
 				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
 				{
 					Print += "Frequência " + i + ":\r\n";
@@ -184,7 +219,7 @@
 		}
 		
 		// Há mais cidadãos na lista do usuário
-		if (FREQUENCIA.auxCounter < CIDADAO.listaCidadaosDados.length) {
+		if ((FREQUENCIA.cidadao_id == null) && (FREQUENCIA.auxCounter < CIDADAO.listaCidadaosDados.length)) {
 			FREQUENCIA.obtemListaAtividades();
 		}
 		else {
@@ -200,6 +235,21 @@
 		console.log("montaFrequencia");
 		
 		// todo: Percorre a lista de frequencias, cria HTML e insere
+		switch (FREQUENCIA.abas[FREQUENCIA.auxCounterII++]) {
+			case "Saúde":
+				// todo: Aba Saúde
+				break;
+			case "Trabalho":
+				// todo: Aba Trabalho
+				break;
+			case "Social":
+				// todo: Aba Social
+				break;
+		}
+		
+		if (FREQUENCIA.auxCounterII < FREQUENCIA.abas.length) {
+			FREQUENCIA.dadosEntrada(FREQUENCIA.auxData, FREQUENCIA.cidadao_id, FREQUENCIA.cbSuccess_f, FREQUENCIA.cbFail_f);
+		}
 	},
 	
 	dadosEntradaFrequenciaFail: function (err) {
@@ -212,9 +262,9 @@
 		FREQUENCIA.cbFail_f(err);
 	},
 	
-    // ****************** Salva informações complementares *********************
-    salvaInfoComple: function(info, cbSuccess, cbFail) {
-	    console.log("salvaInfoComple");
+    // ****************** Salva frequência *********************
+    salvaFrequencia: function(info, cbSuccess, cbFail) {
+	    console.log("salvaFrequencia");
 
 		// Salva funções de retorno
 		FREQUENCIA.cbSuccess_f = cbSuccess;
@@ -222,18 +272,18 @@
 
 		// Atualiza
 		BANCODADOS.sqlCmdDB("UPDATE cidadao SET informacoes_complementares = ? WHERE cidadao_id = ?",
-							[FREQUENCIA.infoComplementares = info, FREQUENCIA.cidadao_id], FREQUENCIA.salvaInfoCompleSuccess, FREQUENCIA.salvaInfoCompleFail);
+							[FREQUENCIA.infoComplementares = info, FREQUENCIA.cidadao_id], FREQUENCIA.salvaFrequenciaSuccess, FREQUENCIA.salvaFrequenciaFail);
 	},
 	
-	salvaInfoCompleSuccess: function (trans, res) {
-		console.log("salvaInfoCompleSuccess");
+	salvaFrequenciaSuccess: function (trans, res) {
+		console.log("salvaFrequenciaSuccess");
 		
 		// Retorna
 		FREQUENCIA.cbSuccess_f();
 	},
 	
-	salvaInfoCompleFail: function (err) {
-		console.log("salvaInfoCompleFail");
+	salvaFrequenciaFail: function (err) {
+		console.log("salvaFrequenciaFail");
 		
 		// Retorna
 		FREQUENCIA.cbFail_f(err);
