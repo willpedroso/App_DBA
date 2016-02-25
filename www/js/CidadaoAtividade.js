@@ -364,6 +364,10 @@
 	montaCalendario: function (lstart, lend) {
 		console.log("montaCalendario");
 		
+		// todo: testes retirar
+		console.log("\r\nSTART = " + lstart + " - END = " + lend + "\r\n");
+		// testes retirar
+		
 		// Monta json para o fullcalendar
 		var hoje = new Date();
 		var jsonFullCalendar = [];

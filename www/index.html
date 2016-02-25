@@ -20,8 +20,9 @@
    
    
    
-<html>
+<html lang="pt-br">
   <head>
+    <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,9 +87,18 @@
   <!--   <div class="container "> -->
       <!-- inicio menu topo -->
       <div id="div_header" class="divHeader hideme">
+        <div class="divNav">
+          <!--<button class="button_back" onclick="btnVoltar()"><img src="img/icoPagPrev.png"></button>-->
+          <div class="logo">
+            <div style="width: 86px; margin: 0 auto;">
+              <img src="img/logo.png">
+            </div>
+          </div>
+          <button class="button_aba" id="bt_aba"><img src="img/icoMenuFico.png"></button>
+        </div>
         <div class="divMenu">
-          <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu();">CIDADÃOS</button>
-          <button id="bt_frequencia" onclick="PageManager.loadTmpl('div_frequencia');">FREQUENCIA</button>
+          <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu(); fechaficha();">CIDADÃOS</button>
+          <button id="bt_frequencia" onclick="PageManager.loadTmpl('div_frequencia'); fechaficha();">FREQUÊNCIA</button>
         </div>
       </div>
       <!-- fim menu topo -->
@@ -104,9 +114,9 @@
                   <p>Atenção! Verifique os campos.</p>
                 </div>
                 <form id="formLogin" method="post">
-                    <input type="text" name="user" id="user" class="usuario" placeholder="Login">
+                    <input type="tel" name="user" id="user" class="usuario" placeholder="CPF">
                     <input type="password" name="pass" id="pass" class="senha" placeholder="Senha">
-                    <input onclick="btLogin($('input[type=text]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
+                    <input onclick="btLogin($('input[type=tel]#user').val(), $('input[type=password]#pass').val());" type="button"  value="Entrar" id="bt_login" class="btnEntrar">
                     <!--<input onclick="console.log('clk');PageManager.loadTmpl('div_busca_inicio');hideTela('#div_login');showTela('#container_abas');showTela('#div_header');" type="button"  value="Entrar" id="bt_login" class="btnEntrar">-->
                 </form>
               </div>
@@ -115,9 +125,9 @@
         </div>
       </div>
       <!-- fim tela login -->
-      <div id="container_abas" class="container_hide hideme">
+      <div id="container_abas" class="container_hide">
         <!--ABAS-->
-        <div id="div_abas" class="menuAbas">
+        <div id="div_abas" class="menuAbas div_hide">
           <div id="menu_abas" class="showme">
 <!--            <ul class="">
 <!--              <li class="active" onclick="console.log('Identificacao');PageManager.loadTmpl('identificacao'); abas();">Identificação</li>
@@ -136,7 +146,6 @@
 <!--              <li class="active">Historico de alterações</li>
 <!--            </ul>-->
           </div>
-           <button class="button_aba rotacao fl_left" id="bt_aba" >ABAS</button>
         </div>
       </div>  
         

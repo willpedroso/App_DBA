@@ -8,9 +8,9 @@ $( document ).ready(function() {
   $('#bt_aba').click(function() {
     console.log('clique aba');
     $('#menu_abas').toggleClass('showme');
+    $('#div_abas').toggleClass('div_show');
     $('#container_abas').toggleClass('container_show');
  });    
-
 
 
 // navega entre da tela frequencia a cidadao

@@ -1,7 +1,21 @@
 // JavaScript Document
 $(document).ready(function(){
-	
+ var flag = "1";
+$('#bt_aba').click(function(event){
+  flag = "0"; //flag 0 means click happened in the area where we should not do any action
+});
 
+$('html').click(function() {
+  if(flag != "0"){
+    $('#menu_abas').removeClass('showme');
+    $('#container_abas').removeClass('container_show');
+    $('#div_abas').removeClass('div_show');
+    console.log('clique fora');
+   }
+  else{
+   flag = "1";
+   }
+});
   /* FIM - RADIO SITUACAO CADASTRAL */
   
   
@@ -631,8 +645,8 @@ function adicionaCertidao(nome_certidao) {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+ nomeCertidao +'" name="input_'+idobj+'" class="inputAdicionaCertidaoSelect" readonly id="input_'+idobj+'">'+
-//		'<input type="text" value="'+$(".selectCertidao").text()+'" name="input_'+idobj+'" class="inputAdicionaCertidaoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ nomeCertidao +'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
+//		'<input type="text" value="'+$(".selectCertidao").text()+'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$("#tipo_certidao_id").val()+'" name="tipo_certidao_id[]">'+
 		'<input type="text" value="'+$(".adicionaObsCertidao").val()+'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaObsCertidao").val()+'" name="numero_certidao[]">'+
@@ -655,7 +669,7 @@ function adicionaProvidencia() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
@@ -685,8 +699,8 @@ function adicionaContatoEmpresa(nome_dispositivo_contato) {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		//'<input type="text" value="'+$("#tipoDispositivoEmpresa")[0].options[$("#tipoDispositivoEmpresa")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresaSelect" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresaSelect" readonly id="input_'+idobj+'">'+
+		//'<input type="text" value="'+$("#tipoDispositivoEmpresa")[0].options[$("#tipoDispositivoEmpresa")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
 		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_empresa_id").val()+'" name="tipo_dispositivo_contato_empresa_id[]">'+
 		'<input type="text" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="numero_descricao_empresa[]">'+
@@ -719,8 +733,8 @@ function adicionaContato (nome_dispositivo_contato) {
 		
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		//'<input type="text" value="'+$("#tipoDispositivoContato")[0].options[$("#tipoDispositivoContato")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		//'<input type="text" value="'+$("#tipoDispositivoContato")[0].options[$("#tipoDispositivoContato")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_id").val()+'" name="tipo_dispositivo_contato_id[]">'+
 		'<input type="text" value="'+$(".adicionaNumContato").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumContato").val()+'" name="numero_descricao[]">'+
@@ -750,7 +764,7 @@ function adicionaDocumento (nome_documento) {
 	}
 	else{
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+ nomeDocumento +'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ nomeDocumento +'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		'<input type="text" value="'+$(".adicionaNumDocumento").val()+'" name="input_'+idobj+'" class="inputGrande" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumDocumento").val()+'" name="numeroDocumentoLabel[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
@@ -921,7 +935,7 @@ function adicionaInternacao() {
 	var idobj =  d.getTime();
 	
 	var html2insert ='<div id="div'+idobj+'">'+
-	'<input type="text" value="'+$(".adicionaQuantasVezesInternado").val()+'" name="quantidade_internacao[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+	'<input type="text" value="'+$(".adicionaQuantasVezesInternado").val()+'" name="quantidade_internacao[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 	'<input type="text" value="'+$(".adicionaLocalInternacao").val()+'" name="local_internacao[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 	'<textarea name="motivo_internacao[]" class="textareaAdicionaInternacao " readonly id="input_'+idobj+'">' + $(".textareaMotivoInternacao").val() + '</textarea>'+
 	'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
@@ -942,7 +956,7 @@ function adicionaAcompanhamentoUBS() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaQualUbsSaude").val()+'" name="nome_ubs[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualUbsSaude").val()+'" name="nome_ubs[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<input type="text" value="'+$(".adicionaTecnicoReferenciaUbsSaude").val()+'" name="tecnico_referencia_ubs[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<textarea name="especialidade_ubs[]" class="textareaAdicionaEspecialidadeUbs " readonly id="input_'+idobj+'">' + $(".textareaEspecialidadeUbsSaude").val() + '</textarea>'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
@@ -1057,6 +1071,9 @@ function infoRep(){
 function abas(){
     $('#menu_abas').toggleClass('showme');
     $('#container_abas').toggleClass('container_show');
+    $('#ficha-statica').addClass('showme');
+	$('#ficha-statica').removeClass('hideme');
+	$('.msgParabens, .msgErro, .msgAtencao').hide;
 }
 function abasmenu(){
 	if($('#menu_abas').hasClass('showme')){
@@ -1068,7 +1085,10 @@ function abasmenu(){
 	}
     
 }  
-
+function fechaficha(){
+	$('#ficha-statica').removeClass('showme');
+	$('#ficha-statica').addClass('hideme');
+}
 function exibePeriodo(){
 	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){
 		console.log("exibe");
@@ -1840,3 +1860,10 @@ function quaisProcurouProgramaPmspf()
 //  });
 }
 /* FIM - quaisProcurouProgramaPmsp */
+
+/* VOLTAR */
+function btnVoltar()
+{
+	jQuery("#div_atividades_add").hide();
+	jQuery("#div_atividades").show();
+}

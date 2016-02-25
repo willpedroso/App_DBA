@@ -103,27 +103,26 @@ function carregaSaude () {
 	auxVar = CIDADAOSAUDE.dadosSaude.como_chegou_situacao_rua;
 	$("#como_chegou_situacao_rua").val(auxVar == null ? "" : auxVar);
 	
-	var opts = "<span class='titSang'>Por quanto tempo permaneceu em situação de rua:</span>" + 
-			   "<select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasRua'><select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasLabel' for='dias_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaMesesRua'><select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesLabel' for='meses_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosRua'><select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosLabel' for='anos_situacao_rua'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosRua").empty();
 	$("#listaDiasMesesAnosRua").append(opts);
@@ -219,13 +218,12 @@ function carregaSaude () {
 	}
 
 	// UF onde reside a família
-	var opts = "<label class='selectDefault'><span class='titSang'>UF onde reside sua família:</span>" + 
-			   "<select name='estadoNomeLabel' id='estadoNomeLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<span class='titLabel'>UF onde reside sua família:</span><div class='comboStilo selectInicial'><select name='estadoNomeLabel' id='estadoNomeLabel' class='selectPersonalizado'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSAUDE.listaEstados.length; i++) {
 		opts += "<option value='" + CIDADAOSAUDE.listaEstados[i].id + "' data-id='estadoNomeLabel' for='tipo_estado_id'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.tipo_estado_id == CIDADAOSAUDE.listaEstados[i].id) ? " selected>" : ">") + CIDADAOSAUDE.listaEstados[i].sigla + " - " + CIDADAOSAUDE.listaEstados[i].nome + "</option>";
 	}
-	opts += "</div></select></label>";
+	opts += "</select></div>";
 	
 	$("#listaEstadosFamiliaReside").empty();
 	$("#listaEstadosFamiliaReside").append(opts);
@@ -260,27 +258,26 @@ function carregaSaude () {
 	}
 	
 	// Uso de drogas
-	var opts = "<span class='titSang'>Há quanto tempo?</span>" + 
-			   "<select name='diaDrogasFazUsoLabel' id='diaDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasUsoDrogas'> <select name='diaDrogasFazUsoLabel' id='diaDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diaDrogasFazUsoLabel' for='dias_dorgas_faz_uso'>";
 		opts += i + (i == 1 ? " dia" : " dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesDrogasFazUsoLabel' id='mesesDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaMesesUsoDrogas'><select name='mesesDrogasFazUsoLabel' id='mesesDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesDrogasFazUsoLabel' for='meses_dorgas_faz_uso'>";
 		opts += i + (i == 1 ? " mês" : " meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosDrogasFazUsoLabel' id='anosDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosUsoDrogas'><select name='anosDrogasFazUsoLabel' id='anosDrogasFazUsoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosDrogasFazUsoLabel' for='anos_dorgas_faz_uso'>";
 		opts += i + (i == 1 ? " ano" : " anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosUsoDrogas").empty();
 	$("#listaDiasMesesAnosUsoDrogas").append(opts);
@@ -349,27 +346,26 @@ function carregaSaude () {
 	}
 		
 	// Há quanto tempo usa crack
-	var opts = "<span class='titSang'>Há quanto tempo usa crack:</span>" + 
-			   "<select name='diasFazUsoCrackLabel' id='diasFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasFazUsoCrack'><select name='diasFazUsoCrackLabel' id='diasFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasFazUsoCrackLabel' for='dias_faz_uso_crack'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesFazUsoCrackLabel' id='mesesFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaMesesFazUsoCrack'><select name='mesesFazUsoCrackLabel' id='mesesFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesFazUsoCrackLabel' for='meses_faz_uso_crack'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosFazUsoCrackLabel' id='anosFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosFazUsoCrack'><select name='anosFazUsoCrackLabel' id='anosFazUsoCrackLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosFazUsoCrackLabel' for='anos_faz_uso_crack'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_faz_uso_crack == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosFazUsoCrack").empty();
 	$("#listaDiasMesesAnosFazUsoCrack").append(opts);
@@ -443,27 +439,26 @@ function carregaSaude () {
 		$("input[name='infoUsoDrogasInjetaveis'][value='Não Informado']").prop("checked", true);
 	}
 	drogasAlemCrackf();
-	var opts = "<span class='titSang'>Quanto tempo:</span>" + 
-			   "<select name='diasUsoDrogasInjetaveisLabel' id='diasUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasDrogasInjetaveis'><select name='diasUsoDrogasInjetaveisLabel' id='diasUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasUsoDrogasInjetaveisLabel' for='dias_uso_drogas_injetaveis'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesUsoDrogasInjetaveisLabel' id='mesesUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaDMesesDrogasInjetaveis'><select name='mesesUsoDrogasInjetaveisLabel' id='mesesUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesUsoDrogasInjetaveisLabel' for='meses_uso_drogas_injetaveis'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosUsoDrogasInjetaveisLabel' id='anosUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosDrogasInjetaveis'><select name='anosUsoDrogasInjetaveisLabel' id='anosUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosUsoDrogasInjetaveisLabel' for='anos_uso_drogas_injetaveis'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_uso_drogas_injetaveis == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosDrogasInjetaveis").empty();
 	$("#listaDiasMesesAnosDrogasInjetaveis").append(opts);
@@ -482,27 +477,26 @@ function carregaSaude () {
 		$("input[name='infoAbstinenciaAposPrograma'][value='Não Informado']").prop("checked", true);
 	}
 	abstinenciaAposPrograma();
-	var opts = "<span class='titSang'>Quanto tempo:</span>" + 
-			   "<select name='diasAbstinenciaAposProgramaLabel' id='diasAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasAbstinente'><select name='diasAbstinenciaAposProgramaLabel' id='diasAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasAbstinenciaAposProgramaLabel' for='dias_abstinencia_apos_programa'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesAbstinenciaAposProgramaLabel' id='mesesAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaMesesAbstinente'><select name='mesesAbstinenciaAposProgramaLabel' id='mesesAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesAbstinenciaAposProgramaLabel' for='meses_abstinencia_apos_programa'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosAbstinenciaAposProgramaLabel' id='anosAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosAbstinente'><select name='anosAbstinenciaAposProgramaLabel' id='anosAbstinenciaAposProgramaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosAbstinenciaAposProgramaLabel' for='anos_abstinencia_apos_programa'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_abstinencia_apos_programa == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosAbstinente").empty();
 	$("#listaDiasMesesAnosAbstinente").append(opts);
@@ -1004,27 +998,26 @@ function carregaSaude () {
 	}
 	
 	// Tempo de abstinência
-	var opts = "<span class='titSang'>Há quanto tempo tem se mantido abstinente:</span>" + 
-			   "<select name='diasMantidoAbstinenciaLabel' id='diasMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='listaDiasAbstinencia'><select name='diasMantidoAbstinenciaLabel' id='diasMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasMantidoAbstinenciaLabel' for='dias_mantido_abstinencia'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.dias_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " dia" : " dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesMantidoAbstinenciaLabel' id='mesesMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaMesesAbstinencia'><select name='mesesMantidoAbstinenciaLabel' id='mesesMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesMantidoAbstinenciaLabel' for='meses_mantido_abstinencia'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.meses_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " mês" : " meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosMantidoAbstinenciaLabel' id='anosMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='listaAnosAbstinencia'><select name='anosMantidoAbstinenciaLabel' id='anosMantidoAbstinenciaLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosMantidoAbstinenciaLabel' for='anos_mantido_abstinencia'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.anos_mantido_abstinencia == i) ? " selected>" : ">") + i + (i == 1 ? " ano" : " anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosAbstinencia").empty();
 	$("#listaDiasMesesAnosAbstinencia").append(opts);

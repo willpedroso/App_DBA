@@ -61,6 +61,24 @@
 			FREQUENCIA.listaFrequencia.push(dt);
 		}
 		
+		// todo: testes retirar
+		var Print = "Frequências na tabela frequencia: \r\n";
+		for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
+		{
+			Print += "Frequência " + i + ":\r\n";
+			Print += "\tid: " + FREQUENCIA.listaFrequencia[i].id + "\r\n";
+			Print += "\tcidadao_id: " + FREQUENCIA.listaFrequencia[i].cidadao_id + "\r\n";
+			Print += "\tatividade_id: " + FREQUENCIA.listaFrequencia[i].atividade_id + "\r\n";
+			Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequencia[i].tipo_atuacao_id + "\r\n";
+			Print += "\tusuario_id: " + FREQUENCIA.listaFrequencia[i].usuario_id + "\r\n";
+			Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequencia[i].data_frequencia + "\r\n";
+			Print += "\tfrequencia: " + FREQUENCIA.listaFrequencia[i].frequencia + "\r\n";
+			Print += "\tjustificativa: " + FREQUENCIA.listaFrequencia[i].justificativa + "\r\n";
+			Print += "\tdt_criacao: " + FREQUENCIA.listaFrequencia[i].dt_criacao + "\r\n";
+		}
+		console.log(Print);
+		// testes retirar
+		
 		// Obtém lista de atividades para cidadãos
 		FREQUENCIA.obtemListaAtividades();
 	},
@@ -79,15 +97,29 @@
 		var encontrou;
 		if (ATIVIDADE.listaAtividades.length > 0) {
 			// Filtra pela data
-			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData) * 1000, new Date(FREQUENCIA.auxData) * 1000);
+			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData), new Date(FREQUENCIA.auxData));
+			
+			// todo: testes retirar
+			console.log("Quantidade: " + jsonAtividades.length);
 			console.log(jsonAtividades);
+			// testes retirar
+			
 			alert("Cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id);
 			
 			// todo: Adiciona na lista de frequencias, considerando atividades já presentes (na lista)
 			for (var j = 0; j < jsonAtividades.length; j++) {
+				
+				// todo: testes retirar
+				var Print = "Dados do JSON\r\n";
+				Print += "\tJSON " + j + "\r\n";
+				Print += "\tID: " + jsonAtividades[j].id + "\r\n";
+				Print += "\tTítulo: " + jsonAtividades[j].title + "\r\n";
+				console.log(Print);
+				// testes retirar
+				
 				encontrou = false;
 				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++) {
-					if (FREQUENCIA.listaFrequencia[i].id == jsonAtividade[j].id) {
+					if (FREQUENCIA.listaFrequencia[i].id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
 						// Atividade já está presente na lista
 						encontrou = true;
 						break;
@@ -97,17 +129,31 @@
 					continue;
 				}
 				
+				// todo: testes retirar
+				console.log("1");
+				// testes retirar
+
 				// Adiciona na lista
 				for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
-					if (jsonAtividade[j].id = ATIVIDADE.listaAtividades[i].id) {
+
+					// todo: testes retirar
+					console.log("2");
+					// testes retirar
+
+					if (jsonAtividades[j].id == i/*ATIVIDADE.listaAtividades[i].id*/) {
+
+						// todo: testes retirar
+						console.log("3");
+						// testes retirar
+
 						// Encontrou a atividade, insere na lita de frequencias
 						var dt = {
 							id: null,
-							cidadao_id: ATIVIDADE.listaAtividades[i].cidadao_id,
-							atividade_id: ATIVIDADE.listaAtividades[i].atividade_id,
+							cidadao_id: CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id,
+							atividade_id: ATIVIDADE.listaAtividades[i].id,
 							tipo_atuacao_id: ATIVIDADE.listaAtividades[i].tipo_atuacao_id,
-							usuario_id: ATIVIDADE.listaAtividades[i].usuario_id,
-							data_frequencia: ATIVIDADE.listaAtividades[i].data_frequencia,
+							usuario_id: USUARIO.usuario_id,
+							data_frequencia: null,			// todo: o que representa esta data?
 							frequencia: null,
 							justificativa: null,
 							dt_criacao: null,
@@ -116,6 +162,24 @@
 						break;
 					}
 				}
+				
+				// todo: testes retirar
+				var Print = "Frequências por atividades do cidadão: \r\n";
+				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
+				{
+					Print += "Frequência " + i + ":\r\n";
+					Print += "\tid: " + FREQUENCIA.listaFrequencia[i].id + "\r\n";
+					Print += "\tcidadao_id: " + FREQUENCIA.listaFrequencia[i].cidadao_id + "\r\n";
+					Print += "\tatividade_id: " + FREQUENCIA.listaFrequencia[i].atividade_id + "\r\n";
+					Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequencia[i].tipo_atuacao_id + "\r\n";
+					Print += "\tusuario_id: " + FREQUENCIA.listaFrequencia[i].usuario_id + "\r\n";
+					Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequencia[i].data_frequencia + "\r\n";
+					Print += "\tfrequencia: " + FREQUENCIA.listaFrequencia[i].frequencia + "\r\n";
+					Print += "\tjustificativa: " + FREQUENCIA.listaFrequencia[i].justificativa + "\r\n";
+					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequencia[i].dt_criacao + "\r\n";
+				}
+				console.log(Print);
+				// testes retirar
 			}
 		}
 		
@@ -136,7 +200,8 @@
 		console.log("montaFrequencia");
 		
 		// todo: Percorre a lista de frequencias, cria HTML e insere
-	}
+	},
+	
 	dadosEntradaFrequenciaFail: function (err) {
 		console.log("dadosEntradaFrequenciaFail");
 		

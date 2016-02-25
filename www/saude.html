@@ -39,12 +39,12 @@
             
               <div id="ubsAcompanhamentoCadasdtro" style="display:block"> 
                 <div class="linhaForm alinhaObsProv">
-                  <input type="text" class="inputGrande adicionaQualUbsSaude" value="" id="inputteste" placeholder="Nome da UBS">
-                  <input type="text" class="inputGrande adicionaTecnicoReferenciaUbsSaude" value="" placeholder="Técnico de referência">
+                  <input type="text" class="inputMedio adicionaQualUbsSaude" value="" id="inputteste" placeholder="Nome da UBS">
+                  <input type="text" class="inputMedio adicionaTecnicoReferenciaUbsSaude" value="" placeholder="Técnico de referência">
                   
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputUbs" value="Adicionar">
                 </div>
-                <textarea rows="4" cols="50" class="textareaEspecialidadeUbsSaude" placeholder="Especialidades"></textarea>
+                <textarea rows="4" cols="50" class="textareaEspecialidadeUbsSaude inputTextArea" placeholder="Especialidades"></textarea>
                 <div class="adicionaInputUbsSaude"></div>
               </div>
               
@@ -68,9 +68,9 @@
             
               <div class="linhaForm" id="tipoFrequenciaCaps"> 
                 <label class="selectDefault">
-                  <span class="titSang">Quantas vezes por semana frequenta o serviço ou recebe atendimento no território (Caps na Rua):</span>
+                  <span class="titLabel">Quantas vezes por semana frequenta o serviço ou recebe atendimento no território (Caps na Rua):</span>
 
-                  <div id="listaTiposFrequenciaCaps" class="comboStilo"> 
+                  <div id="listaTiposFrequenciaCaps" class="comboStilo selectInicial"> 
 
                   </div>
                 </label>
@@ -96,12 +96,12 @@
               
               <div id="internacao"> 
                 <div class="linhaForm alinhaObsProv">
-                  <input type="text" class="inputGrande adicionaQuantasVezesInternado" value="" id="inputteste" placeholder="Quantas vezes">
-                  <input type="text" class="inputGrande adicionaLocalInternacao" value="" placeholder="Local da internação">
+                  <input type="text" class="inputMedio adicionaQuantasVezesInternado" value="" id="inputteste" placeholder="Quantas vezes">
+                  <input type="text" class="inputMedio adicionaLocalInternacao" value="" placeholder="Local da internação">
                   
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputInternacao" value="Adicionar">
                 </div>
-                <textarea rows="4" cols="50" class="textareaMotivoInternacao" placeholder="Motivo da internação"></textarea>
+                <textarea rows="4" cols="50" class="textareaMotivoInternacao inputTextArea" placeholder="Motivo da internação"></textarea>
                 <div class="adicionaInputInternacao">
 
                 </div>
@@ -113,7 +113,8 @@
               </div>
               
               <div class="linhaForm"> 
-                  <div class="comboStilo" id="listaDiasMesesAnosRua">
+                  <span class='titLabel'>Por quanto tempo permaneceu em situação de rua:</span>
+                  <div id="listaDiasMesesAnosRua">
 
 				  </div>
               
@@ -218,9 +219,8 @@
               </div>
               
               <div class="linhaForm"> 
-                <label class="selectDefault alinhaLeftSelect">
-                <div class="comboStilo"> 
-                  <span class="titSang">Telefone de algum familiar:</span> 
+                <span class="titLabel">Telefone de algum familiar:</span> 
+                <div class="comboStilo selectInicial"> 
 				  <!--
                   <select name="tipoParentescoLabel" id="tipoParentescoLabel" class="selectPersonalizado">
                   <select name="tipoParentescoLabelSelect" id="tipoParentescoLabelSelect" class="selectPersonalizado">
@@ -229,9 +229,8 @@
 
                   </select>
                 </div>
-                </label>
                 <div class="linhaForm alinhaObsCert">
-                  <input type="text" class="inputGrande adicionaNumContatoFamiliar" value="" id="numeroContatoFamiliarLabel" placeholder="Número">
+                  <input type="text" class="inputMedio adicionaNumContatoFamiliar" value="" id="numeroContatoFamiliarLabel" placeholder="Número">
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoFamiliar" value="Adicionar">
                 </div>
                 <div class="adicionaInputContatoFamiliar">
@@ -245,18 +244,17 @@
         <!--INICIO - SEGUNDO BLOCO-->
         <div class="contentAbaBorda">
           
-            <label class="selectDefault lblUso">
               <div class="comboStilo"> 
-                <span class="titSang">De quais drogas você faz uso:</span>
-                <input type="text" class="inputGrande adicionaDrogas" value="" id="inputteste" placeholder="Qual droga">
+                <span class="titLabel">De quais drogas você faz uso:</span>
+                <input type="text" class="inputMedio adicionaDrogas" value="" id="inputteste" placeholder="Qual droga">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogas" value="Adicionar">
               </div>
-            </label>
-            <label class="selectDefault">
-              <div class="comboStilo" id="listaDiasMesesAnosUsoDrogas"> 
+            <div class="linhaForm">
+			  <span class='titLabel'>Há quanto tempo?</span>
+              <div id="listaDiasMesesAnosUsoDrogas"> 
 
               </div>
-            </label>
+            </div>
             <div class="adicionaInputDrogas">
 
             </div>
@@ -323,7 +321,8 @@
         
           <div class="linhaForm"> 
             <label class="selectDefault">
-              <div class="comboStilo" id="listaDiasMesesAnosFazUsoCrack">
+              <span class='titLabel'>Há quanto tempo usa crack:</span>
+              <div id="listaDiasMesesAnosFazUsoCrack">
 
               </div>
             </label>
@@ -332,7 +331,7 @@
           <div class="linhaForm"> 
             
             <label class="selectDefault">
-              <span class="titSang">Quantas pedras de crack você utilizava antes da inserção no programa:</span>
+              <span class="titLabel">Quantas pedras de crack você utilizava antes da inserção no programa:</span>
               <div class="comboStilo" id="listaNumeroPedrasAntesPrograma">
 
               </div>
@@ -341,7 +340,7 @@
           
           <div class="linhaForm"> 
             <label class="selectDefault">
-              <span class="titSang">Quantas pedras de crack usa atualmente:</span>
+              <span class="titLabel">Quantas pedras de crack usa atualmente:</span>
               <div class="comboStilo" id="listaNumeroPedrasAtualmentePrograma"> 
 
               </div>
@@ -390,7 +389,8 @@
           <div id="usoDrogasInjetaveis"> 
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo" id="listaDiasMesesAnosDrogasInjetaveis">
+                <span class='titLabel'>Quanto tempo:</span>
+                <div id="listaDiasMesesAnosDrogasInjetaveis">
 
                 </div>
               </label>
@@ -413,7 +413,8 @@
           <div id="abstinenciaAposPrograma"> 
             <div class="linhaForm"> 
               <label class="selectDefault">
-                <div class="comboStilo" id="listaDiasMesesAnosAbstinente"> 
+                <span class='titLabel'>Quanto tempo:</span>
+                <div id="listaDiasMesesAnosAbstinente"> 
 
                 </div>
               </label>
@@ -941,7 +942,7 @@
             <div class="linhaForm"> 
               <span class="titLabel">Qual especialidade:</span>
               <div class="linhaForm alinhaObsCert">
-                <input type="text" class="inputGrande adicionaEspecialidade" value="" id="especialidades">
+                <input type="text" class="inputMedio adicionaEspecialidade" value="" id="especialidades">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputEspecialidade" value="Adicionar">
               </div>
               <div class="adicionaInputEspecialidadeConsulta">
@@ -1001,8 +1002,8 @@
             <div class="linhaForm"> 
               <span class="titLabel"></span>
               <div class="linhaForm alinhaObsParticipou">
-                <input type="text" class="inputGrande adicionaQualOficina" value="" id="QualOficina" placeholder="Qual oficina">
-                <input type="text" class="inputGrande adicionaLocalOficina" value="" id="LocalOficina" placeholder="Local da oficina">
+                <input type="text" class="inputMedio adicionaQualOficina" value="" id="QualOficina" placeholder="Qual oficina">
+                <input type="text" class="inputMedio adicionaLocalOficina" value="" id="LocalOficina" placeholder="Local da oficina">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputOficinaParticiou" value="Adicionar">
               </div>
               <div class="adicionaInputOficinasParticipou">
@@ -1040,8 +1041,8 @@
             <div class="linhaForm"> 
               <span class="titLabel"></span>
               <div class="linhaForm alinhaObsParticipou">
-                <input type="text" class="inputGrande adicionaQualAtividade" value="" id="QualOficina" placeholder="Qual atividade">
-                <input type="text" class="inputGrande adicionaLocalAtividade" value="" id="LocalOficina" placeholder="Local da atividade">
+                <input type="text" class="inputMedio adicionaQualAtividade" value="" id="QualOficina" placeholder="Qual atividade">
+                <input type="text" class="inputMedio adicionaLocalAtividade" value="" id="LocalOficina" placeholder="Local da atividade">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputAtividadeParticiou" value="Adicionar">
               </div>
               <div class="adicionaInputAtividadesParticipou">
@@ -1057,7 +1058,8 @@
         
           <div class="linhaForm"> 
             <label class="selectDefault">
-              <div class="comboStilo" id="listaDiasMesesAnosAbstinencia">
+              <span class='titLabel'>Há quanto tempo tem se mantido abstinente:</span>
+              <div id="listaDiasMesesAnosAbstinencia">
 
 			  </div>
               </div>
@@ -1081,7 +1083,7 @@
             <div class="linhaForm"> 
               <span class="titLabel">Qual:</span>
               <div class="linhaForm alinhaObsCert">
-                <input type="text" class="inputGrande adicionaDrogaHoje" value="" id="droga_hoje">
+                <input type="text" class="inputMedio adicionaDrogaHoje" value="" id="droga_hoje">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogaHoje" value="Adicionar">
               </div>
               <div class="adicionaInputDrogaHoje">

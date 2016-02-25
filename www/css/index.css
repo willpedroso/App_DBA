@@ -44,8 +44,9 @@ body {
     font-size: 15px;
     padding: 13px 0 0 10px;
     width: 200px;
-    height: 60px;
+    height: 70px;
     float: left;
+    margin: 0 3px 0 0;
 }
 .selectPersonalizado{
     border: none;
