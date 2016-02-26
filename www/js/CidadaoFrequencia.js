@@ -6,82 +6,148 @@
 	listaFrequencia: [],
 	cidadao_id: null,
 	abas: [],
+	listaTiposAtuacao: [],
+	listaAtuacao_NomeVersusID: [],
+	listaTipoAtuacaoIDBusca: null,
 	
 	// Auxiliares
 	auxData: null,
 	auxCounter: null,
-	auxCounterII: null,
+	//auxCounterII: null,
 	
 	// ****************** Verifica entrada ******************************
 	iniFrequencia: function (data, cbSuccess, cbFail) {
 		console.log("iniFrequencia");
+
+		// Salva funções de retorno
+		FREQUENCIA.cbSuccess_f = cbSuccess;
+		FREQUENCIA.cbFail_f = cbFail;
+		FREQUENCIA.auxData = data;
+
+		// Tipos de atuação
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_atuacao WHERE status = ?", [1], FREQUENCIA.listaTiposAtuacaoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
+	},
+	
+	listaTiposAtuacaoSuccess: function (trans, res) {
+		console.log("listaTiposAtuacaoSuccess");
 		
-		FREQUENCIA.auxCounterII = 0;
-		if (USUARIO.perfil_tecnico == false) {		// todo: mudar para true
+		// Salva tipos de atuação
+		FREQUENCIA.listaTiposAtuacao = [];
+		for (var i = 0; i < res.rows.length; i++) {
+			var lta = {
+				id: res.rows.item(i).id,
+				nome: res.rows.item(i).nome,
+				status: res.rows.item(i).status,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			FREQUENCIA.listaTiposAtuacao.push(lta);
+		}
+		
+		// todo: testes retirar
+		var Print = "Tipos de Atuação" + "\r\n";
+		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
+			Print += "TIPO DE ATUAÇÃO: " + i + "\r\n";
+			Print += "Id: " + FREQUENCIA.listaTiposAtuacao[i].id + "\r\n";
+			Print += "Nome: " + FREQUENCIA.listaTiposAtuacao[i].nome + "\r\n";
+			Print += "Status: " + FREQUENCIA.listaTiposAtuacao[i].status + "\r\n";
+			Print += "Data de criação: " + FREQUENCIA.listaTiposAtuacao[i].dt_criacao + "\r\n";
+			Print += "\r\n";
+		}
+		console.log (Print);
+		// testes retirar
+
+		// Cria lista de nome x id para tipos de atuação
+		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
+			if (FREQUENCIA.listaTiposAtuacao[i].status == 1) {
+				FREQUENCIA.listaAtuacao_NomeVersusID[FREQUENCIA.listaTiposAtuacao[i].nome] = FREQUENCIA.listaTiposAtuacao[i].id;
+			}
+		}
+		
+		// todo: testes retirar
+		var Print = "Tipos de Atuação - Nome Versus ID" + "\r\n";
+		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
+			Print += "ID de " + FREQUENCIA.listaTiposAtuacao[i].nome + ": " + FREQUENCIA.listaAtuacao_NomeVersusID[FREQUENCIA.listaTiposAtuacao[i].nome] + "\r\n";
+		}
+		console.log (Print);
+		// testes retirar
+
+		//FREQUENCIA.auxCounterII = 0;
+		FREQUENCIA.listaTipoAtuacaoIDBusca = "AND (";
+		if (USUARIO.perfil_tecnico == true) {
 			var i = 0;
 			var perfil = USUARIO.perfil_codigo;
+			FREQUENCIA.abas = [];
 			do {
 				switch (perfil) {
 				case "TSAU":
-					abas.push("Saúde");
+					FREQUENCIA.abas.push("Saúde");
+					FREQUENCIA.listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + " ";
 					break;
 				case "TTRA":
-					abas.push("Trabalho");
+					FREQUENCIA.abas.push("Trabalho");
+					FREQUENCIA.listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + " ";
 					break;
 				case "TSOC":
-					abas.push("Social");
+					FREQUENCIA.abas.push("Social");
+					FREQUENCIA.listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + " ";
 					break;
 				}
 			} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);		
-		
-			FREQUENCIA.dadosEntrada(data, null, cbSuccess, cbFail);
+			FREQUENCIA.listaTipoAtuacaoIDBusca += ")";
+			
+			FREQUENCIA.dadosEntrada(null);
 		}
 		else {
 			// O usuário não possui perfil_tecnico, apresenta a lista de cidadãos do usuário
-			abas.push("Saúde");
-			abas.push("Trabalho");
-			abas.push("Social");
+			FREQUENCIA.abas.push("Saúde");
+			FREQUENCIA.abas.push("Trabalho");
+			FREQUENCIA.abas.push("Social");
+			FREQUENCIA.listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + " ";
+			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + " ";
+			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + " ";
+			FREQUENCIA.listaTipoAtuacaoIDBusca += ")";
 			
 			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
-				// Monta a lista de cidadãos e insere no HTML
+				// todo: Monta a lista de cidadãos e insere no HTML
 			}
 		}
 	},
 	
     // ****************** Obtém os dados de entrada *********************
-    dadosEntrada: function(data, cidadao, cbSuccess, cbFail) {
+    dadosEntrada: function(cidadao) {
 	    console.log("dadosEntrada");
 
-		// Salva funções de retorno
-		FREQUENCIA.cbSuccess_f = cbSuccess;
-		FREQUENCIA.cbFail_f = cbFail;
-		
-		FREQUENCIA.auxData = data;
 		FREQUENCIA.cidadao_id = null;
 		
-		var tipoAtuacao = ATIVIDADE.listaAtuacao_NomeVersusID[abas[FREQUENCIA.auxCounterII]];
+		//var tipoAtuacao = ATIVIDADE.listaAtuacao_NomeVersusID[abas[FREQUENCIA.auxCounterII]];
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
-		if (USUARIO.perfil_tecnico == false) {		// todo: mudar para true
+		if (USUARIO.perfil_tecnico == true) {
 			// Obtém frequencias do usuário (tabela "frequencia"), com status = 1, para a data selecionada 
-			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, dt_criacao " +
+			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, dt_criacao " +
 								"FROM frequencia " +
 								"WHERE usuario_id = ? " +
 								"AND data_frequencia = ? " +
-								"AND (tipo_atuacao_id = ? OR tipo_atuacao_id = ?)",
-								[USUARIO.usuario_id, data, tipoAtuacao, ATIVIDADE.listaAtuacao_NomeVersusID["Todas"]], 
+								"AND status = ? " +
+								//"AND tipo_atuacao_id = ?",
+								FREQUENCIA.listaTipoAtuacaoIDBusca,
+								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, tipoAtuacao], 
+								[USUARIO.usuario_id, FREQUENCIA.auxData, 1], 
 								FREQUENCIA.listaFrequenciaSuccess, 
 								FREQUENCIA.dadosEntradaFrequenciaFail);
 		}
 		else {
 			// Obtém frequencias do usuário/cidadão (tabela "frequencia"), com status = 1, para a data selecionada 
-			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, dt_criacao " +
+			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, dt_criacao " +
 								"FROM frequencia " +
 								"WHERE usuario_id = ? " +
 								"AND data_frequencia = ? " +
+								"AND status = ? " +
 								"AND cidadao_id = ? " +
-								"AND (tipo_atuacao_id = ? OR tipo_atuacao_id = ?)",
-								[USUARIO.usuario_id, data, FREQUENCIA.cidadao_id = cidadao, tipoAtuacao, ATIVIDADE.listaAtuacao_NomeVersusID["Todas"]], 
+								//"AND tipo_atuacao_id = ?",
+								FREQUENCIA.listaTipoAtuacaoIDBusca,
+								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao, tipoAtuacao], 
+								[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao], 
 								FREQUENCIA.listaFrequenciaSuccess, 
 								FREQUENCIA.dadosEntradaFrequenciaFail);
 		}
@@ -103,6 +169,7 @@
 				data_frequencia: res.rows.item(i).data_frequencia,
 				frequencia: res.rows.item(i).frequencia,
 				justificativa: res.rows.item(i).justificativa,
+				frequencia_livre: res.rows.item(i).frequencia_livre,
 				dt_criacao: res.rows.item(i).dt_criacao,
 			};
 			FREQUENCIA.listaFrequencia.push(dt);
@@ -121,6 +188,7 @@
 			Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequencia[i].data_frequencia + "\r\n";
 			Print += "\tfrequencia: " + FREQUENCIA.listaFrequencia[i].frequencia + "\r\n";
 			Print += "\tjustificativa: " + FREQUENCIA.listaFrequencia[i].justificativa + "\r\n";
+			Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequencia[i].frequencia_livre + "\r\n";
 			Print += "\tdt_criacao: " + FREQUENCIA.listaFrequencia[i].dt_criacao + "\r\n";
 		}
 		console.log(Print);
@@ -191,6 +259,7 @@
 							data_frequencia: null,			// todo: o que representa esta data?
 							frequencia: null,
 							justificativa: null,
+							frequencia_livre: null,
 							dt_criacao: null,
 						};
 						FREQUENCIA.listaFrequencia.push(dt);
@@ -235,20 +304,19 @@
 		console.log("montaFrequencia");
 		
 		// todo: Percorre a lista de frequencias, cria HTML e insere
-		switch (FREQUENCIA.abas[FREQUENCIA.auxCounterII++]) {
-			case "Saúde":
-				// todo: Aba Saúde
-				break;
-			case "Trabalho":
-				// todo: Aba Trabalho
-				break;
-			case "Social":
-				// todo: Aba Social
-				break;
-		}
 		
-		if (FREQUENCIA.auxCounterII < FREQUENCIA.abas.length) {
-			FREQUENCIA.dadosEntrada(FREQUENCIA.auxData, FREQUENCIA.cidadao_id, FREQUENCIA.cbSuccess_f, FREQUENCIA.cbFail_f);
+		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
+			switch (FREQUENCIA.abas[i]) {
+				case "Saúde":
+					// todo: Aba Saúde (usa tipo_atuacao_id de saúde e também tipo_atuacao_id de todas)
+					break;
+				case "Trabalho":
+					// todo: Aba Trabalho (usa tipo_atuacao_id de trabalho e também tipo_atuacao_id de todas)
+					break;
+				case "Social":
+					// todo: Aba Social (usa tipo_atuacao_id de social e também tipo_atuacao_id de todas)
+					break;
+			}
 		}
 	},
 	

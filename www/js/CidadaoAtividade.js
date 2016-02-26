@@ -333,9 +333,43 @@
 		else {
 			ATIVIDADE.cidadao_nome = res.rows.item(0).nome;
 			ATIVIDADE.cidadao_nome_social = res.rows.item(0).nome_social;
-
+			
+			// Seleção de tipo de atuação em função do perfil do usuário
+			listaTipoAtuacaoIDBusca = "AND (";
+			if (USUARIO.perfil_tecnico == true) {
+				var i = 0;
+				var perfil = USUARIO.perfil_codigo;
+				do {
+					switch (perfil) {
+					case "TSAU":
+						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
+						break;
+					case "TTRA":
+						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
+						break;
+					case "TSOC":
+						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
+						break;
+					}
+				} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+				listaTipoAtuacaoIDBusca += ")";
+			}
+			else {
+				// O usuário não possui perfil_tecnico
+				listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
+				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
+				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
+				listaTipoAtuacaoIDBusca += ")";
+			}
+		
 			// Atividades
-			BANCODADOS.sqlCmdDB("SELECT id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao FROM atividade WHERE cidadao_id = ?", [ATIVIDADE.cidadao_id], ATIVIDADE.dadosEntradaAtividadeSuccess, ATIVIDADE.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao " +
+								"FROM atividade " +
+								"WHERE cidadao_id = ? " +
+								listaTipoAtuacaoIDBusca,
+								[ATIVIDADE.cidadao_id], 
+								ATIVIDADE.dadosEntradaAtividadeSuccess, 
+								ATIVIDADE.dadosEntradaFail);
 		}
 	},
 	

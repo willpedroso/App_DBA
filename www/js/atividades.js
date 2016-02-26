@@ -62,12 +62,62 @@ function preparaListasOpt () {
 	$("#listaPontosServicos").empty();
 	$("#listaPontosServicos").append(opts);
 	
+	// ********************** lista de tipos de atuação por perfil de usuário ****************************
+	var listaTiposAtuacaoPerfilUsuario = [];
+	if (USUARIO.perfil_tecnico == true) {
+		var i = 0;
+		var perfil = USUARIO.perfil_codigo;
+		do {
+			switch (perfil) {
+			case "TSAU":
+				for (var j = 0; j < ATIVIDADE.listaTiposAtuacao.length; j++) {
+					if (ATIVIDADE.listaTiposAtuacao[i].nome == "Saúde") {
+						listaTiposAtuacaoPerfilUsuario.push (ATIVIDADE.listaTiposAtuacao[i]);
+						break;
+					}
+				}
+				break;
+			case "TTRA":
+				for (var j = 0; j < ATIVIDADE.listaTiposAtuacao.length; j++) {
+					if (ATIVIDADE.listaTiposAtuacao[i].nome == "Trabalho") {
+						listaTiposAtuacaoPerfilUsuario.push (ATIVIDADE.listaTiposAtuacao[i]);
+						break;
+					}
+				}
+				break;
+			case "TSOC":
+				for (var j = 0; j < ATIVIDADE.listaTiposAtuacao.length; j++) {
+					if (ATIVIDADE.listaTiposAtuacao[i].nome == "Social") {
+						listaTiposAtuacaoPerfilUsuario.push (ATIVIDADE.listaTiposAtuacao[i]);
+						break;
+					}
+				}
+				break;
+			}
+		} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+		if (listaTiposAtuacaoPerfilUsuario.length == ATIVIDADE.listaTiposAtuacao.length - 1) {
+			// inclui todas
+			for (var j = 0; j < ATIVIDADE.listaTiposAtuacao.length; j++) {
+				if (ATIVIDADE.listaTiposAtuacao[i].nome == "Todas") {
+					listaTiposAtuacaoPerfilUsuario.push (ATIVIDADE.listaTiposAtuacao[i]);
+					break;
+				}
+			}
+		}
+	}
+	else {
+		// Disponibiliza todos os tipos de atuação
+		listaTiposAtuacaoPerfilUsuario = ATIVIDADE.listaTiposAtuacao;
+	}
+	// ********************** lista de tipos de atuação por perfil de usuário ****************************
+	
 	// Lista de tipos de atuação
 	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
-	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
+//	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
+	for (var i = 0; i < listaTiposAtuacaoPerfilUsuario.length; i++) {
 		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
-		//opts += "<option value='" + ATIVIDADE.listaTiposAtuacao[i].id + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
-		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == ATIVIDADE.listaTiposAtuacao[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
+//		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == ATIVIDADE.listaTiposAtuacao[i].nome) ? " selected>" : ">") + ATIVIDADE.listaTiposAtuacao[i].nome + "</option>";
+		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == listaTiposAtuacaoPerfilUsuario[i].nome) ? " selected>" : ">") + listaTiposAtuacaoPerfilUsuario[i].nome + "</option>";
 	}
 	opts += "</div></select>";
 	//console.log(opts + "\r\n");
