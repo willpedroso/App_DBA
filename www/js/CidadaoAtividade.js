@@ -105,25 +105,14 @@
 		console.log (Print);
 
 		// Tipos de atuação
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_atuacao WHERE status = ?", [1], ATIVIDADE.dadosBasicosTipoAtuacaoSuccess, ATIVIDADE.dadosEntradaFail);
+		BD_DTO.tipo_atuacao_carrega(ATIVIDADE.dadosBasicosTipoAtuacaoSuccess, ATIVIDADE.dadosEntradaFail);
 	},
 	
 	dadosBasicosTipoAtuacaoSuccess: function (trans, res) {
 		console.log("dadosBasicosTipoAtuacaoSuccess");
 
 		// Salva tipos de atuação
-		while (ATIVIDADE.listaTiposAtuacao.length > 0) {
-			ATIVIDADE.listaTiposAtuacao.pop();
-		}
-		for (var i = 0; i < res.rows.length; i++) {
-			var lta = {
-				id: res.rows.item(i).id,
-				nome: res.rows.item(i).nome,
-				status: res.rows.item(i).status,
-				dt_criacao: res.rows.item(i).dt_criacao,
-			};
-			ATIVIDADE.listaTiposAtuacao.push(lta);
-		}
+		ATIVIDADE.listaTiposAtuacao = BD_DTO.tipo_atuacao_data;
 		
 		// todo: testes retirar
 		var Print = "Tipos de Atuação" + "\r\n";
@@ -132,7 +121,6 @@
 			Print += "Id: " + ATIVIDADE.listaTiposAtuacao[i].id + "\r\n";
 			Print += "Nome: " + ATIVIDADE.listaTiposAtuacao[i].nome + "\r\n";
 			Print += "Status: " + ATIVIDADE.listaTiposAtuacao[i].status + "\r\n";
-			Print += "Data de criação: " + ATIVIDADE.listaTiposAtuacao[i].dt_criacao + "\r\n";
 			Print += "\r\n";
 		}
 		console.log (Print);

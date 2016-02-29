@@ -101,8 +101,8 @@
 			//				.todo: verificar o caso do cidadão que é retirado do programa depois de pertencer a uma equipe técnica
 			//		 4. Ativo / No Programa
 			//				.uso normal
-			BANCODADOS.sqlCmdDB("SELECT cidadao_id FROM equipe_cidadao WHERE status = ?", 
-								[1], 
+			BANCODADOS.sqlCmdDB("SELECT id AS cidadao_id FROM cidadao", 
+								[], 
 								CIDADAO.dadosEntradaCidadaosSuccess, 
 								CIDADAO.dadosEntradaFail);
 		}
@@ -118,10 +118,8 @@
 	dadosEntradaCidadaosSuccess: function(trans, res) {
 		console.log("dadosEntradaCidadaosSuccess");
 		
-		// Limpa a lista de cidadãos
-		while (CIDADAO.listaCidadaosId.length > 0) {
-			CIDADAO.listaCidadaosId.pop();
-		}
+		// Limpa a listas de IDs cidadãos e IDs de equipe cidadãos
+		CIDADAO.listaCidadaosId = [];
 		for (var i = 0; i < res.rows.length; i++) {
 			CIDADAO.listaCidadaosId.push(res.rows.item(i).cidadao_id);
 		}

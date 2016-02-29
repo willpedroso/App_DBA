@@ -121,7 +121,7 @@
 		SITUACAODBA.listaMotivoInativacaoCounter = 0;
 		BANCODADOS.sqlCmdDB("DELETE FROM motivo_inativacao WHERE cidadao_id = ?",
 							[SITUACAODBA.cidadao_id],
-							SITUACAODBA.auxListaMotivoInativacao.length > 0 ? SITUACAODBA.excluiMotivoInativacaoSuccess : SITUACAODBA.salvaSituacaoDBASuccess,
+							SITUACAODBA.auxListaMotivoInativacao.length > 0 ? SITUACAODBA.excluiMotivoInativacaoSuccess : (SITUACAODBA.auxprogramaDBA == 0 && SITUACAODBA.programaDBA == 1 ? SITUACAODBA.excluiCidadaoEquipeCoordenacao : SITUACAODBA.salvaSituacaoDBASuccess),
 							SITUACAODBA.salvaSituacaoDBAFail);	
 	},
 	
@@ -134,7 +134,21 @@
 							[SITUACAODBA.auxListaMotivoInativacao[SITUACAODBA.listaMotivoInativacaoCounter++],
 							 SITUACAODBA.cidadao_id,
 							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
-							SITUACAODBA.listaMotivoInativacaoCounter < SITUACAODBA.auxListaMotivoInativacao.length ? SITUACAODBA.excluiMotivoInativacaoSuccess : SITUACAODBA.salvaSituacaoDBASuccess,
+	//						SITUACAODBA.listaMotivoInativacaoCounter < SITUACAODBA.auxListaMotivoInativacao.length ? SITUACAODBA.excluiMotivoInativacaoSuccess : SITUACAODBA.salvaSituacaoDBASuccess,
+							SITUACAODBA.listaMotivoInativacaoCounter < SITUACAODBA.auxListaMotivoInativacao.length ? SITUACAODBA.excluiMotivoInativacaoSuccess : (SITUACAODBA.auxprogramaDBA == 0 && SITUACAODBA.programaDBA == 1 ? SITUACAODBA.excluiCidadaoEquipeCoordenacao : SITUACAODBA.salvaSituacaoDBASuccess),
+							SITUACAODBA.salvaSituacaoDBAFail);
+	},
+	
+	excluiCidadaoEquipeCoordenacao: function () {
+		console.log("excluiCidadaoEquipeCoordenacao");
+		
+		// Exclui cidadão da equipe de coordenação fazendo status = 0
+		BANCODADOS.sqlCmdDB("UPDATE equipe_cidadao SET status = ? WHERE cidadao_id = ?",
+							[
+							0,
+							SITUACAODBA.cidadao_id
+							],
+							SITUACAODBA.salvaSituacaoDBASuccess, 
 							SITUACAODBA.salvaSituacaoDBAFail);
 	},
 	
@@ -158,6 +172,9 @@
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].programa_dba = SITUACAODBA.programaDBA;
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ponto_servico_id = SITUACAODBA.pontoServicoId;		
 		atualizaFichaCidadao();
+		
+		// Atualiza opções de abas
+		iniAbasUsuario(null);
 
 		// Retorna
 		SITUACAODBA.cbSuccess_f();

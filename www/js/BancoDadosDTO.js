@@ -26,8 +26,8 @@
 		}
 		else {
 			// Carrega todos os tipos de sexo
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_sexo",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_sexo WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_sexo_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -80,8 +80,8 @@
 		}
 		else {
 			// Carrega todos os pontos de serviço
-			BANCODADOS.sqlCmdDB("SELECT id, organizacao_id, tipo_servico_id, nome, descricao, cep, logradouro, complemento, status, dt_criacao FROM ponto_servico",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, organizacao_id, tipo_servico_id, nome, descricao, cep, logradouro, complemento, status, dt_criacao FROM ponto_servico WHERE status = ?",
+								[1], 
 								BD_DTO.ponto_servico_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -133,8 +133,8 @@
 		}
 		else {
 			// Carrega todos os tipos de motivo de inativação
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_motivo_inativacao",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_motivo_inativacao WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_motivo_inativacao_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -179,8 +179,8 @@
 		}
 		else {
 			// Carrega todos os tipos de frequência CAPS
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_frequencia_caps",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_frequencia_caps WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_frequencia_caps_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -225,8 +225,8 @@
 		}
 		else {
 			// Carrega todos os tipos de trabalho coletivo
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_trabalho_coletivo",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_trabalho_coletivo WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_trabalho_coletivo_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -271,8 +271,8 @@
 		}
 		else {
 			// Carrega todos os tipos onde aprendeu profissão
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_onde_aprendeu_profissao",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_onde_aprendeu_profissao WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_onde_aprendeu_profissao_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -317,8 +317,8 @@
 		}
 		else {
 			// Carrega todos os tipos comprovante conhecimento profissional
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_comprovante_conhecimento_profissional",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_comprovante_conhecimento_profissional WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_comprovante_conhecimento_profissional_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -363,8 +363,8 @@
 		}
 		else {
 			// Carrega todos os tipos ramo curso
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_ramo_curso",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_ramo_curso WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_ramo_curso_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -409,8 +409,8 @@
 		}
 		else {
 			// Carrega todos os tipos pretenção cursos
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_pretencao_cursos",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_pretencao_cursos WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_pretencao_cursos_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -455,8 +455,8 @@
 		}
 		else {
 			// Carrega todos os tipos primeira escolha
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_primeira_escolha",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_primeira_escolha WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_primeira_escolha_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -501,8 +501,8 @@
 		}
 		else {
 			// Carrega todos os tipos de certidão
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_certidao",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_certidao WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_certidao_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -547,8 +547,8 @@
 		}
 		else {
 			// Carrega todos os tipos de dispositivo de contato
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_dispositivo_contato",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_dispositivo_contato WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_dispositivo_contato_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -594,8 +594,8 @@
 		}
 		else {
 			// Carrega todos os tipos de estado
-			BANCODADOS.sqlCmdDB("SELECT id, sigla, nome, status FROM tipo_estado",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, sigla, nome, status FROM tipo_estado WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_estado_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -641,8 +641,8 @@
 		}
 		else {
 			// Carrega todos os tipos de parentesco
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_parentesco",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_parentesco WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_parentesco_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -687,8 +687,8 @@
 		}
 		else {
 			// Carrega todos os tipos de atividade_tempo_livre
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_atividade_tempo_livre",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_atividade_tempo_livre WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_atividade_tempo_livre_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -733,8 +733,8 @@
 		}
 		else {
 			// Carrega todos os tipos de local_visitar
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_local_visitar",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_local_visitar WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_local_visitar_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -779,8 +779,8 @@
 		}
 		else {
 			// Carrega todos os tipos de documento
-			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_documento",
-								[], 
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_documento WHERE status = ?",
+								[1], 
 								BD_DTO.tipo_documento_carrega_success, 
 								BD_DTO.cbFail_f);
 		}
@@ -857,5 +857,51 @@
 	},
 //*******************************************************************************************************************
 // Perfis
+//*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Atuação
+//*******************************************************************************************************************
+	tipo_atuacao_data: [],
+	tipo_atuacao_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_atuacao_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_atuacao_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_atuacao_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de atuacao
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_atuacao WHERE status = ?",
+								[1], 
+								BD_DTO.tipo_atuacao_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_atuacao_carrega_success: function (trans, res) {
+		console.log("tipo_atuacao_carrega_success");
+		
+		var tp;
+		while (BD_DTO.tipo_atuacao_data.length > 0) {
+			BD_DTO.tipo_atuacao_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.tipo_atuacao_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.nome = res.rows.item(i).nome;
+			tp.status = res.rows.item(i).status;
+			BD_DTO.tipo_atuacao_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Atuação
 //*******************************************************************************************************************
 }

@@ -13,7 +13,7 @@
 	// Auxiliares
 	auxData: null,
 	auxCounter: null,
-	//auxCounterII: null,
+	indiceFrequencia: null,
 	
 	// ****************** Verifica entrada ******************************
 	iniFrequencia: function (data, cbSuccess, cbFail) {
@@ -25,23 +25,14 @@
 		FREQUENCIA.auxData = data;
 
 		// Tipos de atuação
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_atuacao WHERE status = ?", [1], FREQUENCIA.listaTiposAtuacaoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
+		BD_DTO.tipo_atuacao_carrega(FREQUENCIA.listaTiposAtuacaoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
 	},
 	
 	listaTiposAtuacaoSuccess: function (trans, res) {
 		console.log("listaTiposAtuacaoSuccess");
 		
 		// Salva tipos de atuação
-		FREQUENCIA.listaTiposAtuacao = [];
-		for (var i = 0; i < res.rows.length; i++) {
-			var lta = {
-				id: res.rows.item(i).id,
-				nome: res.rows.item(i).nome,
-				status: res.rows.item(i).status,
-				dt_criacao: res.rows.item(i).dt_criacao,
-			};
-			FREQUENCIA.listaTiposAtuacao.push(lta);
-		}
+		FREQUENCIA.listaTiposAtuacao = BD_DTO.tipo_atuacao_data;
 		
 		// todo: testes retirar
 		var Print = "Tipos de Atuação" + "\r\n";
@@ -50,7 +41,6 @@
 			Print += "Id: " + FREQUENCIA.listaTiposAtuacao[i].id + "\r\n";
 			Print += "Nome: " + FREQUENCIA.listaTiposAtuacao[i].nome + "\r\n";
 			Print += "Status: " + FREQUENCIA.listaTiposAtuacao[i].status + "\r\n";
-			Print += "Data de criação: " + FREQUENCIA.listaTiposAtuacao[i].dt_criacao + "\r\n";
 			Print += "\r\n";
 		}
 		console.log (Print);
@@ -71,7 +61,6 @@
 		console.log (Print);
 		// testes retirar
 
-		//FREQUENCIA.auxCounterII = 0;
 		FREQUENCIA.listaTipoAtuacaoIDBusca = "AND (";
 		if (USUARIO.perfil_tecnico == true) {
 			var i = 0;
@@ -118,8 +107,6 @@
 	    console.log("dadosEntrada");
 
 		FREQUENCIA.cidadao_id = null;
-		
-		//var tipoAtuacao = ATIVIDADE.listaAtuacao_NomeVersusID[abas[FREQUENCIA.auxCounterII]];
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
 		if (USUARIO.perfil_tecnico == true) {
@@ -256,7 +243,7 @@
 							atividade_id: ATIVIDADE.listaAtividades[i].id,
 							tipo_atuacao_id: ATIVIDADE.listaAtividades[i].tipo_atuacao_id,
 							usuario_id: USUARIO.usuario_id,
-							data_frequencia: null,			// todo: o que representa esta data?
+							data_frequencia: null,
 							frequencia: null,
 							justificativa: null,
 							frequencia_livre: null,
@@ -292,9 +279,6 @@
 			FREQUENCIA.obtemListaAtividades();
 		}
 		else {
-			// todo:
-			alert("Acabaram os cidadãos");
-			
 			// Monta a tela
 			FREQUENCIA.montaFrequencia();
 		}
@@ -331,16 +315,68 @@
 	},
 	
     // ****************** Salva frequência *********************
-    salvaFrequencia: function(info, cbSuccess, cbFail) {
+    salvaFrequencia: function(indiceFrequencia, cbSuccess, cbFail) {
 	    console.log("salvaFrequencia");
 
 		// Salva funções de retorno
 		FREQUENCIA.cbSuccess_f = cbSuccess;
 		FREQUENCIA.cbFail_f = cbFail;
 
-		// Atualiza
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET informacoes_complementares = ? WHERE cidadao_id = ?",
-							[FREQUENCIA.infoComplementares = info, FREQUENCIA.cidadao_id], FREQUENCIA.salvaFrequenciaSuccess, FREQUENCIA.salvaFrequenciaFail);
+		FREQUENCIA.indiceFrequencia = indiceFrequencia;
+		
+		if (FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].id == null) {
+			// Nova frequência, insere
+			var hoje = new Date();
+			var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+			BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao) \
+								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+								[
+								FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].cidadao_id,
+								FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].atividade_id,
+								FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+								FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].usuario_id,
+								strHoje,
+								/* todo: frequencia */1,
+								/* todo: justificativa */"",
+								/* todo: frequencia_livre */0,
+								1,
+								strHoje
+								], 
+								FREQUENCIA.salvaFrequenciaSuccess, 
+								FREQUENCIA.salvaFrequenciaFail);
+		}
+		else {
+			// Atualização de frequência, desabilita frequência (status = 0) e insere nova frequência
+			BANCODADOS.sqlCmdDB("UPDATE frequencia SET status = ? WHERE id = ?",
+								[0, 
+								FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].id
+								], 
+								FREQUENCIA.salvaPeriodicidade, FREQUENCIA.salvaFrequenciaFail);
+		}
+	},
+	
+	insereNovaFrequencia: function () {
+		console.log("insereNovaFrequencia");
+
+		// Insere nova frequencia
+		var hoje = new Date();
+		var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+		BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao) \
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+							[
+							FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].cidadao_id,
+							FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].atividade_id,
+							FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+							FREQUENCIA.listaFrequencia[FREQUENCIA.indiceFrequencia].usuario_id,
+							strHoje,
+							/* todo: frequencia */1,
+							/* todo: justificativa */"",
+							/* todo: frequencia_livre */0,
+							1,
+							strHoje
+							], 
+							FREQUENCIA.salvaFrequenciaSuccess, 
+							FREQUENCIA.salvaFrequenciaFail);
 	},
 	
 	salvaFrequenciaSuccess: function (trans, res) {
