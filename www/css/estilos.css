@@ -609,7 +609,7 @@ span.unidade{
 	
 }
 #ficha-statica {
-	margin: 120px 10px 25px 10px;
+	margin: 120px 16px 25px 16px;
 }
 #ficha-statica #info-basica {
     margin: 0 0 -65px 0;
@@ -688,6 +688,20 @@ p.info-basica{
 	border-right: none;
 	border-bottom: none;
 	width: calc(100% - 16px);
+	float: left;
+}
+.inputExtendido{
+	font-size: 20px;
+	background: #ebebeb;
+	height: 70px;
+	padding: 0px 0 0 16px;
+	margin: 0 3px 0 0;
+	color: #454545;
+	border-top: 2px solid #dedede;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	width: calc(50% - 19px);
 	float: left;
 }
 .inputMedio{
@@ -1017,6 +1031,18 @@ p.info-basica{
 	cursor: pointer;
 	margin: 42px 0 15px 0;
 	clear: both;
+	float: right;
+}
+.btnSalvar{
+	font-family: "Roboto", Arial;
+	font-size: 24px;
+	height: 60px;
+	background: #eb8202;
+	border: none;
+	color: #fff;
+	padding: 8px;
+	cursor: pointer;
+	margin: 0 0 0 0;
 	float: right;
 }
 .btnLimpar{
@@ -1763,6 +1789,125 @@ span.phone-img {
 	.dias .selectPersonalizado{
 		left: 0;
 	}
+
+
+
+
+
+
+
+
+
+	.tableCadastro{
+		width:100%;
+
+	}
+	ul#ullistaFreq{
+		list-style: none;
+		width: 100%;
+
+	}
+	ul#ullistaFreq li{
+		width: 100%;
+		display: block;
+		height: auto;
+		overflow:hidden;
+		padding: 4px 0 4px 0;
+		height: 66px;
+	}
+	ul#ullistaFreq li.li-header{
+		font-weight: bold;
+		font-size: 1.245em;
+	}
+	ul#ullistaFreq li:nth-child(odd){
+		background: #ccc;
+	}
+	ul#ullistaFreq li div{
+		width: auto;
+		display: inline-block;
+		float: left;
+		line-height: 22px;
+		font-size: 16px;
+		height:auto;
+		min-width: 5%;
+	}
+	ul#ullistaFreq li div:nth-child(1){
+		width: calc(40% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaFreq li div:nth-child(2){
+		width: calc(30% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaFreq li div:last-child{
+		float: right;
+		width: calc(30% - 3px);
+		padding: 9px 0 0 3px;
+	}
+
+	ul#ullistaFreq li.li-header div:nth-child(1){
+		width: calc(40% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaFreq li.li-header div:nth-child(2){
+		width: calc(30% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	ul#ullistaFreq li.li-header div:last-child{
+		float: right;
+		width: calc(30% - 3px);
+		padding: 9px 0 0 3px;
+	}
+
+	.radioFrequencias{
+		width: 100%;
+		margin: 0 0 20px 0;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -2019,6 +2164,17 @@ span.phone-img {
 .tableCadastro.semCor table tr td{
 	background:#fff !important;
 }
+.inputsTempo{
+	width: 100%;
+	height: auto;
+	overflow: hidden;	
+}
+.listaDiasMesesAnosUsoDrogas{
+	width: 100%;
+	height: auto;
+	margin: 0 0 15px 0;
+	overflow: hidden;
+}
 .alinhaLeftSelect{
 	float:left;
 	width:400px !important;
@@ -2030,7 +2186,19 @@ span.phone-img {
 .selectProvidencia{
 	width:202px !important;
 }
+.alinhaObsParticipou{
+	margin: 13px 0 15px 0;
+}
 .alinhaObsCert{
+	float:left;
+	width: calc(100% - 213px);
+	clear: none !important;
+	margin: 0 0 15px 0;
+}
+.adicionaInputDrogaHoje, .adicionaInputContatoFamiliar{
+	width: 100%;
+}
+.alinhaGrande{
 	float:left;
 	width: 100%;
 	clear: none !important;
@@ -2090,6 +2258,9 @@ span.phone-img {
     clear: both;
     padding: 0 0 16px 0;
 }
+.adicionaInputEspecialidadeConsulta{
+
+}
 .adicionaInputProvidencia > div{
 	margin:20px 0 0 0;
 	float:left;
@@ -2119,6 +2290,19 @@ span.phone-img {
     border-right: none;
     border-bottom: none;
     width: calc(33% - 3px);
+    float: left;
+}
+.inputPeq{
+	background: #ebebeb;
+    height: 32px;
+    padding: 3px 0 0 3px;
+    margin: 15px 3px 0 0;
+    color: #B5B5B5;
+    border-top: 2px solid #dedede;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    width: calc(33% - 6px);
     float: left;
 }
 .textareaProvidencia{
@@ -2231,27 +2415,34 @@ span.phone-img {
 .fl_left{
 	float: left;
 }
-
-#formFrequencia{
-	width: 70%;
+.divFreqCidadao{
+	width: 100%;
+	display: block;
 	float: left;
+}
+.divFrequencia{
+	width:100%;
+	height: auto;
+	overflow: hidden;
+	margin: 0 0 30px 0;
+}
+#formFrequencia{
+	width: 100%;
+	float: left;
+	padding: 75px 0 0 0;
 }
 
 #formFrequencia h3{
-	font-size: 18px;
-    color: #eb8202;
-    float: left;
-    width: 100%;
-    margin: 20px 0 20px 0;
 }
 
 .labelFiltroData{
 	font-family: "Roboto", Arial;
     float: left;
-    margin: 11px 10px 0 0;
+    margin: 0 10px 0 0;
     color: #333333 !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: bold !important;
+    line-height: 40px;
 }
 #div_login{
 	margin: 30px 0 0 45px;
@@ -2347,7 +2538,7 @@ span.phone-img {
 	   
 }
 #div_busca_inicio h3{
-	font-size: 14px;
+	font-size: 16px;
 }
 
 #div_frequencia{
@@ -2378,11 +2569,13 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
 	margin: 5px 0px 0 10px;
 }
 .dataFreq {
-    float: right;
-    margin: -40px 10px 0 0;
+    float: left;
+    margin: 30px 0 30px 0;
 }
 
-
+.dataFreq .inputPeq{
+	margin: 0 !important;
+}
 .checkbox_busca{
 	margin-top: 35px !important;
 	width: 50%;

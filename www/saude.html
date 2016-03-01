@@ -244,10 +244,12 @@
         <!--INICIO - SEGUNDO BLOCO-->
         <div class="contentAbaBorda">
           
-              <div class="comboStilo"> 
+              <div class="linhaform"> 
                 <span class="titLabel">De quais drogas você faz uso:</span>
-                <input type="text" class="inputMedio adicionaDrogas" value="" id="inputteste" placeholder="Qual droga">
-                <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogas" value="Adicionar">
+                <div class="linhaForm">
+                  <input type="text" class="inputMedio adicionaDrogas" value="" id="inputteste" placeholder="Qual droga">
+                  <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogas" value="Adicionar">
+                </div>
               </div>
             <div class="linhaForm">
 			  <span class='titLabel'>Há quanto tempo?</span>
@@ -332,7 +334,7 @@
             
             <label class="selectDefault">
               <span class="titLabel">Quantas pedras de crack você utilizava antes da inserção no programa:</span>
-              <div class="comboStilo" id="listaNumeroPedrasAntesPrograma">
+              <div class="comboStilo selectInicial" id="listaNumeroPedrasAntesPrograma">
 
               </div>
             </label>
@@ -341,7 +343,7 @@
           <div class="linhaForm"> 
             <label class="selectDefault">
               <span class="titLabel">Quantas pedras de crack usa atualmente:</span>
-              <div class="comboStilo" id="listaNumeroPedrasAtualmentePrograma"> 
+              <div class="comboStilo selectInicial" id="listaNumeroPedrasAtualmentePrograma"> 
 
               </div>
             </label>            
@@ -363,8 +365,8 @@
           <div id="drogasAlemCrack"> 
             <div class="linhaForm"> 
               <span class="titLabel">Quais:</span>
-              <div class="linhaForm alinhaObsCert">
-                <input type="text" class="inputGrande adicionaDrogasAlemCrack" value="" id="drogasAlemCrack">
+              <div class="linhaForm alinhaGrande">
+                <input type="text" class="inputMedio adicionaDrogasAlemCrack" value="" id="drogasAlemCrack">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogasAlemCrack" value="Adicionar">
               </div>
               <div class="adicionaInputDrogasAlemCrack">
@@ -942,7 +944,7 @@
             <div class="linhaForm"> 
               <span class="titLabel">Qual especialidade:</span>
               <div class="linhaForm alinhaObsCert">
-                <input type="text" class="inputMedio adicionaEspecialidade" value="" id="especialidades">
+                <input type="text" class="inputExtendido adicionaEspecialidade" value="" id="especialidades">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputEspecialidade" value="Adicionar">
               </div>
               <div class="adicionaInputEspecialidadeConsulta">
@@ -1083,7 +1085,7 @@
             <div class="linhaForm"> 
               <span class="titLabel">Qual:</span>
               <div class="linhaForm alinhaObsCert">
-                <input type="text" class="inputMedio adicionaDrogaHoje" value="" id="droga_hoje">
+                <input type="text" class="inputExtendido adicionaDrogaHoje" value="" id="droga_hoje">
                 <input type="button" class="btnIcoAdicionar btnAdicionaInputDrogaHoje" value="Adicionar">
               </div>
               <div class="adicionaInputDrogaHoje">

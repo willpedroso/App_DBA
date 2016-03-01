@@ -785,7 +785,7 @@ function adicionaDrogaHoje() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaDrogaHoje").val()+'" name="usou_drogas_hoje[]" class="inputAdicionaDrogaHoje" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogaHoje").val()+'" name="usou_drogas_hoje[]" class="inputPeq inputAdicionaDrogaHoje" readonly id="input_'+idobj+'">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
 		$('.adicionaInputDrogaHoje').append(	html2insert);
@@ -803,8 +803,8 @@ function adicionaAtividadeRecreativa() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaQualAtividade").val()+'" name="qual_atividade_particiou[]" class="inputAdicionaQualAtividadeParticiou" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaLocalAtividade").val()+'" name="local_atividade_particiou[]" class="inputAdicionaLocalAtividadeParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualAtividade").val()+'" name="qual_atividade_particiou[]" class="inputPeq inputAdicionaQualAtividadeParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaLocalAtividade").val()+'" name="local_atividade_particiou[]" class="inputPeq inputAdicionaLocalAtividadeParticiou" readonly id="input_'+idobj+'">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
 		$('.adicionaInputAtividadesParticipou').append(	html2insert);
@@ -823,8 +823,8 @@ function adicionaOficinaParticipou() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaQualOficina").val()+'" name="qual_oficina_particiou[]" class="inputAdicionaQualOficinaParticiou" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaLocalOficina").val()+'" name="local_oficina_particiou[]" class="inputAdicionaLocalOficinaParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaQualOficina").val()+'" name="qual_oficina_particiou[]" class="inputPeq inputAdicionaQualOficinaParticiou" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaLocalOficina").val()+'" name="local_oficina_particiou[]" class="inputPeq inputAdicionaLocalOficinaParticiou" readonly id="input_'+idobj+'">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
 		$('.adicionaInputOficinasParticipou').append(	html2insert);
@@ -843,7 +843,7 @@ function adicionaEspecialidadeConsultaHoje() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaEspecialidade").val()+'" name="especialidades_consulta_hoje[]" class="inputAdicionaEspecialidade" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaEspecialidade").val()+'" name="especialidades_consulta_hoje[]" class="inputPeq inputAdicionaEspecialidade" readonly id="input_'+idobj+'">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
 		$('.adicionaInputEspecialidadeConsulta').append(	html2insert);
@@ -861,7 +861,7 @@ function adicionaDrogasAlemCrack() {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaDrogasAlemCrack").val()+'" name="descricao_drogas_alem_crack[]" class="inputAdicionaDrogasAlemCrack" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogasAlemCrack").val()+'" name="descricao_drogas_alem_crack[]" class="inputPeq inputAdicionaDrogasAlemCrack" readonly id="input_'+idobj+'">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
 		$('.adicionaInputDrogasAlemCrack').append(	html2insert);
@@ -882,17 +882,17 @@ function adicionaDrogas(dias, meses, anos) {
 		var vanos = anos != null ? anos : $("#anosDrogasFazUsoLabel option:selected").text();
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputPeq inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+
 		'<div class="inputsTempo">'+
 		
 //		'<input type="text" value="'+(($("#diaDrogasFazUsoLabel").text() == 'Dias')? '':$("#diaDrogasFazUsoLabel").text()) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+((vdias == 'Dias')? '':vdias) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vdias == 'Dias')? '':vdias) +'" name="dias_drogas_faz_uso[]" class="inputPeq inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 		
 //		'<input type="text" value="'+(($("#mesesDrogasFazUsoLabel").text() == 'Meses')? '':$("#mesesDrogasFazUsoLabel").text())+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+((vmeses == 'Meses')? '':vmeses)+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vmeses == 'Meses')? '':vmeses)+'" name="meses_drogas_faz_uso[]" class="inputPeq inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 		
 //		'<input type="text" value="'+(($("#anosDrogasFazUsoLabel").text() == 'Anos')? '':$("#anosDrogasFazUsoLabel").text())+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+((vanos == 'Anos')? '':vanos)+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+((vanos == 'Anos')? '':vanos)+'" name="anos_drogas_faz_uso[]" class="inputPeq inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 		
 		'</div>'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
@@ -917,9 +917,9 @@ function adicionaTelefoneFamiliar(parentesco) {
 		var html2insert ='<div id="div'+idobj+'">'+
 		'<input type="text" value="'+
 		(parentesco == null ? $("#selectTipoParente option:selected").text() : parentesco)+
-		'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
+		'" name="input_'+idobj+'" class="inputPeq inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$("#tipo_parentesco_id").val()+'" name="tipo_familiar[]">'+
-		'<input type="text" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="input_'+idobj+'" class="inputPeq inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="numero_familiar[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
