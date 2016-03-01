@@ -14,6 +14,16 @@
 	auxData: null,
 	auxCounter: null,
 	indiceFrequencia: null,
+	listaPontosServico: [],
+	
+	// ****************** FREQUENCIAS ***********************************
+	listaFrequenciasCidadaos: [],
+	frequenciasCidadao: function () {
+		cidadao_id: null;
+		cidadao_nome: null;
+		listaFrequencias: [];
+	},
+	// ****************** FREQUENCIAS ***********************************
 	
 	// ****************** Verifica entrada ******************************
 	iniFrequencia: function (data, cbSuccess, cbFail) {
@@ -25,6 +35,14 @@
 		FREQUENCIA.auxData = data;
 
 		// Tipos de atuação
+		BD_DTO.ponto_servico_carrega(FREQUENCIA.listaPontosServicoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
+	},
+	
+	listaPontosServicoSuccess: function () {
+		console.log("listaPontosServicoSuccess");
+
+		FREQUENCIA.listaPontosServico = BD_DTO.ponto_servico_data;
+
 		BD_DTO.tipo_atuacao_carrega(FREQUENCIA.listaTiposAtuacaoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
 	},
 	
@@ -96,9 +114,23 @@
 			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + " ";
 			FREQUENCIA.listaTipoAtuacaoIDBusca += ")";
 			
+			var listaCidadaosFrequencia = "<li class='li-header'><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>";
 			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+				var nomeAcolhida = "";
+				for (var j = 0; j < FREQUENCIA.listaPontosServico.length; j++) {
+					if (FREQUENCIA.listaPontosServico[j].id == CIDADAO.listaCidadaosDados[i].ponto_servico_id) {
+						nomeAcolhida = FREQUENCIA.listaPontosServico[j].nome;
+						break;
+					}
+				}				
 				// todo: Monta a lista de cidadãos e insere no HTML
+                listaCidadaosFrequencia += "<li><div>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
 			}
+			// todo: testes retirar
+			console.log(listaCidadaosFrequencia);
+			// testes retirar
+			$("#ullistaFreqCidadaos").empty();
+			$("#ullistaFreqCidadaos").append(listaCidadaosFrequencia);
 		}
 	},
 	
@@ -143,6 +175,63 @@
 	listaFrequenciaSuccess: function (trans, res) {
 		console.log("listaFrequenciaSuccess");
 		
+		// Novo
+		var v = null;
+		FREQUENCIA.listaFrequenciasCidadaos = [];
+		var lcidadao;
+
+		if (res.rows.length > 0) {
+			lcidadao = res.rows.item(0).cidadao_id;
+			v = new frequenciasCidadao();
+			v.cidadao_id = dt.cidadao_id;
+			v.cidadao_nome = "";			// todo: obter o nome
+		}
+		// Inclui na lista de frequencia
+		for (var i = 0; i < res.rows.length; i++) {
+			var dt = {
+				id: res.rows.item(i).id,
+				cidadao_id: res.rows.item(i).cidadao_id,		// todo: talvez possa ser eliminada
+				atividade_id: res.rows.item(i).atividade_id,
+				tipo_atuacao_id: res.rows.item(i).tipo_atuacao_id,
+				usuario_id: res.rows.item(i).usuario_id,
+				data_frequencia: res.rows.item(i).data_frequencia,
+				frequencia: res.rows.item(i).frequencia,
+				justificativa: res.rows.item(i).justificativa,
+				frequencia_livre: res.rows.item(i).frequencia_livre,
+				dt_criacao: res.rows.item(i).dt_criacao,
+			};
+			if (lcidadao != res.rows.item(i).cidadao_id) {
+				// Mudou o cidadão, cria outro objeto
+				v = new frequenciasCidadao(); 
+				v.cidadao_id = dt.cidadao_id;
+				v.cidadao_nome = "";			// todo: obter o nome
+			}
+			v.listaFrequencias.push(dt);
+			FREQUENCIA.listaFrequenciasCidadaos.push(v);
+		}
+		// todo: testes retirar
+		var Print = "Frequências na tabela frequencia: \r\n";
+		for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
+		{
+			Print += "Cidadão: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "(" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ")\r\n";
+			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
+				Print += "\tFrequência " + i + ":\r\n";
+				Print += "\tid: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].id + "\r\n";
+				Print += "\tcidadao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].cidadao_id + "\r\n";
+				Print += "\tatividade_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id + "\r\n";
+				Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + "\r\n";
+				Print += "\tusuario_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].usuario_id + "\r\n";
+				Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].data_frequencia + "\r\n";
+				Print += "\tfrequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia + "\r\n";
+				Print += "\tjustificativa: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa + "\r\n";
+				Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia_livre + "\r\n";
+				Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n";
+			}
+		}
+		console.log(Print);
+		// testes retirar
+		// Novo
+		/*
 		FREQUENCIA.listaFrequencia = [];
 
 		// Inclui na lista de frequencia
@@ -180,7 +269,7 @@
 		}
 		console.log(Print);
 		// testes retirar
-		
+		*/
 		// Obtém lista de atividades para cidadãos
 		FREQUENCIA.auxCounter = 0;
 		FREQUENCIA.obtemListaAtividades();
@@ -288,7 +377,27 @@
 		console.log("montaFrequencia");
 		
 		// todo: Percorre a lista de frequencias, cria HTML e insere
-		
+		/*
+		for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
+		{
+                <div class="divFrequenciaLivre">
+                  <p class="atividadeFreq"><img src="img/icoSetaIn.png">FREQUÊNCIA LIVRE</p>
+                  <div class="linhaForm" id="divFrequencias">
+                    <div class="radioFrequencias radioButton">
+                      <input type="radio" name="radioFrequencias" value="Não Informado" class="radio" onchange="()">
+                      <p>Não Informado</p>
+                      <input type="radio" name="radioFrequencias" value="Não" class="radio" onchange="()">
+                      <p>Não</p>
+                      <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
+                      <p>Sim</p>
+                      <input type="button" id="btnSalvar" onclick="()" value="Salvar" class="btnSalvar disable" disabled="">
+                    </div>
+                  </div>
+                  <textarea placeholder="Observações" name="justificativa_275" class="inputGrande inputFrequenciaLivre"></textarea>
+                </div>
+
+		}
+		*/
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":

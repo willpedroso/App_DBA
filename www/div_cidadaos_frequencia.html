@@ -1,0 +1,31 @@
+    <!--inicio tela frequencia-->
+        <div id="div_cidadaos_frequencia" class="hideme">
+            <div class="contentAbaBorda">
+              <h3>FREQUÊNCIA</h3>
+              <div class="linhaForm">
+                <div id="listaFreq" class="tableCadastro">
+                  <ul id="ullistaFreqCidadaos">
+					<!--
+                    <li class="li-header"><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
+                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
+                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
+                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
+                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
+					-->
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+		<script>
+			$(document).ready(function() {
+				var hoje = new Date();
+				var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+				// todo: testes
+				console.log(dataHoje);
+				//FREQUENCIA.dadosEntrada(dataHoje);
+				FREQUENCIA.iniFrequencia("2015-11-01");
+				// testes
+			});
+		</script>
+      <!-- fim tela frequencia -->

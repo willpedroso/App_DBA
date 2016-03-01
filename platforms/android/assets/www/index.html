@@ -72,6 +72,7 @@
     <script src="js/saude.js" type="text/javascript"></script>
     <script src="js/trabalho.js" type="text/javascript"></script>
     <script src="js/social.js" type="text/javascript"></script>
+    <script src="js/frequencia.js" type="text/javascript"></script>
    
     <!--CSS-->
     <!--  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
@@ -98,7 +99,8 @@
         </div>
         <div class="divMenu">
           <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu(); fechaficha();">CIDADÃOS</button>
-          <button id="bt_frequencia" onclick="PageManager.loadTmpl('div_frequencia'); fechaficha();">FREQUÊNCIA</button>
+          <!--<button id="bt_frequencia" onclick="PageManager.loadTmpl('div_frequencia'); fechaficha();">FREQUÊNCIA</button>-->
+          <button id="bt_frequencia" onclick="carregaFrequencia(); fechaficha();">FREQUÊNCIA</button>
         </div>
       </div>
       <!-- fim menu topo -->

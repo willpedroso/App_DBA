@@ -1,39 +1,22 @@
     <!--inicio tela frequencia-->
         <div id="div_frequencia" class="hideme">
           <form id="formFrequencia" action="" method="post" class="cadastro">
-            <input type="hidden" name="atuacao" id="atuacao" value="1">
-            <div class="contentAbaBorda">
-              <h3>FREQUÊNCIA</h3>
-              <div class="linhaForm">
-                <div id="listaFreq" class="tableCadastro">
-                  <ul id="ullistaFreq">
-                    <li class="li-header"><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
-                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
-                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
-                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
-                    <li><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-
             <div class="contentAbaBorda">
           
               <h3>FREQUÊNCIA | Nome</h3>
               
               <label class="dataFreq">  
                 <span class="labelFiltroData">Filtre por data</span>
-                <input type="text" class="inputPeq hasDatepicker" readonly="" value="17/11/2015" id="dataCorrente" name="dataCorrente">
+                <!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
+                <input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa">
                 <img src="img/icoCalendar.png" class="icoCalendario">
               </label>
 
               <div class="divFreqCidadao">
-                <div class="divFrequencia">
+			  
+                <div class="divFrequenciaLivre">
                   <p class="atividadeFreq"><img src="img/icoSetaIn.png">FREQUÊNCIA LIVRE</p>
-
                   <div class="linhaForm" id="divFrequencias">
-                    <span class="titLabel">Já fez ou faz acompanhamento em Caps:</span>
                     <div class="radioFrequencias radioButton">
                       <input type="radio" name="radioFrequencias" value="Não Informado" class="radio" onchange="()">
                       <p>Não Informado</p>
@@ -41,16 +24,12 @@
                       <p>Não</p>
                       <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
                       <p>Sim</p>
-                      <input type="hidden" value="" name="frequencia_275" id="frequencia" class="valueCheck">
                       <input type="button" id="btnSalvar" onclick="()" value="Salvar" class="btnSalvar disable" disabled="">
                     </div>
                   </div>
-
-
                   <textarea placeholder="Observações" name="justificativa_275" class="inputGrande inputFrequenciaLivre"></textarea>
-                  <input type="hidden" value="" name="frequencia_id_275">
-                  <input type="hidden" value="2016-02-29" name="data_frequencia_275">
                 </div>
+				
                 <div class="divFrequencia">
                   <p class="atividadeFreq"><img src="img/icoSetaIn.png">HOTEL ALAIDE - Local de Acolhida</p>
                   <div class="radioFrequencias radioButton">
@@ -60,8 +39,6 @@
                     <p>Não</p>
                     <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
                     <p>Sim</p>
-                    <input type="hidden" value="" name="frequencia_275" id="frequencia" class="valueCheck">
-                    <input type="button" id="btnSalvar" onclick="()" value="Salvar" class="btnSalvar" disabled="">
                   </div>
                   <textarea placeholder="Observações" name="justificativa_386" style="display:none" class="inputGrande inputFrequencia"></textarea>
                   <input type="hidden" value="" name="frequencia_id_386">
@@ -75,7 +52,13 @@
         </div>
 		<script>
 			$(document).ready(function() {
-				FREQUENCIA.dadosEntrada("2015-11-01");
+				var hoje = new Date();
+				var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+				$("#dataCorrente").val(dataHoje);
+				// todo: testes
+				//FREQUENCIA.dadosEntrada(dataHoje);
+				FREQUENCIA.iniFrequencia("2015-11-01");
+				// testes
 			});
 		</script>
       <!-- fim tela frequencia -->
