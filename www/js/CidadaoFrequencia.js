@@ -18,10 +18,24 @@
 	
 	// ****************** FREQUENCIAS ***********************************
 	listaFrequenciasCidadaos: [],
+	
+	tFrequencia: function () {
+		id: null;
+		cidadao_id: null;		// todo: talvez possa ser eliminada
+		atividade_id: null;
+		tipo_atuacao_id: null;
+		usuario_id: null;
+		data_frequencia: null;
+		frequencia: null;
+		justificativa: null;
+		frequencia_livre: null;
+		dt_criacao: null;
+	},
+	
 	frequenciasCidadao: function () {
+		listaFrequencias: null;
 		cidadao_id: null;
 		cidadao_nome: null;
-		listaFrequencias: [];
 	},
 	// ****************** FREQUENCIAS ***********************************
 	
@@ -124,7 +138,7 @@
 					}
 				}				
 				// todo: Monta a lista de cidadãos e insere no HTML
-                listaCidadaosFrequencia += "<li><div>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
+                listaCidadaosFrequencia += "<li><div onclick='FREQUENCIA.dadosEntrada(" + CIDADAO.listaCidadaosDados[i].id + ")';>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
 			}
 			// todo: testes retirar
 			console.log(listaCidadaosFrequencia);
@@ -175,101 +189,66 @@
 	listaFrequenciaSuccess: function (trans, res) {
 		console.log("listaFrequenciaSuccess");
 		
-		// Novo
 		var v = null;
 		FREQUENCIA.listaFrequenciasCidadaos = [];
 		var lcidadao;
+		var dt;
 
 		if (res.rows.length > 0) {
 			lcidadao = res.rows.item(0).cidadao_id;
-			v = new frequenciasCidadao();
-			v.cidadao_id = dt.cidadao_id;
+			v = new FREQUENCIA.frequenciasCidadao();
+			v.listaFrequencias = [];
+			v.cidadao_id = lcidadao;
 			v.cidadao_nome = "";			// todo: obter o nome
-		}
-		// Inclui na lista de frequencia
-		for (var i = 0; i < res.rows.length; i++) {
-			var dt = {
-				id: res.rows.item(i).id,
-				cidadao_id: res.rows.item(i).cidadao_id,		// todo: talvez possa ser eliminada
-				atividade_id: res.rows.item(i).atividade_id,
-				tipo_atuacao_id: res.rows.item(i).tipo_atuacao_id,
-				usuario_id: res.rows.item(i).usuario_id,
-				data_frequencia: res.rows.item(i).data_frequencia,
-				frequencia: res.rows.item(i).frequencia,
-				justificativa: res.rows.item(i).justificativa,
-				frequencia_livre: res.rows.item(i).frequencia_livre,
-				dt_criacao: res.rows.item(i).dt_criacao,
-			};
-			if (lcidadao != res.rows.item(i).cidadao_id) {
-				// Mudou o cidadão, cria outro objeto
-				v = new frequenciasCidadao(); 
-				v.cidadao_id = dt.cidadao_id;
-				v.cidadao_nome = "";			// todo: obter o nome
-			}
-			v.listaFrequencias.push(dt);
-			FREQUENCIA.listaFrequenciasCidadaos.push(v);
-		}
-		// todo: testes retirar
-		var Print = "Frequências na tabela frequencia: \r\n";
-		for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
-		{
-			Print += "Cidadão: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "(" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ")\r\n";
-			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
-				Print += "\tFrequência " + i + ":\r\n";
-				Print += "\tid: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].id + "\r\n";
-				Print += "\tcidadao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].cidadao_id + "\r\n";
-				Print += "\tatividade_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id + "\r\n";
-				Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + "\r\n";
-				Print += "\tusuario_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].usuario_id + "\r\n";
-				Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].data_frequencia + "\r\n";
-				Print += "\tfrequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia + "\r\n";
-				Print += "\tjustificativa: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa + "\r\n";
-				Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia_livre + "\r\n";
-				Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n";
-			}
-		}
-		console.log(Print);
-		// testes retirar
-		// Novo
-		/*
-		FREQUENCIA.listaFrequencia = [];
 
-		// Inclui na lista de frequencia
-		for (var i = 0; i < res.rows.length; i++) {
-			var dt = {
-				id: res.rows.item(i).id,
-				cidadao_id: res.rows.item(i).cidadao_id,
-				atividade_id: res.rows.item(i).atividade_id,
-				tipo_atuacao_id: res.rows.item(i).tipo_atuacao_id,
-				usuario_id: res.rows.item(i).usuario_id,
-				data_frequencia: res.rows.item(i).data_frequencia,
-				frequencia: res.rows.item(i).frequencia,
-				justificativa: res.rows.item(i).justificativa,
-				frequencia_livre: res.rows.item(i).frequencia_livre,
-				dt_criacao: res.rows.item(i).dt_criacao,
-			};
-			FREQUENCIA.listaFrequencia.push(dt);
+			// Inclui na lista de frequencia
+			for (var i = 0; i < res.rows.length; i++) {
+				dt = new FREQUENCIA.tFrequencia();
+				dt.id = res.rows.item(i).id;
+				dt.cidadao_id = res.rows.item(i).cidadao_id;		// todo: talvez possa ser eliminada
+				dt.atividade_id = res.rows.item(i).atividade_id;
+				dt.tipo_atuacao_id = res.rows.item(i).tipo_atuacao_id;
+				dt.usuario_id = res.rows.item(i).usuario_id;
+				dt.data_frequencia = res.rows.item(i).data_frequencia;
+				dt.frequencia = res.rows.item(i).frequencia;
+				dt.justificativa = res.rows.item(i).justificativa;
+				dt.frequencia_livre = res.rows.item(i).frequencia_livre;
+				dt.dt_criacao = res.rows.item(i).dt_criacao;
+				if (lcidadao != res.rows.item(i).cidadao_id) {
+					// Mudou o cidadão, salva na lista e cria outro objeto
+					FREQUENCIA.listaFrequenciasCidadaos.push(v);
+					v = new FREQUENCIA.frequenciasCidadao(); 
+					v.listaFrequencias = [];
+					v.cidadao_id = lcidadao = dt.cidadao_id;
+					v.cidadao_nome = "";			// todo: obter o nome
+				}
+				v.listaFrequencias.push(dt);
+			}
+			FREQUENCIA.listaFrequenciasCidadaos.push(v);
+
+			// todo: testes retirar
+			var Print = "Frequências na tabela frequencia: \r\n";
+			for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
+			{
+				Print += "Cidadão: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "(" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ")\r\n";
+				for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
+					Print += "\tFrequência " + i + ":\r\n";
+					Print += "\tid: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].id + "\r\n";
+					Print += "\tcidadao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].cidadao_id + "\r\n";
+					Print += "\tatividade_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id + "\r\n";
+					Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + "\r\n";
+					Print += "\tusuario_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].usuario_id + "\r\n";
+					Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].data_frequencia + "\r\n";
+					Print += "\tfrequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia + "\r\n";
+					Print += "\tjustificativa: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa + "\r\n";
+					Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia_livre + "\r\n";
+					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n";
+				}
+			}
+			console.log(Print);
+			// testes retirar
 		}
-		
-		// todo: testes retirar
-		var Print = "Frequências na tabela frequencia: \r\n";
-		for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
-		{
-			Print += "Frequência " + i + ":\r\n";
-			Print += "\tid: " + FREQUENCIA.listaFrequencia[i].id + "\r\n";
-			Print += "\tcidadao_id: " + FREQUENCIA.listaFrequencia[i].cidadao_id + "\r\n";
-			Print += "\tatividade_id: " + FREQUENCIA.listaFrequencia[i].atividade_id + "\r\n";
-			Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequencia[i].tipo_atuacao_id + "\r\n";
-			Print += "\tusuario_id: " + FREQUENCIA.listaFrequencia[i].usuario_id + "\r\n";
-			Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequencia[i].data_frequencia + "\r\n";
-			Print += "\tfrequencia: " + FREQUENCIA.listaFrequencia[i].frequencia + "\r\n";
-			Print += "\tjustificativa: " + FREQUENCIA.listaFrequencia[i].justificativa + "\r\n";
-			Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequencia[i].frequencia_livre + "\r\n";
-			Print += "\tdt_criacao: " + FREQUENCIA.listaFrequencia[i].dt_criacao + "\r\n";
-		}
-		console.log(Print);
-		// testes retirar
-		*/
+
 		// Obtém lista de atividades para cidadãos
 		FREQUENCIA.auxCounter = 0;
 		FREQUENCIA.obtemListaAtividades();
@@ -311,6 +290,7 @@
 				// testes retirar
 				*/
 				encontrou = false;
+				/*
 				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++) {
 					if (FREQUENCIA.listaFrequencia[i].id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
 						// Atividade já está presente na lista
@@ -318,13 +298,59 @@
 						break;
 					}
 				}
+				*/
+				for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++) {
+					for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; k++) {
+						if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].atividade_id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
+							// Atividade já está presente na lista
+							encontrou = true;
+							break;
+						}
+					}
+				}
 				if (encontrou) {
 					continue;
 				}
 				
-				// Adiciona na lista
+				// Não encontrou, adiciona na lista
 				for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
 					if (jsonAtividades[j].id == i/*ATIVIDADE.listaAtividades[i].id*/) {
+						
+						// Monta dados da frequencia
+						var dt = new FREQUENCIA.tFrequencia();
+						dt.id = null;
+						dt.cidadao_id = CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id;		// todo: talvez possa ser eliminada
+						dt.atividade_id = ATIVIDADE.listaAtividades[i].id;
+						dt.tipo_atuacao_id = ATIVIDADE.listaAtividades[i].tipo_atuacao_id;
+						dt.usuario_id = USUARIO.usuario_id;
+						dt.data_frequencia = null;
+						dt.frequencia = null;
+						dt.justificativa = null;
+						dt.frequencia_livre = null;
+						dt.dt_criacao = null;
+						
+						// Procura pelo cidadão na lista de atividades por cidadãos
+						encontrou = false;
+						for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos.length; k++) {
+							if (FREQUENCIA.listaFrequenciasCidadaos[k].cidadao_id == CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id) {
+								// encontrou o cidadão, insere na lista
+								encontrou = true;
+								FREQUENCIA.listaFrequenciasCidadaos[k].listaFrequencias.push(dt);
+							}
+						}
+						if (encontrou) {
+							continue;
+						}
+						
+						// Não encontrou o cidadão, cria lista para o cidadão
+						var v = new FREQUENCIA.frequenciasCidadao();
+						v.listaFrequencias = [];
+						v.cidadao_id = CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id;
+						v.cidadao_nome = "";			// todo: obter o nome
+						v.listaFrequencias.push(dt);
+						FREQUENCIA.listaFrequenciasCidadaos.push(v);
+						
+						/*
 						// Encontrou a atividade, insere na lita de frequencias
 						var dt = {
 							id: null,
@@ -339,27 +365,10 @@
 							dt_criacao: null,
 						};
 						FREQUENCIA.listaFrequencia.push(dt);
+						*/
 						break;
 					}
 				}
-				
-				// todo: testes retirar
-				var Print = "Total de frequência para o cidadão: " + CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id + "\r\n";
-				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
-				{
-					Print += "Frequência " + i + ":\r\n";
-					Print += "\tid: " + FREQUENCIA.listaFrequencia[i].id + "\r\n";
-					Print += "\tcidadao_id: " + FREQUENCIA.listaFrequencia[i].cidadao_id + "\r\n";
-					Print += "\tatividade_id: " + FREQUENCIA.listaFrequencia[i].atividade_id + "\r\n";
-					Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequencia[i].tipo_atuacao_id + "\r\n";
-					Print += "\tusuario_id: " + FREQUENCIA.listaFrequencia[i].usuario_id + "\r\n";
-					Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequencia[i].data_frequencia + "\r\n";
-					Print += "\tfrequencia: " + FREQUENCIA.listaFrequencia[i].frequencia + "\r\n";
-					Print += "\tjustificativa: " + FREQUENCIA.listaFrequencia[i].justificativa + "\r\n";
-					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequencia[i].dt_criacao + "\r\n";
-				}
-				console.log(Print);
-				// testes retirar
 			}
 		}
 		
@@ -368,6 +377,28 @@
 			FREQUENCIA.obtemListaAtividades();
 		}
 		else {
+			// todo: testes retirar
+			var Print = "Total de frequência: " + "" + "\r\n";
+			for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
+			{
+				Print += "Cidadão: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "(" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ")\r\n";
+				for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
+					Print += "\tFrequência " + i + ":\r\n";
+					Print += "\tid: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].id + "\r\n";
+					Print += "\tcidadao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].cidadao_id + "\r\n";
+					Print += "\tatividade_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id + "\r\n";
+					Print += "\ttipo_atuacao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + "\r\n";
+					Print += "\tusuario_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].usuario_id + "\r\n";
+					Print += "\tdata_frequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].data_frequencia + "\r\n";
+					Print += "\tfrequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia + "\r\n";
+					Print += "\tjustificativa: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa + "\r\n";
+					Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia_livre + "\r\n";
+					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n";
+				}
+			}
+			console.log(Print);
+			// testes retirar
+
 			// Monta a tela
 			FREQUENCIA.montaFrequencia();
 		}
