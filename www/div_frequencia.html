@@ -12,8 +12,8 @@
                 <img src="img/icoCalendar.png" class="icoCalendario">
               </label>
 
-              <div class="divFreqCidadao">
-			  
+              <div class="divFreqCidadao" id="idDivFreqCidadao">
+				<!--
                 <div class="divFrequenciaLivre">
                   <p class="atividadeFreq"><img src="img/icoSetaIn.png">FREQUÊNCIA LIVRE</p>
                   <div class="linhaForm" id="divFrequencias">
@@ -45,6 +45,7 @@
                   <input type="hidden" value="2016-02-29" name="data_frequencia_386">
                   <input type="hidden" value="275" name="cidadao_id_386">
                 </div>
+				-->
               </div>
                         
             </div>
@@ -55,10 +56,15 @@
 				var hoje = new Date();
 				var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
 				$("#dataCorrente").val(dataHoje);
-				// todo: testes
-				//FREQUENCIA.dadosEntrada(dataHoje);
-				FREQUENCIA.iniFrequencia("2015-11-16");
-				// testes
+				if (FREQUENCIA.cidadao_id == null) {
+					// todo: testes
+					//FREQUENCIA.dadosEntrada(dataHoje);
+					FREQUENCIA.iniFrequencia("2015-11-16");
+					// testes
+				}
+				else {
+					FREQUENCIA.dadosEntrada(FREQUENCIA.cidadao_id);
+				}
 			});
 		</script>
       <!-- fim tela frequencia -->

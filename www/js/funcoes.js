@@ -1014,6 +1014,36 @@ function infoSitDba(){
 		}
 }
 
+function radioFrequencia(elemento, radio){
+	console.log("radioFrequencia");
+	
+	// todo: testes retirar
+	console.log("Elemento: " + "'#" + elemento + "'" + "Radio: " + radio);
+	console.log("Radio selecionado: " + $( 'input:radio[name=' + radio + ']:checked' ).val());
+	// testes retirar
+	
+	/* INICIO - RADIO SITUACAO CADASTRAL */
+	if ($( 'input:radio[name=' + radio + ']:checked' ).val() == "Não")
+	{
+		// todo: testes retirar
+		console.log("Não");
+		// testes retirar
+
+		//jQuery("'#" + elemento + "'").show();
+		//jQuery("'#" + elemento + "'").attr('style','display:block');
+		$('#' + elemento).show();
+	}
+	else{
+		// todo: testes retirar
+		console.log("Diferente de Não");
+		// testes retirar
+
+		//jQuery("'#" + elemento + "'").hide();
+		//jQuery("'#" + elemento + "'").attr('style','display:none');
+		$('#' + elemento).hide();
+	}
+}
+
 function infoPrDba() {
 if ($( "input:radio[name=infoProgramaDba]:checked" ).val() == "Sim")
   {

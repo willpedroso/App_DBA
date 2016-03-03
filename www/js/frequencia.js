@@ -19,6 +19,6 @@ function salvaFrequenciaFail (err) {
 	console.log("salvaFrequenciaFail: " + err);
 }
 
-function validaCamposFrequencia() {
+function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nomeObs) {
 	console.log("validaCamposFrequencia");
 }

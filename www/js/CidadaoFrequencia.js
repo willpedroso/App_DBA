@@ -36,6 +36,7 @@
 		listaFrequencias: null;
 		cidadao_id: null;
 		cidadao_nome: null;
+		indice_frequencia_livre: null;
 	},
 	// ****************** FREQUENCIAS ***********************************
 	
@@ -47,6 +48,8 @@
 		FREQUENCIA.cbSuccess_f = cbSuccess;
 		FREQUENCIA.cbFail_f = cbFail;
 		FREQUENCIA.auxData = data;
+		
+		FREQUENCIA.cidadao_id = null;
 
 		// Tipos de atuação
 		BD_DTO.ponto_servico_carrega(FREQUENCIA.listaPontosServicoSuccess, FREQUENCIA.dadosEntradaFrequenciaFail);
@@ -138,7 +141,8 @@
 					}
 				}				
 				// todo: Monta a lista de cidadãos e insere no HTML
-                listaCidadaosFrequencia += "<li><div onclick='FREQUENCIA.dadosEntrada(" + CIDADAO.listaCidadaosDados[i].id + ")';>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
+                //listaCidadaosFrequencia += "<li><div onclick='FREQUENCIA.dadosEntrada(" + CIDADAO.listaCidadaosDados[i].id + ")';>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
+                listaCidadaosFrequencia += "<li><div onclick='FREQUENCIA.selecionaCidadaoFrequencia(" + CIDADAO.listaCidadaosDados[i].id + ");'>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
 			}
 			// todo: testes retirar
 			console.log(listaCidadaosFrequencia);
@@ -146,6 +150,13 @@
 			$("#ullistaFreqCidadaos").empty();
 			$("#ullistaFreqCidadaos").append(listaCidadaosFrequencia);
 		}
+	},
+	
+	selecionaCidadaoFrequencia: function (cidadao) {
+		console.log("selecionaCidadaoFrequencia");
+		
+		FREQUENCIA.cidadao_id = cidadao;
+		PageManager.loadTmpl('div_frequencia');
 	},
 	
     // ****************** Obtém os dados de entrada *********************
@@ -214,6 +225,7 @@
 				dt.justificativa = res.rows.item(i).justificativa;
 				dt.frequencia_livre = res.rows.item(i).frequencia_livre;
 				dt.dt_criacao = res.rows.item(i).dt_criacao;
+				dt.descricao = "";
 				if (lcidadao != res.rows.item(i).cidadao_id) {
 					// Mudou o cidadão, salva na lista e cria outro objeto
 					FREQUENCIA.listaFrequenciasCidadaos.push(v);
@@ -223,6 +235,10 @@
 					v.cidadao_nome = "";			// todo: obter o nome
 				}
 				v.listaFrequencias.push(dt);
+			}
+			// Salva o índice do registro que é frequência livre do cidadão, se houver
+			if (dt.frequencia_livre) {
+				v.indice_frequencia_livre = FREQUENCIA.listaFrequenciasCidadaos.length;
 			}
 			FREQUENCIA.listaFrequenciasCidadaos.push(v);
 
@@ -309,6 +325,8 @@
 					}
 				}
 				if (encontrou) {
+					// Preenche a descrição da frequência que já está na lista
+					FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
 					continue;
 				}
 				
@@ -328,6 +346,7 @@
 						dt.justificativa = null;
 						dt.frequencia_livre = null;
 						dt.dt_criacao = null;
+						dt.descricao = ATIVIDADE.listaAtividades[i].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[i].descricao;
 						
 						// Procura pelo cidadão na lista de atividades por cidadãos
 						encontrou = false;
@@ -408,27 +427,112 @@
 		console.log("montaFrequencia");
 		
 		// todo: Percorre a lista de frequencias, cria HTML e insere
-		/*
-		for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++)
-		{
-                <div class="divFrequenciaLivre">
-                  <p class="atividadeFreq"><img src="img/icoSetaIn.png">FREQUÊNCIA LIVRE</p>
-                  <div class="linhaForm" id="divFrequencias">
-                    <div class="radioFrequencias radioButton">
-                      <input type="radio" name="radioFrequencias" value="Não Informado" class="radio" onchange="()">
-                      <p>Não Informado</p>
-                      <input type="radio" name="radioFrequencias" value="Não" class="radio" onchange="()">
-                      <p>Não</p>
-                      <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
-                      <p>Sim</p>
-                      <input type="button" id="btnSalvar" onclick="()" value="Salvar" class="btnSalvar disable" disabled="">
-                    </div>
-                  </div>
-                  <textarea placeholder="Observações" name="justificativa_275" class="inputGrande inputFrequenciaLivre"></textarea>
-                </div>
 
+		// Cria a frequência livre na primeira posição da lista de frequências para cada cidadão
+		
+		var htmlFrequencias = "";
+		var lIndiceFrequenciaLivre;
+		var lCidadao = null;
+		var selectedNI;
+		var selectedSim;
+		var selectedNao;
+		var observacoes;
+		var nomeRadio;
+		var nomeObs;
+		for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
+		{
+//			if (lCidadao != FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id) {
+				// Primeira iteração de um cidadão
+				// todo: Insere dados do cidadão
+				
+				// Processa frequência livre
+				if ((lIndiceFrequenciaLivre = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre) != null) {
+					// Existe registro de frequência livre, deve aparecer no início da lista de frequências do cidadão
+					if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].frequencia == 0) {
+						selectedNao = " checked";
+						selectedSim = selectedNI = "";
+					}
+					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].frequencia == 1) {
+						selectedSim = " checked";
+						selectedNao = selectedNI = "";
+					}
+					else {
+						selectedNI = " checked";
+						selectedNao = selectedSim = "";
+					}
+					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].justificativa;
+				}
+				else {
+					selectedNI = " checked";
+					selectedNao = selectedSim = "";
+					observacoes = "";
+				}
+				nomeRadio = "radioFrequencias_Livre";
+				nomeObs = "observacao_Livre";
+				htmlFrequencias += "<div class='divFrequenciaLivre'>" + 
+									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
+									  "<div class='linhaForm' id='divFrequencias'>" + 
+										"<div class='radioFrequencias radioButton'>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+										  "<p>Não Informado</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+										  "<p>Não</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+										  "<p>Sim</p>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + lIndiceFrequenciaLivre + ", \"" + nomeRadio + "\", \"" + nomeObs + "\")' value='Salvar' class='btnSalvar disable' disabled=''>" + 
+										"</div>" + 
+									  "</div>" + 
+									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre' style='display:none'>" + observacoes + "</textarea>" + 
+									"</div>";
+				radioFrequencia(nomeObs, nomeRadio);
+//			}
+			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
+				if (i == lIndiceFrequenciaLivre) {
+					// O índice é o índice da frequência livre já processada, continua
+					continue;
+				}
+				if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia == 0) {
+					selectedNao = " checked";
+					selectedSim = selectedNI = "";
+				}
+				else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia == 1) {
+					selectedSim = " checked";
+					selectedNao = selectedNI = "";
+				}
+				else {
+					selectedNI = " checked";
+					selectedNao = selectedSim = "";
+				}
+				observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa;
+				
+				nomeRadio = "radioFrequencias_" + i + j;
+				nomeObs = "observacao_" + i + j;
+				htmlFrequencias += "<div class='divFrequencia'>" + 
+									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
+									  "<div class='linhaForm' id='divFrequencias'>" + 
+										"<div class='radioFrequencias radioButton'>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+										  "<p>Não Informado</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+										  "<p>Não</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+										  "<p>Sim</p>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\")' value='Salvar' class='btnSalvar disable' disabled=''>" + 
+										"</div>" + 
+									  "</div>" + 
+									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre' style='display:none'>" + observacoes + "</textarea>" + 
+									"</div>";
+				radioFrequencia(nomeObs, nomeRadio);
+			}
 		}
-		*/
+		
+		// todo: testes retirar
+		console.log(htmlFrequencias);
+		// testes retirar
+		
+		$("#idDivFreqCidadao").empty();
+		$("#idDivFreqCidadao").append(htmlFrequencias);
+
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":

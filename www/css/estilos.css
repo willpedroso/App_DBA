@@ -563,6 +563,12 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin:-5px 0 0 0;
 	width: 50%;
 }
+.linhaForm .radio{
+	float:left;
+	padding:0;
+	margin:-5px 0 0 0;
+	width: 50%;
+}
 .leftForm{
 	float:left;
 	width:30%;
@@ -1232,7 +1238,6 @@ p.info-basica{
 	line-height: 40px;
 }
 .checkbox .check.active{
-	background: url(../img/icoCheck-on.gif) no-repeat;
 	width:40px;
 	height:40px;
 	float:left;
@@ -1241,14 +1246,18 @@ p.info-basica{
 	float:left;
 	/* clear:both; */
 }
+.radioButton div.radio{
+	width: 100%;
+	height:auto;
+}
 .radioButton .radio{
-	background: url(../img/icoRadio.png) no-repeat;
 	width:40px;
 	height:40px;
 	float:left;
 	margin:8px 0 0 0;
 	cursor:pointer;
 }
+
 .radioButton p{
 	float:left;
     padding: 0px 10px 0px 6px;
@@ -1256,7 +1265,6 @@ p.info-basica{
     margin-right: 20px;
 }
 .radioButton .radio.active{
-	background: url(../img/icoRadio-on.png) no-repeat;
 	width:40px;
 	height:40px;
 	float:left;
@@ -1705,6 +1713,7 @@ span.phone-img {
 		line-height: 22px;
 		font-size: 16px;
 		height:auto;
+		min-height: 10px;
 		min-width: 5%;
 	}
 	ul#ullistaCidadaos li div:nth-child(1){
@@ -1829,6 +1838,7 @@ span.phone-img {
 		line-height: 22px;
 		font-size: 16px;
 		height:auto;
+		min-height: 10px;
 		min-width: 5%;
 	}
 	ul#ullistaFreq li div:nth-child(1){
@@ -2246,20 +2256,25 @@ span.phone-img {
 }
 .adicionaInputCertidao{
 	float: left;
-    margin: 15px 0 0 67px;
-    width: 739px;
+    margin: 15px 0 0 0;
+    width: 100%;
     clear: both;
     padding: 0 0 16px 0;
 }
 .adicionaInputProvidencia{
 	float: left;
-    margin: 15px 0 0 67px;
-    width: 739px;
+    margin: 15px 0 0 0;
+    width: 100%;
     clear: both;
     padding: 0 0 16px 0;
 }
 .adicionaInputEspecialidadeConsulta{
 
+}
+#container_duasColunas_atividade_tempo_livre{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
 }
 .adicionaInputProvidencia > div{
 	margin:20px 0 0 0;
@@ -2442,7 +2457,7 @@ span.phone-img {
     color: #333333 !important;
     font-size: 16px !important;
     font-weight: bold !important;
-    line-height: 40px;
+    line-height: 72px;
 }
 #div_login{
 	margin: 30px 0 0 45px;
@@ -2571,6 +2586,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
 .dataFreq {
     float: left;
     margin: 30px 0 30px 0;
+    width: 100%;
 }
 
 .dataFreq .inputPeq{
