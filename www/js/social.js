@@ -25,13 +25,12 @@ function carregaSocial () {
 	$("#endereco_contato").val(auxVar == null ? "" : auxVar);
 	
 	// UF do contato
-	var opts = "<label class='selectDefault'><span class='titSang'>UF do contato:</span>" + 
-			   "<select name='estadoNomeLabel' id='estadoNomeLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicialUF'><select name='estadoNomeLabel' id='estadoNomeLabel' class='selectUF'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSOCIAL.listaEstados.length; i++) {
 		opts += "<option value='" + CIDADAOSOCIAL.listaEstados[i].id + "' data-id='estadoNomeLabel' for='tipo_estado_id'";
 		opts += ((edit == true && CIDADAOSOCIAL.dadosSocial.tipo_estado_id == CIDADAOSOCIAL.listaEstados[i].id) ? " selected>" : ">") + CIDADAOSOCIAL.listaEstados[i].sigla + " - " + CIDADAOSOCIAL.listaEstados[i].nome + "</option>";
 	}
-	opts += "</div></select></label>";
+	opts += "</div></select></div>";
 	
 	$("#ufContato").empty();
 	$("#ufContato").append(opts);
@@ -41,13 +40,12 @@ function carregaSocial () {
 	$("#municipio_contato").val(auxVar == null ? "" : auxVar);
 
 	// Dispositivos de contato
-	var opts = "<span class='titSang'>Dispositivos de contato:</span>" + 
-			   "<select name='tipoDispositivoContatoLabel' id='tipoDispositivoContatoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoDispositivoContatoLabel' id='tipoDispositivoContatoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSOCIAL.listaTipoDispositivoContato.length; i++) {
 		opts += "<option value='" + CIDADAOSOCIAL.listaTipoDispositivoContato[i].id + "' data-id='tipoDispositivoContatoLabel' for='tipo_dispositivo_contato_id'>";
 		opts += CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts);
 	
 	$("#listaSelectTipoDispositivoContato").empty();
@@ -83,13 +81,12 @@ function carregaSocial () {
 		$("input[name='infoDocumentosAposPrograma'][value='Não Informado']").prop("checked", true);
 	}
 	listaDocumentosf();
-	var opts = "<span class='titSang'>Quais:</span>" + 
-			   "<select name='tipoDocumentoLabel' id='tipoDocumentoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoDocumentoLabel' id='tipoDocumentoLabel' class='selectPersonalizado'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSOCIAL.listaTipoDocumento.length; i++) {
 		opts += "<option value='" + CIDADAOSOCIAL.listaTipoDocumento[i].id + "' data-id='tipoDocumentoLabel' for='tipo_documento_id'>";
 		opts += CIDADAOSOCIAL.listaTipoDocumento[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</select></div>";
 	console.log(opts);
 	
 	$("#listaDocumentos2").empty();
@@ -150,13 +147,12 @@ function carregaSocial () {
 	$("#endereco_empresa").val(auxVar == null ? "" : auxVar);
 
 	// Dispositivos de contato da empresa
-	var opts = "<span class='titSang'>Dispositivos de contato da empresa:</span>" + 
-			   "<select name='tipoDispositivoContatoEmpresaLabel' id='tipoDispositivoContatoEmpresaLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoDispositivoContatoEmpresaLabel' id='tipoDispositivoContatoEmpresaLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSOCIAL.listaTipoDispositivoContato.length; i++) {
 		opts += "<option value='" + CIDADAOSOCIAL.listaTipoDispositivoContato[i].id + "' data-id='tipoDispositivoContatoEmpresaLabel' for='tipo_dispositivo_contato_id'>";
 		opts += CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts);
 	
 	$("#listaSelectTipoDispositivoContatoEmpresa").empty();
@@ -256,13 +252,12 @@ function carregaSocial () {
 	$("#titulo_eleitor").val(auxVar == null ? "" : auxVar);
 
 	// Certidões
-	var opts = "<span class='titSang'>Certidões:</span>" + 
-			   "<select name='tipoCertidaoLabel' id='tipoCertidaoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoCertidaoLabel' id='tipoCertidaoLabel' class='selectPersonalizado'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSOCIAL.listaTipoCertidao.length; i++) {
 		opts += "<option value='" + CIDADAOSOCIAL.listaTipoCertidao[i].id + "' data-id='tipoCertidaoLabel' for='tipo_certidao_id'>";
 		opts += CIDADAOSOCIAL.listaTipoCertidao[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</select></div>";
 	console.log(opts);
 	
 	$("#listaTipoCertidao").empty();

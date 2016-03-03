@@ -50,8 +50,8 @@
           <div class="contentAbaBorda">
         
             <div class="linhaForm"> 
-              <label class="selectDefault">
-                <div class="comboStilo" id="listaDiasMesesAnosEmpregado"> 
+              <span class='titLabel'>Se desempregado, por quanto tempo:</span>
+                <div id="listaDiasMesesAnosEmpregado"> 
 				  <!--
                   <span class="titSang">Se desempregado, por quanto tempo:</span> 
                   <select name="diasLabel" id="diasLabel" class="selectPersonalizado">
@@ -168,7 +168,6 @@
                     </select>
 					-->
                 </div>
-              </label>
             </div>
           
             <div class="linhaForm">
@@ -232,16 +231,16 @@
             
             <div class="linhaForm"> 
               <span class="titLabel">Data de início da última ou atual ocupação:</span>
-              <input type="text" class="inputPeq float-nn" value="" id="dia_inicio_ocupacao" name="dia_inicio_ocupacao" placeholder="dia">
-              /<input type="text" class="inputPeq float-nn" value="" id="mes_inicio_ocupacao" name="mes_inicio_ocupacao" placeholder="mês">
-              /<input type="text" class="inputPeq float-nn" value="" id="ano_inicio_ocupacao" name="ano_inicio_ocupacao" placeholder="ano">
+              <input type="text" class="inputMedio float-nn" value="" id="dia_inicio_ocupacao" name="dia_inicio_ocupacao" placeholder="dia">
+              <input type="text" class="inputMedio float-nn" value="" id="mes_inicio_ocupacao" name="mes_inicio_ocupacao" placeholder="mês">
+              <input type="text" class="inputMedio float-nn" value="" id="ano_inicio_ocupacao" name="ano_inicio_ocupacao" placeholder="ano">
             </div>
             
             <div class="linhaForm"> 
               <span class="titLabel">Data de término da última ocupação:</span>
-              <input type="text" class="inputPeq float-nn" value="" id="dia_ternino_ocupacao" name="dia_ternino_ocupacao" placeholder="dia">
-              /<input type="text" class="inputPeq float-nn" value="" id="mes_termino_ocupacao" name="mes_termino_ocupacao" placeholder="mês">
-              /<input type="text" class="inputPeq float-nn" value="" id="ano_termino_ocupacao" name="ano_termino_ocupacao" placeholder="ano">
+              <input type="text" class="inputMedio float-nn" value="" id="dia_ternino_ocupacao" name="dia_ternino_ocupacao" placeholder="dia">
+              <input type="text" class="inputMedio float-nn" value="" id="mes_termino_ocupacao" name="mes_termino_ocupacao" placeholder="mês">
+              <input type="text" class="inputMedio float-nn" value="" id="ano_termino_ocupacao" name="ano_termino_ocupacao" placeholder="ano">
             </div>
             
             <div class="linhaForm">
@@ -289,9 +288,9 @@
             </div>
             
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">Já trabalhou coletivamente em cooperativa, associação ou outro formato de trabalho coletivo:</span>
-                <div class="comboStilo" id="listaTipoTrabalhoColetivo"> 
+              
+                <span class="titLabel">Já trabalhou coletivamente em cooperativa, associação ou outro formato de trabalho coletivo:</span>
+                <div id="listaTipoTrabalhoColetivo"> 
 				  <!--
                   <select name="tipoTrabalhoColetivoLabel" id="tipoTrabalhoColetivoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -304,12 +303,11 @@
                   </select>
 				  -->
                 </div>
-              </label>
             </div>
             
             <div class="linhaForm"> 
-              <label class="selectDefault">
-                <div class="comboStilo" id="listaMesesAnosTrabalhoColetivo"> 
+              <span class='titLabel'>Por quanto tempo:</span>
+                <div id="listaMesesAnosTrabalhoColetivo"> 
 				  <!--
                   <span class="titSang">Por quanto tempo:</span>
                   <select name="mesesTrabalhColetivoLabel" id="mesesTrabalhColetivoLabel" class="selectPersonalizado">
@@ -386,7 +384,6 @@
                   </select> 
 				  -->
                 </div>
-              </label>
             </div>
             
             <div class="linhaForm">
@@ -414,7 +411,7 @@
           <div class="contentAbaBorda">
             <div class="linhaForm">
               <label class="selectDefault">
-                <span class="titSang">Profissão:</span>
+                <span class="titLabel">Profissão:</span>
                 <input type="text" class="inputGrande" value="" id="profissao_atividade" name="profissao_atividade">
               </label>
             </div>
@@ -424,9 +421,8 @@
           <!--INICIO - QUARTO BLOCO-->
           <div class="contentAbaBorda">
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">Onde você aprendeu esta profissão:</span>
-                <div class="comboStilo" id="listaTipoOndeAprendeuProfissao"> 
+                <span class="titLabel">Onde você aprendeu esta profissão:</span>
+                <div id="listaTipoOndeAprendeuProfissao"> 
 				  <!--
                   <select name="tipoOndeAprendeuProfissaoLabel" id="tipoOndeAprendeuProfissaoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -436,7 +432,6 @@
                   </select>
 				  -->
                 </div>
-              </label>
             </div>
           </div>
           <!--FIM - QUARTO BLOCO-->
@@ -444,9 +439,8 @@
           <!--INICIO - QUINTO BLOCO-->
           <div class="contentAbaBorda">
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">Como você comprova seu conhecimento profissional:</span>
-                <div class="comboStilo" id="listaTipoComprovanteConhecimentoProfissional">
+                <span class="titLabel">Como você comprova seu conhecimento profissional:</span>
+                <div id="listaTipoComprovanteConhecimentoProfissional">
 				  <!--
                   <select name="tipoComprovanteConhecimentoProfissionalLabel" id="tipoComprovanteConhecimentoProfissionalLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -456,7 +450,6 @@
                   </select>
 				  -->
                 </div>
-              </label>
             </div>
           </div>
           <!--FIM - QUINTO BLOCO-->
@@ -483,9 +476,8 @@
             </div>
             
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">A que ramo pertence esse curso:</span>
-                <div class="comboStilo" id="listaTipoRamoCurso">
+                <span class="titLabel">A que ramo pertence esse curso:</span>
+                <div id="listaTipoRamoCurso">
 				  <!--
                   <select name="tipoRamoCursoLabel" id="tipoRamoCursoLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -495,7 +487,6 @@
                   </select>
 				  -->
                 </div>
-              </label>
             </div>
             
             <div class="linhaForm"> 
@@ -509,9 +500,8 @@
           <!--INICIO - SETIMO BLOCO-->
           <div class="contentAbaBorda">
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">Você pretende fazer novos cursos de qualificação profissional:</span>
-                <div class="comboStilo" id="listaTipoPretencaoCursos">
+                <span class="titLabel">Você pretende fazer novos cursos de qualificação profissional:</span>
+                <div id="listaTipoPretencaoCursos">
 				  <!--
                   <select name="tipoPretencaoCursosLabel" id="tipoPretencaoCursosLabel" class="selectPersonalizado">
                     <div class="lista-box-scroll">
@@ -521,7 +511,6 @@
                   </select>
 				  -->
                 </div>
-              </label>
             </div>
             
             <div class="linhaForm"> 

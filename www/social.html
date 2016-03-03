@@ -31,6 +31,7 @@
               </div>          
               
               <div class="linhaForm" id="ufContato">
+              <span class='titLabel'>UF do contato:</span>
 			    <!--
                 <label class="selectDefault">
                   <span class="titSang">UF do contato:</span>
@@ -68,7 +69,7 @@
                     </div>
                   </select>
                 </label>
-				-->
+				-->   
               </div>
               
               <div class="linhaForm"> 
@@ -76,8 +77,10 @@
                 <input type="text" class="inputGrande" value="" id="municipio_contato" name="municipio_contato">
               </div>
               
+
               <div class="linhaForm">
-                <label class="selectDefault alinhaLeftSelect" id="listaSelectTipoDispositivoContato">
+              <span class='titLabel'>Dispositivos de contato:</span>
+                <div id="listaSelectTipoDispositivoContato">
   			    <!--
                 <span class="titSang">Dispositivos de contato:</span>
                 <select name="tipoDispositivoContatoLabel" id="tipoDispositivoContatoLabel" class="selectPersonalizado">
@@ -92,9 +95,9 @@
                     </div>
                   </select>
 			    -->
-                </label>
+                </div>
                 <div class="linhaForm alinhaObsCert">
-                  <input type="text" class="inputGrande adicionaNumContato" value="" id="numeroContatoLabel" placeholder="Número ou descrição">
+                  <input type="text" class="inputMedio adicionaNumContato" value="" id="numeroContatoLabel" placeholder="Número ou descrição">
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputContato" value="Adicionar">
                 </div>
                 <div class="adicionaInputContato">
@@ -126,8 +129,8 @@
               
               
               <div id="listaDocumentos" class="linhaForm" style="display:none"> 
-                <label class="selectDefault alinhaLeftSelect">
-                <div class="comboStilo" id="listaDocumentos2">
+                <span class='titSang'>Quais:</span>
+                <div id="listaDocumentos2">
 				  <!--
                   <span class="titSang">Quais:</span> 
                   <select name="tipoDocumentoLabel" id="tipoDocumentoLabel" class="selectPersonalizado">
@@ -143,9 +146,9 @@
                   </select>
 				  -->
                 </div>
-                </label>
+
                 <div class="linhaForm alinhaObsCert">
-                  <input type="text" class="inputGrande adicionaNumDocumento" value="" id="numeroDocumentoLabel" placeholder="Número ou descrição">
+                  <input type="text" class="inputMedio adicionaNumDocumento" value="" id="numeroDocumentoLabel" placeholder="Número ou descrição">
                   <input type="button" class="btnIcoAdicionar btnAdicionaInputDocumento" value="Adicionar">
                 </div>
                 <div class="adicionaInputDocumento">
@@ -209,7 +212,8 @@
           </div>
           
           <div class="linhaForm"> 
-            <label class="selectDefault alinhaLeftSelect" id="listaSelectTipoDispositivoContatoEmpresa">
+            <span class='titSang'>Dispositivos de contato da empresa:</span>
+            <div id="listaSelectTipoDispositivoContatoEmpresa">
 			  <!--
               <span class="titSang">Dispositivos de contato da empresa:</span> 
               <select name="tipoDispositivoContatoEmpresaLabel" id="tipoDispositivoContatoEmpresaLabel" class="selectPersonalizado">
@@ -224,9 +228,9 @@
                     </div>
                   </select>
 			  -->
-            </label>
+            </div>
             <div class="linhaForm alinhaObsCert">
-              <input type="text" class="inputGrande adicionaNumContatoEmpresa" value="" id="numeroContatoEmpresaLabel" placeholder="Número ou descrição">
+              <input type="text" class="inputMedio adicionaNumContatoEmpresa" value="" id="numeroContatoEmpresaLabel" placeholder="Número ou descrição">
               <input type="button" class="btnIcoAdicionar btnAdicionaInputContatoEmpresa" value="Adicionar">
             </div>
             <div class="adicionaInputContatoEmpresa">
@@ -313,16 +317,21 @@
             </div>
           </div>
           
+
+
+
+
           <div id="providencias" style="display:none"> 
-            <div class="linhaForm alinhaObsProv">
-              <input type="text" class="inputGrande adicionaObsProvidencia" value="" id="inputteste" placeholder="Tipo">
-              <input type="text" class="inputGrande adicionaObsProvidenciaPeq" value="" placeholder="Status">
+            <div class="linhaForm">
+              <input type="text" class="inputMedio adicionaObsProvidencia" value="" id="inputteste" placeholder="Tipo">
+              <input type="text" class="inputMedio adicionaObsProvidencia" value="" placeholder="Status">
+              
               <input type="button" class="btnIcoAdicionar btnAdicionaInputProvidencia" value="Adicionar">
             </div>
-            <textarea rows="4" cols="50" class="textareaProvidencia" placeholder="Observações"></textarea>
-            <div class="adicionaInputProvidencia">
-            </div>
-          </div>  
+            <textarea rows="4" cols="50" class="textareaProvidencia inputTextArea" placeholder="Observações"></textarea>
+            <div class="adicionaProvidencia"></div>
+          </div>
+
         </div>
         <!--FIM - QUARTO BLOCO-->
 
@@ -346,7 +355,8 @@
           </div>
           
           <div class="linhaForm"> 
-            <label class="selectDefault alinhaLeftSelect" id="listaTipoCertidao">
+            <span class='titLabel'>Certidões:</span>
+            <div id="listaTipoCertidao">
 			  <!--
               <span class="titSang">Certidões:</span> 
               <select name="tipoCertidaoLabel" id="tipoCertidaoLabel" class="selectPersonalizado">
@@ -359,7 +369,7 @@
                 </div>
               </select>
 			  -->
-            </label>
+            </div>
             <div class="linhaForm alinhaObsCert">
               <input type="text" class="inputGrande adicionaObsCertidao" value="" id="numeroCertidaoLabel" placeholder="Número da certidão">
               <input type="button" class="btnIcoAdicionar btnAdicionaInputCertidao" value="Adicionar">
