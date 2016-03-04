@@ -1,70 +1,34 @@
-    <!--inicio tela frequencia-->
-        <div id="div_frequencia" class="hideme">
-          <form id="formFrequencia" action="" method="post" class="cadastro">
-            <div class="contentAbaBorda">
-          
-              <h3>FREQUÊNCIA | Nome</h3>
-              
-              <label class="dataFreq">  
-                <span class="labelFiltroData">Filtre por data</span>
-                <!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-                <input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa">
-                <img src="img/icoCalendar.png" class="icoCalendario">
-              </label>
+<!--inicio tela frequencia-->
+	<div id="div_frequencia" class="hideme">
+		<form id="formFrequencia" action="" method="post" class="cadastro">
+			<div class="contentAbaBorda">
+				<h3>FREQUÊNCIA | Nome</h3>
+				<label class="dataFreq">  
+					<span class="labelFiltroData">Filtre por data</span>
+					<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
+					<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+					<img src="img/icoCalendar.png" class="icoCalendario">
+				</label>
+				<div class="divFreqCidadao" id="idDivFreqCidadao">
 
-              <div class="divFreqCidadao" id="idDivFreqCidadao">
-				<!--
-                <div class="divFrequenciaLivre">
-                  <p class="atividadeFreq"><img src="img/icoSetaIn.png">FREQUÊNCIA LIVRE</p>
-                  <div class="linhaForm" id="divFrequencias">
-                    <div class="radioFrequencias radioButton">
-                      <input type="radio" name="radioFrequencias" value="Não Informado" class="radio" onchange="()">
-                      <p>Não Informado</p>
-                      <input type="radio" name="radioFrequencias" value="Não" class="radio" onchange="()">
-                      <p>Não</p>
-                      <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
-                      <p>Sim</p>
-                      <input type="button" id="btnSalvar" onclick="()" value="Salvar" class="btnSalvar disable" disabled="">
-                    </div>
-                  </div>
-                  <textarea placeholder="Observações" name="justificativa_275" class="inputGrande inputFrequenciaLivre"></textarea>
-                </div>
-				
-                <div class="divFrequencia">
-                  <p class="atividadeFreq"><img src="img/icoSetaIn.png">HOTEL ALAIDE - Local de Acolhida</p>
-                  <div class="radioFrequencias radioButton">
-                    <input type="radio" name="radioFrequencias" value="Não Informado" class="radio" onchange="()">
-                    <p>Não Informado</p>
-                    <input type="radio" name="radioFrequencias" value="Não" class="radio" onchange="()">
-                    <p>Não</p>
-                    <input type="radio" name="radioFrequencias" value="Sim" class="radio" onchange="()">
-                    <p>Sim</p>
-                  </div>
-                  <textarea placeholder="Observações" name="justificativa_386" style="display:none" class="inputGrande inputFrequencia"></textarea>
-                  <input type="hidden" value="" name="frequencia_id_386">
-                  <input type="hidden" value="2016-02-29" name="data_frequencia_386">
-                  <input type="hidden" value="275" name="cidadao_id_386">
-                </div>
-				-->
-              </div>
-                        
-            </div>
-          </form>
-        </div>
-		<script>
-			$(document).ready(function() {
-				var hoje = new Date();
-				var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
-				$("#dataCorrente").val(dataHoje);
-				if (FREQUENCIA.cidadao_id == null) {
-					// todo: testes
-					//FREQUENCIA.dadosEntrada(dataHoje);
-					FREQUENCIA.iniFrequencia("2015-11-16");
-					// testes
-				}
-				else {
-					FREQUENCIA.dadosEntrada(FREQUENCIA.cidadao_id);
-				}
-			});
-		</script>
-      <!-- fim tela frequencia -->
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		$(document).ready(function() {
+			//var hoje = new Date();
+			//var dataHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+			$("#dataCorrente").val(FREQUENCIA.auxData);
+			if (FREQUENCIA.cidadao_id == null) {
+				// todo: testes
+				//FREQUENCIA.dadosEntrada(dataHoje);
+				FREQUENCIA.iniFrequencia("2015-11-16");
+				// testes
+			}
+			else {
+				FREQUENCIA.dadosEntrada(FREQUENCIA.cidadao_id);
+			}
+		});
+	</script>
+<!-- fim tela frequencia -->

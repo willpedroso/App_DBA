@@ -202,6 +202,16 @@
 	},
 	
     // ****************** Obtém os dados de identificação de um cidadão *********************
+	dadosCidadaoID: function (id) {
+		console.log("dadosCidadaoID");
+		
+		for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+			if (CIDADAO.listaCidadaosDados[i].id == id) {
+				return CIDADAO.listaCidadaosDados[i];
+			}
+		}
+	},
+	
 	// todo: avaliar a necessidade, pois o próprio HTML pode indexar CIDADAO.listaCidadaosDados
     dadosCidadao: function(indice, cbSuccess, cbFail) {
 	    console.log("dadosCidadao");
