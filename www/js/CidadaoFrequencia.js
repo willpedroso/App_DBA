@@ -44,18 +44,12 @@
 	// ****************** FREQUENCIAS ***********************************
 	
 	// ****************** Verifica entrada ******************************
-	iniFrequencia: function (data, cbSuccess, cbFail) {
+	iniFrequencia: function (cbSuccess, cbFail) {
 		console.log("iniFrequencia");
 		
-		// todo: testes retirar
-		console.log("Data: " + FREQUENCIA.auxData);
-		alert("Prosseguir?");
-		// testes retirar
-
 		// Salva funções de retorno
 		FREQUENCIA.cbSuccess_f = cbSuccess;
 		FREQUENCIA.cbFail_f = cbFail;
-		//FREQUENCIA.auxData = data;
 		
 		FREQUENCIA.cidadao_id = null;
 
@@ -169,7 +163,7 @@
     // ****************** Obtém os dados de entrada *********************
     dadosEntrada: function(cidadao) {
 	    console.log("dadosEntrada");
-
+		
 		FREQUENCIA.cidadao_id = null;
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
@@ -219,7 +213,7 @@
 			v.cidadao_id = lcidadao;
 			
 			var dadosCidadao = null;
-			v.cidadao_nome = "";			// todo: obter o nome
+			v.cidadao_nome = "";
 			if ((dadosCidadao = CIDADAO.dadosCidadaoID(v.cidadao_id)) != null) {
 				v.cidadao_nome = dadosCidadao.nome;
 				v.cidadao_nome_social = dadosCidadao.nome_social;
@@ -246,7 +240,7 @@
 					v.cidadao_id = lcidadao = res.rows.item(i).cidadao_id;;
 
 					var dadosCidadao = null;
-					v.cidadao_nome = "";			// todo: obter o nome
+					v.cidadao_nome = "";
 					if ((dadosCidadao = CIDADAO.dadosCidadaoID(v.cidadao_id)) != null) {
 						v.cidadao_nome = dadosCidadao.nome;
 						v.cidadao_nome_social = dadosCidadao.nome_social;
@@ -384,7 +378,7 @@
 						v.cidadao_id = CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id;
 
 						var dadosCidadao = null;
-						v.cidadao_nome = "";			// todo: obter o nome
+						v.cidadao_nome = "";
 						if ((dadosCidadao = CIDADAO.dadosCidadaoID(v.cidadao_id)) != null) {
 							v.cidadao_nome = dadosCidadao.nome;
 							v.cidadao_nome_social = dadosCidadao.nome_social;
@@ -454,22 +448,42 @@
 		var encontrou;
 		var tamanhoListaFrequenciasCidadaos = FREQUENCIA.listaFrequenciasCidadaos.length;
 		var v = null;
-		for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
-			encontrou = false;
-			for (var j = 0; j < tamanhoListaFrequenciasCidadaos; j++)
-			{
-				if (CIDADAO.listaCidadaosDados[i].id == FREQUENCIA.listaFrequenciasCidadaos[j].cidadao_id) {
-					encontrou = true;
-					break;
+		if (FREQUENCIA.cidadao_id == null) {
+			// Não é frequência para um cidadão selecionado na lista, ou seja, é um usuário técnico
+			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
+				encontrou = false;
+				for (var j = 0; j < tamanhoListaFrequenciasCidadaos; j++)
+				{
+					if (CIDADAO.listaCidadaosDados[i].id == FREQUENCIA.listaFrequenciasCidadaos[j].cidadao_id) {
+						encontrou = true;
+						break;
+					}
+				}
+				if (encontrou == false) {
+					// Não encontrou, cria um item
+					v = new FREQUENCIA.frequenciasCidadao();
+					v.listaFrequencias = [];
+					v.cidadao_id = CIDADAO.listaCidadaosDados[i].id;
+					v.cidadao_nome = CIDADAO.listaCidadaosDados[i].nome;
+					v.cidadao_nome_social = CIDADAO.listaCidadaosDados[i].nome_social;
+					v.frequencia_livre = null;
+					FREQUENCIA.listaFrequenciasCidadaos.push(v);
 				}
 			}
-			if (encontrou == false) {
-				// Não encontrou, cria um item
+		}
+		else {
+			// Frequência para um cidadão selecionado na lista
+			if (tamanhoListaFrequenciasCidadaos == 0) {
+				// Cria uma frequência livre
 				v = new FREQUENCIA.frequenciasCidadao();
 				v.listaFrequencias = [];
-				v.cidadao_id = CIDADAO.listaCidadaosDados[i].id;
-				v.cidadao_nome = CIDADAO.listaCidadaosDados[i].nome;
-				v.cidadao_nome_social = CIDADAO.listaCidadaosDados[i].nome_social;
+				v.cidadao_id = FREQUENCIA.cidadao_id;
+				var dadosCidadao = null;
+				v.cidadao_nome = "";
+				if ((dadosCidadao = CIDADAO.dadosCidadaoID(v.cidadao_id)) != null) {
+					v.cidadao_nome = dadosCidadao.nome;
+					v.cidadao_nome_social = dadosCidadao.nome_social;
+				}
 				v.frequencia_livre = null;
 				FREQUENCIA.listaFrequenciasCidadaos.push(v);
 			}
@@ -494,7 +508,7 @@
 //			if (lCidadao != FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id) {
 				// Primeira iteração de um cidadão
 
-				// todo: Insere dados do cidadão
+				// Insere dados do cidadão
 				htmlFrequencias += "<div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
 
 				// Processa frequência livre
@@ -535,14 +549,14 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/0 + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
 //			}
 			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
-				if (i == lIndiceFrequenciaLivre) {
+				if (j == lIndiceFrequenciaLivre) {
 					// O índice é o índice da frequência livre já processada, continua
 					continue;
 				}
@@ -695,7 +709,7 @@
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
-							strHoje,
+							FREQUENCIA.auxData,
 							FREQUENCIA.frequencia,
 							FREQUENCIA.justificativa,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,

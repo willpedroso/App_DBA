@@ -37,6 +37,191 @@ var BANCODADOS = {
 	CountCreateTables: 0,
 
     // **********************************************************************************************************
+    // SINCRONIZAÇÃO DE DADOS
+    // **********************************************************************************************************
+	initSincronismo: function () {
+		console.log("initSincronismo");
+
+		BANCODADOS.listaInsert = [];
+		
+		BANCODADOS.igetOperadores();
+	},
+	
+	listaInsertINTONivel: [],
+	listaInsertVALUESNivel: [],
+	nivel: null,
+	insertOnline: null,
+	tableName: null,
+	primeiraChave: false,
+	geraCampos: false,
+//	keyConjunto: 
+	
+	processaJSON: function (jsonParsed) {
+		console.log("processaJSON");
+		
+		$.each(jsonParsed, function (key, value) {
+			if (value != null && typeof value === 'object') {
+				console.log("OBJETO --> Key: " + key + " - Value: " + value + " - Tipo de Value: " + (value != null ? typeof value : "nulo"));
+				
+				// É um objeto, pode ser uma tabela ou o início de um conjunto de chaves e valores para uma tabela
+				if (typeof key === 'string' && key.indexOf("table:") != -1) {
+					
+					// É uma tabela
+					// Cria comando DELETE e inicia comando de inserção
+					BANCODADOS.listaInsertINTONivel.push("");
+					BANCODADOS.listaInsertVALUESNivel.push("");
+					if (BANCODADOS.nivel == null) {
+						BANCODADOS.nivel = 0;
+					}
+					else {
+						BANCODADOS.nivel++;
+					}
+					
+					BANCODADOS.tableDeleteName = key.substr(("table:").length);
+					BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] = "INSERT INTO " + BANCODADOS.tableDeleteName + " (";
+					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = " ('";
+					BANCODADOS.primeiraChave = false;
+					BANCODADOS.geraCampos = true;
+					console.log("Tabela: " + BANCODADOS.tableDeleteName);
+				}
+				else {
+					// É o início de um conjunto de chaves e valores para uma tabela
+					if (BANCODADOS.primeiraChave) {
+						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += "),('";
+						if (BANCODADOS.geraCampos == true) {
+							BANCODADOS.geraCampos = false;
+							// fecha com parenteses
+							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel][BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel].length-3] = ")";
+							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += " ";
+						}
+					}
+					else {
+						BANCODADOS.primeiraChave = true;
+					}
+				}
+				
+				console.log("rechama processaJSON");
+				BANCODADOS.processaJSON(value);
+			}
+			else {
+				// Não é um objeto, é um conjunto de chaves e valores
+				if (/*primeira varredura no conjuntos de chaves e valores para uma tabela*/1) {
+					console.log("NÃO OBJETO --> Key: " + key + " - Value: " + value + " - Tipo de Value: " + (value != null ? typeof value : "nulo"));
+					if (BANCODADOS.geraCampos) {
+						BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += key + ", ";
+					}
+					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "', '";
+				}
+			}
+		});
+		// Finaliza o string de insert
+		//BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += "";
+		BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ";";
+		if (BANCODADOS.nivel > 0) {
+			BANCODADOS.nivel--;
+		}
+	},
+	
+    // Obtenção de Operadores
+	urlOperadores: "http://dppp005.prodam/api/operadores",
+//	urlOperadores: "http://dppp005.prodam/api/cidadaos",
+	msgOperadores: null,
+	
+    igetOperadores: function () {
+        console.log("igetOperadores");
+
+	    $.ajax({
+	        type: "GET",
+	        url: BANCODADOS.urlOperadores
+	    })
+	    .done((function (msg) {
+			try {
+				console.log(msg);
+				BANCODADOS.msgOperadores = msg;
+				var jsonOperadores;
+				//jsonOperadores = JSON.parse(BANCODADOS.msgOperadores);
+				jsonOperadores = eval("(" + BANCODADOS.msgOperadores + ")");
+				
+				BANCODADOS.listaInsertINTONivel = [];
+				BANCODADOS.listaInsertVALUESNivel = [];
+				BANCODADOS.nivel = null;
+
+				BANCODADOS.processaJSON(jsonOperadores);
+				// todo: testes retirar
+				for (var i = 0; i < BANCODADOS.listaInsertINTONivel.length; i++) {
+					console.log("INTO: " + BANCODADOS.listaInsertINTONivel[i]);
+					console.log("VALUES: " + BANCODADOS.listaInsertVALUESNivel[i]);
+				}
+				// testes retirar
+				alert("x");
+				/*
+				$.each(jsonOperadores, function (key, value) {
+					console.log ("Key: " + key + " - Value: " + value + " - Tipo do Value: " + (typeof value));
+					if (typeof value === "object") {
+						console.log("Nome da Key: " + key);
+						$.each(value, function (key1, value1) {
+							console.log ("Nome da Key1: " + key1);
+							if (typeof value1 === "object") {
+								$.each(value1, function (key2, value2) {
+									console.log ("Key2: " + key2 + " - Value2: " + value2 + " - Tipo do Value2: " + (typeof value2));
+								});
+							}
+						});
+					}
+				});
+				
+				console.log("jsonOperadores.key #####",jsonOperadores  )
+				var insertString = "INSERT INTO usuario (id, nome, email, login, senha, status, dt_criacao, dt_alteracao, dt_expirar_senha, perfil_id) VALUES ";
+				for (var i = 0; i < jsonOperadores.usuario.length; i++) {
+					insertString += "('" + jsonOperadores.usuario[i].id + "',";
+					insertString += "'" + jsonOperadores.usuario[i].nome + "',";
+					insertString += "'" + jsonOperadores.usuario[i].email + "',";
+					insertString += "'" + jsonOperadores.usuario[i].login + "',";
+					insertString += "'" + jsonOperadores.usuario[i].senha + "',";
+					insertString += "'" + jsonOperadores.usuario[i].status + "',";
+					insertString += "'" + jsonOperadores.usuario[i].dt_criacao + "',";
+					insertString += "'" + jsonOperadores.usuario[i].dt_alteracao + "',";
+					insertString += "'" + jsonOperadores.usuario[i].dt_expirar_senha + "',";
+					if (i + 1 < jsonOperadores.usuario.length) {
+						insertString += "'" + jsonOperadores.usuario[i].perfil_id + "'),";
+					}
+					else {
+						insertString += "'" + jsonOperadores.usuario[i].perfil_id + "');";
+					}
+				}
+				console.log(insertString);
+				BANCODADOS.listaInsert.push(insertString);
+				BANCODADOS.sqlCmdDB("DELETE FROM usuario", [], BANCODADOS.insertSinc, BANCODADOS.deleteSincFail);
+				*/
+			}
+			catch (err) {
+				BANCODADOS.cbFail_f("Erro no parse de operadores - msg: " +err);
+			}
+        }).bind(this)).fail(function(){
+			BANCODADOS.cbFail_f("Houve falha de acesso à internet.");
+        });		
+    },
+    // Obtenção de Operadores
+	
+	insertSinc: function (trans, res) {
+		console.log("insertSinc");
+		BANCODADOS.CountInsertData = 0;
+        BANCODADOS.dbObj.transaction(BANCODADOS.insertDataLoop, BANCODADOS.insertDataFail, BANCODADOS.insertDataSuccess);
+	},
+	
+	deleteSincFail: function (err) {
+		console.log("deleteSincFail");
+		
+		// todo: revisar
+		alert("Erro: " + err);
+		// revisar
+	},
+
+    // **********************************************************************************************************
+    // SINCRONIZAÇÃO DE DADOS
+    // **********************************************************************************************************
+
+    // **********************************************************************************************************
     // BANCO DE DADOS
     // **********************************************************************************************************
 	listaCreateTables: [

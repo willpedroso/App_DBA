@@ -3,6 +3,7 @@ function carregaFrequencia () {
 
 	var hoje = new Date();
 	FREQUENCIA.auxData = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+	$("#dataCorrente").val(FREQUENCIA.auxData);
 			
 	if (USUARIO.perfil_tecnico == true) {
 		// Usuário é técnico, abre em frequências
@@ -17,10 +18,6 @@ function carregaFrequencia () {
 function salvaFrequenciaSuccess () {
 	console.log("salvaFrequenciaSuccess");
 	
-	// todo: revisar
-	alert ("Frequência salva com sucesso.");
-	// revisar
-
 	PageManager.loadTmpl('div_frequencia');
 }
 
