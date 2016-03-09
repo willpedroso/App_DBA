@@ -64,7 +64,7 @@ var BANCODADOS = {
 				console.log("OBJETO --> Key: " + key + " - Value: " + value + " - Tipo de Value: " + (value != null ? typeof value : "nulo"));
 				
 				// É um objeto, pode ser uma tabela ou o início de um conjunto de chaves e valores para uma tabela
-				if (typeof key === 'string' && key.indexOf("table:") != -1) {
+				if (typeof key === 'string' && key.indexOf("table_") != -1) {
 					
 					// É uma tabela
 					// Cria comando DELETE e inicia comando de inserção
@@ -77,7 +77,7 @@ var BANCODADOS = {
 						BANCODADOS.nivel++;
 					}
 					
-					BANCODADOS.tableDeleteName = key.substr(("table:").length);
+					BANCODADOS.tableDeleteName = key.substr(("table_").length);
 					BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] = "INSERT INTO " + BANCODADOS.tableDeleteName + " (";
 					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = " ('";
 					BANCODADOS.primeiraChave = false;
@@ -87,12 +87,13 @@ var BANCODADOS = {
 				else {
 					// É o início de um conjunto de chaves e valores para uma tabela
 					if (BANCODADOS.primeiraChave) {
-						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += "),('";
+						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ")";
+						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel].replace("', ')", "'),('");
 						if (BANCODADOS.geraCampos == true) {
 							BANCODADOS.geraCampos = false;
 							// fecha com parenteses
-							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel][BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel].length-3] = ")";
-							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += " ";
+							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += ")";
+							BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] = BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel].replace(", )", ")");
 						}
 					}
 					else {
@@ -105,17 +106,14 @@ var BANCODADOS = {
 			}
 			else {
 				// Não é um objeto, é um conjunto de chaves e valores
-				if (/*primeira varredura no conjuntos de chaves e valores para uma tabela*/1) {
-					console.log("NÃO OBJETO --> Key: " + key + " - Value: " + value + " - Tipo de Value: " + (value != null ? typeof value : "nulo"));
-					if (BANCODADOS.geraCampos) {
-						BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += key + ", ";
-					}
-					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "', '";
+				console.log("NÃO OBJETO --> Key: " + key + " - Value: " + value + " - Tipo de Value: " + (value != null ? typeof value : "nulo"));
+				if (BANCODADOS.geraCampos) {
+					BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += key + ", ";
 				}
+				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "', '";
 			}
 		});
 		// Finaliza o string de insert
-		//BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += "";
 		BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ";";
 		if (BANCODADOS.nivel > 0) {
 			BANCODADOS.nivel--;
