@@ -87,8 +87,11 @@ var BANCODADOS = {
 				else {
 					// É o início de um conjunto de chaves e valores para uma tabela
 					if (BANCODADOS.primeiraChave) {
-						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ")";
-						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel].replace("', ')", "'),('");
+						//BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ")";
+						
+						// Se tem fim [ "');" ], troca por [ "', '" ] , pois podem vir mais conjuntos de chaves e valores
+						BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel].replace("');", "'),('");
+						
 						if (BANCODADOS.geraCampos == true) {
 							BANCODADOS.geraCampos = false;
 							// fecha com parenteses
@@ -110,13 +113,25 @@ var BANCODADOS = {
 				if (BANCODADOS.geraCampos) {
 					BANCODADOS.listaInsertINTONivel[BANCODADOS.nivel] += key + ", ";
 				}
-				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "', '";
+				// Se tem [ "');" ], troca por [ "', '" ] , pois podem vir mais campos/valores
+				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel].replace("');", "', '");
+				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "');";
+				
+//				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += value + "', '";
 			}
 		});
 		// Finaliza o string de insert
-		BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ";";
-		if (BANCODADOS.nivel > 0) {
-			BANCODADOS.nivel--;
+		//BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel] += ";";
+		if (BANCODADOS.listaInsertVALUESNivel[BANCODADOS.nivel].indexOf ("');") != -1) {
+			
+			// todo: testes retirar
+			console.log("Fim do nível: " + BANCODADOS.nivel);
+			// testes retirar
+			
+			// Finalizou a montagem de um comando INSERT, muda de nível
+			if (BANCODADOS.nivel > 0) {
+				BANCODADOS.nivel--;
+			}
 		}
 	},
 	
