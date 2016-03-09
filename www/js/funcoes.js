@@ -459,6 +459,32 @@ $('html').click(function() {
 		}
 		*/
 	});
+
+	//ADD PROVIDENCIA
+	$( document ).on( "click", ".btnAdicionaProvidencia", function() {
+		addProvidencia();
+		/*
+		var d = new Date();
+		var idobj =  d.getTime();
+		
+		if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
+			alert("Preencha os campos corretamente");
+		}
+		else{
+			
+			var html2insert ='<div id="div'+idobj+'">'+
+			'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
+			'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+			'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
+			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+				
+			$('.adicionaInputProvidencia').append(	html2insert);
+			$('input.adicionaObsProvidencia').val('');
+			$('input.adicionaObsProvidenciaPeq').val('');
+			$('textarea.textareaProvidencia').val('');
+		}
+		*/
+	});
 	
 	
 	
@@ -645,10 +671,10 @@ function adicionaCertidao(nome_certidao) {
 	else{
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+ nomeCertidao +'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ nomeCertidao +'" name="input_'+idobj+'" class="inputAdicionaCertidao inputPeq" readonly id="input_'+idobj+'">'+
 //		'<input type="text" value="'+$(".selectCertidao").text()+'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$("#tipo_certidao_id").val()+'" name="tipo_certidao_id[]">'+
-		'<input type="text" value="'+$(".adicionaObsCertidao").val()+'" name="input_'+idobj+'" class="inputAdicionaCertidao" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsCertidao").val()+'" name="input_'+idobj+'" class="inputAdicionaCertidao inputPeq" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaObsCertidao").val()+'" name="numero_certidao[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
@@ -670,11 +696,33 @@ function adicionaProvidencia() {
 		
 		var html2insert ='<div id="div'+idobj+'">'+
 		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
+		'<textarea name="observacao_providencia[]" class="inputTextArea" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
+		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			
+		$('.adicionaInputProvidencia').append(	html2insert);
+		$('input.adicionaObsProvidencia').val('');
+		$('input.adicionaObsProvidenciaPeq').val('');
+		$('textarea.textareaProvidencia').val('');
+	}
+}
+function addProvidencia() {
+	var d = new Date();
+	var idobj =  d.getTime();
+	
+//	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
+	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
+		alert("Preencha os campos corretamente");
+	}
+	else{
+		
+		var html2insert ='<div id="div'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
 		'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
-		$('.adicionaInputProvidencia').append(	html2insert);
+		$('.adicionaProvidencia').append(	html2insert);
 		$('input.adicionaObsProvidencia').val('');
 		$('input.adicionaObsProvidenciaPeq').val('');
 		$('textarea.textareaProvidencia').val('');
@@ -700,9 +748,9 @@ function adicionaContatoEmpresa(nome_dispositivo_contato) {
 		
 		var html2insert ='<div id="div'+idobj+'">'+
 		//'<input type="text" value="'+$("#tipoDispositivoEmpresa")[0].options[$("#tipoDispositivoEmpresa")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputPeq inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
 		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_empresa_id").val()+'" name="tipo_dispositivo_contato_empresa_id[]">'+
-		'<input type="text" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="input_'+idobj+'" class="inputPeq inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="numero_descricao_empresa[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
@@ -734,9 +782,9 @@ function adicionaContato (nome_dispositivo_contato) {
 		
 		var html2insert ='<div id="div'+idobj+'">'+
 		//'<input type="text" value="'+$("#tipoDispositivoContato")[0].options[$("#tipoDispositivoContato")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ tipoDispositivo +'" name="input_'+idobj+'" class="inputPeq inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		//'<input type="hidden" value="'+$("#tipo_dispositivo_contato_id").val()+'" name="tipo_dispositivo_contato_id[]">'+
-		'<input type="text" value="'+$(".adicionaNumContato").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaNumContato").val()+'" name="input_'+idobj+'" class="inputPeq inputAdicionaContato" readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumContato").val()+'" name="numero_descricao[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			
@@ -764,8 +812,8 @@ function adicionaDocumento (nome_documento) {
 	}
 	else{
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+ nomeDocumento +'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaNumDocumento").val()+'" name="input_'+idobj+'" class="inputGrande" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+ nomeDocumento +'" name="input_'+idobj+'" class="inputPeq inputAdicionaContato" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaNumDocumento").val()+'" name="input_'+idobj+'" class="inputPeq " readonly id="input_'+idobj+'">'+
 		'<input type="hidden" value="'+$(".adicionaNumDocumento").val()+'" name="numeroDocumentoLabel[]">'+
 		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
 			

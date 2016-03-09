@@ -32,27 +32,26 @@ function carregaTrabalho () {
 	$("#hotel").val(auxVar == null ? "" : auxVar);
 
 	// Desempregado por quanto tempo
-	var opts = "<span class='titSang'>Se desempregado, por quanto tempo:</span>" + 
-			   "<select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
+	var opts = "<div class='comboStilo selectInicial' id='diasLabel'><select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasLabel' for='dias_empregado'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.dias_empregado == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	opts += "<div class='comboStilo selectInicial' id='mesesLabel'><select name='mesesLabel' id='mesesLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesLabel' for='meses_empregado'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.meses_empregado == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial' id='anosLabel'><select name='anosLabel' id='anosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosLabel' for='anos_empregado'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.anos_empregado == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaDiasMesesAnosEmpregado").empty();
 	$("#listaDiasMesesAnosEmpregado").append(opts);
@@ -176,31 +175,31 @@ function carregaTrabalho () {
 	}
 	
 	// Já trabalhou coletivamente ...
-	var opts = "<select name='tipoTrabalhoColetivoLabel' id='tipoTrabalhoColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoTrabalhoColetivoLabel' id='tipoTrabalhoColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoTrabalhoColetivo.length; i++) {
 		opts += "<option value='" + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "' data-id='tipoTrabalhoColetivoLabel' for='tipo_trabalho_coletivo_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_trabalho_coletivo_id == CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts + "\r\n");
 	
 	$("#listaTipoTrabalhoColetivo").empty();
 	$("#listaTipoTrabalhoColetivo").append(opts);
 	// Por quanto tempo
-	var opts = "<span class='titSang'>Por quanto tempo:</span>"; 
-	opts += "<select name='mesesTrabalhColetivoLabel' id='mesesTrabalhColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
+	var opts = ""; 
+	opts += "<div class='comboStilo selectInicial'><select name='mesesTrabalhColetivoLabel' id='mesesTrabalhColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Meses'>Meses</option>";
 	for (var i = 1; i < 13; i++) {
 		opts += "<option value='" + i + "' data-id='mesesTrabalhColetivoLabel' for='meses_trabalho_coletivo'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.meses_trabalho_coletivo == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
-	opts += "<select name='anosTrabalhoColetivoLabel' id='anosTrabalhoColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
+	opts += "<div class='comboStilo selectInicial'><select name='anosTrabalhoColetivoLabel' id='anosTrabalhoColetivoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Anos'>Anos</option>";
 	for (var i = 1; i < 51; i++) {
 		opts += "<option value='" + i + "' data-id='anosTrabalhoColetivoLabel' for='anos_trabalho_coletivo'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.anos_trabalho_coletivo == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	
 	$("#listaMesesAnosTrabalhoColetivo").empty();
 	$("#listaMesesAnosTrabalhoColetivo").append(opts);
@@ -227,24 +226,24 @@ function carregaTrabalho () {
 	$("#profissao_atividade").val(auxVar == null ? "" : auxVar);
 
 	// Onde aprendeu a profissão
-	var opts = "<select name='tipoOndeAprendeuProfissaoLabel' id='tipoOndeAprendeuProfissaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoOndeAprendeuProfissaoLabel' id='tipoOndeAprendeuProfissaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao.length; i++) {
 		opts += "<option value='" + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "' data-id='tipoOndeAprendeuProfissaoLabel' for='tipo_onde_aprendeu_profissao_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_onde_aprendeu_profissao_id == CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts + "\r\n");
 	
 	$("#listaTipoOndeAprendeuProfissao").empty();
 	$("#listaTipoOndeAprendeuProfissao").append(opts);
 	
 	// Como você comprova seu conhecimento profissional
-	var opts = "<select name='tipoComprovanteConhecimentoProfissionalLabel' id='tipoComprovanteConhecimentoProfissionalLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoComprovanteConhecimentoProfissionalLabel' id='tipoComprovanteConhecimentoProfissionalLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional.length; i++) {
 		opts += "<option value='" + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "' data-id='tipoComprovanteConhecimentoProfissionalLabel' for='tipo_comprovante_conhecimento_profissional_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_comprovante_conhecimento_profissional_id == CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts + "\r\n");
 	
 	$("#listaTipoComprovanteConhecimentoProfissional").empty();
@@ -267,12 +266,12 @@ function carregaTrabalho () {
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.qual_curso_qualificacao_profissional;
 	$("#qual_curso_qualificacao_profissional").val(auxVar == null ? "" : auxVar);
 	// A que ramo pertence esse curso
-	var opts = "<select name='tipoRamoCursoLabel' id='tipoRamoCursoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoRamoCursoLabel' id='tipoRamoCursoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoRamoCurso.length; i++) {
 		opts += "<option value='" + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "' data-id='tipoRamoCursoLabel' for='tipo_ramo_curso_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_ramo_curso_id == CIDADAOTRABALHO.listaTipoRamoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts + "\r\n");
 	
 	$("#listaTipoRamoCurso").empty();
@@ -282,12 +281,12 @@ function carregaTrabalho () {
 	$("#outros_ramo_curso").val(auxVar == null ? "" : auxVar);
 	
 	// Você pretende fazer novos cursos...
-	var opts = "<select name='tipoPretencaoCursosLabel' id='tipoPretencaoCursosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<div class='comboStilo selectInicial'><select name='tipoPretencaoCursosLabel' id='tipoPretencaoCursosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoPretencaoCurso.length; i++) {
 		opts += "<option value='" + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "' data-id='tipoPretencaoCursosLabel' for='tipo_pretencao_cursos_id'";
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_pretencao_cursos_id == CIDADAOTRABALHO.listaTipoPretencaoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "</option>";
 	}
-	opts += "</div></select>";
+	opts += "</div></select></div>";
 	console.log(opts + "\r\n");
 	
 	$("#listaTipoPretencaoCursos").empty();
@@ -308,8 +307,8 @@ function carregaTrabalho () {
 				break;
 			}
 		}
-		opts += "<input type='checkbox' name='tipoatividadetempolivre' value='" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].id + "' class='checkbox'" + (atlChecked == true ? " checked>" : ">");
-		opts += "<p>" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].nome + "</p>";
+		opts += "<div class='checkbox'><input type='checkbox' name='tipoatividadetempolivre' value='" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].id + "' class='checkbox check'" + (atlChecked == true ? " checked>" : ">");
+		opts += "<p>" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].nome + "</p></div>";
 	}
 	console.log(opts + "\r\n");
 	
@@ -328,8 +327,8 @@ function carregaTrabalho () {
 				break;
 			}
 		}
-		opts += "<input type='checkbox' name='tipolocalvisitar' value='" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].id + "' class='checkbox'" + (atlChecked == true ? " checked>" : ">");
-		opts += "<p>" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].nome + "</p>";
+		opts += "<div class='checkbox'><input type='checkbox' name='tipolocalvisitar' value='" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].id + "' class='checkbox check'" + (atlChecked == true ? " checked>" : ">");
+		opts += "<p>" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].nome + "</p></div>";
 	}
 	console.log(opts + "\r\n");
 	
@@ -339,10 +338,10 @@ function carregaTrabalho () {
 	// Opções....primeiro lugar
 	var opts = "";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoPrimeiraEscolha.length; i++) {
-		opts += "<input type='radio' name='infoTipoPrimeiraEscolha' value='" + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].id + "' class='radio'" + (CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].id == CIDADAOTRABALHO.dadosTrabalho.tipo_primeira_escolha_id ? " checked>" : ">");
-		opts += "<p>" + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].nome + "</p>";
+		opts += "<div class='radio'><input type='radio' name='infoTipoPrimeiraEscolha' value='" + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].id + "' class='radio'" + (CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].id == CIDADAOTRABALHO.dadosTrabalho.tipo_primeira_escolha_id ? " checked>" : ">");
+		opts += "<p>" + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].nome + "</p></div>";
 	}
-	opts += "<p>Outros</p><div class='linhaForm'><input type='text' class='inputMed' value='' name='outros_primeira_escolha' id='outros_primeira_escolha' placeholder='Outros'></div>";
+	opts += "<span class='titLabel'>Outros</span><div class='linhaForm'><input type='text' class='inputGrande' value='' name='outros_primeira_escolha' id='outros_primeira_escolha' placeholder='Outros'></div>";
 	console.log(opts + "\r\n");
 	
 	$("#divInfoTipoPrimeiraEscolha").empty();

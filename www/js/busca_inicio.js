@@ -26,7 +26,7 @@ function btBusca(textoBusca, ativos, inativos){
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_mae + "</div>";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].dia_nascimento + "/" + CIDADAO.listaCidadaosDadosBusca[i].mes_nascimento + "/" + CIDADAO.listaCidadaosDadosBusca[i].ano_nascimento + "</div>";
 			node += "<div>" + (CIDADAO.listaCidadaosDadosBusca[i].situacao_cadastral == 0 ? "Inativo" : "Ativo") + "</div>";
-			node += "<div>" + (CIDADAO.listaCidadaosDadosBusca[i].programa_dba == 0 ? "Não" : "Sim") + "</div>";
+			node += "<div>" + (CIDADAO.listaCidadaosDadosBusca[i].programa_dba == 0 ? "N&atilde;o" : "Sim") + "</div>";
 			node += "</li>";
 		}
 	}
@@ -79,9 +79,9 @@ function iniAbasUsuario (indiceCidadao) {
 	
 	var opcoesAba =
 			"<ul class=\"\">" +
-              "<li class=\"active\" onclick=\"console.log(\'Identificacao\');PageManager.loadTmpl(\'identificacao\'); abas();\">Identificação</li>" +
-              "<li class=\"active\" onclick=\"console.log(\'InfoBasica\'); INFOBASICAS.dadosEntrada(); abas();\">Informações Básicas</li>" +
-              "<li class=\"active\" onclick=\"console.log(\'Situacao DBA\');SITUACAODBA.dadosEntrada(); abas();\">Situação DBA</li>";
+              "<li class=\"active\" onclick=\"console.log(\'Identificacao\');PageManager.loadTmpl(\'identificacao\'); abas();\">Identifica&ccedil;&atilde;o</li>" +
+              "<li class=\"active\" onclick=\"console.log(\'InfoBasica\'); INFOBASICAS.dadosEntrada(); abas();\">Informa&ccedil;&otilde;es B&aacute;sicas</li>" +
+              "<li class=\"active\" onclick=\"console.log(\'Situacao DBA\');SITUACAODBA.dadosEntrada(); abas();\">Situa&ccedil;&atilde;o DBA</li>";
 	if (abaAtividade) {
         opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Atividades\');PageManager.loadTmpl(\'div_atividades\');ATIVIDADE.dadosEntrada(null, ATIVIDADE.apresentaCalendario, null); abas();\">Atividades</li>";
 	}
@@ -92,9 +92,9 @@ function iniAbasUsuario (indiceCidadao) {
         opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Trabalho\');CIDADAOTRABALHO.dadosEntrada(); abas();\">Trabalho</li>";
 	}
 	if (abaSaude) {
-        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Saude\');CIDADAOSAUDE.dadosEntrada(); abas();\">Saúde </li>";
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Saude\');CIDADAOSAUDE.dadosEntrada(); abas();\">Sa&uacute;de </li>";
 	}
-    opcoesAba += "<li class=\"active\">Historico de alterações</li>" +
+    opcoesAba += "<li class=\"active\">Historico de altera&ccedil;&otilde;es</li>" +
 				 "</ul>";
 				 
 	$("#menu_abas").empty();
