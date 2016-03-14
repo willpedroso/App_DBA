@@ -32,7 +32,7 @@ var BANCODADOS = {
 
     // Controle do número de registros na inserção de dados no banco
     countReg: 0,
-    maxReg: 100,
+    maxReg: 400,
 	
 	// Controle para criação das tabelas do banco de dados
 	CountCreateTables: 0,
@@ -53,6 +53,8 @@ var BANCODADOS = {
 		primeiraChave: false;
 		geraCampos: false;
 		indiceStrings: null;
+		qtdRegistros: 0;
+		tableName: null;
 	},
 	
 	listaInsertINTONivel: [],
@@ -62,6 +64,9 @@ var BANCODADOS = {
 	insertOnline: null,
 	tableName: null,
 	recursividade: null,
+	prefixoTable: "table:",
+	prefixoDelete: "DELETE FROM ",
+	prefixoInsert: "INSERT INTO ",
 	
 	cmdDeleteExist: function (deleteString) {
 		for (var i = 0; i < BANCODADOS.listaDelete.length; i++) {
@@ -78,11 +83,9 @@ var BANCODADOS = {
 		$.each(jsonParsed, function (key, value) {
 			if (value != null && typeof value === 'object') {
 				// É um objeto, pode ser uma tabela ou o início de um conjunto de chaves e valores para uma tabela
-				if (typeof key === 'string' && key.indexOf("table:") != -1) {
+				if (typeof key === 'string' && key.indexOf(BANCODADOS.prefixoTable) != -1) {
 					// É uma tabela
-					// Cria comando DELETE e inicia comando de inserção
-					BANCODADOS.listaInsertINTONivel.push("");
-					BANCODADOS.listaInsertVALUESNivel.push("");
+					// Prepara para a criação de comando DELETE e comando de inserção
 					
 					if (BANCODADOS.nivel == null) {
 						BANCODADOS.nivel = 0;
@@ -93,35 +96,53 @@ var BANCODADOS = {
 					
 					var rec = new BANCODADOS.controleRecursividade();
 					rec.indiceEntrada = 0;
-					rec.indiceStrings = BANCODADOS.listaInsertINTONivel.length - 1;
+					rec.qtdRegistros = 0;
 					BANCODADOS.recursividade.push(rec);
 
-					BANCODADOS.tableName = key.substr(("table:").length);
-					if (!BANCODADOS.cmdDeleteExist("DELETE FROM " + BANCODADOS.tableName)) {
-						BANCODADOS.listaDelete.push("DELETE FROM " + BANCODADOS.tableName);
-					}
-					//BANCODADOS.listaDelete[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = "DELETE FROM " + BANCODADOS.tableName;
-					BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = "INSERT INTO " + BANCODADOS.tableName + " (";
-					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = " ('";
+					BANCODADOS.recursividade[BANCODADOS.nivel].tableName = key.substr((BANCODADOS.prefixoTable).length);
+
 					BANCODADOS.recursividade[BANCODADOS.nivel].primeiraChave = false;
 					BANCODADOS.recursividade[BANCODADOS.nivel].geraCampos = true;
 				}
 				else {
 					if (BANCODADOS.nivel != null) {
 						// É o início de um conjunto de chaves e valores para uma tabela
+						console.log("Qtd Registros: " + BANCODADOS.recursividade[BANCODADOS.nivel].qtdRegistros);
+						BANCODADOS.recursividade[BANCODADOS.nivel].qtdRegistros++;
+						if (BANCODADOS.recursividade[BANCODADOS.nivel].qtdRegistros == BANCODADOS.maxReg - 1) {
+							// Chegou no limite de registros por comando, começa outra sequência
+							BANCODADOS.recursividade[BANCODADOS.nivel].primeiraChave = false;
+							BANCODADOS.recursividade[BANCODADOS.nivel].geraCampos = true;
+							BANCODADOS.recursividade[BANCODADOS.nivel].qtdRegistros = 1;
+						}
+						
 						if (BANCODADOS.recursividade[BANCODADOS.nivel].primeiraChave) {
 							
 							// Se tem fim [ "');" ], troca por [ "', '" ] , pois podem vir mais conjuntos de chaves e valores
-							BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("');", "'),('");
+//							BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("');", "'),('");
+							BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("');", "' UNION ALL SELECT '");
 							
 							if (BANCODADOS.recursividade[BANCODADOS.nivel].geraCampos == true) {
 								BANCODADOS.recursividade[BANCODADOS.nivel].geraCampos = false;
 								// fecha com parenteses
 								BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += ")";
-								BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace(", )", ")");
+//								BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace(", )", ")");
+								BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("', ')", "'");
 							}
 						}
 						else {
+							// Cria comando DELETE e inicia comando de inserção (neste ponto evita a criação de comandos sem dados)
+							BANCODADOS.listaInsertINTONivel.push("");
+							BANCODADOS.listaInsertVALUESNivel.push("");
+							if (!BANCODADOS.cmdDeleteExist(BANCODADOS.prefixoDelete + BANCODADOS.recursividade[BANCODADOS.nivel].tableName)) {
+								BANCODADOS.listaDelete.push(BANCODADOS.prefixoDelete + BANCODADOS.recursividade[BANCODADOS.nivel].tableName);
+							}
+							BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings = BANCODADOS.listaInsertINTONivel.length - 1;
+//							BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.prefixoInsert + BANCODADOS.tableName + " (";
+							BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.prefixoInsert + BANCODADOS.recursividade[BANCODADOS.nivel].tableName + " SELECT '";
+//							BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = " ('";
+							BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = " UNION ALL SELECT '";
+													
 							BANCODADOS.recursividade[BANCODADOS.nivel].primeiraChave = true;
 						}
 					}
@@ -136,12 +157,14 @@ var BANCODADOS = {
 			else {
 				// Não é um objeto, é um conjunto de chaves e valores
 				if (BANCODADOS.recursividade[BANCODADOS.nivel].geraCampos) {
-					BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += key + ", ";
+//					BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += key + ", ";
+					BANCODADOS.listaInsertINTONivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += value + "' AS '" + key + "', '";
 				}
-
-				// Se tem [ "');" ], troca por [ "', '" ] , pois podem vir mais campos/valores
-				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("');", "', '");
-				BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += value + "');";
+				else {
+					// Se tem [ "');" ], troca por [ "', '" ] , pois podem vir mais campos/valores
+					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] = BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings].replace("');", "', '");
+					BANCODADOS.listaInsertVALUESNivel[BANCODADOS.recursividade[BANCODADOS.nivel].indiceStrings] += value + "');";
+				}
 			}
 		});
 
@@ -163,7 +186,13 @@ var BANCODADOS = {
 	
     // Obtenção de Operadores
 //	urlOperadores: "http://dppp005.prodam/api/operadores",
-	urlOperadores: "http://dppp005.prodam/api/cidadaos",
+//	urlOperadores: "http://dppp005.prodam/api/equipes",
+//	urlOperadores: "http://dppp005.prodam/api/servicos",
+	
+	
+//	urlOperadores: "http://dppp005.prodam/api/cidadaos",
+//	urlOperadores: "http://dppp005.prodam/api/frequencias",
+	urlOperadores: "http://dppp005.prodam/api/atividades",
 	msgOperadores: null,
 	
     igetOperadores: function () {
@@ -187,6 +216,7 @@ var BANCODADOS = {
 				
 				BANCODADOS.msgOperadores = msg;
 				var jsonOperadores;
+				// todo: revisar o uso de JSON.parse
 				//jsonOperadores = JSON.parse(BANCODADOS.msgOperadores);
 				jsonOperadores = eval("(" + BANCODADOS.msgOperadores + ")");
 				
@@ -212,11 +242,26 @@ var BANCODADOS = {
 				var ultimaPos;
 				for (var i = 0; i < BANCODADOS.listaInsertINTONivel.length; i++) {
 					ultimaPos = BANCODADOS.listaInsertINTONivel[i].length - 1;
-					if (BANCODADOS.listaInsertINTONivel[i][ultimaPos] == " " && BANCODADOS.listaInsertINTONivel[i][ultimaPos-1] == ",") {
+//					if (BANCODADOS.listaInsertINTONivel[i][ultimaPos] == " " && BANCODADOS.listaInsertINTONivel[i][ultimaPos-1] == ",") {
+					if (BANCODADOS.listaInsertINTONivel[i][ultimaPos] == "'" && BANCODADOS.listaInsertINTONivel[i][ultimaPos-1] == " " && BANCODADOS.listaInsertINTONivel[i][ultimaPos-2] == ",") {
 						BANCODADOS.listaInsertINTONivel[i] += ")";
-						BANCODADOS.listaInsertINTONivel[i] = BANCODADOS.listaInsertINTONivel[i].replace(", )", ")");						
+//						BANCODADOS.listaInsertINTONivel[i] = BANCODADOS.listaInsertINTONivel[i].replace(", )", ")");						
+						BANCODADOS.listaInsertINTONivel[i] = BANCODADOS.listaInsertINTONivel[i].replace("', ')", "'");						
 					}
 				}				
+
+				for (var i = 0; i < BANCODADOS.listaInsertVALUESNivel.length; i++) {
+					if (BANCODADOS.listaInsertVALUESNivel[i] == " UNION ALL SELECT '") {
+						// Insert de apenas um registro, limpa VALUES
+						BANCODADOS.listaInsertVALUESNivel[i] = "";
+					}
+					else {
+						ultimaPos = BANCODADOS.listaInsertVALUESNivel[i].length - 1;
+						if (BANCODADOS.listaInsertVALUESNivel[i][ultimaPos] == ";" && BANCODADOS.listaInsertVALUESNivel[i][ultimaPos-1] == ")") {
+							BANCODADOS.listaInsertVALUESNivel[i] = BANCODADOS.listaInsertVALUESNivel[i].replace(");", "");						
+						}
+					}
+				}
 				
 				// todo: testes retirar
 				/*
@@ -228,6 +273,7 @@ var BANCODADOS = {
 					console.log("************************************************************************\r\n\r\n");
 					alert("Continuar?");
 				}
+				//alert("Continuar?");
 				*/
 				// testes retirar
 				
@@ -251,29 +297,34 @@ var BANCODADOS = {
 	initExecutaDeletes: function () {
 		console.log("initExecutaDeletes");
 		
-		BANCODADOS.auxCounter = 0;
+//		BANCODADOS.auxCounter = 0;
+		BANCODADOS.auxCounter = BANCODADOS.listaDelete.length;
 		BANCODADOS.executaDeletes();
 	},
 	
 	executaDeletes: function () {
 		console.log("executaDeletes");
 		
-		BANCODADOS.sqlCmdDB(BANCODADOS.listaDelete[BANCODADOS.auxCounter++],
+//		BANCODADOS.sqlCmdDB(BANCODADOS.listaDelete[BANCODADOS.auxCounter++],
+		BANCODADOS.sqlCmdDB(BANCODADOS.listaDelete[--BANCODADOS.auxCounter],
 							[], 
-							(BANCODADOS.auxCounter < BANCODADOS.listaDelete.length ? BANCODADOS.executaDeletes : BANCODADOS.initExecutaInserts), 
+//							(BANCODADOS.auxCounter < BANCODADOS.listaDelete.length ? BANCODADOS.executaDeletes : BANCODADOS.initExecutaInserts), 
+							(BANCODADOS.auxCounter > 0 ? BANCODADOS.executaDeletes : BANCODADOS.initExecutaInserts), 
 							BANCODADOS.deleteSincFail);
 	},
 	
 	initExecutaInserts: function () {
 		console.log("initExecutaInserts");
 		
-		BANCODADOS.auxCounter = 0;
+//		BANCODADOS.auxCounter = 0;
+		BANCODADOS.auxCounter = BANCODADOS.listaInsertINTONivel.length 
 		BANCODADOS.executaInserts();
 	},
 	
 	executaInserts: function () {
 		console.log("executaInserts");
 		
+		/*
 		// Verifica se é insert vazio
 		var tableName = BANCODADOS.listaInsertINTONivel[BANCODADOS.auxCounter].substring(
 												("INSERT INTO ").length,
@@ -288,12 +339,15 @@ var BANCODADOS = {
 			BANCODADOS.sincSuccess();
 		}
 		alert("Prosseguir?");
-		
-		BANCODADOS.sqlCmdDB(BANCODADOS.listaInsertINTONivel[BANCODADOS.auxCounter] + " VALUES " + BANCODADOS.listaInsertVALUESNivel[BANCODADOS.auxCounter],
+		*/
+//		BANCODADOS.sqlCmdDB(BANCODADOS.listaInsertINTONivel[BANCODADOS.auxCounter] + " VALUES" + BANCODADOS.listaInsertVALUESNivel[BANCODADOS.auxCounter],
+		--BANCODADOS.auxCounter;
+		BANCODADOS.sqlCmdDB(BANCODADOS.listaInsertINTONivel[BANCODADOS.auxCounter] + BANCODADOS.listaInsertVALUESNivel[BANCODADOS.auxCounter],
 							[], 
-							(++BANCODADOS.auxCounter < BANCODADOS.listaInsertINTONivel.length ? BANCODADOS.executaInserts : BANCODADOS.sincSuccess), 
-//							BANCODADOS.insertSincFail);
-							BANCODADOS.executaInserts);
+//							(++BANCODADOS.auxCounter < BANCODADOS.listaInsertINTONivel.length ? BANCODADOS.executaInserts : BANCODADOS.sincSuccess), 
+							(BANCODADOS.auxCounter > 0 ? BANCODADOS.executaInserts : BANCODADOS.sincSuccess), 
+							BANCODADOS.insertSincFail);
+//							BANCODADOS.executaInserts);
 	},
 	
 	sincSuccess: function () {
@@ -351,10 +405,11 @@ var BANCODADOS = {
 							privada INTEGER NOT NULL DEFAULT 0, \
 							descricao TEXT, \
 							status INTEGER NOT NULL DEFAULT 1, \
-							dt_criacao TEXT NOT NULL, \
-							FOREIGN KEY (cidadao_id) REFERENCES cidadao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (ponto_servico_id) REFERENCES ponto_servico (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+							dt_criacao TEXT NOT NULL \
 						)",
+//							dt_criacao TEXT NOT NULL, \
+//							FOREIGN KEY (cidadao_id) REFERENCES cidadao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//							FOREIGN KEY (ponto_servico_id) REFERENCES ponto_servico (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 
 	/*db_create_atividade_tempo_livre : */"CREATE TABLE atividade_tempo_livre ( \
 										id INTEGER PRIMARY KEY NOT NULL, \
@@ -560,12 +615,12 @@ var BANCODADOS = {
 							justificativa TEXT, \
 							frequencia_livre INTEGER DEFAULT NULL, \
 							status INTEGER NOT NULL DEFAULT 1, \
-							dt_criacao TEXT NOT NULL, \
-							CONSTRAINT fk_frequencia_cidadao FOREIGN KEY (cidadao_id) REFERENCES cidadao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
-							CONSTRAINT fk_frequencia_tipo_atuacao FOREIGN KEY (tipo_atuacao_id) REFERENCES tipo_atuacao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+							dt_criacao TEXT NOT NULL \
 						)",
+//							CONSTRAINT fk_frequencia_cidadao FOREIGN KEY (cidadao_id) REFERENCES cidadao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+//							CONSTRAINT fk_frequencia_tipo_atuacao FOREIGN KEY (tipo_atuacao_id) REFERENCES tipo_atuacao (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//							FOREIGN KEY (usuario_id) REFERENCES usuario (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 
 	/*db_create_idade_filhos: */"CREATE TABLE idade_filhos ( \
 							id INTEGER PRIMARY KEY NOT NULL, \
@@ -717,20 +772,20 @@ var BANCODADOS = {
 							dia_mes_repetir INTEGER DEFAULT NULL, \
 							dia_semana_repetir INTEGER DEFAULT NULL, \
 							dt_criacao TEXT NOT NULL, \
-							status INTEGER NOT NULL DEFAULT 1, \
-							FOREIGN KEY (tipo_periodicidade_id) REFERENCES tipo_periodicidade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+							status INTEGER NOT NULL DEFAULT 1 \
 						)",
+//							FOREIGN KEY (tipo_periodicidade_id) REFERENCES tipo_periodicidade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 //							FOREIGN KEY (atividade_id) REFERENCES atividade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
 //							FOREIGN KEY (dia_semana_repetir) REFERENCES tipo_dias_semana (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 	
 	/*db_create_periodicidade_htds : */"CREATE TABLE periodicidade_has_tipo_dias_semana ( \
 									periodicidade_id INTEGER NOT NULL, \
-									tipo_dias_semana_id INTEGER NOT NULL, \
-									PRIMARY KEY (periodicidade_id, tipo_dias_semana_id), \
-									FOREIGN KEY (periodicidade_id) REFERENCES periodicidade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
-									FOREIGN KEY (tipo_dias_semana_id) REFERENCES tipo_dias_semana (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
+									tipo_dias_semana_id INTEGER NOT NULL \
 								)",
+//									PRIMARY KEY (periodicidade_id, tipo_dias_semana_id), \
+//									FOREIGN KEY (periodicidade_id) REFERENCES periodicidade (id) ON DELETE NO ACTION ON UPDATE NO ACTION, \
+//									FOREIGN KEY (tipo_dias_semana_id) REFERENCES tipo_dias_semana (id) ON DELETE NO ACTION ON UPDATE NO ACTION \
 	
 	/*db_create_ponto_servico : */"CREATE TABLE ponto_servico ( \
 								id INTEGER PRIMARY KEY NOT NULL, \
