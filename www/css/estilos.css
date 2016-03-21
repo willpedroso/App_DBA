@@ -214,12 +214,12 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	margin:15px 0 20px 35px;
 }
 .wrapLogin{
-	border-top:5px solid #eb8202;
+	border-top: 5px solid #eb8202;
 	background-color: #fff;
-	margin:0;
-	width:93%;
+	margin: 0;
+	width: 100%;
 	overflow: hidden;
-	padding: 90px;
+	padding: 300px 0 0 0;
 }
 .divLogin{
 	/*border-top:5px solid #eb8202;*/
@@ -1018,7 +1018,7 @@ p.info-basica{
 	font-family: "Roboto", Arial;
 	font-size: 28px;
 	height: 72px;
-	width: 176px;
+	width: 276px;
 	border: none;
 	padding: 5px 32px 0 32px;
 	cursor: pointer;
@@ -1811,67 +1811,7 @@ span.phone-img {
 		width:100%;
 
 	}
-	ul#ullistaFreq{
-		list-style: none;
-		width: 100%;
-
-	}
-	ul#ullistaFreq li{
-		width: 100%;
-		display: block;
-		height: auto;
-		overflow:hidden;
-		padding: 4px 0 4px 0;
-		height: 66px;
-	}
-	ul#ullistaFreq li.li-header{
-		font-weight: bold;
-		font-size: 1.245em;
-	}
-	ul#ullistaFreq li:nth-child(odd){
-		background: #ccc;
-	}
-	ul#ullistaFreq li div{
-		width: auto;
-		display: inline-block;
-		float: left;
-		line-height: 22px;
-		font-size: 16px;
-		height:auto;
-		min-height: 10px;
-		min-width: 5%;
-	}
-	ul#ullistaFreq li div:nth-child(1){
-		width: calc(40% - 3px);
-		padding: 18px 0 0 3px;
-		text-align: left;
-	}
-	ul#ullistaFreq li div:nth-child(2){
-		width: calc(30% - 3px);
-		padding: 18px 0 0 3px;
-		text-align: left;
-	}
-	ul#ullistaFreq li div:last-child{
-		float: right;
-		width: calc(30% - 3px);
-		padding: 9px 0 0 3px;
-	}
-
-	ul#ullistaFreq li.li-header div:nth-child(1){
-		width: calc(40% - 3px);
-		padding: 18px 0 0 3px;
-		text-align: left;
-	}
-	ul#ullistaFreq li.li-header div:nth-child(2){
-		width: calc(30% - 3px);
-		padding: 18px 0 0 3px;
-		text-align: left;
-	}
-	ul#ullistaFreq li.li-header div:last-child{
-		float: right;
-		width: calc(30% - 3px);
-		padding: 9px 0 0 3px;
-	}
+	
 
 	.radioFrequencias{
 		width: 100%;
@@ -2460,7 +2400,9 @@ span.phone-img {
     line-height: 72px;
 }
 #div_login{
-	margin: 30px 0 0 45px;
+	margin: 0;
+	padding: 0 16px 0 16px;
+	width: 100%;
 }
 
 #div_abas{
@@ -2557,8 +2499,53 @@ span.phone-img {
 }
 
 #div_frequencia{
-
+	margin: 45px 0 0 0;
+	height: auto;
+	overflow: hidden;
 }
+#freq_abas{
+	border: none !important;
+	border-radius: 0;
+	padding: 0;
+	height: auto;
+	overflow: hidden;
+}
+#freq_abas > ul{
+	border: none !important;
+	border-radius: 0;
+	padding: 0;
+}
+#freq_abas > ul li{
+	background-image: none;
+	margin: 0;
+}
+
+#freq_abas > ul > li.ui-tabs-active{
+	border: none !important;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor{
+	padding: 24px !important;
+	font-size: 1.6em;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor{
+	padding: 24px !important;
+	font-size: 1.6em;
+}
+
+
+
+
+#freq_abas > div{
+	border: none !important;
+	border-radius: 0;
+	padding: 0;
+	height: auto;
+	overflow: hidden;
+}
+
 .h_100{
 	height: 100px;
 }
@@ -2581,7 +2568,8 @@ span.phone-img {
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
 }
 .icoCalendario{
-	margin: 5px 0px 0 10px;
+	margin: 0 10px 0 10px;
+	height: 70px;
 }
 .dataFreq {
     float: left;
@@ -2591,6 +2579,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
 
 .dataFreq .inputPeq{
 	margin: 0 !important;
+	height: 65px;
 }
 .checkbox_busca{
 	margin-top: 35px !important;
@@ -2629,3 +2618,64 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
 	border: none;
 }
 
+#listaFreq{
+		list-style: none;
+		width: 100%;
+
+	}
+	#listaFreq li{
+		width: 100%;
+		display: block;
+		height: auto;
+		overflow:hidden;
+		padding: 4px 0 4px 0;
+		height: 66px;
+	}
+	#listaFreq li.li-header{
+		font-weight: bold;
+		font-size: 1.245em;
+	}
+	#listaFreq li:nth-child(odd){
+		background: #ccc;
+	}
+	#listaFreq li div{
+		width: auto;
+		display: inline-block;
+		float: left;
+		line-height: 22px;
+		font-size: 16px;
+		height:auto;
+		min-height: 10px;
+		min-width: 5%;
+	}
+	#listaFreq li div:nth-child(1){
+		width: calc(40% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	#listaFreq li div:nth-child(2){
+		width: calc(30% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	#listaFreq li div:last-child{
+		float: right;
+		width: calc(30% - 3px);
+		padding: 9px 0 0 3px;
+	}
+
+	#listaFreq li.li-header div:nth-child(1){
+		width: calc(40% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	#listaFreq li.li-header div:nth-child(2){
+		width: calc(30% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
+	}
+	#listaFreq li.li-header div:last-child{
+		float: right;
+		width: calc(30% - 3px);
+		padding: 9px 0 0 3px;
+	}

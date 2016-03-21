@@ -1,18 +1,74 @@
 <!--inicio tela frequencia-->
 	<div id="div_frequencia" class="hideme">
+	<script>
+	  $(function() {
+	    $( "#freq_abas" ).tabs();
+	  });
+	  </script>
 		<form id="formFrequencia" action="" method="post" class="cadastro">
-			<div class="contentAbaBorda">
-				<h3>FREQUÊNCIA | Nome</h3>
-				<label class="dataFreq">  
-					<span class="labelFiltroData">Filtre por data</span>
-					<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-					<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
-					<img src="img/icoCalendar.png" class="icoCalendario">
-				</label>
-				<div class="divFreqCidadao" id="idDivFreqCidadao">
 
+
+
+
+			<div id="freq_abas">
+			  <ul>
+			    <li><a href="#freq_abas-saude">Saúde</a></li>
+			    <li><a href="#freq_abas-trabalho">Trabalho</a></li>
+			    <li><a href="#freq_abas-social">Social</a></li>
+			  </ul>
+			  <div id="freq_abas-saude">
+			    <div class="contentAbaBorda">
+					<h3>FREQUÊNCIA | Saúde</h3>
+					<label class="dataFreq">  
+						<span class="labelFiltroData">Filtre por data</span>
+						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<img src="img/icoCalendar.png" class="icoCalendario">
+					</label>
+					<div class="divFreqCidadao" id="idDivFreqCidadao">
+
+					</div>
 				</div>
+			  </div>
+
+			  <div id="freq_abas-trabalho">
+			  	<div class="contentAbaBorda">
+			    	<h3>FREQUÊNCIA | Trabalho</h3>
+					<label class="dataFreq">  
+						<span class="labelFiltroData">Filtre por data</span>
+						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<img src="img/icoCalendar.png" class="icoCalendario">
+					</label>
+					<div class="divFreqCidadao" id="idDivFreqCidadao">
+
+					</div>
+				</div>
+			  </div>
+
+			  <div id="freq_abas-social">
+			    <div class="contentAbaBorda">
+			    	<h3>FREQUÊNCIA | Social</h3>
+					<label class="dataFreq">  
+						<span class="labelFiltroData">Filtre por data</span>
+						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<img src="img/icoCalendar.png" class="icoCalendario">
+					</label>
+					<div class="divFreqCidadao" id="idDivFreqCidadao">
+
+					</div>
+				</div>
+			  </div>
 			</div>
+
+
+
+
+
+
+
+			
 		</form>
 	</div>
 	<script>

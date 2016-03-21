@@ -33,6 +33,7 @@ C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\css \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_atividades.html \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_atividades_add.html \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_busca_inicio.html \
+C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_cidadaos_frequencia.html \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_frequencia.html \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\div_sitDBA.html \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\fonts \
@@ -137,6 +138,7 @@ C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\CidadaoSaude.js \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\CidadaoSituacaoDBA.js \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\CidadaoSocial.js \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\CidadaoTrabalho.js \
+C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\frequencia.js \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\fullcalendar \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\funcoes.js \
 C:\wamp\www\App_DBA\App_DBA\platforms\android\assets\www\js\identificacao.js \
