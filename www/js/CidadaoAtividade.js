@@ -347,6 +347,7 @@
 				listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
 				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
 				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
+				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Todas"] + " ";
 				listaTipoAtuacaoIDBusca += ")";
 			}
 		
@@ -475,7 +476,7 @@
 						
 						for (var j = 0; j < diff; j++) {
 							if (dstart >= data_inicio && dend >= data_inicio) {
-								var aux = new Date(data_inicio*1000);
+								var aux = new Date(dstart*1000);
 								//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
 								start = end = aux.getUTCFullYear() + "-" +
 											  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 
@@ -538,7 +539,7 @@
 								
 								diaSemanaCorrente = (new Date(data_inicio*1000)).getDay()+1;
 								if (ATIVIDADE.listaAtividades[i].periodicidade_tipo_ds.indexOf(diaSemanaCorrente) != -1) {
-									var aux = new Date(data_inicio*1000);
+									var aux = new Date(dstart*1000);
 									//start = end = aux.getUTCFullYear() + "-" + (aux.getUTCMonth()+1) + "-" + aux.getUTCDate();
 									start = end = aux.getUTCFullYear() + "-" +
 												  ((aux.getUTCMonth()+1) < 10 ? "0" + (aux.getUTCMonth()+1) : (aux.getUTCMonth()+1)) + "-" + 

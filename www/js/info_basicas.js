@@ -265,6 +265,21 @@ function infoBasicasOpcoes() {
 	$("#listaOrientacaoSexual").append(opts);
 	
 	// INFORMAÇÕES ADICIONAIS
+	// todo: tipos de cutis
+	/*
+	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
+	for (var i = 0; i < INFOBASICAS.tipoEstadoCivil.length; i++) {
+		opts += "<option value='" + i + "' data-id='estadoCivilLabel' for='estado_civil_id'";
+		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.tipo_cutis_id == INFOBASICAS.tipoEstadoCivil[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstadoCivil[i].nome + "</option>";
+	}
+	opts += "</div></select>";
+	console.log(opts + "\r\n");
+	
+	$("#listaEstadoCivil").empty();
+	$("#listaEstadoCivil").append(opts);
+	*/
+	// todo: tipos de cutis
+	
 	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEstadoCivil.length; i++) {
 		opts += "<option value='" + i + "' data-id='estadoCivilLabel' for='estado_civil_id'";
@@ -615,6 +630,12 @@ function infoBasicasSalva() {
 								 // orientacao_sexual_id
 								 $("#orientacaoSexualLabel").val() == "Selecione" ? null : INFOBASICAS.tipoOrientacaoSexual[$("#orientacaoSexualLabel").val()].id,
 								 
+								 // tipo_cutis_id
+								 // todo: tipo_cutis_id
+								 /*
+								 $("#sexoLabel").val() == "Selecione" ? null : INFOBASICAS.tipoSexo[$("#sexoLabel").val()].id,
+								 */
+								 // todo: tipo_cutis_id
 								 // rg_rne
 								 $("#rg_rne").val(),
 								 // cpf

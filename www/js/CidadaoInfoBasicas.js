@@ -344,7 +344,7 @@
 							// Gênero
 							"info_orientacao_sexual_genero, sexo_id, orientacao_sexual_id" +
 							// Informações Adicionais
-							", rg_rne, cpf, estado_civil_id, nome_pai, cidade_nascimento, nascimento_estado_id" +
+							", tipo_cutis_id, rg_rne, cpf, estado_civil_id, nome_pai, cidade_nascimento, nascimento_estado_id" +
 							// Situação de Rua
 							", dias_situaca_rua, meses_situacao_rua, anos_situacao_rua, outros_situacao_rua, local_onde_encontra, onde_morava_antes_rua, bairro, municipio_procendencia, procedencia_estado_id, procendencia_pais_id, acompanhante_rua_outros, tem_filhos, qtd_filhos" +
 							", contato_familia, contato_parente, contato_familia_outros, referencia_familiar, telefone" +
@@ -391,6 +391,7 @@
 			INFOBASICAS.generoCidadao = gc;
 			
 			var iac = {
+				tipo_cutis_id: res.rows.item(0).tipo_cutis_id,
 				rg: res.rows.item(0).rg_rne,
 				cpf: res.rows.item(0).cpf,
 				estado_civil_id: res.rows.item(0).estado_civil_id,
@@ -524,7 +525,8 @@
     salvaCidadao: function (info_orientacao_sexual_genero,
 							sexo_id,
 							orientacao_sexual_id,
-								 
+								
+							tipo_cutis_id,
 							rg_rne,
 							cpf,
 							estado_civil_id,
@@ -584,7 +586,8 @@
 		Print += "info_orientacao_sexual_genero: " + info_orientacao_sexual_genero + "\r\n";
 		Print += "sexo_id: " + sexo_id + "\r\n";
 		Print += "orientacao_sexual_id: " + orientacao_sexual_id + "\r\n";
-								 
+		
+		Print += "tipo_cutis_id: " + tipo_cutis_id + "\r\n";
 		Print += "rg_rne: " + rg_rne + "\r\n";
 		Print += "cpf: " + cpf + "\r\n";
 		Print += "estado_civil_id: " + estado_civil_id + "\r\n";
@@ -653,7 +656,7 @@
 					// Gênero
 					"info_orientacao_sexual_genero = ?, sexo_id = ?, orientacao_sexual_id = ?" +
 					// Informações Adicionais
-					", rg_rne = ?, cpf = ?, estado_civil_id = ?, nome_pai = ?, cidade_nascimento = ?, nascimento_estado_id = ?" +
+					", tipo_cutis_id = ?, rg_rne = ?, cpf = ?, estado_civil_id = ?, nome_pai = ?, cidade_nascimento = ?, nascimento_estado_id = ?" +
 					// Situação de Rua
 					", dias_situaca_rua = ?, meses_situacao_rua = ?, anos_situacao_rua = ?, outros_situacao_rua = ?, local_onde_encontra = ?" +
 					", onde_morava_antes_rua = ?, bairro = ?, municipio_procendencia = ?, procedencia_estado_id = ?, procendencia_pais_id = ?" + 
@@ -671,6 +674,7 @@
 					 sexo_id,
 					 orientacao_sexual_id,
 					 
+					 tipo_cutis_id,
 					 rg_rne,
 					 cpf,
 					 estado_civil_id,
