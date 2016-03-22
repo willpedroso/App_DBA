@@ -493,7 +493,10 @@
 
 		// Cria a frequência livre na primeira posição da lista de frequências para cada cidadão
 		
-		var htmlFrequencias = "";
+		var htmlFrequencia = "";
+		var htmlFrequenciasSaude = "";
+		var htmlFrequenciasTrabalho = "";
+		var htmlFrequenciasSocial = "";
 		var lIndiceFrequenciaLivre;
 		var lCidadao = null;
 		var selectedNI;
@@ -509,8 +512,11 @@
 				// Primeira iteração de um cidadão
 
 				// Insere dados do cidadão
-				htmlFrequencias += "<div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
-
+				htmlFrequencia = "<div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
+				htmlFrequenciasSaude += htmlFrequencia;
+				htmlFrequenciasTrabalho += htmlFrequencia;
+				htmlFrequenciasSocial += htmlFrequencia;
+				
 				// Processa frequência livre
 				if ((lIndiceFrequenciaLivre = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre) != null) {
 					// Existe registro de frequência livre, deve aparecer no início da lista de frequências do cidadão
@@ -539,7 +545,7 @@
 				}
 				nomeRadio = "radioFrequencias_Livre_" + i;
 				nomeObs = "observacao_Livre_" + i;
-				htmlFrequencias += "<div class='divFrequenciaLivre'>" + 
+				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
 										"<div class='radioFrequencias radioButton'>" + 
@@ -554,6 +560,9 @@
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
+				htmlFrequenciasSaude += htmlFrequencia;
+				htmlFrequenciasTrabalho += htmlFrequencia;
+				htmlFrequenciasSocial += htmlFrequencia;
 //			}
 			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
 				if (j == lIndiceFrequenciaLivre) {
@@ -579,7 +588,8 @@
 				
 				nomeRadio = "radioFrequencias_" + i + j;
 				nomeObs = "observacao_" + i + j;
-				htmlFrequencias += "<div class='divFrequencia'>" + 
+				
+				htmlFrequencia = "<div class='divFrequencia'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
 										"<div class='radioFrequencias radioButton'>" + 
@@ -594,29 +604,62 @@
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
+				// todo: testes retirar
+				//console.log("Tipo de atuação: " + FREQUENCIA.listaAtuacao_NomeVersusID["Todas"]);
+				// testes retirar
+				if (FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
+					htmlFrequenciasSaude += htmlFrequencia;
+				}
+				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
+					htmlFrequenciasTrabalho += htmlFrequencia;
+				}
+				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Social"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
+					htmlFrequenciasSocial += htmlFrequencia;
+				}
+				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Todas"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
+					htmlFrequenciasSaude += htmlFrequencia;
+					htmlFrequenciasTrabalho += htmlFrequencia;
+					htmlFrequenciasSocial += htmlFrequencia;
+				}
 			}
 		}
 		
 		// todo: testes retirar
-		console.log(htmlFrequencias);
+		console.log("Frequências Saúde: \r\n" + htmlFrequenciasSaude);
+		console.log("Frequências Trabalho: \r\n" + htmlFrequenciasTrabalho);
+		console.log("Frequências Social: \r\n" + htmlFrequenciasSocial);
 		// testes retirar
 		
-		$("#idDivFreqCidadao").empty();
-		$("#idDivFreqCidadao").append(htmlFrequencias);
+		$("#idDivFreqCidadaoSaude").empty();
+		$("#idDivFreqCidadaoSaude").append(htmlFrequenciasSaude);
+		$("#idDivFreqCidadaoTrabalho").empty();
+		$("#idDivFreqCidadaoTrabalho").append(htmlFrequenciasTrabalho);
+		$("#idDivFreqCidadaoSocial").empty();
+		$("#idDivFreqCidadaoSocial").append(htmlFrequenciasSocial);
 
+		var htmlAbasFrequencia = "";
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":
 					// todo: Aba Saúde (usa tipo_atuacao_id de saúde e também tipo_atuacao_id de todas)
+					htmlAbasFrequencia += "<li><a href='#freq_abas-saude'>Saúde</a></li>";
 					break;
 				case "Trabalho":
 					// todo: Aba Trabalho (usa tipo_atuacao_id de trabalho e também tipo_atuacao_id de todas)
+					htmlAbasFrequencia += "<li><a href='#freq_abas-trabalho'>Trabalho</a></li>";
 					break;
 				case "Social":
 					// todo: Aba Social (usa tipo_atuacao_id de social e também tipo_atuacao_id de todas)
+					htmlAbasFrequencia += "<li><a href='#freq_abas-social'>Social</a></li>";
 					break;
 			}
 		}
+		// todo: testes retirar
+		console.log(htmlAbasFrequencia);
+		// testes retirar
+		
+		//$("#freq_opcoes_abas").empty();
+		//$("#freq_opcoes_abas").append(htmlAbasFrequencia);
 	},
 	
 	dadosEntradaFrequenciaFail: function (err) {

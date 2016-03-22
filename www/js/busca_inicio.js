@@ -27,6 +27,7 @@ function btBusca(textoBusca, ativos, inativos){
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].dia_nascimento + "/" + CIDADAO.listaCidadaosDadosBusca[i].mes_nascimento + "/" + CIDADAO.listaCidadaosDadosBusca[i].ano_nascimento + "</div>";
 			node += "<div>" + (CIDADAO.listaCidadaosDadosBusca[i].situacao_cadastral == 0 ? "Inativo" : "Ativo") + "</div>";
 			node += "<div>" + (CIDADAO.listaCidadaosDadosBusca[i].programa_dba == 0 ? "N&atilde;o" : "Sim") + "</div>";
+			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].prioridade + "</div>";
 			node += "</li>";
 		}
 	}

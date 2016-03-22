@@ -321,28 +321,28 @@ function carregaSaude () {
 	
 	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 1) {
 		// Sim
-		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Sim']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='O dia inteiro']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 2) {
 		// Não
-		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Não']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Metade do dia']").prop("checked", true);
 	}
 	else {
 		// null ou vazio
-		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Não Informado']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Pouco tempo']").prop("checked", true);
 	}
 	
 	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 1) {
 		// Sim
-		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Sim']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='O dia inteiro']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 2) {
 		// Não
-		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Não']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Metade do dia']").prop("checked", true);
 	}
 	else {
 		// null ou vazio
-		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Não Informado']").prop("checked", true);
+		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Pouco tempo']").prop("checked", true);
 	}
 		
 	// Há quanto tempo usa crack
@@ -438,7 +438,7 @@ function carregaSaude () {
 		// null ou vazio
 		$("input[name='infoUsoDrogasInjetaveis'][value='Não Informado']").prop("checked", true);
 	}
-	drogasAlemCrackf();
+	usoDrogasInjetaveisf();
 	var opts = "<div class='comboStilo selectInicial' id='listaDiasDrogasInjetaveis'><select name='diasUsoDrogasInjetaveisLabel' id='diasUsoDrogasInjetaveisLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
 		opts += "<option value='" + i + "' data-id='diasUsoDrogasInjetaveisLabel' for='dias_uso_drogas_injetaveis'";
@@ -1619,20 +1619,20 @@ function saudeSalva() {
 			auxVar = 0;
 		}
 		listaDados.push(auxVar);
-		auxVar = null;
-		if ($("input:radio[name=infoTempoEfeitoDrogaAntesPrograma]:checked").val() == "Sim") {
+		auxVar = 3;
+		if ($("input:radio[name=infoTempoEfeitoDrogaAntesPrograma]:checked").val() == "O dia inteiro") {
 			auxVar = 1;
 		}
-		else if ($("input:radio[name=infoTempoEfeitoDrogaAntesPrograma]:checked").val() == "Não") {
-			auxVar = 0;
+		else if ($("input:radio[name=infoTempoEfeitoDrogaAntesPrograma]:checked").val() == "Metade do dia") {
+			auxVar = 2;
 		}
 		listaDados.push(auxVar);
-		auxVar = null;
-		if ($("input:radio[name=infoTempoEfeitoDrogaDepoisPrograma]:checked").val() == "Sim") {
+		auxVar = 3;
+		if ($("input:radio[name=infoTempoEfeitoDrogaDepoisPrograma]:checked").val() == "O dia inteiro") {
 			auxVar = 1;
 		}
-		else if ($("input:radio[name=infoTempoEfeitoDrogaDepoisPrograma]:checked").val() == "Não") {
-			auxVar = 0;
+		else if ($("input:radio[name=infoTempoEfeitoDrogaDepoisPrograma]:checked").val() == "Metade do dia") {
+			auxVar = 2;
 		}
 		listaDados.push(auxVar);
 		

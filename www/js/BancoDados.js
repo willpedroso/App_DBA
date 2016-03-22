@@ -208,7 +208,7 @@ var BANCODADOS = {
         console.log("igetDownload");
 
 		// todo: testes retirar
-		alert("INICIO do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter]);
+		//alert("INICIO do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter]);
 		BANCODADOS.testesData = new Date();
 		// testes retirar
 
@@ -341,7 +341,7 @@ var BANCODADOS = {
 		// todo: testes retirar
 		var fim = new Date();
 		BANCODADOS.totalSegundos += (fim - BANCODADOS.testesData)/1000;
-		alert("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.");
+		//alert("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.");
 		// testes retirar
 		
 		if (BANCODADOS.downloadCounter == BANCODADOS.listaDownload.length) {
