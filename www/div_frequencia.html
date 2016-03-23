@@ -1,21 +1,13 @@
 <!--inicio tela frequencia-->
 	<div id="div_frequencia" class="hideme">
-	<script>
-	  $(function() {
-	    $( "#freq_abas" ).tabs();
-	  });
-	  </script>
 		<form id="formFrequencia" action="" method="post" class="cadastro">
 
 
 
 
 			<div id="freq_abas">
-<!--			  <ul id="freq_opcoes_abas">-->
-			  <ul>
-			    <li><a href="#freq_abas-saude">Saúde</a></li>
-			    <li><a href="#freq_abas-trabalho">Trabalho</a></li>
-			    <li><a href="#freq_abas-social">Social</a></li>
+			  <ul id="freq_opcoes_abas">-->
+
 			  </ul>
 			  <div id="freq_abas-saude">
 			    <div class="contentAbaBorda">
@@ -23,7 +15,7 @@
 					<label class="dataFreq">  
 						<span class="labelFiltroData">Filtre por data</span>
 						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrenteSaude" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou('Saúde');">
 						<img src="img/icoCalendar.png" class="icoCalendario">
 					</label>
 					<div class="divFreqCidadao" id="idDivFreqCidadaoSaude">
@@ -38,7 +30,7 @@
 					<label class="dataFreq">  
 						<span class="labelFiltroData">Filtre por data</span>
 						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrenteTrabalho" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou('Trabalho');">
 						<img src="img/icoCalendar.png" class="icoCalendario">
 					</label>
 					<div class="divFreqCidadao" id="idDivFreqCidadaoTrabalho">
@@ -53,7 +45,7 @@
 					<label class="dataFreq">  
 						<span class="labelFiltroData">Filtre por data</span>
 						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();">
+						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou('Social');">
 						<img src="img/icoCalendar.png" class="icoCalendario">
 					</label>
 					<div class="divFreqCidadao" id="idDivFreqCidadaoSocial">

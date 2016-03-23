@@ -131,6 +131,7 @@
 			FREQUENCIA.listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + " ";
 			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + " ";
 			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + " ";
+			FREQUENCIA.listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + FREQUENCIA.listaAtuacao_NomeVersusID["Todas"] + " ";
 			FREQUENCIA.listaTipoAtuacaoIDBusca += ")";
 			
 			var listaCidadaosFrequencia = "<li class='li-header'><div>Nome Completo</div><div>Nome Social</div><div>Local de Acolhida</div></li>";
@@ -165,6 +166,10 @@
 	    console.log("dadosEntrada");
 		
 		FREQUENCIA.cidadao_id = null;
+		
+		// todo: testes retirar
+		console.log("FREQUENCIA.cidadao_id = " + FREQUENCIA.cidadao_id + " - cidadao = " + cidadao);
+		// testes retirar
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
 		if (USUARIO.perfil_tecnico == true) {
@@ -362,7 +367,8 @@
 						// Procura pelo cidadão na lista de atividades por cidadãos
 						encontrou = false;
 						for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos.length; k++) {
-							if (FREQUENCIA.listaFrequenciasCidadaos[k].cidadao_id == CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id) {
+							//if (FREQUENCIA.listaFrequenciasCidadaos[k].cidadao_id == CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id) {
+							if (FREQUENCIA.listaFrequenciasCidadaos[k].cidadao_id == (FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id : FREQUENCIA.cidadao_id)) {
 								// encontrou o cidadão, insere na lista
 								encontrou = true;
 								FREQUENCIA.listaFrequenciasCidadaos[k].listaFrequencias.push(dt);
@@ -375,7 +381,9 @@
 						// Não encontrou o cidadão, cria lista para o cidadão
 						var v = new FREQUENCIA.frequenciasCidadao();
 						v.listaFrequencias = [];
-						v.cidadao_id = CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id;
+						
+						//v.cidadao_id = CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id;
+						v.cidadao_id = FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id : FREQUENCIA.cidadao_id;
 
 						var dadosCidadao = null;
 						v.cidadao_nome = "";
@@ -543,8 +551,8 @@
 					observacoes = "";
 					showObservacoes = false;
 				}
-				nomeRadio = "radioFrequencias_Livre_" + i;
-				nomeObs = "observacao_Livre_" + i;
+				nomeRadio = "radioFrequencias_Livre_Saude_" + i;
+				nomeObs = "observacao_Livre_Saude_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
@@ -561,7 +569,43 @@
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
 				htmlFrequenciasSaude += htmlFrequencia;
+
+				nomeRadio = "radioFrequencias_Livre_Trabalho_" + i;
+				nomeObs = "observacao_Livre_Trabalho_" + i;
+				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
+									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
+									  "<div class='linhaForm' id='divFrequencias'>" + 
+										"<div class='radioFrequencias radioButton'>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+										  "<p>Não Informado</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+										  "<p>Não</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+										  "<p>Sim</p>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
+										"</div>" + 
+									  "</div>" + 
+									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+									"</div>";
 				htmlFrequenciasTrabalho += htmlFrequencia;
+
+				nomeRadio = "radioFrequencias_Livre_Social_" + i;
+				nomeObs = "observacao_Livre_Social_" + i;
+				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
+									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
+									  "<div class='linhaForm' id='divFrequencias'>" + 
+										"<div class='radioFrequencias radioButton'>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+										  "<p>Não Informado</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+										  "<p>Não</p>" + 
+										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+										  "<p>Sim</p>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
+										"</div>" + 
+									  "</div>" + 
+									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+									"</div>";
 				htmlFrequenciasSocial += htmlFrequencia;
 //			}
 			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
@@ -641,25 +685,21 @@
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":
-					// todo: Aba Saúde (usa tipo_atuacao_id de saúde e também tipo_atuacao_id de todas)
 					htmlAbasFrequencia += "<li><a href='#freq_abas-saude'>Saúde</a></li>";
 					break;
 				case "Trabalho":
-					// todo: Aba Trabalho (usa tipo_atuacao_id de trabalho e também tipo_atuacao_id de todas)
 					htmlAbasFrequencia += "<li><a href='#freq_abas-trabalho'>Trabalho</a></li>";
 					break;
 				case "Social":
-					// todo: Aba Social (usa tipo_atuacao_id de social e também tipo_atuacao_id de todas)
 					htmlAbasFrequencia += "<li><a href='#freq_abas-social'>Social</a></li>";
 					break;
 			}
 		}
-		// todo: testes retirar
-		console.log(htmlAbasFrequencia);
-		// testes retirar
 		
-		//$("#freq_opcoes_abas").empty();
-		//$("#freq_opcoes_abas").append(htmlAbasFrequencia);
+		$("#freq_opcoes_abas").empty();
+		$("#freq_opcoes_abas").append(htmlAbasFrequencia);
+		// Efeito de abas do jquery
+		$( "#freq_abas" ).tabs();
 	},
 	
 	dadosEntradaFrequenciaFail: function (err) {

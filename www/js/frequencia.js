@@ -62,9 +62,9 @@ function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nome
 	}
 }
 
-function dataMudou() {
+function dataMudou(Atuacao) {
 	console.log("dataMudou");
 	
-	FREQUENCIA.auxData = $("#dataCorrente").val();
+	FREQUENCIA.auxData = $("#dataCorrente" + Atuacao).val();
 	PageManager.loadTmpl('div_frequencia');
 }

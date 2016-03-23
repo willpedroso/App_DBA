@@ -214,7 +214,7 @@ var BANCODADOS = {
 
 	    $.ajax({
 	        type: "GET",
-			headers: {access_token: "7784q32w123qw1q81q60q0wq02w3", usuario_id: 110},
+			headers: {access_token: "832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38", usuario_id: 110},
 			url: BANCODADOS.listaDownload[BANCODADOS.downloadCounter++]
 	    })
 	    .done((function (msg) {
