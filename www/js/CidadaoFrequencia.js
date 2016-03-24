@@ -18,6 +18,7 @@
 	indiceCidadao: null,
 	frequencia: null,
 	justificativa: null,
+	tipoAtuacaoID: null,
 	listaPontosServico: [],
 	
 	// ****************** FREQUENCIAS ***********************************
@@ -40,7 +41,6 @@
 		cidadao_id: null;
 		cidadao_nome: null;
 		cidadao_nome_social: null;
-		indice_frequencia_livre: null;
 		indice_frequencia_livre_Saude: null;
 		indice_frequencia_livre_Trabalho: null;
 		indice_frequencia_livre_Social: null;
@@ -105,10 +105,11 @@
 		// testes retirar
 
 		FREQUENCIA.listaTipoAtuacaoIDBusca = "AND (";
+
+		FREQUENCIA.abas = [];
 		if (USUARIO.perfil_tecnico == true) {
 			var i = 0;
 			var perfil = USUARIO.perfil_codigo;
-			FREQUENCIA.abas = [];
 			do {
 				switch (perfil) {
 				case "TSAU":
@@ -258,7 +259,21 @@
 					}
 				}
 				v.listaFrequencias.push(dt);
+
+				// Salva o índice do registro que é frequência livre do cidadão, se houver
+				if (dt.frequencia_livre) {
+					if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Saúde") {
+						v.indice_frequencia_livre_Saude = v.listaFrequencias.length-1;
+					}
+					else if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Trabalho") {
+						v.indice_frequencia_livre_Trabalho = v.listaFrequencias.length-1;
+					}
+					else if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Social") {
+						v.indice_frequencia_livre_Social = v.listaFrequencias.length-1;
+					}
+				}
 			}
+			/*
 			// Salva o índice do registro que é frequência livre do cidadão, se houver
 			if (dt.frequencia_livre) {
 				if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Saúde")
@@ -272,6 +287,7 @@
 					v.indice_frequencia_livre_Social = FREQUENCIA.listaFrequenciasCidadaos.length;
 				}
 			}
+			*/
 			FREQUENCIA.listaFrequenciasCidadaos.push(v);
 
 			// todo: testes retirar
@@ -280,7 +296,7 @@
 			{
 				Print += "Cidadão: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "(" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ")\r\n";
 				for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
-					Print += "\tFrequência " + i + ":\r\n";
+					Print += "\tFrequência " + j + ":\r\n";
 					Print += "\tid: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].id + "\r\n";
 					Print += "\tcidadao_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + "\r\n";
 					Print += "\tatividade_id: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id + "\r\n";
@@ -290,7 +306,7 @@
 					Print += "\tfrequencia: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia + "\r\n";
 					Print += "\tjustificativa: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa + "\r\n";
 					Print += "\tfrequencia_livre: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia_livre + "\r\n";
-					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n";
+					Print += "\tdt_criacao: " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].dt_criacao + "\r\n\r\n";
 				}
 			}
 			console.log(Print);
@@ -314,6 +330,8 @@
 		console.log("listaAtividadesSuccess");
 		
 		var encontrou;
+		var insercaoForcada;
+		var indiceAuxiliar;
 		if (ATIVIDADE.listaAtividades.length > 0) {
 			// Filtra pela data
 			var jsonAtividades = ATIVIDADE.montaCalendario(new Date(FREQUENCIA.auxData), new Date(FREQUENCIA.auxData));
@@ -328,7 +346,7 @@
 			// Adiciona na lista de frequencias, considerando atividades já presentes (na lista)
 			for (var j = 0; j < jsonAtividades.length; j++) {
 				
-				/*
+				
 				// todo: testes retirar
 				var Print = "Dados do JSON\r\n";
 				Print += "\tJSON " + j + "\r\n";
@@ -336,8 +354,9 @@
 				Print += "\tTítulo: " + jsonAtividades[j].title + "\r\n";
 				console.log(Print);
 				// testes retirar
-				*/
+				
 				encontrou = false;
+				insercaoForcada = false;
 				/*
 				for (var i = 0; i < FREQUENCIA.listaFrequencia.length; i++) {
 					if (FREQUENCIA.listaFrequencia[i].id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
@@ -348,23 +367,47 @@
 				}
 				*/
 				for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++) {
+					console.log("i = " + i);
 					for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; k++) {
+						console.log("k = " + k);
 						if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].atividade_id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
 							// Atividade já está presente na lista
-							encontrou = true;
-							break;
+							console.log("Encontrou");
+							
+							if (ATIVIDADE.listaAtividades[jsonAtividades[j].id].tipo_atuacao_id == FREQUENCIA.listaAtuacao_NomeVersusID["Todas"]) {
+								// A atividade encontrada é uma atividade para todos os tipos de atuação (Saúde, Trabalho e Social), então é necessário verificar se há frequência
+								// na lista para cada atuação, caso contrário deve criar as frequências faltantes
+								// Deixa inserir e trata na montagem do HTML
+								FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
+								insercaoForcada = true;
+								console.log("Inserção forçada");
+//								break;
+							}
+							else {
+								console.log("Encontrou e não é Todas");
+								encontrou = true;
+								indiceAuxiliar = k;
+								break;
+							}
 						}
+					}
+					if (encontrou || insercaoForcada) {
+						console.log("Encontrou ou é Forçada");
+						break;
 					}
 				}
 				if (encontrou) {
+					console.log("Encontrou e copia descrição");
 					// Preenche a descrição da frequência que já está na lista
-					FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
+					FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[indiceAuxiliar].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
 					continue;
 				}
 				
 				// Não encontrou, adiciona na lista
 				for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
 					if (jsonAtividades[j].id == i/*ATIVIDADE.listaAtividades[i].id*/) {
+						
+						console.log("Adiciona na lista");
 						
 						// Monta dados da frequencia
 						var dt = new FREQUENCIA.tFrequencia();
@@ -520,7 +563,9 @@
 		var htmlFrequenciasSaude = "";
 		var htmlFrequenciasTrabalho = "";
 		var htmlFrequenciasSocial = "";
-		var lIndiceFrequenciaLivre;
+		var lIndiceFrequenciaLivreSaude;
+		var lIndiceFrequenciaLivreTrabalho;
+		var lIndiceFrequenciaLivreSocial;
 		var lCidadao = null;
 		var selectedNI;
 		var selectedSim;
@@ -540,15 +585,15 @@
 				htmlFrequenciasTrabalho += htmlFrequencia;
 				htmlFrequenciasSocial += htmlFrequencia;
 				
-				// Processa frequência livre
-				if ((lIndiceFrequenciaLivre = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre) != null) {
+				// Processa frequência livre (saúde, trabalho e social)
+				if ((lIndiceFrequenciaLivreSaude = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Saude) != null) {
 					// Existe registro de frequência livre, deve aparecer no início da lista de frequências do cidadão
-					if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].frequencia == 0) {
+					if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSaude].frequencia == 0) {
 						selectedNao = " checked";
 						selectedSim = selectedNI = "";
 						showObservacoes = true;
 					}
-					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].frequencia == 1) {
+					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSaude].frequencia == 1) {
 						selectedSim = " checked";
 						selectedNao = selectedNI = "";
 						showObservacoes = false;
@@ -558,7 +603,7 @@
 						selectedNao = selectedSim = "";
 						showObservacoes = false;
 					}
-					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivre].justificativa;
+					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSaude].justificativa;
 				}
 				else {
 					selectedNI = " checked";
@@ -578,13 +623,38 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSaude >= 0 ? lIndiceFrequenciaLivreSaude : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar'>" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
 				htmlFrequenciasSaude += htmlFrequencia;
 
+				if ((lIndiceFrequenciaLivreTrabalho = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho) != null) {
+					// Existe registro de frequência livre, deve aparecer no início da lista de frequências do cidadão
+					if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreTrabalho].frequencia == 0) {
+						selectedNao = " checked";
+						selectedSim = selectedNI = "";
+						showObservacoes = true;
+					}
+					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreTrabalho].frequencia == 1) {
+						selectedSim = " checked";
+						selectedNao = selectedNI = "";
+						showObservacoes = false;
+					}
+					else {
+						selectedNI = " checked";
+						selectedNao = selectedSim = "";
+						showObservacoes = false;
+					}
+					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreTrabalho].justificativa;
+				}
+				else {
+					selectedNI = " checked";
+					selectedNao = selectedSim = "";
+					observacoes = "";
+					showObservacoes = false;
+				}
 				nomeRadio = "radioFrequencias_Livre_Trabalho_" + i;
 				nomeObs = "observacao_Livre_Trabalho_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
@@ -597,13 +667,38 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreTrabalho >= 0 ? lIndiceFrequenciaLivreTrabalho : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar'>" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
 									"</div>";
 				htmlFrequenciasTrabalho += htmlFrequencia;
 
+				if ((lIndiceFrequenciaLivreSocial = FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social) != null) {
+					// Existe registro de frequência livre, deve aparecer no início da lista de frequências do cidadão
+					if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSocial].frequencia == 0) {
+						selectedNao = " checked";
+						selectedSim = selectedNI = "";
+						showObservacoes = true;
+					}
+					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSocial].frequencia == 1) {
+						selectedSim = " checked";
+						selectedNao = selectedNI = "";
+						showObservacoes = false;
+					}
+					else {
+						selectedNI = " checked";
+						selectedNao = selectedSim = "";
+						showObservacoes = false;
+					}
+					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSocial].justificativa;
+				}
+				else {
+					selectedNI = " checked";
+					selectedNao = selectedSim = "";
+					observacoes = "";
+					showObservacoes = false;
+				}
 				nomeRadio = "radioFrequencias_Livre_Social_" + i;
 				nomeObs = "observacao_Livre_Social_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
@@ -616,7 +711,7 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivre >= 0 ? lIndiceFrequenciaLivre : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + /*todo: tipo_atuacao_id - depende da aba: saúde, social ou trabalho*/1 + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSocial >= 0 ? lIndiceFrequenciaLivreSocial : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar'>" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -624,7 +719,7 @@
 				htmlFrequenciasSocial += htmlFrequencia;
 //			}
 			for (var j = 0; j < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; j++) {
-				if (j == lIndiceFrequenciaLivre) {
+				if (j == lIndiceFrequenciaLivreSaude || j == lIndiceFrequenciaLivreTrabalho || j == lIndiceFrequenciaLivreSocial) {
 					// O índice é o índice da frequência livre já processada, continua
 					continue;
 				}
@@ -645,40 +740,121 @@
 				}
 				observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa;
 				
-				nomeRadio = "radioFrequencias_" + i + j;
-				nomeObs = "observacao_" + i + j;
-				
-				htmlFrequencia = "<div class='divFrequencia'>" + 
-									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
-									  "<div class='linhaForm' id='divFrequencias'>" + 
-										"<div class='radioFrequencias radioButton'>" + 
-										  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
-										  "<p>Não Informado</p>" + 
-										  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
-										  "<p>Não</p>" + 
-										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
-										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + null + ");' value='Salvar' class='btnSalvar'>" + 
-										"</div>" + 
-									  "</div>" + 
-									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
-									"</div>";
-				// todo: testes retirar
-				//console.log("Tipo de atuação: " + FREQUENCIA.listaAtuacao_NomeVersusID["Todas"]);
-				// testes retirar
-				if (FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
-					htmlFrequenciasSaude += htmlFrequencia;
+				var freqSaude = true;
+				var freqTrabalho = true;
+				var freqSocial = true;
+				if (FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id] == "Todas") {
+					// Avalia se deve criar frequências para todas as atuações
+					for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; k++) {
+						if (k != j && FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].atividade_id == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].atividade_id) {
+							if (FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].tipo_atuacao_id] == "Saúde") {
+								freqSaude = false;
+							}
+							else if (FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].tipo_atuacao_id] == "Trabalho") {
+								freqTrabalho = false;
+							}
+							else if (FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].tipo_atuacao_id] == "Social") {
+								freqSocial = false;
+							}
+						}
+					}
+					
+					// Cria uma frequência para cada aba (saúde, trabalho e social), se necessário
+					if (freqSaude) {
+						nomeRadio = "radioFrequencias_Saude" + i + j;
+						nomeObs = "observacao_Saude" + i + j;
+						
+						htmlFrequencia = "<div class='divFrequencia'>" + 
+											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
+											  "<div class='linhaForm' id='divFrequencias'>" + 
+												"<div class='radioFrequencias radioButton'>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+												  "<p>Não Informado</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+												  "<p>Não</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+												  "<p>Sim</p>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar'>" + 
+												"</div>" + 
+											  "</div>" + 
+											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+											"</div>";
+						htmlFrequenciasSaude += htmlFrequencia;
+					}
+					
+					if (freqTrabalho) {
+						nomeRadio = "radioFrequencias_Trabalho" + i + j;
+						nomeObs = "observacao_Trabalho" + i + j;
+						
+						htmlFrequencia = "<div class='divFrequencia'>" + 
+											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
+											  "<div class='linhaForm' id='divFrequencias'>" + 
+												"<div class='radioFrequencias radioButton'>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+												  "<p>Não Informado</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+												  "<p>Não</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+												  "<p>Sim</p>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar'>" + 
+												"</div>" + 
+											  "</div>" + 
+											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+											"</div>";
+						htmlFrequenciasTrabalho += htmlFrequencia;
+					}
+					
+					if (freqSocial) {
+						nomeRadio = "radioFrequencias_Social" + i + j;
+						nomeObs = "observacao_Social" + i + j;
+						
+						htmlFrequencia = "<div class='divFrequencia'>" + 
+											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
+											  "<div class='linhaForm' id='divFrequencias'>" + 
+												"<div class='radioFrequencias radioButton'>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+												  "<p>Não Informado</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+												  "<p>Não</p>" + 
+												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+												  "<p>Sim</p>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar'>" + 
+												"</div>" + 
+											  "</div>" + 
+											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+											"</div>";
+						htmlFrequenciasSocial += htmlFrequencia;
+					}
 				}
-				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
-					htmlFrequenciasTrabalho += htmlFrequencia;
-				}
-				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Social"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
-					htmlFrequenciasSocial += htmlFrequencia;
-				}
-				else if (FREQUENCIA.listaAtuacao_NomeVersusID["Todas"] == FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id) {
-					htmlFrequenciasSaude += htmlFrequencia;
-					htmlFrequenciasTrabalho += htmlFrequencia;
-					htmlFrequenciasSocial += htmlFrequencia;
+				else {
+					var strAtuacaoNome = FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id];
+					nomeRadio = "radioFrequencias_" + strAtuacaoNome + i + j;
+					nomeObs = "observacao_" + strAtuacaoNome + i + j;
+					
+					htmlFrequencia = "<div class='divFrequencia'>" + 
+										  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
+										  "<div class='linhaForm' id='divFrequencias'>" + 
+											"<div class='radioFrequencias radioButton'>" + 
+											  "<input type='radio' name='" + nomeRadio + "' value='Não Informado' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNI + ">" + 
+											  "<p>Não Informado</p>" + 
+											  "<input type='radio' name='" + nomeRadio + "' value='Não' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedNao + ">" + 
+											  "<p>Não</p>" + 
+											  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
+											  "<p>Sim</p>" + 
+											  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + ");' value='Salvar' class='btnSalvar'>" + 
+											"</div>" + 
+										  "</div>" + 
+										  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
+										"</div>";
+					if (strAtuacaoNome == "Saúde") {
+						htmlFrequenciasSaude += htmlFrequencia;
+					}
+					else if (strAtuacaoNome == "Trabalho") {
+						htmlFrequenciasTrabalho += htmlFrequencia;
+					}
+					else if (strAtuacaoNome == "Social") {
+						htmlFrequenciasSocial += htmlFrequencia;
+					}
 				}
 			}
 		}
@@ -740,6 +916,7 @@
 			FREQUENCIA.indiceCidadao = indiceCidadao;
 			FREQUENCIA.frequencia = frequencia;
 			FREQUENCIA.justificativa = justificativa;
+			FREQUENCIA.tipoAtuacaoID = tipo_atuacao_id;
 			
 			if (FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id == null) {
 				// Nova frequência, insere
@@ -750,7 +927,8 @@
 									[
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
-									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+//									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+									tipo_atuacao_id,
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
 									FREQUENCIA.auxData,
 									FREQUENCIA.frequencia,
@@ -805,7 +983,8 @@
 							[
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
-							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+//							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
+							FREQUENCIA.tipoAtuacaoID,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
 							FREQUENCIA.auxData,
 							FREQUENCIA.frequencia,
