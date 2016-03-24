@@ -1697,7 +1697,7 @@ span.phone-img {
 		height: auto;
 		overflow:hidden;
 		padding: 4px 0 4px 0;
-		height: 66px;
+		height: 72px;
 	}
 	ul#ullistaCidadaos li.li-header{
 		font-weight: bold;
@@ -2148,6 +2148,16 @@ span.phone-img {
 .adicionaInputDrogaHoje, .adicionaInputContatoFamiliar{
 	width: 100%;
 }
+.adicionaInputDrogas div{
+	display: block;
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+}
+
+
+
+
 .alinhaGrande{
 	float:left;
 	width: 100%;

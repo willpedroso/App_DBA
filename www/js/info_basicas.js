@@ -263,6 +263,19 @@ function infoBasicasOpcoes() {
 	
 	$("#listaOrientacaoSexual").empty();
 	$("#listaOrientacaoSexual").append(opts);
+
+
+	// COR DE PELE
+	var opts = "<select id='corLabel' class='selectPersonalizado'><option value='Selecione' data-id='corLabel' for='cor_id'>Selecione</option>";
+	for (var i = 0; i < INFOBASICAS.tipoSexo.length; i++) {
+		opts += "<option value='" + i + "' data-id='corLabel' for='cor_id'";
+		opts += ((edit == true && INFOBASICAS.corCidadao.cor_id == INFOBASICAS.tipoCor[i].id) ? " selected>" : ">") + INFOBASICAS.tipoCor[i].nome + "</option>";
+	}
+	opts += "</select>";
+	console.log(opts + "\r\n");
+	
+	$("#listaCorpele").empty();
+	$("#listaCorpele").append(opts);
 	
 	// INFORMAÇÕES ADICIONAIS
 	// todo: tipos de cutis

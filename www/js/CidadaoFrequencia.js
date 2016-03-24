@@ -8,6 +8,7 @@
 	abas: [],
 	listaTiposAtuacao: [],
 	listaAtuacao_NomeVersusID: [],
+	listaIDVersusAtuacao_Nome: [],
 	listaTipoAtuacaoIDBusca: null,
 	
 	// Auxiliares
@@ -87,6 +88,7 @@
 		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
 			if (FREQUENCIA.listaTiposAtuacao[i].status == 1) {
 				FREQUENCIA.listaAtuacao_NomeVersusID[FREQUENCIA.listaTiposAtuacao[i].nome] = FREQUENCIA.listaTiposAtuacao[i].id;
+				FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaTiposAtuacao[i].id] = FREQUENCIA.listaTiposAtuacao[i].nome;
 			}
 		}
 		
@@ -94,6 +96,7 @@
 		var Print = "Tipos de Atuação - Nome Versus ID" + "\r\n";
 		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
 			Print += "ID de " + FREQUENCIA.listaTiposAtuacao[i].nome + ": " + FREQUENCIA.listaAtuacao_NomeVersusID[FREQUENCIA.listaTiposAtuacao[i].nome] + "\r\n";
+			Print += "Tipo de atuação " + FREQUENCIA.listaTiposAtuacao[i].id + ": " + FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaTiposAtuacao[i].id] + "\r\n";
 		}
 		console.log (Print);
 		// testes retirar

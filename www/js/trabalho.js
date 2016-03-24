@@ -1,3 +1,13 @@
+//abre input frente de trabalho
+function abreFrentetrabalho(){
+		if ($("input:radio[name=infoFrentetrabalho]:checked").val() == "Sim") {
+			jQuery('#infoFrentetrabalho').show();
+		}
+		else {
+			jQuery('#infoFrentetrabalho').hide();
+		}
+};
+
 function trabalhoOpcoes () {
 	console.log("trabalhoOpcoes");
 }

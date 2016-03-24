@@ -387,13 +387,13 @@ $('html').click(function() {
 		}
 		else{
 			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+
+			'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span>'+
 			'<div class="inputsTempo">'+
 			'<input type="text" value="'+(($("#diaDrogasFazUsoLabel").text() == 'Dias')? '':$("#diaDrogasFazUsoLabel").text()) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 			'<input type="text" value="'+(($("#mesesDrogasFazUsoLabel").text() == 'Meses')? '':$("#mesesDrogasFazUsoLabel").text())+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 			'<input type="text" value="'+(($("#anosDrogasFazUsoLabel").text() == 'Anos')? '':$("#anosDrogasFazUsoLabel").text())+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-			'</div>'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+			'</div>';
+			</div>';
 
 			$('.adicionaInputDrogas').append(	html2insert);
 			$('input.adicionaDrogas').val('');
@@ -930,7 +930,7 @@ function adicionaDrogas(dias, meses, anos) {
 		var vanos = anos != null ? anos : $("#anosDrogasFazUsoLabel option:selected").text();
 		
 		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputPeq inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+
+		'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputPeq inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span>'+
 		'<div class="inputsTempo">'+
 		
 //		'<input type="text" value="'+(($("#diaDrogasFazUsoLabel").text() == 'Dias')? '':$("#diaDrogasFazUsoLabel").text()) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
@@ -942,8 +942,7 @@ function adicionaDrogas(dias, meses, anos) {
 //		'<input type="text" value="'+(($("#anosDrogasFazUsoLabel").text() == 'Anos')? '':$("#anosDrogasFazUsoLabel").text())+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 		'<input type="text" value="'+((vanos == 'Anos')? '':vanos)+'" name="anos_drogas_faz_uso[]" class="inputPeq inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
 		
-		'</div>'+
-		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
+		'</div>'+'</div>';
 
 		$('.adicionaInputDrogas').append(	html2insert);
 		$('input.adicionaDrogas').val('');

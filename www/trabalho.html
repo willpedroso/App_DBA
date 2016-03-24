@@ -19,27 +19,40 @@
           
             <h3>TRABALHO | ACOMPANHAMENTO</h3>
             
-            
-            <div class="linhaForm"> 
-              <span class="titLabel">Frente de trabalho:</span>
-              <input type="text" class="inputGrande" value="" id="frente_trabalho" name="frente_trabalho">
-            </div>
-            
-            <div class="linhaForm"> 
-              <span class="titLabel">Grupo:</span>
-              <input type="text" class="inputGrande" value="" id="grupo" name="grupo">
-            </div>
-            
-            <div class="linhaForm"> 
-              <span class="titLabel">Orientador:</span>
-              <input type="text" class="inputGrande" value="" id="orientador" name="orientador">
-            </div>          
-            
             <div class="linhaForm">
-              <label class="selectDefault">
-                <span class="titSang">Hotel:</span>
-                <input type="text" class="inputGrande" readonly="readonly" value="" id="hotel" name="hotel">
-              </label>
+                <span class="titLabel">Participa de Frente de Trabalho:</span>
+                <div id="infoFrentetrabalho" class="radioButton" onclick="abreFrentetrabalho();">
+                    <input class="radio active" type="radio" name="infoFrentetrabalho" value="Não Informado" checked>
+                    <p>Não Informado</p>
+                    <input class="radio active" type="radio" name="infoFrentetrabalho" value="Não" >
+                    <p>Não</p> 
+                    <input class="radio active" type="radio" name="infoFrentetrabalho" value="Sim" >
+                    <p>Sim</p> 
+                   <input type="hidden" value="" name="info_frente_trabalho" id="info_frente_trabalho" class="valueCheck">
+                </div>
+            </div>
+            <div id="infoFrentetrabalho" style="display:none">
+              <div class="linhaForm"> 
+                <span class="titLabel">Frente de trabalho:</span>
+                <input type="text" class="inputGrande" value="" id="frente_trabalho" name="frente_trabalho">
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Grupo:</span>
+                <input type="text" class="inputGrande" value="" id="grupo" name="grupo">
+              </div>
+              
+              <div class="linhaForm"> 
+                <span class="titLabel">Orientador:</span>
+                <input type="text" class="inputGrande" value="" id="orientador" name="orientador">
+              </div>          
+              
+              <div class="linhaForm">
+                <label class="selectDefault">
+                  <span class="titSang">Hotel:</span>
+                  <input type="text" class="inputGrande" readonly="readonly" value="" id="hotel" name="hotel">
+                </label>
+              </div>
             </div>
             
           </div>

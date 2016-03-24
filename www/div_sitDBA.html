@@ -48,12 +48,14 @@
                 <div class="linhaForm">
                   <span class="titLabel">Prioridade:</span>
                       <div id="infoPrioridade" class="radioButton">
-                        <input type="radio" name="infoPrioridade" value="Não Informado" class="radio">
-                        <p>Não Informado</p>
-                        <input type="radio" name="infoPrioridade" value="Não" class="radio">
-                        <p>Não</p>
-                        <input type="radio" name="infoPrioridade" value="Sim" class="radio">
-                        <p>Sim</p>
+                        <input type="radio" name="infoPrioridade" value="0" class="radio">
+                        <p>0</p>
+                        <input type="radio" name="infoPrioridade" value="1" class="radio">
+                        <p>1</p>
+                        <input type="radio" name="infoPrioridade" value="2" class="radio">
+                        <p>2</p>
+                        <input type="radio" name="infoPrioridade" value="3" class="radio">
+                        <p>3</p>
                         <input type="hidden" value="" name="prioridade" id="prioridade" class="valueCheck">
                       </div>
                 </div>
@@ -80,6 +82,15 @@
                       </div>
                     </label>
                   </div>
+
+                <div class="linhaForm"> 
+                    <span class="titLabel">Data de inclusão no DBA:</span>
+                    <input type="date" class="inputMedio float-nn" value="dd/mm/aaaa" id="data_inc_dba" name="data_inc_dba">
+                 </div>
+                 <div class="linhaForm"> 
+                    <span class="titLabel">Data de exclusão no DBA:</span>
+                    <input type="date" class="inputMedio float-nn" value="dd/mm/aaaa" id="data_exc_dba" name="data_exc_dba">
+                 </div>
                                     
             </div>  
           
