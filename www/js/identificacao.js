@@ -17,18 +17,10 @@ function atualizaFichaCidadao () {
 														  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento + "/" +
 														  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento + "</strong>";
     dadosFichaCidadao += "<br>";
-    dadosFichaCidadao += "Situação Cadastral: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral == 1 ? "Ativa" : "Inativa") + "</strong>";
-    dadosFichaCidadao += "<br>";
+    //dadosFichaCidadao += "Situação Cadastral: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral == 1 ? "Ativa" : "Inativa") + "</strong>";
+    //dadosFichaCidadao += "<br>";
 	
-	var prioridade = "";
-	if (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade == 1) {
-		prioridade = "Sim";
-	}
-	else if (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade == 0) {
-		prioridade = "Não";
-	}
-	else prioridade = "Não Informado";
-    dadosFichaCidadao += "Prioridade: <strong>" + prioridade + "</strong>";
+    dadosFichaCidadao += "Prioridade: <strong>" + CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].prioridade + "</strong>";
     
 	dadosFichaCidadao += "<br>";
     dadosFichaCidadao += "Autoriza Programa DBA: <strong>" + (CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].programa_dba == 1 ? "Sim" : "Não") + "</strong>";

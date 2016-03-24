@@ -41,6 +41,9 @@
 		cidadao_nome: null;
 		cidadao_nome_social: null;
 		indice_frequencia_livre: null;
+		indice_frequencia_livre_Saude: null;
+		indice_frequencia_livre_Trabalho: null;
+		indice_frequencia_livre_Social: null;
 	},
 	// ****************** FREQUENCIAS ***********************************
 	
@@ -258,7 +261,16 @@
 			}
 			// Salva o índice do registro que é frequência livre do cidadão, se houver
 			if (dt.frequencia_livre) {
-				v.indice_frequencia_livre = FREQUENCIA.listaFrequenciasCidadaos.length;
+				if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Saúde")
+				{
+					v.indice_frequencia_livre_Saude = FREQUENCIA.listaFrequenciasCidadaos.length;
+				}
+				else if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Trabalho") {
+					v.indice_frequencia_livre_Trabalho = FREQUENCIA.listaFrequenciasCidadaos.length;
+				}
+				else if (FREQUENCIA.listaIDVersusAtuacao_Nome[dt.tipo_atuacao_id] == "Social") {
+					v.indice_frequencia_livre_Social = FREQUENCIA.listaFrequenciasCidadaos.length;
+				}
 			}
 			FREQUENCIA.listaFrequenciasCidadaos.push(v);
 
