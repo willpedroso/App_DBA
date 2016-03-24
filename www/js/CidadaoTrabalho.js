@@ -246,6 +246,7 @@
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +
+							", participa_frente_trabalho " +
 							", frente_trabalho " +
 							", grupo " +
 							", orientador " +
@@ -303,6 +304,7 @@
 		*/
 		var dt = {
 			id: res.rows.item(0).id,
+			participa_frente_trabalho: res.rows.item(0).participa_frente_trabalho,
 			frente_trabalho: res.rows.item(0).frente_trabalho,
 			grupo: res.rows.item(0).grupo,
 			orientador: res.rows.item(0).orientador,
@@ -353,6 +355,7 @@
 		// todo: testes retirar
 		var Print = "Dados de trabalho:\r\n";
 		Print += "id: " + CIDADAOTRABALHO.dadosTrabalho.id + "\r\n";
+		Print += "participa_frente_trabalho: " + CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho + "\r\n";
 		Print += "frente_trabalho: " + CIDADAOTRABALHO.dadosTrabalho.frente_trabalho + "\r\n";
 		Print += "grupo: " + CIDADAOTRABALHO.dadosTrabalho.grupo + "\r\n";
 		Print += "orientador: " + CIDADAOTRABALHO.dadosTrabalho.orientador + "\r\n";
@@ -424,6 +427,7 @@
 		var hoje = new Date();
 		BANCODADOS.sqlCmdDB("INSERT INTO trabalho " +
 							"(cidadao_id " +
+							", participa_frente_trabalho " +
 							", frente_trabalho " +
 							", grupo " +
 							", orientador " +
@@ -468,9 +472,10 @@
 							", observacoes_gerais " +
 							", dt_criacao " +
 							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
 							CIDADAOTRABALHO.cidadao_id,
+							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),
 							dadosLista.shift(),

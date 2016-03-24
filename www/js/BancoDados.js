@@ -47,6 +47,7 @@ var BANCODADOS = {
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/operadores");
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/equipes");
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/servicos");
+		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/tabelasApoio");
 	
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/cidadaos");
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/frequencias");
@@ -1046,7 +1047,8 @@ var BANCODADOS = {
 	/*db_create_tipo_acompanhante_rua: */"CREATE TABLE tipo_acompanhante_rua ( \
 										id INTEGER PRIMARY KEY NOT NULL, \
 										nome TEXT NOT NULL, \
-										status INTEGER NOT NULL DEFAULT 1 \
+										status INTEGER NOT NULL DEFAULT 1, \
+										mobile TEXT DEFAULT NULL \
 									)",
 
 	/*db_create_tipo_atividade_tempo_livre: */"CREATE TABLE tipo_atividade_tempo_livre ( \

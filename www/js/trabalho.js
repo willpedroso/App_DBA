@@ -1,11 +1,11 @@
 //abre input frente de trabalho
 function abreFrentetrabalho(){
-		if ($("input:radio[name=infoFrentetrabalho]:checked").val() == "Sim") {
-			jQuery('#infoFrentetrabalho').show();
-		}
-		else {
-			jQuery('#infoFrentetrabalho').hide();
-		}
+	if ($("input:radio[name=infoFrentetrabalho]:checked").val() == "Sim") {
+		jQuery('#infoFrentetrabalhoGrupo').show();
+	}
+	else {
+		jQuery('#infoFrentetrabalhoGrupo').hide();
+	}
 };
 
 function trabalhoOpcoes () {
@@ -24,6 +24,20 @@ function carregaTrabalho () {
 	
 	var edit = true;		// todo: sempre em edição
 
+	if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho == 1) {
+		// Sim
+		$("input[name='infoFrentetrabalho'][value='Sim']").prop("checked", true);
+	}
+	else if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho == 0) {
+		// Não
+		$("input[name='infoFrentetrabalho'][value='Não']").prop("checked", true);
+	}
+	else {
+		// null ou vazio
+		$("input[name='infoFrentetrabalho'][value='Não Informado']").prop("checked", true);
+	}
+	abreFrentetrabalho();
+	
 	var auxVar;
 	// Frente de Trabalho
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.frente_trabalho;
@@ -393,6 +407,16 @@ function trabalhoSalva() {
 
 		var listaDados = [];
 		var auxVar;
+
+		// Participa de Frente de Trabalho
+		auxVar = null;
+		if ($("input:radio[name=infoFrentetrabalho]:checked").val() == "Sim") {
+			auxVar = 1;
+		}
+		else if ($("input:radio[name=infoFrentetrabalho]:checked").val() == "Não") {
+			auxVar = 0;
+		}
+		listaDados.push(auxVar);
 
 		// Frente de Trabalho
 		listaDados.push($("#frente_trabalho").val());

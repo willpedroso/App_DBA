@@ -904,4 +904,50 @@
 //*******************************************************************************************************************
 // Tipos de Atuação
 //*******************************************************************************************************************
+//*******************************************************************************************************************
+// Tipos de Cor de Pele
+//*******************************************************************************************************************
+	tipo_cor_pele_data: [],
+	tipo_cor_pele_DTO: function () {
+		id: null;
+		nome: null;
+		status: null;
+	},
+	tipo_cor_pele_carrega: function (cbSuccess, cbFail) {
+		console.log("tipo_cor_pele_carrega");
+		
+		// Salva funções de retorno
+		BD_DTO.cbSuccess_f = cbSuccess;
+		BD_DTO.cbFail_f = cbFail;
+		
+		if (BD_DTO.tipo_cor_pele_data.length > 0) {
+			BD_DTO.cbSuccess_f();
+		}
+		else {
+			// Carrega todos os tipos de cor de pele
+			BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_cutis WHERE status = ?",
+								[1], 
+								BD_DTO.tipo_cor_pele_carrega_success, 
+								BD_DTO.cbFail_f);
+		}
+	},
+	tipo_cor_pele_carrega_success: function (trans, res) {
+		console.log("tipo_cor_pele_carrega_success");
+		
+		var tp;
+		while (BD_DTO.tipo_cor_pele_data.length > 0) {
+			BD_DTO.tipo_cor_pele_data.pop();
+		}
+		for (var i = 0; i < res.rows.length; i++) {
+			tp = new BD_DTO.tipo_cor_pele_DTO();
+			tp.id = res.rows.item(i).id;
+			tp.nome = res.rows.item(i).nome;
+			tp.status = res.rows.item(i).status;
+			BD_DTO.tipo_cor_pele_data.push(tp);
+		}
+		BD_DTO.cbSuccess_f();
+	},
+//*******************************************************************************************************************
+// Tipos de Cor de Pele
+//*******************************************************************************************************************
 }

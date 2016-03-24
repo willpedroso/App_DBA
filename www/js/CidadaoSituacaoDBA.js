@@ -18,6 +18,10 @@
 	listaMotivoInativacao: [],
 	auxListaMotivoInativacao: null,
 	listaMotivoInativacaoCounter: 0,
+	dt_inclusao_dba: null,
+	auxdt_inclusao_dba: null,
+	dt_exclusao_dba: null,
+	auxdt_exclusao_dba: null,
 
     // ****************** Obtém os dados de entrada *********************
     dadosEntrada: function(cidadao, cbSuccess, cbFail) {
@@ -33,7 +37,7 @@
 
 		// Obtém situação DBA
 		// todo: perguntar sobre os campos ponto_servico_id, dt_inclusao_dba, dt_exclusao_dba, dt_criacao, dt_atualizacao
-		BANCODADOS.sqlCmdDB("SELECT situacao_cadastral, motivo_inativacao_outros, prioridade, programa_dba, ponto_servico_id FROM cidadao WHERE id = ?",
+		BANCODADOS.sqlCmdDB("SELECT situacao_cadastral, motivo_inativacao_outros, prioridade, programa_dba, ponto_servico_id, dt_inclusao_dba, dt_exclusao_dba FROM cidadao WHERE id = ?",
 							[SITUACAODBA.cidadao_id], 
 							SITUACAODBA.dadosEntradaSituacaoDBASuccess, 
 							SITUACAODBA.dadosEntradaSituacaoDBAFail);
@@ -49,6 +53,8 @@
 			SITUACAODBA.prioridade = res.rows.item(0).prioridade;
 			SITUACAODBA.programaDBA = res.rows.item(0).programa_dba;
 			SITUACAODBA.pontoServicoId = res.rows.item(0).ponto_servico_id;
+			SITUACAODBA.dt_inclusao_dba = res.rows.item(0).dt_inclusao_dba;
+			SITUACAODBA.dt_exclusao_dba = res.rows.item(0).dt_exclusao_dba;
 			
 			// Obtém a lista de motivos da inativação
 			BANCODADOS.sqlCmdDB("SELECT tipo_motivo_inativacao_id FROM motivo_inativacao WHERE cidadao_id = ?",
@@ -89,6 +95,8 @@
 							   programaDBA,
 							   pontoServicoId,
 							   listaMotivoInativacao,
+							   dataInclusao,
+							   dataExclusao,
 							   cbSuccess, cbFail) {
 	    console.log("salvaSituacaoDBA");
 
@@ -102,14 +110,18 @@
 		SITUACAODBA.auxprioridade = prioridade;
 		SITUACAODBA.auxprogramaDBA = programaDBA;
 		SITUACAODBA.auxpontoServicoId = pontoServicoId;
+		SITUACAODBA.auxdt_inclusao_dba = dataInclusao;
+		SITUACAODBA.auxdt_exclusao_dba = dataInclusao;
 		
 		// Atualiza
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ? WHERE id = ?",
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ?, dt_inclusao_dba = ?, dt_exclusao_dba = ? WHERE id = ?",
 							[situacaoCadastral,
 							 motivoInativacaoOutros,
 							 prioridade,
 							 programaDBA,
 							 pontoServicoId,
+							 dataInclusao,
+							 dataExclusao,
 							 SITUACAODBA.cidadao_id],
 							 SITUACAODBA.excluiMotivoInativacao, 
 							 SITUACAODBA.salvaSituacaoDBAFail);
@@ -165,6 +177,8 @@
 		SITUACAODBA.programaDBA = SITUACAODBA.auxprogramaDBA;
 		SITUACAODBA.pontoServicoId = SITUACAODBA.auxpontoServicoId;
 		SITUACAODBA.listaMotivoInativacao = SITUACAODBA.auxListaMotivoInativacao;
+		SITUACAODBA.dt_inclusao_dba = SITUACAODBA.auxdt_inclusao_dba;
+		SITUACAODBA.dt_exclusao_dba = SITUACAODBA.auxdt_exclusao_dba;
 
 		// Atualiza ficha
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].situacao_cadastral = SITUACAODBA.situacaoCadastral;

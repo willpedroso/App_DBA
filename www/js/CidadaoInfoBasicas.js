@@ -12,6 +12,7 @@
 	saudeCidadao: null,
 	
 	tipoSexo: [],
+	tipoCorPele: [],
 	tipoOrientacaoSexual: [],
 	tipoEstadoCivil: [],
 	tipoEstado: [],
@@ -54,6 +55,14 @@
 		console.log("dadosBasicosTipoSexoSuccess");
 		
 		INFOBASICAS.tipoSexo = BD_DTO.tipo_sexo_data;
+		
+		BD_DTO.tipo_cor_pele_carrega(INFOBASICAS.dadosBasicosTipoCorPeleSuccess, INFOBASICAS.dadosEntradaInfoBasicasFail);
+	},
+	
+	dadosBasicosTipoCorPeleSuccess: function (trans, res) {
+		console.log("dadosBasicosTipoCorPeleSuccess");
+		
+		INFOBASICAS.tipoCorPele = BD_DTO.tipo_cor_pele_data;
 		
 		// Obtém os dados básicos - tipos de orientação sexual
 		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_orientacao_sexual",

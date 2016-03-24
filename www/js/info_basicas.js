@@ -267,9 +267,9 @@ function infoBasicasOpcoes() {
 
 	// COR DE PELE
 	var opts = "<select id='corLabel' class='selectPersonalizado'><option value='Selecione' data-id='corLabel' for='cor_id'>Selecione</option>";
-	for (var i = 0; i < INFOBASICAS.tipoSexo.length; i++) {
+	for (var i = 0; i < INFOBASICAS.tipoCorPele.length; i++) {
 		opts += "<option value='" + i + "' data-id='corLabel' for='cor_id'";
-		opts += ((edit == true && INFOBASICAS.corCidadao.cor_id == INFOBASICAS.tipoCor[i].id) ? " selected>" : ">") + INFOBASICAS.tipoCor[i].nome + "</option>";
+		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.tipo_cutis_id == INFOBASICAS.tipoCorPele[i].id) ? " selected>" : ">") + INFOBASICAS.tipoCorPele[i].nome + "</option>";
 	}
 	opts += "</select>";
 	console.log(opts + "\r\n");
@@ -278,21 +278,6 @@ function infoBasicasOpcoes() {
 	$("#listaCorpele").append(opts);
 	
 	// INFORMAÇÕES ADICIONAIS
-	// todo: tipos de cutis
-	/*
-	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
-	for (var i = 0; i < INFOBASICAS.tipoEstadoCivil.length; i++) {
-		opts += "<option value='" + i + "' data-id='estadoCivilLabel' for='estado_civil_id'";
-		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.tipo_cutis_id == INFOBASICAS.tipoEstadoCivil[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstadoCivil[i].nome + "</option>";
-	}
-	opts += "</div></select>";
-	console.log(opts + "\r\n");
-	
-	$("#listaEstadoCivil").empty();
-	$("#listaEstadoCivil").append(opts);
-	*/
-	// todo: tipos de cutis
-	
 	var opts = "<select id='estadoCivilLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='estadoCivilLabel' for='estado_civil_id'>Selecione</option>";
 	for (var i = 0; i < INFOBASICAS.tipoEstadoCivil.length; i++) {
 		opts += "<option value='" + i + "' data-id='estadoCivilLabel' for='estado_civil_id'";
@@ -519,6 +504,8 @@ function infoBasicasSalva() {
 	}
 	
 	// Quais drogas e qual frequência
+	// Não é necessário checar
+	/*
 	if ($("input:radio[name=alcool_droga]:checked").val() == "Sim") {
 		if ($('#nome_drogas').val() == '')
 		{
@@ -532,7 +519,8 @@ function infoBasicasSalva() {
 			erro = true;
 		}
 		else $('#frequencia_drogas').removeClass('inputFocus');
-	}	
+	}
+	*/	
 	// INFORMAÇÕES COMPLEMENTARES
 	
 	if (erro == true) {
@@ -644,11 +632,7 @@ function infoBasicasSalva() {
 								 $("#orientacaoSexualLabel").val() == "Selecione" ? null : INFOBASICAS.tipoOrientacaoSexual[$("#orientacaoSexualLabel").val()].id,
 								 
 								 // tipo_cutis_id
-								 // todo: tipo_cutis_id
-								 /*
-								 $("#sexoLabel").val() == "Selecione" ? null : INFOBASICAS.tipoSexo[$("#sexoLabel").val()].id,
-								 */
-								 // todo: tipo_cutis_id
+								 $("#corLabel").val() == "Selecione" ? null : INFOBASICAS.tipoCorPele[$("#corLabel").val()].id,
 								 // rg_rne
 								 $("#rg_rne").val(),
 								 // cpf

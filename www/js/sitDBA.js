@@ -33,14 +33,17 @@ function carregaSituacaoDBA () {
 	$("#listaMotivoInativacao").append(opts);
 	
 	// Prioridade
-	if (SITUACAODBA.prioridade == 1) {
-		$("input[name='infoPrioridade'][value='Sim']").prop("checked", true);
+	if (SITUACAODBA.prioridade == 0) {
+		$("input[name='infoPrioridade'][value='0']").prop("checked", true);
 	}
-	else if (SITUACAODBA.prioridade == 0) {
-		$("input[name='infoPrioridade'][value='Não']").prop("checked", true);
+	else if (SITUACAODBA.prioridade == 1) {
+		$("input[name='infoPrioridade'][value='1']").prop("checked", true);
+	}
+	else if (SITUACAODBA.prioridade == 2) {
+		$("input[name='infoPrioridade'][value='2']").prop("checked", true);
 	}
 	else {
-		$("input[name='infoPrioridade'][value='Não Informado']").prop("checked", true);
+		$("input[name='infoPrioridade'][value='3']").prop("checked", true);
 	}
 	
 	// Autoriza Programa DBA
@@ -68,6 +71,12 @@ function carregaSituacaoDBA () {
 	if (edit == true) {
 		$("#motivo_inativacao_outros").val(SITUACAODBA.motivoInativacaoOutros == null ? "" : SITUACAODBA.motivoInativacaoOutros);
 	}
+	
+	// Data de inclusão no DBA
+	$("#data_inc_dba").val(SITUACAODBA.dt_inclusao_dba != null ? SITUACAODBA.dt_inclusao_dba.substr(0, 10) : "");
+	
+	// Data de exclusão no DBA
+	$("#data_exc_dba").val(SITUACAODBA.dt_exclusao_dba != null ? SITUACAODBA.dt_exclusao_dba.substr(0, 10) : "");
 }
 
 function salvaSituacaoDBASuccess () {
@@ -111,13 +120,35 @@ function validaCamposSituacaoDBA() {
 				mi.push(CIDADAO.listaTipoMotivoInativacao[i].id);
 			}
 		}
+		
+		// prepara data de inclusão e exclusão
+		var dinclusao_Text = "";
+		var dinclusao;
+		if ($('#data_inc_dba').val() != "") {
+			dinclusao = new Date($('#data_inc_dba').val());
+			dinclusao_Text = dinclusao.getFullYear() + "-" + ((dinclusao.getMonth()+1) < 10 ? "0" + (dinclusao.getMonth()+1) : (dinclusao.getMonth()+1)) + "-" + (dinclusao.getDate() < 10 ? "0" + dinclusao.getDate() : dinclusao.getDate());
+		}
 
+		var dexclusao_Text = "";
+		var dexclusao;
+		if ($('#data_exc_dba').val() != "") {
+			dexclusao = new Date($('#data_exc_dba').val());
+			dexclusao_Text = dexclusao.getFullYear() + "-" + ((dexclusao.getMonth()+1) < 10 ? "0" + (dexclusao.getMonth()+1) : (dexclusao.getMonth()+1)) + "-" + (dexclusao.getDate() < 10 ? "0" + dexclusao.getDate() : dexclusao.getDate());
+		}
+		
+		// todo: testes retirar
+		console.log("Data de inclusão: " + dinclusao_Text);
+		console.log("Data de exclusão: " + dexclusao_Text);
+		// testes retirar
+		
 		SITUACAODBA.salvaSituacaoDBA(($("input:radio[name=infoSituacaoDba]:checked").val() == "Ativo" ? 1 : 0),
 									 $("#motivo_inativacao_outros").val(),
 									 prioridade,	
 									 ($("input:radio[name=infoProgramaDba]:checked").val() == "Sim" ? 1 : 0),
 									 $("#localAcolhidaLabel").val() == "Selecione" ? null : CIDADAO.listaPontosServico[$("#localAcolhidaLabel").val()].id,
 									 mi,
+									 dinclusao_Text,
+									 dexclusao_Text,
 									 this.salvaSituacaoDBASuccess,
 									 this.salvaSituacaoDBAFail);
 	}
