@@ -127,7 +127,8 @@
 		CIDADAOSOCIAL.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		CIDADAOSOCIAL.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		//CIDADAOSOCIAL.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		CIDADAOSOCIAL.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +

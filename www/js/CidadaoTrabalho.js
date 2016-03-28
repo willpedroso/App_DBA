@@ -242,8 +242,9 @@
 		CIDADAOTRABALHO.cbFail_f = cbFail;
 		
 		// Salva identificação do cidadão
-		CIDADAOTRABALHO.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
-		
+		//CIDADAOTRABALHO.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		CIDADAOTRABALHO.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
+
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +
 							", participa_frente_trabalho " +

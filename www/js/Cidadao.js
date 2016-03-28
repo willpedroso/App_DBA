@@ -135,6 +135,8 @@
 		while(CIDADAO.listaCidadaosDados.length > 0) {
 			CIDADAO.listaCidadaosDados.pop();
 		}
+		// limpa a lista de cidadãos filtrados
+		CIDADAO.listaCidadaosDadosBusca = [];
 
 		// Obtém dados dos cidadãos
 		if (CIDADAO.equipe_coordenacao_id == null) {
@@ -163,6 +165,9 @@
 			prioridade: res.rows.item(0).prioridade,
 		};
 		CIDADAO.listaCidadaosDados.push(cdados);
+		// Mantém a lista de cidadãos filtrados igual
+		CIDADAO.listaCidadaosDadosBusca.push(cdados);
+		
 		if (CIDADAO.countListaCidadaosId == CIDADAO.listaCidadaosId.length) {
 			// Todos os cidadãos já foram processados
 			

@@ -321,7 +321,8 @@
 	obtemListaAtividades: function () {
 		console.log("obtemListaAtividades");
 		
-		ATIVIDADE.dadosEntrada(FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id : FREQUENCIA.cidadao_id, 
+		ATIVIDADE.dadosEntrada(FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id : FREQUENCIA.cidadao_id,
+							   "FREQUENCIA",
 							   FREQUENCIA.listaAtividadesSuccess,
 							   FREQUENCIA.dadosEntradaFrequenciaFail);
 	},

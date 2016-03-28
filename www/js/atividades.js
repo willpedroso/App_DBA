@@ -2,56 +2,104 @@ function preparaListasOpt () {
 	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
 	
 	var edit = false;
+	var readonlyAtividade = false;
 	if(edit = (ATIVIDADE.editIndexAtividade != null)) {
+		if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_servico_id == ATIVIDADE.servicoTipoAcolhida || ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].status == 2) {
+			// É uma atividade do tipo "Acolhida" ou atividade cancelada/encerrada, não pode ser editada
+			readonlyAtividade = true;
+		}
+		if (readonlyAtividade == false && 
+			ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_id != ATIVIDADE.listaAtuacao_NomeVersusID["Todas"] &&
+			USUARIO.perfil_tecnico == true) {
+			// Perfil técnico: obtém as atividades da atuação do técnico (incluindo as acumuladas) e "Todas"
+			var i = 0;
+			readonlyAtividade = true;
+			var perfil = USUARIO.perfil_codigo;
+			do {
+				switch (perfil) {
+				case "TSAU":
+					if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"]) {
+						readonlyAtividade = false;
+					}
+					break;
+				case "TTRA":
+					if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"]) {
+						readonlyAtividade = false;
+					}
+					break;
+				case "TSOC":
+					if (ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Social"]) {
+						readonlyAtividade = false;
+					}
+					break;
+				}
+			} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+		}		
 		var auxVar;
 		// Título
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].descricao;
 		$("#descricao").val(auxVar == null ? "" : auxVar);
+		$("#descricao").prop("readonly", readonlyAtividade);
 		
 		// Atividade privada
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].privada;
 		$("input[name='infoPrivada'][value='Não']").prop("checked", auxVar == null || auxVar == 0 ? true : false);
 		$("input[name='infoPrivada'][value='Sim']").prop("checked", auxVar == 1 ? true : false);
+		$("input[name='infoPrivada']").prop("disabled", readonlyAtividade);
 
 		// Dia inteiro
 		$("input[name='infoDiaInteiro'][value='Não']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_inteiro == 0 ? true : false);
 		$("input[name='infoDiaInteiro'][value='Sim']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_inteiro == 1 ? true : false);
+		$("input[name='infoDiaInteiro']").prop("disabled", readonlyAtividade);
 		
 		// Data de início
 		$("#data_inicio").val(ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_inicio);
+		$("#data_inicio").prop("readonly", readonlyAtividade);
 		
 		// Hora de início
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_inicio;
 		$("#hora_inicio").val(auxVar == null ? "" : auxVar);
+		$("#hora_inicio").prop("readonly", readonlyAtividade);
 		
 		// Permanente
 		$("input[name='infoPermanente'][value='Não']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_permanente == 0 ? true : false);
 		$("input[name='infoPermanente'][value='Sim']").prop("checked", ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_permanente == 1 ? true : false);
+		$("input[name='infoPermanente']").prop("disabled", readonlyAtividade);
 		
 		// Data de término
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino;
 		$("#data_termino").val(auxVar == null ? "" : auxVar);
+		$("#data_termino").prop("readonly", readonlyAtividade);
 		
 		// Hora de término
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_termino;
 		$("#hora_termino").val(auxVar == null ? "" : auxVar);
+		$("#hora_termino").prop("readonly", readonlyAtividade);
 		
 		// Repetir (dia do mês ou dia da semana para a primeira ocorrência)
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_mes_repetir;
 		$("input[name='infoRepetir'][value='dia do mês']").prop("checked", auxVar != null ? true : false);
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir;
 		$("input[name='infoRepetir'][value='dia da semana']").prop("checked", auxVar != null ? true : false);
+		$("input[name='infoRepetir']").prop("disabled", readonlyAtividade);
+		
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_mes_repetir;
 		$("#dia_mes_repetir").val(auxVar == null ? "" : auxVar);
+		$("#dia_mes_repetir").prop("readonly", readonlyAtividade);
 	
 		// Repetir no dia (dd/mm para periodicidade anual)
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_ano_repetir;
 		$("#dia_ano_repetir").val(auxVar == null ? "" : auxVar);
+		$("#dia_ano_repetir").prop("readonly", readonlyAtividade);
 	}
 	
 	// Lista de pontos de serviço
-	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
+	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
+		if (edit == false && ATIVIDADE.listaPontosServico[i].tipo_servico_id == ATIVIDADE.servicoTipoAcolhida) {
+			// Nova atividade, não apresenta pontos de serviço do tipo "Acolhida"
+			continue;
+		}
 		opts += "<option value='" + i + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
 		//opts += "<option value='" + ATIVIDADE.listaTiposServico[i].id + "' data-id='pontoServicoLabel' for='ponto_servico_id'";
 		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].ponto_servico_nome == ATIVIDADE.listaPontosServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaPontosServico[i].nome + "</option>";
@@ -112,7 +160,7 @@ function preparaListasOpt () {
 	// ********************** lista de tipos de atuação por perfil de usuário ****************************
 	
 	// Lista de tipos de atuação
-	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
+	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
 //	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 	for (var i = 0; i < listaTiposAtuacaoPerfilUsuario.length; i++) {
 		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
@@ -126,7 +174,7 @@ function preparaListasOpt () {
 	$("#listaTiposAtuacao").append(opts);
 	
 	// Lista de tipos de periodicidade
-	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
+	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
 	//	opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
 		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'";
@@ -140,7 +188,7 @@ function preparaListasOpt () {
 	// Lista de dias da semana para checkbox
 	opts = "";
 	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<div class='checkbox'>";
+		opts += "<div class='checkbox' disabled='" + readonlyAtividade + "'>";
 		opts += "<input type='checkbox' id='dias_semana_" + i + "' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='checkbox check'";
 		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Semanal") {
 			for (var j = 0; j < ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_ds.length; j++) {
@@ -162,7 +210,7 @@ function preparaListasOpt () {
 	// Lista de dias da semana para radio
 	opts = "";
 	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio'";
+		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio' disabled='" + readonlyAtividade + "'";
 		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal" &&
 			ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir == ATIVIDADE.listaTiposDiaSemana[i].id) {
 			opts += " checked>";
@@ -186,6 +234,25 @@ function preparaListasOpt () {
 		infoDiaInt();
 	if (edit)
 		infoPerma();
+	
+	// Botão salvar atividade
+	if(readonlyAtividade) {
+		$("#salvarAtividade").attr('style','display:none');
+		$("#encerrarAtividade").attr('style','display:none');
+		$("#excluirAtividade").attr('style','display:none');
+	}
+	else {
+		$("#salvarAtividade").attr('style','display:block');
+		$("#encerrarAtividade").attr('style','display:block');
+		$("#excluirAtividade").attr('style','display:block');
+	}
+	
+	if (edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].status == 2) {
+		$('.msgAtividadeEncerrada').attr('style','display:block');
+	}
+	else {
+		$('.msgAtividadeEncerrada').attr('style','display:none');
+	}
 }
 
 function salvaAtividadeSuccess () {

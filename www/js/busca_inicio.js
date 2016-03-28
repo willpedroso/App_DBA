@@ -85,7 +85,7 @@ function iniAbasUsuario (indiceCidadao) {
               "<li class=\"active\" onclick=\"console.log(\'InfoBasica\'); INFOBASICAS.dadosEntrada(); abas();\">Informa&ccedil;&otilde;es B&aacute;sicas</li>" +
               "<li class=\"active\" onclick=\"console.log(\'Situacao DBA\');SITUACAODBA.dadosEntrada(); abas();\">Situa&ccedil;&atilde;o DBA</li>";
 	if (abaAtividade) {
-        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Atividades\');PageManager.loadTmpl(\'div_atividades\');ATIVIDADE.dadosEntrada(null, ATIVIDADE.apresentaCalendario, null); abas();\">Atividades</li>";
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Atividades\');PageManager.loadTmpl(\'div_atividades\');ATIVIDADE.dadosEntrada(null, \'ATIVIDADE\', ATIVIDADE.apresentaCalendario, null); abas();\">Atividades</li>";
 	}
 	if (abaSocial) {
         opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Social\');CIDADAOSOCIAL.dadosEntrada(); abas();\">Social</li>";

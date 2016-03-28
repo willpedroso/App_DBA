@@ -33,8 +33,9 @@
 		
 		// Salva cidadão
 		//SITUACAODBA.cidadao_id = cidadao;
-		SITUACAODBA.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
-
+		//SITUACAODBA.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		SITUACAODBA.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
+		
 		// Obtém situação DBA
 		// todo: perguntar sobre os campos ponto_servico_id, dt_inclusao_dba, dt_exclusao_dba, dt_criacao, dt_atualizacao
 		BANCODADOS.sqlCmdDB("SELECT situacao_cadastral, motivo_inativacao_outros, prioridade, programa_dba, ponto_servico_id, dt_inclusao_dba, dt_exclusao_dba FROM cidadao WHERE id = ?",

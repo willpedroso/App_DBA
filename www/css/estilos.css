@@ -423,6 +423,28 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     color: #fff;
     height: 40px;
 }
+.msgAtividadeEncerrada{
+	background:#FFD000;
+	color:#fff;
+	height:40px;
+	margin: 20px 0 20px 0;
+	clear:both;
+	float:left;	
+	width: 100%;
+}
+.msgAtividadeEncerrada .ico{
+    float: left;
+    background: url(../img/icoWarning.png) no-repeat 4px 4px;
+    height: 40px;
+    width: 45px;
+    border-right: 1px solid #ffcf73;
+}
+.msgAtividadeEncerrada p{
+    float: left;
+    padding: 12px 23px 0 8px;
+    color: #fff;
+    height: 40px;
+}
 .msgWhite{
     clear: both;
     margin: 0 auto;

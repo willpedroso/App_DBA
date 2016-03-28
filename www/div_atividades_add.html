@@ -14,6 +14,10 @@
         
               <h3>CADASTRAR ATIVIDADE</h3>
               
+              <div class="msgAtividadeEncerrada" style="display:none">
+                <span class="ico"></span><p>ATIVIDADE ENCERRADA</p>
+              </div>    
+              
               <div class="msgAtencao" style="display:none">
                 <span class="ico"></span><p>Atenção! Verifique os campos.</p>
               </div>    
@@ -246,7 +250,9 @@
 
             </div> 
           
-            <input type="button" onclick="validaCampos();" class="btnAlterar" value="Salvar Alterações">
+            <input type="button" id="salvarAtividade" onclick="validaCampos();" class="btnAlterar" value="Salvar Alterações" style="display:block">
+            <input type="button" id="encerrarAtividade" onclick="validaCampos();" class="btnAlterar" value="Encerrar" style="display:block">
+            <input type="button" id="excluirAtividade" onclick="validaCampos();" class="btnAlterar" value="Excluir" style="display:block">
                     
           
         </form>

@@ -378,8 +378,8 @@
 		
 		// Salva cidadão
 		//INFOBASICAS.cidadao_id = cidadao;
-		INFOBASICAS.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
-
+		//INFOBASICAS.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		INFOBASICAS.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
 		// Obtém dados básicos
 		INFOBASICAS.dadosBasicos();
 	},

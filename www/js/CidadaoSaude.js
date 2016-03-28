@@ -320,7 +320,8 @@
 		
 		// Salva identificação do cidadão
 		//CIDADAOSAUDE.cidadao_id = cidadao;
-		CIDADAOSAUDE.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		//CIDADAOSAUDE.cidadao_id = CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao];
+		CIDADAOSAUDE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
 		
 		// Utiliza sempre o registro mais novo, por meio da data de criação
 		BANCODADOS.sqlCmdDB("SELECT id " +

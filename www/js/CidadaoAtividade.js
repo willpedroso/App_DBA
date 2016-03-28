@@ -22,6 +22,7 @@
 	
 	// Auxiliares
 	servicoTipoAcolhida: null,
+	tipoChamada: null,
 
     // ****************** Obtém os dados básicos *********************
 	dadosBasicos: function () {
@@ -223,12 +224,14 @@
 	},
 	
     // ****************** Obtém os dados de entrada *********************
-    dadosEntrada: function(cidadao_id, cbSuccess, cbFail) {
+    dadosEntrada: function(cidadao_id, tipoChamada, cbSuccess, cbFail) {
 	    console.log("dadosEntrada");
 		
 		// Salva funções de retorno
 		ATIVIDADE.cbSuccess_f = cbSuccess;
 		ATIVIDADE.cbFail_f = cbFail;
+		
+		ATIVIDADE.tipoChamada = tipoChamada;
 		
 		// Salva identificação do cidadão
 		//ATIVIDADE.cidadao_id = CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].id;
@@ -327,42 +330,53 @@
 			ATIVIDADE.cbFail_f("O cidadão não foi localizado no banco de dados.");
 		}
 		else {
+			var listaTipoAtuacaoIDBusca;
 			ATIVIDADE.cidadao_nome = res.rows.item(0).nome;
 			ATIVIDADE.cidadao_nome_social = res.rows.item(0).nome_social;
 			
 			// Seleção de tipo de atuação em função do perfil do usuário
-			listaTipoAtuacaoIDBusca = "AND (";
-			if (USUARIO.perfil_tecnico == true) {
-				var i = 0;
-				var perfil = USUARIO.perfil_codigo;
-				do {
-					switch (perfil) {
-					case "TSAU":
-						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
-						break;
-					case "TTRA":
-						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
-						break;
-					case "TSOC":
-						listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
-						break;
-					}
-				} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);
-				listaTipoAtuacaoIDBusca += ")";
+			if (ATIVIDADE.tipoChamada == "ATIVIDADE") {
+				// Obtém a lista de atividades para a tela de atividades
+				// Obtém as atividades de todas as atuações e controla o acesso à elas pelo perfil, na apresentação
+				listaTipoAtuacaoIDBusca = "";
 			}
-			else {
-				// O usuário não possui perfil_tecnico
-				listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
-				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
-				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
-				listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Todas"] + " ";
-				listaTipoAtuacaoIDBusca += ")";
+			else if (ATIVIDADE.tipoChamada == "FREQUENCIA") {
+				// Obtém a lista de atividades para a tela de frequência
+				listaTipoAtuacaoIDBusca = "AND (";
+				if (USUARIO.perfil_tecnico == true) {
+					// Perfil técnico: obtém as atividades da atuação do técnico (incluindo as acumuladas) e "Todas"
+					var i = 0;
+					var perfil = USUARIO.perfil_codigo;
+					do {
+						switch (perfil) {
+						case "TSAU":
+							listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
+							break;
+						case "TTRA":
+							listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
+							break;
+						case "TSOC":
+							listaTipoAtuacaoIDBusca += (i == 0 ? "tipo_atuacao_id = " : " OR tipo_atuacao_id = ") + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
+							break;
+						}
+					} while ((i < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+					listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Todas"] + " ";
+					listaTipoAtuacaoIDBusca += ")";
+				}
+				else {
+					// O usuário não possui perfil_tecnico
+					listaTipoAtuacaoIDBusca += "tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"] + " ";
+					listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"] + " ";
+					listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Social"] + " ";
+					listaTipoAtuacaoIDBusca += " OR tipo_atuacao_id = " + ATIVIDADE.listaAtuacao_NomeVersusID["Todas"] + " ";
+					listaTipoAtuacaoIDBusca += ")";
+				}
 			}
 		
 			// Atividades
 			BANCODADOS.sqlCmdDB("SELECT id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao " +
 								"FROM atividade " +
-								"WHERE cidadao_id = ? AND (status = 1 OR status = 2)" +
+								"WHERE cidadao_id = ? AND (status = 1 OR status = 2) " +
 								listaTipoAtuacaoIDBusca,
 								[ATIVIDADE.cidadao_id], 
 								ATIVIDADE.dadosEntradaAtividadeSuccess, 
@@ -1129,7 +1143,7 @@
 	salvaAtividadeSuccess: function (trans, res) {
 		console.log ("salvaAtividadeSuccess");
 
-		ATIVIDADE.dadosEntrada(ATIVIDADE.cidadao_id, ATIVIDADE.cbSuccess_f, ATIVIDADE.cbFail_f);
+		ATIVIDADE.dadosEntrada(ATIVIDADE.cidadao_id, "ATIVIDADE", ATIVIDADE.cbSuccess_f, ATIVIDADE.cbFail_f);
 		
 		$('.msgParabens').removeAttr('style');
 		$('html, body').animate({scrollTop:0}, 'slow');
