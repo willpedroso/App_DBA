@@ -55,6 +55,19 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
   opacity: 0.5;
 }
 
+#loader{
+	position: absolute;
+	display: block;
+	width: 800px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 550px 0 0 332px;
+	z-index: 9999;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+
 .container{
 	background-color: #ebebeb;
     float: left;
@@ -315,8 +328,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	background:#04c7ce;
 	color:#fff;
 	height:40px;
-	margin:0 auto;
-	margin-top:20px;
+	margin: 20px 0 20px 0;
 	clear:both;
 	display:block;
 	float:left;	
@@ -365,8 +377,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	background:#ff6766;
 	color:#fff;
 	min-height:40px;
-	margin:0 auto;
-	margin-top:20px;
+	margin: 20px 0 20px 0;
 	clear:both;
 	float:left;	
 	width: 100%;
@@ -390,8 +401,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	background:#ffb527;
 	color:#fff;
 	height:40px;
-	margin:0 auto 40px;
-	margin-top:20px;
+	margin: 20px 0 20px 0;
 	clear:both;
 	float:left;	
 	width: 100%;
@@ -1717,70 +1727,71 @@ span.phone-img {
 		min-width: 5%;
 	}
 	ul#ullistaCidadaos li div:nth-child(1){
-		width: calc(25% - 3px);
+		width: calc(20% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li div:nth-child(2){
-		width: calc(20% - 3px);
+		width: calc(17% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li div:nth-child(3){
-		width: calc(20% - 3px);
+		width: calc(19% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li div:nth-child(4){
-		width: calc(15% - 3px);
+		width: calc(13% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li div:nth-child(5){
-		width: calc(10% - 3px);
+		width: calc(11% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li div:nth-child(6){
-		width: calc(15% - 3px);
+		width: calc(10% - 3px);
 		padding: 0 0 0 3px;
-		text-align: left;
+		text-align: center;
 	}
 	ul#ullistaCidadaos li div:last-child{
 		float: right;
-		width: 10%;
+		width: 11%;
 	}
 
 	ul#ullistaCidadaos li.li-header div:nth-child(1){
-		width: calc(25% - 3px);
+		width: calc(20% - 3px);
 		padding: 18px 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(2){
-		width: calc(20% - 3px);
+		width: calc(17% - 3px);
 		padding: 18px 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(3){
-		width: calc(20% - 3px);
+		width: calc(19% - 3px);
 		padding: 18px 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(4){
-		width: calc(15% - 3px);
+		width: calc(13% - 3px);
 		padding: 9px 0 0 3px;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(5){
-		width: calc(10% - 3px);
+		width: calc(11% - 3px);
 		padding: 9px 0 0 3px;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(6){
-		width: calc(15% - 3px);
-		padding: 9px 0 0 3px;
+		width: calc(11% - 3px);
+		padding: 18px 0 0 3px;
+		text-align: left;
 	}
 	ul#ullistaCidadaos li.li-header div:last-child{
 		float: right;
-		width: calc(10% - 3px);
+		width: calc(11% - 3px);
 		padding: 9px 0 0 3px;
 	}
 

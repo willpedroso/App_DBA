@@ -118,6 +118,7 @@ C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\andr
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\icoVoltar.gif \
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\icoWarning-on.png \
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\icoWarning.png \
+C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\loading.gif \
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\logo.png \
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\logoPrefeitura-m.png \
 C:\Prodam\Projetos Mobile\DBA\Phonegap - Projetos\App_DBA\App_DBA\platforms\android\assets\www\img\logoPrefeitura.png \
