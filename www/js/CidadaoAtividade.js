@@ -19,6 +19,9 @@
 	atividadesCounter: 0,
 	auxDados: null,
 	diasSemanaCounter: 0,
+	
+	// Auxiliares
+	servicoTipoAcolhida: null,
 
     // ****************** Obtém os dados básicos *********************
 	dadosBasicos: function () {
@@ -52,6 +55,11 @@
 				dt_criacao: res.rows.item(i).dt_criacao,
 			};
 			ATIVIDADE.listaTiposServico.push(lts);
+			
+			// Salva Id do serviço do tipo "Acolhida"
+			if (lts.nome == "Acolhida") {
+				ATIVIDADE.servicoTipoAcolhida = lts.id;
+			}
 		}
 		
 		// Testes
@@ -354,7 +362,7 @@
 			// Atividades
 			BANCODADOS.sqlCmdDB("SELECT id, ponto_servico_id, tipo_atuacao_id, privada, descricao, status, dt_criacao " +
 								"FROM atividade " +
-								"WHERE cidadao_id = ? " +
+								"WHERE cidadao_id = ? AND (status = 1 OR status = 2)" +
 								listaTipoAtuacaoIDBusca,
 								[ATIVIDADE.cidadao_id], 
 								ATIVIDADE.dadosEntradaAtividadeSuccess, 

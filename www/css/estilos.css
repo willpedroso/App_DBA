@@ -66,7 +66,11 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	z-index: 9999;
 	background: rgba(255, 255, 255, 0.7);
 }
-
+#loader p{
+	width: 128px;
+	height: 300px;
+	text-align: center;
+}
 
 .container{
 	background-color: #ebebeb;
@@ -1033,7 +1037,6 @@ p.info-basica{
 	padding: 5px 32px 0 32px;
 	cursor: pointer;
 	margin: 15px 0 15px 0;
-	clear: both;
 	float: right;
 }
 .btnAlterar{
@@ -2524,12 +2527,23 @@ span.phone-img {
 	height: auto;
 	overflow: hidden;
 }
+
+#freqFiltroData{
+	border: none !important;
+	border-radius: 0;
+	padding: 0;
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+}
+
 #freq_abas{
 	border: none !important;
 	border-radius: 0;
 	padding: 0;
 	height: auto;
 	overflow: hidden;
+	width: 100%;
 }
 #freq_abas > ul{
 	border: none !important;

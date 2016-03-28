@@ -1927,3 +1927,13 @@ function btnVoltar()
 	jQuery("#div_atividades_add").hide();
 	jQuery("#div_atividades").show();
 }
+
+// AGUARDE
+function aguardeMsgOn(msg) {
+	$("#loader").empty();
+	$("#loader").append("<img src='img/loading.gif' /><p>" + msg + "</p>");
+	$('#loader').attr('style','display:block');
+}
+function aguardeMsgOff(msg) {
+	$('#loader').attr('style','display:none');
+}

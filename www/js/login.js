@@ -3,17 +3,18 @@ function btLogin(user, pass){
 	console.log('clique login. user = ' + user + " - pass = " + pass);
 	
 	// Chama função de login
+	aguardeMsgOn("Autenticando usuário...");
 	USUARIO.login(user, pass, retLogin);
 }
 
 function retLogin (retCode) {
-
+	console.log("retLogin");
+	
+	aguardeMsgOff();
 	if (retCode == USUARIO.login_return.OK) {
-		alert("Sucesso");
 		PageManager.loadTmpl('div_busca_inicio');
 		hideTela('#div_login');
 		showTela('#div_header');
-		//showTela('#container_abas');
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
 		alert("Senha incorreta");

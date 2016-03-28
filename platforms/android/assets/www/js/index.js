@@ -40,7 +40,21 @@ var app = {
     },
 	
 	openDBSuccess: function () {
-		// todo: verificar de criar se o banco já existe
+		// Verifica se o banco já existe e contém dados
+		BANCODADOS.sqlCmdDB("SELECT id FROM cidadao", [], app.bancoOK, app.bancoFail);
+	},
+	
+	bancoOK: function (trans, res) {
+		console.log("bancoOK");
+		
+		if (res.rows.length == 0) {
+			// Banco vazio, inicia sincronismo automático
+			BANCODADOS.initSincronismo();			
+		} 
+	},
+	
+	bancoFail: function (err) {
+		console.log("bancoFail");
 		// Cria tabelas e dados
 		BANCODADOS.cbSuccess_f = app.createDBSuccess;
 		BANCODADOS.cbFail_f = app.createDBFail;

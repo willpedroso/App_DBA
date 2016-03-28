@@ -42,6 +42,8 @@ var BANCODADOS = {
 	initSincronismo: function () {
 		console.log("initSincronismo");
 		
+		aguardeMsgOn("Efetuando sincronismo...");
+		
 		BANCODADOS.listaDownload = [];
 		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/operadores");
@@ -348,6 +350,8 @@ var BANCODADOS = {
 		if (BANCODADOS.downloadCounter == BANCODADOS.listaDownload.length) {
 			// todo: revisar
 			alert("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
+			// revisar
+			aguardeMsgOff();
 		}
 		else {
 			BANCODADOS.igetDownload();
@@ -1733,8 +1737,9 @@ var BANCODADOS = {
 	
     insertDataSuccess: function () {
 		console.log("insertDataSuccess");
-        alert("insertDataSuccess");
-		BANCODADOS.cbSuccess_f();
+		// Acabou a inserção dos dados básicos, inicia sincronismo automático
+		BANCODADOS.initSincronismo();
+		//BANCODADOS.cbSuccess_f();
     },
 
 	insertDataFail: function (err) {
@@ -1772,8 +1777,8 @@ var BANCODADOS = {
     },
 
     createTablesSuccess: function () {
-        alert("createTablesSuccess");
-		
+        console.log("createTablesSuccess");
+		aguardeMsgOn("Inserindo dados básicos...");
 		// Insere dados
 		// ********************** TESTES - RETIRAR *******************************
 //        BANCODADOS.dbObj.transaction(BANCODADOS.insertData, BANCODADOS.insertDataFail, BANCODADOS.insertDataSuccess);
@@ -1785,7 +1790,7 @@ var BANCODADOS = {
 	createDB: function () {
 	    console.log("createDB");
 	    try {
-//	        BANCODADOS.dbObj.transaction(BANCODADOS.createTables, BANCODADOS.createTablesFail, BANCODADOS.createTablesSuccess);
+			aguardeMsgOn("Criando banco de dados...");
 	        BANCODADOS.dbObj.transaction(BANCODADOS.prepareCreateTables, BANCODADOS.createTablesFail, BANCODADOS.createTablesSuccess);
         }
 	    catch (err) {
