@@ -23,6 +23,7 @@
 		ERRO_BD: 6
 	},
 	
+	auxUsuario: null,
 	usuario_id: null,
 	perfil_id: null,
 	perfil_acumulado: [],
@@ -144,6 +145,7 @@
 		else {
 			// Não faz parte da equipe técnica
 			// Carrega dados dos cidadãos
+			aguardeMsgOn("Carregando dados...");
 			CIDADAO.dadosEntrada(USUARIO.usuario_id, USUARIO.cargaCidadaosSucesso, USUARIO.cargaCidadaosFail);
 		}
 	},
@@ -164,7 +166,7 @@
 		// testes retirar
 
 		// Carrega dados dos cidadãos
-		aguardeMsgOn("Carregando dados dos cidadãos...");
+		aguardeMsgOn("Carregando dados...");
 		CIDADAO.dadosEntrada(USUARIO.usuario_id, USUARIO.cargaCidadaosSucesso, USUARIO.cargaCidadaosFail);
 	},
 	
@@ -185,6 +187,7 @@
     login: function(usuario, senha, cbRet) {
 	    console.log("login");
 		
+		USUARIO.auxUsuario = usuario;
 		USUARIO.cbRet_f = cbRet;
 		USUARIO.auxVar_1 = senha;
 		BANCODADOS.sqlCmdDB("SELECT id, senha, status, nome, dt_expirar_senha, perfil_id FROM usuario WHERE login = ? AND status = ?", [usuario, 1], USUARIO.loginSuccess, USUARIO.loginFail);

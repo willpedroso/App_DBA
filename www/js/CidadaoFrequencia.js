@@ -321,7 +321,7 @@
 	obtemListaAtividades: function () {
 		console.log("obtemListaAtividades");
 		
-		ATIVIDADE.dadosEntrada(FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter++].id : FREQUENCIA.cidadao_id,
+		ATIVIDADE.dadosEntrada(FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id : FREQUENCIA.cidadao_id,
 							   "FREQUENCIA",
 							   FREQUENCIA.listaAtividadesSuccess,
 							   FREQUENCIA.dadosEntradaFrequenciaFail);
@@ -349,11 +349,11 @@
 				
 				
 				// todo: testes retirar
-				var Print = "Dados do JSON\r\n";
-				Print += "\tJSON " + j + "\r\n";
-				Print += "\tID: " + jsonAtividades[j].id + "\r\n";
-				Print += "\tTítulo: " + jsonAtividades[j].title + "\r\n";
-				console.log(Print);
+				//var Print = "Dados do JSON\r\n";
+				//Print += "\tJSON " + j + "\r\n";
+				//Print += "\tID: " + jsonAtividades[j].id + "\r\n";
+				//Print += "\tTítulo: " + jsonAtividades[j].title + "\r\n";
+				//console.log(Print);
 				// testes retirar
 				
 				encontrou = false;
@@ -368,12 +368,12 @@
 				}
 				*/
 				for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++) {
-					console.log("i = " + i);
+					//console.log("i = " + i);
 					for (var k = 0; k < FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length; k++) {
-						console.log("k = " + k);
+						//console.log("k = " + k);
 						if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].atividade_id == ATIVIDADE.listaAtividades[jsonAtividades[j].id].id) {
 							// Atividade já está presente na lista
-							console.log("Encontrou");
+							//console.log("Encontrou");
 							
 							if (ATIVIDADE.listaAtividades[jsonAtividades[j].id].tipo_atuacao_id == FREQUENCIA.listaAtuacao_NomeVersusID["Todas"]) {
 								// A atividade encontrada é uma atividade para todos os tipos de atuação (Saúde, Trabalho e Social), então é necessário verificar se há frequência
@@ -381,11 +381,11 @@
 								// Deixa inserir e trata na montagem do HTML
 								FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[k].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
 								insercaoForcada = true;
-								console.log("Inserção forçada");
+								//console.log("Inserção forçada");
 //								break;
 							}
 							else {
-								console.log("Encontrou e não é Todas");
+								//console.log("Encontrou e não é Todas");
 								encontrou = true;
 								indiceAuxiliar = k;
 								break;
@@ -393,12 +393,12 @@
 						}
 					}
 					if (encontrou || insercaoForcada) {
-						console.log("Encontrou ou é Forçada");
+						//console.log("Encontrou ou é Forçada");
 						break;
 					}
 				}
 				if (encontrou) {
-					console.log("Encontrou e copia descrição");
+					//console.log("Encontrou e copia descrição");
 					// Preenche a descrição da frequência que já está na lista
 					FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[indiceAuxiliar].descricao = ATIVIDADE.listaAtividades[jsonAtividades[j].id].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[jsonAtividades[j].id].descricao;
 					continue;
@@ -430,6 +430,7 @@
 							if (FREQUENCIA.listaFrequenciasCidadaos[k].cidadao_id == (FREQUENCIA.cidadao_id == null ? CIDADAO.listaCidadaosDados[FREQUENCIA.auxCounter].id : FREQUENCIA.cidadao_id)) {
 								// encontrou o cidadão, insere na lista
 								encontrou = true;
+								console.log("Encontrou cidadão");
 								FREQUENCIA.listaFrequenciasCidadaos[k].listaFrequencias.push(dt);
 							}
 						}
@@ -438,6 +439,7 @@
 						}
 						
 						// Não encontrou o cidadão, cria lista para o cidadão
+						console.log("Não encontrou cidadão");
 						var v = new FREQUENCIA.frequenciasCidadao();
 						v.listaFrequencias = [];
 						
@@ -477,7 +479,8 @@
 		}
 		
 		// Há mais cidadãos na lista do usuário
-		if ((FREQUENCIA.cidadao_id == null) && (FREQUENCIA.auxCounter < CIDADAO.listaCidadaosDados.length)) {
+		if ((FREQUENCIA.cidadao_id == null) && (++FREQUENCIA.auxCounter < CIDADAO.listaCidadaosDados.length)) {
+			console.log("Usuário: " + (FREQUENCIA.auxCounter));
 			FREQUENCIA.obtemListaAtividades();
 		}
 		else {
@@ -866,23 +869,30 @@
 		console.log("Frequências Social: \r\n" + htmlFrequenciasSocial);
 		// testes retirar
 		
+		/*
 		$("#idDivFreqCidadaoSaude").empty();
 		$("#idDivFreqCidadaoSaude").append(htmlFrequenciasSaude);
 		$("#idDivFreqCidadaoTrabalho").empty();
 		$("#idDivFreqCidadaoTrabalho").append(htmlFrequenciasTrabalho);
 		$("#idDivFreqCidadaoSocial").empty();
 		$("#idDivFreqCidadaoSocial").append(htmlFrequenciasSocial);
-
+		*/
 		var htmlAbasFrequencia = "";
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":
+					$("#idDivFreqCidadaoSaude").empty();
+					$("#idDivFreqCidadaoSaude").append(htmlFrequenciasSaude);
 					htmlAbasFrequencia += "<li><a href='#freq_abas-saude'>Saúde</a></li>";
 					break;
 				case "Trabalho":
+					$("#idDivFreqCidadaoTrabalho").empty();
+					$("#idDivFreqCidadaoTrabalho").append(htmlFrequenciasTrabalho);
 					htmlAbasFrequencia += "<li><a href='#freq_abas-trabalho'>Trabalho</a></li>";
 					break;
 				case "Social":
+					$("#idDivFreqCidadaoSocial").empty();
+					$("#idDivFreqCidadaoSocial").append(htmlFrequenciasSocial);
 					htmlAbasFrequencia += "<li><a href='#freq_abas-social'>Social</a></li>";
 					break;
 			}

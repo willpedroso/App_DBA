@@ -38,48 +38,65 @@ var BANCODADOS = {
     // **********************************************************************************************************
 	listaDownload: [],
 	listaMsgDownload: [],
+	listaNomeDownload: [],
 	downloadCounter: 0,
+	usuarioSincronismo: 0,
 	
-	initSincronismo: function () {
+	initSincronismo: function (usuarioIDLogin) {
 		console.log("initSincronismo");
 		
 		aguardeMsgOn("Efetuando sincronismo...");
 		
 		BANCODADOS.listaDownload = [];
 		BANCODADOS.listaMsgDownload = [];
+		BANCODADOS.usuarioSincronismo = -1;
 		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/operadores");
-		BANCODADOS.listaMsgDownload.push("Recebendo operadores...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/equipes");
-		BANCODADOS.listaMsgDownload.push("Recebendo equipes...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/servicos");
-		BANCODADOS.listaMsgDownload.push("Recebendo serviços...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/tabelasApoio");
-		BANCODADOS.listaMsgDownload.push("Recebendo dados de apoio...");
-		
-	
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/cidadaos");
-		BANCODADOS.listaMsgDownload.push("Recebendo cidadãos...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/frequencias");
-		BANCODADOS.listaMsgDownload.push("Recebendo frequências...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/atividades");
-		BANCODADOS.listaMsgDownload.push("Recebendo atividades...");
-		
+		if (usuarioIDLogin == null) {
+			// Sincronismo externo
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/operadores");
+			BANCODADOS.listaMsgDownload.push("Recebendo operadores...");
+			BANCODADOS.listaNomeDownload.push("operadores");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/equipes");
+			BANCODADOS.listaMsgDownload.push("Recebendo equipes...");
+			BANCODADOS.listaNomeDownload.push("equipes");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/servicos");
+			BANCODADOS.listaMsgDownload.push("Recebendo serviços...");
+			BANCODADOS.listaNomeDownload.push("servicos");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/tabelasApoio");
+			BANCODADOS.listaMsgDownload.push("Recebendo dados de apoio...");
+			BANCODADOS.listaNomeDownload.push("tabelasApoio");
+		}
+		else {
+			// interno
+			BANCODADOS.usuarioSincronismo = usuarioIDLogin;
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/cidadaos");
+			BANCODADOS.listaMsgDownload.push("Recebendo cidadãos...");
+			BANCODADOS.listaNomeDownload.push("cidadaos");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/frequencias");
+			BANCODADOS.listaMsgDownload.push("Recebendo frequências...");
+			BANCODADOS.listaNomeDownload.push("frequencias");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/atividades");
+			BANCODADOS.listaMsgDownload.push("Recebendo atividades...");
+			BANCODADOS.listaNomeDownload.push("atividades");
+			
 
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSocial");
-		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Social...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosTrabalho");
-		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Trabalho...");
-		
-		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSaude");
-		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Saúde...");
-		
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSocial");
+			BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Social...");
+			BANCODADOS.listaNomeDownload.push("acompanhamentosSocial");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosTrabalho");
+			BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Trabalho...");
+			BANCODADOS.listaNomeDownload.push("acompanhamentosTrabalho");
+			
+			BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSaude");
+			BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Saúde...");
+			BANCODADOS.listaNomeDownload.push("acompanhamentosSaude");
+		}
 		
 		BANCODADOS.totalSegundos = 0;
 		BANCODADOS.downloadCounter = 0;
@@ -239,9 +256,11 @@ var BANCODADOS = {
 
 		aguardeMsgOn(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter]);
 		
+		var iUsuario = BANCODADOS.usuarioSincronismo == -1 ? "0" : BANCODADOS.usuarioSincronismo;
+		console.log("usuário internet: " + iUsuario);
 	    $.ajax({
 	        type: "GET",
-			headers: {access_token: "832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38", usuario_id: 110},
+			headers: {access_token: "832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38", usuario_id: iUsuario, service_name: BANCODADOS.listaNomeDownload[BANCODADOS.downloadCounter]},
 			url: BANCODADOS.listaDownload[BANCODADOS.downloadCounter++]
 	    })
 	    .done((function (msg) {
@@ -249,6 +268,7 @@ var BANCODADOS = {
 				// todo: testes retirar
 				var date = new Date();
 				console.log("FINAL do GET e INICIO do parse: " + date);
+				//console.log("Resposta: " + msg);
 				// testes retirar
 				
 				var jsonOperadores;
@@ -322,10 +342,12 @@ var BANCODADOS = {
 				}
 			}
 			catch (err) {
-				BANCODADOS.cbFail_f("Erro no parse de operadores - msg: " +err);		// todo: acertar a mensagem
+				aguardeMsgOff();
+				alert(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
 			}
         }).bind(this)).fail(function(){
-			BANCODADOS.cbFail_f("Houve falha de acesso à internet.");
+			aguardeMsgOff();
+			alert(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.");
         });		
     },
     // Obtenção de Operadores
@@ -376,16 +398,31 @@ var BANCODADOS = {
 			alert("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
 			// revisar
 			aguardeMsgOff();
+			if (BANCODADOS.usuarioSincronismo != -1) {
+				// Sincronismo interno, carrega cidadãos recebidos
+				aguardeMsgOn("Carregando dados dos cidadãos...");
+				CIDADAO.dadosEntrada(USUARIO.usuario_id, BANCODADOS.sincSuccessUsuario, BANCODADOS.insertSincFail);
+			}
 		}
 		else {
 			BANCODADOS.igetDownload();
 		}
+	},
+	
+	sincSuccessUsuario: function () {
+		console.log("sincSuccessUsuario");
+		
+		aguardeMsgOff();
+		PageManager.loadTmpl('div_busca_inicio');
+		hideTela('#div_login');
+		showTela('#div_header');
 	},
 
 	insertSincFail: function (err) {
 		console.log("insertSincFail");
 		
 		// todo: revisar
+		aguardeMsgOff();
 		alert("Erro: " + err);
 		// revisar
 	},
@@ -394,6 +431,7 @@ var BANCODADOS = {
 		console.log("deleteSincFail");
 		
 		// todo: revisar
+		aguardeMsgOff();
 		alert("Erro: " + err);
 		// revisar
 	},
@@ -1768,7 +1806,8 @@ var BANCODADOS = {
 
 	insertDataFail: function (err) {
         console.log("insertDataFail - msg: " + err);
-        BANCODADOS.cbFail_f("Erro na inserção de dados no banco - msg: " + err);
+		aguardeMsgOff();
+        alert("Erro na inserção de dados no banco - msg: " + err);
 	},
 	// ********************** TESTES - RETIRAR *******************************
 	
@@ -1797,7 +1836,8 @@ var BANCODADOS = {
 
     createTablesFail: function (err) {
         console.log("createTablesFail - msg: " + err);
-        BANCODADOS.cbFail_f("Erro na criação das tabelas do banco de dados - msg: " + err);
+		aguardeMsgOff();
+        alert("Erro na criação das tabelas do banco de dados - msg: " + err);
     },
 
     createTablesSuccess: function () {
@@ -1818,6 +1858,7 @@ var BANCODADOS = {
 	        BANCODADOS.dbObj.transaction(BANCODADOS.prepareCreateTables, BANCODADOS.createTablesFail, BANCODADOS.createTablesSuccess);
         }
 	    catch (err) {
+			aguardeMsgOff();
 	        alert("createDB() exception: " + err.msg);
 	    }
 	},

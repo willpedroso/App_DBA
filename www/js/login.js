@@ -12,9 +12,20 @@ function retLogin (retCode) {
 	
 	aguardeMsgOff();
 	if (retCode == USUARIO.login_return.OK) {
-		PageManager.loadTmpl('div_busca_inicio');
-		hideTela('#div_login');
-		showTela('#div_header');
+		// Login efetuado com sucesso, avalia a necessidade de sincronismo automático de dados do usuário
+		var lastUser = null;
+		if ((lastUser = localStorage.getItem("lastUser")) == null ||
+			lastUser != USUARIO.auxUsuario) {
+			// É a primeira execução ou o usuário foi trocado, executa sincronismo automático
+			localStorage.setItem("lastUser", USUARIO.auxUsuario);				// armazena usuário atual
+			BANCODADOS.initSincronismo(USUARIO.usuario_id);
+		}
+		else {
+			// O usuário é o mesmo do último acesso
+			PageManager.loadTmpl('div_busca_inicio');
+			hideTela('#div_login');
+			showTela('#div_header');
+		}
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
 		alert("Senha incorreta");
