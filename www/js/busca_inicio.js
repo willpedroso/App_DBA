@@ -101,4 +101,7 @@ function iniAbasUsuario (indiceCidadao) {
 				 
 	$("#menu_abas").empty();
 	$("#menu_abas").append(opcoesAba);
+	
+    // Apresenta menu do cidadão
+	jQuery('#bt_aba').attr('style','display:block');
 }

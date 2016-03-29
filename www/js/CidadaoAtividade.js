@@ -414,7 +414,10 @@
 			},
 			eventClick: function(calEvent, jsEvent, view) {
 				console.log("fullCalendar/eventClick: atividade = " + calEvent.id);
-				// todo: edição de atividade (id ou índice da atividade => calEvent.id)
+				if (calEvent.privada == true) {
+					// Não executa o click
+					return;
+				}
 				ATIVIDADE.editIndexAtividade = calEvent.id;
 				PageManager.loadTmpl('div_atividades_add');
 				//preparaListasOpt();
@@ -446,11 +449,8 @@
 			//id = ATIVIDADE.listaAtividades[i].id;
 			id = i;
 			
-			// Privacidade (todo: revisar)
-			//if (ATIVIDADE.listaAtividades[i].privada == 1) {
-				color = '#e1e1e1';
-				title = ATIVIDADE.listaAtividades[i].ponto_servico_nome + (ATIVIDADE.listaAtividades[i].descricao != "" ? " - " + ATIVIDADE.listaAtividades[i].descricao : "");
-			//}
+			color = '#e1e1e1';
+			title = ATIVIDADE.listaAtividades[i].ponto_servico_nome + (ATIVIDADE.listaAtividades[i].descricao != "" ? " - " + ATIVIDADE.listaAtividades[i].descricao : "");
 			
 			// Prepara datas
 			var dstart = lstart / 1000;
@@ -463,6 +463,38 @@
 			}
 			else data_termino = 0;
 			var diff;
+			
+			// Para controle de atividades privadas
+			var acessoAtividade = true;
+			if (USUARIO.perfil_tecnico == true && ATIVIDADE.listaAtividades[i].privada == 1) {
+				acessoAtividade = false;
+				color = '#FECB53';
+				// Perfil técnico: avalia acesso às atividades privads
+				var j = 0;
+				var perfil = USUARIO.perfil_codigo;
+				do {
+					switch (perfil) {
+					case "TSAU":
+						if (ATIVIDADE.listaAtividades[i].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Saúde"]) {
+							acessoAtividade = true;
+							color = '#e1e1e1';
+						}
+						break;
+					case "TTRA":
+						if (ATIVIDADE.listaAtividades[i].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Trabalho"]) {
+							acessoAtividade = true;
+							color = '#e1e1e1';
+						}
+						break;
+					case "TSOC":
+						if (ATIVIDADE.listaAtividades[i].tipo_atuacao_id == ATIVIDADE.listaAtuacao_NomeVersusID["Social"]) {
+							acessoAtividade = true;
+							color = '#e1e1e1';
+						}
+						break;
+					}
+				} while ((j < USUARIO.perfil_acumulado.length) && (perfil = USUARIO.perfil_acumulado[j++]) != null);
+			}					
 			
 			// Dados de acordo com a periodicidade
 			switch (ATIVIDADE.listaAtividades[i].periodicidade_tipo_id) {
@@ -481,11 +513,12 @@
 								
 								// adiciona atividade
 								var jfc = {
-									title: title,
+									title: acessoAtividade == true ? title : "PRIVADA",
 									color: color,
 									id: id,
 									start: start,
 									end: end,
+									privada: acessoAtividade == false ? true : false,
 								};
 								console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 								jsonFullCalendar.push(jfc);
@@ -506,11 +539,12 @@
 								
 								// adiciona atividade
 								var jfc = {
-									title: title,
+									title: acessoAtividade == true ? title : "PRIVADA",
 									color: color,
 									id: id,
 									start: start,
 									end: end,
+									privada: acessoAtividade == false ? true : false,
 								};
 								console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 								jsonFullCalendar.push(jfc);
@@ -540,11 +574,12 @@
 									
 									// adiciona atividade
 									var jfc = {
-										title: title,
+										title: acessoAtividade == true ? title : "PRIVADA",
 										color: color,
 										id: id,
 										start: start,
 										end: end,
+										privada: acessoAtividade == false ? true : false,
 									};
 									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
@@ -569,11 +604,12 @@
 									
 									// adiciona atividade
 									var jfc = {
-										title: title,
+										title: acessoAtividade == true ? title : "PRIVADA",
 										color: color,
 										id: id,
 										start: start,
 										end: end,
+										privada: acessoAtividade == false ? true : false,
 									};
 									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
@@ -604,11 +640,12 @@
 										
 										// adiciona atividade
 										var jfc = {
-											title: title,
+											title: acessoAtividade == true ? title : "PRIVADA",
 											color: color,
 											id: id,
 											start: start,
 											end: end,
+											privada: acessoAtividade == false ? true : false,
 										};
 										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
@@ -627,11 +664,12 @@
 										
 										// adiciona atividade
 										var jfc = {
-											title: title,
+											title: acessoAtividade == true ? title : "PRIVADA",
 											color: color,
 											id: id,
 											start: start,
 											end: end,
+											privada: acessoAtividade == false ? true : false,
 										};
 										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
@@ -660,11 +698,12 @@
 										
 										// adiciona atividade
 										var jfc = {
-											title: title,
+											title: acessoAtividade == true ? title : "PRIVADA",
 											color: color,
 											id: id,
 											start: start,
 											end: end,
+											privada: acessoAtividade == false ? true : false,
 										};
 										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
@@ -686,11 +725,12 @@
 										
 										// adiciona atividade
 										var jfc = {
-											title: title,
+											title: acessoAtividade == true ? title : "PRIVADA",
 											color: color,
 											id: id,
 											start: start,
 											end: end,
+											privada: acessoAtividade == false ? true : false,
 										};
 										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
@@ -722,11 +762,12 @@
 									
 									// adiciona atividade
 									var jfc = {
-										title: title,
+										title: acessoAtividade == true ? title : "PRIVADA",
 										color: color,
 										id: id,
 										start: start,
 										end: end,
+										privada: acessoAtividade == false ? true : false,
 									};
 									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
@@ -752,11 +793,12 @@
 									
 									// adiciona atividade
 									var jfc = {
-										title: title,
+										title: acessoAtividade == true ? title : "PRIVADA",
 										color: color,
 										id: id,
 										start: start,
 										end: end,
+										privada: acessoAtividade == false ? true : false,
 									};
 									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
@@ -1058,7 +1100,6 @@
 								/*todo: avaliar melhor status*/1,
 								ATIVIDADE.auxDados.periodicidade_id = ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_id], 
 								ATIVIDADE.limpaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
-			console.log("salvaPeriodicidade update");
 		}
 		else {
 			// Nova atividade
@@ -1154,4 +1195,77 @@
 
 		ATIVIDADE.cbFail_f(err);
 	},
+	
+	encerraAtividade: function (indexAtividade) {
+		console.log("encerraAtividade");
+		
+		BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2 \
+							WHERE id = ?",
+							[ATIVIDADE.listaAtividades[indexAtividade].id], 
+							ATIVIDADE.encerraAtividadeSuccess, ATIVIDADE.encerraAtividadeFail);
+	},
+	
+	encerraAtividadeSuccess: function () {
+		console.log("encerraAtividadeSuccess");
+
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+	
+	encerraAtividadeFail: function (err) {
+		console.log("encerraAtividadeFail");
+		
+		$('.msgErro').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+
+	excluiAtividade: function (indexAtividade) {
+		console.log("excluiAtividade");
+		
+		BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 0 \
+							WHERE id = ?",
+							[ATIVIDADE.listaAtividades[indexAtividade].id], 
+							ATIVIDADE.excluiAtividadeSuccess, ATIVIDADE.excluiAtividadeFail);
+	},
+	
+	excluiAtividadeSuccess: function () {
+		console.log("excluiAtividadeSuccess");
+
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+	
+	excluiAtividadeFail: function (err) {
+		console.log("excluiAtividadeFail");
+		
+		$('.msgErro').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+	
+	/*
+	trocaAtividade: function (pontoServicoID) {
+		console.log("trocaAtividade");
+		
+		// Localiza a atividade por meio do pontoServicoID, encerra a atividade e cria uma nova atividade com o novo pontoServicoID
+		for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {		
+		BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2 \
+							WHERE id = ?",
+							[ATIVIDADE.listaAtividades[indexAtividade].id], 
+							ATIVIDADE.excluiAtividadeSuccess, ATIVIDADE.excluiAtividadeFail);
+	},
+	
+	excluiAtividadeSuccess: function () {
+		console.log("excluiAtividadeSuccess");
+
+		$('.msgParabens').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+	
+	excluiAtividadeFail: function (err) {
+		console.log("excluiAtividadeFail");
+		
+		$('.msgErro').removeAttr('style');
+		$('html, body').animate({scrollTop:0}, 'slow');
+	},
+	*/
 }

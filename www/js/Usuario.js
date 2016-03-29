@@ -164,18 +164,21 @@
 		// testes retirar
 
 		// Carrega dados dos cidadãos
+		aguardeMsgOn("Carregando dados dos cidadãos...");
 		CIDADAO.dadosEntrada(USUARIO.usuario_id, USUARIO.cargaCidadaosSucesso, USUARIO.cargaCidadaosFail);
 	},
 	
 	cargaCidadaosSucesso: function () {
 		console.log("cargaCidadaosSucesso");
 		
+		aguardeMsgOff();
 		USUARIO.cbRet_f(USUARIO.login_return.OK);
 	},
 	
 	cargaCidadaosFail: function (err) {
 		console.log("cargaCidadaosFail - erro = " + err);
 		
+		aguardeMsgOff();
 		USUARIO.cbRet_f(USUARIO.login_return.ERRO_BD);
 	},
 	

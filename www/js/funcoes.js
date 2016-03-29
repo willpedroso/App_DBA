@@ -1143,11 +1143,13 @@ function abasmenu(){
 		$('#menu_abas').toggleClass('showme');
     	$('#container_abas').toggleClass('container_show');
 	}
-    
 }  
 function fechaficha(){
 	$('#ficha-statica').removeClass('showme');
 	$('#ficha-statica').addClass('hideme');
+
+    // Esconde menu do cidadão
+	jQuery('#bt_aba').attr('style','display:none');
 }
 function exibePeriodo(){
 	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){

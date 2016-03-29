@@ -37,6 +37,7 @@ var BANCODADOS = {
     // SINCRONIZAÇÃO DE DADOS
     // **********************************************************************************************************
 	listaDownload: [],
+	listaMsgDownload: [],
 	downloadCounter: 0,
 	
 	initSincronismo: function () {
@@ -45,19 +46,40 @@ var BANCODADOS = {
 		aguardeMsgOn("Efetuando sincronismo...");
 		
 		BANCODADOS.listaDownload = [];
+		BANCODADOS.listaMsgDownload = [];
 		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/operadores");
+		BANCODADOS.listaMsgDownload.push("Recebendo operadores...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/equipes");
+		BANCODADOS.listaMsgDownload.push("Recebendo equipes...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/servicos");
+		BANCODADOS.listaMsgDownload.push("Recebendo serviços...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/tabelasApoio");
+		BANCODADOS.listaMsgDownload.push("Recebendo dados de apoio...");
+		
 	
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/cidadaos");
+		BANCODADOS.listaMsgDownload.push("Recebendo cidadãos...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/frequencias");
+		BANCODADOS.listaMsgDownload.push("Recebendo frequências...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/atividades");
+		BANCODADOS.listaMsgDownload.push("Recebendo atividades...");
+		
 
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSocial");
+		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Social...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosTrabalho");
+		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Trabalho...");
+		
 		BANCODADOS.listaDownload.push("http://dppp005.prodam/api/acompanhamentosSaude");
+		BANCODADOS.listaMsgDownload.push("Recebendo acompanhamentos - Saúde...");
+		
 		
 		BANCODADOS.totalSegundos = 0;
 		BANCODADOS.downloadCounter = 0;
@@ -215,6 +237,8 @@ var BANCODADOS = {
 		BANCODADOS.testesData = new Date();
 		// testes retirar
 
+		aguardeMsgOn(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter]);
+		
 	    $.ajax({
 	        type: "GET",
 			headers: {access_token: "832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38", usuario_id: 110},

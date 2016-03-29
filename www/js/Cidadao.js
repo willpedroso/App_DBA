@@ -150,6 +150,13 @@
 	dadosEntradaDadosCidadaosSuccess: function (trans, res) {
 		console.log("dadosEntradaDadosCidadaosSuccess");
 		
+		if (res.rows.length == 0) {
+			// Não tem cidadãos
+			// Retorna
+			CIDADAO.cbSuccess_f();
+			return;
+		}
+		
 		var cdados = {
 			id: res.rows.item(0).id,
 			nome: res.rows.item(0).nome,

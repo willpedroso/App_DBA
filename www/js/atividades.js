@@ -94,7 +94,7 @@ function preparaListasOpt () {
 	}
 	
 	// Lista de pontos de serviço
-	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
+	var opts = "<select name='pontoServicoLabel' id='pontoServicoLabel' class='selectPersonalizado'" + (readonlyAtividade == true ? " disabled='true'>" : ">") + "<div class='lista-box-scroll'><option value='Selecione' data-id='pontoServicoLabel' for='ponto_servico_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
 		if (edit == false && ATIVIDADE.listaPontosServico[i].tipo_servico_id == ATIVIDADE.servicoTipoAcolhida) {
 			// Nova atividade, não apresenta pontos de serviço do tipo "Acolhida"
@@ -160,7 +160,7 @@ function preparaListasOpt () {
 	// ********************** lista de tipos de atuação por perfil de usuário ****************************
 	
 	// Lista de tipos de atuação
-	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
+	opts = "<select name='tipoAtuacaoLabel' id='tipoAtuacaoLabel' class='selectPersonalizado'" + (readonlyAtividade == true ? " disabled='true'>" : ">") + "<div class='lista-box-scroll'><option value='Selecione' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'>Selecione</option>";
 //	for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 	for (var i = 0; i < listaTiposAtuacaoPerfilUsuario.length; i++) {
 		opts += "<option value='" + i + "' data-id='tipoAtuacaoLabel' for='tipo_atuacao_id'";
@@ -174,7 +174,7 @@ function preparaListasOpt () {
 	$("#listaTiposAtuacao").append(opts);
 	
 	// Lista de tipos de periodicidade
-	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado' disabled='" + readonlyAtividade + "'><div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
+	opts = "<select name='tipoPeriodicidadeLabel' id='tipoPeriodicidadeLabel' onChange='exibePeriodo()' class='selectPersonalizado'" + (readonlyAtividade == true ? " disabled='true'>" : ">") + "<div class='lista-box-scroll'><option value='Selecione' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>Selecione</option>";
 	for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
 	//	opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'>" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "</option>";
 		opts += "<option value='" + ATIVIDADE.listaTiposPeriodicidade[i].nome + "' data-id='tipoPeriodicidadeLabel' for='tipo_periodicidade_id'";
@@ -210,7 +210,7 @@ function preparaListasOpt () {
 	// Lista de dias da semana para radio
 	opts = "";
 	for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
-		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio' disabled='" + readonlyAtividade + "'";
+		opts += "<input type='radio' name='infoDiasSemanaRadio' value='" + ATIVIDADE.listaTiposDiaSemana[i].id + "' class='radio' disabled='" + (readonlyAtividade == true ? " disabled='true'" : "");
 		if (edit && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_tipo_nome == "Mensal" &&
 			ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_dia_semana_repetir == ATIVIDADE.listaTiposDiaSemana[i].id) {
 			opts += " checked>";
@@ -263,6 +263,18 @@ function salvaAtividadeSuccess () {
 function salvaAtividadeFail (err) {
 	console.log("atividades.salvaAtividadeFail: " + err);
 	// todo: revisar
+}
+
+function encerraAtiv() {
+	console.log("encerraAtiv");
+	
+	ATIVIDADE.encerraAtividade(ATIVIDADE.editIndexAtividade);
+}
+
+function excluiAtiv() {
+	console.log("excluiAtiv");
+
+	ATIVIDADE.excluiAtividade(ATIVIDADE.editIndexAtividade);
 }
 
 function validaCampos() {
