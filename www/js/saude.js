@@ -17,14 +17,14 @@ function carregaSaude () {
 	var auxVar;
 	// Número do SUS
 	auxVar = CIDADAOSAUDE.dadosSaude.numero_sus;
-	$("#numero_sus").val(auxVar == null ? "" : auxVar);
+	$("#numero_sus").val(auxVar === null ? "" : auxVar);
 	
 	// Cadastro UBS
-	if (CIDADAOSAUDE.dadosSaude.cadastro_acompanhamento_ubs == 1) {
+	if (CIDADAOSAUDE.dadosSaude.cadastro_acompanhamento_ubs === 1) {
 		// Sim
 		$("input[name='infoCadastroAcompanhamentoUbs'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.cadastro_acompanhamento_ubs == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.cadastro_acompanhamento_ubs === 0) {
 		// Não
 		$("input[name='infoCadastroAcompanhamentoUbs'][value='Não']").prop("checked", true);
 	}
@@ -35,11 +35,11 @@ function carregaSaude () {
 	infoCadastroAcompanhamentoUbsf();
 	for (var i = 0; i < CIDADAOSAUDE.listaCadastroAcompanhamentoUBS.length; i++) {
 		auxVar = CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].nome_ubs;
-		$('input.adicionaQualUbsSaude').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaQualUbsSaude').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].especialidade;
-		$('textarea.textareaEspecialidadeUbsSaude').val(auxVar == null ? "" : auxVar);
+		$('textarea.textareaEspecialidadeUbsSaude').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].nome_tecnico_referencia;
-		$('input.adicionaTecnicoReferenciaUbsSaude').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaTecnicoReferenciaUbsSaude').val(auxVar === null ? "" : auxVar);
 
 		adicionaAcompanhamentoUBS();
 	}
@@ -56,11 +56,11 @@ function carregaSaude () {
 	$("#listaTiposFrequenciaCaps").empty();
 	$("#listaTiposFrequenciaCaps").append(opts);
 	
-	if (CIDADAOSAUDE.dadosSaude.acompanhamento_caps == 1) {
+	if (CIDADAOSAUDE.dadosSaude.acompanhamento_caps === 1) {
 		// Sim
 		$("input[name='infoAcompanhamentoCaps'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.acompanhamento_caps == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.acompanhamento_caps === 0) {
 		// Não
 		$("input[name='infoAcompanhamentoCaps'][value='Não']").prop("checked", true);
 	}
@@ -69,17 +69,17 @@ function carregaSaude () {
 		$("input[name='infoAcompanhamentoCaps'][value='Não Informado']").prop("checked", true);
 	}
 	auxVar = CIDADAOSAUDE.dadosSaude.qual_acompanhamento_caps;
-	$("input[name='qual_acompanhamento_caps']").val(auxVar == null ? "" : auxVar);
+	$("input[name='qual_acompanhamento_caps']").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOSAUDE.dadosSaude.nome_tecnico_referencia_caps;
-	$("input[name='nome_tecnico_referencia_caps']").val(auxVar == null ? "" : auxVar);
+	$("input[name='nome_tecnico_referencia_caps']").val(auxVar === null ? "" : auxVar);
 	infoAcompanhamentoCapsf();
 
 	// Internação
-	if (CIDADAOSAUDE.dadosSaude.esteve_internado == 1) {
+	if (CIDADAOSAUDE.dadosSaude.esteve_internado === 1) {
 		// Sim
 		$("input[name='infoEsteveInternado'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.esteve_internado == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.esteve_internado === 0) {
 		// Não
 		$("input[name='infoEsteveInternado'][value='Não']").prop("checked", true);
 	}
@@ -90,18 +90,18 @@ function carregaSaude () {
 	infoEsteveInternadof();
 	for (var i = 0; i < CIDADAOSAUDE.listaInternacao.length; i++) {
 		auxVar = CIDADAOSAUDE.listaInternacao[i].quantas_vezes;
-		$('input.adicionaQuantasVezesInternado').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaQuantasVezesInternado').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaInternacao[i].motivo;
-		$('textarea.textareaMotivoInternacao').val(auxVar == null ? "" : auxVar);
+		$('textarea.textareaMotivoInternacao').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaInternacao[i].local;
-		$('input.adicionaLocalInternacao').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaLocalInternacao').val(auxVar === null ? "" : auxVar);
 
 		adicionaInternacao();
 	}
 
 	// Como chegou à situação de rua
 	auxVar = CIDADAOSAUDE.dadosSaude.como_chegou_situacao_rua;
-	$("#como_chegou_situacao_rua").val(auxVar == null ? "" : auxVar);
+	$("#como_chegou_situacao_rua").val(auxVar === null ? "" : auxVar);
 	
 	var opts = "<div class='comboStilo selectInicial' id='listaDiasRua'><select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
 	for (var i = 1; i < 32; i++) {
@@ -128,13 +128,13 @@ function carregaSaude () {
 	$("#listaDiasMesesAnosRua").append(opts);
 	
 	// Iniciou o uso de drogras
-	if (CIDADAOSAUDE.dadosSaude.drogas_antes_depois_situacao_rua == 1) {
+	if (CIDADAOSAUDE.dadosSaude.drogas_antes_depois_situacao_rua === 1) {
 		// Sim
-		$("input[name='infoDrogasAntesDepoisSituacaoRua'][value='Sim']").prop("checked", true);
+		$("input[name='infoDrogasAntesDepoisSituacaoRua'][value='Depois']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.drogas_antes_depois_situacao_rua == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.drogas_antes_depois_situacao_rua === 0) {
 		// Não
-		$("input[name='infoDrogasAntesDepoisSituacaoRua'][value='Não']").prop("checked", true);
+		$("input[name='infoDrogasAntesDepoisSituacaoRua'][value='Antes']").prop("checked", true);
 	}
 	else {
 		// null ou vazio
@@ -143,16 +143,16 @@ function carregaSaude () {
 	
 	// Horas de Sono
 	auxVar = CIDADAOSAUDE.dadosSaude.sono_antes_programa;
-	$("#sono_antes_programa").val(auxVar == null ? "" : auxVar);
+	$("#sono_antes_programa").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOSAUDE.dadosSaude.sono_depois_programa;
-	$("#sono_depois_programa").val(auxVar == null ? "" : auxVar);
+	$("#sono_depois_programa").val(auxVar === null ? "" : auxVar);
 
 	// Tem amigos
-	if (CIDADAOSAUDE.dadosSaude.tem_amigos == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tem_amigos === 1) {
 		// Sim
 		$("input[name='infoTemAmigos'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tem_amigos == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tem_amigos === 0) {
 		// Não
 		$("input[name='infoTemAmigos'][value='Não']").prop("checked", true);
 	}
@@ -162,11 +162,11 @@ function carregaSaude () {
 	}
 
 	// Tem companheiro
-	if (CIDADAOSAUDE.dadosSaude.tem_companheiro == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tem_companheiro === 1) {
 		// Sim
 		$("input[name='infoTemCompanheiro'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tem_companheiro == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tem_companheiro === 0) {
 		// Não
 		$("input[name='infoTemCompanheiro'][value='Não']").prop("checked", true);
 	}
@@ -176,11 +176,11 @@ function carregaSaude () {
 	}
 
 	// Companheiro inserido no programa
-	if (CIDADAOSAUDE.dadosSaude.companheiro_programa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.companheiro_programa === 1) {
 		// Sim
 		$("input[name='infoTemCompanheiroPrograma'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.companheiro_programa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.companheiro_programa === 0) {
 		// Não
 		$("input[name='infoTemCompanheiroPrograma'][value='Não']").prop("checked", true);
 	}
@@ -190,11 +190,11 @@ function carregaSaude () {
 	}
 
 	// Tem família
-	if (CIDADAOSAUDE.dadosSaude.tem_familia == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tem_familia === 1) {
 		// Sim
 		$("input[name='infoTemFamilia'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tem_familia == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tem_familia === 0) {
 		// Não
 		$("input[name='infoTemFamilia'][value='Não']").prop("checked", true);
 	}
@@ -204,11 +204,11 @@ function carregaSaude () {
 	}
 
 	// Tem contato com a família
-	if (CIDADAOSAUDE.dadosSaude.tem_contato_familia == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tem_contato_familia === 1) {
 		// Sim
 		$("input[name='infoTemContatoFamilia'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tem_contato_familia == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tem_contato_familia === 0) {
 		// Não
 		$("input[name='infoTemContatoFamilia'][value='Não']").prop("checked", true);
 	}
@@ -230,7 +230,7 @@ function carregaSaude () {
 	
 	// Descrição de onde reside sua família
 	auxVar = CIDADAOSAUDE.dadosSaude.descricao_reside_familia;
-	$("#descricao_reside_familia").val(auxVar == null ? "" : auxVar);
+	$("#descricao_reside_familia").val(auxVar === null ? "" : auxVar);
 	
 	// Telefone de algum familiar
 	var opts = "<option value='Tipo'>Tipo</option>";
@@ -245,7 +245,7 @@ function carregaSaude () {
 	
 	for (var i = 0; i < CIDADAOSAUDE.listaTelefoneFamiliar.length; i++) {
 		auxVar = CIDADAOSAUDE.listaTelefoneFamiliar[i].numero;
-		$('input.adicionaNumContatoFamiliar').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaNumContatoFamiliar').val(auxVar === null ? "" : auxVar);
 		
 		var parentesco;
 		for (var j = 0; j < CIDADAOSAUDE.listaTipoParentesco.length; j++) {
@@ -288,16 +288,16 @@ function carregaSaude () {
 			continue;
 		}
 		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
-		$('.adicionaDrogas').val(auxVar == null ? "" : auxVar);
+		$('.adicionaDrogas').val(auxVar === null ? "" : auxVar);
 		adicionaDrogas(CIDADAOSAUDE.listaDrogasFazUso[i].dias_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].meses_frequencia, CIDADAOSAUDE.listaDrogasFazUso[i].anos_frequencia);
 	}
 	
 	// Está em tratamento de saúde
-	if (CIDADAOSAUDE.dadosSaude.tratamento_saude == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tratamento_saude === 1) {
 		// Sim
 		$("input[name='infoTratamentoSaude'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tratamento_saude == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_saude === 0) {
 		// Não
 		$("input[name='infoTratamentoSaude'][value='Não']").prop("checked", true);
 	}
@@ -306,11 +306,11 @@ function carregaSaude () {
 		$("input[name='infoTratamentoSaude'][value='Não Informado']").prop("checked", true);
 	}
 	
-	if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa === 1) {
 		// Sim
 		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.reducao_drogas_depois_programa === 0) {
 		// Não
 		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Não']").prop("checked", true);
 	}
@@ -319,11 +319,11 @@ function carregaSaude () {
 		$("input[name='infoReducaoDrogasDepoisPrograma'][value='Não Informado']").prop("checked", true);
 	}
 	
-	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa === 1) {
 		// Sim
 		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='O dia inteiro']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa == 2) {
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_antes_programa === 2) {
 		// Não
 		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Metade do dia']").prop("checked", true);
 	}
@@ -332,11 +332,11 @@ function carregaSaude () {
 		$("input[name='infoTempoEfeitoDrogaAntesPrograma'][value='Pouco tempo']").prop("checked", true);
 	}
 	
-	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa === 1) {
 		// Sim
 		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='O dia inteiro']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa == 2) {
+	else if (CIDADAOSAUDE.dadosSaude.tempo_efeito_droga_depois_programa === 2) {
 		// Não
 		$("input[name='infoTempoEfeitoDrogaDepoisPrograma'][value='Metade do dia']").prop("checked", true);
 	}
@@ -401,11 +401,11 @@ function carregaSaude () {
 	$("#listaNumeroPedrasAtualmentePrograma").append(opts);
 	
 	// Faz uso de outras drogas
-	if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack == 1) {
+	if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack === 1) {
 		// Sim
 		$("input[name='infoDrogasAlemCrack'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.drogas_alem_crack === 0) {
 		// Não
 		$("input[name='infoDrogasAlemCrack'][value='Não']").prop("checked", true);
 	}
@@ -421,16 +421,16 @@ function carregaSaude () {
 			continue;
 		}
 		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
-		$('input.adicionaDrogasAlemCrack').val(auxVar == null ? "" : auxVar);
+		$('input.adicionaDrogasAlemCrack').val(auxVar === null ? "" : auxVar);
 		adicionaDrogasAlemCrack();
 	}
 	
 	// Já fez uso de droga injetável
-	if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis == 1) {
+	if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis === 1) {
 		// Sim
 		$("input[name='infoUsoDrogasInjetaveis'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.uso_drogas_injetaveis === 0) {
 		// Não
 		$("input[name='infoUsoDrogasInjetaveis'][value='Não']").prop("checked", true);
 	}
@@ -464,11 +464,11 @@ function carregaSaude () {
 	$("#listaDiasMesesAnosDrogasInjetaveis").append(opts);
 	
 	// Abstinente
-	if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa === 1) {
 		// Sim
 		$("input[name='infoAbstinenciaAposPrograma'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.abstinencia_apos_programa === 0) {
 		// Não
 		$("input[name='infoAbstinenciaAposPrograma'][value='Não']").prop("checked", true);
 	}
@@ -503,18 +503,18 @@ function carregaSaude () {
 	
 	// Glicemia, pressão arterial e peso
 	auxVar = CIDADAOSAUDE.dadosSaude.controle_glicemia;
-	$("#controle_glicemia").val(auxVar == null ? "" : auxVar);
+	$("#controle_glicemia").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOSAUDE.dadosSaude.controle_pressao_arterial;
-	$("#controle_pressao_arterial").val(auxVar == null ? "" : auxVar);
+	$("#controle_pressao_arterial").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOSAUDE.dadosSaude.controle_peso;
-	$("#controle_peso").val(auxVar == null ? "" : auxVar);
+	$("#controle_peso").val(auxVar === null ? "" : auxVar);
 	
 	// Fez teste rápido de DST
-	if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids == 1) {
+	if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids === 1) {
 		// Sim
 		$("input[name='infoTesteRapidoDstAids'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.teste_rapido_dst_aids === 0) {
 		// Não
 		$("input[name='infoTesteRapidoDstAids'][value='Não']").prop("checked", true);
 	}
@@ -524,14 +524,14 @@ function carregaSaude () {
 	}
 	testeRapidoDstAids();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_teste_rapido_dst_aids;
-	$("#local_teste_rapido_dst_aids").val(auxVar == null ? "" : auxVar);
+	$("#local_teste_rapido_dst_aids").val(auxVar === null ? "" : auxVar);
 	
 	// Acompanhamento DST
-	if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst == 1) {
+	if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst === 1) {
 		// Sim
 		$("input[name='infoAcompanhamentoDst'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.acompanhamento_dst === 0) {
 		// Não
 		$("input[name='infoAcompanhamentoDst'][value='Não']").prop("checked", true);
 	}
@@ -541,14 +541,14 @@ function carregaSaude () {
 	}
 	acompanhamentoDst();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_acompanhamento_dst;
-	$("#local_acompanhamento_dst").val(auxVar == null ? "" : auxVar);
+	$("#local_acompanhamento_dst").val(auxVar === null ? "" : auxVar);
 	
 	// Tem diagnóstico HIV
-	if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids == 1) {
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids === 1) {
 		// Sim
 		$("input[name='infoDiagnosticoHivAids'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_hiv_aids === 0) {
 		// Não
 		$("input[name='infoDiagnosticoHivAids'][value='Não']").prop("checked", true);
 	}
@@ -558,11 +558,11 @@ function carregaSaude () {
 	}
 	diagnosticoHivAids();
 	// Em tratamento
-	if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids === 1) {
 		// Sim
 		$("input[name='infoTratamentoHivAids'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_hiv_aids === 0) {
 		// Não
 		$("input[name='infoTratamentoHivAids'][value='Não']").prop("checked", true);
 	}
@@ -572,14 +572,14 @@ function carregaSaude () {
 	}
 	tratamentoHivAids();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_hiv_aids;
-	$("#local_tratamento_hiv_aids").val(auxVar == null ? "" : auxVar);
+	$("#local_tratamento_hiv_aids").val(auxVar === null ? "" : auxVar);
 	
 	// Diagnóstico de Sífilis
-	if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis == 1) {
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis === 1) {
 		// Sim
 		$("input[name='infoDiagnosticoSifilis'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_sifilis === 0) {
 		// Não
 		$("input[name='infoDiagnosticoSifilis'][value='Não']").prop("checked", true);
 	}
@@ -589,11 +589,11 @@ function carregaSaude () {
 	}
 	diagnosticoSifilis();
 	// Em tratamento
-	if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis === 1) {
 		// Sim
 		$("input[name='infoTratamentoSifilis'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_sifilis === 0) {
 		// Não
 		$("input[name='infoTratamentoSifilis'][value='Não']").prop("checked", true);
 	}
@@ -603,12 +603,12 @@ function carregaSaude () {
 	}
 	tratamentoSifilis();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_sifilis;
-	$("#local_tratamento_sifilis").val(auxVar == null ? "" : auxVar);
-	if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis == 1) {
+	$("#local_tratamento_sifilis").val(auxVar === null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis === 1) {
 		// Sim
 		$("input[name='infoAltaTratamentoSifilis'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.alta_tratamento_sifilis === 0) {
 		// Não
 		$("input[name='infoAltaTratamentoSifilis'][value='Não']").prop("checked", true);
 	}
@@ -618,11 +618,11 @@ function carregaSaude () {
 	}
 	
 	// Avaliação Odontológica
-	if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica == 1) {
+	if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica === 1) {
 		// Sim
 		$("input[name='infoPassouAvaliacaoOdontologica'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.passou_avaliacao_odontologica === 0) {
 		// Não
 		$("input[name='infoPassouAvaliacaoOdontologica'][value='Não']").prop("checked", true);
 	}
@@ -632,12 +632,12 @@ function carregaSaude () {
 	}
 	passouAvaliacaoOdontologica();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_passou_avaliacao_odontologica;
-	$("#local_passou_avaliacao_odontologica").val(auxVar == null ? "" : auxVar);
-	if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico == 1) {
+	$("#local_passou_avaliacao_odontologica").val(auxVar === null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico === 1) {
 		// Sim
 		$("input[name='infoAltaTratamentoOdontologico'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_odontologico === 0) {
 		// Não
 		$("input[name='infoAltaTratamentoOdontologico'][value='Não']").prop("checked", true);
 	}
@@ -647,11 +647,11 @@ function carregaSaude () {
 	}
 	
 	// Sintomas respiratórios
-	if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios == 1) {
+	if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios === 1) {
 		// Sim
 		$("input[name='infoSintomasRespiratorios'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.sintomas_respiratorios === 0) {
 		// Não
 		$("input[name='infoSintomasRespiratorios'][value='Não']").prop("checked", true);
 	}
@@ -660,11 +660,11 @@ function carregaSaude () {
 		$("input[name='infoSintomasRespiratorios'][value='Não Informado']").prop("checked", true);
 	}
 	sintomasRespiratorios();
-	if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios == 1) {
+	if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios === 1) {
 		// Sim
 		$("input[name='infoTratamentoSintomasRespiratorios'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.tratamento_sintomas_respiratorios === 0) {
 		// Não
 		$("input[name='infoTratamentoSintomasRespiratorios'][value='Não']").prop("checked", true);
 	}
@@ -674,14 +674,14 @@ function carregaSaude () {
 	}
 	tratamentoSintomasRespiratorios();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_tratamento_sintomas_respiratorios;
-	$("#local_tratamento_sintomas_respiratorios").val(auxVar == null ? "" : auxVar);
+	$("#local_tratamento_sintomas_respiratorios").val(auxVar === null ? "" : auxVar);
 	
 	// Teste de tuberculose
-	if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose == 1) {
+	if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose === 1) {
 		// Sim
 		$("input[name='infoRealizouTesteTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.realizou_teste_tuberculose === 0) {
 		// Não
 		$("input[name='infoRealizouTesteTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -690,11 +690,11 @@ function carregaSaude () {
 		$("input[name='infoRealizouTesteTuberculose'][value='Não Informado']").prop("checked", true);
 	}
 	realizouTesteTuberculose();
-	if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose == 1) {
+	if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose === 1) {
 		// Sim
 		$("input[name='infoDiagnosticoTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.diagnostico_tuberculose === 0) {
 		// Não
 		$("input[name='infoDiagnosticoTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -703,11 +703,11 @@ function carregaSaude () {
 		$("input[name='infoDiagnosticoTuberculose'][value='Não Informado']").prop("checked", true);
 	}
 	diagnosticoTuberculose();
-	if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose == 1) {
+	if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose === 1) {
 		// Sim
 		$("input[name='infoEmTratamentoTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.em_tratamento_tuberculose === 0) {
 		// Não
 		$("input[name='infoEmTratamentoTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -717,11 +717,11 @@ function carregaSaude () {
 	}
 	
 	// Já teve tuberculose
-	if (CIDADAOSAUDE.dadosSaude.teve_tuberculose == 1) {
+	if (CIDADAOSAUDE.dadosSaude.teve_tuberculose === 1) {
 		// Sim
 		$("input[name='infoTeveTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.teve_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.teve_tuberculose === 0) {
 		// Não
 		$("input[name='infoTeveTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -730,11 +730,11 @@ function carregaSaude () {
 		$("input[name='infoTeveTuberculose'][value='Não Informado']").prop("checked", true);
 	}
 	teveTuberculose();
-	if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose == 1) {
+	if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose === 1) {
 		// Sim
 		$("input[name='infoFezTratamentoTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.fez_tratamento_tuberculose === 0) {
 		// Não
 		$("input[name='infoFezTratamentoTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -744,12 +744,12 @@ function carregaSaude () {
 	}
 	fezTratamentoTuberculose();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_fez_tratamento_tuberculose;
-	$("#local_fez_tratamento_tuberculose").val(auxVar == null ? "" : auxVar);
-	if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose == 1) {
+	$("#local_fez_tratamento_tuberculose").val(auxVar === null ? "" : auxVar);
+	if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose === 1) {
 		// Sim
 		$("input[name='infoTeveAltaTratamentoTuberculose'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.teve_alta_tratamento_tuberculose === 0) {
 		// Não
 		$("input[name='infoTeveAltaTratamentoTuberculose'][value='Não']").prop("checked", true);
 	}
@@ -759,11 +759,11 @@ function carregaSaude () {
 	}
 	
 	// Lesões na pele
-	if (CIDADAOSAUDE.dadosSaude.lesoes_pele == 1) {
+	if (CIDADAOSAUDE.dadosSaude.lesoes_pele === 1) {
 		// Sim
 		$("input[name='infoLesoesPele'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.lesoes_pele == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.lesoes_pele === 0) {
 		// Não
 		$("input[name='infoLesoesPele'][value='Não']").prop("checked", true);
 	}
@@ -773,11 +773,11 @@ function carregaSaude () {
 	}
 
 	// Vacinação em dia
-	if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia == 1) {
+	if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia === 1) {
 		// Sim
 		$("input[name='infoVacinacaoEmDia'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.vacinacao_em_dia === 0) {
 		// Não
 		$("input[name='infoVacinacaoEmDia'][value='Não']").prop("checked", true);
 	}
@@ -788,14 +788,14 @@ function carregaSaude () {
 	
 	// Outros sinais e sintomas clínicos
 	auxVar = CIDADAOSAUDE.dadosSaude.outros_sinais_sintomas_criticos;
-	$("#outros_sinais_sintomas_criticos").val(auxVar == null ? "" : auxVar);
+	$("#outros_sinais_sintomas_criticos").val(auxVar === null ? "" : auxVar);
 	
 	// Avaliação ginecológica
-	if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica == 1) {
+	if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica === 1) {
 		// Sim
 		$("input[name='infoAvaliacaoGinecologica'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.avaliacao_ginecologica === 0) {
 		// Não
 		$("input[name='infoAvaliacaoGinecologica'][value='Não']").prop("checked", true);
 	}
@@ -805,14 +805,14 @@ function carregaSaude () {
 	}
 	avaliacaoGinecologica();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_avaliacao_ginecologica;
-	$("#local_avaliacao_ginecologica").val(auxVar == null ? "" : auxVar);
+	$("#local_avaliacao_ginecologica").val(auxVar === null ? "" : auxVar);
 
 	// Método anticoncepcional
-	if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional == 1) {
+	if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional === 1) {
 		// Sim
 		$("input[name='infoMetodoAnticoncepcional'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.metodo_anticoncepcional === 0) {
 		// Não
 		$("input[name='infoMetodoAnticoncepcional'][value='Não']").prop("checked", true);
 	}
@@ -822,14 +822,14 @@ function carregaSaude () {
 	}
 	metodoAnticoncepcional();
 	auxVar = CIDADAOSAUDE.dadosSaude.qual_metodo_anticoncepcional;
-	$("#qual_metodo_anticoncepcional").val(auxVar == null ? "" : auxVar);
+	$("#qual_metodo_anticoncepcional").val(auxVar === null ? "" : auxVar);
 
 	// Teve algum aborto
-	if (CIDADAOSAUDE.dadosSaude.teve_aborto == 1) {
+	if (CIDADAOSAUDE.dadosSaude.teve_aborto === 1) {
 		// Sim
 		$("input[name='infoTeveAborto'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.teve_aborto == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.teve_aborto === 0) {
 		// Não
 		$("input[name='infoTeveAborto'][value='Não']").prop("checked", true);
 	}
@@ -839,11 +839,11 @@ function carregaSaude () {
 	}
 	
 	// Planejamento familiar
-	if (CIDADAOSAUDE.dadosSaude.planejamento_familiar == 1) {
+	if (CIDADAOSAUDE.dadosSaude.planejamento_familiar === 1) {
 		// Sim
 		$("input[name='infoPlanejamentoFamiliar'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.planejamento_familiar == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.planejamento_familiar === 0) {
 		// Não
 		$("input[name='infoPlanejamentoFamiliar'][value='Não']").prop("checked", true);
 	}
@@ -853,14 +853,14 @@ function carregaSaude () {
 	}
 	planejamentoFamiliar();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_planejamento_familiar;
-	$("#local_planejamento_familiar").val(auxVar == null ? "" : auxVar);
+	$("#local_planejamento_familiar").val(auxVar === null ? "" : auxVar);
 
 	// Está grávida
-	if (CIDADAOSAUDE.dadosSaude.gestante == 1) {
+	if (CIDADAOSAUDE.dadosSaude.gestante === 1) {
 		// Sim
 		$("input[name='infoGestante'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.gestante == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.gestante === 0) {
 		// Não
 		$("input[name='infoGestante'][value='Não']").prop("checked", true);
 	}
@@ -870,11 +870,11 @@ function carregaSaude () {
 	}
 	
 	// Está fazendo pré-natal
-	if (CIDADAOSAUDE.dadosSaude.pre_natal == 1) {
+	if (CIDADAOSAUDE.dadosSaude.pre_natal === 1) {
 		// Sim
 		$("input[name='infoPreNatal'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.pre_natal == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.pre_natal === 0) {
 		// Não
 		$("input[name='infoPreNatal'][value='Não']").prop("checked", true);
 	}
@@ -884,14 +884,14 @@ function carregaSaude () {
 	}
 	preNatal();
 	auxVar = CIDADAOSAUDE.dadosSaude.local_pre_natal;
-	$("#local_pre_natal").val(auxVar == null ? "" : auxVar);
+	$("#local_pre_natal").val(auxVar === null ? "" : auxVar);
 
 	// Amparo maternal
-	if (CIDADAOSAUDE.dadosSaude.amparo_maternal == 1) {
+	if (CIDADAOSAUDE.dadosSaude.amparo_maternal === 1) {
 		// Sim
 		$("input[name='infoAmparoMaternal'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.amparo_maternal == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.amparo_maternal === 0) {
 		// Não
 		$("input[name='infoAmparoMaternal'][value='Não']").prop("checked", true);
 	}
@@ -901,11 +901,11 @@ function carregaSaude () {
 	}
 
 	// Está amamentando
-	if (CIDADAOSAUDE.dadosSaude.amamentando == 1) {
+	if (CIDADAOSAUDE.dadosSaude.amamentando === 1) {
 		// Sim
 		$("input[name='infoAmamentando'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.amamentando == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.amamentando === 0) {
 		// Não
 		$("input[name='infoAmamentando'][value='Não']").prop("checked", true);
 	}
@@ -915,11 +915,11 @@ function carregaSaude () {
 	}
 
 	// Consulta na data de hoje
-	if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje == 1) {
+	if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje === 1) {
 		// Sim
 		$("input[name='infoConsultaSaudeHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.consulta_saude_hoje === 0) {
 		// Não
 		$("input[name='infoConsultaSaudeHoje'][value='Não']").prop("checked", true);
 	}
@@ -930,16 +930,16 @@ function carregaSaude () {
 	consultaSaudeHoje();
 	for (var i = 0; i < CIDADAOSAUDE.listaEspecialidadesConsultaHoje.length; i++) {
 		auxVar = CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].especialidade;
-		$('.adicionaEspecialidade').val(auxVar == null ? "" : auxVar);
+		$('.adicionaEspecialidade').val(auxVar === null ? "" : auxVar);
 		adicionaEspecialidadeConsultaHoje();
 	}
 	
 	// Compareceu ao trabalho hoje
-	if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje == 1) {
+	if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje === 1) {
 		// Sim
 		$("input[name='infoCompareceuTrabalhoHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.compareceu_trabalho_hoje === 0) {
 		// Não
 		$("input[name='infoCompareceuTrabalhoHoje'][value='Não']").prop("checked", true);
 	}
@@ -949,14 +949,14 @@ function carregaSaude () {
 	}
 	compareceuTrabalhoHoje();
 	auxVar = CIDADAOSAUDE.dadosSaude.motivo_falta_trabalho;
-	$("#motivo_falta_trabalho").val(auxVar == null ? "" : auxVar);
+	$("#motivo_falta_trabalho").val(auxVar === null ? "" : auxVar);
 
 	// Participou oficina hoje
-	if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje == 1) {
+	if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje === 1) {
 		// Sim
 		$("input[name='infoParticipouOficinaHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.participou_oficina_hoje === 0) {
 		// Não
 		$("input[name='infoParticipouOficinaHoje'][value='Não']").prop("checked", true);
 	}
@@ -967,20 +967,20 @@ function carregaSaude () {
 	infoParticipouOficinaHojef();
 	for (var i = 0; i < CIDADAOSAUDE.listaOficinasParticipou.length; i++) {
 		auxVar = CIDADAOSAUDE.listaOficinasParticipou[i].nome;
-		$('.adicionaQualOficina').val(auxVar == null ? "" : auxVar);
+		$('.adicionaQualOficina').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaOficinasParticipou[i].local;
-		$('.adicionaLocalOficina').val(auxVar == null ? "" : auxVar);
+		$('.adicionaLocalOficina').val(auxVar === null ? "" : auxVar);
 		adicionaOficinaParticipou();
 	}
 	auxVar = CIDADAOSAUDE.dadosSaude.motivo_nao_participou_oficina_hoje;
-	$("#motivo_nao_particiou_oficina_hoje").val(auxVar == null ? "" : auxVar);	
+	$("#motivo_nao_particiou_oficina_hoje").val(auxVar === null ? "" : auxVar);	
 
 	// Atividade recreativa externa
-	if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa == 1) {
+	if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa === 1) {
 		// Sim
 		$("input[name='infoParticipouAtividadeHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.atividade_recreativa_externa === 0) {
 		// Não
 		$("input[name='infoParticipouAtividadeHoje'][value='Não']").prop("checked", true);
 	}
@@ -991,9 +991,9 @@ function carregaSaude () {
 	atividadeRecreativaExterna();
 	for (var i = 0; i < CIDADAOSAUDE.listaAtividadeRecreativaExterna.length; i++) {
 		auxVar = CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].nome;
-		$('.adicionaQualAtividade').val(auxVar == null ? "" : auxVar);
+		$('.adicionaQualAtividade').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].local;
-		$('.adicionaLocalAtividade').val(auxVar == null ? "" : auxVar);
+		$('.adicionaLocalAtividade').val(auxVar === null ? "" : auxVar);
 		adicionaAtividadeRecreativa();
 	}
 	
@@ -1022,11 +1022,11 @@ function carregaSaude () {
 	$("#listaDiasMesesAnosAbstinencia").empty();
 	$("#listaDiasMesesAnosAbstinencia").append(opts);
 	
-	if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje == 1) {
+	if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje === 1) {
 		// Sim
 		$("input[name='infoUsouDrogaHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.usou_droga_hoje === 0) {
 		// Não
 		$("input[name='infoUsouDrogaHoje'][value='Não']").prop("checked", true);
 	}
@@ -1041,14 +1041,14 @@ function carregaSaude () {
 			continue;
 		}
 		auxVar = CIDADAOSAUDE.listaDrogasFazUso[i].nome_droga;
-		$('.adicionaDrogaHoje').val(auxVar == null ? "" : auxVar);
+		$('.adicionaDrogaHoje').val(auxVar === null ? "" : auxVar);
 		adicionaDrogaHoje();
 	}
-	if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje == 1) {
+	if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje === 1) {
 		// Sim
 		$("input[name='infoUsouCrackHoje'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje == 0) {
+	else if (CIDADAOSAUDE.dadosSaude.usou_crack_hoje === 0) {
 		// Não
 		$("input[name='infoUsouCrackHoje'][value='Não']").prop("checked", true);
 	}
@@ -1058,15 +1058,15 @@ function carregaSaude () {
 	}
 	usouCrackHoje();
 	auxVar = CIDADAOSAUDE.dadosSaude.quantas_pedras;
-	$("#quantas_pedras").val(auxVar == null ? "" : auxVar);	
+	$("#quantas_pedras").val(auxVar === null ? "" : auxVar);	
 	
 	// Observações Importantes
 	auxVar = CIDADAOSAUDE.dadosSaude.observacoes_importantes;
-	$("#observacoes_importantes").val(auxVar == null ? "" : auxVar);	
+	$("#observacoes_importantes").val(auxVar === null ? "" : auxVar);	
 
 	// Observações
 	auxVar = CIDADAOSAUDE.dadosSaude.observacoes_gerais;
-	$("#observacoes_gerais").val(auxVar == null ? "" : auxVar);	
+	$("#observacoes_gerais").val(auxVar === null ? "" : auxVar);	
 }
 
 function salvaSaudeSuccess () {
@@ -1154,10 +1154,10 @@ function saudeSalva() {
 		
 		// Iniciou o uso de drogras (drogas_antes_depois_situacao_rua)
 		auxVar = null;
-		if ($("input:radio[name=infoDrogasAntesDepoisSituacaoRua]:checked").val() == "Sim") {
+		if ($("input:radio[name=infoDrogasAntesDepoisSituacaoRua]:checked").val() === "Depois") {
 			auxVar = 1;
 		}
-		else if ($("input:radio[name=infoDrogasAntesDepoisSituacaoRua]:checked").val() == "Não") {
+		else if ($("input:radio[name=infoDrogasAntesDepoisSituacaoRua]:checked").val() === "Antes") {
 			auxVar = 0;
 		}
 		listaDados.push(auxVar);

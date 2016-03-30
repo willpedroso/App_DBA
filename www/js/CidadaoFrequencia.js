@@ -165,6 +165,7 @@
 		console.log("selecionaCidadaoFrequencia");
 		
 		FREQUENCIA.cidadao_id = cidadao;
+		aguardeMsgOn("Carregando dados...");
 		PageManager.loadTmpl('div_frequencia');
 	},
 	
@@ -877,22 +878,28 @@
 		$("#idDivFreqCidadaoSocial").empty();
 		$("#idDivFreqCidadaoSocial").append(htmlFrequenciasSocial);
 		*/
+		$("#idDivFreqCidadaoSaude").attr('style','display:none');
+		$("#idDivFreqCidadaoTrabalho").attr('style','display:none');
+		$("#idDivFreqCidadaoSocial").attr('style','display:none');
 		var htmlAbasFrequencia = "";
 		for (var i = 0; i < FREQUENCIA.abas.length; i++) {
 			switch (FREQUENCIA.abas[i]) {
 				case "Saúde":
 					$("#idDivFreqCidadaoSaude").empty();
 					$("#idDivFreqCidadaoSaude").append(htmlFrequenciasSaude);
+					$("#idDivFreqCidadaoSaude").attr('style','display:block');
 					htmlAbasFrequencia += "<li><a href='#freq_abas-saude'>Saúde</a></li>";
 					break;
 				case "Trabalho":
 					$("#idDivFreqCidadaoTrabalho").empty();
 					$("#idDivFreqCidadaoTrabalho").append(htmlFrequenciasTrabalho);
+					$("#idDivFreqCidadaoTrabalho").attr('style','display:block');
 					htmlAbasFrequencia += "<li><a href='#freq_abas-trabalho'>Trabalho</a></li>";
 					break;
 				case "Social":
 					$("#idDivFreqCidadaoSocial").empty();
 					$("#idDivFreqCidadaoSocial").append(htmlFrequenciasSocial);
+					$("#idDivFreqCidadaoSocial").attr('style','display:block');
 					htmlAbasFrequencia += "<li><a href='#freq_abas-social'>Social</a></li>";
 					break;
 			}
@@ -902,12 +909,14 @@
 		$("#freq_opcoes_abas").append(htmlAbasFrequencia);
 		// Efeito de abas do jquery
 		$( "#freq_abas" ).tabs();
+		aguardeMsgOff();
 	},
 	
 	dadosEntradaFrequenciaFail: function (err) {
 		console.log("dadosEntradaFrequenciaFail");
 		
 		// Retorna
+		aguardeMsgOff();
 		// todo: revisar
 		alert("Houve falha na obtenção de informações de frequência.");
 		
@@ -1012,6 +1021,7 @@
 		console.log("salvaFrequenciaSuccess");
 		
 		// Retorna
+		aguardeMsgOff();
 		FREQUENCIA.cbSuccess_f();
 	},
 	
@@ -1019,6 +1029,7 @@
 		console.log("salvaFrequenciaFail");
 		
 		// Retorna
+		aguardeMsgOff();
 		FREQUENCIA.cbFail_f(err);
 	},
 }

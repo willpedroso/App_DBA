@@ -18,11 +18,11 @@ function carregaSocial () {
 	
 	// Nome do contato
 	auxVar = CIDADAOSOCIAL.dadosSocial.nome_contato;
-	$("#nome_contato").val(auxVar == null ? "" : auxVar);
+	$("#nome_contato").val(auxVar === null ? "" : auxVar);
 	
 	// Endereço do contato
 	auxVar = CIDADAOSOCIAL.dadosSocial.endereco_contato;
-	$("#endereco_contato").val(auxVar == null ? "" : auxVar);
+	$("#endereco_contato").val(auxVar === null ? "" : auxVar);
 	
 	// UF do contato
 	var opts = "<div class='comboStilo selectInicialUF'><select name='estadoNomeLabel' id='estadoNomeLabel' class='selectUF'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
@@ -37,7 +37,7 @@ function carregaSocial () {
 
 	// Município do contato
 	auxVar = CIDADAOSOCIAL.dadosSocial.municipio_contato;
-	$("#municipio_contato").val(auxVar == null ? "" : auxVar);
+	$("#municipio_contato").val(auxVar === null ? "" : auxVar);
 
 	// Dispositivos de contato
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoDispositivoContatoLabel' id='tipoDispositivoContatoLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
@@ -52,7 +52,7 @@ function carregaSocial () {
 	$("#listaSelectTipoDispositivoContato").append(opts);
 	for (var i = 0; i < CIDADAOSOCIAL.listaContatos.length; i++) {
 		auxVar = CIDADAOSOCIAL.listaContatos[i].numero_descricao;
-		$('.adicionaNumContato').val(auxVar == null ? "" : auxVar);
+		$('.adicionaNumContato').val(auxVar === null ? "" : auxVar);
 
 		// Obtém o nome do tipo de dispositivo de contato
 		for (j = 0; j < CIDADAOSOCIAL.listaTipoDispositivoContato.length; j++) {
@@ -65,14 +65,14 @@ function carregaSocial () {
 	
 	// Local de referência
 	auxVar = CIDADAOSOCIAL.dadosSocial.local_referencia;
-	$("#local_referencia").val(auxVar == null ? "" : auxVar);
+	$("#local_referencia").val(auxVar === null ? "" : auxVar);
 	
 	// A partir da inserção do Programa DBA, retirou documentos
-	if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa == 1) {
+	if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa === 1) {
 		// Sim
 		$("input[name='infoDocumentosAposPrograma'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa == 0) {
+	else if (CIDADAOSOCIAL.dadosSocial.documentos_apos_programa === 0) {
 		// Não
 		$("input[name='infoDocumentosAposPrograma'][value='Não']").prop("checked", true);
 	}
@@ -93,7 +93,7 @@ function carregaSocial () {
 	$("#listaDocumentos2").append(opts);
 	for (var i = 0; i < CIDADAOSOCIAL.listaDocumentos.length; i++) {
 		auxVar = CIDADAOSOCIAL.listaDocumentos[i].numero_descricao_documento;
-		$('.adicionaNumDocumento').val(auxVar == null ? "" : auxVar);
+		$('.adicionaNumDocumento').val(auxVar === null ? "" : auxVar);
 
 		// Obtém o nome do tipo de documento
 		for (j = 0; j < CIDADAOSOCIAL.listaTipoDocumento.length; j++) {
@@ -105,11 +105,11 @@ function carregaSocial () {
 	}
 	
 	// todo: Houve restabelecimento de vínculos familiares
-	if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido == 1) {
+	if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido === 1) {
 		// Sim
 		$("input[name='infoVinculoFamiliaRestabelecido'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido == 0) {
+	else if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido === 0) {
 		// Não
 		$("input[name='infoVinculoFamiliaRestabelecido'][value='Não']").prop("checked", true);
 	}
@@ -120,31 +120,31 @@ function carregaSocial () {
 	
 	// Formação Profissional
 	auxVar = CIDADAOSOCIAL.dadosSocial.formacao_profissional;
-	$("#formacao_profissional").val(auxVar == null ? "" : auxVar);
+	$("#formacao_profissional").val(auxVar === null ? "" : auxVar);
 
 	// Atividades profissionais
 	auxVar = CIDADAOSOCIAL.dadosSocial.atividade_profissional;
-	$("#atividade_profissional").val(auxVar == null ? "" : auxVar);
+	$("#atividade_profissional").val(auxVar === null ? "" : auxVar);
 
 	// Nome da empresa
 	auxVar = CIDADAOSOCIAL.dadosSocial.nome_empresa;
-	$("#nome_empresa").val(auxVar == null ? "" : auxVar);
+	$("#nome_empresa").val(auxVar === null ? "" : auxVar);
 
 	// Data de admissão
 	auxVar = CIDADAOSOCIAL.dadosSocial.data_admissao;
-	$("#data_admissao").val(auxVar == null ? "" : auxVar);
+	$("#data_admissao").val(auxVar === null ? "" : auxVar);
 
 	// Cargo
 	auxVar = CIDADAOSOCIAL.dadosSocial.cargo;
-	$("#cargo").val(auxVar == null ? "" : auxVar);
+	$("#cargo").val(auxVar === null ? "" : auxVar);
 
 	// Faixa de Renda
 	auxVar = CIDADAOSOCIAL.dadosSocial.faixa_renda;
-	$("#faixa_renda").val(auxVar == null ? "" : auxVar);
+	$("#faixa_renda").val(auxVar === null ? "" : auxVar);
 
 	// Endereço da empresa
 	auxVar = CIDADAOSOCIAL.dadosSocial.endereco_empresa;
-	$("#endereco_empresa").val(auxVar == null ? "" : auxVar);
+	$("#endereco_empresa").val(auxVar === null ? "" : auxVar);
 
 	// Dispositivos de contato da empresa
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoDispositivoContatoEmpresaLabel' id='tipoDispositivoContatoEmpresaLabel' class='selectPersonalizado'><div class='comboStilo'><option value='Selecione'>Selecione</option>";
@@ -159,7 +159,7 @@ function carregaSocial () {
 	$("#listaSelectTipoDispositivoContatoEmpresa").append(opts);
 	for (var i = 0; i < CIDADAOSOCIAL.listaContatosEmpresa.length; i++) {
 		auxVar = CIDADAOSOCIAL.listaContatosEmpresa[i].numero_descricao;
-		$('.adicionaNumContatoEmpresa').val(auxVar == null ? "" : auxVar);
+		$('.adicionaNumContatoEmpresa').val(auxVar === null ? "" : auxVar);
 
 		// Obtém o nome do tipo de dispositivo de contato empresa
 		for (j = 0; j < CIDADAOSOCIAL.listaTipoDispositivoContato.length; j++) {
@@ -172,14 +172,14 @@ function carregaSocial () {
 	
 	// Problemas de saúde
 	auxVar = CIDADAOSOCIAL.dadosSocial.problemas_saude;
-	$("#problemas_saude").val(auxVar == null ? "" : auxVar);
+	$("#problemas_saude").val(auxVar === null ? "" : auxVar);
 
 	// Faz uso de medicamentos
-	if (CIDADAOSOCIAL.dadosSocial.uso_medicamentos == 1) {
+	if (CIDADAOSOCIAL.dadosSocial.uso_medicamentos === 1) {
 		// Sim
 		$("input[name='infoUsoMedicamentos'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSOCIAL.dadosSocial.uso_medicamentos == 0) {
+	else if (CIDADAOSOCIAL.dadosSocial.uso_medicamentos === 0) {
 		// Não
 		$("input[name='infoUsoMedicamentos'][value='Não']").prop("checked", true);
 	}
@@ -189,14 +189,14 @@ function carregaSocial () {
 	}
 	quaisMedicamentosf();
 	auxVar = CIDADAOSOCIAL.dadosSocial.qual_medicamento;
-	$("#qual_medicamento").val(auxVar == null ? "" : auxVar);
+	$("#qual_medicamento").val(auxVar === null ? "" : auxVar);
 
 	// Houve encaminhamento
-	if (CIDADAOSOCIAL.dadosSocial.encaminhamento == 1) {
+	if (CIDADAOSOCIAL.dadosSocial.encaminhamento === 1) {
 		// Sim
 		$("input[name='infoEncaminhamento'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSOCIAL.dadosSocial.encaminhamento == 0) {
+	else if (CIDADAOSOCIAL.dadosSocial.encaminhamento === 0) {
 		// Não
 		$("input[name='infoEncaminhamento'][value='Não']").prop("checked", true);
 	}
@@ -206,20 +206,20 @@ function carregaSocial () {
 	}
 	infoEncaminhamento();
 	auxVar = CIDADAOSOCIAL.dadosSocial.unidade_saude;
-	$("#unidade_saude").val(auxVar == null ? "" : auxVar);
+	$("#unidade_saude").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOSOCIAL.dadosSocial.nome_unidade_saude;
-	$("#nome_unidade_saude").val(auxVar == null ? "" : auxVar);
+	$("#nome_unidade_saude").val(auxVar === null ? "" : auxVar);
 
 	// Entrevistas - Projeto de vida
 	auxVar = CIDADAOSOCIAL.dadosSocial.entrevista_projeto_vida;
-	$("#entrevista_projeto_vida").val(auxVar == null ? "" : auxVar);
+	$("#entrevista_projeto_vida").val(auxVar === null ? "" : auxVar);
 
 	// Houve providências
-	if (CIDADAOSOCIAL.dadosSocial.houve_providencias == 1) {
+	if (CIDADAOSOCIAL.dadosSocial.houve_providencias === 1) {
 		// Sim
 		$("input[name='infoHouveProvidencias'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOSOCIAL.dadosSocial.houve_providencias == 0) {
+	else if (CIDADAOSOCIAL.dadosSocial.houve_providencias === 0) {
 		// Não
 		$("input[name='infoHouveProvidencias'][value='Não']").prop("checked", true);
 	}
@@ -230,26 +230,26 @@ function carregaSocial () {
 	providenciasf();
 	for (var i = 0; i < CIDADAOSOCIAL.listaProvidencias.length; i++) {
 		auxVar = CIDADAOSOCIAL.listaProvidencias[i].tipo;
-		$('.adicionaObsProvidencia').val(auxVar == null ? "" : auxVar);
+		$('.adicionaObsProvidencia').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSOCIAL.listaProvidencias[i].situacao;
-		$('.adicionaObsProvidenciaPeq').val(auxVar == null ? "" : auxVar);
+		$('.adicionaObsProvidenciaPeq').val(auxVar === null ? "" : auxVar);
 		auxVar = CIDADAOSOCIAL.listaProvidencias[i].observacao;
-		$('.textareaProvidencia').val(auxVar == null ? "" : auxVar);
+		$('.textareaProvidencia').val(auxVar === null ? "" : auxVar);
 
 		adicionaProvidencia();		
 	}
 	
 	// Número do NIS
 	auxVar = CIDADAOSOCIAL.dadosSocial.numero_nis;
-	$("#numero_nis").val(auxVar == null ? "" : auxVar);
+	$("#numero_nis").val(auxVar === null ? "" : auxVar);
 
 	// CTPS
 	auxVar = CIDADAOSOCIAL.dadosSocial.ctps;
-	$("#ctps").val(auxVar == null ? "" : auxVar);
+	$("#ctps").val(auxVar === null ? "" : auxVar);
 
 	// Título de eleitor
 	auxVar = CIDADAOSOCIAL.dadosSocial.titulo_eleitor;
-	$("#titulo_eleitor").val(auxVar == null ? "" : auxVar);
+	$("#titulo_eleitor").val(auxVar === null ? "" : auxVar);
 
 	// Certidões
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoCertidaoLabel' id='tipoCertidaoLabel' class='selectPersonalizado'><option value='Selecione'>Selecione</option>";
@@ -264,7 +264,7 @@ function carregaSocial () {
 	$("#listaTipoCertidao").append(opts);
 	for (var i = 0; i < CIDADAOSOCIAL.listaCertidoes.length; i++) {
 		auxVar = CIDADAOSOCIAL.listaCertidoes[i].numero;
-		$('.adicionaObsCertidao').val(auxVar == null ? "" : auxVar);
+		$('.adicionaObsCertidao').val(auxVar === null ? "" : auxVar);
 
 		// Obtém o nome do tipo de dispositivo de contato empresa
 		for (j = 0; j < CIDADAOSOCIAL.listaTipoCertidao.length; j++) {
@@ -277,11 +277,11 @@ function carregaSocial () {
 	
 	// Número da portaria de naturalização
 	auxVar = CIDADAOSOCIAL.dadosSocial.numero_portaria_naturalizacao;
-	$("#numero_portaria_naturalizacao").val(auxVar == null ? "" : auxVar);
+	$("#numero_portaria_naturalizacao").val(auxVar === null ? "" : auxVar);
 
 	// Observações
 	auxVar = CIDADAOSOCIAL.dadosSocial.observacoes_gerais;
-	$("#observacoes_gerais").val(auxVar == null ? "" : auxVar);
+	$("#observacoes_gerais").val(auxVar === null ? "" : auxVar);
 }
 
 function salvaSocialSuccess () {

@@ -5,7 +5,7 @@ function carregaSituacaoDBA () {
 	var edit = true;
 	
 	// Situação Cadastral
-	if (SITUACAODBA.situacaoCadastral == 1) {
+	if (SITUACAODBA.situacaoCadastral === 1) {
 		$("input[name='infoSituacaoDba'][value='Ativo']").prop("checked", true);
 	}
 	else {
@@ -33,13 +33,13 @@ function carregaSituacaoDBA () {
 	$("#listaMotivoInativacao").append(opts);
 	
 	// Prioridade
-	if (SITUACAODBA.prioridade == 0) {
+	if (SITUACAODBA.prioridade === 0) {
 		$("input[name='infoPrioridade'][value='0']").prop("checked", true);
 	}
-	else if (SITUACAODBA.prioridade == 1) {
+	else if (SITUACAODBA.prioridade === 1) {
 		$("input[name='infoPrioridade'][value='1']").prop("checked", true);
 	}
-	else if (SITUACAODBA.prioridade == 2) {
+	else if (SITUACAODBA.prioridade === 2) {
 		$("input[name='infoPrioridade'][value='2']").prop("checked", true);
 	}
 	else {
@@ -47,7 +47,7 @@ function carregaSituacaoDBA () {
 	}
 	
 	// Autoriza Programa DBA
-	if (SITUACAODBA.programaDBA == 1) {
+	if (SITUACAODBA.programaDBA === 1) {
 		$("input[name='infoProgramaDba'][value='Sim']").prop("checked", true);
 	}
 	else {
@@ -69,7 +69,7 @@ function carregaSituacaoDBA () {
 	
 	// Carrega motivo inativação outros
 	if (edit == true) {
-		$("#motivo_inativacao_outros").val(SITUACAODBA.motivoInativacaoOutros == null ? "" : SITUACAODBA.motivoInativacaoOutros);
+		$("#motivo_inativacao_outros").val(SITUACAODBA.motivoInativacaoOutros === null ? "" : SITUACAODBA.motivoInativacaoOutros);
 	}
 	
 	// Data de inclusão no DBA
@@ -105,10 +105,10 @@ function validaCamposSituacaoDBA() {
 		$('.msgErro').attr('style', 'display:none');
 
 		var prioridade = null;
-		if ($("input:radio[name=infoPrioridade]:checked").val() == "Sim") {
+		if ($("input:radio[name=infoPrioridade]:checked").val() === "Sim") {
 			prioridade = 1;
 		}
-		else if ($("input:radio[name=infoPrioridade]:checked").val() == "Não") {
+		else if ($("input:radio[name=infoPrioridade]:checked").val() === "Não") {
 			prioridade = 0;
 		}
 

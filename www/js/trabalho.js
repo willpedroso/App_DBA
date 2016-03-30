@@ -24,11 +24,11 @@ function carregaTrabalho () {
 	
 	var edit = true;		// todo: sempre em edição
 
-	if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho === 1) {
 		// Sim
 		$("input[name='infoFrentetrabalho'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho === 0) {
 		// Não
 		$("input[name='infoFrentetrabalho'][value='Não']").prop("checked", true);
 	}
@@ -41,19 +41,19 @@ function carregaTrabalho () {
 	var auxVar;
 	// Frente de Trabalho
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.frente_trabalho;
-	$("#frente_trabalho").val(auxVar == null ? "" : auxVar);
+	$("#frente_trabalho").val(auxVar === null ? "" : auxVar);
 	
 	// Grupo
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.grupo;
-	$("#grupo").val(auxVar == null ? "" : auxVar);
+	$("#grupo").val(auxVar === null ? "" : auxVar);
 	
 	// Orientador
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.orientador;
-	$("#orientador").val(auxVar == null ? "" : auxVar);
+	$("#orientador").val(auxVar === null ? "" : auxVar);
 	
 	// Hotel
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.hotel;
-	$("#hotel").val(auxVar == null ? "" : auxVar);
+	$("#hotel").val(auxVar === null ? "" : auxVar);
 
 	// Desempregado por quanto tempo
 	var opts = "<div class='comboStilo selectInicial' id='diasLabel'><select name='diasLabel' id='diasLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Dias'>Dias</option>";
@@ -81,11 +81,11 @@ function carregaTrabalho () {
 	$("#listaDiasMesesAnosEmpregado").append(opts);
 	
 	// Procurou emprego no último mês
-	if (CIDADAOTRABALHO.dadosTrabalho.procurou_emprego == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.procurou_emprego === 1) {
 		// Sim
 		$("input[name='infoProcurouEmprego'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.procurou_emprego == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.procurou_emprego === 0) {
 		// Não
 		$("input[name='infoProcurouEmprego'][value='Não']").prop("checked", true);
 	}
@@ -95,11 +95,11 @@ function carregaTrabalho () {
 	}
 	
 	// Procurou algum programa da PMSP
-	if (CIDADAOTRABALHO.dadosTrabalho.procurou_programa_pmsp == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.procurou_programa_pmsp === 1) {
 		// Sim
 		$("input[name='infoProcurouProgramaPmsp'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.procurou_programa_pmsp == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.procurou_programa_pmsp === 0) {
 		// Não
 		$("input[name='infoProcurouProgramaPmsp'][value='Não']").prop("checked", true);
 	}
@@ -109,22 +109,22 @@ function carregaTrabalho () {
 	}
 	quaisProcurouProgramaPmspf();
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.qual_programa_pmsp;
-	$("#qual_programa_pmsp").val(auxVar == null ? "" : auxVar);
+	$("#qual_programa_pmsp").val(auxVar === null ? "" : auxVar);
 
 	// Ocupação pretendida
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.ocupacao_pretendida;
-	$("#ocupacao_pretendida").val(auxVar == null ? "" : auxVar);
+	$("#ocupacao_pretendida").val(auxVar === null ? "" : auxVar);
 
 	// Última ou atual ocupação
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.ultima_atual_ocupacao;
-	$("#ultima_atual_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#ultima_atual_ocupacao").val(auxVar === null ? "" : auxVar);
 
 	// Neste trabalho teve carteira assinada
-	if (CIDADAOTRABALHO.dadosTrabalho.carteira_assinada == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.carteira_assinada === 1) {
 		// Sim
 		$("input[name='infoCarteiraAssinada'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.carteira_assinada == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.carteira_assinada === 0) {
 		// Não
 		$("input[name='infoCarteiraAssinada'][value='Não']").prop("checked", true);
 	}
@@ -135,30 +135,30 @@ function carregaTrabalho () {
 	
 	// Nome da empresa em que trabalha
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.nome_empresa;
-	$("#nome_empresa").val(auxVar == null ? "" : auxVar);
+	$("#nome_empresa").val(auxVar === null ? "" : auxVar);
 
 	// Data de início da última ou atual ocupação
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.dia_inicio_ocupacao;
-	$("#dia_inicio_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#dia_inicio_ocupacao").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.mes_inicio_ocupacao;
-	$("#mes_inicio_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#mes_inicio_ocupacao").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.ano_inicio_ocupacao;
-	$("#ano_inicio_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#ano_inicio_ocupacao").val(auxVar === null ? "" : auxVar);
 	
 	// Data de término da última ocupação
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.dia_ternino_ocupacao;
-	$("#dia_ternino_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#dia_ternino_ocupacao").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.mes_termino_ocupacao;
-	$("#mes_termino_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#mes_termino_ocupacao").val(auxVar === null ? "" : auxVar);
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.ano_termino_ocupacao;
-	$("#ano_termino_ocupacao").val(auxVar == null ? "" : auxVar);
+	$("#ano_termino_ocupacao").val(auxVar === null ? "" : auxVar);
 	
 	// Já teve negócio próprio
-	if (CIDADAOTRABALHO.dadosTrabalho.teve_negocio_proprio == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.teve_negocio_proprio === 1) {
 		// Sim
 		$("input[name='infoTeveNegocioProprio'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.teve_negocio_proprio == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.teve_negocio_proprio === 0) {
 		// Não
 		$("input[name='infoTeveNegocioProprio'][value='Não']").prop("checked", true);
 	}
@@ -168,14 +168,14 @@ function carregaTrabalho () {
 	}
 	quaisTeveNegocioPropriof();
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.justificativa_teve_negocio_proprio;
-	$("#justificativa_teve_negocio_proprio").val(auxVar == null ? "" : auxVar);
+	$("#justificativa_teve_negocio_proprio").val(auxVar === null ? "" : auxVar);
 	
 	// Gostaria de trabalhar por conta própria
-	if (CIDADAOTRABALHO.dadosTrabalho.trabalhar_conta_propria_autonomo == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.trabalhar_conta_propria_autonomo === 1) {
 		// Sim
 		$("input[name='infoTrabalharContaPropriaAutonomo'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.trabalhar_conta_propria_autonomo == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.trabalhar_conta_propria_autonomo === 0) {
 		// Não
 		$("input[name='infoTrabalharContaPropriaAutonomo'][value='Não']").prop("checked", true);
 	}
@@ -185,11 +185,11 @@ function carregaTrabalho () {
 	}
 	
 	// Tem conhecimento do que precisa para abrir negócio
-	if (CIDADAOTRABALHO.dadosTrabalho.conhecimento_negocio_proprio == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.conhecimento_negocio_proprio === 1) {
 		// Sim
 		$("input[name='infoConhecimentoNegocioProprio'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.conhecimento_negocio_proprio == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.conhecimento_negocio_proprio === 0) {
 		// Não
 		$("input[name='infoConhecimentoNegocioProprio'][value='Não']").prop("checked", true);
 	}
@@ -229,11 +229,11 @@ function carregaTrabalho () {
 	$("#listaMesesAnosTrabalhoColetivo").append(opts);
 
 	// Outra atividade ou bico
-	if (CIDADAOTRABALHO.dadosTrabalho.outra_atividade_bico == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.outra_atividade_bico === 1) {
 		// Sim
 		$("input[name='infoOutraAtividadeBico'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.outra_atividade_bico == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.outra_atividade_bico === 0) {
 		// Não
 		$("input[name='infoOutraAtividadeBico'][value='Não']").prop("checked", true);
 	}
@@ -243,11 +243,11 @@ function carregaTrabalho () {
 	}
 	quaisOutraAtividadeBicof();
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.qual_outra_atividade_bico;
-	$("#qual_outra_atividade_bico").val(auxVar == null ? "" : auxVar);
+	$("#qual_outra_atividade_bico").val(auxVar === null ? "" : auxVar);
 
 	// Profissão
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.profissao_atividade;
-	$("#profissao_atividade").val(auxVar == null ? "" : auxVar);
+	$("#profissao_atividade").val(auxVar === null ? "" : auxVar);
 
 	// Onde aprendeu a profissão
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoOndeAprendeuProfissaoLabel' id='tipoOndeAprendeuProfissaoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
@@ -274,11 +274,11 @@ function carregaTrabalho () {
 	$("#listaTipoComprovanteConhecimentoProfissional").append(opts);
 	
 	// Fez algum curso de qualificação profissional
-	if (CIDADAOTRABALHO.dadosTrabalho.curso_qualificacao_profissional == 1) {
+	if (CIDADAOTRABALHO.dadosTrabalho.curso_qualificacao_profissional === 1) {
 		// Sim
 		$("input[name='infoCursoQualificacaoProfissional'][value='Sim']").prop("checked", true);
 	}
-	else if (CIDADAOTRABALHO.dadosTrabalho.curso_qualificacao_profissional == 0) {
+	else if (CIDADAOTRABALHO.dadosTrabalho.curso_qualificacao_profissional === 0) {
 		// Não
 		$("input[name='infoCursoQualificacaoProfissional'][value='Não']").prop("checked", true);
 	}
@@ -288,7 +288,7 @@ function carregaTrabalho () {
 	}
 	quaisCursoQualificacaoProfissionalf();
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.qual_curso_qualificacao_profissional;
-	$("#qual_curso_qualificacao_profissional").val(auxVar == null ? "" : auxVar);
+	$("#qual_curso_qualificacao_profissional").val(auxVar === null ? "" : auxVar);
 	// A que ramo pertence esse curso
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoRamoCursoLabel' id='tipoRamoCursoLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOTRABALHO.listaTipoRamoCurso.length; i++) {
@@ -302,7 +302,7 @@ function carregaTrabalho () {
 	$("#listaTipoRamoCurso").append(opts);
 	// Outro ramo que o curso pertence
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.outros_ramo_curso;
-	$("#outros_ramo_curso").val(auxVar == null ? "" : auxVar);
+	$("#outros_ramo_curso").val(auxVar === null ? "" : auxVar);
 	
 	// Você pretende fazer novos cursos...
 	var opts = "<div class='comboStilo selectInicial'><select name='tipoPretencaoCursosLabel' id='tipoPretencaoCursosLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
@@ -317,7 +317,7 @@ function carregaTrabalho () {
 	$("#listaTipoPretencaoCursos").append(opts);
 	// Qual curso pretendido
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.qual_curso_pretencao;
-	$("#qual_curso_pretencao").val(auxVar == null ? "" : auxVar);
+	$("#qual_curso_pretencao").val(auxVar === null ? "" : auxVar);
 	
 	// O que gostaria de fazer em seu tempo livre
 	var opts = "";
@@ -371,11 +371,11 @@ function carregaTrabalho () {
 	$("#divInfoTipoPrimeiraEscolha").empty();
 	$("#divInfoTipoPrimeiraEscolha").append(opts);
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.outros_primeira_escolha;
-	$("#outros_primeira_escolha").val(auxVar == null ? "" : auxVar);
+	$("#outros_primeira_escolha").val(auxVar === null ? "" : auxVar);
 
 	// Observações
 	auxVar = CIDADAOTRABALHO.dadosTrabalho.observacoes_gerais;
-	$("#observacoes_gerais").val(auxVar == null ? "" : auxVar);
+	$("#observacoes_gerais").val(auxVar === null ? "" : auxVar);
 }
 
 function salvaTrabalhoSuccess () {

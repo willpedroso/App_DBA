@@ -7,6 +7,7 @@ function carregaFrequencia () {
 			
 	if (USUARIO.perfil_tecnico == true) {
 		// Usuário é técnico, abre em frequências
+		aguardeMsgOn("Carregando dados...");
 		PageManager.loadTmpl('div_frequencia');
 	}
 	else {
@@ -18,12 +19,14 @@ function carregaFrequencia () {
 function salvaFrequenciaSuccess () {
 	console.log("salvaFrequenciaSuccess");
 	
+	aguardeMsgOn("Carregando dados...");
 	PageManager.loadTmpl('div_frequencia');
 }
 
 function salvaFrequenciaFail (err) {
 	console.log("salvaFrequenciaFail: " + err);
 
+	aguardeMsgOff();
 	// todo: revisar
 	alert ("Houve falha no salvamento da frequência.");
 	// revisar
@@ -66,5 +69,6 @@ function dataMudou(Atuacao) {
 	console.log("dataMudou");
 	
 	FREQUENCIA.auxData = $("#dataCorrente"/* + Atuacao*/).val();
+	aguardeMsgOn("Carregando dados...");
 	PageManager.loadTmpl('div_frequencia');
 }

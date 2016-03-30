@@ -56,11 +56,11 @@ function carregaDadosInfoBasicas() {
 	var auxVar;
 	
 	// GÊNERO
-	if (INFOBASICAS.generoCidadao.info_orientacao_sexual_genero == 1) {
+	if (INFOBASICAS.generoCidadao.info_orientacao_sexual_genero === 1) {
 		// Sim
 		$("input[name='infoOrientacaoSexual'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.generoCidadao.info_orientacao_sexual_genero == 0) {
+	else if (INFOBASICAS.generoCidadao.info_orientacao_sexual_genero === 0) {
 		// Não
 		$("input[name='infoOrientacaoSexual'][value='Não']").prop("checked", true);
 	}
@@ -72,41 +72,41 @@ function carregaDadosInfoBasicas() {
 	
 	// INFORMAÇÕES ADICIONAIS
 	auxVar = INFOBASICAS.infoAdicionaisCidadao.rg;
-	$("#rg_rne").val(auxVar == null ? "" : auxVar);
+	$("#rg_rne").val(auxVar === null ? "" : auxVar);
 
 	auxVar = INFOBASICAS.infoAdicionaisCidadao.cpf;
-	$("#cpf").val(auxVar == null ? "" : auxVar);
+	$("#cpf").val(auxVar === null ? "" : auxVar);
 
 	auxVar = INFOBASICAS.infoAdicionaisCidadao.nome_pai;
-	$("#nome_pai").val(auxVar == null ? "" : auxVar);
+	$("#nome_pai").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.infoAdicionaisCidadao.cidade_nascimento;
-	$("#cidade_nascimento").val(auxVar == null ? "" : auxVar);
+	$("#cidade_nascimento").val(auxVar === null ? "" : auxVar);
 	
 	// SITUAÇÃO DE RUA
 	auxVar = INFOBASICAS.situacaoRuaCidadao.outros_situacao_rua;
-	$("#outros_situacao_rua").val(auxVar == null ? "" : auxVar);
+	$("#outros_situacao_rua").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.local_onde_encontra;
-	$("#local_onde_encontra").val(auxVar == null ? "" : auxVar);
+	$("#local_onde_encontra").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.onde_morava_antes_rua;
-	$("#onde_morava_antes_rua").val(auxVar == null ? "" : auxVar);
+	$("#onde_morava_antes_rua").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.bairro;
-	$("#bairro").val(auxVar == null ? "" : auxVar);
+	$("#bairro").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.municipio_procendencia;
-	$("#municipio_procendencia").val(auxVar == null ? "" : auxVar);
+	$("#municipio_procendencia").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.acompanhante_rua_outros;
-	$("#acompanhante_rua_outros").val(auxVar == null ? "" : auxVar);
+	$("#acompanhante_rua_outros").val(auxVar === null ? "" : auxVar);
 	
-	if (INFOBASICAS.situacaoRuaCidadao.tem_filhos == 1) {
+	if (INFOBASICAS.situacaoRuaCidadao.tem_filhos === 1) {
 		// Sim
 		$("input[name='temFilho'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.situacaoRuaCidadao.tem_filhos == 0) {
+	else if (INFOBASICAS.situacaoRuaCidadao.tem_filhos === 0) {
 		// Não
 		$("input[name='temFilho'][value='Não']").prop("checked", true);
 	}
@@ -117,13 +117,13 @@ function carregaDadosInfoBasicas() {
 	abreQtdFilhos();
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.qtd_filhos;
-	$("#qtd_filhos").val(auxVar == null ? "" : auxVar);
+	$("#qtd_filhos").val(auxVar === null ? "" : auxVar);
 	
-	if (INFOBASICAS.situacaoRuaCidadao.contato_familia == 1) {
+	if (INFOBASICAS.situacaoRuaCidadao.contato_familia === 1) {
 		// Sim
 		$("input[name='infoTemContatoFamilia'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.situacaoRuaCidadao.contato_familia == 0) {
+	else if (INFOBASICAS.situacaoRuaCidadao.contato_familia === 0) {
 		// Não
 		$("input[name='infoTemContatoFamilia'][value='Não']").prop("checked", true);
 	}
@@ -133,11 +133,11 @@ function carregaDadosInfoBasicas() {
 	}
 	abreQualFamiliar();
 	
-	if (INFOBASICAS.situacaoRuaCidadao.contato_parente == 1) {
+	if (INFOBASICAS.situacaoRuaCidadao.contato_parente === 1) {
 		// Sim
 		$("input[name='infoContatoFamilia'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.situacaoRuaCidadao.contato_parente == 0) {
+	else if (INFOBASICAS.situacaoRuaCidadao.contato_parente === 0) {
 		// Não
 		$("input[name='infoContatoFamilia'][value='Não']").prop("checked", true);
 	}
@@ -147,20 +147,20 @@ function carregaDadosInfoBasicas() {
 	}
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.contato_familia_outros;
-	$("#contato_familia_outros").val(auxVar == null ? "" : auxVar);
+	$("#contato_familia_outros").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.referencia_familiar;
-	$("#referencia_familiar").val(auxVar == null ? "" : auxVar);
+	$("#referencia_familiar").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.telefone;
-	$("#telefone").val(auxVar == null ? "" : auxVar);
+	$("#telefone").val(auxVar === null ? "" : auxVar);
 	
 	// TRABALHO E EDUCAÇÃO
-	if (INFOBASICAS.trabalhoEducacaoCidadao.trabalhando == 1) {
+	if (INFOBASICAS.trabalhoEducacaoCidadao.trabalhando === 1) {
 		// Sim
 		$("input[name='infoTrabalhando'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.trabalhoEducacaoCidadao.trabalhando == 0) {
+	else if (INFOBASICAS.trabalhoEducacaoCidadao.trabalhando === 0) {
 		// Não
 		$("input[name='infoTrabalhando'][value='Não']").prop("checked", true);
 	}
@@ -170,20 +170,20 @@ function carregaDadosInfoBasicas() {
 	}
 
 	auxVar = INFOBASICAS.trabalhoEducacaoCidadao.profissao_atividade;
-	$("#profissao_atividade").val(auxVar == null ? "" : auxVar);
+	$("#profissao_atividade").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.trabalhoEducacaoCidadao.escolaridades_outros;
-	$("#escolaridades_outros").val(auxVar == null ? "" : auxVar);
+	$("#escolaridades_outros").val(auxVar === null ? "" : auxVar);
 	
 	// SAÚDE
 	auxVar = INFOBASICAS.saudeCidadao.condicoes_saude_outros;
-	$("#condicao_saude_outros").val(auxVar == null ? "" : auxVar);
+	$("#condicao_saude_outros").val(auxVar === null ? "" : auxVar);
 	
-	if (INFOBASICAS.saudeCidadao.gestante == 1) {
+	if (INFOBASICAS.saudeCidadao.gestante === 1) {
 		// Sim
 		$("input[name='infoGestante'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.saudeCidadao.gestante == 0) {
+	else if (INFOBASICAS.saudeCidadao.gestante === 0) {
 		// Não
 		$("input[name='infoGestante'][value='Não']").prop("checked", true);
 	}
@@ -192,11 +192,11 @@ function carregaDadosInfoBasicas() {
 		$("input[name='infoGestante'][value='NãoInformado']").prop("checked", true);
 	}
 
-	if (INFOBASICAS.saudeCidadao.possui_deficiencia == 1) {
+	if (INFOBASICAS.saudeCidadao.possui_deficiencia === 1) {
 		// Sim
 		$("input[name='possui_deficiencia'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.saudeCidadao.possui_deficiencia == 0) {
+	else if (INFOBASICAS.saudeCidadao.possui_deficiencia === 0) {
 		// Não
 		$("input[name='possui_deficiencia'][value='Não']").prop("checked", true);
 	}
@@ -207,13 +207,13 @@ function carregaDadosInfoBasicas() {
 	abreQualDeficiencia();
 	
 	auxVar = INFOBASICAS.saudeCidadao.quais_deficiencias;
-	$("#quais_deficiencias").val(auxVar == null ? "" : auxVar);
+	$("#quais_deficiencias").val(auxVar === null ? "" : auxVar);
 	
-	if (INFOBASICAS.saudeCidadao.alcool_droga == 1) {
+	if (INFOBASICAS.saudeCidadao.alcool_droga === 1) {
 		// Sim
 		$("input[name='alcool_droga'][value='Sim']").prop("checked", true);
 	}
-	else if (INFOBASICAS.saudeCidadao.alcool_droga == 0) {
+	else if (INFOBASICAS.saudeCidadao.alcool_droga === 0) {
 		// Não
 		$("input[name='alcool_droga'][value='Não']").prop("checked", true);
 	}
@@ -223,14 +223,14 @@ function carregaDadosInfoBasicas() {
 	}
 	
 	auxVar = INFOBASICAS.saudeCidadao.nome_drogas;
-	$("#nome_drogas").val(auxVar == null ? "" : auxVar);
+	$("#nome_drogas").val(auxVar === null ? "" : auxVar);
 	
 	auxVar = INFOBASICAS.saudeCidadao.frequencia_drogas;
-	$("#frequencia_drogas").val(auxVar == null ? "" : auxVar);
+	$("#frequencia_drogas").val(auxVar === null ? "" : auxVar);
 	
 	// INFORMAÇÕES COMPLEMENTARES
 	auxVar = INFOCOMPLE.infoComplementares;
-	$("#informacoes_complementares").val(auxVar == null ? "" : auxVar);	
+	$("#informacoes_complementares").val(auxVar === null ? "" : auxVar);	
 };
 
 /******************************************************************
@@ -480,7 +480,7 @@ function infoBasicasSalva() {
 	// Quantidade de filhos
 	if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
 		// Avalia quantos filhos
-		if ($('#qtd_filhos').val() == '' || isNaN($('#qtd_filhos').val()))
+		if ($('#qtd_filhos').val() === '' || isNaN($('#qtd_filhos').val()))
 		{
 			$('#qtd_filhos').addClass('inputFocus');	
 			erro = true;
@@ -495,7 +495,7 @@ function infoBasicasSalva() {
 	// SAÚDE
 	// Quais deficiências
 	if ($("input:radio[name=possui_deficiencia]:checked").val() == "Sim") {
-		if ($('#quais_deficiencias').val() == '')
+		if ($('#quais_deficiencias').val() === '')
 		{
 			$('#quais_deficiencias').addClass('inputFocus');	
 			erro = true;

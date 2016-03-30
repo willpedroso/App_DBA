@@ -87,17 +87,16 @@ function iniAbasUsuario (indiceCidadao) {
 	if (abaAtividade) {
         opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Atividades\');PageManager.loadTmpl(\'div_atividades\');ATIVIDADE.dadosEntrada(null, \'ATIVIDADE\', ATIVIDADE.apresentaCalendario, null); abas();\">Atividades</li>";
 	}
-	if (abaSocial) {
-        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Social\');CIDADAOSOCIAL.dadosEntrada(); abas();\">Social</li>";
+	if (abaSaude) {
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Saude\');CIDADAOSAUDE.dadosEntrada(); abas();\">Sa&uacute;de </li>";
 	}
 	if (abaTrabalho) {
         opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Trabalho\');CIDADAOTRABALHO.dadosEntrada(); abas();\">Trabalho</li>";
 	}
-	if (abaSaude) {
-        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Saude\');CIDADAOSAUDE.dadosEntrada(); abas();\">Sa&uacute;de </li>";
+	if (abaSocial) {
+        opcoesAba += "<li class=\"active\" onclick=\"console.log(\'Social\');CIDADAOSOCIAL.dadosEntrada(); abas();\">Social</li>";
 	}
-    opcoesAba += "<li class=\"active\">Historico de altera&ccedil;&otilde;es</li>" +
-				 "</ul>";
+    opcoesAba += "</ul>";
 				 
 	$("#menu_abas").empty();
 	$("#menu_abas").append(opcoesAba);
