@@ -1,5 +1,6 @@
 // JavaScript Document
 $(document).ready(function(){
+
  var flag = "1";
 $('#bt_aba').click(function(event){
   flag = "0"; //flag 0 means click happened in the area where we should not do any action
@@ -18,6 +19,13 @@ $('html').click(function() {
 });
   /* FIM - RADIO SITUACAO CADASTRAL */
   
+/*MÁSCARAS*/
+jQuery('#data_admissao').mask('00/00/0000');
+jQuery('#cpf').mask('000.000.000-00', {reverse: true});
+//jQuery('#user').mask('000.000.000-00', {reverse: true});
+
+
+
   
   /* INICIO - RADIO PRIORIDADE */
   var valRadio = '';
