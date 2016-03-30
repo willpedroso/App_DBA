@@ -93,16 +93,32 @@
         <!--<img src="img/loading.gif" />
         <p>Carregando dados...</p>-->
       </div>
+      <div id="msg-ok" style="display:none">
+        <div class="box">
+          <img src="img/msgInfo.png" width="128">
+          <p>Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! </p>
+          <input onclick="" type="button"  value="OK" id="bt-msgok" class="btnOk">
+        </div>
+
+      </div>
+      <div id="msg-yn" style="display:none">
+        <img src="img/msgWarning.png" width="128">
+        <div class="box">
+          <p>Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! Texto que pode ser modificado e pode ser usado para textos longos também! </p>
+          <input onclick="" type="button"  value="Sim" id="bt-msgy" class="btnY">
+          <input onclick="" type="button"  value="Não" id="bt-msgn" class="btnN">
+        </div>
+      </div>
 	  
       <div id="div_header" class="divHeader hideme">
         <div class="divNav">
-          <!--<button class="button_back" onclick="btnVoltar()"><img src="img/icoPagPrev.png"></button>-->
+          <button class="button_reload" onclick="btnAtualizar()"><img src="img/icoReload.png" width="66" height="56"></button>
           <div class="logo">
             <div style="width: 86px; margin: 0 auto;">
               <img src="img/logo.png">
             </div>
           </div>
-          <button class="button_aba" id="bt_aba" style="display:none"><img src="img/icoMenuFico.png"></button>
+          <button class="button_aba" id="bt_aba" style="display:none"><img src="img/icoMenuFico.png" width="56" height="56"></button>
         </div>
         <div class="divMenu">
           <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu(); fechaficha();">CIDADÃOS</button>

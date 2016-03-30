@@ -54,6 +54,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
   transition: opacity 0.5s 0.5s ease; 
   opacity: 0.5;
 }
+.divLogin form input.usuario::-webkit-input-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:32px; }
 
 #loader{
 	position: absolute;
@@ -71,6 +72,96 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	height: 300px;
 	text-align: center;
 }
+
+
+#msg-ok{
+	position: absolute;
+	display: block;
+	width: 800px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 316px 0 0 0;
+	z-index: 9999;
+	background: rgba(255, 255, 255, 0.7);
+	text-align: center;
+}
+#msg-ok .box{
+	background: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	padding: 16px;
+}
+#msg-ok .box p{
+	text-align: center;
+	margin: 16px 48px 16px 48px;
+}
+
+#msg-yn{
+	position: absolute;
+	display: block;
+	width: 800px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 316px 0 0 0;
+	z-index: 9999;
+	background: rgba(255, 255, 255, 0.7);
+	text-align: center;
+}
+#msg-yn .box{
+	background: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	padding: 16px;
+}
+#msg-yn .box p{
+	text-align: center;
+	margin: 16px 48px 16px 48px;
+}
+
+
+.btnOk{
+	background: #eb8202;
+	color: #fff;
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	height: 72px;
+	width: 276px;
+	border: none;
+	padding: 5px 32px 0 32px;
+	cursor: pointer;
+	margin: 15px 0 15px 0;
+}
+.btnY{
+	background: #6A9B53;
+	color: #fff;
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	height: 72px;
+	width: 276px;
+	border: none;
+	padding: 5px 32px 0 32px;
+	cursor: pointer;
+	margin: 15px 50px 15px 0;
+	float: right;
+}
+.btnN{
+	background: #9C2F19;
+	color: #fff;
+	font-family: "Roboto", Arial;
+	font-size: 28px;
+	height: 72px;
+	width: 276px;
+	border: none;
+	padding: 5px 32px 0 32px;
+	cursor: pointer;
+	margin: 15px 0 15px 50px;
+	float: left;
+}
+
+
+
+
+
 
 .container{
 	background-color: #ebebeb;
@@ -164,7 +255,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     background: none;
     border: none;
     float: left;
-    background: #eb8202 !important;
+    
 }
 .divHeader .divNav button.button_aba{
 	float: right;
@@ -1048,6 +1139,11 @@ p.info-basica{
 
 
 }
+
+
+
+
+
 .btnEntrar{
 	background: #eb8202;
 	color: #fff;
@@ -1325,6 +1421,7 @@ p.info-basica{
 	padding:4px 16px 4px 16px;
 	float:left;
 	clear:both;	
+	font-size: 32px;
 }
 .divLogin form input.senha{
 	background: url(../img/icoPassword.png) right no-repeat #ebebeb;
@@ -2496,7 +2593,7 @@ span.phone-img {
     -webkit-transform: translate3d(0, 0, 0);
 }
 .divNav .logo{
-	width: 744px;
+	width: 678px;
 	height: 60px;
 	float: left;
 }
@@ -2514,12 +2611,23 @@ span.phone-img {
     cursor: pointer;
     font-size: 24px;
 }
+.button_reload{
+	z-index: 85;
+	height: 60px;
+	margin: 0;
+    width: 66px;
+    color:#FFF;
+    padding: 2px 0 0 0; 
+    cursor: pointer;
+    font-size: 16px;
+    background: #FFF !important;
+}
 .button_aba{
     z-index: 85;
 	height: 60px;
 	margin: 0;
     width: 56px;
-    
+    background: #eb8202 !important;
     padding: 0; 
     cursor: pointer;
     font-size: 24px;
