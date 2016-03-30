@@ -1850,7 +1850,7 @@ var BANCODADOS = {
     },
 
 	insertDataFail: function (err) {
-        console.log("insertDataFail - msg: " + err);
+        console.log("insertDataFail");
 		aguardeMsgOff();
         alert("Erro na inserção de dados no banco - msg: " + err);
 	},
@@ -1880,7 +1880,7 @@ var BANCODADOS = {
 	},
 
     createTablesFail: function (err) {
-        console.log("createTablesFail - msg: " + err);
+        console.log("createTablesFail");
 		aguardeMsgOff();
         alert("Erro na criação das tabelas do banco de dados - msg: " + err);
     },
