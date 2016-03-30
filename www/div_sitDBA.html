@@ -18,7 +18,7 @@
               <div class="msgErro" style="display:none">
                 <span class="ico"></span><p>Erro ao processar as informações.</p>
               </div>
-                <div class="linhaForm"> 
+                <div class="linhaForm" id="indicaCamposObrigatorios"> 
                   <span class="titLabel"></span>
                   <p class="camposObrigatorios">* indica campos obrigatórios.</p>
                 </div>
@@ -45,7 +45,7 @@
               
               <!-- BLOCO 2 -->
               
-                <div class="linhaForm">
+                <div class="linhaForm" id="divPrioridade">
                   <span class="titLabel">Prioridade:</span>
                       <div id="infoPrioridade" class="radioButton">
                         <input type="radio" name="infoPrioridade" value="0" class="radio">
@@ -83,18 +83,18 @@
                     </label>
                   </div>
 
-                <div class="linhaForm"> 
+                <div class="linhaForm" id="dataInclusaoDBA"> 
                     <span class="titLabel">Data de inclusão no DBA:</span>
                     <input type="date" class="inputMedio float-nn" value="dd/mm/aaaa" id="data_inc_dba" name="data_inc_dba">
                  </div>
-                 <div class="linhaForm"> 
+                 <div class="linhaForm" id="dataExclusaoDBA"> 
                     <span class="titLabel">Data de exclusão no DBA:</span>
                     <input type="date" class="inputMedio float-nn" value="dd/mm/aaaa" id="data_exc_dba" name="data_exc_dba">
                  </div>
                                     
             </div>  
           
-            <input type="button" onclick="validaCamposSituacaoDBA()" class="btnAlterar" value="Salvar Alterações">
+            <input type="button" onclick="validaCamposSituacaoDBA()" id="botaoSalvar" class="btnAlterar" value="Salvar Alterações">
           
         </form>
 

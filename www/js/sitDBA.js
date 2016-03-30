@@ -26,8 +26,10 @@ function carregaSituacaoDBA () {
 		opts += "<div class='checkbox'><input type='checkbox' name='motivoInativacao" + i + "' value='" + i + "' class='checkbox check'" + (encontrou == true ? "checked" : "") + ">";
 		opts += "<p>" + CIDADAO.listaTipoMotivoInativacao[i].nome + "</p></div>";
 	}
-	opts += "<input type='text' class='inputMed' value='' name='motivo_inativacao_outros' id='motivo_inativacao_outros' placeholder='Outros'>";
-	opts += "</div>";
+	if (USUARIO.perfil_tecnico != true) {
+		opts += "<input type='text' class='inputMed' value='' name='motivo_inativacao_outros' id='motivo_inativacao_outros' placeholder='Outros'>";
+		opts += "</div>";
+	}
 	
 	$("#listaMotivoInativacao").empty();
 	$("#listaMotivoInativacao").append(opts);
@@ -77,6 +79,42 @@ function carregaSituacaoDBA () {
 	
 	// Data de exclusão no DBA
 	$("#data_exc_dba").val(SITUACAODBA.dt_exclusao_dba != null ? SITUACAODBA.dt_exclusao_dba.substr(0, 10) : "");
+	
+	// Ajusta campos apresentados para usuário
+	if (USUARIO.perfil_tecnico == true) {
+		ajustaCamposTecnico();
+	}
+}
+
+function ajustaCamposTecnico () {
+	console.log("ajustaCamposTecnico");
+
+	// Texto indicador de campos obrigatórios
+	jQuery('#indicaCamposObrigatorios').attr('style','display:none');
+
+	// Situação Cadastral - Apenas leitura
+	$("input[name='infoSituacaoDba']").prop("disabled", true);
+	
+	// Motivo da inativação - Não apresentado
+	jQuery('#motivoInativacao').attr('style','display:none');
+	
+	// Prioridade
+	jQuery('#divPrioridade').attr('style','display:none');
+	
+	// Autoriza Programa DBA
+	jQuery('#autorizaDba').attr('style','display:none');
+	
+	// Local de acolhida
+	jQuery('#localDba').attr('style','display:none');
+	
+	// Data de inclusão no DBA
+	jQuery('#dataInclusaoDBA').attr('style','display:none');
+	
+	// Data de exclusão no DBA
+	jQuery('#dataExclusaoDBA').attr('style','display:none');
+
+	// Botão Salvar
+	jQuery('#botaoSalvar').attr('style','display:none');
 }
 
 function salvaSituacaoDBASuccess () {

@@ -36,6 +36,48 @@ var BANCODADOS = {
     // **********************************************************************************************************
     // SINCRONIZAÇÃO DE DADOS
     // **********************************************************************************************************
+	listaTokens: ["832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38",
+					"a9be4c2a4041cadbf9d61ae16dd1389e58daf01bf616370befe2ad36e8391dfa",
+					"b628386c9b92481fab68fbf284bd6a64a9789186ffde812cde7305a096b64d67",
+					"e761813f83dfc86fa1c6e0da5510c3b8489360745ea37d49ef3007aae68b98a0",
+					"beb3c650aaae598375f60df2c60632697209f511857194610f44897d810eebaa",
+					"561918f13a2832726ec7f2e16ecd76c11b25a80d2a3f04f3ab19ab24d5741b81",
+					"a8345c3bb9e3896ea538ce77ffaf2c2062030d0c2f16eb657556ac718506047e",
+					"2f885d0fbe2e131bfc9d98363e55d1d4484cc97087d1d8aaf81262a30d94851f",
+					"3c88c1db16b9523b4dcdcd572aa1e16a3a74864c593d71aa5eec4da27f11768f",
+					"375abb16ea7c1f83be31ce4c3495ec41f29736c81774da6a4b0c06c4720eeb79",
+					"d2ed45a52bc0edfa11c2064e9edee8bf42511f028128ef5885fc2f31fd89d874",
+					"b86e8d03fe992d1b0e19656875ee557c3923b64258e1d371f52a0fd399d52f43",
+					"4c56392b1bd5e94efe423ed048c7b91a339047d546b3ab9edc6450af2921a2cb",
+					"fdad3b5b2200b598dfde9517e5b426a8f86878b7116b98f7899222fd0cab7af3",
+					"1819fb9034f796275e6f64950a134e2ab3f106039b4e0c2435c14bb4074a5d95",
+					"7bfa32686d200c64cb46de03ac2eac0dfdb6e46b38fd38ec3ee5f823728ad30f",
+					"81c2f886f91e18fe16d6f4e865877cb68fc94fbcb22181bd573746c70a185c00",
+					"a97da629b098b75c294dffdc3e4639049447839b1eaefcfeb4b9d3cc81a5342e",
+					"2b8eba3cb0d0f1d761cb74d94a5ace3609db90308ca9ad12ca58e31e0c371d1d",
+					"500e75a036dc2d7d2fec5da1b71d36cc8585939e10dc0d11d37aa63cdeaecdf8",
+					"a5e00132373a7031000fd987a3c9f87b1a84e7f5785a8ef6837b8f8ab85eaece",
+					"50fa544aed05b973f5f774b13ca047128bd045c0275185605e58d7fec40ecae6",
+					"f8115834c8164062752eb91237442e01696fb322493073d42be4fafa2a7b6f77",
+					"0f96916306f9687aec9917c1bb53a5dff1b4a1e8b4c12f7c7f2e390c76b4cc12",
+					"1c95ee9c76a4fb9258cb07573752bef75276a666e0fdc644c4d51b4c70db892d",
+					"a891af83c4c009efe6b2ea0e5329a01072783ce95b1ffdeeef297ca54b6a1259",
+					"5b46ae0c23da9adc5b0b44b82be77b5b5ed9f910a5a0bb195a269bda9d82af81",
+					"34c89d2e54feb020b549dc7bea020afabdee0997d3fb6be8515a432051fe4e5c",
+					"6991168eae9de5863f14725c5fd803cd6c1aec706ffc46d4bb34dadd5b853be9",
+					"0ac04853f8058f61af1ca7630e786d22e9c8c72816ffd1b23e14c4e8885bccca",
+					"41391252cc99302878f825a1565241f642bc4b96bb23d9a2d8dfc5edd8bc5ddc",
+					"9cd2158f9cf9ebc53d866a2ec13f9c4e4e443540b8c719c614b5621c121c0bdc",
+					"6ebb6699afb3a0b1e06a157974c1360406f223527e717f0f128f8485fbafa9d8",
+					"f16b1d1dec14dd6a94a580ca4894d11ff35d2ebad72de23e570c4f749d4f62c2",
+					"4ed1821c31cd5c17f150a5149ec39f8e13304f924ca0016d9ce9e45f499a8d25",
+					"0e5b1c1f07951111a99a8b8a7a6b58b1b709608f1aa518f725449a40ec72a649",
+					"8f09bb4a3056250384a32cb6de23ba0db1bb73ed1b44115f5efc8f2d899d4b13",
+					"b83612231364b4cde46b9282b2d4d05454599facfae270ff6ed790c431c019e5",
+					"c628872e791cfd640765cab52eeac879e30b9cf9da296549303715af6230a539",
+					"0decd736e9cee73e63418003b47d7d56bde39af4e20b04c70c423bbc4868bfab",
+					"31e2504bbc332378592fb32992f57563412301454090d60344e086faf8a54906",
+					"1403660817040f58b259d4310aa632b76212c4e586ecd96f233fad0466f8849d"],
 	listaDownload: [],
 	listaMsgDownload: [],
 	listaNomeDownload: [],
@@ -257,17 +299,20 @@ var BANCODADOS = {
 		aguardeMsgOn(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter]);
 		
 		var iUsuario = BANCODADOS.usuarioSincronismo == -1 ? "0" : BANCODADOS.usuarioSincronismo;
-		console.log("usuário internet: " + iUsuario);
+		
+		// Sorteia token aleatoriamente
+		var tokenIndex = Math.floor(Math.random() * BANCODADOS.listaTokens.length);
+		
 	    $.ajax({
 	        type: "GET",
-			headers: {access_token: "832688ff5af6c6dfef974773740ef2b5eb2380e8dd23c01938fa4e437828fe38", usuario_id: iUsuario, service_name: BANCODADOS.listaNomeDownload[BANCODADOS.downloadCounter]},
+			headers: {access_token: BANCODADOS.listaTokens[tokenIndex], usuario_id: iUsuario, service_name: BANCODADOS.listaNomeDownload[BANCODADOS.downloadCounter]},
 			url: BANCODADOS.listaDownload[BANCODADOS.downloadCounter++]
 	    })
 	    .done((function (msg) {
 			try {
 				// todo: testes retirar
 				var date = new Date();
-				console.log("FINAL do GET e INICIO do parse: " + date);
+				//console.log("FINAL do GET e INICIO do parse: " + date);
 				//console.log("Resposta: " + msg);
 				// testes retirar
 				
