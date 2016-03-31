@@ -430,7 +430,7 @@
 		/*		
 		if (res.rows.length != 1) {
 			// Há mais de um registro de saúde para o cidadão
-			alert ("Erro: Há mais de um registro de saúde para o cidadão!");
+			alertMessage ("Erro: Há mais de um registro de saúde para o cidadão!");
 		}
 		*/
 		var ds = {
@@ -791,8 +791,9 @@
 							", tempo_efeito_droga_depois_programa " +
 							", tratamento_saude " +
 							", dt_criacao " +
-							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							", status " +
+							", mobile) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
 							CIDADAOSAUDE.cidadao_id,
 							dadosLista.shift(),
@@ -891,7 +892,8 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							(CIDADAOSAUDE.auxDate = hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
-							1
+							1,
+							CIDADAO.INSERT_MOBILE
 							], 
 							CIDADAOSAUDE.recuperaIDSaude, CIDADAOSAUDE.salvaCidadaoSaudeFail);
 	},
@@ -928,14 +930,15 @@
 		console.log("salvalistaCadastroAcompanhamentoUBS");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO cadastro_acompanhamento_ubs (saude_id, nome_ubs, especialidade, nome_tecnico_referencia, dt_criacao) " +
-							"VALUES (?, ?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO cadastro_acompanhamento_ubs (saude_id, nome_ubs, especialidade, nome_tecnico_referencia, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].nome_ubs,
 							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].especialidade,
 							CIDADAOSAUDE.auxcadastroAcompanhamentoUBS[CIDADAOSAUDE.auxCounter].nome_tecnico_referencia,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxcadastroAcompanhamentoUBS.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaCadastroAcompanhamentoUBS,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -945,14 +948,15 @@
 		console.log("salvalistaInternacao");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO internacao (saude_id, quantas_vezes, local, motivo, dt_criacao) " +
-							"VALUES (?, ?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO internacao (saude_id, quantas_vezes, local, motivo, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].quantas_vezes,
 							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].local,
 							CIDADAOSAUDE.auxinternacao[CIDADAOSAUDE.auxCounter].motivo,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxinternacao.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaInternacao,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -971,13 +975,14 @@
 		}
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO telefone_familiar (saude_id, tipo_parentesco_id, numero, dt_criacao) " +
-							"VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO telefone_familiar (saude_id, tipo_parentesco_id, numero, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							idParentesco,
 							CIDADAOSAUDE.auxtelefoneFamiliar[CIDADAOSAUDE.auxCounter].numero,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxtelefoneFamiliar.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaTelefoneFamiliar,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -987,8 +992,8 @@
 		console.log("salvalistaDrogasTipo1");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao) " +
-							"VALUES (?, ?, ?, ?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							1,
@@ -996,7 +1001,8 @@
 							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].dias_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].dias_frequencia.indexOf(" ")),
 							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].meses_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].meses_frequencia.indexOf(" ")),
 							CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].anos_frequencia.substring(0, CIDADAOSAUDE.auxdrogasTipo1[CIDADAOSAUDE.auxCounter].anos_frequencia.indexOf(" ")),
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo1.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo1,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -1006,13 +1012,14 @@
 		console.log("salvalistaDrogasTipo2");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao) " +
-							"VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							2,
 							CIDADAOSAUDE.auxdrogasTipo2[CIDADAOSAUDE.auxCounter].nome_droga,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo2.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo2,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -1022,13 +1029,14 @@
 		console.log("salvalistaDrogasTipo3");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao) " +
-							"VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO drogas_faz_uso (saude_id, tipo_pergunta, nome_droga, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							3,
 							CIDADAOSAUDE.auxdrogasTipo3[CIDADAOSAUDE.auxCounter].nome_droga,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxdrogasTipo3.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaDrogasTipo3,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -1038,13 +1046,14 @@
 		console.log("salvalistaEspecialidadesConsultaHoje");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO consulta_saude (saude_id, especialidade, dt_criacao) " +
-							"VALUES (?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO consulta_saude (saude_id, especialidade, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							CIDADAOSAUDE.auxespecialidadesConsultaHoje[CIDADAOSAUDE.auxCounter].especialidade,
 							//CIDADAOSAUDE.auxespecialidadesConsultaHoje[CIDADAOSAUDE.auxCounter].local,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxespecialidadesConsultaHoje.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaEspecialidadesConsultaHoje,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -1054,13 +1063,14 @@
 		console.log("salvalistaOficinasParticipou");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO participacao_oficinas_oferecidas (saude_id, nome, local, dt_criacao) " +
-							"VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO participacao_oficinas_oferecidas (saude_id, nome, local, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							CIDADAOSAUDE.auxoficinasParticipou[CIDADAOSAUDE.auxCounter].nome,
 							CIDADAOSAUDE.auxoficinasParticipou[CIDADAOSAUDE.auxCounter].local,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxoficinasParticipou.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaOficinasParticipou,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
@@ -1070,13 +1080,14 @@
 		console.log("salvalistaAtividadeRecreativaExterna");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO atividades_recreativas_externas (saude_id, nome, local, dt_criacao) " +
-							"VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO atividades_recreativas_externas (saude_id, nome, local, dt_criacao, mobile) " +
+							"VALUES (?, ?, ?, ?, ?)",
 							[
 							CIDADAOSAUDE.novo_saude_id,
 							CIDADAOSAUDE.auxatividadeRecreativaExterna[CIDADAOSAUDE.auxCounter].nome,
 							CIDADAOSAUDE.auxatividadeRecreativaExterna[CIDADAOSAUDE.auxCounter].local,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())
+							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							CIDADAO.INSERT_MOBILE
 							],
 							++CIDADAOSAUDE.auxCounter == CIDADAOSAUDE.auxatividadeRecreativaExterna.length ? CIDADAOSAUDE.fimSalvaLista : CIDADAOSAUDE.salvalistaAtividadeRecreativaExterna,
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);

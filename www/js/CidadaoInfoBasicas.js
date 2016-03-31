@@ -525,7 +525,7 @@
 		
 		// Retorna
 		// todo: revisar
-		alert("Houve falha na obtenção de informações básicas do cidadão.");
+		alertMessage("Houve falha na obtenção de informações básicas do cidadão.");
 
 		INFOBASICAS.cbFail_f(err);
 	},
@@ -678,6 +678,7 @@
 					", condicao_saude_outros = ?, gestante = ?, possui_deficiencia = ?, quais_deficiencias = ?, alcool_droga = ?, nome_drogas = ?, frequencia_drogas = ?" +
 					// Informações Complementares
 					", informacoes_complementares = ?" +
+					", mobile = ?" +
 					" WHERE id = ?",
 					[info_orientacao_sexual_genero,
 					 sexo_id,
@@ -727,6 +728,7 @@
 					 frequencia_drogas,
 					 
 					 informacoes_complementares,
+					 CIDADAO.UPDATE_MOBILE,
 					 
 					 INFOBASICAS.cidadao_id], 
 					INFOBASICAS.excluiAcompanhanteRua, 
@@ -760,10 +762,11 @@
 		
 		// Salva acompanhante_rua
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO acompanhantes_rua (cidadao_id, tipo_acompanhante_rua_id, dt_criacao) VALUES (?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO acompanhantes_rua (cidadao_id, tipo_acompanhante_rua_id, dt_criacao, mobile) VALUES (?, ?, ?, ?)",
 							[INFOBASICAS.cidadao_id,
 							 INFOBASICAS.auxAcompanhanteRua[INFOBASICAS.acompanhanteRuaCounter++],
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							INFOBASICAS.acompanhanteRuaCounter < INFOBASICAS.auxAcompanhanteRua.length ? INFOBASICAS.excluiAcompanhanteRuaSuccess : INFOBASICAS.excluiQuaisFamiliares,
 							INFOBASICAS.salvaCidadaoFail);
 	},
@@ -784,10 +787,11 @@
 
 		// Salva quais_familiares
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO contato_familia (cidadao_id, tipo_parentesco_id, dt_criacao) VALUES (?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO contato_familia (cidadao_id, tipo_parentesco_id, dt_criacao, mobile) VALUES (?, ?, ?, ?)",
 							[INFOBASICAS.cidadao_id,
 							 INFOBASICAS.auxQuaisFamiliares[INFOBASICAS.quaisFamiliaresCounter++],
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							INFOBASICAS.quaisFamiliaresCounter < INFOBASICAS.auxQuaisFamiliares.length ? INFOBASICAS.excluiQuaisFamiliaresSuccess : INFOBASICAS.excluiCondicoesSaude,
 							INFOBASICAS.salvaCidadaoFail);
 	},
@@ -808,10 +812,11 @@
 
 		// Salva condicao_saude
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO condicao_saude (cidadao_id, tipo_condicao_saude_id, dt_criacao) VALUES (?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO condicao_saude (cidadao_id, tipo_condicao_saude_id, dt_criacao, mobile) VALUES (?, ?, ?, ?)",
 							[INFOBASICAS.cidadao_id,
 							 INFOBASICAS.auxCondicoesSaude[INFOBASICAS.condicoesSaudeCounter++],
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							INFOBASICAS.condicoesSaudeCounter < INFOBASICAS.auxCondicoesSaude.length ? INFOBASICAS.excluiCondicoesSaudeSuccess : INFOBASICAS.salvaCidadaoSuccess,
 							INFOBASICAS.salvaCidadaoFail);
 	},

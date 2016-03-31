@@ -3,6 +3,8 @@
     cbSuccess_f: null,
     cbFail_f: null,
 	
+	abaAtiva: null,
+	
 	listaFrequencia: [],
 	cidadao_id: null,
 	abas: [],
@@ -188,7 +190,10 @@
 								"AND data_frequencia = ? " +
 								"AND status = ? " +
 								//"AND tipo_atuacao_id = ?",
-								FREQUENCIA.listaTipoAtuacaoIDBusca,
+								FREQUENCIA.listaTipoAtuacaoIDBusca +
+								// ORDENAÇÃO - Se não for por cidadao_id, ocorre problemas nas listas de frequência
+								//" ORDER BY dt_criacao",
+								" ORDER BY cidadao_id, dt_criacao",
 								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, tipoAtuacao], 
 								[USUARIO.usuario_id, FREQUENCIA.auxData, 1], 
 								FREQUENCIA.listaFrequenciaSuccess, 
@@ -203,7 +208,10 @@
 								"AND status = ? " +
 								"AND cidadao_id = ? " +
 								//"AND tipo_atuacao_id = ?",
-								FREQUENCIA.listaTipoAtuacaoIDBusca,
+								FREQUENCIA.listaTipoAtuacaoIDBusca +
+								// ORDENAÇÃO - Se não for por cidadao_id, ocorre problemas nas listas de frequência
+								//" ORDER BY dt_criacao",
+								" ORDER BY cidadao_id, dt_criacao",
 								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao, tipoAtuacao], 
 								[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao], 
 								FREQUENCIA.listaFrequenciaSuccess, 
@@ -909,6 +917,7 @@
 		$("#freq_opcoes_abas").append(htmlAbasFrequencia);
 		// Efeito de abas do jquery
 		$( "#freq_abas" ).tabs();
+		$( "#freq_abas" ).tabs({active:FREQUENCIA.abaAtiva});
 		aguardeMsgOff();
 	},
 	
@@ -918,7 +927,7 @@
 		// Retorna
 		aguardeMsgOff();
 		// todo: revisar
-		alert("Houve falha na obtenção de informações de frequência.");
+		alertMessage("Houve falha na obtenção de informações de frequência.");
 		
 		FREQUENCIA.cbFail_f(err);
 	},
@@ -926,6 +935,19 @@
     // ****************** Salva frequência *********************
     salvaFrequencia: function(indiceCidadao, indiceFrequencia, frequencia, justificativa, cidadao_id, tipo_atuacao_id, cbSuccess, cbFail) {
 	    console.log("salvaFrequencia");
+		
+		// Salva o tipo de atuação para controlar a apresentação da aba correta após o recarregamento
+		switch (FREQUENCIA.listaIDVersusAtuacao_Nome[tipo_atuacao_id]) {
+			case "Saúde":
+				FREQUENCIA.abaAtiva = 0;
+				break;
+			case "Trabalho":
+				FREQUENCIA.abaAtiva = 1;
+				break;
+			case "Social":
+				FREQUENCIA.abaAtiva = 2;
+				break;
+		}
 		
 		// Salva funções de retorno
 		FREQUENCIA.cbSuccess_f = cbSuccess;
@@ -942,8 +964,8 @@
 				// Nova frequência, insere
 				var hoje = new Date();
 				var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
-				BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao) \
-									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+				BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
+									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 									[
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
@@ -955,15 +977,17 @@
 									FREQUENCIA.justificativa,
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
 									1,
-									strHoje
+									strHoje,
+									CIDADAO.INSERT_MOBILE
 									], 
 									FREQUENCIA.salvaFrequenciaSuccess, 
 									FREQUENCIA.salvaFrequenciaFail);
 			}
 			else {
 				// Atualização de frequência, desabilita frequência (status = 0) e insere nova frequência
-				BANCODADOS.sqlCmdDB("UPDATE frequencia SET status = ? WHERE id = ?",
-									[0, 
+				BANCODADOS.sqlCmdDB("UPDATE frequencia SET status = ?, mobile = ? WHERE id = ?",
+									[0,
+									CIDADAO.UPDATE_MOBILE,
 									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id
 									], 
 									FREQUENCIA.insereNovaFrequencia, FREQUENCIA.salvaFrequenciaFail);
@@ -973,8 +997,8 @@
 			// Nova frequência livre
 			var hoje = new Date();
 			var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
-			BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao) \
-								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
+								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 								[
 								cidadao_id,
 								"",
@@ -985,7 +1009,8 @@
 								justificativa,
 								1,
 								1,
-								strHoje
+								strHoje,
+								CIDADAO.INSERT_MOBILE
 								], 
 								FREQUENCIA.salvaFrequenciaSuccess, 
 								FREQUENCIA.salvaFrequenciaFail);
@@ -998,8 +1023,8 @@
 		// Insere nova frequencia
 		var hoje = new Date();
 		var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
-		BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao) \
-							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 							[
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
@@ -1011,7 +1036,8 @@
 							FREQUENCIA.justificativa,
 							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
 							1,
-							strHoje
+							strHoje,
+							CIDADAO.INSERT_MOBILE
 							], 
 							FREQUENCIA.salvaFrequenciaSuccess, 
 							FREQUENCIA.salvaFrequenciaFail);

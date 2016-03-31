@@ -28,7 +28,7 @@ function salvaFrequenciaFail (err) {
 
 	aguardeMsgOff();
 	// todo: revisar
-	alert ("Houve falha no salvamento da frequência.");
+	alertMessage ("Houve falha no salvamento da frequência.");
 	// revisar
 }
 

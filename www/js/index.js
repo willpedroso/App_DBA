@@ -68,12 +68,12 @@ var app = {
 	
 	createDBFail: function (err) {
 		// todo: definir o comportamento do app neste caso de erro
-		alert("Houve falha na criação do banco de dados. Erro: " + err);
+		alertMessage("Houve falha na criação do banco de dados. Erro: " + err);
 	},
 	
 	openDBFail: function (err) {
 		// todo: definir o comportamento do app neste caso de erro
-		alert("Houve falha na abertura do banco de dados. Erro: " + err);
+		alertMessage("Houve falha na abertura do banco de dados. Erro: " + err);
 	},
 	
     // Update DOM on a Received Event

@@ -65,7 +65,7 @@ function salvaCidadaoSuccess () {
 function salvaCidadaoFail (err) {
 	console.log("identificacao.salvaCidadaoFail: " + err);
 	// todo: testes retirar
-	alert("Houve erro no salvamento do cidadão: " + err);
+	alertMessage("Houve erro no salvamento do cidadão: " + err);
 	// todo: testes retirar
 }
 

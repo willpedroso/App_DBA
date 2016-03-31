@@ -14,6 +14,10 @@
 	auxCidadaoDados: null,
 	countListaCidadaosId: 0,
 	equipe_coordenacao_id: null,
+	
+	// ENVIO DE DADOS
+	UPDATE_MOBILE: 1,
+	INSERT_MOBILE: 2,
 
     // ****************** Obtém os dados de entrada *********************
 	// 				      Lista de cidadãos do usuário
@@ -140,10 +144,10 @@
 
 		// Obtém dados dos cidadãos
 		if (CIDADAO.equipe_coordenacao_id == null) {
-			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ?", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE id = ? ORDER BY nome", [CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 		}
 		else {
-			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE programa_dba = ? AND id = ?", [1, CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, nome, nome_social, nome_mae, dia_nascimento, mes_nascimento, ano_nascimento, situacao_cadastral, sisrua, programa_dba, ponto_servico_id, prioridade FROM cidadao WHERE programa_dba = ? AND id = ? ORDER BY nome", [1, CIDADAO.listaCidadaosId[CIDADAO.countListaCidadaosId++]], CIDADAO.dadosEntradaDadosCidadaosSuccess, CIDADAO.dadosEntradaFail);
 		}
 	},
 	
@@ -318,7 +322,7 @@
 		CIDADAO.auxCidadaoDados = cdados;
 		
 		// Salva no banco de dados
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ? WHERE id = ?",
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET nome = ?, nome_social = ?, nome_mae = ?, sisrua = ?, dia_nascimento = ?, mes_nascimento = ?, ano_nascimento = ?, mobile = ? WHERE id = ?",
 							[
 							nome,
 							nome_social,
@@ -327,6 +331,7 @@
 							dia_nascimento,
 							mes_nascimento,
 							ano_nascimento,
+							CIDADAO.UPDATE_MOBILE,
 							CIDADAO.listaCidadaosId[CIDADAO.indiceListaCidadao]
 							], CIDADAO.salvaCidadaoSuccess, CIDADAO.salvaCidadaoFail);
 	},

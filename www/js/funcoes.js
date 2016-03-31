@@ -154,7 +154,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if($('input.adicionaObs').val()  == ''){
-			alert("Preencha o campo Observações Rápidas");
+			alertMessage("Preencha o campo Observações Rápidas");
 		}
 		else{
 			
@@ -179,7 +179,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if($('input.adicionaObsCertidao').val()  == '' || $('.selectCertidao').text() == 'Selecione'){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -207,7 +207,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaDrogasAlemCrack').val()  == '' ){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -232,7 +232,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaEspecialidade').val()  == '' ){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -256,7 +256,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaDrogaHoje').val()  == '' ){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -280,7 +280,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaQualOficina').val()  == '' || $('input.adicionaLocalOficina').val()  == '' ){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -304,7 +304,7 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaQualAtividade').val()  == '' || $('input.adicionaLocalAtividade').val()  == '' ){
-			alert("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente");
 		}
 		else{
 			
@@ -324,29 +324,6 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	//ADICIONA CONTATO
 	$( document ).on( "click", ".btnAdicionaInputContato", function() {
 		adicionaContato(null);
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		//if($('input.adicionaNumContato').val()  == '' || $('.selectDispositivoContato').text() == 'Selecione'){
-		if($('input.adicionaNumContato').val()  == '' || $('#tipoDispositivoContato').val() == 'Selecione'){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$("#tipoDispositivoContato")[0].options[$("#tipoDispositivoContato")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$("#tipo_dispositivo_contato_id").val()+'" name="tipo_dispositivo_contato_id[]">'+
-			'<input type="text" value="'+$(".adicionaNumContato").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$(".adicionaNumContato").val()+'" name="numero_descricao[]">'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputContato').append(	html2insert);
-			$('input.adicionaNumContato').val('');
-			$("select#tipoDispositivoContato").prop('selectedIndex', 0);
-			//$('#tipoDispositivoContato').val('');
-		}
-		*/
 	});
 	
 	//ADICIONA CONTATO
@@ -358,58 +335,12 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	//ADICIONA CONTATO familiar
 	$( document ).on( "click", ".btnAdicionaInputContatoFamiliar", function() {
 		adicionaTelefoneFamiliar(null);
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if($('input.adicionaNumContatoFamiliar').val()  == '' || $('.selectTipoParente').text() == 'Selecione'){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".selectTipoParente").text()+'" name="input_'+idobj+'" class="inputAdicionaContatoSelect" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$("#tipo_parentesco_id").val()+'" name="tipo_familiar[]">'+
-			'<input type="text" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="input_'+idobj+'" class="inputAdicionaContato" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$(".adicionaNumContatoFamiliar").val()+'" name="numero_familiar[]">'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputContatoFamiliar').append(	html2insert);
-			$('input.adicionaNumContatoFamiliar').val('');
-			$('input.tipo_parentesco_id').val('');
-			$('.selectTipoParente').text('Tipo');
-		}
-		*/
 	});
 	
 	
 	//ADICIONA DROGAS
 	$( document ).on( "click", ".btnAdicionaInputDrogas", function() {
 		adicionaDrogas(null, null, null);
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if($('input.adicionaDrogas').val()  == ''){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaDrogas").val()+'" name="drogas_faz_uso[]" class="inputAdicionaQualDroga" readonly id="input_'+idobj+'">'+'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span>'+
-			'<div class="inputsTempo">'+
-			'<input type="text" value="'+(($("#diaDrogasFazUsoLabel").text() == 'Dias')? '':$("#diaDrogasFazUsoLabel").text()) +'" name="dias_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-			'<input type="text" value="'+(($("#mesesDrogasFazUsoLabel").text() == 'Meses')? '':$("#mesesDrogasFazUsoLabel").text())+'" name="meses_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-			'<input type="text" value="'+(($("#anosDrogasFazUsoLabel").text() == 'Anos')? '':$("#anosDrogasFazUsoLabel").text())+'" name="anos_drogas_faz_uso[]" class="inputAdicionaDrogasTempo" readonly id="input_'+idobj+'">'+
-			'</div>';
-			</div>';
-
-			$('.adicionaInputDrogas').append(	html2insert);
-			$('input.adicionaDrogas').val('');
-			$('#diaDrogasFazUsoLabel').text('Dias');
-			$('#mesesDrogasFazUsoLabel').text('Meses');
-			$('#anosDrogasFazUsoLabel').text('Anos');
-		}
-		*/
 	});
 	
 	
@@ -417,81 +348,17 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	//ADICIONA CONTATO EMPRESA
 	$( document ).on( "click", ".btnAdicionaInputContatoEmpresa", function() {
 		adicionaContatoEmpresa(null);
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if($('input.adicionaNumContatoEmpresa').val()  == '' || $('.selectDispositivoContatoEmpresa').text() == 'Selecione'){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$("#tipoDispositivoEmpresa")[0].options[$("#tipoDispositivoEmpresa")[0].selectedIndex].value+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresaSelect" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$("#tipo_dispositivo_contato_empresa_id").val()+'" name="tipo_dispositivo_contato_empresa_id[]">'+
-			'<input type="text" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="input_'+idobj+'" class="inputAdicionaContatoEmpresa" readonly id="input_'+idobj+'">'+
-			'<input type="hidden" value="'+$(".adicionaNumContatoEmpresa").val()+'" name="numero_descricao_empresa[]">'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputContatoEmpresa').append(	html2insert);
-			$('input.adicionaNumContatoEmpresa').val('');
-			$("select#tipoDispositivoEmpresa").prop('selectedIndex', 0);
-			//$('.selectDispositivoContatoEmpresa').text('Tipo');
-		}
-		*/
 	});
 	
 	
 	//ADICIONA PROVIDENCIA
 	$( document ).on( "click", ".btnAdicionaInputProvidencia", function() {
 		adicionaProvidencia();
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
-			'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputProvidencia').append(	html2insert);
-			$('input.adicionaObsProvidencia').val('');
-			$('input.adicionaObsProvidenciaPeq').val('');
-			$('textarea.textareaProvidencia').val('');
-		}
-		*/
 	});
 
 	//ADD PROVIDENCIA
 	$( document ).on( "click", ".btnAdicionaProvidencia", function() {
 		addProvidencia();
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaObsProvidencia").val()+'" name="tipo_providencia[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaObsProvidenciaPeq").val()+'" name="status_providencia[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
-			'<textarea name="observacao_providencia[]" class="textareaAdicionaProvidencia" readonly id="input_'+idobj+'">' + $(".textareaProvidencia").val() + '</textarea>'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputProvidencia').append(	html2insert);
-			$('input.adicionaObsProvidencia').val('');
-			$('input.adicionaObsProvidenciaPeq').val('');
-			$('textarea.textareaProvidencia').val('');
-		}
-		*/
 	});
 	
 	
@@ -499,28 +366,6 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	//ADICIONA ACOMPANHAMENTO/CADASTRO UBS
 	$( document ).on( "click", ".btnAdicionaInputUbs", function() {
 		adicionaAcompanhamentoUBS();
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		if( $('input.adicionaQualUbsSaude').val()  == '' || $('input.adicionaTecnicoReferenciaUbsSaude').val() == '' ){
-			alert("Preencha os campos corretamente");
-		}
-		else{
-			
-			var html2insert ='<div id="div'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaQualUbsSaude").val()+'" name="nome_ubs[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
-			'<input type="text" value="'+$(".adicionaTecnicoReferenciaUbsSaude").val()+'" name="tecnico_referencia_ubs[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
-			'<textarea name="especialidade_ubs[]" class="textareaAdicionaEspecialidadeUbs " readonly id="input_'+idobj+'">' + $(".textareaEspecialidadeUbsSaude").val() + '</textarea>'+
-			'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-				
-			$('.adicionaInputUbsSaude').append(	html2insert);
-			$('input.adicionaQualUbsSaude').val('');
-			$('input.adicionaTecnicoReferenciaUbsSaude').val('');
-			$('textarea.textareaEspecialidadeUbsSaude').val('');
-		}
-		*/
-		
 	});
 	
 	
@@ -528,21 +373,6 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	//ADICIONA INTERNACAO
 	$( document ).on( "click", ".btnAdicionaInputInternacao", function() {
 		adicionaInternacao();
-		/*
-		var d = new Date();
-		var idobj =  d.getTime();
-		
-		var html2insert ='<div id="div'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaQuantasVezesInternado").val()+'" name="quantidade_internacao[]" class="inputAdicionaProvidenciaSelect" readonly id="input_'+idobj+'">'+
-		'<input type="text" value="'+$(".adicionaLocalInternacao").val()+'" name="local_internacao[]" class="inputAdicionaProvidencia" readonly id="input_'+idobj+'">'+
-		'<textarea name="motivo_internacao[]" class="textareaAdicionaInternacao " readonly id="input_'+idobj+'">' + $(".textareaMotivoInternacao").val() + '</textarea>'+
-		'<span class="btn-remover" onclick="removeMe(\''+('div'+idobj)+'\')"></span></div>';
-			
-		$('.adicionaInputInternacao').append(	html2insert);
-		$('input.adicionaQuantasVezesInternado').val('');
-		$('input.adicionaLocalInternacao').val('');
-		$('textarea.textareaMotivoInternacao').val('');
-		*/
 	});
 
 	
@@ -674,7 +504,7 @@ function adicionaCertidao(nome_certidao) {
 	}
 
 	if($('input.adicionaObsCertidao').val()  == '' || (nome_certidao == null ? ($("#tipoCertidaoLabel option:selected").text() == 'Selecione') : false)){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -698,7 +528,7 @@ function adicionaProvidencia() {
 	
 //	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
 	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -720,7 +550,7 @@ function addProvidencia() {
 	
 //	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
 	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -750,7 +580,7 @@ function adicionaContatoEmpresa(nome_dispositivo_contato) {
 	}
 	
 	if($('input.adicionaNumContatoEmpresa').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoEmpresaLabel').val() == 'Selecione') : false)){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -783,7 +613,7 @@ function adicionaContato (nome_dispositivo_contato) {
 	
 	//if($('input.adicionaNumContato').val()  == '' || $('.selectDispositivoContato').text() == 'Selecione'){
 	if($('input.adicionaNumContato').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoLabel').val() == 'Selecione') : false)){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -816,7 +646,7 @@ function adicionaDocumento (nome_documento) {
 	}
 	
 	if($('input.adicionaNumDocumento').val()  == '' || (nome_documento == null ? ($('#tipoDocumentoLabel').val() == 'Selecione') : false)){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		var html2insert ='<div id="div'+idobj+'">'+
@@ -836,7 +666,7 @@ function adicionaDrogaHoje() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaDrogaHoje').val()  == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -854,7 +684,7 @@ function adicionaAtividadeRecreativa() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualAtividade').val()  == '' || $('input.adicionaLocalAtividade').val()  == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -874,7 +704,7 @@ function adicionaOficinaParticipou() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualOficina').val()  == '' || $('input.adicionaLocalOficina').val()  == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -894,7 +724,7 @@ function adicionaEspecialidadeConsultaHoje() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaEspecialidade').val()  == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -912,7 +742,7 @@ function adicionaDrogasAlemCrack() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaDrogasAlemCrack').val()  == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -930,7 +760,7 @@ function adicionaDrogas(dias, meses, anos) {
 	var idobj =  d.getTime();
 	
 	if($('input.adicionaDrogas').val()  == ''){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		var vdias = dias != null ? dias : $("#diaDrogasFazUsoLabel option:selected").text();
@@ -965,7 +795,7 @@ function adicionaTelefoneFamiliar(parentesco) {
 	var idobj =  d.getTime();
 	
 	if($('input.adicionaNumContatoFamiliar').val()  == '' || $('.selectTipoParente').text() == 'Selecione'){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -1006,7 +836,7 @@ function adicionaAcompanhamentoUBS() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualUbsSaude').val()  == '' || $('input.adicionaTecnicoReferenciaUbsSaude').val() == '' ){
-		alert("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente");
 	}
 	else{
 		
@@ -1946,4 +1776,41 @@ function aguardeMsgOn(msg) {
 }
 function aguardeMsgOff(msg) {
 	$('#loader').attr('style','display:none');
+}
+
+// Botão de atualização após o login
+function btnSincronizar() {
+	BANCODADOS.initSincronismo(USUARIO.usuario_id);
+}
+
+// MENSAGENS EM ALERTA
+function alertClose() {
+	$('#msg-ok').attr('style','display:none');
+}
+
+function alertCloseYes() {
+	$('#msg-yn').attr('style','display:none');
+}
+
+function alertCloseNo() {
+	$('#msg-yn').attr('style','display:none');
+}
+
+function alertMessage(msg) {
+	$("#txtMsgOK").empty();
+	var conteudo = "<img src='img/msgInfo.png' width='128'><p>";
+	conteudo += msg;
+	conteudo += "</p><input onclick='alertClose()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
+	$("#txtMsgOK").append(conteudo);
+	$('#msg-ok').attr('style','display:block');
+}
+
+function alertOptions(msg) {
+	$("#txtMsgYN").empty();
+	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
+	conteudo += msg;
+    conteudo += "</p><input onclick='alertCloseYes()' type='button'  value='Sim' id='bt-msgy' class='btnY'>";
+    conteudo += "<input onclick='alertCloseNo()' type='button'  value='Não' id='bt-msgn' class='btnN'>";
+	$("#txtMsgYN").append(conteudo);
+	$('#msg-yn').attr('style','display:block');
 }

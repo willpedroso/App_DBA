@@ -84,6 +84,72 @@ var BANCODADOS = {
 	downloadCounter: 0,
 	usuarioSincronismo: 0,
 	
+	getAcompanhamentosSaude: function () {
+		console.log("getAcompanhamentosSaude");
+		
+		// Tabelas:
+		//		saude
+		//		cadastro_acompanhamento_ubs
+		//		internacao
+		// 		telefone_familiar
+		//		drogas_faz_uso
+		//		consulta_saude
+		//		atividades_recreativas_externas
+		//		participacao_oficinas_oferecidas
+		BANCODADOS.sqlCmdDB("SELECT name, sql FROM sqlite_master WHERE type='table' and name = 'saude'", [], BANCODADOS.colunasTabelaSaudeSucesso, BANCODADOS.envioFalha);
+//		BANCODADOS.sqlCmdDB("pragma table_info ('saude')", [], BANCODADOS.colunasTabelaSaudeSucesso, BANCODADOS.envioFalha);
+	},
+	
+	colunasTabelaSaudeSucesso: function (trans, res) {
+		console.log("tabelaSaudeSucesso");
+		
+		// todo: testes retirar
+		var Print = "Tabela saude:\r\n";
+		for (var i = 0; i < res.rows.length; i++) {
+			Print += "Nome: " + res.rows.item(i).name;
+			Print += "SQL: " + res.rows.item(i).sql;
+		}
+		console.log(Print);
+		alert ("aguardando...");
+//		var columnNames = res.rows.item(0).sql.replace(/^[^\(]+\(([^\)]+)\)/g, '$1').replace(/ [^,]+/g, '').split(',');
+		//var columnNames = [];
+		//for(i in columnParts) {
+		//	if(typeof columnParts[i] === 'string')
+		//	columnNames.push(columnParts[i].split(" ")[0]);
+		//}
+//		console.log(columnNames);
+		alert ("aguardando...");
+		// testes retirar
+		
+		var sqlCreateTable = res.rows.item(0).sql;
+		var endCharColumnName = sqlCreateTable.indexOf(" INTEGER");
+		endCharColumnName--;
+		var columnName = "";
+		do {
+			columnName = "";
+			var invertedColumnName = "";
+			while (sqlCreateTable.charAt(endCharColumnName) != " ") {
+				invertedColumnName += sqlCreateTable.charAt(endCharColumnName);
+				endCharColumnName--;
+			}
+			for (i = 0; i < invertedColumnName.length; i++) {
+				columnName += invertedColumnName[i];
+			}
+			console.log("Campo: " + columnName);
+			alert ("aguardando...");
+		} while ((endCharColumnName-- = sqlCreateTable.indexOf(" INTEGER", endCharColumnName + columnName.length + 2)) != -1);
+	},
+	
+	envioFalha: function (err) {
+		console.log("envioFalha");
+		
+		// todo:
+	},
+	
+	preparaEnvio: function () {
+		console.log("preparaEnvio");
+	},
+	
 	initSincronismo: function (usuarioIDLogin) {
 		console.log("initSincronismo");
 		
@@ -292,7 +358,7 @@ var BANCODADOS = {
         console.log("igetDownload");
 
 		// todo: testes retirar
-		//alert("INICIO do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter]);
+		//alertMessage("INICIO do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter]);
 		BANCODADOS.testesData = new Date();
 		// testes retirar
 
@@ -388,11 +454,11 @@ var BANCODADOS = {
 			}
 			catch (err) {
 				aguardeMsgOff();
-				alert(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
+				alertMessage(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
 			}
         }).bind(this)).fail(function(){
 			aguardeMsgOff();
-			alert(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.");
+			alertMessage(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.");
         });		
     },
     // Obtenção de Operadores
@@ -435,17 +501,19 @@ var BANCODADOS = {
 		// todo: testes retirar
 		var fim = new Date();
 		BANCODADOS.totalSegundos += (fim - BANCODADOS.testesData)/1000;
-		//alert("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.");
+		//alertMessage("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.");
 		// testes retirar
 		
 		if (BANCODADOS.downloadCounter == BANCODADOS.listaDownload.length) {
-			// todo: revisar
-			alert("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
-			// revisar
 			aguardeMsgOff();
+			// todo: revisar
+			//alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
+			alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
+			// revisar
 			if (BANCODADOS.usuarioSincronismo != -1) {
 				// Sincronismo interno, carrega cidadãos recebidos
 				aguardeMsgOn("Carregando dados dos cidadãos...");
+				localStorage.setItem("dadosEnviar", 0);
 				CIDADAO.dadosEntrada(USUARIO.usuario_id, BANCODADOS.sincSuccessUsuario, BANCODADOS.insertSincFail);
 			}
 		}
@@ -468,7 +536,7 @@ var BANCODADOS = {
 		
 		// todo: revisar
 		aguardeMsgOff();
-		alert("Erro: " + err);
+		alertMessage("Erro: " + err);
 		// revisar
 	},
 	
@@ -477,7 +545,7 @@ var BANCODADOS = {
 		
 		// todo: revisar
 		aguardeMsgOff();
-		alert("Erro: " + err);
+		alertMessage("Erro: " + err);
 		// revisar
 	},
 
@@ -1852,7 +1920,7 @@ var BANCODADOS = {
 	insertDataFail: function (err) {
         console.log("insertDataFail");
 		aguardeMsgOff();
-        alert("Erro na inserção de dados no banco - msg: " + err);
+        alertMessage("Erro na inserção de dados no banco - msg: " + err);
 	},
 	// ********************** TESTES - RETIRAR *******************************
 	
@@ -1882,7 +1950,7 @@ var BANCODADOS = {
     createTablesFail: function (err) {
         console.log("createTablesFail");
 		aguardeMsgOff();
-        alert("Erro na criação das tabelas do banco de dados - msg: " + err);
+        alertMessage("Erro na criação das tabelas do banco de dados - msg: " + err);
     },
 
     createTablesSuccess: function () {
@@ -1904,7 +1972,7 @@ var BANCODADOS = {
         }
 	    catch (err) {
 			aguardeMsgOff();
-	        alert("createDB() exception: " + err.msg);
+	        alertMessage("createDB() exception: " + err.msg);
 	    }
 	},
 
@@ -1912,6 +1980,13 @@ var BANCODADOS = {
 	sqlCmdDB: function (sqlCmd, arg, suc, fail) {
 	    console.log("sqlCmdDB");
 	    console.log("sqlCmd = " + sqlCmd + "\nArgumentos = " + arg);
+		
+		// Verifica se é update ou insert
+		if (sqlCmd.indexOf("INSERT") == 0 || sqlCmd.indexOf("UPDATE") == 0) {
+			// Marca que há dados para envair
+			localStorage.setItem("dadosEnviar", 1);
+		}
+		
 	    // Executa o comando SQL no banco de dados
 	    this.dbObj.transaction(function (t) {
             t.executeSql(sqlCmd, arg, suc, fail);

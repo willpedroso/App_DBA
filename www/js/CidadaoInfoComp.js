@@ -47,7 +47,7 @@
 		
 		// Retorna
 		// todo: revisar
-		alert("Houve falha na obtenção de informações complementares do cidadão.");
+		alertMessage("Houve falha na obtenção de informações complementares do cidadão.");
 		
 		INFOCOMPLE.cbFail_f(err);
 	},
@@ -61,8 +61,8 @@
 		INFOCOMPLE.cbFail_f = cbFail;
 
 		// Atualiza
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET informacoes_complementares = ? WHERE cidadao_id = ?",
-							[INFOCOMPLE.infoComplementares = info, INFOCOMPLE.cidadao_id], INFOCOMPLE.salvaInfoCompleSuccess, INFOCOMPLE.salvaInfoCompleFail);
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET informacoes_complementares = ?, mobile = ? WHERE cidadao_id = ?",
+							[INFOCOMPLE.infoComplementares = info, CIDADAO.UPDATE_MOBILE, INFOCOMPLE.cidadao_id], INFOCOMPLE.salvaInfoCompleSuccess, INFOCOMPLE.salvaInfoCompleFail);
 	},
 	
 	salvaInfoCompleSuccess: function (trans, res) {

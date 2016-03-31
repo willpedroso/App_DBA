@@ -115,7 +115,7 @@
 		SITUACAODBA.auxdt_exclusao_dba = dataInclusao;
 		
 		// Atualiza
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ?, dt_inclusao_dba = ?, dt_exclusao_dba = ? WHERE id = ?",
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ?, dt_inclusao_dba = ?, dt_exclusao_dba = ?, mobile = ? WHERE id = ?",
 							[situacaoCadastral,
 							 motivoInativacaoOutros,
 							 prioridade,
@@ -123,9 +123,17 @@
 							 pontoServicoId,
 							 dataInclusao,
 							 dataExclusao,
+							 CIDADAO.UPDATE_MOBILE,
 							 SITUACAODBA.cidadao_id],
-							 SITUACAODBA.excluiMotivoInativacao, 
+							 SITUACAODBA.pontoServicoId == pontoServicoId ? SITUACAODBA.excluiMotivoInativacao : SITUACAODBA.trocaLocalAcolhida, 
 							 SITUACAODBA.salvaSituacaoDBAFail);
+	},
+	
+	trocaLocalAcolhida: function (trans, res) {
+		console.log("trocaLocalAcolhida");
+		
+		// Houve mudança no local de acolhida (pontoServicoId), troca a atividade diária do cidadão
+		ATIVIDADE.trocaAtividade(SITUACAODBA.pontoServicoId);
 	},
 	
 	excluiMotivoInativacao: function (trans, res) {
@@ -143,10 +151,11 @@
 
 		// Salva motivo inativação
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO motivo_inativacao (tipo_motivo_inativacao_id, cidadao_id, dt_criacao) VALUES (?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO motivo_inativacao (tipo_motivo_inativacao_id, cidadao_id, dt_criacao, mobile) VALUES (?, ?, ?, ?)",
 							[SITUACAODBA.auxListaMotivoInativacao[SITUACAODBA.listaMotivoInativacaoCounter++],
 							 SITUACAODBA.cidadao_id,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 	//						SITUACAODBA.listaMotivoInativacaoCounter < SITUACAODBA.auxListaMotivoInativacao.length ? SITUACAODBA.excluiMotivoInativacaoSuccess : SITUACAODBA.salvaSituacaoDBASuccess,
 							SITUACAODBA.listaMotivoInativacaoCounter < SITUACAODBA.auxListaMotivoInativacao.length ? SITUACAODBA.excluiMotivoInativacaoSuccess : (SITUACAODBA.auxprogramaDBA == 0 && SITUACAODBA.programaDBA == 1 ? SITUACAODBA.excluiCidadaoEquipeCoordenacao : SITUACAODBA.salvaSituacaoDBASuccess),
 							SITUACAODBA.salvaSituacaoDBAFail);
@@ -156,9 +165,10 @@
 		console.log("excluiCidadaoEquipeCoordenacao");
 		
 		// Exclui cidadão da equipe de coordenação fazendo status = 0
-		BANCODADOS.sqlCmdDB("UPDATE equipe_cidadao SET status = ? WHERE cidadao_id = ?",
+		BANCODADOS.sqlCmdDB("UPDATE equipe_cidadao SET status = ?, mobile = ? WHERE cidadao_id = ?",
 							[
 							0,
+							CIDADAO.UPDATE_MOBILE,
 							SITUACAODBA.cidadao_id
 							],
 							SITUACAODBA.salvaSituacaoDBASuccess, 

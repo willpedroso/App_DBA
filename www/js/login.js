@@ -16,8 +16,14 @@ function retLogin (retCode) {
 		var lastUser = null;
 		if ((lastUser = localStorage.getItem("lastUser")) == null ||
 			lastUser != USUARIO.auxUsuario) {
+			
+			// todo: testes retirar
+			BANCODADOS.getAcompanhamentosSaude();
+			// testes retirar
+			
 			// É a primeira execução ou o usuário foi trocado, executa sincronismo automático
 			localStorage.setItem("lastUser", USUARIO.auxUsuario);				// armazena usuário atual
+			// todo: se houver dados para enviar, envia
 			BANCODADOS.initSincronismo(USUARIO.usuario_id);
 		}
 		else {
@@ -28,25 +34,25 @@ function retLogin (retCode) {
 		}
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
-		alert("Senha incorreta");
+		alertMessage("Senha incorreta");
 	}
 	else if (retCode == USUARIO.login_return.NAO_ENCONTRADO) {
-		alert("Não encontrado");
+		alertMessage("Não encontrado");
 	}
 	else if (retCode == USUARIO.login_return.REPETIDO) {
-		alert("Repetido");
+		alertMessage("Repetido");
 	}
 	else if (retCode == USUARIO.login_return.INATIVO) {
-		alert("Inativo");
+		alertMessage("Inativo");
 	}
 	else if (retCode == USUARIO.login_return.ALTERAR_SENHA) {
-		alert("Alterar a senha");
+		alertMessage("Alterar a senha");
 	}
 	else if (retCode == USUARIO.login_return.ERRO_BD) {
-		alert("Erro no banco");
+		alertMessage("Erro no banco");
 	}
 	else {
 		// Erro desconhecido
-		alert("Erro desconhecido");
+		alertMessage("Erro desconhecido");
 	}
 }

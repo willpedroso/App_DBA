@@ -300,7 +300,7 @@
 		/*
 		if (res.rows.length != 1) {
 			// todo: há mais de um registro de trabalho para o cidadão
-			alert ("Erro: Há mais de um registro de trabalho para o cidadão!");
+			alertMessage ("Erro: Há mais de um registro de trabalho para o cidadão!");
 		}
 		*/
 		var dt = {
@@ -472,8 +472,9 @@
 							", outros_primeira_escolha " +
 							", observacoes_gerais " +
 							", dt_criacao " +
-							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							", status " +
+							", mobile) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
 							CIDADAOTRABALHO.cidadao_id,
 							dadosLista.shift(),
@@ -520,7 +521,8 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							(CIDADAOTRABALHO.auxDate = (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())),
-							1							
+							1,
+							CIDADAO.INSERT_MOBILE
 							], 
 							CIDADAOTRABALHO.salvaCidadaoTrabalhoSuccess, CIDADAOTRABALHO.salvaCidadaoTrabalhoFail);
 	},

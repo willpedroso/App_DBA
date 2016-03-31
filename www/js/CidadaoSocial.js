@@ -169,7 +169,7 @@
 		/*
 		if (res.rows.length != 1) {
 			// todo: há mais de um registro social para o cidadão
-			alert ("Erro: Há mais de um registro social para o cidadão!");
+			alertMessage ("Erro: Há mais de um registro social para o cidadão!");
 		}
 		*/
 		var ds = {
@@ -484,8 +484,9 @@
 							", documentos_apos_programa " +
 							", vinculo_familia_restabelecido " +
 							", dt_criacao " +
-							", status) " +
-							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+							", status " +
+							", mobile) " +
+							"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							[
 							CIDADAOSOCIAL.cidadao_id,
 							dadosLista.shift(),
@@ -516,7 +517,8 @@
 							dadosLista.shift(),
 							dadosLista.shift(),
 							CIDADAOSOCIAL.auxVar = (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
-							1														
+							1,
+							CIDADAO.INSERT_MOBILE							
 							], 
 							CIDADAOSOCIAL.obtemNovoSmadsID, CIDADAOSOCIAL.salvaCidadaoSocialFail);
 	},
@@ -548,11 +550,12 @@
 		console.log("salvaContatos");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao) VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao, mobile) VALUES (?, ?, ?, ?, ?)",
 							[CIDADAOSOCIAL.newSmadsId,
 							 CIDADAOSOCIAL.auxlistaContatos[CIDADAOSOCIAL.auxCounter].tipoDispositivoContato,
 							 CIDADAOSOCIAL.auxlistaContatos[CIDADAOSOCIAL.auxCounter].numeroContato,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaContatos.length ? CIDADAOSOCIAL.salvaContatos : CIDADAOSOCIAL.fimSalvaLista,
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
@@ -561,11 +564,12 @@
 		console.log("salvaContatosEmpresa");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato_empresa (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao) VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_contato_empresa (smads_id, tipo_dispositivo_contato_id, numero_descricao, dt_criacao, mobile) VALUES (?, ?, ?, ?, ?)",
 							[CIDADAOSOCIAL.newSmadsId,
 							 CIDADAOSOCIAL.auxlistaContatosEmpresa[CIDADAOSOCIAL.auxCounter].tipoDispositivoContatoEmpresa,
 							 CIDADAOSOCIAL.auxlistaContatosEmpresa[CIDADAOSOCIAL.auxCounter].numeroContato,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaContatosEmpresa.length ? CIDADAOSOCIAL.salvaContatosEmpresa : CIDADAOSOCIAL.fimSalvaLista,
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
@@ -574,11 +578,12 @@
 		console.log("salvaCertidoes");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO smads_certidao (smads_id, tipo_certidao_id, numero, dt_criacao) VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_certidao (smads_id, tipo_certidao_id, numero, dt_criacao, mobile) VALUES (?, ?, ?, ?, ?)",
 							[CIDADAOSOCIAL.newSmadsId,
 							 CIDADAOSOCIAL.auxlistaCertidoes[CIDADAOSOCIAL.auxCounter].id,
 							 CIDADAOSOCIAL.auxlistaCertidoes[CIDADAOSOCIAL.auxCounter].numero,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaCertidoes.length ? CIDADAOSOCIAL.salvaCertidoes : CIDADAOSOCIAL.fimSalvaLista,
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
@@ -587,12 +592,13 @@
 		console.log("salvaProvidencias");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO smads_providencia (smads_id, tipo, situacao, observacao, dt_criacao) VALUES (?, ?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_providencia (smads_id, tipo, situacao, observacao, dt_criacao, mobile) VALUES (?, ?, ?, ?, ?, ?)",
 							[CIDADAOSOCIAL.newSmadsId,
 							 CIDADAOSOCIAL.auxlistaProvidencias[CIDADAOSOCIAL.auxCounter].tipo,
 							 CIDADAOSOCIAL.auxlistaProvidencias[CIDADAOSOCIAL.auxCounter].situacao,
 							 CIDADAOSOCIAL.auxlistaProvidencias[CIDADAOSOCIAL.auxCounter].observacao,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaProvidencias.length ? CIDADAOSOCIAL.salvaProvidencias : CIDADAOSOCIAL.fimSalvaLista,
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
@@ -601,11 +607,12 @@
 		console.log("salvaDocumentos");
 		
 		var hoje = new Date();
-		BANCODADOS.sqlCmdDB("INSERT INTO smads_documentos (smads_id, tipo_documento_id, numero_descricao_documento, dt_criacao) VALUES (?, ?, ?, ?)",
+		BANCODADOS.sqlCmdDB("INSERT INTO smads_documentos (smads_id, tipo_documento_id, numero_descricao_documento, dt_criacao, mobile) VALUES (?, ?, ?, ?, ?)",
 							[CIDADAOSOCIAL.newSmadsId,
 							 CIDADAOSOCIAL.auxlistaDocumentos[CIDADAOSOCIAL.auxCounter].tipoDocumento,
 							 CIDADAOSOCIAL.auxlistaDocumentos[CIDADAOSOCIAL.auxCounter].numero,
-							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
 							++CIDADAOSOCIAL.auxCounter < CIDADAOSOCIAL.auxlistaDocumentos.length ? CIDADAOSOCIAL.salvaDocumentos : CIDADAOSOCIAL.fimSalvaLista,
 							CIDADAOSOCIAL.salvaCidadaoFail);
 	},
