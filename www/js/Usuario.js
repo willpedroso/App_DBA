@@ -154,7 +154,13 @@
 		console.log("perfilAcumuladoSucesso");
 		
 		for (var i = 0; i < res.rows.length; i++) {
-			USUARIO.perfil_acumulado.push(res.rows.item(i).perfil_id);
+			// Utiliza o código do perfil
+			for (var j = 0; j < USUARIO.listaPerfis.length; j++) {
+				if (res.rows.item(i).perfil_id == USUARIO.listaPerfis[j].id) {
+					USUARIO.perfil_acumulado.push(USUARIO.listaPerfis[j].codigo);
+					break;
+				}
+			}
 		}
 
 		// todo: testes retirar

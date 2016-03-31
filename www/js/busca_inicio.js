@@ -64,7 +64,7 @@ function iniAbasUsuario (indiceCidadao) {
 				abaSocial = true;
 				break;
 			}
-		} while (USUARIO.perfil_acumulado.length && (perfil = USUARIO.perfil_acumulado[i++]) != null);
+		} while (USUARIO.perfil_acumulado.length && ((perfil = USUARIO.perfil_acumulado[i++]) != null));
 	}
 	else {
 		// Apresenta todas as abas de acompanhamento
