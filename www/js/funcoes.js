@@ -1142,6 +1142,7 @@ function abas(){
     $('#ficha-statica').addClass('showme');
 	$('#ficha-statica').removeClass('hideme');
 	$('.msgParabens, .msgErro, .msgAtencao').hide;
+	window.scrollTo(0, 0);
 }
 function abasmenu(){
 	if($('#menu_abas').hasClass('showme')){

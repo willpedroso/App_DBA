@@ -386,7 +386,7 @@ function carregaSaude () {
 	$("#listaNumeroPedrasAntesPrograma").append(opts);
 
 	// Quantas pedras atualmente
-	var opts = "<select name='numeroPedrasAtualmenteLabel' id='numeroPedrasAtualmenteLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<select name='numeroPedrasAtualmenteLabel' id='numeroPedrasAtualmenteLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Nenhuma'>Nenhuma</option>";
 	for (var i = 1; i < 101; i++) {
 		opts += "<option value='" + i + "' data-id='numeroPedrasAtualmenteLabel' for='numero_pedras_atualmente'";
 		var label = "";
