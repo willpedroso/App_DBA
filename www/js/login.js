@@ -12,13 +12,19 @@ function retLogin (retCode) {
 	
 	aguardeMsgOff();
 	if (retCode == USUARIO.login_return.OK) {
+
+		// todo: testes retirar
+		BANCODADOS.initUpload();
+		return;
+		// testes retirar
+			
 		// Login efetuado com sucesso, avalia a necessidade de sincronismo automático de dados do usuário
 		var lastUser = null;
 		if ((lastUser = localStorage.getItem("lastUser")) == null ||
 			lastUser != USUARIO.auxUsuario) {
 			
 			// todo: testes retirar
-			BANCODADOS.getAcompanhamentosSaude();
+			BANCODADOS.initUpload();
 			// testes retirar
 			
 			// É a primeira execução ou o usuário foi trocado, executa sincronismo automático
