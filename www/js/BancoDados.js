@@ -89,6 +89,7 @@ var BANCODADOS = {
 	counterServicesUpload: 0,
 	counterTabelas: 0,
 	auxTabela: null,
+	lastUserID: null,
 	
 	tabelaUpload: function () {
 		nome: null;
@@ -99,52 +100,51 @@ var BANCODADOS = {
 	
 	servicoUpload: function () {
 		url: null;
+		cmd: null;
+		msgUpload: null;
+		nomeUpload: null;
 		tabelaPrincipal: null;
+		whereTabelaPrincipal: null;
 		tabelasSecundarias: [];
 		dadosTabelaPrincipal: [];
 		contador: 0;
 		dadosJSON: null;
+		bdadosEnviar: null;
 	},
 	
-	initUpload: function () {
+	initUpload: function (usuario) {
 		console.log("initUpload");
 		
+		BANCODADOS.lastUserID = usuario;
+
 		var su;
 		var tu;
 		
 		BANCODADOS.listaServicosUpload = [];
 		
 		/********** SAUDE *************************************************/
-		// todo: testes retirar
-		console.log("s1");
-		// teste retirar
 		su = new BANCODADOS.servicoUpload();
 		su.url = "http://dppp005.prodam/api/acompanhamentosSaude";
+		su.msgUpload = "Enviando acompanhamentos de saúde...";
+		su.nomeUpload = "acompanhamentosSaude";
+		su.cmd = "PUT";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.INSERT_MOBILE;
 		// Tabela Principal
-		// todo: testes retirar
-		console.log("s2");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "saude";
 		tu.whereP = "";
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
 		// cadastro_acompanhamento_ubs
-		// todo: testes retirar
-		console.log("s3");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "cadastro_acompanhamento_ubs";
 		tu.whereP = "id";
 		tu.whereS = "saude_id";
-		su.tabelasSecundarias = [];
 		su.tabelasSecundarias.push(tu);
 		// internacao
-		// todo: testes retirar
-		console.log("s4");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "internacao";
@@ -152,9 +152,6 @@ var BANCODADOS = {
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
 		// telefone_familiar
-		// todo: testes retirar
-		console.log("s5");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "telefone_familiar";
@@ -162,9 +159,6 @@ var BANCODADOS = {
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
 		// drogas_faz_uso
-		// todo: testes retirar
-		console.log("s6");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "drogas_faz_uso";
@@ -172,9 +166,6 @@ var BANCODADOS = {
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
 		// consulta_saude
-		// todo: testes retirar
-		console.log("s7");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "consulta_saude";
@@ -182,9 +173,6 @@ var BANCODADOS = {
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
 		// atividades_recreativas_externas
-		// todo: testes retirar
-		console.log("s8");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "atividades_recreativas_externas";
@@ -192,20 +180,225 @@ var BANCODADOS = {
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
 		// participacao_oficinas_oferecidas
-		// todo: testes retirar
-		console.log("s9");
-		// teste retirar
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "participacao_oficinas_oferecidas";
 		tu.whereP = "id";
 		tu.whereS = "saude_id";
 		su.tabelasSecundarias.push(tu);
-		console.log("s10");
 		
 		BANCODADOS.listaServicosUpload.push(su);
 		/********** SAUDE *************************************************/
+		/********** TRABALHO *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/acompanhamentosTrabalho";
+		su.msgUpload = "Enviando acompanhamentos de trabalho...";
+		su.nomeUpload = "acompanhamentosTrabalho";
+		su.cmd = "PUT";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.INSERT_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "trabalho";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		// atividade_tempo_livre
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "atividade_tempo_livre";
+		tu.whereP = "id";
+		tu.whereS = "trabalho_id";
+		su.tabelasSecundarias.push(tu);
+		// local_visitar
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "local_visitar";
+		tu.whereP = "id";
+		tu.whereS = "trabalho_id";
+		su.tabelasSecundarias.push(tu);
 		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** TRABALHO *************************************************/
+		/********** SOCIAL *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/acompanhamentosSocial";
+		su.msgUpload = "Enviando acompanhamentos sociais...";
+		su.nomeUpload = "acompanhamentosSocial";
+		su.cmd = "PUT";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.INSERT_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		// smads_contato
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads_contato";
+		tu.whereP = "id";
+		tu.whereS = "smads_id";
+		su.tabelasSecundarias.push(tu);
+		// smads_documentos
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads_documentos";
+		tu.whereP = "id";
+		tu.whereS = "smads_id";
+		su.tabelasSecundarias.push(tu);
+		// smads_contato_empresa
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads_contato_empresa";
+		tu.whereP = "id";
+		tu.whereS = "smads_id";
+		su.tabelasSecundarias.push(tu);
+		// smads_providencia
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads_providencia";
+		tu.whereP = "id";
+		tu.whereS = "smads_id";
+		su.tabelasSecundarias.push(tu);
+		// smads_certidao
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "smads_certidao";
+		tu.whereP = "id";
+		tu.whereS = "smads_id";
+		su.tabelasSecundarias.push(tu);
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** SOCIAL *************************************************/
+		/********** CIDADÃOS *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/cidadaos";
+		su.msgUpload = "Enviando cidadãos...";
+		su.nomeUpload = "cidadaos";
+		su.cmd = "POST";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.UPDATE_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "cidadao";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		// motivo_inativacao
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "motivo_inativacao";
+		tu.whereP = "id";
+		tu.whereS = "cidadao_id";
+		su.tabelasSecundarias.push(tu);
+		// acompanhantes_rua
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "acompanhantes_rua";
+		tu.whereP = "id";
+		tu.whereS = "cidadao_id";
+		su.tabelasSecundarias.push(tu);
+		// idade_filhos
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "idade_filhos";
+		tu.whereP = "id";
+		tu.whereS = "cidadao_id";
+		su.tabelasSecundarias.push(tu);
+		// contato_familia
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "contato_familia";
+		tu.whereP = "id";
+		tu.whereS = "cidadao_id";
+		su.tabelasSecundarias.push(tu);
+		// condicao_saude
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "condicao_saude";
+		tu.whereP = "id";
+		tu.whereS = "cidadao_id";
+		su.tabelasSecundarias.push(tu);
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** CIDADÃOS *************************************************/
+		/********** ATIVIDADES POST*************************************************/
+		/*
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/atividades";
+		su.msgUpload = "Enviando atividades...";
+		su.nomeUpload = "atividades";
+		su.cmd = "POST";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.UPDATE_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "atividade";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		// periodicidade
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "periodicidade";
+		tu.whereP = "id";
+		tu.whereS = "atividade_id";
+		su.tabelasSecundarias = [];
+		su.tabelasSecundarias.push(tu);
+		// periodicidade_has_tipo_dias_semana
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "periodicidade_has_tipo_dias_semana";
+		tu.whereP = "id";
+		tu.whereS = "periodicidade_id";
+		su.tabelasSecundarias.push(tu);
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		*/
+		/********** ATIVIDADES POST *************************************************/
+		/********** FREQUENCIAS POST *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/frequencias";
+		su.msgUpload = "Enviando frequencias...";
+		su.nomeUpload = "frequencias";
+		su.cmd = "POST";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.UPDATE_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "frequencia";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** FREQUENCIAS POST *************************************************/
+		/********** FREQUENCIAS PUT *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/frequencias";
+		su.msgUpload = "Enviando frequencias...";
+		su.nomeUpload = "frequencias";
+		su.cmd = "PUT";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.INSERT_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "frequencia";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** FREQUENCIAS PUT *************************************************/
+
 		BANCODADOS.counterServicesUpload = 0;
 		BANCODADOS.prepareUpload();
 	},
@@ -233,10 +426,10 @@ var BANCODADOS = {
 		
 		// todo: testes retirar
 		
-		var Print = "Tabela saude:\r\n";
+		var Print = "Tabela:\r\n";
 		for (var i = 0; i < res.rows.length; i++) {
-			Print += "Nome: " + res.rows.item(i).name;
-			Print += "SQL: " + res.rows.item(i).sql;
+			Print += "\r\nNome: " + res.rows.item(i).name;
+			Print += "\r\nSQL: " + res.rows.item(i).sql;
 		}
 		console.log(Print);
 		
@@ -275,7 +468,9 @@ var BANCODADOS = {
 				columnName += invertedColumnName[i];
 			}
 			//console.log("Campo: " + columnName);
-			BANCODADOS.auxTabela.campos.push(columnName);
+			if (columnName != "mobile") {
+				BANCODADOS.auxTabela.campos.push(columnName);
+			}
 		} while ((endCharColumnName = sqlCreateTable.indexOf(" TEXT", endCharColumnName + columnName.length + 3)) != -1);
 		
 		if (BANCODADOS.counterTabelas < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length) {
@@ -331,9 +526,7 @@ var BANCODADOS = {
 			}
 		}
 		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelaPrincipal.nome;
-		// todo: testes
-		//sqlCommand += " WHERE mobile = " + CIDADAO.INSERT_MOBILE + " OR mobile = " + CIDADAO.UPDATE_MOBILE;
-		// testes recolocar
+		sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].whereTabelaPrincipal;
 		
 		// todo: testes retirar
 		console.log(sqlCommand);
@@ -347,20 +540,23 @@ var BANCODADOS = {
 		console.log("dadosTabelaPrincipalSuccess - Registros = " + res.rows.length);
 		
 		if (res.rows.length > 0) {
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].bdadosEnviar = true;
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal = [];
-//			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal = jQuery.extend(res.rows);
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal = res.rows;
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador = 0;
 			var js = "{\"table:" + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelaPrincipal.nome + "\":[";
-			js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js;
+			//js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
+			
+			//var tam = js.length;
+			//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js.slice(0, tam - 1);
 			
 			if(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length > 0) {
+				js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
 				BANCODADOS.counterTabelas = 0;
-				//var tamanhoJSON = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON.length;
-				//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
-				var pos = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON.lastIndexOf("}");
-				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON[pos] = ",";
+
+				var tam = js.length;
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js.slice(0, tam - 1);
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
 				
 				// todo: testes retirar
 				//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
@@ -369,32 +565,123 @@ var BANCODADOS = {
 				BANCODADOS.dadosTabelasSecundarias();
 			}
 			else {
+				// Não possui tabelas secundárias, varre os registros para criar o JSON
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js;
+				for (var i = 0; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length; i++) {
+					js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(i));
+					if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
+						// Último registro da consulta
+						BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js + "]}";
+					}
+					else {
+						BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js + ",";
+					}
+				}
+				// todo: testes retirar
+				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+				alert("Fim serviço sem tabelas secundárias.");
+				// testes retirar
+
+				BANCODADOS.counterServicesUpload++;
+				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
+					// Inicia sequência de upload
+					BANCODADOS.counterServicesUpload = 0;
+					BANCODADOS.preExecUpload();
+				}
+				else {
+					BANCODADOS.dadosTabelaPrincipal();
+				}				
+				/*
 				// todo: Não possui tabelas secundárias, fecha JSON e finaliza
 				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}"
+				
+				BANCODADOS.counterServicesUpload++;
+				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
+					// todo: Acabaram os serviços de upload
+					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON += "]}";
+					
+					// todo: testes retirar
+					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+					alert("Fim do JSON de saúde");
+					// testes retirar
+					
+					// Inicia sequência de upload
+					BANCODADOS.counterServicesUpload = 0;
+					BANCODADOS.preExecUpload();
+				}
+				else {
+					// todo: testes retirar
+					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+					// testes retirar
+					BANCODADOS.dadosTabelaPrincipal();
+				}
 
 				// todo: testes retirar
 				//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
 				// testes retirar
+				*/
 			}
 		}
 		else 
 		{
 			// todo: não há o que transmitir
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].bdadosEnviar = false;
+
+			BANCODADOS.counterServicesUpload++;
+			if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
+				// Inicia sequência de upload
+				BANCODADOS.counterServicesUpload = 0;
+				BANCODADOS.preExecUpload();
+			}
+			else {
+				BANCODADOS.dadosTabelaPrincipal();
+			}
 		}
 	},
 	
 	registroTabelaPrincipal: function () {
 		console.log("registroTabelaPrincipal");
 		
-		var js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
-		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js;
-		//var tamanhoJSON = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON.length;
-		//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
-		var pos = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON.lastIndexOf("}");
-		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON[pos] = ",";
+		var js; 
+		/*
+		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length == 0) {
+			// Não possui tabelas secundárias
+			for (var i = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length; i++) {
+				js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(i));
+				if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
+					// Último registro da consulta
+					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "," + js + "]}";
+				}
+				else {
+					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js + ",";
+				}
+			}
+			// todo: testes retirar
+			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+			alert("Fim serviço sem tabelas secundárias.");
+			// testes retirar
 
-		BANCODADOS.counterTabelas = 0;
-		BANCODADOS.dadosTabelasSecundarias();
+			BANCODADOS.counterServicesUpload++;
+			if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
+				// Inicia sequência de upload
+				BANCODADOS.counterServicesUpload = 0;
+				BANCODADOS.preExecUpload();
+			}
+			else {
+				BANCODADOS.dadosTabelaPrincipal();
+			}
+		}
+		else {*/
+			js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
+			
+			var tam = js.length;
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js.slice(0, tam - 1);
+			
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+
+			BANCODADOS.counterTabelas = 0;
+			BANCODADOS.dadosTabelasSecundarias();
+		//}
 	},
 	
 	dadosTabelasSecundarias: function () {
@@ -433,8 +720,11 @@ var BANCODADOS = {
 		if (result.rows.length > 0) {
 			for (var i = 0; i < result.rows.length; i++) {
 				json += JSON.stringify(result.rows.item(i));
+				if ((i + 1) < result.rows.length) {
+					json += ",";
+				}
 			}
-			json += "]"
+			json += "]";
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
 			
 			// todo: testes retirar
@@ -462,17 +752,27 @@ var BANCODADOS = {
 			
 			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
 				// Acabaram os registros da tabela principal
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
 				BANCODADOS.counterServicesUpload++;
 				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
 					// todo: Acabaram os serviços de upload
-					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON += "]}";
+					//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON += "]}";
 					
 					// todo: testes retirar
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					alert("Fim do JSON de saúde");
+					alert("Fim do JSON.");
 					// testes retirar
+					
+					// Inicia sequência de upload
+					BANCODADOS.counterServicesUpload = 0;
+					BANCODADOS.preExecUpload();
 				}
 				else {
+					// todo: testes retirar
+					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+					alert("Fim do JSON.");
+					// testes retirar
+					
 					BANCODADOS.dadosTabelaPrincipal();
 				}
 			}
@@ -487,13 +787,82 @@ var BANCODADOS = {
 		}
 	},
 	
-	getDataUpload: function () {
-		console.log("getDataUpload");
+	preExecUpload: function () {
+		console.log("preExecUpload");
+
+		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].bdadosEnviar == true) {
+			// Há dados para enviar no serviço atual da lista
+			BANCODADOS.execUpload();
+		}
+		else if (BANCODADOS.counterServicesUpload + 1 < BANCODADOS.listaServicosUpload.length) {
+			// Ainda há serviços na lista
+			BANCODADOS.counterServicesUpload++;
+			BANCODADOS.preExecUpload();
+		}
+		else {
+			// Não há mais serviços na lista, todo o envio foi processado com sucesso, atualiza os dados (download)
+			localStorage.setItem("dadosEnviar", 0);
+			localStorage.setItem("lastUser", USUARIO.usuario_id);				// armazena usuário atual
+			BANCODADOS.initSincronismo(USUARIO.usuario_id);
+		}
 	},
 	
-	preparaEnvio: function () {
-		console.log("preparaEnvio");
-	},
+	execUpload: function () {
+		console.log("execUpload");
+
+		aguardeMsgOn(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload);
+		
+		var iUsuario = BANCODADOS.lastUserID;
+		iUsuario = "999999991";
+		
+		// Sorteia token aleatoriamente
+		var tokenIndex = Math.floor(Math.random() * BANCODADOS.listaTokens.length);
+		
+		alert("Enviando dados do usuário: " + iUsuario);
+		
+	    $.ajax({
+	        type: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].cmd,
+			headers: {access_token: BANCODADOS.listaTokens[tokenIndex], usuario_id: iUsuario, service_name: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].nomeUpload},
+			data: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON,
+			url: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].url
+	    })
+	    .done((function (msg) {
+			try {
+				var jsonResponse;
+				jsonResponse = JSON.parse(msg);
+				
+				console.log("Retorno: " + msg);
+				
+				// Verifica se houve sucesso no processamento dos dados enviados
+				if (jsonResponse.return == false) {
+					// Houve falha no processamento de dados enviados
+					aguardeMsgOff();
+					alertMessage("Houve falha no envio de dados. \r\n" + jsonResponse.message);
+					// todo: revisar o que fazer neste caso
+				}
+				else {
+					if (BANCODADOS.counterServicesUpload + 1 < BANCODADOS.listaServicosUpload.length) {
+						// Ainda há serviços na lista
+						BANCODADOS.counterServicesUpload++;
+						BANCODADOS.preExecUpload();
+					}
+					else {
+						// Não há mais serviços na lista, todo o envio foi processado com sucesso, atualiza os dados (download)
+						localStorage.setItem("dadosEnviar", 0);
+						localStorage.setItem("lastUser", USUARIO.usuario_id);				// armazena usuário atual
+						BANCODADOS.initSincronismo(USUARIO.usuario_id);
+					}
+				}
+			}
+			catch (err) {
+				aguardeMsgOff();
+				alertMessage(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
+			}
+        }).bind(this)).fail(function(){
+			aguardeMsgOff();
+			alertMessage(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nHouve falha de acesso à internet.");
+        });		
+    },
 	
 	envioFalha: function (err) {
 		console.log("envioFalha");
@@ -1935,7 +2304,7 @@ var BANCODADOS = {
 	//-ONLINE-"INSERT INTO `idade_filhos` (`id`, `idade`, `cidadao_id`, `dt_criacao`) VALUES (12,'10',13,'2015-09-24 20:07:48'),(13,'15',13,'2015-09-24 20:07:48'),(14,'20',13,'2015-09-24 20:07:49'),(35,'2 meses',9,'2015-09-29 15:27:23'),(36,'4 anos',9,'2015-09-29 15:27:24'),(37,'9 anos',9,'2015-09-29 15:27:24'),(38,'12 anos',9,'2015-09-29 15:27:24'),(44,'2 meses',10,'2015-10-01 17:59:40'),(45,'4 anos',10,'2015-10-01 17:59:41'),(46,'8 anos',10,'2015-10-01 17:59:41'),(47,'10 ano ',10,'2015-10-01 17:59:41'),(48,'14 anos',10,'2015-10-01 17:59:41');",
 
 	/*internacao*/
-	//-ONLINE-"INSERT INTO `internacao` (`id`, `saude_id`, `quantas_vezes`, `local`, `motivo`, `dt_criacao`) VALUES (4,9,'2','hospital 1','problema renal','2015-11-23 10:43:16'),(5,15,'2','Hospital Geral XYZ','Pedra nos rins','2015-11-24 11:09:08'),(6,15,'1','Hospital das Forças Armadas','apendicite','2015-11-24 11:09:08'),(7,446,'Não sabe informar ','','','2016-01-22 11:07:30'),(8,808,'1','caps de São miguel','De uso do drogas','2016-02-05 11:46:11'),(9,809,'3','jandiara','Foi por esta com penamunia. ','2016-02-05 11:49:04'),(10,819,'1 vez','Santa casa','Infecção no intestino.','2016-02-05 14:10:46'),(11,820,'1','caps de São miguel','De uso do drogas','2016-02-05 14:12:34'),(12,822,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-05 14:15:15'),(13,823,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-05 14:16:36'),(14,824,'2','clínica de reabilitação ','Dependência química  (uso e abuso de drogas','2016-02-05 14:18:28'),(15,825,'10 vezes','missão Belém ','Uso de drogas.','2016-02-05 14:19:48'),(16,826,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-05 14:24:55'),(17,828,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-05 14:32:11'),(18,830,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-05 14:34:41'),(19,832,'1 vez','missão Belém ','Uso de drogas.','2016-02-05 14:40:42'),(20,835,'1 vez','cratod','Uso da drogas','2016-02-05 14:45:29'),(21,837,'3','jandiara','Foi por esta com penamunia. ','2016-02-05 14:49:56'),(22,838,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-05 14:51:01'),(23,839,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-05 14:51:43'),(24,840,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-05 14:52:07'),(25,843,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-05 15:09:23'),(26,845,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-05 15:12:34'),(27,847,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-05 15:12:43'),(28,849,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-05 15:18:58'),(29,851,'1 vez','bahirral ','Uso da drogas','2016-02-05 15:35:15'),(30,852,'1 vez','PS barra funda e Santa casa','Avc','2016-02-05 15:42:14'),(31,853,'3 vezes','jabuticabal ','Uso de drogas.','2016-02-05 15:49:35'),(32,854,'1 vez','hospital vergueiro','Muita dor no estômago. ','2016-02-05 15:52:24'),(33,855,'1 vez','caps se','Uso de droga','2016-02-05 15:57:33'),(34,892,'5','Belém ','Uso de drogas','2016-02-11 14:13:04'),(35,895,'1 vez','Santa casa','Infecção no intestino.','2016-02-11 14:15:13'),(36,900,'1','caps de São miguel','De uso do drogas','2016-02-11 14:19:56'),(37,903,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:16'),(38,905,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:20'),(39,906,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:24'),(40,910,'1','São roque ','Drogas ','2016-02-11 14:26:10'),(41,911,'10 vezes','missão Belém ','Uso de drogas.','2016-02-11 14:27:41'),(42,917,'1 vez','cratod','Uso da drogas','2016-02-11 14:35:00'),(43,923,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:39:43'),(44,1025,'1','caps de São miguel','De uso do drogas','2016-02-12 12:38:27'),(45,1031,'10 vezes','missão Belém ','Uso de drogas.','2016-02-12 12:46:36'),(46,1033,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-12 12:50:24'),(47,1036,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-12 12:53:32'),(48,1041,'1 vez','caps se','Uso de droga','2016-02-12 14:25:05'),(49,1042,'1','Clínica de recuperação ','Uso de drogas','2016-02-12 14:27:30'),(50,1048,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-12 14:57:04'),(51,1084,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-15 09:20:19'),(52,1085,'Quatro','Santa Catarina','Drogas','2016-02-15 09:30:31'),(53,1086,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-15 09:31:12'),(54,1102,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-15 10:03:25'),(55,1128,'1 vez','PS barra funda eaSanta casa','Avc','2016-02-15 10:44:26'),(56,1156,'1 vez','Santa casa','Infecção no intestino.','2016-02-15 13:00:38'),(57,1157,'10 vezes','missão Belém ','Uso de drogas.','2016-02-15 13:04:49'),(58,1158,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-15 13:07:41'),(59,1179,'Quatro','Santa Catarina','Drogas','2016-02-16 09:24:55'),(60,1197,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-16 09:44:26'),(61,1198,'Uma','PS Barra Funda','Problema cardíaco. ','2016-02-16 09:48:41'),(62,1208,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-16 09:59:16'),(63,1218,'1 vez','PS barra funda e Santa casa','Avc','2016-02-16 10:10:32'),(64,1223,'5','Belém ','Uso de drogas','2016-02-16 10:19:11'),(65,1224,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 10:20:10'),(66,1237,'3','missão Belém, ','Uso de drogas','2016-02-16 10:43:39'),(67,1238,'3','missão Belém, ','Uso de drogas','2016-02-16 10:45:29'),(68,1239,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-16 10:48:04'),(69,1244,'3','Caps Prates','Drogas','2016-02-16 10:59:56'),(70,1245,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:00:12'),(71,1251,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:11:42'),(72,1253,'1 vez','caps se','Uso de droga','2016-02-16 11:14:24'),(73,1254,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:19:09'),(74,1255,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-16 11:19:58'),(75,1259,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-16 11:25:59'),(76,1270,'10 vezes','missão Belém ','Uso de drogas.','2016-02-16 11:46:16'),(77,1271,'uma ','cristolandia ','Uso e abuso de drogas','2016-02-16 11:49:11'),(78,1290,'1','Clínica de recuperação ','Uso de drogas','2016-02-16 12:39:06'),(79,1295,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-16 13:17:47'),(80,1299,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-16 13:57:44'),(81,1303,'1 vez','Cratod','Uso de dragas','2016-02-16 14:21:11'),(82,1306,'1 vez','Cratod','Uso de drogas','2016-02-16 14:37:11'),(83,1327,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 16:14:20'),(84,1329,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 16:16:32'),(85,1330,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-16 16:20:12'),(86,1366,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 09:35:57'),(87,1383,'3','Santa casa','','2016-02-17 09:41:59'),(88,1409,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 09:53:02'),(89,1410,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-17 09:53:57'),(90,1411,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 09:54:34'),(91,1413,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 09:55:14'),(92,1421,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-17 10:00:19'),(93,1430,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 10:12:03'),(94,1431,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 10:13:39'),(95,1433,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 10:17:49'),(96,1435,'1','caps de São miguel','De uso do drogas','2016-02-17 10:19:51'),(97,1440,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 10:23:47'),(98,1442,'10 vezes','missão Belém ','Uso de drogas.','2016-02-17 10:27:18'),(99,1444,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-17 10:28:37'),(100,1447,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 10:31:14'),(101,1461,'5 x','Cratod','Eliminar o uso','2016-02-17 10:37:32'),(102,1462,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 10:38:05'),(103,1470,'1','São roque ','Drogas ','2016-02-17 10:52:53'),(104,1474,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 10:58:54'),(105,1476,'3','jandiara','Foi por esta com penamunia. ','2016-02-17 11:04:27'),(106,1479,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:06:11'),(107,1480,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-17 11:07:33'),(108,1482,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 11:09:03'),(109,1483,'1','caps de São miguel','De uso do drogas','2016-02-17 11:09:24'),(110,1485,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 11:10:11'),(111,1488,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 11:12:08'),(112,1490,'1','caps de São miguel','De uso do drogas','2016-02-17 11:13:08'),(113,1492,'5','Belém ','Uso de drogas','2016-02-17 11:13:57'),(114,1493,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 11:14:12'),(115,1497,'10 vezes','missão Belém ','Uso de drogas.','2016-02-17 11:16:04'),(116,1499,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 11:16:35'),(117,1507,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 11:24:09'),(118,1511,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 11:28:22'),(119,1512,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:28:25'),(120,1513,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:29:12'),(121,1514,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 11:29:13'),(122,1519,'5x','Bayral','Motivo psicológico. ','2016-02-17 11:32:31'),(123,1520,'1 vez','cratod','Uso da drogas','2016-02-17 11:32:50'),(124,1523,'3','jandiara','Foi por esta com penamunia. ','2016-02-17 11:34:03'),(125,1531,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 11:40:54'),(126,1532,'1 vez','Santa casa','Cirurgia de hérnia ','2016-02-17 11:40:56'),(127,1534,'1 vez','caps se','Uso de droga','2016-02-17 11:44:25'),(128,1535,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:46:15'),(129,1536,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:46:15'),(130,1537,'1 vez','bahirral ','Uso da drogas','2016-02-17 11:46:28'),(131,1538,'3 vezes','jabuticabal ','Uso de drogas.','2016-02-17 11:48:42'),(132,1538,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:48:42'),(133,1539,'3','missão Belém, ','Uso de drogas','2016-02-17 11:49:45'),(134,1540,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:53:22'),(135,1541,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-17 11:54:44'),(136,1542,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:56:54'),(137,1543,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:57:28'),(138,1544,'1','barafunda pronto socorro ','Amputação de membro inferior. (Dedo)','2016-02-17 12:21:44'),(139,1545,'3 VEZES','CAUCAIA DO ALTO','','2016-02-17 12:30:44'),(140,1546,'3 VEZES','CAUCAIA DO ALTO','','2016-02-17 12:33:36'),(141,1554,'1','São roque ','Drogas ','2016-02-17 14:14:29'),(142,1578,'5x','Bayral','Motivo psicológico. ','2016-02-17 14:56:27'),(143,1579,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 15:00:03'),(144,1580,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-17 15:01:01'),(145,1581,'1 vez','hospital do mandaki ','Ganhar o bebé ','2016-02-17 15:05:39'),(146,1587,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-17 15:13:44'),(147,1597,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:24:41'),(148,1598,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:24:42'),(149,1599,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:24:49'),(150,1600,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:25:58'),(151,1628,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-17 15:48:25'),(152,1629,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 15:49:32'),(153,1653,'2','','Nãoselembra no momento nome do lugar','2016-02-17 16:16:07'),(154,1662,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-17 18:58:31'),(155,1670,'1','barafunda pronto socorro ','Amputação de membro inferior. (Dedo)','2016-02-17 19:56:38'),(156,1678,'2','CRATOD ','','2016-02-17 21:33:17'),(157,1679,'2','','Nãoselembra no momento nome do lugar','2016-02-17 21:39:02'),(158,1684,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 22:12:27'),(159,1686,'Quatro','Santa Catarina','Drogas','2016-02-17 22:18:39'),(160,1689,'1 vez','Cratod','Uso de dragas','2016-02-17 22:27:48'),(161,1693,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 22:48:22'),(162,1707,'2','Taubate ','Drogas','2016-02-18 09:02:41'),(163,1723,'1x','Hospital cachoeirinha','Tratar tuberculose','2016-02-18 09:57:14'),(164,1725,'5 x','Cratod','Eliminar o uso','2016-02-18 09:59:06'),(165,1728,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 10:01:55'),(166,1738,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-18 10:09:01'),(167,1739,'5x','Bayral','Motivo psicológico. ','2016-02-18 10:13:01'),(168,1754,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-18 10:32:56'),(169,1757,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-18 10:41:53'),(170,1762,'1x','Santa casa','Cirurgia cálculo renal','2016-02-18 10:49:10'),(171,1775,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 11:10:37'),(172,1777,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-18 11:15:24'),(173,1782,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-18 11:22:56'),(174,1783,'1','caps de São miguel','De uso do drogas','2016-02-18 11:23:30'),(175,1787,'3x','Santa casa','Cirurgia no abdômen','2016-02-18 11:29:47'),(176,1790,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-18 11:30:51'),(177,1794,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 11:32:12'),(178,1795,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-18 11:32:52'),(179,1798,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 11:38:21'),(180,1800,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 11:42:07'),(181,1806,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-18 11:48:10'),(182,1807,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-18 11:50:35'),(183,1822,'5','Belém ','Uso de drogas','2016-02-18 12:03:32'),(184,1852,'3','Santa casa','','2016-02-18 13:09:13'),(185,1853,'3','Santa casa','','2016-02-18 13:09:13'),(186,1854,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:24'),(187,1855,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:26'),(188,1856,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:28'),(189,1864,'2','CRATOD ','','2016-02-18 13:26:06'),(190,1866,'10 vezes','missão Belém ','Uso de drogas.','2016-02-18 13:30:01'),(191,1867,'10 vezes','missão Belém ','Uso de drogas.','2016-02-18 13:30:03'),(192,1881,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:43'),(193,1882,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:45'),(194,1883,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:47'),(195,1884,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:50'),(196,1885,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:52'),(197,1886,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:55'),(198,1889,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-18 14:45:04'),(199,1892,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 15:06:37'),(200,1898,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-18 15:31:09'),(201,1902,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-18 15:43:01'),(202,1903,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-18 15:43:01'),(203,1906,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-18 15:51:09'),(204,1923,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:19:35'),(205,1925,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:20:01'),(206,1940,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:28:39'),(207,1946,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-18 16:32:17'),(208,1947,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-18 16:32:18'),(209,1959,'1x','Hospital cachoeirinha','Tratar tuberculose','2016-02-18 16:39:06'),(210,1963,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-18 16:44:57'),(211,1966,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-18 21:00:14'),(212,1967,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 21:00:56'),(213,1972,'1 vez','cratod','Uso da drogas','2016-02-18 21:18:08'),(214,1992,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 23:38:12'),(215,1993,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 23:39:40'),(216,1996,'1','São Bernardo ','Quebro o braço ','2016-02-19 09:23:14'),(217,2000,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-19 09:44:14'),(218,2001,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-19 09:57:28'),(219,2003,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-19 09:59:07'),(220,2005,'1x','Santa casa','Cirurgia cálculo renal','2016-02-19 10:01:57'),(221,2008,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-19 10:13:02'),(222,2009,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-19 10:19:28'),(223,2010,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-19 10:24:48'),(224,2013,'1','Clínica de recuperação ','Uso de drogas','2016-02-19 10:26:05'),(225,2014,'1','Clínica de recuperação ','Uso de drogas','2016-02-19 10:27:57'),(226,2020,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-19 10:30:44'),(227,2030,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-19 11:08:22'),(228,2031,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-19 11:13:43'),(229,2034,'1 vez','hospital do mandaki ','Ganhar o bebé ','2016-02-19 11:16:02'),(230,2036,'1 vez','Cratod','Uso de dragas','2016-02-19 11:19:57'),(231,2038,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-19 11:22:49'),(232,2038,'1 vez','caps III são Miguel.  Rua tais vinha, 200  vila jacui ','Tratamento de drogas, compareceu dia 15.02.16 com a referência olisses. Te 20316956','2016-02-19 11:22:49'),(233,2042,'1 vez','Cratod','Uso de drogas','2016-02-19 11:26:45'),(234,2046,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-19 11:32:44'),(235,2050,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-19 11:43:45'),(236,2066,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-19 12:07:00'),(237,2069,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-19 12:08:14'),(238,2071,'1 vez','Pnienel','Alucinações  do uso das drogas','2016-02-19 12:12:06'),(239,2082,'5x','Bayral','Motivo psicológico. ','2016-02-19 12:29:11'),(240,2086,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-19 13:59:34'),(241,2087,'10 vezes','missão Belém ','Uso de drogas.','2016-02-19 14:00:41'),(242,2088,'10 vezes','missão Belém ','Uso de drogas.','2016-02-19 14:01:28'),(243,2089,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-19 14:18:12'),(244,2090,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-19 14:28:22'),(245,2091,'1 vez','Santa casa','Cirurgia de hérnia ','2016-02-19 14:31:06'),(246,2092,'3','missão Belém, ','Uso de drogas','2016-02-19 14:32:10'),(247,2093,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:33:10'),(248,2094,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:34:37'),(249,2095,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:36:03'),(250,2135,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-22 10:04:13'),(251,2143,'1 vez','Bahal','','2016-02-22 11:19:47'),(252,2144,'1 vez','Bahal','','2016-02-22 11:20:29'),(253,2145,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-22 11:27:10'),(254,2171,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-22 12:09:21'),(255,2180,'1 vez','Santa casa','Infecção no intestino.','2016-02-22 12:54:13'),(256,2181,'1','caps de São miguel','De uso do drogas','2016-02-22 12:56:30'),(257,2186,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-22 14:10:38'),(258,2187,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-22 14:12:24'),(259,2188,'3','missão Belém, ','Uso de drogas','2016-02-22 14:13:57'),(260,2189,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-22 14:15:05'),(261,2190,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-22 14:16:17'),(262,2192,'1','São roque ','Drogas ','2016-02-22 14:36:43'),(263,2221,'1 vez','Santa casa','Infecção no intestino.','2016-02-23 09:51:40'),(264,2223,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-23 10:15:22'),(265,2236,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-23 12:42:50'),(266,2239,'1','Clínica de recuperação ','Uso de drogas','2016-02-23 12:47:23'),(267,2244,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-23 13:01:13'),(268,2248,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-23 13:07:49'),(269,2254,'1 vez','Cratod','Uso de dragas','2016-02-23 13:18:38'),(270,2260,'1 vez','Cratod','Uso de drogas','2016-02-23 13:25:31'),(271,2261,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-23 13:26:52'),(272,2263,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-23 13:27:53'),(273,2271,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-23 13:49:31'),(274,2272,'3','Santa casa','','2016-02-23 13:51:18'),(275,2305,'3','Santa casa','','2016-02-24 10:58:43'),(276,2325,'1 vez','Bahal','','2016-02-24 15:31:37'),(277,2340,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-24 16:05:41'),(278,2341,'3','missão Belém, ','Uso de drogas','2016-02-24 16:07:29'),(279,2343,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-24 16:10:43'),(280,2344,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-24 16:11:07'),(281,2372,'3','Santa casa','','2016-02-25 10:20:22'),(282,2373,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-25 10:22:08'),(283,2376,'1 vez','PS barra funda e Santa casa','Avc','2016-02-25 10:33:09'),(284,2377,'2','Arthur Nogueira ','Dependência quimica','2016-02-25 10:55:16'),(285,2381,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-25 16:10:44'),(286,2382,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-25 16:10:54'),(287,2384,'5 x','Cratod','Eliminar o uso','2016-02-25 16:13:17'),(288,2393,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-26 08:39:55'),(289,2396,'1','Clínica de recuperação ','Uso de drogas','2016-02-26 08:51:09'),(290,2401,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-26 08:58:21'),(291,2405,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-26 09:01:22'),(292,2406,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-26 09:01:45'),(293,2413,'1 vez','Cratod','Uso de dragas','2016-02-26 09:06:49'),(294,2417,'1 vez','Cratod','Uso de drogas','2016-02-26 09:09:04'),(295,2418,'1 vez','Cratod','Uso de drogas','2016-02-26 09:09:04'),(296,2420,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-26 09:09:49'),(297,2422,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-26 09:10:41'),(298,2428,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-26 09:13:45'),(299,2429,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-26 09:14:53'),(300,2430,'1 vez','Pnienel','Alucinações  do uso das drogas','2016-02-26 09:15:29'),(301,2437,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-26 10:32:55'),(302,2438,'3','missão Belém, ','Uso de drogas','2016-02-26 10:34:58'),(303,2439,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-26 10:36:18'),(304,2440,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-26 10:38:03'),(305,2441,'1 vez','Santa casa','Infecção no intestino.','2016-02-26 10:50:31'),(306,2444,'10 vezes','missão Belém ','Uso de drogas.','2016-02-26 10:54:15'),(307,2449,'1 vez','Hospital São Paulo','','2016-02-26 11:01:07'),(308,2450,'1 vez','Hospital São Paulo','','2016-02-26 11:01:08'),(309,2457,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-26 15:11:25'),(310,2461,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-26 15:16:29'),(311,2464,'3','Santa casa','','2016-02-26 15:19:02'),(312,2467,'5 x','Cratod','Eliminar o uso','2016-02-26 15:20:22'),(313,2471,'1 vez','Bahal','','2016-02-26 15:23:51'),(314,2473,'1','São Bernardo ','Quebro o braço ','2016-02-26 15:24:56'),(315,2475,'3 VEZES','CAUCAIA DO ALTO','','2016-02-26 15:25:35'),(316,2479,'1 vez','PS barra funda e Santa casa','Avc','2016-02-26 15:26:53'),(317,2510,'1 vez','Santa casa','Infecção no intestino.','2016-02-29 10:37:55'),(318,2513,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-29 11:00:18'),(319,2514,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-29 11:00:53'),(320,2518,'12 vezes','missão Belém ','Drogas','2016-02-29 11:36:45'),(321,2519,'7 vezes ','Missão Belém ','Uso de drogas.','2016-02-29 11:37:37'),(322,2521,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-29 11:55:36'),(323,2522,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-29 12:00:21'),(324,2535,'2','Hospital são Paulo ','Parto','2016-03-01 10:23:38'),(325,2536,'1 x','','Epilepsia','2016-03-01 10:23:45'),(326,2537,'1 vez','caps se','Uso de droga','2016-03-01 11:31:45'),(327,2567,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-03-01 15:54:23'),(328,2595,'1 vez','cratod','Uso da drogas','2016-03-02 09:53:06'),(329,2597,'1 vez','Bahal','','2016-03-02 10:33:25'),(330,2603,'2','','Nãoselembra no momento nome do lugar','2016-03-02 15:15:31'),(331,2604,'2','','Nãoselembra no momento nome do lugar','2016-03-02 15:17:14'),(332,2610,'1 vez','cratod','Uso da drogas','2016-03-02 16:03:16'),(333,2611,'1 vez','Santa casa','Cirurgia de hérnia ','2016-03-02 16:24:28'),(334,2636,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-03-03 14:30:46');",
+	//-ONLINE-"INSERT INTO `internacao` (`id`, `saude_id`, `quantas_vezes`, `local`, `motivo`, `dt_criacao`) VALUES (4,9,'2','hospital 1','problema renal','2015-11-23 10:43:16'),(5,15,'2','Hospital Geral XYZ','Pedra nos rins','2015-11-24 11:09:08'),(6,15,'1','Hospital das Forças Armadas','apendicite','2015-11-24 11:09:08'),(7,446,'Não sabe informar ','','','2016-01-22 11:07:30'),(8,808,'1','caps de São miguel','De uso do drogas','2016-02-05 11:46:11'),(9,809,'3','jandiara','Foi por esta com penamunia. ','2016-02-05 11:49:04'),(10,819,'1 vez','Santa casa','Infecção no intestino.','2016-02-05 14:10:46'),(11,820,'1','caps de São miguel','De uso do drogas','2016-02-05 14:12:34'),(12,822,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-05 14:15:15'),(13,823,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-05 14:16:36'),(14,824,'2','clínica de reabilitação ','Dependência química  (uso e abuso de drogas','2016-02-05 14:18:28'),(15,825,'10 vezes','missão Belém ','Uso de drogas.','2016-02-05 14:19:48'),(16,826,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-05 14:24:55'),(17,828,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-05 14:32:11'),(18,830,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-05 14:34:41'),(19,832,'1 vez','missão Belém ','Uso de drogas.','2016-02-05 14:40:42'),(20,835,'1 vez','cratod','Uso da drogas','2016-02-05 14:45:29'),(21,837,'3','jandiara','Foi por esta com penamunia. ','2016-02-05 14:49:56'),(22,838,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-05 14:51:01'),(23,839,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-05 14:51:43'),(24,840,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-05 14:52:07'),(25,843,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-05 15:09:23'),(26,845,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-05 15:12:34'),(27,847,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-05 15:12:43'),(28,849,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-05 15:18:58'),(29,851,'1 vez','bahirral ','Uso da drogas','2016-02-05 15:35:15'),(30,852,'1 vez','PS barra funda e Santa casa','Avc','2016-02-05 15:42:14'),(31,853,'3 vezes','jabuticabal ','Uso de drogas.','2016-02-05 15:49:35'),(32,854,'1 vez','hospital vergueiro','Muita dor no estômago. ','2016-02-05 15:52:24'),(33,855,'1 vez','caps se','Uso de droga','2016-02-05 15:57:33'),(34,892,'5','Belém ','Uso de drogas','2016-02-11 14:13:04'),(35,895,'1 vez','Santa casa','Infecção no intestino.','2016-02-11 14:15:13'),(36,900,'1','caps de São miguel','De uso do drogas','2016-02-11 14:19:56'),(37,903,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:16'),(38,905,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:20'),(39,906,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:22:24'),(40,910,'1','São roque ','Drogas ','2016-02-11 14:26:10'),(41,911,'10 vezes','missão Belém ','Uso de drogas.','2016-02-11 14:27:41'),(42,917,'1 vez','cratod','Uso da drogas','2016-02-11 14:35:00'),(43,923,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-11 14:39:43'),(44,1025,'1','caps de São miguel','De uso do drogas','2016-02-12 12:38:27'),(45,1031,'10 vezes','missão Belém ','Uso de drogas.','2016-02-12 12:46:36'),(46,1033,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-12 12:50:24'),(47,1036,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-12 12:53:32'),(48,1041,'1 vez','caps se','Uso de droga','2016-02-12 14:25:05'),(49,1042,'1','Clínica de recuperação ','Uso de drogas','2016-02-12 14:27:30'),(50,1048,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-12 14:57:04'),(51,1084,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-15 09:20:19'),(52,1085,'Quatro','Santa Catarina','Drogas','2016-02-15 09:30:31'),(53,1086,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-15 09:31:12'),(54,1102,'1','Hospital psiquiátrico ','Problemas psiquiátricos. ','2016-02-15 10:03:25'),(55,1128,'1 vez','PS barra funda eaSanta casa','Avc','2016-02-15 10:44:26'),(56,1156,'1 vez','Santa casa','Infecção no intestino.','2016-02-15 13:00:38'),(57,1157,'10 vezes','missão Belém ','Uso de drogas.','2016-02-15 13:04:49'),(58,1158,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-15 13:07:41'),(59,1179,'Quatro','Santa Catarina','Drogas','2016-02-16 09:24:55'),(60,1197,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-16 09:44:26'),(61,1198,'Uma','PS Barra Funda','Problema cardíaco. ','2016-02-16 09:48:41'),(62,1208,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-16 09:59:16'),(63,1218,'1 vez','PS barra funda e Santa casa','Avc','2016-02-16 10:10:32'),(64,1223,'5','Belém ','Uso de drogas','2016-02-16 10:19:11'),(65,1224,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 10:20:10'),(66,1237,'3','missão Belém, ','Uso de drogas','2016-02-16 10:43:39'),(67,1238,'3','missão Belém, ','Uso de drogas','2016-02-16 10:45:29'),(68,1239,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-16 10:48:04'),(69,1244,'3','Caps Prates','Drogas','2016-02-16 10:59:56'),(70,1245,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:00:12'),(71,1251,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:11:42'),(72,1253,'1 vez','caps se','Uso de droga','2016-02-16 11:14:24'),(73,1254,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-16 11:19:09'),(74,1255,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-16 11:19:58'),(75,1259,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-16 11:25:59'),(76,1270,'10 vezes','missão Belém ','Uso de drogas.','2016-02-16 11:46:16'),(77,1271,'uma ','cristolandia ','Uso e abuso de drogas','2016-02-16 11:49:11'),(78,1290,'1','Clínica de recuperação ','Uso de drogas','2016-02-16 12:39:06'),(79,1295,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-16 13:17:47'),(80,1299,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-16 13:57:44'),(81,1303,'1 vez','Cratod','Uso de dragas','2016-02-16 14:21:11'),(82,1306,'1 vez','Cratod','Uso de drogas','2016-02-16 14:37:11'),(83,1327,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 16:14:20'),(84,1329,'1 vez','Santa casa','Infecção no intestino.','2016-02-16 16:16:32'),(85,1330,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-16 16:20:12'),(86,1366,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 09:35:57'),(87,1383,'3','Santa casa','','2016-02-17 09:41:59'),(88,1409,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 09:53:02'),(89,1410,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-17 09:53:57'),(90,1411,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 09:54:34'),(91,1413,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 09:55:14'),(92,1421,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-17 10:00:19'),(93,1430,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 10:12:03'),(94,1431,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-17 10:13:39'),(95,1433,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 10:17:49'),(96,1435,'1','caps de São miguel','De uso do drogas','2016-02-17 10:19:51'),(97,1440,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 10:23:47'),(98,1442,'10 vezes','missão Belém ','Uso de drogas.','2016-02-17 10:27:18'),(99,1444,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-17 10:28:37'),(100,1447,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 10:31:14'),(101,1461,'5 x','Cratod','Eliminar o uso','2016-02-17 10:37:32'),(102,1462,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 10:38:05'),(103,1470,'1','São roque ','Drogas ','2016-02-17 10:52:53'),(104,1474,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 10:58:54'),(105,1476,'3','jandiara','Foi por esta com penamunia. ','2016-02-17 11:04:27'),(106,1479,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:06:11'),(107,1480,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-17 11:07:33'),(108,1482,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 11:09:03'),(109,1483,'1','caps de São miguel','De uso do drogas','2016-02-17 11:09:24'),(110,1485,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 11:10:11'),(111,1488,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-17 11:12:08'),(112,1490,'1','caps de São miguel','De uso do drogas','2016-02-17 11:13:08'),(113,1492,'5','Belém ','Uso de drogas','2016-02-17 11:13:57'),(114,1493,'1 vez','Santa casa','Infecção no intestino.','2016-02-17 11:14:12'),(115,1497,'10 vezes','missão Belém ','Uso de drogas.','2016-02-17 11:16:04'),(116,1499,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 11:16:35'),(117,1507,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 11:24:09'),(118,1511,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 11:28:22'),(119,1512,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:28:25'),(120,1513,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:29:12'),(121,1514,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 11:29:13'),(122,1519,'5x','Bayral','Motivo psicológico. ','2016-02-17 11:32:31'),(123,1520,'1 vez','cratod','Uso da drogas','2016-02-17 11:32:50'),(124,1523,'3','jandiara','Foi por esta com penamunia. ','2016-02-17 11:34:03'),(125,1531,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-17 11:40:54'),(126,1532,'1 vez','Santa casa','Cirurgia de hérnia ','2016-02-17 11:40:56'),(127,1534,'1 vez','caps se','Uso de droga','2016-02-17 11:44:25'),(128,1535,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:46:15'),(129,1536,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:46:15'),(130,1537,'1 vez','bahirral ','Uso da drogas','2016-02-17 11:46:28'),(131,1538,'3 vezes','jabuticabal ','Uso de drogas.','2016-02-17 11:48:42'),(132,1538,'1 vez','missão Belém ','Uso de drogas.','2016-02-17 11:48:42'),(133,1539,'3','missão Belém, ','Uso de drogas','2016-02-17 11:49:45'),(134,1540,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-17 11:53:22'),(135,1541,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-17 11:54:44'),(136,1542,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:56:54'),(137,1543,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 11:57:28'),(138,1544,'1','barafunda pronto socorro ','Amputação de membro inferior. (Dedo)','2016-02-17 12:21:44'),(139,1545,'3 VEZES','CAUCAIA DO ALTO','','2016-02-17 12:30:44'),(140,1546,'3 VEZES','CAUCAIA DO ALTO','','2016-02-17 12:33:36'),(141,1554,'1','São roque ','Drogas ','2016-02-17 14:14:29'),(142,1578,'5x','Bayral','Motivo psicológico. ','2016-02-17 14:56:27'),(143,1579,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-17 15:00:03'),(144,1580,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-17 15:01:01'),(145,1581,'1 vez','hospital do mandaki ','Ganhar o bebé ','2016-02-17 15:05:39'),(146,1587,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-17 15:13:44'),(147,1597,'1','São Bernardo ','Quebro o braço ','2016-02-17 15		41'),(148,1598,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:24:42'),(149,1599,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:24:49'),(150,1600,'1','São Bernardo ','Quebro o braço ','2016-02-17 15:25:58'),(151,1628,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-17 15:48:25'),(152,1629,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-17 15:49:32'),(153,1653,'2','','Nãoselembra no momento nome do lugar','2016-02-17 16:16:07'),(154,1662,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-17 18:58:31'),(155,1670,'1','barafunda pronto socorro ','Amputação de membro inferior. (Dedo)','2016-02-17 19:56:38'),(156,1678,'2','CRATOD ','','2016-02-17 21:33:17'),(157,1679,'2','','Nãoselembra no momento nome do lugar','2016-02-17 21:39:02'),(158,1684,'2 vezes','raio de luz casa terapêutica ','Uso da droga.','2016-02-17 22:12:27'),(159,1686,'Quatro','Santa Catarina','Drogas','2016-02-17 22:18:39'),(160,1689,'1 vez','Cratod','Uso de dragas','2016-02-17 22:27:48'),(161,1693,'1 vez','Não recorda','Motivo água no pulmão ','2016-02-17 22:48:22'),(162,1707,'2','Taubate ','Drogas','2016-02-18 09:02:41'),(163,1723,'1x','Hospital cachoeirinha','Tratar tuberculose','2016-02-18 09:57:14'),(164,1725,'5 x','Cratod','Eliminar o uso','2016-02-18 09:59:06'),(165,1728,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 10:01:55'),(166,1738,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-18 10:09:01'),(167,1739,'5x','Bayral','Motivo psicológico. ','2016-02-18 10:13:01'),(168,1754,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-18 10:32:56'),(169,1757,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-18 10:41:53'),(170,1762,'1x','Santa casa','Cirurgia cálculo renal','2016-02-18 10:49:10'),(171,1775,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 11:10:37'),(172,1777,'2','cratod ','Dependência química  (uso e abuso  de drogas ','2016-02-18 11:15:24'),(173,1782,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-18 11:22:56'),(174,1783,'1','caps de São miguel','De uso do drogas','2016-02-18 11:23:30'),(175,1787,'3x','Santa casa','Cirurgia no abdômen','2016-02-18 11:29:47'),(176,1790,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-18 11:30:51'),(177,1794,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 11:32:12'),(178,1795,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-18 11:32:52'),(179,1798,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 11:38:21'),(180,1800,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 11:42:07'),(181,1806,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-18 11:48:10'),(182,1807,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-18 11:50:35'),(183,1822,'5','Belém ','Uso de drogas','2016-02-18 12:03:32'),(184,1852,'3','Santa casa','','2016-02-18 13:09:13'),(185,1853,'3','Santa casa','','2016-02-18 13:09:13'),(186,1854,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:24'),(187,1855,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:26'),(188,1856,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-18 13:11:28'),(189,1864,'2','CRATOD ','','2016-02-18 13:26:06'),(190,1866,'10 vezes','missão Belém ','Uso de drogas.','2016-02-18 13:30:01'),(191,1867,'10 vezes','missão Belém ','Uso de drogas.','2016-02-18 13:30:03'),(192,1881,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:43'),(193,1882,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:45'),(194,1883,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:47'),(195,1884,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:50'),(196,1885,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:52'),(197,1886,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 13:54:55'),(198,1889,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-18 14:45:04'),(199,1892,'1','Clínica de recuperação ','Uso de drogas','2016-02-18 15:06:37'),(200,1898,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-18 15:31:09'),(201,1902,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-18 15:43:01'),(202,1903,'2 vezes','hospital Nossa Senhora de Fatima','Não lembra','2016-02-18 15:43:01'),(203,1906,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-18 15:51:09'),(204,1923,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:19:35'),(205,1925,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:20:01'),(206,1940,'3','PS - Barra Funda ','Clínico ','2016-02-18 16:28:39'),(207,1946,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-18 16:32:17'),(208,1947,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-18 16:32:18'),(209,1959,'1x','Hospital cachoeirinha','Tratar tuberculose','2016-02-18 16:39:06'),(210,1963,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-18 16:44:57'),(211,1966,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-18 21:00:14'),(212,1967,'3 vezes','laca,  são bernardo do campo, caps e cratod','Uso de drogas.','2016-02-18 21:00:56'),(213,1972,'1 vez','cratod','Uso da drogas','2016-02-18 21:18:08'),(214,1992,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 23:38:12'),(215,1993,'1 vez','PS barra funda e Santa casa','Avc','2016-02-18 23:39:40'),(216,1996,'1','São Bernardo ','Quebro o braço ','2016-02-19 09:23:14'),(217,2000,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-19 09:44:14'),(218,2001,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-19 09:57:28'),(219,2003,'1 vez','Minas gerais','Uso excessivo de drogas.','2016-02-19 09:59:07'),(220,2005,'1x','Santa casa','Cirurgia cálculo renal','2016-02-19 10:01:57'),(221,2008,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-19 10:13:02'),(222,2009,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-19 10:19:28'),(223,2010,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-19 10:24:48'),(224,2013,'1','Clínica de recuperação ','Uso de drogas','2016-02-19 10:26:05'),(225,2014,'1','Clínica de recuperação ','Uso de drogas','2016-02-19 10:27:57'),(226,2020,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-19 10:30:44'),(227,2030,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-19 11:08:22'),(228,2031,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-19 11:13:43'),(229,2034,'1 vez','hospital do mandaki ','Ganhar o bebé ','2016-02-19 11:16:02'),(230,2036,'1 vez','Cratod','Uso de dragas','2016-02-19 11:19:57'),(231,2038,'1 vez','hospital Tide Setúbal ','Pelo uso de drogas.','2016-02-19 11:22:49'),(232,2038,'1 vez','caps III são Miguel.  Rua tais vinha, 200  vila jacui ','Tratamento de drogas, compareceu dia 15.02.16 com a referência olisses. Te 20316956','2016-02-19 11:22:49'),(233,2042,'1 vez','Cratod','Uso de drogas','2016-02-19 11:26:45'),(234,2046,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-19 11:32:44'),(235,2050,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-19 11:43:45'),(236,2066,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-19 12:07:00'),(237,2069,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-19 12:08:14'),(238,2071,'1 vez','Pnienel','Alucinações  do uso das drogas','2016-02-19 12:12:06'),(239,2082,'5x','Bayral','Motivo psicológico. ','2016-02-19 12:29:11'),(240,2086,'1 vez','hospital Vergueiro','Cirurgia para retirar uma hérnia. ','2016-02-19 13:59:34'),(241,2087,'10 vezes','missão Belém ','Uso de drogas.','2016-02-19 14:00:41'),(242,2088,'10 vezes','missão Belém ','Uso de drogas.','2016-02-19 14:01:28'),(243,2089,'2 vezes','Mogi das cruzes','Uso de drogas.','2016-02-19 14:18:12'),(244,2090,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-19 14:28:22'),(245,2091,'1 vez','Santa casa','Cirurgia de hérnia ','2016-02-19 14:31:06'),(246,2092,'3','missão Belém, ','Uso de drogas','2016-02-19 14:32:10'),(247,2093,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:33:10'),(248,2094,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:34:37'),(249,2095,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-19 14:36:03'),(250,2135,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-22 10:04:13'),(251,2143,'1 vez','Bahal','','2016-02-22 11:19:47'),(252,2144,'1 vez','Bahal','','2016-02-22 11:20:29'),(253,2145,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-02-22 11:27:10'),(254,2171,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-22 12:09:21'),(255,2180,'1 vez','Santa casa','Infecção no intestino.','2016-02-22 12:54:13'),(256,2181,'1','caps de São miguel','De uso do drogas','2016-02-22 12:56:30'),(257,2186,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-22 14:10:38'),(258,2187,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-22 14:12:24'),(259,2188,'3','missão Belém, ','Uso de drogas','2016-02-22 14:13:57'),(260,2189,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-22 14:15:05'),(261,2190,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-22 14:16:17'),(262,2192,'1','São roque ','Drogas ','2016-02-22 14:36:43'),(263,2221,'1 vez','Santa casa','Infecção no intestino.','2016-02-23 09:51:40'),(264,2223,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-23 10:15:22'),(265,2236,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-23 12:42:50'),(266,2239,'1','Clínica de recuperação ','Uso de drogas','2016-02-23 12:47:23'),(267,2244,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-23 13:01:13'),(268,2248,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-23 13:07:49'),(269,2254,'1 vez','Cratod','Uso de dragas','2016-02-23 13:18:38'),(270,2260,'1 vez','Cratod','Uso de drogas','2016-02-23 13:25:31'),(271,2261,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-23 13:26:52'),(272,2263,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-23 13:27:53'),(273,2271,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-23 13:49:31'),(274,2272,'3','Santa casa','','2016-02-23 13:51:18'),(275,2305,'3','Santa casa','','2016-02-24 10:58:43'),(276,2325,'1 vez','Bahal','','2016-02-24 15:31:37'),(277,2340,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-24 16:05:41'),(278,2341,'3','missão Belém, ','Uso de drogas','2016-02-24 16:07:29'),(279,2343,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-24 16:10:43'),(280,2344,'1','missão  Belém ','Uso e abuso  de drogas ','2016-02-24 16:11:07'),(281,2372,'3','Santa casa','','2016-02-25 10:20:22'),(282,2373,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-25 10:22:08'),(283,2376,'1 vez','PS barra funda e Santa casa','Avc','2016-02-25 10:33:09'),(284,2377,'2','Arthur Nogueira ','Dependência quimica','2016-02-25 10:55:16'),(285,2381,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-25 16:10:44'),(286,2382,'6','Cristolandia/leões de Judá ','Recuperação de álcool e drogas','2016-02-25 16:10:54'),(287,2384,'5 x','Cratod','Eliminar o uso','2016-02-25 16:13:17'),(288,2393,'2','ps barra funda','gestação de risco e psiquiatria','2016-02-26 08:39:55'),(289,2396,'1','Clínica de recuperação ','Uso de drogas','2016-02-26 08:51:09'),(290,2401,'2 vezes','Clínica de recuperação ','Uso de drogas','2016-02-26 08:58:21'),(291,2405,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-26 09:01:22'),(292,2406,'1 vez','Santa Casa de sp','Ferimento com faca','2016-02-26 09:01:45'),(293,2413,'1 vez','Cratod','Uso de dragas','2016-02-26 09:06:49'),(294,2417,'1 vez','Cratod','Uso de drogas','2016-02-26 09:09:04'),(295,2418,'1 vez','Cratod','Uso de drogas','2016-02-26 09:09:04'),(296,2420,'1 vez','Santa casa','Briga com o ex companheiro na rua.','2016-02-26 09:09:49'),(297,2422,'1 vez','Maria zelia','  Paciente refere ter ficado internada para retirada de nódulos da mama.','2016-02-26 09:10:41'),(298,2428,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-26 09:13:45'),(299,2429,'1 vez ','Santa casa','Problemas respiratórios devido ao uso de drogas','2016-02-26 09:14:53'),(300,2430,'1 vez','Pnienel','Alucinações  do uso das drogas','2016-02-26 09:15:29'),(301,2437,'1 vez','Santa casa','Paciente bem debilitada por falta da medicação, do HIV. Teve alta e estava sendo acompanhada pela equipe.','2016-02-26 10:32:55'),(302,2438,'3','missão Belém, ','Uso de drogas','2016-02-26 10:34:58'),(303,2439,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-02-26 10:36:18'),(304,2440,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-26 10:38:03'),(305,2441,'1 vez','Santa casa','Infecção no intestino.','2016-02-26 10:50:31'),(306,2444,'10 vezes','missão Belém ','Uso de drogas.','2016-02-26 10:54:15'),(307,2449,'1 vez','Hospital São Paulo','','2016-02-26 11:01:07'),(308,2450,'1 vez','Hospital São Paulo','','2016-02-26 11:01:08'),(309,2457,'3 vezes','clínica de desintoxicação ','Parar de usar drogas ','2016-02-26 15:11:25'),(310,2461,'6 vezes','Santa Casa, hospital são aula e Santa Isabel e tatua pé são Luis Emílio rias e única me. ','','2016-02-26 15:16:29'),(311,2464,'3','Santa casa','','2016-02-26 15:19:02'),(312,2467,'5 x','Cratod','Eliminar o uso','2016-02-26 15:20:22'),(313,2471,'1 vez','Bahal','','2016-02-26 15:23:51'),(314,2473,'1','São Bernardo ','Quebro o braço ','2016-02-26 15:24:56'),(315,2475,'3 VEZES','CAUCAIA DO ALTO','','2016-02-26 15:25:35'),(316,2479,'1 vez','PS barra funda e Santa casa','Avc','2016-02-26 15:26:53'),(317,2510,'1 vez','Santa casa','Infecção no intestino.','2016-02-29 10:37:55'),(318,2513,'3 vezes','abrigo santo amaro','Paciente refere que ela quis ser internada pelo uso de drogas.','2016-02-29 11:00:18'),(319,2514,'10 vezes','clínica católica ','Pelo uso de drogas.','2016-02-29 11:00:53'),(320,2518,'12 vezes','missão Belém ','Drogas','2016-02-29 11:36:45'),(321,2519,'7 vezes ','Missão Belém ','Uso de drogas.','2016-02-29 11:37:37'),(322,2521,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-29 11:55:36'),(323,2522,'várias vezes ',' Diversosetores serviços ','Confusão mental','2016-02-29 12:00:21'),(324,2535,'2','Hospital são Paulo ','Parto','2016-03-01 10:23:38'),(325,2536,'1 x','','Epilepsia','2016-03-01 10:23:45'),(326,2537,'1 vez','caps se','Uso de droga','2016-03-01 11:31:45'),(327,2567,'2 vezes','Casa amarelo, juquitiba','Problemas com as drogas','2016-03-01 15:54:23'),(328,2595,'1 vez','cratod','Uso da drogas','2016-03-02 09:53:06'),(329,2597,'1 vez','Bahal','','2016-03-02 10:33:25'),(330,2603,'2','','Nãoselembra no momento nome do lugar','2016-03-02 15:15:31'),(331,2604,'2','','Nãoselembra no momento nome do lugar','2016-03-02 15:17:14'),(332,2610,'1 vez','cratod','Uso da drogas','2016-03-02 16:03:16'),(333,2611,'1 vez','Santa casa','Cirurgia de hérnia ','2016-03-02 16:24:28'),(334,2636,'cratod','','paciente foi internada em momento de surto. foi atendida pela equipe de consultório na rua, foi encaminhada para o atendimento psiquiátrico e foi encaminhado para o cratod','2016-03-03 14:30:46');",
 
 	/*local_visitar*/
 	//-ONLINE-"INSERT INTO `local_visitar` (`id`, `trabalho_id`, `tipo_local_visitar_id`, `dt_criacao`) VALUES (7,8,1,'2015-11-23 11:02:35'),(8,8,2,'2015-11-23 11:02:35'),(9,8,3,'2015-11-23 11:02:35'),(10,8,4,'2015-11-23 11:02:35'),(11,8,5,'2015-11-23 11:02:35'),(13,10,1,'2015-11-23 15:21:38'),(14,10,3,'2015-11-23 15:21:38'),(15,10,5,'2015-11-23 15:21:38'),(17,12,1,'2015-11-24 10:53:14'),(18,12,2,'2015-11-24 10:53:14'),(19,12,3,'2015-11-24 10:53:14'),(20,12,4,'2015-11-24 10:53:14'),(21,12,5,'2015-11-24 10:53:14'),(23,13,1,'2015-11-24 10:53:17'),(24,13,2,'2015-11-24 10:53:17'),(25,13,3,'2015-11-24 10:53:17'),(26,13,4,'2015-11-24 10:53:17'),(27,13,5,'2015-11-24 10:53:17'),(29,21,3,'2016-01-13 15:09:11'),(30,22,3,'2016-01-13 15:16:57'),(31,23,3,'2016-01-13 15:18:51'),(32,24,1,'2016-01-18 15:16:34'),(33,24,2,'2016-01-18 15:16:34'),(34,24,3,'2016-01-18 15:16:34'),(35,24,4,'2016-01-18 15:16:34'),(36,27,3,'2016-01-18 15:34:06'),(37,28,3,'2016-01-18 15:34:14'),(38,29,3,'2016-01-18 15:36:03'),(39,30,3,'2016-01-18 15:36:45'),(40,32,1,'2016-01-19 14:45:25'),(41,32,2,'2016-01-19 14:45:25'),(42,32,3,'2016-01-19 14:45:25'),(43,32,4,'2016-01-19 14:45:25'),(44,35,3,'2016-01-19 14:53:17'),(45,36,3,'2016-01-19 14:57:50'),(46,38,1,'2016-01-19 15:05:30'),(47,38,2,'2016-01-19 15:05:30'),(48,38,3,'2016-01-19 15:05:30'),(49,38,4,'2016-01-19 15:05:30'),(50,39,2,'2016-01-19 15:08:11'),(51,40,3,'2016-01-19 15:18:28'),(52,45,1,'2016-01-20 10:12:32'),(53,46,3,'2016-01-20 10:31:43'),(54,47,1,'2016-01-20 10:46:53'),(55,48,1,'2016-01-21 09:46:01'),(56,49,1,'2016-01-21 10:09:15'),(57,55,4,'2016-01-21 12:39:49'),(58,78,1,'2016-01-27 09:40:10'),(59,79,4,'2016-01-27 09:49:21'),(60,80,1,'2016-01-27 10:00:07'),(61,81,1,'2016-01-27 10:00:29'),(62,82,1,'2016-01-27 12:23:09'),(63,83,1,'2016-01-27 12:23:09'),(64,84,1,'2016-01-27 12:23:09'),(65,85,1,'2016-01-27 12:23:10'),(66,86,1,'2016-01-27 12:23:11'),(67,88,1,'2016-01-27 15:10:56'),(68,88,4,'2016-01-27 15:10:56'),(69,89,1,'2016-01-27 15:11:01'),(70,89,4,'2016-01-27 15:11:01'),(71,90,1,'2016-01-27 15:11:01'),(72,90,4,'2016-01-27 15:11:01'),(73,91,2,'2016-01-27 15:14:24'),(74,92,2,'2016-01-27 15:16:41'),(75,93,1,'2016-01-27 15:18:20'),(76,93,4,'2016-01-27 15:18:20'),(77,94,1,'2016-01-27 15:30:52'),(78,94,3,'2016-01-27 15:30:52'),(79,97,1,'2016-01-27 15:39:51'),(80,98,1,'2016-01-27 15:41:54'),(81,99,1,'2016-01-27 15:42:31'),(82,100,3,'2016-01-27 15:58:09'),(83,101,3,'2016-01-27 15:59:38'),(84,102,4,'2016-01-27 16:01:55'),(85,110,2,'2016-01-28 15:34:27'),(86,110,3,'2016-01-28 15:34:27'),(87,110,4,'2016-01-28 15:34:27'),(88,111,2,'2016-01-28 15:40:38'),(89,111,3,'2016-01-28 15:40:38'),(90,111,4,'2016-01-28 15:40:38'),(91,116,1,'2016-01-30 22:41:18'),(92,116,4,'2016-01-30 22:41:18'),(93,118,3,'2016-02-01 10:13:53'),(94,119,3,'2016-02-01 10:22:37'),(95,120,3,'2016-02-01 10:30:58'),(96,124,3,'2016-02-02 09:18:04'),(97,125,3,'2016-02-02 09:18:10'),(98,126,1,'2016-02-02 09:29:48'),(99,126,4,'2016-02-02 09:29:48'),(100,127,1,'2016-02-02 09:29:53'),(101,127,4,'2016-02-02 09:29:53'),(102,128,1,'2016-02-02 09:45:44'),(103,129,1,'2016-02-02 09:45:49'),(104,130,4,'2016-02-02 09:55:31'),(105,131,4,'2016-02-02 09:55:38'),(106,132,1,'2016-02-02 10:04:12'),(107,132,2,'2016-02-02 10:04:12'),(108,132,3,'2016-02-02 10:04:12'),(109,132,4,'2016-02-02 10:04:12'),(110,133,1,'2016-02-02 10:04:15'),(111,133,2,'2016-02-02 10:04:15'),(112,133,3,'2016-02-02 10:04:15'),(113,133,4,'2016-02-02 10:04:15'),(114,134,4,'2016-02-02 10:15:12'),(115,135,4,'2016-02-02 10:15:17'),(116,136,1,'2016-02-02 10:27:07'),(117,137,1,'2016-02-02 10:27:12'),(118,138,1,'2016-02-02 10:36:15'),(119,139,1,'2016-02-02 10:37:37'),(120,140,1,'2016-02-02 10:38:07'),(121,142,3,'2016-02-02 10:54:36'),(122,143,3,'2016-02-02 10:54:41'),(123,144,4,'2016-02-02 11:01:00'),(124,145,4,'2016-02-02 11:03:52'),(125,146,4,'2016-02-02 11:04:35'),(126,147,1,'2016-02-02 11:08:14'),(127,148,1,'2016-02-02 11:08:18'),(128,149,1,'2016-02-02 11:08:27'),(129,150,1,'2016-02-02 11:15:50'),(130,151,1,'2016-02-02 11:31:36'),(131,152,1,'2016-02-02 11:31:41'),(132,214,1,'2016-02-02 14:41:25'),(133,214,2,'2016-02-02 14:41:25'),(134,214,3,'2016-02-02 14:41:25'),(135,214,4,'2016-02-02 14:41:25'),(136,230,1,'2016-02-03 08:42:16'),(137,230,2,'2016-02-03 08:42:16'),(138,230,3,'2016-02-03 08:42:16'),(139,230,4,'2016-02-03 08:42:16'),(140,231,1,'2016-02-03 08:42:47'),(141,231,2,'2016-02-03 08:42:47'),(142,231,3,'2016-02-03 08:42:47'),(143,231,4,'2016-02-03 08:42:47'),(144,271,1,'2016-02-03 09:59:56'),(145,272,1,'2016-02-03 10:00:01'),(146,273,4,'2016-02-03 10:08:25'),(147,274,4,'2016-02-03 10:08:30'),(148,280,1,'2016-02-03 10:21:03'),(149,280,2,'2016-02-03 10:21:03'),(150,280,3,'2016-02-03 10:21:03'),(151,280,4,'2016-02-03 10:21:03'),(152,317,3,'2016-02-03 11:13:36'),(153,349,2,'2016-02-03 11:48:21'),(154,349,3,'2016-02-03 11:48:21'),(155,349,4,'2016-02-03 11:48:21'),(156,399,2,'2016-02-03 12:42:12'),(157,408,3,'2016-02-03 12:50:14'),(158,429,2,'2016-02-03 13:13:49'),(159,431,1,'2016-02-03 13:15:19'),(160,431,3,'2016-02-03 13:15:19'),(161,433,3,'2016-02-03 13:17:09'),(162,438,3,'2016-02-03 13:21:31'),(163,443,4,'2016-02-03 13:29:17'),(164,456,1,'2016-02-03 13:49:25'),(165,457,1,'2016-02-03 13:49:25'),(166,459,1,'2016-02-03 13:50:39'),(167,460,1,'2016-02-03 13:51:14'),(168,461,3,'2016-02-03 13:51:42'),(169,462,3,'2016-02-03 13:52:05'),(170,463,4,'2016-02-03 13:52:37'),(171,464,1,'2016-02-03 13:53:16'),(172,465,1,'2016-02-03 13:53:16'),(173,466,1,'2016-02-03 13:53:41'),(174,467,3,'2016-02-03 13:54:02'),(175,468,1,'2016-02-03 13:54:49'),(176,470,1,'2016-02-03 13:56:15'),(177,470,4,'2016-02-03 13:56:15'),(178,471,1,'2016-02-03 13:56:33'),(179,472,4,'2016-02-03 13:57:11'),(180,473,3,'2016-02-03 13:57:43'),(181,474,3,'2016-02-03 13:58:08'),(182,475,4,'2016-02-03 13:58:21'),(183,476,1,'2016-02-03 13:59:01'),(184,476,2,'2016-02-03 13:59:01'),(185,476,3,'2016-02-03 13:59:01'),(186,476,4,'2016-02-03 13:59:01'),(187,477,4,'2016-02-03 13:59:20'),(188,478,1,'2016-02-03 13:59:40'),(189,479,3,'2016-02-03 14:00:13'),(190,480,1,'2016-02-03 14:00:37'),(191,482,1,'2016-02-03 14:01:44'),(192,483,4,'2016-02-03 14:05:28'),(193,486,2,'2016-02-03 15:25:24'),(194,487,2,'2016-02-03 15:33:11'),(195,487,3,'2016-02-03 15:33:11'),(196,488,1,'2016-02-03 15:41:47'),(197,489,1,'2016-02-03 15:42:14'),(198,492,3,'2016-02-04 10:36:46'),(199,493,3,'2016-02-04 10:36:53'),(200,494,3,'2016-02-04 15:22:47'),(201,495,1,'2016-02-04 15:33:18'),(202,495,3,'2016-02-04 15:33:18'),(203,495,4,'2016-02-04 15:33:18'),(204,496,1,'2016-02-04 15:33:27'),(205,496,3,'2016-02-04 15:33:27'),(206,496,4,'2016-02-04 15:33:27'),(207,501,4,'2016-02-05 09:48:59'),(208,502,4,'2016-02-05 09:49:26'),(209,505,1,'2016-02-05 10:02:11'),(210,505,4,'2016-02-05 10:02:11'),(211,533,3,'2016-02-05 13:50:02'),(212,535,2,'2016-02-05 13:50:37'),(213,535,3,'2016-02-05 13:50:37'),(214,536,2,'2016-02-05 13:51:02'),(215,542,3,'2016-02-10 14:55:06'),(216,545,1,'2016-02-10 17:32:43'),(217,545,2,'2016-02-10 17:32:43'),(218,545,3,'2016-02-10 17:32:43'),(219,545,4,'2016-02-10 17:32:43'),(220,554,1,'2016-02-16 15:08:28'),(221,554,2,'2016-02-16 15:08:28'),(222,557,4,'2016-02-16 15:15:32'),(223,558,1,'2016-02-16 15:26:12'),(224,559,1,'2016-02-16 15:29:43'),(225,564,1,'2016-02-16 15:36:55'),(226,565,3,'2016-02-16 15:38:58'),(227,569,3,'2016-02-16 15:56:52'),(228,570,1,'2016-02-16 16:06:17'),(229,570,3,'2016-02-16 16:06:17'),(230,571,2,'2016-02-16 16:13:22'),(231,571,3,'2016-02-16 16:13:22'),(232,571,4,'2016-02-16 16:13:22'),(233,572,1,'2016-02-17 14:46:12'),(234,573,1,'2016-02-17 15:10:50'),(235,573,2,'2016-02-17 15:10:50'),(236,573,3,'2016-02-17 15:10:50'),(237,573,4,'2016-02-17 15:10:50'),(238,574,1,'2016-02-17 15:16:55'),(239,574,2,'2016-02-17 15:16:55'),(240,574,3,'2016-02-17 15:16:55'),(241,574,4,'2016-02-17 15:16:55'),(242,575,1,'2016-02-17 15:21:03'),(243,575,2,'2016-02-17 15:21:03'),(244,575,3,'2016-02-17 15:21:03'),(245,575,4,'2016-02-17 15:21:03'),(246,580,2,'2016-02-18 10:08:44'),(247,580,3,'2016-02-18 10:08:44'),(248,580,4,'2016-02-18 10:08:44'),(249,581,1,'2016-02-18 14:50:44'),(250,583,1,'2016-02-18 15:49:03'),(251,583,3,'2016-02-18 15:49:03'),(252,583,4,'2016-02-18 15:49:03'),(253,589,1,'2016-02-24 14:27:25'),(254,590,4,'2016-02-24 14:52:40'),(255,591,1,'2016-02-24 16:11:57'),(256,591,4,'2016-02-24 16:11:57'),(257,592,1,'2016-02-24 16:16:33'),(258,592,4,'2016-02-24 16:16:33'),(259,593,3,'2016-02-25 15:45:01'),(260,594,3,'2016-02-25 16:45:52'),(261,601,4,'2016-03-01 10:52:51'),(262,602,1,'2016-03-01 10:53:24'),(263,603,4,'2016-03-01 10:57:17'),(264,604,4,'2016-03-01 10:57:56'),(265,609,2,'2016-03-01 11:30:35'),(266,612,4,'2016-03-01 11:31:39'),(267,613,1,'2016-03-01 11:31:56'),(268,616,1,'2016-03-03 07:52:18'),(269,616,3,'2016-03-03 07:52:18'),(270,616,4,'2016-03-03 07:52:18'),(271,619,1,'2016-03-03 08:01:02'),(272,620,1,'2016-03-03 08:01:33'),(273,621,4,'2016-03-03 08:02:02'),(274,623,1,'2016-03-03 08:03:39'),(275,624,1,'2016-03-03 08:04:02'),(276,624,2,'2016-03-03 08:04:02'),(277,625,3,'2016-03-03 08:04:34'),(278,626,3,'2016-03-03 08:05:02'),(279,627,4,'2016-03-03 08:05:27'),(280,628,1,'2016-03-03 08:06:55'),(281,629,1,'2016-03-03 08:07:15'),(282,630,1,'2016-03-03 08:07:40'),(283,631,3,'2016-03-03 08:08:03'),(284,632,1,'2016-03-03 08:08:25'),(285,634,1,'2016-03-03 08:09:12'),(286,634,4,'2016-03-03 08:09:12'),(287,635,4,'2016-03-03 08:09:34'),(288,636,1,'2016-03-03 08:10:03'),(289,637,4,'2016-03-03 08:10:30'),(290,638,3,'2016-03-03 08:10:48'),(291,639,3,'2016-03-03 08:11:05'),(292,640,4,'2016-03-03 08:11:22'),(293,641,1,'2016-03-03 08:11:41'),(294,641,2,'2016-03-03 08:11:41'),(295,641,3,'2016-03-03 08:11:41'),(296,641,4,'2016-03-03 08:11:41'),(297,643,4,'2016-03-03 08:12:26'),(298,644,1,'2016-03-03 08:12:47'),(299,645,1,'2016-03-03 08:12:47'),(300,646,3,'2016-03-03 08:13:10'),(301,647,1,'2016-03-03 08:13:38'),(302,648,1,'2016-03-03 08:13:58'),(303,649,1,'2016-03-03 08:14:18'),(304,650,1,'2016-03-03 08:14:46'),(305,657,1,'2016-03-03 11:31:41'),(306,658,1,'2016-03-03 11:32:03'),(307,658,2,'2016-03-03 11:32:03'),(308,658,3,'2016-03-03 11:32:03'),(309,658,4,'2016-03-03 11:32:03'),(310,665,1,'2016-03-03 11:34:40'),(311,665,4,'2016-03-03 11:34:40'),(312,686,2,'2016-03-03 12:12:22'),(313,709,1,'2016-03-03 13:35:26'),(314,709,3,'2016-03-03 13:35:26'),(315,709,4,'2016-03-03 13:35:26'),(316,717,3,'2016-03-03 13:51:11'),(317,760,1,'2016-03-04 13:27:13');",
@@ -2347,4 +2716,5 @@ var BANCODADOS = {
     // Fim - BANCO DE DADOS
     // **********************************************************************************************************
 }
+
 

@@ -1780,7 +1780,14 @@ function aguardeMsgOff(msg) {
 
 // Botão de atualização após o login
 function btnSincronizar() {
-	BANCODADOS.initSincronismo(USUARIO.usuario_id);
+	if (localStorage.getItem("dadosEnviar") == 1) {
+		// Há dados para enviar
+		BANCODADOS.initUpload(USUARIO.usuario_id);
+	}
+	else {
+		// Executa sincronismo automático
+		BANCODADOS.initSincronismo(USUARIO.usuario_id);
+	}
 }
 
 // MENSAGENS EM ALERTA

@@ -13,24 +13,21 @@ function retLogin (retCode) {
 	aguardeMsgOff();
 	if (retCode == USUARIO.login_return.OK) {
 
-		// todo: testes retirar
-		BANCODADOS.initUpload();
-		return;
-		// testes retirar
-			
 		// Login efetuado com sucesso, avalia a necessidade de sincronismo automático de dados do usuário
 		var lastUser = null;
 		if ((lastUser = localStorage.getItem("lastUser")) == null ||
-			lastUser != USUARIO.auxUsuario) {
-			
-			// todo: testes retirar
-			BANCODADOS.initUpload();
-			// testes retirar
+			lastUser != USUARIO.usuario_id) {
 			
 			// É a primeira execução ou o usuário foi trocado, executa sincronismo automático
-			localStorage.setItem("lastUser", USUARIO.auxUsuario);				// armazena usuário atual
-			// todo: se houver dados para enviar, envia
-			BANCODADOS.initSincronismo(USUARIO.usuario_id);
+			if (localStorage.getItem("dadosEnviar") == 1) {
+				// Há dados para enviar, utiliza o usuário anterior no envio
+				BANCODADOS.initUpload(lastUser);
+			}
+			else {
+				// Executa sincronismo automático
+				localStorage.setItem("lastUser", USUARIO.usuario_id);				// armazena usuário atual
+				BANCODADOS.initSincronismo(USUARIO.usuario_id);
+			}
 		}
 		else {
 			// O usuário é o mesmo do último acesso
