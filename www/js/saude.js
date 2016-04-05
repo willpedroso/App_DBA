@@ -218,7 +218,7 @@ function carregaSaude () {
 	}
 
 	// UF onde reside a família
-	var opts = "<span class='titLabel'>UF onde reside sua família:</span><div class='comboStilo selectInicial'><select name='estadoNomeLabel' id='estadoNomeLabel' class='selectPersonalizado'><option value='Selecione'>Selecione</option>";
+	var opts = "<span class='titLabel'>UF onde reside sua família:</span><div class='comboStilo selectInicialUF'><select name='estadoNomeLabel' id='estadoNomeLabel' class='selectUF'><option value='Selecione'>Selecione</option>";
 	for (var i = 0; i < CIDADAOSAUDE.listaEstados.length; i++) {
 		opts += "<option value='" + CIDADAOSAUDE.listaEstados[i].id + "' data-id='estadoNomeLabel' for='tipo_estado_id'";
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.tipo_estado_id == CIDADAOSAUDE.listaEstados[i].id) ? " selected>" : ">") + CIDADAOSAUDE.listaEstados[i].sigla + " - " + CIDADAOSAUDE.listaEstados[i].nome + "</option>";
@@ -386,7 +386,7 @@ function carregaSaude () {
 	$("#listaNumeroPedrasAntesPrograma").append(opts);
 
 	// Quantas pedras atualmente
-	var opts = "<select name='numeroPedrasAtualmenteLabel' id='numeroPedrasAtualmenteLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Selecione'>Selecione</option>";
+	var opts = "<select name='numeroPedrasAtualmenteLabel' id='numeroPedrasAtualmenteLabel' class='selectPersonalizado'><div class='lista-box-scroll'><option value='Nenhuma'>Nenhuma</option>";
 	for (var i = 1; i < 101; i++) {
 		opts += "<option value='" + i + "' data-id='numeroPedrasAtualmenteLabel' for='numero_pedras_atualmente'";
 		var label = "";
