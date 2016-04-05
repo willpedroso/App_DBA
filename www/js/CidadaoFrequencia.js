@@ -585,7 +585,7 @@
 				// Primeira iteração de um cidadão
 
 				// Insere dados do cidadão
-				htmlFrequencia = "<div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
+				htmlFrequencia = "<div class='divnome'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div class='divnomesocial'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
 				htmlFrequenciasSaude += htmlFrequencia;
 				htmlFrequenciasTrabalho += htmlFrequencia;
 				htmlFrequenciasSocial += htmlFrequencia;
