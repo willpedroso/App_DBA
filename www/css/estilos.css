@@ -57,7 +57,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 .divLogin form input.usuario::-webkit-input-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:32px; }
 
 #loader{
-	position: absolute;
+	position: fixed;
 	display: block;
 	width: 800px;
 	height: 100%;

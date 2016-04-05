@@ -1,6 +1,6 @@
 function carregaFrequencia () {
 	console.log("carregaFrequencia");
-
+	window.scrollTo(0, 0);
 	var hoje = new Date();
 	FREQUENCIA.auxData = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
 	$("#dataCorrente").val(FREQUENCIA.auxData);

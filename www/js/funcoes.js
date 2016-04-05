@@ -975,6 +975,7 @@ function abas(){
 	window.scrollTo(0, 0);
 }
 function abasmenu(){
+	window.scrollTo(0, 0);
 	if($('#menu_abas').hasClass('showme')){
 		
 	}
