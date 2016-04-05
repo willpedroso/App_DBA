@@ -1823,3 +1823,25 @@ function alertOptions(msg) {
 	$("#txtMsgYN").append(conteudo);
 	$('#msg-yn').attr('style','display:block');
 }
+
+function alertLogoff(msg) {
+	$("#txtMsgYN").empty();
+	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
+	conteudo += "Você realmente deseja sair?";
+    conteudo += "</p><input onclick='alertOffYes()' type='button'  value='Sim' id='bt-msgy' class='btnY'>";
+    conteudo += "<input onclick='alertOffNo()' type='button'  value='Não' id='bt-msgn' class='btnN'>";
+	$("#txtMsgYN").append(conteudo);
+	$('#msg-yn').attr('style','display:block');
+}
+function alertOffYes() {
+	if (navigator.app) {
+        navigator.app.exitApp();
+    } else if (navigator.device) {
+        navigator.device.exitApp();
+    }
+	$('#msg-yn').attr('style','display:none');
+}
+
+function alertOffNo() {
+	$('#msg-yn').attr('style','display:none');
+}

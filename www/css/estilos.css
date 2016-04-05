@@ -45,6 +45,9 @@ output, ruby, section, summary, time, mark, audio, video {
 	color:#333333;
 	box-sizing:border-box;
 }
+textarea{
+	font-family:"Roboto", Arial;
+}
 
 ::-webkit-input-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:14px; }
 ::-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:14px; } /* firefox 19+ */
@@ -89,6 +92,8 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	background: rgba(255, 255, 255, 0.9);
 	text-align: center;
 	padding: 16px;
+	height: auto;
+	overflow: hidden;
 }
 #msg-ok .box p{
 	text-align: center;
@@ -111,6 +116,8 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 	background: rgba(255, 255, 255, 0.9);
 	text-align: center;
 	padding: 16px;
+	height: auto;
+	overflow: hidden;
 }
 #msg-yn .box p{
 	text-align: center;
@@ -287,10 +294,11 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     font-size: 28px;
     color: #fff;
     text-decoration: none;
-    padding: 13px 100px 8px 121px;
+    padding: 13px 0 8px 0;
     float: left;
     background: none;
     border: none;
+    width: 45%;
 }
 .divHeader .divMenu ul li a.menuPainel{
 	background:url(../img/icoMenuPainel.png) no-repeat 0 3px;
@@ -2547,6 +2555,7 @@ span.phone-img {
 	margin: 0 0 30px 0;
 	border-bottom: 2px solid #eb8202;
 }
+
 #formFrequencia{
 	width: 100%;
 	float: left;
@@ -2554,6 +2563,10 @@ span.phone-img {
 }
 
 #formFrequencia h3{
+}
+
+.divFrequencia .inputGrande, .divFrequenciaLivre .inputGrande{
+	margin: 0 0 16px 0;
 }
 
 .labelFiltroData{
@@ -2644,6 +2657,17 @@ span.phone-img {
     cursor: pointer;
     font-size: 16px;
     background: #FFF !important;
+}
+.button_logoff{
+	z-index: 85;
+	height: 60px;
+	margin: 0;
+	width: 10% !important;
+	color: #FFF;
+	padding: 0;
+	cursor: pointer;
+	font-size: 16px;
+	background: #4B4B4B !important;
 }
 .button_aba{
     z-index: 85;
