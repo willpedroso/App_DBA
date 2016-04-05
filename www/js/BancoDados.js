@@ -813,12 +813,9 @@ var BANCODADOS = {
 		aguardeMsgOn(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload);
 		
 		var iUsuario = BANCODADOS.lastUserID;
-		iUsuario = "999999991";
-		
+
 		// Sorteia token aleatoriamente
 		var tokenIndex = Math.floor(Math.random() * BANCODADOS.listaTokens.length);
-		
-		alert("Enviando dados do usuário: " + iUsuario);
 		
 	    $.ajax({
 	        type: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].cmd,
