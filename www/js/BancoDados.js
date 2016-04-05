@@ -499,7 +499,7 @@ var BANCODADOS = {
 				}
 			}
 			console.log(Print);
-			alert ("Terminou a preparação")
+			//alert ("Terminou a preparação")
 			// testes retirar
 			
 			BANCODADOS.counterServicesUpload = 0;
@@ -579,7 +579,7 @@ var BANCODADOS = {
 				}
 				// todo: testes retirar
 				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
-				alert("Fim serviço sem tabelas secundárias.");
+				//alert("Fim serviço sem tabelas secundárias.");
 				// testes retirar
 
 				BANCODADOS.counterServicesUpload++;
@@ -760,7 +760,7 @@ var BANCODADOS = {
 					
 					// todo: testes retirar
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					alert("Fim do JSON.");
+					//alert("Fim do JSON.");
 					// testes retirar
 					
 					// Inicia sequência de upload
@@ -770,7 +770,7 @@ var BANCODADOS = {
 				else {
 					// todo: testes retirar
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					alert("Fim do JSON.");
+					//alert("Fim do JSON.");
 					// testes retirar
 					
 					BANCODADOS.dadosTabelaPrincipal();
@@ -816,6 +816,15 @@ var BANCODADOS = {
 
 		// Sorteia token aleatoriamente
 		var tokenIndex = Math.floor(Math.random() * BANCODADOS.listaTokens.length);
+		
+		// todo: testes retirar
+		console.log("ENVIO DE DADOS");
+		console.log("Cmd: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].cmd);
+		console.log("Usuário: " + iUsuario);
+		console.log("Dados: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+		console.log("nomeUpload: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].nomeUpload);
+		console.log("URL: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].url);
+		// testes retirar
 		
 	    $.ajax({
 	        type: BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].cmd,
