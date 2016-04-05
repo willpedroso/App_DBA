@@ -183,11 +183,10 @@
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
 		if (USUARIO.perfil_tecnico == true) {
-			// Obtém frequencias do usuário (tabela "frequencia"), com status = 1, para a data selecionada 
+			// Obtém frequencias do usuário (tabela "frequencia"), com status = 1, para a data selecionada, usuario_id não é usado na seleção, apenas no salvamento
 			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, dt_criacao " +
 								"FROM frequencia " +
-								"WHERE usuario_id = ? " +
-								"AND data_frequencia = ? " +
+								"WHERE data_frequencia = ? " +
 								"AND status = ? " +
 								//"AND tipo_atuacao_id = ?",
 								FREQUENCIA.listaTipoAtuacaoIDBusca +
@@ -195,16 +194,15 @@
 								//" ORDER BY dt_criacao",
 								" ORDER BY cidadao_id, dt_criacao",
 								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, tipoAtuacao], 
-								[USUARIO.usuario_id, FREQUENCIA.auxData, 1], 
+								[FREQUENCIA.auxData, 1], 
 								FREQUENCIA.listaFrequenciaSuccess, 
 								FREQUENCIA.dadosEntradaFrequenciaFail);
 		}
 		else {
-			// Obtém frequencias do usuário/cidadão (tabela "frequencia"), com status = 1, para a data selecionada 
+			// Obtém frequencias do usuário/cidadão (tabela "frequencia"), com status = 1, para a data selecionada, usuario_id não é usado na seleção, apenas no salvamento
 			BANCODADOS.sqlCmdDB("SELECT id, cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, dt_criacao " +
 								"FROM frequencia " +
-								"WHERE usuario_id = ? " +
-								"AND data_frequencia = ? " +
+								"WHERE data_frequencia = ? " +
 								"AND status = ? " +
 								"AND cidadao_id = ? " +
 								//"AND tipo_atuacao_id = ?",
@@ -213,7 +211,7 @@
 								//" ORDER BY dt_criacao",
 								" ORDER BY cidadao_id, dt_criacao",
 								//[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao, tipoAtuacao], 
-								[USUARIO.usuario_id, FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao], 
+								[FREQUENCIA.auxData, 1, FREQUENCIA.cidadao_id = cidadao], 
 								FREQUENCIA.listaFrequenciaSuccess, 
 								FREQUENCIA.dadosEntradaFrequenciaFail);
 		}
