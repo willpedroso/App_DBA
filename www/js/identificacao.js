@@ -97,17 +97,20 @@ function validaCamposIdentificacao() {
 		$('.msgErro').attr('style', 'display:none');
 
 		// prepara data de nascimento
-		var dnascimento = new Date($('#data_nascimento').val());
+		var dnascimento = [];
+		if ($('#data_nascimento').val() != "") { 
+			var dnascimento = $('#data_nascimento').val().split("-");
+		}
 	
 		CIDADAO.salvaCidadao($("#nome").val(),											// nome
 							 $("#nome_social").val(),									// nome social
 							 $("#nome_mae").val(),										// nome da mãe
 							 $("#sisrua").val(),										// sisrua
 							 // dia do nascimento							 
-							 dnascimento.getDate() < 10 ? "0" + dnascimento.getDate() : dnascimento.getDate(),
+							 dnascimento.length > 0 ? dnascimento[2] : "",
 							 // mês do nascimento
-							 (dnascimento.getMonth()+1) < 10 ? "0" + (dnascimento.getMonth()+1) : dnascimento.getMonth()+1,
-							 dnascimento.getFullYear(),									// ano do nascimento 
+							 dnascimento.length > 0 ? dnascimento[1] : "",
+							 dnascimento.length > 0 ? dnascimento[0] : "",
 							 this.salvaCidadaoSuccess,
 							 this.salvaCidadaoFail);
 	}

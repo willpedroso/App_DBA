@@ -112,23 +112,23 @@
 	  
       <div id="div_header" class="divHeader hideme">
         <div class="divNav">
-          <button class="button_reload" onclick="btnSincronizar()"><img src="img/icoReload.png" width="66" height="60"></button>
+          <!-- <button class="button_reload" onclick="btnSincronizar()"><img src="img/icoReload.png" width="66" height="60"></button> -->
+          <button class="button_opt" id="bt_opt"><img src="img/icoMenuOpt.png" width="100" height="100"></button>
           <div class="logo">
-            <div style="display: inline-block; float: left; padding: 0 0 0 8px; width: 50%; max-width: 43%; overflow: hidden;">
-              <p style="float: left; height: 60px; line-height: 24px; padding: 4px 0 0 8px;">Ben-vindo<br>User</p>
-              
-            </div>
-            <div style="width: 86px; margin: 0 auto;">
+            <div style="width: 144px; margin: 0 0 0 16px;">
               <img src="img/logo.png">
             </div>
           </div>
-          <button class="button_aba" id="bt_aba" style="display:none"><img src="img/icoMenuFico.png" width="56" height="56"></button>
+          
         </div>
         <div class="divMenu">
-          <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu(); fechaficha();">CIDADÃOS</button>
+          <button id="bt_cidadao" onclick="PageManager.loadTmpl('div_busca_inicio'); abasmenu(); fechaficha();"><img src="img/icoCidadaos.png" width="73" height="60"><img src="img/txtCid.png" width="154" height="60"></button>
           <!--<button id="bt_frequencia" onclick="PageManager.loadTmpl('div_frequencia'); fechaficha();">FREQUÊNCIA</button>-->
-          <button id="bt_frequencia" onclick="carregaFrequencia(); fechaficha();">FREQUÊNCIA</button>
-          <button class="button_logoff" onclick="alertLogoff();">SAIR</button>
+          <button id="bt_frequencia" onclick="carregaFrequencia(); fechaficha();"><img src="img/icoCid.png" width="47" height="60"><img src="img/txtFreq.png" width="180" height="60"></button></button>
+		      <!--<button class="button_logoff" onclick="alertLogoff();">SAIR</button> -->
+        </div>
+        <div class="divMenuInterno hideme">
+          <button class="button_aba" id="bt_aba"><img src="img/icoMenuFico.png" width="60" height="60"></button> <p>Cidadão</p>
         </div>
       </div>
       <!-- fim menu topo -->
@@ -156,6 +156,26 @@
         </div>
       </div>
       <!-- fim tela login -->
+
+
+      <div id="container_opt" class="container_hide">
+        <!--ABAS-->
+        <div id="div_opt" class="menuOpt div_hide">
+          <div id="menu_opt" class="showme">
+            <ul class="">
+              <li class="active" onclick="btnSincronizar();"><img src="img/icoReload.png" height="75" width="75"><p>Atualizar</p></li>
+              <li class="active" onclick="alertLogoff();"><img src="img/icoExit.png" height="75" width="75"><p>Sair</p></li>
+             </ul>
+          </div>
+        </div>
+      </div>  
+
+
+
+
+
+
+
       <div id="container_abas" class="container_hide">
         <!--ABAS-->
         <div id="div_abas" class="menuAbas div_hide">

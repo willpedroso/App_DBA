@@ -21,7 +21,7 @@ function btBusca(textoBusca, ativos, inativos){
 		for (var i = 0; i < CIDADAO.listaCidadaosDadosBusca.length; i++) {
 			// Preenche com os dados
 //			node += "<li " + ("cidadaoIndex='" + i + "' ") + "onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');CIDADAO.dadosCidadao(" + i + ");\">";
-			node += "<li " + ("cidadaoIndex='" + i + "' ") + "onclick=\"showTela('#ficha-statica');showTela('#container_abas');PageManager.loadTmpl('identificacao');iniAbasUsuario(" + i + ");\">";
+			node += "<li " + ("cidadaoIndex='" + i + "' ") + "onclick=\"showTela('#ficha-statica');showTela('.divMenuInterno');PageManager.loadTmpl('identificacao');iniAbasUsuario(" + i + ");\">";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome + "</div>";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_social + "</div>";
 			node += "<div>" + CIDADAO.listaCidadaosDadosBusca[i].nome_mae + "</div>";
@@ -35,6 +35,7 @@ function btBusca(textoBusca, ativos, inativos){
 	console.log(node);
 	$("#ullistaCidadaos").empty();
 	$("#ullistaCidadaos").append(node);
+	window.scrollTo(0, 0);
 }
 
 function iniAbasUsuario (indiceCidadao) {
@@ -102,5 +103,6 @@ function iniAbasUsuario (indiceCidadao) {
 	$("#menu_abas").append(opcoesAba);
 	
     // Apresenta menu do cidadão
-	jQuery('#bt_aba').attr('style','display:block');
+	//jQuery('#bt_aba').attr('style','display:block');
+	//jQuery('.divMenuInterno').attr('style','display:block');
 }
