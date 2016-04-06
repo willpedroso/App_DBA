@@ -87,7 +87,8 @@ var BANCODADOS = {
 	// UPLOAD
 	listaServicosUpload: [],
 	counterServicesUpload: 0,
-	counterTabelas: 0,
+	counterTabelasSecundarias: 0,
+	counterTabelasTerciarias: 0,
 	auxTabela: null,
 	lastUserID: null,
 	
@@ -106,8 +107,14 @@ var BANCODADOS = {
 		tabelaPrincipal: null;
 		whereTabelaPrincipal: null;
 		tabelasSecundarias: [];
+		
+		tabelasTerciarias: [];
+		ligacaoTS_TT: [];
+		contadorTS: 0;
+		dadosTabelaSecundaria: [];
+		
 		dadosTabelaPrincipal: [];
-		contador: 0;
+		contadorTP: 0;
 		dadosJSON: null;
 		bdadosEnviar: null;
 	},
@@ -137,6 +144,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		// cadastro_acompanhamento_ubs
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
@@ -204,6 +212,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		// atividade_tempo_livre
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
@@ -236,6 +245,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		// smads_contato
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
@@ -289,6 +299,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		// motivo_inativacao
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
@@ -328,7 +339,6 @@ var BANCODADOS = {
 		BANCODADOS.listaServicosUpload.push(su);
 		/********** CIDADÃOS *************************************************/
 		/********** ATIVIDADES POST*************************************************/
-		/*
 		su = new BANCODADOS.servicoUpload();
 		su.url = "http://dppp005.prodam/api/atividades";
 		su.msgUpload = "Enviando atividades...";
@@ -343,13 +353,13 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		// periodicidade
 		tu = new BANCODADOS.tabelaUpload();
 		tu.campos = [];
 		tu.nome = "periodicidade";
 		tu.whereP = "id";
 		tu.whereS = "atividade_id";
-		su.tabelasSecundarias = [];
 		su.tabelasSecundarias.push(tu);
 		// periodicidade_has_tipo_dias_semana
 		tu = new BANCODADOS.tabelaUpload();
@@ -357,11 +367,47 @@ var BANCODADOS = {
 		tu.nome = "periodicidade_has_tipo_dias_semana";
 		tu.whereP = "id";
 		tu.whereS = "periodicidade_id";
-		su.tabelasSecundarias.push(tu);
+		su.tabelasTerciarias.push(tu);
+		su.ligacaoTS_TT = [];
+		su.ligacaoTS_TT.push(su.tabelasSecundarias.length-1);
 		
 		BANCODADOS.listaServicosUpload.push(su);
-		*/
 		/********** ATIVIDADES POST *************************************************/
+		/********** ATIVIDADES PUT *************************************************/
+		su = new BANCODADOS.servicoUpload();
+		su.url = "http://dppp005.prodam/api/atividades";
+		su.msgUpload = "Enviando atividades...";
+		su.nomeUpload = "atividades";
+		su.cmd = "PUT";
+		su.whereTabelaPrincipal = " WHERE mobile = " + CIDADAO.INSERT_MOBILE;
+		// Tabela Principal
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "atividade";
+		tu.whereP = "";
+		tu.whereS = "";
+		su.tabelaPrincipal = tu;
+		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
+		// periodicidade
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "periodicidade";
+		tu.whereP = "id";
+		tu.whereS = "atividade_id";
+		su.tabelasSecundarias.push(tu);
+		// periodicidade_has_tipo_dias_semana
+		tu = new BANCODADOS.tabelaUpload();
+		tu.campos = [];
+		tu.nome = "periodicidade_has_tipo_dias_semana";
+		tu.whereP = "id";
+		tu.whereS = "periodicidade_id";
+		su.tabelasTerciarias.push(tu);
+		su.ligacaoTS_TT = [];
+		su.ligacaoTS_TT.push(su.tabelasSecundarias.length-1);
+		
+		BANCODADOS.listaServicosUpload.push(su);
+		/********** ATIVIDADES PUT *************************************************/
 		/********** FREQUENCIAS POST *************************************************/
 		su = new BANCODADOS.servicoUpload();
 		su.url = "http://dppp005.prodam/api/frequencias";
@@ -377,6 +423,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		
 		BANCODADOS.listaServicosUpload.push(su);
 		/********** FREQUENCIAS POST *************************************************/
@@ -395,6 +442,7 @@ var BANCODADOS = {
 		tu.whereS = "";
 		su.tabelaPrincipal = tu;
 		su.tabelasSecundarias = [];
+		su.tabelasTerciarias = [];
 		
 		BANCODADOS.listaServicosUpload.push(su);
 		/********** FREQUENCIAS PUT *************************************************/
@@ -406,7 +454,8 @@ var BANCODADOS = {
 	prepareUpload: function () {
 		console.log("prepareUpload");
 		
-		BANCODADOS.counterTabelas = 0;
+		BANCODADOS.counterTabelasSecundarias = 0;
+		BANCODADOS.counterTabelasTerciarias = 0;
 		BANCODADOS.getColumnsName(BANCODADOS.auxTabela = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelaPrincipal);
 	},
 	
@@ -467,16 +516,22 @@ var BANCODADOS = {
 			for (i = invertedColumnName.length-1; i >= 0; i--) {
 				columnName += invertedColumnName[i];
 			}
-			//console.log("Campo: " + columnName);
 			if (columnName != "mobile") {
 				BANCODADOS.auxTabela.campos.push(columnName);
 			}
 		} while ((endCharColumnName = sqlCreateTable.indexOf(" TEXT", endCharColumnName + columnName.length + 3)) != -1);
 		
-		if (BANCODADOS.counterTabelas < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length) {
+		if (BANCODADOS.counterTabelasSecundarias < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length) {
 			// Continua montando lista de campos para as tabelas secundárias
-			BANCODADOS.getColumnsName(BANCODADOS.auxTabela = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas++]);
+			BANCODADOS.counterTabelasTerciarias = 0;
+			BANCODADOS.getColumnsName(BANCODADOS.auxTabela = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias++]);
 		}
+		
+		else if (BANCODADOS.counterTabelasTerciarias < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias.length) {
+			// Continua montando lista de campos para as tabelas terciárias
+			BANCODADOS.getColumnsName(BANCODADOS.auxTabela = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias++]);
+		}
+		
 		else if (++BANCODADOS.counterServicesUpload < BANCODADOS.listaServicosUpload.length) {
 			// Continua preparação
 			BANCODADOS.prepareUpload();
@@ -485,8 +540,9 @@ var BANCODADOS = {
 			// Terminou a preparação
 			
 			// todo: testes retirar
+			var Print = "";
 			for (var k = 0; k < BANCODADOS.listaServicosUpload.length; k++) {
-				var Print = "Serviço [" + (k) + "] URL: " + BANCODADOS.listaServicosUpload[k].url + "\r\n";
+				Print += "Serviço [" + (k) + "] URL: " + BANCODADOS.listaServicosUpload[k].url + "\r\n";
 				Print += "\tTabela Principal: " + BANCODADOS.listaServicosUpload[k].tabelaPrincipal.nome + "\r\n";
 				for (var i = 0; i < BANCODADOS.listaServicosUpload[k].tabelaPrincipal.campos.length; i++) {
 					Print += "\t\tCampo " + i + ": " + BANCODADOS.listaServicosUpload[k].tabelaPrincipal.campos[i] + "\r\n";
@@ -497,9 +553,16 @@ var BANCODADOS = {
 						Print += "\t\tCampo " + j + ": " + BANCODADOS.listaServicosUpload[k].tabelasSecundarias[i].campos[j] + "\r\n";
 					}
 				}
+				
+				for (var i = 0; i < BANCODADOS.listaServicosUpload[k].tabelasTerciarias.length; i++) {
+					Print += "\tTabela Terciária: " + BANCODADOS.listaServicosUpload[k].tabelasTerciarias[i].nome + "\r\n";
+					for (var j = 0; j < BANCODADOS.listaServicosUpload[k].tabelasTerciarias[i].campos.length; j++) {
+						Print += "\t\tCampo " + j + ": " + BANCODADOS.listaServicosUpload[k].tabelasTerciarias[i].campos[j] + "\r\n";
+					}
+				}
 			}
 			console.log(Print);
-			//alert ("Terminou a preparação")
+			//alert("Fim montagem dos campos");
 			// testes retirar
 			
 			BANCODADOS.counterServicesUpload = 0;
@@ -530,7 +593,6 @@ var BANCODADOS = {
 		
 		// todo: testes retirar
 		console.log(sqlCommand);
-		//alert("Veja comando SELECT");
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelaPrincipalSuccess, BANCODADOS.envioFalha);
@@ -543,16 +605,12 @@ var BANCODADOS = {
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].bdadosEnviar = true;
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal = [];
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal = res.rows;
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador = 0;
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP = 0;
 			var js = "{\"table:" + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelaPrincipal.nome + "\":[";
-			//js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
-			
-			//var tam = js.length;
-			//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js.slice(0, tam - 1);
 			
 			if(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length > 0) {
-				js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
-				BANCODADOS.counterTabelas = 0;
+				js += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP));
+				BANCODADOS.counterTabelasSecundarias = 0;
 
 				var tam = js.length;
 				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON = js.slice(0, tam - 1);
@@ -579,7 +637,6 @@ var BANCODADOS = {
 				}
 				// todo: testes retirar
 				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
-				//alert("Fim serviço sem tabelas secundárias.");
 				// testes retirar
 
 				BANCODADOS.counterServicesUpload++;
@@ -591,35 +648,6 @@ var BANCODADOS = {
 				else {
 					BANCODADOS.dadosTabelaPrincipal();
 				}				
-				/*
-				// todo: Não possui tabelas secundárias, fecha JSON e finaliza
-				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}"
-				
-				BANCODADOS.counterServicesUpload++;
-				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
-					// todo: Acabaram os serviços de upload
-					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON += "]}";
-					
-					// todo: testes retirar
-					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					alert("Fim do JSON de saúde");
-					// testes retirar
-					
-					// Inicia sequência de upload
-					BANCODADOS.counterServicesUpload = 0;
-					BANCODADOS.preExecUpload();
-				}
-				else {
-					// todo: testes retirar
-					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					// testes retirar
-					BANCODADOS.dadosTabelaPrincipal();
-				}
-
-				// todo: testes retirar
-				//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
-				// testes retirar
-				*/
 			}
 		}
 		else 
@@ -643,70 +671,39 @@ var BANCODADOS = {
 		console.log("registroTabelaPrincipal");
 		
 		var js; 
-		/*
-		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length == 0) {
-			// Não possui tabelas secundárias
-			for (var i = BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length; i++) {
-				js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(i));
-				if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
-					// Último registro da consulta
-					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "," + js + "]}";
-				}
-				else {
-					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js + ",";
-				}
-			}
-			// todo: testes retirar
-			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
-			alert("Fim serviço sem tabelas secundárias.");
-			// testes retirar
+		js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP));
+		
+		var tam = js.length;
+		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js.slice(0, tam - 1);
+		
+		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
 
-			BANCODADOS.counterServicesUpload++;
-			if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
-				// Inicia sequência de upload
-				BANCODADOS.counterServicesUpload = 0;
-				BANCODADOS.preExecUpload();
-			}
-			else {
-				BANCODADOS.dadosTabelaPrincipal();
-			}
-		}
-		else {*/
-			js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador));
-			
-			var tam = js.length;
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js.slice(0, tam - 1);
-			
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
-
-			BANCODADOS.counterTabelas = 0;
-			BANCODADOS.dadosTabelasSecundarias();
-		//}
+		BANCODADOS.counterTabelasSecundarias = 0;
+		BANCODADOS.dadosTabelasSecundarias();
 	},
 	
 	dadosTabelasSecundarias: function () {
 		console.log("dadosTabelasSecundarias");
 		
 		var sqlCommand = "SELECT ";
-		for (var i = 0; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].campos.length; i++) {
-			if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].campos.length) {
-				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].campos[i];				
+		for (var i = 0; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].campos.length; i++) {
+			if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].campos.length) {
+				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].campos[i];				
 			}
 			else {
-				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].campos[i] + ", ";
+				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].campos[i] + ", ";
 			}
 		}
-		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].nome;
-		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].whereP != "" &&
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].whereS != "") {
+		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].nome;
+		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereP != "" &&
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereS != "") {
 			// todo: Complementa o comando com where
-			sqlCommand += " WHERE " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].whereS + "=" + 
-							BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador)[BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].whereP];
+			sqlCommand += " WHERE " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereS + "=" + 
+							BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP)[BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereP];
 		}
 		
 		// todo: testes retirar
 		console.log(sqlCommand);
-		//alert("Veja comando SELECT");
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelasSecundariasSuccess, BANCODADOS.envioFalha);
@@ -716,21 +713,44 @@ var BANCODADOS = {
 		console.log("dadosTabelasSecundariasSuccess");
 		
 		var json = "";
-		json += "\"table:" + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelas].nome + "\":[";
+		json += "\"table:" + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].nome + "\":[";
 		if (result.rows.length > 0) {
-			for (var i = 0; i < result.rows.length; i++) {
-				json += JSON.stringify(result.rows.item(i));
-				if ((i + 1) < result.rows.length) {
-					json += ",";
+			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias.length == 0) {
+				// Não há tabelas terciárias
+				for (var i = 0; i < result.rows.length; i++) {
+					json += JSON.stringify(result.rows.item(i));
+					if ((i + 1) < result.rows.length) {
+						json += ",";
+					}
 				}
+				json += "]";
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
+				
+				// todo: testes retirar
+				//console.log("json = " + json);
+				//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+				// testes retirar
 			}
-			json += "]";
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
-			
-			// todo: testes retirar
-			//console.log("json = " + json);
-			//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
-			// testes retirar
+			else {
+				// Há tabelas terciárias
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria = [];
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria = result.rows;
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS = 0;
+
+				json += JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS));
+				BANCODADOS.counterTabelasTerciarias = 0;
+
+				var tam = json.length;
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json.slice(0, tam - 1);
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+				
+				// todo: testes retirar
+				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+				// testes retirar
+
+				BANCODADOS.dadosTabelasTerciarias();
+				return;
+			}
 		}
 		else 
 		{
@@ -741,26 +761,24 @@ var BANCODADOS = {
 			//console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
 			// testes retirar
 		}
-		BANCODADOS.counterTabelas++;
-		if (BANCODADOS.counterTabelas == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length) {
+		BANCODADOS.counterTabelasSecundarias++;
+		if (BANCODADOS.counterTabelasSecundarias == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias.length) {
 			// Acabaram as tabelas secundárias, fecha JSON
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "}";
 			
-			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador++;
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP++;
 			
-			console.log("Contador = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador + "\r\nRegistros saúde = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length);
+			console.log("Contador = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP + "\r\nRegistros TP = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length);
 			
-			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contador == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
+			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
 				// Acabaram os registros da tabela principal
 				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
 				BANCODADOS.counterServicesUpload++;
 				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
 					// todo: Acabaram os serviços de upload
-					//BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON += "]}";
 					
 					// todo: testes retirar
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					//alert("Fim do JSON.");
 					// testes retirar
 					
 					// Inicia sequência de upload
@@ -770,7 +788,6 @@ var BANCODADOS = {
 				else {
 					// todo: testes retirar
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
-					//alert("Fim do JSON.");
 					// testes retirar
 					
 					BANCODADOS.dadosTabelaPrincipal();
@@ -782,8 +799,135 @@ var BANCODADOS = {
 			}
 		}
 		else {
+			// Não acabaram os dados da tabela secundária
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
 			BANCODADOS.dadosTabelasSecundarias();
+		}
+	},
+	
+	registroTabelaSecundaria: function () {
+		console.log("registroTabelaSecundaria");
+		
+		var js; 
+		js = JSON.stringify(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS));
+		
+		var tam = js.length;
+		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += js.slice(0, tam - 1);
+		
+		BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+
+		BANCODADOS.counterTabelasTerciarias = 0;
+		BANCODADOS.dadosTabelasTerciarias();
+	},
+	
+	dadosTabelasTerciarias: function () {
+		console.log("dadosTabelasTerciarias");
+		
+		var sqlCommand = "SELECT ";
+		for (var i = 0; i < BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].campos.length; i++) {
+			if (i + 1 == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].campos.length) {
+				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].campos[i];				
+			}
+			else {
+				sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].campos[i] + ", ";
+			}
+		}
+		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].nome;
+		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereP != "" &&
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereS != "") {
+			// todo: Complementa o comando com where
+			sqlCommand += " WHERE " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereS + "=" + 
+							BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP)[BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereP];
+		}
+		
+		// todo: testes retirar
+		console.log(sqlCommand);
+		// testes retirar
+		
+		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelasTerciariasSuccess, BANCODADOS.envioFalha);
+	},
+	
+	dadosTabelasTerciariasSuccess: function (trans, result) {
+		console.log("dadosTabelasTerciariasSuccess");
+		
+		var json = "";
+		json += "\"table:" + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].nome + "\":[";
+		if (result.rows.length > 0) {
+			for (var i = 0; i < result.rows.length; i++) {
+				json += JSON.stringify(result.rows.item(i));
+				if ((i + 1) < result.rows.length) {
+					json += ",";
+				}
+			}
+			json += "]";
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
+			
+			// todo: testes retirar
+			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+			// testes retirar
+		}
+		else 
+		{
+			// todo: não há dados nesta tabela terciária, fecha JSON da tabela
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]";
+			// todo: testes retirar
+			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+			// testes retirar
+		}
+		BANCODADOS.counterTabelasTerciarias++;
+		if (BANCODADOS.counterTabelasTerciarias == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias.length) {
+			// Acabaram as tabelas terciárias, fecha JSON
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "}";
+			
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS++;
+			
+			console.log("Contador = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS + "\r\nRegistros TS = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.length);
+			
+			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.length) {
+				// Acabaram os registros da tabela secundária
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
+				
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP++;
+				
+				if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
+					// Acabaram os registros da tabela principal
+					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
+					BANCODADOS.counterServicesUpload++;
+					if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
+						// todo: Acabaram os serviços de upload
+						
+						// todo: testes retirar
+						console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+						// testes retirar
+						
+						// Inicia sequência de upload
+						BANCODADOS.counterServicesUpload = 0;
+						BANCODADOS.preExecUpload();
+					}
+					else {
+						// todo: testes retirar
+						console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+						// testes retirar
+						
+						BANCODADOS.dadosTabelaPrincipal();
+					}
+				}
+				else {
+					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+					BANCODADOS.registroTabelaPrincipal();
+				}
+			}
+			else {
+				// Não acabaram os dados da tabela secundária
+				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+				BANCODADOS.registroTabelaSecundaria();
+			}
+		}
+		else {
+			// Não acabaram os dados da tabela terciária
+			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
+			BANCODADOS.dadosTabelasTerciarias();
 		}
 	},
 	
@@ -873,7 +1017,7 @@ var BANCODADOS = {
 	envioFalha: function (err) {
 		console.log("envioFalha");
 		
-		// todo:
+		alertMessage("Houve falha no envio dos dados!");
 	},
 	
 	initSincronismo: function (usuarioIDLogin) {

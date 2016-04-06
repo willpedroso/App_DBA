@@ -163,15 +163,13 @@ function validaCamposSituacaoDBA() {
 		var dinclusao_Text = "";
 		var dinclusao;
 		if ($('#data_inc_dba').val() != "") {
-			dinclusao = new Date($('#data_inc_dba').val());
-			dinclusao_Text = dinclusao.getFullYear() + "-" + ((dinclusao.getMonth()+1) < 10 ? "0" + (dinclusao.getMonth()+1) : (dinclusao.getMonth()+1)) + "-" + (dinclusao.getDate() < 10 ? "0" + dinclusao.getDate() : dinclusao.getDate());
+			dinclusao_Text = $('#data_inc_dba').val();
 		}
 
 		var dexclusao_Text = "";
 		var dexclusao;
 		if ($('#data_exc_dba').val() != "") {
-			dexclusao = new Date($('#data_exc_dba').val());
-			dexclusao_Text = dexclusao.getFullYear() + "-" + ((dexclusao.getMonth()+1) < 10 ? "0" + (dexclusao.getMonth()+1) : (dexclusao.getMonth()+1)) + "-" + (dexclusao.getDate() < 10 ? "0" + dexclusao.getDate() : dexclusao.getDate());
+			dexclusao_Text = $('#data_exc_dba').val();
 		}
 		
 		// todo: testes retirar

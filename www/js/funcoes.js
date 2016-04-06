@@ -2,15 +2,18 @@
 $(document).ready(function(){
 
  var flag = "1";
-$('#bt_aba').click(function(event){
+$('#bt_aba, #bt_opt').click(function(event){
   flag = "0"; //flag 0 means click happened in the area where we should not do any action
 });
 
 $('html').click(function() {
   if(flag != "0"){
     $('#menu_abas').removeClass('showme');
+    $('#menu_opt').removeClass('showme');
     $('#container_abas').removeClass('container_show');
+    $('#container_opt').removeClass('container_show');
     $('#div_abas').removeClass('div_show');
+    $('#div_opt').removeClass('div_show');
     console.log('clique fora');
    }
   else{
@@ -25,7 +28,14 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 //jQuery('#user').mask('000.000.000-00', {reverse: true});
 
 
-
+$("#bt_cidadao").click(function(){
+	$("#bt_frequencia").removeClass('ativado');
+	$("#bt_cidadao").addClass('ativado');
+});
+$("#bt_frequencia").click(function(){
+	$("#bt_cidadao").removeClass('ativado');
+	$("#bt_frequencia").addClass('ativado');
+});
   
   /* INICIO - RADIO PRIORIDADE */
   var valRadio = '';
@@ -55,6 +65,8 @@ jQuery('#cpf').mask('000.000.000-00', {reverse: true});
 	}
   });
   /* FIM - infoAcompanhamentoCaps */
+
+
 
 
 
@@ -967,6 +979,7 @@ function infoRep(){
 }
 
 function abas(){
+	$('.divMenuInterno').toggleClass('showme');
     $('#menu_abas').toggleClass('showme');
     $('#container_abas').toggleClass('container_show');
     $('#ficha-statica').addClass('showme');
@@ -975,11 +988,13 @@ function abas(){
 	window.scrollTo(0, 0);
 }
 function abasmenu(){
-	window.scrollTo(0, 0);
-	if($('#menu_abas').hasClass('showme')){
-		
+	//window.scrollTo(0, 0);
+	if($('.divMenuInterno').hasClass('showme')){
+		$('.divMenuInterno').removeClass('showme');
+		$('.divMenuInterno').addClass('hideme');
 	}
 	else{
+		$('.divMenuInterno').addClass('hideme');
 		$('#menu_abas').toggleClass('showme');
     	$('#container_abas').toggleClass('container_show');
 	}
@@ -989,7 +1004,7 @@ function fechaficha(){
 	$('#ficha-statica').addClass('hideme');
 
     // Esconde menu do cidadão
-	jQuery('#bt_aba').attr('style','display:none');
+	//jQuery('#bt_aba').attr('style','display:none');
 }
 function exibePeriodo(){
 	if($('#tipoPeriodicidadeLabel').val() == 'Selecione'){
@@ -1822,4 +1837,26 @@ function alertOptions(msg) {
     conteudo += "<input onclick='alertCloseNo()' type='button'  value='Não' id='bt-msgn' class='btnN'>";
 	$("#txtMsgYN").append(conteudo);
 	$('#msg-yn').attr('style','display:block');
+}
+
+function alertLogoff(msg) {
+	$("#txtMsgYN").empty();
+	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
+	conteudo += "Você realmente deseja sair?";
+    conteudo += "</p><input onclick='alertOffYes()' type='button'  value='Sim' id='bt-msgy' class='btnY'>";
+    conteudo += "<input onclick='alertOffNo()' type='button'  value='Não' id='bt-msgn' class='btnN'>";
+	$("#txtMsgYN").append(conteudo);
+	$('#msg-yn').attr('style','display:block');
+}
+function alertOffYes() {
+	if (navigator.app) {
+        navigator.app.exitApp();
+    } else if (navigator.device) {
+        navigator.device.exitApp();
+    }
+	$('#msg-yn').attr('style','display:none');
+}
+
+function alertOffNo() {
+	$('#msg-yn').attr('style','display:none');
 }

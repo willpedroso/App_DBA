@@ -11,7 +11,12 @@ $( document ).ready(function() {
     $('#div_abas').toggleClass('div_show');
     $('#container_abas').toggleClass('container_show');
  });    
-
+ $('#bt_opt').click(function() {
+    console.log('clique opt');
+    $('#menu_opt').toggleClass('showme');
+    $('#div_opt').toggleClass('div_show');
+    $('#container_opt').toggleClass('container_show');
+ });
 
 // navega entre da tela frequencia a cidadao
 $('#bt_frequencia').click(function(){
