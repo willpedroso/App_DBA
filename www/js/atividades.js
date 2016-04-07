@@ -253,6 +253,12 @@ function preparaListasOpt () {
 	else {
 		$('.msgAtividadeEncerrada').attr('style','display:none');
 	}
+	
+	if (edit == false) {
+		// É uma nova atividade (não salva) -> não apresenta os botões de encerramento e exclusão
+		$("#encerrarAtividade").attr('style','display:none');
+		$("#excluirAtividade").attr('style','display:none');
+	}
 }
 
 function salvaAtividadeSuccess () {
@@ -265,10 +271,22 @@ function salvaAtividadeFail (err) {
 	// todo: revisar
 }
 
+function confirmEncerraAtiv() {
+	console.log("confirmEncerraAtiv");
+	
+	alertOptionsCallback("Confirma a operação de encerramento da atividade?", encerraAtiv);
+}
+
 function encerraAtiv() {
 	console.log("encerraAtiv");
 	
 	ATIVIDADE.encerraAtividade(ATIVIDADE.editIndexAtividade);
+}
+
+function confirmExcluiAtiv() {
+	console.log("confirmExcluiAtiv");
+	
+	alertOptionsCallback("Confirma a operação de exclusão da atividade?", excluiAtiv);
 }
 
 function excluiAtiv() {

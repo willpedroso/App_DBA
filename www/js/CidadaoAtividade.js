@@ -1212,8 +1212,14 @@
 	encerraAtividadeSuccess: function () {
 		console.log("encerraAtividadeSuccess");
 
-		$('.msgParabens').removeAttr('style');
-		$('html, body').animate({scrollTop:0}, 'slow');
+		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.encerraAtividadeOK);
+	},
+	
+	encerraAtividadeOK: function () {
+		console.log("encerraAtividadeOK");
+
+		PageManager.loadTmpl("div_atividades");
+		ATIVIDADE.dadosEntrada(null, "ATIVIDADE", ATIVIDADE.apresentaCalendario, null);
 	},
 	
 	encerraAtividadeFail: function (err) {
@@ -1234,9 +1240,15 @@
 	
 	excluiAtividadeSuccess: function () {
 		console.log("excluiAtividadeSuccess");
+		
+		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.excluiAtividadeOK);
+	},
+	
+	excluiAtividadeOK: function () {
+		console.log("excluiAtividadeOK");
 
-		$('.msgParabens').removeAttr('style');
-		$('html, body').animate({scrollTop:0}, 'slow');
+		PageManager.loadTmpl("div_atividades");
+		ATIVIDADE.dadosEntrada(null, "ATIVIDADE", ATIVIDADE.apresentaCalendario, null);
 	},
 	
 	excluiAtividadeFail: function (err) {

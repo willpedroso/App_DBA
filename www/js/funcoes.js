@@ -1812,8 +1812,30 @@ function alertClose() {
 	$('#msg-ok').attr('style','display:none');
 }
 
-function alertCloseYes() {
+var alertOptionsCallback = null;
+
+function alertCloseYes(cb) {
 	$('#msg-yn').attr('style','display:none');
+}
+
+function alertCloseCallback() {
+	$('#msg-ok').attr('style','display:none');
+	alertOptionsCallback();
+}
+
+function alertMessageCallback(msg, cb) {
+	alertOptionsCallback = cb;
+	$("#txtMsgOK").empty();
+	var conteudo = "<img src='img/msgInfo.png' width='128'><p>";
+	conteudo += msg;
+	conteudo += "</p><input onclick='alertCloseCallback()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
+	$("#txtMsgOK").append(conteudo);
+	$('#msg-ok').attr('style','display:block');
+}
+
+function alertCloseYesCallback() {
+	$('#msg-yn').attr('style','display:none');
+	alertOptionsCallback();
 }
 
 function alertCloseNo() {
@@ -1827,6 +1849,17 @@ function alertMessage(msg) {
 	conteudo += "</p><input onclick='alertClose()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
 	$("#txtMsgOK").append(conteudo);
 	$('#msg-ok').attr('style','display:block');
+}
+
+function alertOptionsCallback(msg, cb) {
+	alertOptionsCallback = cb;
+	$("#txtMsgYN").empty();
+	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
+	conteudo += msg;
+    conteudo += "</p><input onclick='alertCloseYesCallback()' type='button'  value='Sim' id='bt-msgy' class='btnY'>";
+    conteudo += "<input onclick='alertCloseNo()' type='button'  value='Não' id='bt-msgn' class='btnN'>";
+	$("#txtMsgYN").append(conteudo);
+	$('#msg-yn').attr('style','display:block');
 }
 
 function alertOptions(msg) {
