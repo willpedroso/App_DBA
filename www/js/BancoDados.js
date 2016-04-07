@@ -2849,7 +2849,7 @@ var BANCODADOS = {
     // Executa comando SQL
 	sqlCmdDB: function (sqlCmd, arg, suc, fail) {
 	    console.log("sqlCmdDB");
-	    //console.log("sqlCmd = " + sqlCmd + "\nArgumentos = " + arg);
+	    console.log("sqlCmd = " + sqlCmd + "\nArgumentos = " + arg);
 		
 		// Verifica se é update ou insert
 		if (sqlCmd.indexOf("INSERT") == 0 || sqlCmd.indexOf("UPDATE") == 0) {

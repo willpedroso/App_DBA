@@ -1812,7 +1812,7 @@ function alertClose() {
 	$('#msg-ok').attr('style','display:none');
 }
 
-var alertOptionsCallback = null;
+var alertOptions_cb = null;
 
 function alertCloseYes(cb) {
 	$('#msg-yn').attr('style','display:none');
@@ -1820,11 +1820,11 @@ function alertCloseYes(cb) {
 
 function alertCloseCallback() {
 	$('#msg-ok').attr('style','display:none');
-	alertOptionsCallback();
+	alertOptions_cb();
 }
 
 function alertMessageCallback(msg, cb) {
-	alertOptionsCallback = cb;
+	alertOptions_cb = cb;
 	$("#txtMsgOK").empty();
 	var conteudo = "<img src='img/msgInfo.png' width='128'><p>";
 	conteudo += msg;
@@ -1835,7 +1835,7 @@ function alertMessageCallback(msg, cb) {
 
 function alertCloseYesCallback() {
 	$('#msg-yn').attr('style','display:none');
-	alertOptionsCallback();
+	alertOptions_cb();
 }
 
 function alertCloseNo() {
@@ -1852,7 +1852,7 @@ function alertMessage(msg) {
 }
 
 function alertOptionsCallback(msg, cb) {
-	alertOptionsCallback = cb;
+	alertOptions_cb = cb;
 	$("#txtMsgYN").empty();
 	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
 	conteudo += msg;
