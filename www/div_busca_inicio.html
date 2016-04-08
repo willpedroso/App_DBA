@@ -8,11 +8,11 @@
 				<input type="submit" onclick="btBusca($('input[type=text]#textoBusca').val(), $('input:checkbox[name=situacao_cadastral_ativo]:checked').val(), $('input:checkbox[name=situacao_cadastral_inativo]:checked').val());" class="btnAdicionar" value="Pesquisar" id="btBusca" autofocus="">
             </div>
             <div class="checkbox checkbox_busca">
-				<input type="checkbox" name="situacao_cadastral_ativo" value="checked" class="check  radio active " checked>
+				<input type="checkbox" name="situacao_cadastral_ativo" value="checked" class="check  radio active " checked onchange="btBusca($('input[type=text]#textoBusca').val(), $('input:checkbox[name=situacao_cadastral_ativo]:checked').val(), $('input:checkbox[name=situacao_cadastral_inativo]:checked').val());">
 				<p>Ativos</p>
             </div>
             <div class="checkbox checkbox_busca">
-				<input type="checkbox" name="situacao_cadastral_inativo" value="checked" class="check  radio active" checked>
+				<input type="checkbox" name="situacao_cadastral_inativo" value="checked" class="check  radio active" checked onchange="btBusca($('input[type=text]#textoBusca').val(), $('input:checkbox[name=situacao_cadastral_ativo]:checked').val(), $('input:checkbox[name=situacao_cadastral_inativo]:checked').val());">
 				<p>Inativos</p>
             </div>
         </div>

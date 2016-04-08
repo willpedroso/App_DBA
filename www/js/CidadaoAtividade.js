@@ -1194,6 +1194,8 @@
 		
 		$('.msgParabens').removeAttr('style');
 		$('html, body').animate({scrollTop:0}, 'slow');
+		// todo: revisar - insere ou atualiza a atividade, apresenta a mensagem de sucesso e limpas os campos
+		PageManager.loadTmpl('div_atividades_add');
 	},
 	
 	salvaAtividadeFail: function (err) {

@@ -1814,6 +1814,10 @@ function aguardeMsgOff(msg) {
 
 // Botão de atualização após o login
 function btnSincronizar() {
+	alertOptionsCallback("Deseja efetuar a atualização dos dados?", fcnAtualizacao);
+}
+
+function fcnAtualizacao () {
 	if (localStorage.getItem("dadosEnviar") == 1) {
 		// Há dados para enviar
 		BANCODADOS.initUpload(USUARIO.usuario_id);
