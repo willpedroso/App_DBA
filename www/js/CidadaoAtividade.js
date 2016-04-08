@@ -23,6 +23,8 @@
 	// Auxiliares
 	servicoTipoAcolhida: null,
 	tipoChamada: null,
+	auxDate: null,
+	auxAtividadeID: null,
 
     // ****************** Obtém os dados básicos *********************
 	dadosBasicos: function () {
@@ -1262,8 +1264,8 @@
 		console.log("trocaAtividade");
 		
 		// Localiza a atividade por meio do pontoServicoID, encerra a atividade e cria uma nova atividade com o novo pontoServicoID
-		BANCODADOS.sqlCmdDB("SELECT id FROM atividade WHERE cidadao_id = ? AND ponto_servico_id = ?",
-							[SITUACAODBA.cidadao_id, pontoServicoID_anterior], 
+		BANCODADOS.sqlCmdDB("SELECT id FROM atividade WHERE cidadao_id = ? AND ponto_servico_id = ? AND status = ?",
+							[SITUACAODBA.cidadao_id, pontoServicoID_anterior, 1], 
 							ATIVIDADE.localizaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);
 	},
 	
@@ -1271,14 +1273,29 @@
 		console.log("localizaAtividadeSuccess");
 
 		if (res.rows.length == 1) {
+			// encerra a atividade
 			BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2, mobile = ? \
 								WHERE id = ?",
-								[CIDADAO.UPDATE_MOBILE, res.rows.item(0).id], 
-								ATIVIDADE.cancelaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);
+								[CIDADAO.UPDATE_MOBILE, ATIVIDADE.auxAtividadeID = res.rows.item(0).id], 
+								ATIVIDADE.dataTerminoAtividadeEncerrada, SITUACAODBA.salvaSituacaoDBAFail);
 		}
 		else {
 			SITUACAODBA.salvaSituacaoDBAFail("A atividade associada ao local de acolhida não foi encontrada ou há mais de uma atividade!");
 		}
+	},
+	
+	dataTerminoAtividadeEncerrada: function () {
+		console.log("dataTerminoAtividadeEncerrada");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("UPDATE periodicidade SET data_termino = ?, permanente = 0, mobile = ? \
+							WHERE atividade_id = ?",
+							[
+							 hoje.getFullYear() + "-" + ((hoje.getMonth()+1) < 10 ? "0" + (hoje.getMonth()+1) : (hoje.getMonth()+1)) + "-" + (hoje.getDate() < 10 ? "0" + hoje.getDate() : hoje.getDate()),
+							 CIDADAO.UPDATE_MOBILE,
+							 ATIVIDADE.auxAtividadeID
+							], 
+							ATIVIDADE.cancelaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);		
 	},
 	
 	cancelaAtividadeSuccess: function () {
@@ -1294,8 +1311,64 @@
 							0,
 							"Local de Acolhida",
 							1,
-							(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							(ATIVIDADE.auxDate = (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds())),
 							CIDADAO.INSERT_MOBILE], 
-							SITUACAODBA.excluiMotivoInativacao, SITUACAODBA.salvaSituacaoDBAFail);
-	},	
+							ATIVIDADE.localizaNovaAtividade, SITUACAODBA.salvaSituacaoDBAFail);
+	},
+	
+	localizaNovaAtividade: function () {
+		console.log("localizaNovaAtividade");
+		
+		// Localiza a nova atividade
+		BANCODADOS.sqlCmdDB("SELECT id FROM atividade WHERE cidadao_id = ? \
+							AND ponto_servico_id = ? \
+							AND tipo_atuacao_id = ? \
+							AND privada = ? \
+							AND descricao = ? \
+							AND status = ? \
+							AND dt_criacao = ? \
+							AND mobile = ?",
+							[
+							 SITUACAODBA.cidadao_id, 
+							 SITUACAODBA.auxpontoServicoId,
+							 4,									// todo: trocar por ATIVIDADE.listaAtuacao_NomeVersusID["Todas"], quando ATIVIDADE estiver carregada
+							 0,
+							 "Local de Acolhida",
+							 1,
+							 ATIVIDADE.auxDate,
+							 CIDADAO.INSERT_MOBILE
+							], 
+							ATIVIDADE.localizaNovaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);
+	},
+	
+	localizaNovaAtividadeSuccess: function (trans, res) {
+		console.log("localizaNovaAtividadeSuccess");
+		
+		if (res.rows.length == 1) {
+			// Utiliza o id para inserir nova periodicidade diária e permanente
+			var hoje = new Date();
+			BANCODADOS.sqlCmdDB("INSERT INTO periodicidade (atividade_id, tipo_periodicidade_id, data_inicio, dia_inteiro, permanente, status, dt_criacao, mobile) VALUES \
+								(?, ?, ?, ?, ?, ?, ?, ?)",
+								[
+								res.rows.item(0).id,
+								1,							// periodicidade diária
+								hoje.getFullYear() + "-" + ((hoje.getMonth()+1) < 10 ? "0" + (hoje.getMonth()+1) : (hoje.getMonth()+1)) + "-" + (hoje.getDate() < 10 ? "0" + hoje.getDate() : hoje.getDate()),
+								1,
+								1,
+								1,
+								(hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+								CIDADAO.INSERT_MOBILE], 
+								SITUACAODBA.atualizaSituacaoDBA, SITUACAODBA.salvaSituacaoDBAFail);
+		}
+		else {
+			SITUACAODBA.salvaSituacaoDBAFail();
+		}
+	},
+	
+	voltarAtiv: function () {
+		console.log("voltarAtiv");
+
+		PageManager.loadTmpl("div_atividades");
+		ATIVIDADE.dadosEntrada(null, "ATIVIDADE", ATIVIDADE.apresentaCalendario, null);
+	},
 }

@@ -22,6 +22,7 @@
 	auxdt_inclusao_dba: null,
 	dt_exclusao_dba: null,
 	auxdt_exclusao_dba: null,
+	pontoServicoIDAnterior: null,
 
     // ****************** Obtém os dados de entrada *********************
     dadosEntrada: function(cidadao, cbSuccess, cbFail) {
@@ -114,26 +115,34 @@
 		SITUACAODBA.auxdt_inclusao_dba = dataInclusao;
 		SITUACAODBA.auxdt_exclusao_dba = dataInclusao;
 		
-		// Atualiza
-		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ?, dt_inclusao_dba = ?, dt_exclusao_dba = ?, mobile = ? WHERE id = ?",
-							[situacaoCadastral,
-							 motivoInativacaoOutros,
-							 prioridade,
-							 programaDBA,
-							 pontoServicoId,
-							 dataInclusao,
-							 dataExclusao,
-							 CIDADAO.UPDATE_MOBILE,
-							 SITUACAODBA.cidadao_id],
-							 SITUACAODBA.pontoServicoId == pontoServicoId ? SITUACAODBA.excluiMotivoInativacao : SITUACAODBA.trocaLocalAcolhida, 
-							 SITUACAODBA.salvaSituacaoDBAFail);
+		SITUACAODBA.pontoServicoIDAnterior = SITUACAODBA.pontoServicoId;
+		
+		if (SITUACAODBA.pontoServicoId == SITUACAODBA.auxpontoServicoId) {
+			// Não houve mudança do local de acolhida
+			ATIVIDADE.atualizaSituacaoDBA();
+		}
+		else {
+			// Houve mudança no local de acolhida (pontoServicoId), troca a atividade diária do cidadão
+			ATIVIDADE.trocaAtividade(SITUACAODBA.pontoServicoId);
+		}
 	},
 	
-	trocaLocalAcolhida: function (trans, res) {
-		console.log("trocaLocalAcolhida");
-		
-		// Houve mudança no local de acolhida (pontoServicoId), troca a atividade diária do cidadão
-		ATIVIDADE.trocaAtividade(SITUACAODBA.pontoServicoId);
+	atualizaSituacaoDBA: function () {
+		console.log("atualizaSituacaoDBA");
+
+		// Atualiza
+		BANCODADOS.sqlCmdDB("UPDATE cidadao SET situacao_cadastral = ?, motivo_inativacao_outros = ?, prioridade = ?, programa_dba = ?, ponto_servico_id = ?, dt_inclusao_dba = ?, dt_exclusao_dba = ?, mobile = ? WHERE id = ?",
+							[SITUACAODBA.auxsituacaoCadastral,
+							 SITUACAODBA.auxmotivoInativacaoOutros,
+							 SITUACAODBA.auxprioridade,
+							 SITUACAODBA.auxprogramaDBA,
+							 SITUACAODBA.auxpontoServicoId,
+							 SITUACAODBA.auxdt_inclusao_dba,
+							 SITUACAODBA.auxdt_exclusao_dba,
+							 CIDADAO.UPDATE_MOBILE,
+							 SITUACAODBA.cidadao_id],
+							 SITUACAODBA.excluiMotivoInativacao, 
+							 SITUACAODBA.salvaSituacaoDBAFail);
 	},
 	
 	excluiMotivoInativacao: function (trans, res) {
@@ -209,6 +218,7 @@
 		console.log("salvaSituacaoDBAFail");
 		
 		// Retorna
-		SITUACAODBA.cbFail_f(err);
+		//SITUACAODBA.cbFail_f(err);
+		alertMessage("Erro na operação: " + err);
 	},
 }

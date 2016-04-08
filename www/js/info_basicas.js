@@ -13,12 +13,22 @@ function abreOrientSexual(){
 
 //abre input quantos filhos
 function abreQtdFilhos(){
-		if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
-			jQuery('#qtdFilho').show();
+	if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
+		jQuery('#qtdFilho').show();
+		if (isNaN($("#qtd_filhos").val()) == false) {
+			for (var i = 0; i < $("#qtd_filhos").val(); i++) {
+				$("#qtdFilho_" +(i+1)).show();
+			}
 		}
-		else {
-			jQuery('#qtdFilho').hide();
+	}
+	else {
+		jQuery('#qtdFilho').hide();
+		if (isNaN($("#qtd_filhos").val()) == false) {
+			for (var i = 0; i < $("#qtd_filhos").val(); i++) {
+				$("#qtdFilho_" +(i+1)).hide();
+			}
 		}
+	}
 };
 
 //abre input qual familiar
@@ -114,10 +124,17 @@ function carregaDadosInfoBasicas() {
 		// null ou vazio
 		$("input[name='temFilho'][value='NãoInformado']").prop("checked", true);
 	}
-	abreQtdFilhos();
-	
 	auxVar = INFOBASICAS.situacaoRuaCidadao.qtd_filhos;
 	$("#qtd_filhos").val(auxVar === null ? "" : auxVar);
+	if (isNaN(auxVar) == false) {
+		// É um número, então abre as caixas para as idades dos filhos
+		addFilhos(auxVar);
+		// Preenche as caixas de texto com a idade dos filhos
+		for (var i = 0; i < INFOBASICAS.situacaoRuaCidadao.idade_filhos.length; i++) {
+			$("#filho_" +(i+1)).val(INFOBASICAS.situacaoRuaCidadao.idade_filhos[i]);
+		}
+		abreQtdFilhos();
+	}
 	
 	if (INFOBASICAS.situacaoRuaCidadao.contato_familia === 1) {
 		// Sim
@@ -471,6 +488,7 @@ function infoBasicasSalva() {
 	console.log("infoBasicasSalva");
 	
 	var erro = false;
+	var listaIdadeFilhos = [];
 	
 	// GÊNERO
 	
@@ -486,9 +504,12 @@ function infoBasicasSalva() {
 			erro = true;
 		}
 		else $('#qtd_filhos').removeClass('inputFocus');
+		
+		// Cria lista das idades dos filhos
+		for (var i = 0; i < $('#qtd_filhos').val(); i++) {
+			listaIdadeFilhos.push($("#filho_" +(i+1)).val());
+		}
 	}
-	
-	// todo: idade dos filhos
 	
 	// TRABALHO E EDUCAÇÃO
 	
@@ -674,7 +695,8 @@ function infoBasicasSalva() {
  								 temFilho,
 								 // qtd_filhos
 								 $("#qtd_filhos").val(),
-								 // todo: idade dos filhos
+								 // idade dos filhos
+								 listaIdadeFilhos,
 								 // contato_familia
  								 infoTemContatoFamilia,
 								 // contato_parente
