@@ -52,6 +52,13 @@ button{
 	padding: 0;
 	margin: 0;
 }
+*:focus {
+    outline: none;
+}
+
+input[type="button"]:disabled{
+	background: #ccc !important;
+}
 
 ::-webkit-input-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:14px; }
 ::-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto", Arial; font-size:14px; } /* firefox 19+ */
@@ -285,7 +292,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 
 .divMenuInterno p{
 	float: left;
-	font-size: 1.6em;
+	font-size: 32px;
 	line-height: 60px;
 	padding: 0 0 0 8px;
 }
@@ -321,7 +328,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
     float: left;
     background: none;
     border: none;
-    width: 50%;
+    width: 33%;
     height: 60px;
 }
 .divHeader .divMenu ul li a.menuPainel{
@@ -335,6 +342,15 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 .divHeader .divMenu ul li a.menuNovo{
 	background:url(../img/icoMenuNovo.png) no-repeat 0 3px;
+}
+
+.divHeader .divMenu button p{
+	height: 60px;
+	font-size: 24px;
+	width: auto;
+	float: left;
+	line-height: 60px;
+	color: #FFFFFF;
 }
 
 .divHeader .divMenuInterno{
@@ -717,7 +733,7 @@ input:-moz-placeholder { color:#454545; font-style:italic; font-family:"Roboto",
 }
 
 .linhaForm .titLabel{
-	font-size: 20px;
+	font-size: 16px;
 	float: left;
 	width: 100%;
 	margin: 20px 5px 10px 0;
@@ -1066,7 +1082,7 @@ p.info-basica{
 }*/
 
 .contentAbaBorda h3{
-	font-size: 28px;
+	font-size: 20px;
 }
 .topAtividade{
 	height: 120px;
@@ -1294,13 +1310,13 @@ p.info-basica{
 .btnSalvar{
 	font-family: "Roboto", Arial;
 	font-size: 24px;
-	height: 70px;
+	height: 50px;
 	background: #eb8202;
 	border: none;
 	color: #fff;
 	padding: 8px 16px 8px 16px;
 	cursor: pointer;
-	margin: 42px 0 15px 0;
+	margin: 8px 0 15px 0;
 	float: right;
 }
 .btnLimpar{
@@ -1931,7 +1947,7 @@ span.phone-img {
 		
 	}
 	.divHeader .divMenu button img{
-		
+		float: left;
 	}
 
 
@@ -2644,18 +2660,26 @@ span.phone-img {
 	display: block;
 	float: left;
 }
-
+.divFreqCidadao .divborda {
+	width: 100%;
+	border-top: 2px solid #eb8202;
+	padding: 8px 0 8px 0;
+	height: auto;
+	overflow: hidden;
+}
 .divFreqCidadao .divnome {
     display: inline-block;
     float: left;
     line-height: 32px;
     font-weight: bold;
+    font-size: 24px;
 }
 .divFreqCidadao .divnomesocial {
     display: inline-block;
     float: left;
     margin: 0 0 0 10px;
     line-height: 32px;
+    font-size: 20px;
 }
 .inputFrequenciaLivre{
 	padding: 8px 0 0 8px;
@@ -2672,13 +2696,13 @@ span.phone-img {
 	height: auto;
 	overflow: hidden;
 	margin: 0 0 30px 0;
-	border-bottom: 2px solid #eb8202;
+	
 }
 
 #formFrequencia{
 	width: 100%;
 	float: left;
-	padding: 90px 0 0 0;
+	padding: 150px 0 0 0;
 }
 
 #formFrequencia h3{
@@ -2767,8 +2791,9 @@ span.phone-img {
 	float: left;
 }
 .divNav .logo img{
-	height: 100px;
+	height: 80px;
 	width: auto;
+	margin: 10px 0 0 24px;
 }
 .button_back{
 	z-index: 85;
@@ -2832,6 +2857,10 @@ span.phone-img {
 #div_busca_inicio h1{
 	font-size: 48px;
 }
+#div_frequencia h1{
+	padding: 16px 0 16px 12px;
+	font-size: 48px;
+}
 #div_busca_inicio h2{
 	font-size: 24px;
 	   
@@ -2864,9 +2893,12 @@ span.phone-img {
 	width: 100%;
 }
 #freq_abas > ul{
-	border: none !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
 	border-radius: 0;
-	padding: 0;
+	padding: 0 0 0 24px;
+	border-bottom: 7px solid #eb8202;
 }
 #freq_abas > ul li{
 	background-image: none;
@@ -2874,10 +2906,14 @@ span.phone-img {
 }
 
 #freq_abas > ul > li.ui-tabs-active{
-	border: none !important;
 	border-radius: 0;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 -7px 0;
+	border-right: 2px solid #eb8202;
+	border-top: 2px solid #eb8202;
+	border-left: 2px solid #eb8202;
+	border-bottom: 4px solid #FFF;
+	height: 90px;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor{
 	padding: 24px !important;
@@ -2897,6 +2933,11 @@ span.phone-img {
 	padding: 0;
 	height: auto;
 	overflow: hidden;
+}
+
+#freq_abas > div .contentAbaBorda:first-child{
+	margin-top: 0;
+	border-top: 0;
 }
 
 .h_100{

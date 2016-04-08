@@ -585,13 +585,14 @@
 		var nomeRadio;
 		var nomeObs;
 		var showObservacoes;
+		var btnDisabled;
 		for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
 		{
 //			if (lCidadao != FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id) {
 				// Primeira iteração de um cidadão
 
 				// Insere dados do cidadão
-				htmlFrequencia = "<div class='divnome'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div class='divnomesocial'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div>";
+				htmlFrequencia = "<div class='divborda'><div class='divnome'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome + "</div><div class='divnomesocial'>" + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_nome_social + "</div></div>";
 				htmlFrequenciasSaude += htmlFrequencia;
 				htmlFrequenciasTrabalho += htmlFrequencia;
 				htmlFrequenciasSocial += htmlFrequencia;
@@ -603,16 +604,19 @@
 						selectedNao = " checked";
 						selectedSim = selectedNI = "";
 						showObservacoes = true;
+						btnDisabled = "";
 					}
 					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSaude].frequencia == 1) {
 						selectedSim = " checked";
 						selectedNao = selectedNI = "";
 						showObservacoes = false;
+						btnDisabled = "";
 					}
 					else {
 						selectedNI = " checked";
 						selectedNao = selectedSim = "";
 						showObservacoes = false;
+						btnDisabled = "disabled";
 					}
 					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSaude].justificativa;
 				}
@@ -621,6 +625,7 @@
 					selectedNao = selectedSim = "";
 					observacoes = "";
 					showObservacoes = false;
+					btnDisabled = "disabled";
 				}
 				nomeRadio = "radioFrequencias_Livre_Saude_" + i;
 				nomeObs = "observacao_Livre_Saude_" + i;
@@ -634,7 +639,7 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSaude >= 0 ? lIndiceFrequenciaLivreSaude : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSaude >= 0 ? lIndiceFrequenciaLivreSaude : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -647,16 +652,19 @@
 						selectedNao = " checked";
 						selectedSim = selectedNI = "";
 						showObservacoes = true;
+						btnDisabled = "";
 					}
 					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreTrabalho].frequencia == 1) {
 						selectedSim = " checked";
 						selectedNao = selectedNI = "";
 						showObservacoes = false;
+						btnDisabled = "";
 					}
 					else {
 						selectedNI = " checked";
 						selectedNao = selectedSim = "";
 						showObservacoes = false;
+						btnDisabled = "disabled";
 					}
 					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreTrabalho].justificativa;
 				}
@@ -665,6 +673,7 @@
 					selectedNao = selectedSim = "";
 					observacoes = "";
 					showObservacoes = false;
+					btnDisabled = "";
 				}
 				nomeRadio = "radioFrequencias_Livre_Trabalho_" + i;
 				nomeObs = "observacao_Livre_Trabalho_" + i;
@@ -678,7 +687,7 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreTrabalho >= 0 ? lIndiceFrequenciaLivreTrabalho : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreTrabalho >= 0 ? lIndiceFrequenciaLivreTrabalho : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -691,16 +700,19 @@
 						selectedNao = " checked";
 						selectedSim = selectedNI = "";
 						showObservacoes = true;
+						btnDisabled = "";
 					}
 					else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSocial].frequencia == 1) {
 						selectedSim = " checked";
 						selectedNao = selectedNI = "";
 						showObservacoes = false;
+						btnDisabled = "";
 					}
 					else {
 						selectedNI = " checked";
 						selectedNao = selectedSim = "";
 						showObservacoes = false;
+						btnDisabled = "disabled";
 					}
 					observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[lIndiceFrequenciaLivreSocial].justificativa;
 				}
@@ -709,6 +721,7 @@
 					selectedNao = selectedSim = "";
 					observacoes = "";
 					showObservacoes = false;
+					btnDisabled = "disabled";
 				}
 				nomeRadio = "radioFrequencias_Livre_Social_" + i;
 				nomeObs = "observacao_Livre_Social_" + i;
@@ -722,7 +735,7 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSocial >= 0 ? lIndiceFrequenciaLivreSocial : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar'>" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSocial >= 0 ? lIndiceFrequenciaLivreSocial : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -738,16 +751,19 @@
 					selectedNao = " checked";
 					selectedSim = selectedNI = "";
 					showObservacoes = true;
+					btnDisabled = "";
 				}
 				else if (FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].frequencia == 1) {
 					selectedSim = " checked";
 					selectedNao = selectedNI = "";
 					showObservacoes = false;
+					btnDisabled = "";
 				}
 				else {
 					selectedNI = " checked";
 					selectedNao = selectedSim = "";
 					showObservacoes = false;
+					btnDisabled = "disabled";
 				}
 				observacoes = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].justificativa;
 				
@@ -785,7 +801,7 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar'>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -807,7 +823,7 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar'>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -829,7 +845,7 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar'>" + 
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -852,7 +868,7 @@
 											  "<p>Não</p>" + 
 											  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 											  "<p>Sim</p>" + 
-											  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + ");' value='Salvar' class='btnSalvar'>" + 
+											  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
 											"</div>" + 
 										  "</div>" + 
 										  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 

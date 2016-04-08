@@ -1,4 +1,15 @@
 // JavaScript Document
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+    }, false );}
+
+
+
+
+
 $(document).ready(function(){
 
  var flag = "1";
@@ -918,9 +929,15 @@ function radioFrequencia(elemento, radio){
 	if ($( 'input:radio[name=' + radio + ']:checked' ).val() == "Não")
 	{
 		$('#' + elemento).show();
+		$('#' + elemento).closest('div').find('.btnSalvar').removeAttr('disabled');
+	}
+	else if ($( 'input:radio[name=' + radio + ']:checked' ).val() == "Sim"){
+		$('#' + elemento).hide();
+		$('#' + elemento).closest('div').find('.btnSalvar').removeAttr('disabled');
 	}
 	else{
 		$('#' + elemento).hide();
+		$('#' + elemento).closest('div').find('.btnSalvar').attr( "disabled", "disabled" );
 	}
 }
 
