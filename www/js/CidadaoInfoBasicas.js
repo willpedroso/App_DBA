@@ -31,6 +31,7 @@
 	quaisFamiliaresCounter: 0,
 	auxCondicoesSaude: [],
 	condicoesSaudeCounter: 0,
+	idadeFilhosCounter: 0,
 
     // ****************** Obtém os dados básicos *********************
 	// Lista de tipos de sexo
@@ -426,7 +427,7 @@
 				
 				tem_filhos: res.rows.item(0).tem_filhos,
 				qtd_filhos: res.rows.item(0).qtd_filhos,
-				// todo: falta implementar idade dos filhos
+				idade_filhos: [],
 				contato_familia: res.rows.item(0).contato_familia,
 				contato_parente: res.rows.item(0).contato_parente,
 				quais_familiares: [],
@@ -513,6 +514,23 @@
 		}
 		INFOBASICAS.saudeCidadao.condicoes_saude = lista;
 
+		// Obtém as idades dos filhos
+		BANCODADOS.sqlCmdDB("SELECT idade FROM idade_filhos where cidadao_id = ?",
+							[INFOBASICAS.cidadao_id], 
+							INFOBASICAS.dadosEntradaIdadeFilhos, 
+							INFOBASICAS.dadosEntradaInfoBasicasFail);
+	},
+	
+	dadosEntradaIdadeFilhos: function (trans, res) {
+		console.log("dadosEntradaIdadeFilhos");
+		
+		// Salva os dados
+		var lista = [];
+		for (var i = 0; i < res.rows.length; i++) {
+			lista.push(res.rows.item(i).idade);
+		}
+		INFOBASICAS.situacaoRuaCidadao.idade_filhos = lista;
+
 		// Retorna
 		// todo: revisar
 		//INFOBASICAS.cbSuccess_f();
@@ -557,7 +575,7 @@
 							acompanhante_rua, // []
 							tem_filhos,
 							qtd_filhos,
-							//todo: idade dos filhos
+							listaIdadeFilhos, // [] idade dos filhos
 							contato_familia,
 							contato_parente,
 							quais_familiares, // []
@@ -589,6 +607,7 @@
 		INFOBASICAS.auxAcompanhanteRua = acompanhante_rua;
 		INFOBASICAS.auxQuaisFamiliares = quais_familiares;
 		INFOBASICAS.auxCondicoesSaude = condicoes_saude;
+		INFOBASICAS.auxListaIdadeFilhos = listaIdadeFilhos;
 		
 		// todo: testes retirar
 		var Print = "";
@@ -623,7 +642,12 @@
 		
 		Print += "tem_filhos: " + tem_filhos + "\r\n";
 		Print += "qtd_filhos: " + qtd_filhos + "\r\n";
-		//todo: idade dos filhos
+				
+		Print += "Idade dos " + listaIdadeFilhos.length + " filhos\r\n";
+		for (var i = 0; i < listaIdadeFilhos.length; i++) {
+			Print += "\tFilho " + (i+1) + ": " + listaIdadeFilhos[i] + "\r\n";
+		}
+
 		Print += "contato_familia: " + contato_familia + "\r\n";
 		Print += "contato_parente: " + contato_parente + "\r\n";
 		
@@ -817,7 +841,32 @@
 							 INFOBASICAS.auxCondicoesSaude[INFOBASICAS.condicoesSaudeCounter++],
 							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
 							 CIDADAO.INSERT_MOBILE],
-							INFOBASICAS.condicoesSaudeCounter < INFOBASICAS.auxCondicoesSaude.length ? INFOBASICAS.excluiCondicoesSaudeSuccess : INFOBASICAS.salvaCidadaoSuccess,
+							INFOBASICAS.condicoesSaudeCounter < INFOBASICAS.auxCondicoesSaude.length ? INFOBASICAS.excluiCondicoesSaudeSuccess : INFOBASICAS.excluiIdadeFilhos,
+							INFOBASICAS.salvaCidadaoFail);
+	},
+	
+	excluiIdadeFilhos: function () {
+		console.log("excluiIdadeFilhos");
+
+		// Exclui idade dos filhos
+		INFOBASICAS.idadeFilhosCounter = 0;
+		BANCODADOS.sqlCmdDB("DELETE FROM idade_filhos WHERE cidadao_id = ?",
+							[INFOBASICAS.cidadao_id],
+							INFOBASICAS.auxListaIdadeFilhos.length > 0 ? INFOBASICAS.excluiIdadeFilhosSuccess : INFOBASICAS.salvaCidadaoSuccess,
+							INFOBASICAS.salvaCidadaoFail);	
+	},
+	
+	excluiIdadeFilhosSuccess: function () {
+		console.log("excluiIdadeFilhosSuccess");
+
+		// Salva idade dos filhos
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("INSERT INTO idade_filhos (cidadao_id, idade, dt_criacao, mobile) VALUES (?, ?, ?, ?)",
+							[INFOBASICAS.cidadao_id,
+							 INFOBASICAS.auxListaIdadeFilhos[INFOBASICAS.idadeFilhosCounter++],
+							 (hoje.getFullYear() + "-" + (hoje.getMonth()+1) + "-" + hoje.getDate() + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds()),
+							 CIDADAO.INSERT_MOBILE],
+							INFOBASICAS.idadeFilhosCounter < INFOBASICAS.auxListaIdadeFilhos.length ? INFOBASICAS.excluiIdadeFilhosSuccess : INFOBASICAS.salvaCidadaoSuccess,
 							INFOBASICAS.salvaCidadaoFail);
 	},
 }

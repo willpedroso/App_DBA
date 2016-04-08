@@ -1089,7 +1089,7 @@ function addFilhos(qtd)
 	
 	for(var i =0; i<qtd.value;i++){
 	
-		str+='<div class="linhaForm" id="qtdFilho" >'; 
+		str+='<div class="linhaForm" id="qtdFilho_'+(i+1)+'" >'; 
 		str+='<span class="titLabel">Idade do Filho '+(i+1)+':</span>';
 		str+='<input type="text" class="inputGrande"  value="" name="idade_filhos[]" id="filho_'+(i+1)+'" />';
 		str+='</div>';
