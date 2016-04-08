@@ -23,6 +23,7 @@
 		ERRO_BD: 6
 	},
 	
+	nome_usuario: null,
 	auxUsuario: null,
 	usuario_id: null,
 	perfil_id: null,
@@ -51,6 +52,11 @@
 			USUARIO.cbRet_f(USUARIO.login_return.REPETIDO);
 		}
 		else {
+			// Armazena o nome do usuário
+			USUARIO.nome_usuario = res.rows.item(0).nome;
+			// Apresenta o nome
+			$(".nomeuser").append(USUARIO.nome_usuario);
+			
 			// Verifica se a senha está correta
 //			alert("Verificando senha: senha digitada resumida = " + CryptoJS.MD5(USUARIO.auxVar_1) + " \r\nsenha do banco = " + res.rows.item(0).senha);
 			if (CryptoJS.MD5(USUARIO.auxVar_1) != res.rows.item(0).senha) {
