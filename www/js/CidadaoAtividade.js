@@ -24,6 +24,7 @@
 	servicoTipoAcolhida: null,
 	tipoChamada: null,
 	auxDate: null,
+	auxAtividadeID: null,
 
     // ****************** Obtém os dados básicos *********************
 	dadosBasicos: function () {
@@ -1272,14 +1273,29 @@
 		console.log("localizaAtividadeSuccess");
 
 		if (res.rows.length == 1) {
+			// encerra a atividade
 			BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2, mobile = ? \
 								WHERE id = ?",
-								[CIDADAO.UPDATE_MOBILE, res.rows.item(0).id], 
-								ATIVIDADE.cancelaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);
+								[CIDADAO.UPDATE_MOBILE, ATIVIDADE.auxAtividadeID = res.rows.item(0).id], 
+								ATIVIDADE.dataTerminoAtividadeEncerrada, SITUACAODBA.salvaSituacaoDBAFail);
 		}
 		else {
 			SITUACAODBA.salvaSituacaoDBAFail("A atividade associada ao local de acolhida não foi encontrada ou há mais de uma atividade!");
 		}
+	},
+	
+	dataTerminoAtividadeEncerrada: function () {
+		console.log("dataTerminoAtividadeEncerrada");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("UPDATE periodicidade SET data_termino = ?, permanente = 0, mobile = ? \
+							WHERE atividade_id = ?",
+							[
+							 hoje.getFullYear() + "-" + ((hoje.getMonth()+1) < 10 ? "0" + (hoje.getMonth()+1) : (hoje.getMonth()+1)) + "-" + (hoje.getDate() < 10 ? "0" + hoje.getDate() : hoje.getDate()),
+							 CIDADAO.UPDATE_MOBILE,
+							 ATIVIDADE.auxAtividadeID
+							], 
+							ATIVIDADE.cancelaAtividadeSuccess, SITUACAODBA.salvaSituacaoDBAFail);		
 	},
 	
 	cancelaAtividadeSuccess: function () {

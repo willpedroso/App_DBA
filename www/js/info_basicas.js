@@ -12,10 +12,10 @@ function abreOrientSexual(){
 };
 
 //abre input quantos filhos
-function abreQtdFilhos(acao){
+function abreQtdFilhos(){
 	if ($("input:radio[name=temFilho]:checked").val() == "Sim") {
 		jQuery('#qtdFilho').show();
-		if (acao != "Carga" && isNaN($("#qtd_filhos").val()) == false) {
+		if (isNaN($("#qtd_filhos").val()) == false) {
 			for (var i = 0; i < $("#qtd_filhos").val(); i++) {
 				$("#qtdFilho_" +(i+1)).show();
 			}
@@ -23,7 +23,7 @@ function abreQtdFilhos(acao){
 	}
 	else {
 		jQuery('#qtdFilho').hide();
-		if (acao != "Carga" && isNaN($("#qtd_filhos").val()) == false) {
+		if (isNaN($("#qtd_filhos").val()) == false) {
 			for (var i = 0; i < $("#qtd_filhos").val(); i++) {
 				$("#qtdFilho_" +(i+1)).hide();
 			}
@@ -125,17 +125,16 @@ function carregaDadosInfoBasicas() {
 		$("input[name='temFilho'][value='NãoInformado']").prop("checked", true);
 	}
 	auxVar = INFOBASICAS.situacaoRuaCidadao.qtd_filhos;
-	abreQtdFilhos("Carga");
 	$("#qtd_filhos").val(auxVar === null ? "" : auxVar);
 	if (isNaN(auxVar) == false) {
 		// É um número, então abre as caixas para as idades dos filhos
 		addFilhos(auxVar);
 		// Preenche as caixas de texto com a idade dos filhos
 		for (var i = 0; i < INFOBASICAS.situacaoRuaCidadao.idade_filhos.length; i++) {
-			$("#filho_" +(i+1)).val(INFOBASICAS.situacaoRuaCidadao.idade_filhos);
+			$("#filho_" +(i+1)).val(INFOBASICAS.situacaoRuaCidadao.idade_filhos[i]);
 		}
+		abreQtdFilhos();
 	}
-
 	
 	if (INFOBASICAS.situacaoRuaCidadao.contato_familia === 1) {
 		// Sim
