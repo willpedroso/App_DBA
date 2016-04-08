@@ -805,7 +805,7 @@ span.unidade{
     min-height: 270px;
 }
 p.info-basica{
-	font-size: 16px;
+	font-size: 18px;
     line-height: 20px;
 }
 .foto-cidadao {
@@ -1282,6 +1282,20 @@ p.info-basica{
 	clear: both;
 	float: right;
 }
+
+.btnSalvarAtividade{
+	font-family: "Roboto", Arial;
+	font-size: 24px;
+	height: 70px;
+	background: #eb8202;
+	border: none;
+	color: #fff;
+	padding: 8px 16px 8px 16px;
+	cursor: pointer;
+	margin: 42px 0 15px 0;
+	float: right;
+}
+
 .btnEncerrar{
 	font-family: "Roboto", Arial;
 	font-size: 24px;
@@ -2806,6 +2820,14 @@ span.phone-img {
 	width: auto;
 	margin: 10px 0 0 24px;
 }
+
+.divNav .nomeuser{
+	float: right;
+	line-height: 100px;
+	font-size: 22px;
+	padding: 0 16px 0 0;
+}
+
 .button_back{
 	z-index: 85;
 	height: 60px;
