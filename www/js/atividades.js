@@ -1,5 +1,5 @@
 function preparaListasOpt () {
-	console.log("preparaListasOpt: edição = " + (ATIVIDADE.editIndexAtividade != null ? "Sim" : "Não"));
+	console.log("preparaListasOpt");
 	
 	var edit = false;
 	var readonlyAtividade = false;
@@ -105,7 +105,6 @@ function preparaListasOpt () {
 		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].ponto_servico_nome == ATIVIDADE.listaPontosServico[i].nome) ? " selected>" : ">") + ATIVIDADE.listaPontosServico[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaPontosServicos").empty();
 	$("#listaPontosServicos").append(opts);
@@ -168,7 +167,6 @@ function preparaListasOpt () {
 		opts += ((edit == true && ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].tipo_atuacao_nome == listaTiposAtuacaoPerfilUsuario[i].nome) ? " selected>" : ">") + listaTiposAtuacaoPerfilUsuario[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	//console.log(opts + "\r\n");
 	
 	$("#listaTiposAtuacao").empty();
 	$("#listaTiposAtuacao").append(opts);
@@ -263,12 +261,10 @@ function preparaListasOpt () {
 
 function salvaAtividadeSuccess () {
 	console.log("salvaAtividadeSuccess");
-	// todo: revisar
 }
 
 function salvaAtividadeFail (err) {
 	console.log("atividades.salvaAtividadeFail: " + err);
-	// todo: revisar
 }
 
 function confirmEncerraAtiv() {
@@ -459,6 +455,7 @@ function validaCampos() {
 		}
 		
 		// todo: testes retirar
+		/*
 		console.log("Índice da atividade: " + null +
 					 "\r\nPonto de serviço: " + $("#pontoServicoLabel").val() +
 					 "\r\nTipo de Atuação: " + $("#tipoAtuacaoLabel").val() +
@@ -476,6 +473,7 @@ function validaCampos() {
 					 "\r\nDia do mês repetir: " + $("#dia_mes_repetir").val() +
 					 "\r\nDia do ano repetir: " + $('#dia_ano_repetir').val());
 		//alert("Ver console");
+		*/
 		// todo: testes retirar
 		
 		ATIVIDADE.salvaAtividade(ATIVIDADE.editIndexAtividade,													// índice da atividade

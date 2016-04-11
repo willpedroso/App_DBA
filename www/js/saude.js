@@ -51,7 +51,6 @@ function carregaSaude () {
 		opts += ((edit == true && CIDADAOSAUDE.dadosSaude.tipo_frequencia_caps_id == CIDADAOSAUDE.listaTipoFrequenciaCaps[i].id) ? " selected>" : ">") + CIDADAOSAUDE.listaTipoFrequenciaCaps[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTiposFrequenciaCaps").empty();
 	$("#listaTiposFrequenciaCaps").append(opts);
@@ -238,7 +237,6 @@ function carregaSaude () {
 		opts += "<option value='" + i + "' data-id='tipoParentescoLabel' for='tipoParentescoLabel'>";
 		opts += CIDADAOSAUDE.listaTipoParentesco[i].nome + "</option>";
 	}
-	console.log("\r\n" + opts);
 	
 	$("#selectTipoParente").empty();
 	$("#selectTipoParente").append(opts);
@@ -1071,12 +1069,10 @@ function carregaSaude () {
 
 function salvaSaudeSuccess () {
 	console.log("salvaSaudeSuccess");
-	// todo: revisar
 }
 
 function salvaSaudeFail (err) {
 	console.log("salvaSaudeFail: " + err);
-	// todo: revisar
 }
 
 function saudeSalva() {
@@ -1647,11 +1643,13 @@ function saudeSalva() {
 		listaDados.push(auxVar);
 		
 		// todo: testes retirar
+		/*
 		var Print = "Salvar em saude: " + listaDados.length + " campos.\r\n";
 		for (var i = 0; i < listaDados.length; i++) {
 			Print += "Campo " + i + "= " + listaDados[i] + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 			
 		// ********************* LISTAS	
@@ -1666,11 +1664,13 @@ function saudeSalva() {
 			cadastroAcompanhamentoUBS.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Cadastro acompanhamento UBS\r\n";
 		for (var i = 0; i < cadastroAcompanhamentoUBS.length; i++) {
 			Print += "Nome UBS: " + cadastroAcompanhamentoUBS[i].nome_ubs + " - Técnico: " + cadastroAcompanhamentoUBS[i].nome_tecnico_referencia + " - Especialidade: " + cadastroAcompanhamentoUBS[i].especialidade + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		// listaInternacao (quantas_vezes, local, motivo)
@@ -1684,11 +1684,13 @@ function saudeSalva() {
 			internacao.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Internação\r\n";
 		for (var i = 0; i < internacao.length; i++) {
 			Print += "Quantas vezes: " + internacao[i].quantas_vezes + " - Local: " + internacao[i].local + " - Motivo: " + internacao[i].motivo + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// listaTelefoneFamiliar (tipo_parentesco_id, numero)
@@ -1702,11 +1704,13 @@ function saudeSalva() {
 			telefoneFamiliar.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Telefone Familiar\r\n";
 		for (var i = 0; i < telefoneFamiliar.length; i++) {
-			Print += /*"Tipo Parentesco ID: " + telefoneFamiliar[i].tipo_parentesco_id + */"Tipo Parentesco Nome: " + telefoneFamiliar[i].tipo_parentesco_nome + " - Número: " + telefoneFamiliar[i].numero + "\r\n";
+			Print += "Tipo Parentesco Nome: " + telefoneFamiliar[i].tipo_parentesco_nome + " - Número: " + telefoneFamiliar[i].numero + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// listaDrogasFazUso para tipo_pergunta 1, 2 e 3 (tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia)
@@ -1722,11 +1726,13 @@ function saudeSalva() {
 			drogasTipo1.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Quais drogas faz uso\r\n";
 		for (var i = 0; i < drogasTipo1.length; i++) {
 			Print += "Droga: " + drogasTipo1[i].nome_droga + " - Dias: " + drogasTipo1[i].dias_frequencia + " - Meses: " + drogasTipo1[i].meses_frequencia + " - Anos: " + drogasTipo1[i].anos_frequencia + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		// ********************************** TIPO 1: Quais drogras faz uso
 		// ********************************** TIPO 2: Drogas além do crack
@@ -1738,11 +1744,13 @@ function saudeSalva() {
 			drogasTipo2.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Drogas além do crack\r\n";
 		for (var i = 0; i < drogasTipo2.length; i++) {
 			Print += "Droga: " + drogasTipo2[i].nome_droga + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		// ********************************** TIPO 2: Drogas além do crack
 		// ********************************** TIPO 3: Alguma droga neste dia
@@ -1754,11 +1762,13 @@ function saudeSalva() {
 			drogasTipo3.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Alguma droga neste dia\r\n";
 		for (var i = 0; i < drogasTipo3.length; i++) {
 			Print += "Droga: " + drogasTipo3[i].nome_droga + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		// ********************************** TIPO 3: Alguma droga neste dia
 		
@@ -1772,11 +1782,13 @@ function saudeSalva() {
 			especialidadesConsultaHoje.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Especialidades Consulta Hoje\r\n";
 		for (var i = 0; i < especialidadesConsultaHoje.length; i++) {
-			Print += "Especialidade: " + especialidadesConsultaHoje[i].especialidade/* + " - Local: " + especialidadesConsultaHoje[i].local*/ + "\r\n";
+			Print += "Especialidade: " + especialidadesConsultaHoje[i].especialidade + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// listaOficinasParticipou (nome, local)
@@ -1789,11 +1801,13 @@ function saudeSalva() {
 			oficinasParticipou.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Oficinas Participou\r\n";
 		for (var i = 0; i < oficinasParticipou.length; i++) {
 			Print += "Nome: " + oficinasParticipou[i].nome + " - Local: " + oficinasParticipou[i].local + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// listaAtividadeRecreativaExterna (nome, local)
@@ -1806,11 +1820,13 @@ function saudeSalva() {
 			atividadeRecreativaExterna.push(v);
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Atividades Recreativas Externas\r\n";
 		for (var i = 0; i < atividadeRecreativaExterna.length; i++) {
 			Print += "Nome: " + atividadeRecreativaExterna[i].nome + " - Local: " + atividadeRecreativaExterna[i].local + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		CIDADAOSAUDE.auxcadastroAcompanhamentoUBS = cadastroAcompanhamentoUBS;

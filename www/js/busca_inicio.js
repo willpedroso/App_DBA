@@ -32,7 +32,11 @@ function btBusca(textoBusca, ativos, inativos){
 			node += "</li>";
 		}
 	}
+	// todo: testes retirar
+	/*
 	console.log(node);
+	*/
+	// testes retirar
 	$("#ullistaCidadaos").empty();
 	$("#ullistaCidadaos").append(node);
 	window.scrollTo(0, 0);

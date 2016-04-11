@@ -63,10 +63,8 @@ function salvaCidadaoSuccess () {
 }
 
 function salvaCidadaoFail (err) {
-	console.log("identificacao.salvaCidadaoFail: " + err);
-	// todo: testes retirar
+	console.log("identificacao.salvaCidadaoFail");
 	alertMessage("Houve erro no salvamento do cidadão: " + err);
-	// todo: testes retirar
 }
 
 function validaCamposIdentificacao() {

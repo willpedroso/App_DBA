@@ -78,6 +78,7 @@
 		FREQUENCIA.listaTiposAtuacao = BD_DTO.tipo_atuacao_data;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Atuação" + "\r\n";
 		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
 			Print += "TIPO DE ATUAÇÃO: " + i + "\r\n";
@@ -87,6 +88,7 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
 		// testes retirar
 
 		// Cria lista de nome x id para tipos de atuação
@@ -98,12 +100,14 @@
 		}
 		
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Atuação - Nome Versus ID" + "\r\n";
 		for (var i = 0; i < FREQUENCIA.listaTiposAtuacao.length; i++) {
 			Print += "ID de " + FREQUENCIA.listaTiposAtuacao[i].nome + ": " + FREQUENCIA.listaAtuacao_NomeVersusID[FREQUENCIA.listaTiposAtuacao[i].nome] + "\r\n";
 			Print += "Tipo de atuação " + FREQUENCIA.listaTiposAtuacao[i].id + ": " + FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaTiposAtuacao[i].id] + "\r\n";
 		}
 		console.log (Print);
+		*/
 		// testes retirar
 
 		FREQUENCIA.listaTipoAtuacaoIDBusca = "AND (";
@@ -156,7 +160,9 @@
                 listaCidadaosFrequencia += "<li><div onclick='FREQUENCIA.selecionaCidadaoFrequencia(" + CIDADAO.listaCidadaosDados[i].id + ");'>" + CIDADAO.listaCidadaosDados[i].nome + "</div><div>" + CIDADAO.listaCidadaosDados[i].nome_social + "</div><div>" + nomeAcolhida + "</div></li>";
 			}
 			// todo: testes retirar
+			/*
 			console.log(listaCidadaosFrequencia);
+			*/
 			// testes retirar
 			$("#ullistaFreqCidadaos").empty();
 			$("#ullistaFreqCidadaos").append(listaCidadaosFrequencia);
@@ -178,7 +184,9 @@
 		FREQUENCIA.cidadao_id = null;
 		
 		// todo: testes retirar
+		/*
 		console.log("FREQUENCIA.cidadao_id = " + FREQUENCIA.cidadao_id + " - cidadao = " + cidadao);
+		*/
 		// testes retirar
 		
 		// Se o usuário for perfil_tecnico (tabela perfil) apresenta as atividades de todos os cidadãos do usuário, sem apresentar a lista de cidadãos
@@ -298,6 +306,7 @@
 			FREQUENCIA.listaFrequenciasCidadaos.push(v);
 
 			// todo: testes retirar
+			/*
 			var Print = "Frequências na tabela frequencia: \r\n";
 			for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
 			{
@@ -317,6 +326,7 @@
 				}
 			}
 			console.log(Print);
+			*/
 			// testes retirar
 		}
 
@@ -492,6 +502,7 @@
 		}
 		else {
 			// todo: testes retirar
+			/*
 			var Print = "Total de frequência: " + "" + "\r\n";
 			for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++)
 			{
@@ -511,6 +522,7 @@
 				}
 			}
 			console.log(Print);
+			*/
 			// testes retirar
 
 			// Monta a tela
@@ -887,9 +899,11 @@
 		}
 		
 		// todo: testes retirar
+		/*
 		console.log("Frequências Saúde: \r\n" + htmlFrequenciasSaude);
 		console.log("Frequências Trabalho: \r\n" + htmlFrequenciasTrabalho);
 		console.log("Frequências Social: \r\n" + htmlFrequenciasSocial);
+		*/
 		// testes retirar
 		
 		/*
@@ -940,7 +954,7 @@
 		
 		// Retorna
 		aguardeMsgOff();
-		// todo: revisar
+
 		alertMessage("Houve falha na obtenção de informações de frequência.");
 		
 		FREQUENCIA.cbFail_f(err);

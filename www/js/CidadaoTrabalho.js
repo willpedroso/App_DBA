@@ -37,12 +37,14 @@
 		CIDADAOTRABALHO.listaTipoTrabalhoColetivo = BD_DTO.tipo_trabalho_coletivo_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Trabalho Coletivo:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoTrabalhoColetivo.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_onde_aprendeu_profissao_carrega(CIDADAOTRABALHO.dadosBasicosComprovanteConhecimentoProfissional, CIDADAOTRABALHO.dadosBasicosFail);
@@ -54,12 +56,14 @@
 		CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao = BD_DTO.tipo_onde_aprendeu_profissao_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Onde Aprendeu Profissão:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_comprovante_conhecimento_profissional_carrega(CIDADAOTRABALHO.dadosBasicosRamoCurso, CIDADAOTRABALHO.dadosBasicosFail);
@@ -71,12 +75,14 @@
 		CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional = BD_DTO.tipo_comprovante_conhecimento_profissional_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Comprovante Conhecimento Profissional:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_ramo_curso_carrega(CIDADAOTRABALHO.dadosBasicosPretencaoCurso, CIDADAOTRABALHO.dadosBasicosFail);
@@ -88,12 +94,14 @@
 		CIDADAOTRABALHO.listaTipoRamoCurso = BD_DTO.tipo_ramo_curso_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Ramo Curso:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoRamoCurso.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoRamoCurso[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_pretencao_cursos_carrega(CIDADAOTRABALHO.dadosBasicosPrimeiraEscolha, CIDADAOTRABALHO.dadosBasicosFail);
@@ -105,12 +113,14 @@
 		CIDADAOTRABALHO.listaTipoPretencaoCurso = BD_DTO.tipo_pretencao_cursos_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Pretenção Curso:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoPretencaoCurso.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_primeira_escolha_carrega(CIDADAOTRABALHO.dadosBasicosListaAtividadeTempoLivre, CIDADAOTRABALHO.dadosBasicosFail);
@@ -122,12 +132,14 @@
 		CIDADAOTRABALHO.listaTipoPrimeiraEscolha = BD_DTO.tipo_primeira_escolha_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Primeira Escolha:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoPrimeiraEscolha.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_atividade_tempo_livre_carrega(CIDADAOTRABALHO.dadosBasicosAtividadesTempoLivre, CIDADAOTRABALHO.dadosBasicosFail);
@@ -139,12 +151,14 @@
 		CIDADAOTRABALHO.listaTipoAtividadeTempoLivre = BD_DTO.tipo_atividade_tempo_livre_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Atividade Tempo Livre:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoAtividadeTempoLivre.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, trabalho_id, tipo_atividade_tempo_livre_id, dt_criacao " +		
@@ -166,6 +180,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Atividades Tempo Livre:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaAtividadesTempoLivre.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaAtividadesTempoLivre[i].id + "\r\n";
@@ -173,6 +188,7 @@
 			Print += "\tData da Criação: " + CIDADAOTRABALHO.listaAtividadesTempoLivre[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_local_visitar_carrega(CIDADAOTRABALHO.dadosBasicosLocaisVisitar, CIDADAOTRABALHO.dadosBasicosFail);
@@ -184,6 +200,7 @@
 		CIDADAOTRABALHO.listaTipoLocalVisitar = BD_DTO.tipo_local_visitar_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Local Visitar:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaTipoLocalVisitar.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaTipoLocalVisitar[i].id + "\r\n";
@@ -191,6 +208,7 @@
 			Print += "\tStatus: " + CIDADAOTRABALHO.listaTipoLocalVisitar[i].status + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, trabalho_id, tipo_local_visitar_id, dt_criacao " +		
@@ -212,6 +230,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Locais Visitar:\r\n";
 		for (var i = 0; i < CIDADAOTRABALHO.listaLocaisVisitar.length; i++) {
 			Print += "\tID: " + CIDADAOTRABALHO.listaLocaisVisitar[i].id + "\r\n";
@@ -219,6 +238,7 @@
 			Print += "\tData da Criação: " + CIDADAOTRABALHO.listaLocaisVisitar[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		//CIDADAOTRABALHO.cbSuccess_f();
@@ -297,12 +317,6 @@
 	
 	dadosEntradaSuccess: function(trans, res) {
 		console.log("dadosEntradaSuccess");
-		/*
-		if (res.rows.length != 1) {
-			// todo: há mais de um registro de trabalho para o cidadão
-			alertMessage ("Erro: Há mais de um registro de trabalho para o cidadão!");
-		}
-		*/
 		var dt = {
 			id: res.rows.item(0).id,
 			participa_frente_trabalho: res.rows.item(0).participa_frente_trabalho,
@@ -354,6 +368,7 @@
 		CIDADAOTRABALHO.dadosTrabalho = dt;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Dados de trabalho:\r\n";
 		Print += "id: " + CIDADAOTRABALHO.dadosTrabalho.id + "\r\n";
 		Print += "participa_frente_trabalho: " + CIDADAOTRABALHO.dadosTrabalho.participa_frente_trabalho + "\r\n";
@@ -403,6 +418,7 @@
 		Print += "status: " + CIDADAOTRABALHO.dadosTrabalho.status + "\r\n";
 
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// carrega dados básicos

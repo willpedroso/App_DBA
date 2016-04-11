@@ -70,12 +70,14 @@
 		CIDADAOSAUDE.listaTipoFrequenciaCaps = BD_DTO.tipo_frequencia_caps_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Frequência CAPS:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaTipoFrequenciaCaps.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaTipoFrequenciaCaps[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOSAUDE.listaTipoFrequenciaCaps[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, nome_ubs, especialidade, nome_tecnico_referencia, dt_criacao " +		
@@ -99,6 +101,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Acompanhamentos UBS:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaCadastroAcompanhamentoUBS.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].id + "\r\n";
@@ -108,6 +111,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaCadastroAcompanhamentoUBS[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, quantas_vezes, local, motivo, dt_criacao " +		
@@ -131,6 +135,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Internações:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaInternacao.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaInternacao[i].id + "\r\n";
@@ -140,6 +145,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaInternacao[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_parentesco_id, numero, dt_criacao " +		
@@ -162,6 +168,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Telefones Familiares:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaTelefoneFamiliar.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].id + "\r\n";
@@ -170,6 +177,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaTelefoneFamiliar[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, tipo_pergunta, nome_droga, dias_frequencia, meses_frequencia, anos_frequencia, dt_criacao " +		
@@ -195,6 +203,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Uso de Drogras:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaDrogasFazUso.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaDrogasFazUso[i].id + "\r\n";
@@ -206,6 +215,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaDrogasFazUso[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, especialidade, local, dt_criacao " +		
@@ -228,6 +238,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Especialidades Consulta Saúde Hoje:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaEspecialidadesConsultaHoje.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].id + "\r\n";
@@ -236,6 +247,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaEspecialidadesConsultaHoje[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, nome, local, dt_criacao " +		
@@ -258,6 +270,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Oficinas que Participou:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaOficinasParticipou.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaOficinasParticipou[i].id + "\r\n";
@@ -266,6 +279,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaOficinasParticipou[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BANCODADOS.sqlCmdDB("SELECT id, nome, local, dt_criacao " +		
@@ -288,6 +302,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Atividades Recreativas Externas:\r\n";
 		for (var i = 0; i < CIDADAOSAUDE.listaAtividadeRecreativaExterna.length; i++) {
 			Print += "\tID: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].id + "\r\n";
@@ -296,6 +311,7 @@
 			Print += "\tData da Criação: " + CIDADAOSAUDE.listaAtividadeRecreativaExterna[i].dt_criacao + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		//CIDADAOSAUDE.cbSuccess_f();
@@ -536,6 +552,7 @@
 		CIDADAOSAUDE.dadosSaude = ds;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Dados de saúde:\r\n";
 		Print += "id: " + CIDADAOSAUDE.dadosSaude.id + "\r\n";
 		Print += "numero_sus: " + CIDADAOSAUDE.dadosSaude.numero_sus + "\r\n";
@@ -637,6 +654,7 @@
 		Print += "status: " + CIDADAOSAUDE.dadosSaude.status + "\r\n";
 		
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// carrega dados básicos
@@ -903,7 +921,6 @@
 
 		BANCODADOS.sqlCmdDB("SELECT id " +		
 							"FROM saude WHERE dt_criacao = ? AND status = ?", [CIDADAOSAUDE.auxDate, 1],
-							// todo: verificar se há dados para salvar
 							CIDADAOSAUDE.recuperaIDSaudeSuccess, 
 							CIDADAOSAUDE.salvaCidadaoSaudeFail);
 	},

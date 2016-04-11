@@ -263,6 +263,11 @@
       </div>
 <script>
     $(document).ready(function() {
+		if(ATIVIDADE.salvouAtividade == true) {
+			$('.msgParabens').removeAttr('style').fadeOut(5000);
+			$('html, body').animate({scrollTop:0}, 'slow');
+			ATIVIDADE.salvouAtividade = false;
+		}
 		preparaListasOpt();
 	});
 </script>

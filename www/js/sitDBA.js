@@ -64,7 +64,6 @@ function carregaSituacaoDBA () {
 		opts += ((edit == true && SITUACAODBA.pontoServicoId == CIDADAO.listaPontosServico[i].id) ? " selected>" : ">") + CIDADAO.listaPontosServico[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaLocalAcolhida").empty();
 	$("#listaLocalAcolhida").append(opts);
@@ -173,8 +172,10 @@ function validaCamposSituacaoDBA() {
 		}
 		
 		// todo: testes retirar
+		/*
 		console.log("Data de inclusão: " + dinclusao_Text);
 		console.log("Data de exclusão: " + dexclusao_Text);
+		*/
 		// testes retirar
 		
 		SITUACAODBA.salvaSituacaoDBA(($("input:radio[name=infoSituacaoDba]:checked").val() == "Ativo" ? 1 : 0),

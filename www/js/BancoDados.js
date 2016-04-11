@@ -4,10 +4,6 @@ var BANCODADOS = {
     // Objeto do banco de dados
 	dbObj: null,
 
-    // todo: revisar - API
-    //urlCheckUpdate: "xxxx",
-    //urlDoUpdate: "xxxx",
-
     // Funções de retorno
     cbSuccess_f: null,
     cbFail_f: null,
@@ -474,14 +470,14 @@ var BANCODADOS = {
 		var invertedColumnName;
 		
 		// todo: testes retirar
-		
+		/*
 		var Print = "Tabela:\r\n";
 		for (var i = 0; i < res.rows.length; i++) {
 			Print += "\r\nNome: " + res.rows.item(i).name;
 			Print += "\r\nSQL: " + res.rows.item(i).sql;
 		}
 		console.log(Print);
-		
+		*/
 		// testes retirar
 		
 		sqlCreateTable = res.rows.item(0).sql;
@@ -540,6 +536,7 @@ var BANCODADOS = {
 			// Terminou a preparação
 			
 			// todo: testes retirar
+			/*
 			var Print = "";
 			for (var k = 0; k < BANCODADOS.listaServicosUpload.length; k++) {
 				Print += "Serviço [" + (k) + "] URL: " + BANCODADOS.listaServicosUpload[k].url + "\r\n";
@@ -563,6 +560,7 @@ var BANCODADOS = {
 			}
 			console.log(Print);
 			//alert("Fim montagem dos campos");
+			*/
 			// testes retirar
 			
 			BANCODADOS.counterServicesUpload = 0;
@@ -592,7 +590,9 @@ var BANCODADOS = {
 		sqlCommand += BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].whereTabelaPrincipal;
 		
 		// todo: testes retirar
+		/*
 		console.log(sqlCommand);
+		*/
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelaPrincipalSuccess, BANCODADOS.envioFalha);
@@ -636,7 +636,9 @@ var BANCODADOS = {
 					}
 				}
 				// todo: testes retirar
+				/*
 				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+				*/
 				// testes retirar
 
 				BANCODADOS.counterServicesUpload++;
@@ -652,7 +654,7 @@ var BANCODADOS = {
 		}
 		else 
 		{
-			// todo: não há o que transmitir
+			// não há o que transmitir
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].bdadosEnviar = false;
 
 			BANCODADOS.counterServicesUpload++;
@@ -697,13 +699,15 @@ var BANCODADOS = {
 		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].nome;
 		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereP != "" &&
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereS != "") {
-			// todo: Complementa o comando com where
+			// Complementa o comando com where
 			sqlCommand += " WHERE " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereS + "=" + 
 							BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP)[BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasSecundarias[BANCODADOS.counterTabelasSecundarias].whereP];
 		}
 		
 		// todo: testes retirar
+		/*
 		console.log(sqlCommand);
+		*/
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelasSecundariasSuccess, BANCODADOS.envioFalha);
@@ -745,7 +749,9 @@ var BANCODADOS = {
 				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += ",";
 				
 				// todo: testes retirar
+				/*
 				console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+				*/
 				// testes retirar
 
 				BANCODADOS.dadosTabelasTerciarias();
@@ -754,7 +760,7 @@ var BANCODADOS = {
 		}
 		else 
 		{
-			// todo: não há dados nesta tabela secundária, fecha JSON da tabela
+			// não há dados nesta tabela secundária, fecha JSON da tabela
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]";
 			// todo: testes retirar
@@ -768,17 +774,23 @@ var BANCODADOS = {
 			
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP++;
 			
+			// todo: testes retirar
+			/*
 			console.log("Contador = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP + "\r\nRegistros TP = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length);
+			*/
+			// testes retirar
 			
 			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.length) {
 				// Acabaram os registros da tabela principal
 				BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
 				BANCODADOS.counterServicesUpload++;
 				if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
-					// todo: Acabaram os serviços de upload
+					// Acabaram os serviços de upload
 					
 					// todo: testes retirar
+					/*
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+					*/
 					// testes retirar
 					
 					// Inicia sequência de upload
@@ -787,7 +799,9 @@ var BANCODADOS = {
 				}
 				else {
 					// todo: testes retirar
+					/*
 					console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+					*/
 					// testes retirar
 					
 					BANCODADOS.dadosTabelaPrincipal();
@@ -835,13 +849,15 @@ var BANCODADOS = {
 		sqlCommand += " FROM " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].nome;
 		if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereP != "" &&
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereS != "") {
-			// todo: Complementa o comando com where
+			// Complementa o comando com where
 			sqlCommand += " WHERE " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereS + "=" + 
 							BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaPrincipal.item(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTP)[BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].tabelasTerciarias[BANCODADOS.counterTabelasTerciarias].whereP];
 		}
 		
 		// todo: testes retirar
+		/*
 		console.log(sqlCommand);
+		*/
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB(sqlCommand, [], BANCODADOS.dadosTabelasTerciariasSuccess, BANCODADOS.envioFalha);
@@ -863,16 +879,20 @@ var BANCODADOS = {
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
 			
 			// todo: testes retirar
+			/*
 			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+			*/
 			// testes retirar
 		}
 		else 
 		{
-			// todo: não há dados nesta tabela terciária, fecha JSON da tabela
+			// não há dados nesta tabela terciária, fecha JSON da tabela
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += json;
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]";
 			// todo: testes retirar
+			/*
 			console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
+			*/
 			// testes retirar
 		}
 		BANCODADOS.counterTabelasTerciarias++;
@@ -882,7 +902,11 @@ var BANCODADOS = {
 			
 			BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS++;
 			
+			// todo: testes retirar
+			/*
 			console.log("Contador = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS + "\r\nRegistros TS = " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.length);
+			*/
+			// testes retirar
 			
 			if (BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].contadorTS == BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosTabelaSecundaria.length) {
 				// Acabaram os registros da tabela secundária
@@ -895,10 +919,12 @@ var BANCODADOS = {
 					BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON += "]}";
 					BANCODADOS.counterServicesUpload++;
 					if (BANCODADOS.counterServicesUpload == BANCODADOS.listaServicosUpload.length) {
-						// todo: Acabaram os serviços de upload
+						// Acabaram os serviços de upload
 						
 						// todo: testes retirar
+						/*
 						console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+						*/
 						// testes retirar
 						
 						// Inicia sequência de upload
@@ -907,7 +933,9 @@ var BANCODADOS = {
 					}
 					else {
 						// todo: testes retirar
+						/*
 						console.log(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload-1].dadosJSON);
+						*/
 						// testes retirar
 						
 						BANCODADOS.dadosTabelaPrincipal();
@@ -962,12 +990,14 @@ var BANCODADOS = {
 		var tokenIndex = Math.floor(Math.random() * BANCODADOS.listaTokens.length);
 		
 		// todo: testes retirar
+		/*
 		console.log("ENVIO DE DADOS");
 		console.log("Cmd: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].cmd);
 		console.log("Usuário: " + iUsuario);
 		console.log("Dados: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].dadosJSON);
 		console.log("nomeUpload: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].nomeUpload);
 		console.log("URL: " + BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].url);
+		*/
 		// testes retirar
 		
 	    $.ajax({
@@ -981,14 +1011,17 @@ var BANCODADOS = {
 				var jsonResponse;
 				jsonResponse = JSON.parse(msg);
 				
+				// todo: testes retirar
+				/*
 				console.log("Retorno: " + msg);
+				*/
+				// testes retirar
 				
 				// Verifica se houve sucesso no processamento dos dados enviados
 				if (jsonResponse.return == false) {
 					// Houve falha no processamento de dados enviados
 					aguardeMsgOff();
-					alertMessage("Houve falha no envio de dados. \r\n" + jsonResponse.message);
-					// todo: revisar o que fazer neste caso
+					alertMessageCallback("Houve falha no envio de dados. \r\n" + jsonResponse.message, BANCODADOS.sincSuccessUsuario);
 				}
 				else {
 					if (BANCODADOS.counterServicesUpload + 1 < BANCODADOS.listaServicosUpload.length) {
@@ -1006,11 +1039,11 @@ var BANCODADOS = {
 			}
 			catch (err) {
 				aguardeMsgOff();
-				alertMessage(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
+				alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario);
 			}
         }).bind(this)).fail(function(){
 			aguardeMsgOff();
-			alertMessage(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nHouve falha de acesso à internet.");
+			alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario);
         });		
     },
 	
@@ -1219,18 +1252,13 @@ var BANCODADOS = {
 		}
 	},
 	
-	// todo: testes retirar
 	testesData: null,
 	totalSegundos: 0,
-	// testes retirar
 	
     igetDownload: function () {
         console.log("igetDownload");
 
-		// todo: testes retirar
-		//alertMessage("INICIO do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter]);
 		BANCODADOS.testesData = new Date();
-		// testes retirar
 
 		aguardeMsgOn(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter]);
 		
@@ -1324,11 +1352,11 @@ var BANCODADOS = {
 			}
 			catch (err) {
 				aguardeMsgOff();
-				alertMessage(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err);		// todo: acertar a mensagem
+				alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario);
 			}
         }).bind(this)).fail(function(){
 			aguardeMsgOff();
-			alertMessage(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.");
+			alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario);
         });		
     },
     // Obtenção de Operadores
@@ -1376,10 +1404,9 @@ var BANCODADOS = {
 		
 		if (BANCODADOS.downloadCounter == BANCODADOS.listaDownload.length) {
 			aguardeMsgOff();
-			// todo: revisar
-			//alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
+
 			alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
-			// revisar
+
 			if (BANCODADOS.usuarioSincronismo != -1) {
 				// Sincronismo interno, carrega cidadãos recebidos
 				aguardeMsgOn("Carregando dados dos cidadãos...");
@@ -1404,19 +1431,15 @@ var BANCODADOS = {
 	insertSincFail: function (err) {
 		console.log("insertSincFail");
 		
-		// todo: revisar
 		aguardeMsgOff();
-		alertMessage("Erro: " + err);
-		// revisar
+		alertMessageCallback("Houve falha na inserção dos dados. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario);
 	},
 	
 	deleteSincFail: function (err) {
 		console.log("deleteSincFail");
 		
-		// todo: revisar
 		aguardeMsgOff();
-		alertMessage("Erro: " + err);
-		// revisar
+		alertMessageCallback("Houve falha na exclusão dos registros anteriores. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario);
 	},
 
     // **********************************************************************************************************
@@ -2849,7 +2872,7 @@ var BANCODADOS = {
     // Executa comando SQL
 	sqlCmdDB: function (sqlCmd, arg, suc, fail) {
 	    console.log("sqlCmdDB");
-	    console.log("sqlCmd = " + sqlCmd + "\nArgumentos = " + arg);
+	    //console.log("sqlCmd = " + sqlCmd + "\nArgumentos = " + arg);
 		
 		// Verifica se é update ou insert
 		if (sqlCmd.indexOf("INSERT") == 0 || sqlCmd.indexOf("UPDATE") == 0) {

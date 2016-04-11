@@ -66,7 +66,7 @@
 		INFOBASICAS.tipoCorPele = BD_DTO.tipo_cor_pele_data;
 		
 		// Obtém os dados básicos - tipos de orientação sexual
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_orientacao_sexual",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_orientacao_sexual WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoOrientacaoSexualSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -91,7 +91,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de estado civil
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_estado_civil",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_estado_civil WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoEstadoCivilSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -116,7 +116,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de estado
-		BANCODADOS.sqlCmdDB("SELECT id, sigla, nome, status FROM tipo_estado",
+		BANCODADOS.sqlCmdDB("SELECT id, sigla, nome, status FROM tipo_estado WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoEstadoSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -142,7 +142,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de pais
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_pais",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_pais WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoPaisSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -167,7 +167,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de habilidade
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_habilidades",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_habilidades WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoHabilidadeSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -192,7 +192,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de fonte de renda
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_fonte_renda",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_fonte_renda WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoFonteRendaSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -217,7 +217,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de escolaridade
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_escolaridade",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_escolaridade WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoEscolaridadeSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -242,7 +242,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de situação profissional
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_situacao_profissional",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_situacao_profissional WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoSituacaoProfissionalSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -267,7 +267,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de acompanhante de rua
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_acompanhante_rua",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_acompanhante_rua WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoAcompanhanteRuaSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -292,7 +292,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de parentesco
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_parentesco",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_parentesco WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoParentescoSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -317,7 +317,7 @@
 		}
 		
 		// Obtém os dados básicos - tipos de condição de saúde
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_condicao_saude",
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status FROM tipo_condicao_saude WHERE status = 1",
 							[], 
 							INFOBASICAS.dadosBasicosTipoCondicaoSaudeSuccess, 
 							INFOBASICAS.dadosEntradaInfoBasicasFail);
@@ -532,9 +532,6 @@
 		INFOBASICAS.situacaoRuaCidadao.idade_filhos = lista;
 
 		// Retorna
-		// todo: revisar
-		//INFOBASICAS.cbSuccess_f();
-		//PageManager.loadTmpl('info_basicas');
 		INFOCOMPLE.dadosEntrada(INFOBASICAS.cidadao_id, null, null);
 	},
 	
@@ -542,7 +539,6 @@
 		console.log("dadosEntradaInfoBasicasFail");
 		
 		// Retorna
-		// todo: revisar
 		alertMessage("Houve falha na obtenção de informações básicas do cidadão.");
 
 		INFOBASICAS.cbFail_f(err);
@@ -610,6 +606,7 @@
 		INFOBASICAS.auxListaIdadeFilhos = listaIdadeFilhos;
 		
 		// todo: testes retirar
+		/*
 		var Print = "";
 		Print += "info_orientacao_sexual_genero: " + info_orientacao_sexual_genero + "\r\n";
 		Print += "sexo_id: " + sexo_id + "\r\n";
@@ -683,6 +680,7 @@
 
 		Print += "informacoes_complementares: " + informacoes_complementares + "\r\n";
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		BANCODADOS.sqlCmdDB("UPDATE cidadao SET " +

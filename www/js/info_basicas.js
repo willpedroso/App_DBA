@@ -265,7 +265,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.generoCidadao.sexo_id == INFOBASICAS.tipoSexo[i].id) ? " selected>" : ">") + INFOBASICAS.tipoSexo[i].nome + "</option>";
 	}
 	opts += "</select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaSexos").empty();
 	$("#listaSexos").append(opts);
@@ -276,7 +275,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.generoCidadao.orientacao_sexual_id == INFOBASICAS.tipoOrientacaoSexual[i].id) ? " selected>" : ">") + INFOBASICAS.tipoOrientacaoSexual[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaOrientacaoSexual").empty();
 	$("#listaOrientacaoSexual").append(opts);
@@ -289,7 +287,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.tipo_cutis_id == INFOBASICAS.tipoCorPele[i].id) ? " selected>" : ">") + INFOBASICAS.tipoCorPele[i].nome + "</option>";
 	}
 	opts += "</select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaCorpele").empty();
 	$("#listaCorpele").append(opts);
@@ -301,7 +298,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.estado_civil_id == INFOBASICAS.tipoEstadoCivil[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstadoCivil[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaEstadoCivil").empty();
 	$("#listaEstadoCivil").append(opts);
@@ -312,7 +308,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.infoAdicionaisCidadao.nascimento_estado_id == INFOBASICAS.tipoEstado[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstado[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaEstado").empty();
 	$("#listaEstado").append(opts);
@@ -324,7 +319,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.dias_situaca_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Dia" : " Dias") + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaDias").empty();
 	$("#listaDias").append(opts);
@@ -335,7 +329,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.meses_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Mês" : " Meses") + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaMeses").empty();
 	$("#listaMeses").append(opts);
@@ -346,7 +339,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.anos_situacao_rua == i) ? " selected>" : ">") + i + (i == 1 ? " Ano" : " Anos") + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaAnos").empty();
 	$("#listaAnos").append(opts);
@@ -357,7 +349,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.procedencia_estado_id == INFOBASICAS.tipoEstado[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEstado[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaEstadoProcedencia").empty();
 	$("#listaEstadoProcedencia").append(opts);
@@ -368,7 +359,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.situacaoRuaCidadao.procedencia_pais_id == INFOBASICAS.tipoPais[i].id) ? " selected>" : ">") + INFOBASICAS.tipoPais[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaPaisProcedencia").empty();
 	$("#listaPaisProcedencia").append(opts);
@@ -387,7 +377,6 @@ function infoBasicasOpcoes() {
 	}
 	opts += "<input type='text' class='inputMed spacer-h' value='' name='acompanhante_rua_outros' placeholder='Outros' id='acompanhante_rua_outros'>";
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#container_comquem").empty();
 	$("#container_comquem").append(opts);
@@ -406,7 +395,6 @@ function infoBasicasOpcoes() {
 	}
 	opts += "<input type='text' class='inputMed' value='' name='contato_familia_outros' id='contato_familia_outros' placeholder='Outros'>";
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#container_familiar").empty();
 	$("#container_familiar").append(opts);
@@ -418,7 +406,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.habilidades_id == INFOBASICAS.tipoHabilidade[i].id) ? " selected>" : ">") + INFOBASICAS.tipoHabilidade[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaHabilidades").empty();
 	$("#listaHabilidades").append(opts);
@@ -429,7 +416,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.fonte_renda_id == INFOBASICAS.tipoFonteRenda[i].id) ? " selected>" : ">") + INFOBASICAS.tipoFonteRenda[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaFonteRenda").empty();
 	$("#listaFonteRenda").append(opts);
@@ -440,7 +426,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.tipo_escolaridade_id == INFOBASICAS.tipoEscolaridade[i].id) ? " selected>" : ">") + INFOBASICAS.tipoEscolaridade[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaEscolaridade").empty();
 	$("#listaEscolaridade").append(opts);
@@ -451,7 +436,6 @@ function infoBasicasOpcoes() {
 		opts += ((edit == true && INFOBASICAS.trabalhoEducacaoCidadao.situacao_profissional_id == INFOBASICAS.tipoSituacaoProfissional[i].id) ? " selected>" : ">") + INFOBASICAS.tipoSituacaoProfissional[i].nome + "</option>";
 	}
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#listaSituacaoProfissional").empty();
 	$("#listaSituacaoProfissional").append(opts);
@@ -471,7 +455,6 @@ function infoBasicasOpcoes() {
 	}
 	opts += "<input type='text' class='inputMed' value='' name='condicao_saude_outros' id='condicao_saude_outros' placeholder='Outros'>";
 	opts += "</div></select>";
-	console.log(opts + "\r\n");
 	
 	$("#container_cond_saude").empty();
 	$("#container_cond_saude").append(opts);
@@ -753,10 +736,8 @@ function infoBasicasSalva() {
 	
 function salvaDadosBasicosSuccess () {
 	console.log("salvaDadosBasicosSuccess");
-	// todo: revisar
 };
 
 function salvaDadosBasicosFail (err) {
 	console.log("salvaDadosBasicosFail: " + err);
-	// todo: revisar
 };

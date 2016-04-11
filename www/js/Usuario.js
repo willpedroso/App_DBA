@@ -80,10 +80,12 @@
 			USUARIO.perfil_id = res.rows.item(0).perfil_id;
 			
 			// todo: testes retirar
+			/*
 			var Print = "Dados Usuário: \r\n";
 			Print += "\tID: " + USUARIO.usuario_id + "\r\n";
 			Print += "\tID Perfil Principal: " + USUARIO.perfil_id + "\r\n";
 			console.log(Print);
+			*/
 			// testes retirar
 			
 			// Carrega perfis
@@ -97,6 +99,7 @@
 		USUARIO.listaPerfis = BD_DTO.perfis_data;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Perfis do sistema: \r\n";
 		for (var i = 0; i < USUARIO.listaPerfis.length; i++) {
 			Print += "\tID: " + USUARIO.listaPerfis[i].id + "\r\n";
@@ -108,6 +111,7 @@
 			Print += "\tdt_criacao: " + USUARIO.listaPerfis[i].dt_criacao + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Perfil é técnico
@@ -137,9 +141,11 @@
 			USUARIO.equipe_tecnica_id = res.rows.item(0).id;
 			
 			// todo: testes retirar
+			/*
 			var Print = "Equipe Técnica: \r\n";
 			Print += "\tID: " + USUARIO.equipe_tecnica_id + "\r\n";
 			console.log(Print);
+			*/
 			// testes retirar
 
 			// Obtém perfil acumulado
@@ -170,11 +176,13 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Perfis Acumulados: \r\n";
 		for (var i = 0; i < USUARIO.perfil_acumulado.length; i++) {
 			Print += "\tID Perfil Acumulado: " + USUARIO.perfil_acumulado[i] + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		// Carrega dados dos cidadãos

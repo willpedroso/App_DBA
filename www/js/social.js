@@ -46,7 +46,6 @@ function carregaSocial () {
 		opts += CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts);
 	
 	$("#listaSelectTipoDispositivoContato").empty();
 	$("#listaSelectTipoDispositivoContato").append(opts);
@@ -87,7 +86,6 @@ function carregaSocial () {
 		opts += CIDADAOSOCIAL.listaTipoDocumento[i].nome + "</option>";
 	}
 	opts += "</select></div>";
-	console.log(opts);
 	
 	$("#listaDocumentos2").empty();
 	$("#listaDocumentos2").append(opts);
@@ -104,7 +102,7 @@ function carregaSocial () {
 		}
 	}
 	
-	// todo: Houve restabelecimento de vínculos familiares
+	// Houve restabelecimento de vínculos familiares
 	if (CIDADAOSOCIAL.dadosSocial.vinculo_familia_restabelecido === 1) {
 		// Sim
 		$("input[name='infoVinculoFamiliaRestabelecido'][value='Sim']").prop("checked", true);
@@ -153,7 +151,6 @@ function carregaSocial () {
 		opts += CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts);
 	
 	$("#listaSelectTipoDispositivoContatoEmpresa").empty();
 	$("#listaSelectTipoDispositivoContatoEmpresa").append(opts);
@@ -258,7 +255,6 @@ function carregaSocial () {
 		opts += CIDADAOSOCIAL.listaTipoCertidao[i].nome + "</option>";
 	}
 	opts += "</select></div>";
-	console.log(opts);
 	
 	$("#listaTipoCertidao").empty();
 	$("#listaTipoCertidao").append(opts);
@@ -286,12 +282,10 @@ function carregaSocial () {
 
 function salvaSocialSuccess () {
 	console.log("salvaSocialSuccess");
-	// todo: revisar
 }
 
 function salvaSocialFail (err) {
 	console.log("salvaSocialFail: " + err);
-	// todo: revisar
 }
 
 function socialSalva() {
@@ -425,11 +419,13 @@ function socialSalva() {
 		listaDados.push(auxVar);
 		
 		// todo: testes retirar
+		/*
 		var Print = "Salvar em trabalho: " + listaDados.length + " campos.\r\n";
 		for (var i = 0; i < listaDados.length; i++) {
 			Print += "Campo " + i + "= " + listaDados[i] + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		//***************************
@@ -455,11 +451,13 @@ function socialSalva() {
 		CIDADAOSOCIAL.auxlistaContatos = dispositivosContato;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Dispositivos de Contato\r\n";
 		for (var i = 0; i < dispositivosContato.length; i++) {
 			Print += "Tipo: " + dispositivosContato[i].tipoDispositivoContato + " - Número: " + dispositivosContato[i].numeroContato + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Documentos
@@ -482,11 +480,13 @@ function socialSalva() {
 		CIDADAOSOCIAL.auxlistaDocumentos = documentos;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Documentos\r\n";
 		for (var i = 0; i < documentos.length; i++) {
 			Print += "Tipo: " + documentos[i].tipoDocumento + " - Número: " + documentos[i].numero + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Dispositivos de contato da empresa
@@ -509,11 +509,13 @@ function socialSalva() {
 		CIDADAOSOCIAL.auxlistaContatosEmpresa = dispositivosContatoEmpresa;
 
 		// todo: testes retirar
+		/*
 		var Print = "Dispositivos de Contato Empresa\r\n";
 		for (var i = 0; i < dispositivosContatoEmpresa.length; i++) {
 			Print += "Tipo: " + dispositivosContatoEmpresa[i].tipoDispositivoContatoEmpresa + " - Número: " + dispositivosContatoEmpresa[i].numeroContato + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Houve providências
@@ -529,11 +531,13 @@ function socialSalva() {
 		CIDADAOSOCIAL.auxlistaProvidencias = providencias;
 
 		// todo: testes retirar
+		/*
 		var Print = "Providências\r\n";
 		for (var i = 0; i < providencias.length; i++) {
 			Print += "Tipo: " + providencias[i].tipo + " - Situação: " + providencias[i].situacao + " - Observação: " + providencias[i].observacao + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Certidões
@@ -556,11 +560,13 @@ function socialSalva() {
 		CIDADAOSOCIAL.auxlistaCertidoes = certidoes;
 
 		// todo: testes retirar
+		/*
 		var Print = "Certidões\r\n";
 		for (var i = 0; i < certidoes.length; i++) {
 			Print += "ID: " + certidoes[i].id + " - Número: " + certidoes[i].numero + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		//***************************

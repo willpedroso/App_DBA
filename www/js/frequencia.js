@@ -29,21 +29,21 @@ function salvaFrequenciaFail (err) {
 	console.log("salvaFrequenciaFail: " + err);
 
 	aguardeMsgOff();
-	// todo: revisar
 	alertMessage ("Houve falha no salvamento da frequência.");
-	// revisar
 }
 
 function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nomeObs, cidadao_id, tipo_atuacao_id) {
 	console.log("validaCamposFrequencia");
 	
 	// todo: testes retirar
+	/*
 	console.log("Indice do cidadão: " + indiceCidadao + 
 				" - Indice da frequência: " + indiceFrequencia + 
 				" - Nome do rádio: " + nomeRadio + 
 				" - Nome da observação: " + nomeObs +
 				" - ID do cidadão: " + cidadao_id +
 				" - Tipo de atuação: " + tipo_atuacao_id);
+	*/
 	// testes retirar
 	
 	// Obtém frequência
@@ -56,7 +56,9 @@ function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nome
 	}
 	
 	// todo: testes retirar
+	/*
 	console.log("frequencia = " + frequencia + " - justificativa = " + $('#' + nomeObs).val());
+	*/
 	// testes retirar
 	
 	if (indiceFrequencia != null) {

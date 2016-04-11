@@ -32,8 +32,6 @@
 		if (res.rows.length == 1) {
 			INFOCOMPLE.infoComplementares = res.rows.item(0).informacoes_complementares;
 			// Retorna
-			// todo: revisar
-			//INFOCOMPLE.cbSuccess_f();
 			PageManager.loadTmpl('info_basicas');
 		}
 		else {
@@ -46,7 +44,6 @@
 		console.log("dadosEntradaInfoCompleFail");
 		
 		// Retorna
-		// todo: revisar
 		alertMessage("Houve falha na obtenção de informações complementares do cidadão.");
 		
 		INFOCOMPLE.cbFail_f(err);

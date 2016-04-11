@@ -25,6 +25,7 @@
 	tipoChamada: null,
 	auxDate: null,
 	auxAtividadeID: null,
+	salvouAtividade: false,
 
     // ****************** Obtém os dados básicos *********************
 	dadosBasicos: function () {
@@ -38,7 +39,7 @@
 			BANCODADOS.sqlCmdDB("SELECT nome, nome_social FROM cidadao WHERE id = ?", [ATIVIDADE.cidadao_id], ATIVIDADE.dadosEntradaCidadaoSuccess, ATIVIDADE.dadosEntradaFail);		}
 		else {
 			// Tipos de serviço
-			BANCODADOS.sqlCmdDB("SELECT id, nome, descricao, status, dt_criacao FROM tipo_servico", [], ATIVIDADE.dadosBasicosTipoServicoSuccess, ATIVIDADE.dadosEntradaFail);
+			BANCODADOS.sqlCmdDB("SELECT id, nome, descricao, status, dt_criacao FROM tipo_servico WHERE status = 1", [], ATIVIDADE.dadosBasicosTipoServicoSuccess, ATIVIDADE.dadosEntradaFail);
 		}
 	},
 	
@@ -65,7 +66,8 @@
 			}
 		}
 		
-		// Testes
+		// todo: Testes retirar
+		/*
 		var Print = "Tipos de Serviço" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposServico.length; i++) {
 			Print += "TIPO DE SERVIÇO: " + i + "\r\n";
@@ -77,9 +79,11 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
+		// testes retirar
 
 		// Pontos de serviço
-		BANCODADOS.sqlCmdDB("SELECT id, tipo_servico_id, nome, descricao, status, dt_criacao FROM ponto_servico", [], ATIVIDADE.dadosBasicosPontoServicoSuccess, ATIVIDADE.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, tipo_servico_id, nome, descricao, status, dt_criacao FROM ponto_servico WHERE status = 1", [], ATIVIDADE.dadosBasicosPontoServicoSuccess, ATIVIDADE.dadosEntradaFail);
 	},
 	
 	dadosBasicosPontoServicoSuccess: function (trans, res) {
@@ -101,7 +105,8 @@
 			ATIVIDADE.listaPontosServico.push(lps);
 		}
 		
-		// Testes
+		// todo: Testes retirar
+		/*
 		var Print = "Pontos de Serviço" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaPontosServico.length; i++) {
 			Print += "PONTO DE SERVIÇO: " + i + "\r\n";
@@ -114,6 +119,8 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
+		// testes retirar
 
 		// Tipos de atuação
 		BD_DTO.tipo_atuacao_carrega(ATIVIDADE.dadosBasicosTipoAtuacaoSuccess, ATIVIDADE.dadosEntradaFail);
@@ -126,6 +133,7 @@
 		ATIVIDADE.listaTiposAtuacao = BD_DTO.tipo_atuacao_data;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Atuação" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 			Print += "TIPO DE ATUAÇÃO: " + i + "\r\n";
@@ -135,6 +143,7 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
 		// testes retirar
 
 		// Cria lista de nome x id para tipos de atuação
@@ -145,15 +154,17 @@
 		}
 		
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Atuação - Nome Versus ID" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposAtuacao.length; i++) {
 			Print += "ID de " + ATIVIDADE.listaTiposAtuacao[i].nome + ": " + ATIVIDADE.listaAtuacao_NomeVersusID[ATIVIDADE.listaTiposAtuacao[i].nome] + "\r\n";
 		}
 		console.log (Print);
+		*/
 		// testes retirar
 
 		// Tipos de periodicidade
-		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_periodicidade", [], ATIVIDADE.dadosBasicosTipoPeriodicidadeSuccess, ATIVIDADE.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, status, dt_criacao FROM tipo_periodicidade WHERE status = 1", [], ATIVIDADE.dadosBasicosTipoPeriodicidadeSuccess, ATIVIDADE.dadosEntradaFail);
 	},
 	
 	dadosBasicosTipoPeriodicidadeSuccess: function (trans, res) {
@@ -173,7 +184,8 @@
 			ATIVIDADE.listaTiposPeriodicidade.push(ltp);
 		}
 
-		// Testes
+		// todo: Testes retirar
+		/*
 		var Print = "Tipos de Periodicidade" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposPeriodicidade.length; i++) {
 			Print += "TIPO DE PERIODICIDADE: " + i + "\r\n";
@@ -184,9 +196,11 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
+		// testes retirar
 
 		// Tipo de dias da semana
-		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_abreviado, status, dt_criacao FROM tipo_dias_semana", [], ATIVIDADE.dadosBasicosTipoDiaSemanaSuccess, ATIVIDADE.dadosEntradaFail);
+		BANCODADOS.sqlCmdDB("SELECT id, nome, nome_abreviado, status, dt_criacao FROM tipo_dias_semana WHERE status = 1", [], ATIVIDADE.dadosBasicosTipoDiaSemanaSuccess, ATIVIDADE.dadosEntradaFail);
 	},
 	
 	dadosBasicosTipoDiaSemanaSuccess: function (trans, res) {
@@ -207,7 +221,8 @@
 			ATIVIDADE.listaTiposDiaSemana.push(ltds);
 		}
 
-		// Testes
+		// todo: Testes retirar
+		/*
 		var Print = "Tipos de Dia da Semana" + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaTiposDiaSemana.length; i++) {
 			Print += "TIPO DE DIA DA SEMANA: " + i + "\r\n";
@@ -219,6 +234,8 @@
 			Print += "\r\n";
 		}
 		console.log (Print);
+		*/
+		// testes retirar
 
 		// Continua dados de entrada
 		// Dados do cidadão
@@ -299,7 +316,8 @@
 			ATIVIDADE.listaAtividades.push(a);
 		}
 		
-		// Testes
+		// todo: Testes retirar
+		/*
 		var AtividadesPrint = "Nome do Cidadão: " + ATIVIDADE.cidadao_nome + "\r\nNome Social do Cidadão: " + ATIVIDADE.cidadao_nome_social + "\r\n";
 		for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
 			AtividadesPrint += "ATIVIDADE " + i + "\r\n";
@@ -313,6 +331,8 @@
 			AtividadesPrint += "\r\n";
 		}
 		console.log (AtividadesPrint);
+		*/
+		// testes retirar
 		
 		if (ATIVIDADE.listaAtividades.length > 0) {
 			// Precisa de todos os dados de todas as atividades antes de retornar
@@ -394,7 +414,6 @@
 	
 	// ***********************************************************************
 	// CALENDÁRIO DE ATIVIDADES
-	// todo: revisar o PHP (dados adicionais nos eventos, controle de acesso)
 	// ***********************************************************************
 	apresentaCalendario: function () {
 		console.log("apresentaCalendario");
@@ -409,13 +428,21 @@
 			lang: 'pt-br',
 			editable: false,
 			events: function(start, end, timezone, callback) {
+				// todo: testes retirar
+				/*
 				console.log("start: " + start + " - end: " + end + " - timezone: " + timezone + " - callback: " + callback);
+				*/
+				// testes retirar
 				var js = [];
 				js = ATIVIDADE.montaCalendario(start, end);
 				callback(js);
 			},
 			eventClick: function(calEvent, jsEvent, view) {
+				// todo: testes retirar
+				/*
 				console.log("fullCalendar/eventClick: atividade = " + calEvent.id);
+				*/
+				// testes retirar
 				if (calEvent.privada == true) {
 					// Não executa o click
 					return;
@@ -432,7 +459,9 @@
 		console.log("montaCalendario");
 		
 		// todo: testes retirar
+		/*
 		console.log("\r\nSTART = " + lstart + " - END = " + lend + "\r\n");
+		*/
 		// testes retirar
 		
 		// Monta json para o fullcalendar
@@ -446,9 +475,11 @@
 		var end;
 		
 		for (var i = 0; i < ATIVIDADE.listaAtividades.length; i++) {
+			// todo: testes retirar
+			/*
 			console.log("Atividade " + i + " de " + ATIVIDADE.listaAtividades.length);
-			// todo: Armazena ID da atividade ou índice da atividade
-			//id = ATIVIDADE.listaAtividades[i].id;
+			*/
+			// testes retirar
 			id = i;
 			
 			color = '#e1e1e1';
@@ -501,7 +532,6 @@
 			// Dados de acordo com a periodicidade
 			switch (ATIVIDADE.listaAtividades[i].periodicidade_tipo_id) {
 				case 1:			// Diário
-					console.log("Diário");
 					if (ATIVIDADE.listaAtividades[i].periodicidade_permanente == 0) {
 						diff = Math.ceil((data_termino - data_inicio + 1) / (24*60*60));
 					
@@ -522,7 +552,6 @@
 									end: end,
 									privada: acessoAtividade == false ? true : false,
 								};
-								console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 								jsonFullCalendar.push(jfc);
 							}
 							data_inicio += (24*60*60);
@@ -548,7 +577,6 @@
 									end: end,
 									privada: acessoAtividade == false ? true : false,
 								};
-								console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 								jsonFullCalendar.push(jfc);
 							}
 							dstart += (24*60*60);
@@ -557,7 +585,6 @@
 				break;
 				
 				case 2: 		// Semanal
-					console.log("Semanal");
 					var diaSemanaCorrente;
 					
 					if (ATIVIDADE.listaAtividades[i].periodicidade_permanente == 0) {
@@ -583,7 +610,6 @@
 										end: end,
 										privada: acessoAtividade == false ? true : false,
 									};
-									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
 								}
 							}
@@ -613,7 +639,6 @@
 										end: end,
 										privada: acessoAtividade == false ? true : false,
 									};
-									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
 								}
 							}
@@ -623,7 +648,6 @@
 				break;
 				
 				case 3:			// Mensal
-					console.log("Mensal");
 					if (ATIVIDADE.listaAtividades[i].periodicidade_permanente == 0) {
 						diff = Math.ceil((data_termino - data_inicio + 1) / (24*60*60));
 						
@@ -649,7 +673,6 @@
 											end: end,
 											privada: acessoAtividade == false ? true : false,
 										};
-										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
 									}
 								}
@@ -673,7 +696,6 @@
 											end: end,
 											privada: acessoAtividade == false ? true : false,
 										};
-										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
 									}
 								}
@@ -707,7 +729,6 @@
 											end: end,
 											privada: acessoAtividade == false ? true : false,
 										};
-										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
 									}
 								}
@@ -734,7 +755,6 @@
 											end: end,
 											privada: acessoAtividade == false ? true : false,
 										};
-										console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 										jsonFullCalendar.push(jfc);
 										break;
 									}
@@ -746,8 +766,6 @@
 				break;
 				
 				case 4:			// Anual
-					console.log("Anual");
-					
 					if (ATIVIDADE.listaAtividades[i].periodicidade_permanente == 0) {
 						diff = Math.ceil((dend - dstart + 1) / (24*60*60));
 					
@@ -771,7 +789,6 @@
 										end: end,
 										privada: acessoAtividade == false ? true : false,
 									};
-									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
 								}
 							}
@@ -802,7 +819,6 @@
 										end: end,
 										privada: acessoAtividade == false ? true : false,
 									};
-									console.log("título: " + jfc.title + " - cor: " + jfc.color + " - id: " + jfc.id + " - start: " + jfc.start + " - end: " + jfc.end);
 									jsonFullCalendar.push(jfc);
 								}
 							}
@@ -832,7 +848,7 @@
 		ATIVIDADE.indexAtividade = indexAtividade;
 
 		// Ponto do serviço
-		BANCODADOS.sqlCmdDB("SELECT tipo_servico_id, nome, descricao FROM ponto_servico WHERE id = ?", [ATIVIDADE.listaAtividades[indexAtividade].ponto_servico_id], ATIVIDADE.dadosAtividadeSuccess, ATIVIDADE.dadosAtividadeFail);
+		BANCODADOS.sqlCmdDB("SELECT tipo_servico_id, nome, descricao FROM ponto_servico WHERE id = ? AND status = 1", [ATIVIDADE.listaAtividades[indexAtividade].ponto_servico_id], ATIVIDADE.dadosAtividadeSuccess, ATIVIDADE.dadosAtividadeFail);
 	},
 	
 	dadosAtividadeSuccess: function (trans, res) {
@@ -849,7 +865,7 @@
 			ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_servico_id = res.rows.item(0).tipo_servico_id;
 			
 			// Busca o tipo do serviço
-			BANCODADOS.sqlCmdDB("SELECT nome, descricao, status, dt_criacao FROM tipo_servico WHERE id = ?", [res.rows.item(0).tipo_servico_id], ATIVIDADE.dadosTipoServicoSuccess, ATIVIDADE.dadosAtividadeFail);
+			BANCODADOS.sqlCmdDB("SELECT nome, descricao, status, dt_criacao FROM tipo_servico WHERE id = ? AND status = 1", [res.rows.item(0).tipo_servico_id], ATIVIDADE.dadosTipoServicoSuccess, ATIVIDADE.dadosAtividadeFail);
 		}
 	},
 	
@@ -868,7 +884,7 @@
 			ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_servico_dt_criacao = res.rows.item(0).dt_criacao;
 			
 			// Busca dados de tipo de atuação
-			BANCODADOS.sqlCmdDB("SELECT nome, status, dt_criacao FROM tipo_atuacao WHERE id = ?", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_atuacao_id], ATIVIDADE.dadosTipoAtuacaoSuccess, ATIVIDADE.dadosAtividadeFail);
+			BANCODADOS.sqlCmdDB("SELECT nome, status, dt_criacao FROM tipo_atuacao WHERE id = ? AND status = 1", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_atuacao_id], ATIVIDADE.dadosTipoAtuacaoSuccess, ATIVIDADE.dadosAtividadeFail);
 		}
 	},
 	
@@ -886,7 +902,7 @@
 			ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_atuacao_dt_criacao = res.rows.item(0).dt_criacao;
 			
 			// Busca dados de periodicidade
-			BANCODADOS.sqlCmdDB("SELECT id, tipo_periodicidade_id, data_inicio, hora_inicio, data_termino, hora_termino, dia_inteiro, permanente, dia_ano_repetir, dia_mes_repetir, dia_semana_repetir, dt_criacao, status FROM periodicidade WHERE atividade_id = ?", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].id], ATIVIDADE.dadosPeriodicidadeSuccess, ATIVIDADE.dadosAtividadeFail);
+			BANCODADOS.sqlCmdDB("SELECT id, tipo_periodicidade_id, data_inicio, hora_inicio, data_termino, hora_termino, dia_inteiro, permanente, dia_ano_repetir, dia_mes_repetir, dia_semana_repetir, dt_criacao, status FROM periodicidade WHERE atividade_id = ? AND status = 1", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].id], ATIVIDADE.dadosPeriodicidadeSuccess, ATIVIDADE.dadosAtividadeFail);
 		}
 	},
 	
@@ -910,7 +926,7 @@
 		ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_status = res.rows.item(0).status;
 		
 		// Busca informações do tipo de periodicidade
-		BANCODADOS.sqlCmdDB("SELECT nome, status, dt_criacao FROM tipo_periodicidade WHERE id = ?", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_tipo_id], ATIVIDADE.dadosTipoPeriodicidadeSuccess, ATIVIDADE.dadosAtividadeFail);
+		BANCODADOS.sqlCmdDB("SELECT nome, status, dt_criacao FROM tipo_periodicidade WHERE id = ? AND status = 1", [ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_tipo_id], ATIVIDADE.dadosTipoPeriodicidadeSuccess, ATIVIDADE.dadosAtividadeFail);
 	},
 	
 	dadosTipoPeriodicidadeSuccess: function (trans, res) {
@@ -975,7 +991,6 @@
 		ATIVIDADE.cbFail_f(err);
 	},
 	
-	// todo: entender a regra de salvamento de atividades
     // ****************** Salva nova atividade ou atividade atualizada *********************
 	salvaAtividade: function (indexAtividade, 
 							  ponto_servico_index, 
@@ -1084,7 +1099,6 @@
 				break;
 			}
 		}
-		console.log("salvaPeriodicidade entrando");
 		
 		if (ATIVIDADE.indexAtividade != null) {
 			// Atualiza periodicidade da atividade
@@ -1101,7 +1115,7 @@
 								ATIVIDADE.auxDados.dia_ano_repetir,
 								ATIVIDADE.auxDados.dia_mes_repetir,
 								ATIVIDADE.auxDados.dia_semana_repetir,
-								/*todo: avaliar melhor status*/1,
+								1,
 								CIDADAO.UPDATE_MOBILE,
 								ATIVIDADE.auxDados.periodicidade_id = ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].periodicidade_id], 
 								ATIVIDADE.limpaPeriodicidadeDiasSemana, ATIVIDADE.salvaAtividadeFail);
@@ -1129,7 +1143,6 @@
 								// verifica se o tipo da periodicidade é semanal
 								(ATIVIDADE.auxDados.periodicidade_nome == "Semanal" && ATIVIDADE.auxDados.diasSemana.length > 0) ? ATIVIDADE.recuperaIdPeriodicidade : ATIVIDADE.salvaAtividadeSuccess, 
 								ATIVIDADE.salvaAtividadeFail);
-			console.log("salvaPeriodicidade - nova");
 		}
 	},
 	
@@ -1192,9 +1205,7 @@
 
 		ATIVIDADE.dadosEntrada(ATIVIDADE.cidadao_id, "ATIVIDADE", ATIVIDADE.cbSuccess_f, ATIVIDADE.cbFail_f);
 		
-		$('.msgParabens').removeAttr('style').fadeOut(5000);
-		$('html, body').animate({scrollTop:0}, 'slow');
-		// todo: revisar - insere ou atualiza a atividade, apresenta a mensagem de sucesso e limpas os campos
+		ATIVIDADE.salvouAtividade = true;
 		PageManager.loadTmpl('div_atividades_add');
 	},
 	

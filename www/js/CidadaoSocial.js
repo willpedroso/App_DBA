@@ -46,12 +46,14 @@
 		CIDADAOSOCIAL.listaTipoCertidao = BD_DTO.tipo_certidao_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Certidão:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaTipoCertidao.length; i++) {
 			Print += "\tID: " + CIDADAOSOCIAL.listaTipoCertidao[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOSOCIAL.listaTipoCertidao[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_dispositivo_contato_carrega(CIDADAOSOCIAL.dadosBasicosListaEstados, CIDADAOSOCIAL.dadosBasicosFail);
@@ -63,12 +65,14 @@
 		CIDADAOSOCIAL.listaTipoDispositivoContato = BD_DTO.tipo_dispositivo_contato_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de Dispositivo de Contato:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaTipoDispositivoContato.length; i++) {
 			Print += "\tID: " + CIDADAOSOCIAL.listaTipoDispositivoContato[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOSOCIAL.listaTipoDispositivoContato[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_estado_carrega(CIDADAOSOCIAL.dadosBasicosListaTipoDocumento, CIDADAOSOCIAL.dadosBasicosFail);
@@ -80,6 +84,7 @@
 		CIDADAOSOCIAL.listaEstados = BD_DTO.tipo_estado_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Estados:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaEstados.length; i++) {
 			Print += "\tID: " + CIDADAOSOCIAL.listaEstados[i].id + "\r\n";
@@ -87,6 +92,7 @@
 			Print += "\tNome: " + CIDADAOSOCIAL.listaEstados[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		BD_DTO.tipo_documento_carrega(CIDADAOSOCIAL.dadosBasicosSuccess, CIDADAOSOCIAL.dadosBasicosFail);
@@ -98,12 +104,14 @@
 		CIDADAOSOCIAL.listaTipoDocumento = BD_DTO.tipo_documento_data;
 	
 		// todo: testes retirar
+		/*
 		var Print = "Tipos de documentos:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaTipoDocumento.length; i++) {
 			Print += "\tID: " + CIDADAOSOCIAL.listaTipoDocumento[i].id + "\r\n";
 			Print += "\tNome: " + CIDADAOSOCIAL.listaTipoDocumento[i].nome + "\r\n";			
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 
 		//CIDADAOSOCIAL.cbSuccess_f();
@@ -166,12 +174,6 @@
 	
 	dadosEntradaSuccess: function(trans, res) {
 		console.log("dadosEntradaSuccess");
-		/*
-		if (res.rows.length != 1) {
-			// todo: há mais de um registro social para o cidadão
-			alertMessage ("Erro: Há mais de um registro social para o cidadão!");
-		}
-		*/
 		var ds = {
 			id: res.rows.item(0).id,
 			nome_contato: res.rows.item(0).nome_contato,
@@ -207,6 +209,7 @@
 		CIDADAOSOCIAL.dadosSocial = ds;
 		
 		// todo: testes retirar
+		/*
 		var Print = "Dados do Social:\r\n";
 		Print += "id: " + CIDADAOSOCIAL.dadosSocial.id + "\r\n";
 		Print += "nome_contato: " + CIDADAOSOCIAL.dadosSocial.nome_contato + "\r\n";
@@ -240,6 +243,7 @@
 		Print += "status: " + CIDADAOSOCIAL.dadosSocial.status + "\r\n";
 
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Carrega contatos
@@ -265,6 +269,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Contatos do Cidadão:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaContatos.length; i++) {
 			Print += "\tid: " + CIDADAOSOCIAL.listaContatos[i].id + "\r\n";
@@ -274,6 +279,7 @@
 		}
 
 		console.log(Print);
+		*/
 		// testes retirar
 
 		// Carrega contatos empresa
@@ -299,6 +305,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Contatos da Empresa:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaContatosEmpresa.length; i++) {
 			Print += "\tid: " + CIDADAOSOCIAL.listaContatosEmpresa[i].id + "\r\n";
@@ -308,6 +315,7 @@
 		}
 
 		console.log(Print);
+		*/
 		// testes retirar
 
 		// Carrega certidões
@@ -333,6 +341,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Certidões:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaCertidoes.length; i++) {
 			Print += "\tid: " + CIDADAOSOCIAL.listaCertidoes[i].id + "\r\n";
@@ -342,6 +351,7 @@
 		}
 
 		console.log(Print);
+		*/
 		// testes retirar
 
 		// Carrega providências
@@ -368,6 +378,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Providências:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaProvidencias.length; i++) {
 			Print += "\tid: " + CIDADAOSOCIAL.listaProvidencias[i].id + "\r\n";
@@ -378,6 +389,7 @@
 		}
 
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// Carrega documentos
@@ -403,6 +415,7 @@
 		}
 
 		// todo: testes retirar
+		/*
 		var Print = "Documentos:\r\n";
 		for (var i = 0; i < CIDADAOSOCIAL.listaDocumentos.length; i++) {
 			Print += "\tid: " + CIDADAOSOCIAL.listaDocumentos[i].id + "\r\n";
@@ -412,6 +425,7 @@
 		}
 
 		console.log(Print);
+		*/
 		// testes retirar
 		
 		// carrega dados básicos
@@ -526,7 +540,7 @@
 	obtemNovoSmadsID: function () {
 		console.log("obtemNovoSmadsID");
 		
-		BANCODADOS.sqlCmdDB("SELECT id FROM smads WHERE dt_criacao = ?",
+		BANCODADOS.sqlCmdDB("SELECT id FROM smads WHERE dt_criacao = ? AND status = 1",
 							[CIDADAOSOCIAL.auxVar], CIDADAOSOCIAL.obtemNovoSmadsIDSuccess, CIDADAOSOCIAL.salvaCidadaoSocialFail);
 	},
 	

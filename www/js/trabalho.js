@@ -205,7 +205,6 @@ function carregaTrabalho () {
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_trabalho_coletivo_id == CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoTrabalhoColetivo[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTipoTrabalhoColetivo").empty();
 	$("#listaTipoTrabalhoColetivo").append(opts);
@@ -256,7 +255,6 @@ function carregaTrabalho () {
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_onde_aprendeu_profissao_id == CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoOndeAprendeuProfissao[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTipoOndeAprendeuProfissao").empty();
 	$("#listaTipoOndeAprendeuProfissao").append(opts);
@@ -268,7 +266,6 @@ function carregaTrabalho () {
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_comprovante_conhecimento_profissional_id == CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoComprovanteConhecimentoProfissional[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTipoComprovanteConhecimentoProfissional").empty();
 	$("#listaTipoComprovanteConhecimentoProfissional").append(opts);
@@ -296,7 +293,6 @@ function carregaTrabalho () {
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_ramo_curso_id == CIDADAOTRABALHO.listaTipoRamoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoRamoCurso[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTipoRamoCurso").empty();
 	$("#listaTipoRamoCurso").append(opts);
@@ -311,7 +307,6 @@ function carregaTrabalho () {
 		opts += ((edit == true && CIDADAOTRABALHO.dadosTrabalho.tipo_pretencao_cursos_id == CIDADAOTRABALHO.listaTipoPretencaoCurso[i].id) ? " selected>" : ">") + CIDADAOTRABALHO.listaTipoPretencaoCurso[i].nome + "</option>";
 	}
 	opts += "</div></select></div>";
-	console.log(opts + "\r\n");
 	
 	$("#listaTipoPretencaoCursos").empty();
 	$("#listaTipoPretencaoCursos").append(opts);
@@ -334,7 +329,6 @@ function carregaTrabalho () {
 		opts += "<div class='checkbox'><input type='checkbox' name='tipoatividadetempolivre' value='" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].id + "' class='checkbox check'" + (atlChecked == true ? " checked>" : ">");
 		opts += "<p>" + CIDADAOTRABALHO.listaTipoAtividadeTempoLivre[i].nome + "</p></div>";
 	}
-	console.log(opts + "\r\n");
 	
 	$("#container_duasColunas_atividade_tempo_livre").empty();
 	$("#container_duasColunas_atividade_tempo_livre").append(opts);
@@ -354,7 +348,6 @@ function carregaTrabalho () {
 		opts += "<div class='checkbox'><input type='checkbox' name='tipolocalvisitar' value='" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].id + "' class='checkbox check'" + (atlChecked == true ? " checked>" : ">");
 		opts += "<p>" + CIDADAOTRABALHO.listaTipoLocalVisitar[i].nome + "</p></div>";
 	}
-	console.log(opts + "\r\n");
 	
 	$("#container_duasColunas_local_visitar").empty();
 	$("#container_duasColunas_local_visitar").append(opts);
@@ -366,7 +359,6 @@ function carregaTrabalho () {
 		opts += "<p>" + CIDADAOTRABALHO.listaTipoPrimeiraEscolha[i].nome + "</p></div>";
 	}
 	opts += "<span class='titLabel'>Outros</span><div class='linhaForm'><input type='text' class='inputGrande' value='' name='outros_primeira_escolha' id='outros_primeira_escolha' placeholder='Outros'></div>";
-	console.log(opts + "\r\n");
 	
 	$("#divInfoTipoPrimeiraEscolha").empty();
 	$("#divInfoTipoPrimeiraEscolha").append(opts);
@@ -380,12 +372,10 @@ function carregaTrabalho () {
 
 function salvaTrabalhoSuccess () {
 	console.log("salvaTrabalhoSuccess");
-	// todo: revisar
 }
 
 function salvaTrabalhoFail (err) {
 	console.log("salvaTrabalhoFail: " + err);
-	// todo: revisar
 }
 
 function trabalhoSalva() {
@@ -628,11 +618,13 @@ function trabalhoSalva() {
 			}
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Atividades Tempo Livre\r\n";
 		for (var i = 0; i < tempoLivre.length; i++) {
 			Print += "tempo_livre_id: " + tempoLivre[i].tempo_livre_id + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 		CIDADAOTRABALHO.auxlistaAtividadesTempoLivre = tempoLivre;
 		
@@ -648,11 +640,13 @@ function trabalhoSalva() {
 			}
 		});
 		// todo: testes retirar
+		/*
 		var Print = "Local Visitar\r\n";
 		for (var i = 0; i < localVisitar.length; i++) {
 			Print += "tempo_livre_id: " + localVisitar[i].tipo_local_visitar_id + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar	
 		CIDADAOTRABALHO.auxlistaLocaisVisitar = localVisitar;
 	
@@ -670,11 +664,13 @@ function trabalhoSalva() {
 		listaDados.push($("#observacoes_gerais").val());
 
 		// todo: testes retirar
+		/*
 		var Print = "Salvar em trabalho: " + listaDados.length + " campos.\r\n";
 		for (var i = 0; i < listaDados.length; i++) {
 			Print += "Campo " + i + "= " + listaDados[i] + "\r\n";
 		}
 		console.log(Print);
+		*/
 		// testes retirar
 			
 		CIDADAOTRABALHO.salvaCidadaoTrabalho(listaDados,

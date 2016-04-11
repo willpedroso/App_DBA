@@ -69,7 +69,7 @@
 		console.log("dadosEntradaEquipeCoordenacaoSuccess");
 		
 		if (res.rows.length != 1) {
-			// Erro: usuário não foi encontrado na equipe técnica (todo: revisar)
+			// Erro: usuário não foi encontrado na equipe técnica
 			CIDADAO.cbFail_f("O usuário não foi encontrado na equipe técnica");
 		}
 		else {
@@ -96,13 +96,13 @@
 		// Obtém a lista de cidadãos
 		if (CIDADAO.equipe_coordenacao_id == null) {
 			// lista todos os cidadãos
-			// todo: regras:
+			// regras:
 			//		 1. Inativo / Fora do Programa
-			//				.todo: apenas a tela de situação DBA pode ser editada, com restrições
+			//				.apenas a tela de situação DBA pode ser editada, com restrições
 			//		 2. Inativo / No Programa
 			//				.IMPOSSÍVEL
 			//		 3. Ativo / Fora do Programa
-			//				.todo: verificar o caso do cidadão que é retirado do programa depois de pertencer a uma equipe técnica
+			//				.verificar o caso do cidadão que é retirado do programa depois de pertencer a uma equipe técnica
 			//		 4. Ativo / No Programa
 			//				.uso normal
 			BANCODADOS.sqlCmdDB("SELECT id AS cidadao_id FROM cidadao", 
@@ -182,7 +182,8 @@
 		if (CIDADAO.countListaCidadaosId == CIDADAO.listaCidadaosId.length) {
 			// Todos os cidadãos já foram processados
 			
-			// Testes
+			// todo: Testes retirar
+			/*
 			var Print = "Lista de Cidadãos" + "\r\n";
 			for (var i = 0; i < CIDADAO.listaCidadaosDados.length; i++) {
 				Print += "Cidadão: " + i + "\r\n";
@@ -196,7 +197,8 @@
 				Print += "\r\n";
 			}
 			console.log (Print);
-			// Testes
+			*/
+			// Testes retirar
 			
 			// Retorna
 			CIDADAO.cbSuccess_f();
@@ -228,7 +230,6 @@
 		}
 	},
 	
-	// todo: avaliar a necessidade, pois o próprio HTML pode indexar CIDADAO.listaCidadaosDados
     dadosCidadao: function(indice, cbSuccess, cbFail) {
 	    console.log("dadosCidadao");
 		
