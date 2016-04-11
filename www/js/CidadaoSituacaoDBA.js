@@ -187,7 +187,7 @@
 	salvaSituacaoDBASuccess: function (trans, res) {
 		console.log("salvaSituacaoDBASuccess");
 		
-		$('.msgParabens').removeAttr('style');
+		$('.msgParabens').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 		
 		// atualiza dados

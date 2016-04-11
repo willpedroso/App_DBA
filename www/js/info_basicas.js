@@ -546,7 +546,7 @@ function infoBasicasSalva() {
 	
 	if (erro == true) {
 		// Apresenta mensagem "msgAtencao"
-		$('.msgAtencao').removeAttr('style');
+		$('.msgAtencao').removeAttr('style').fadeOut(5000);
 		$('.msgParabens').attr('style', 'display:none');
 		$('.msgErro').attr('style', 'display:none');
 	}

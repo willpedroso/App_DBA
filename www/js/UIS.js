@@ -31,7 +31,7 @@ function salvarFormLogin()
   }
   else
   {
-    jQuery('.msgAtencao').removeAttr('style');
+    jQuery('.msgAtencao').removeAttr('style').fadeOut(5000);
     jQuery('.msgParabens').attr('style', 'display:none');
     jQuery('.msgErro').attr('style', 'display:none');
     return false;

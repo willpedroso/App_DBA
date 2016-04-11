@@ -348,7 +348,7 @@
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento = CIDADAO.auxCidadaoDados.mes_nascimento;
 		CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento = CIDADAO.auxCidadaoDados.ano_nascimento;
 
-		$('.msgParabens').removeAttr('style');
+		$('.msgParabens').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 		
 		atualizaFichaCidadao();

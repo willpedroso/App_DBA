@@ -1192,7 +1192,7 @@
 
 		ATIVIDADE.dadosEntrada(ATIVIDADE.cidadao_id, "ATIVIDADE", ATIVIDADE.cbSuccess_f, ATIVIDADE.cbFail_f);
 		
-		$('.msgParabens').removeAttr('style');
+		$('.msgParabens').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 		// todo: revisar - insere ou atualiza a atividade, apresenta a mensagem de sucesso e limpas os campos
 		PageManager.loadTmpl('div_atividades_add');
@@ -1229,7 +1229,7 @@
 	encerraAtividadeFail: function (err) {
 		console.log("encerraAtividadeFail");
 		
-		$('.msgErro').removeAttr('style');
+		$('.msgErro').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 	},
 
@@ -1258,7 +1258,7 @@
 	excluiAtividadeFail: function (err) {
 		console.log("excluiAtividadeFail");
 		
-		$('.msgErro').removeAttr('style');
+		$('.msgErro').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 	},
 	

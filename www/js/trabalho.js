@@ -17,7 +17,7 @@ function carregaTrabalho () {
 	
 	// Verifica se é salvamento
 	if (CIDADAOTRABALHO.ehSalvamento == true) {
-		$('.msgParabens').removeAttr('style');
+		$('.msgParabens').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 		CIDADAOTRABALHO.ehSalvamento = false;
 	}
@@ -396,7 +396,7 @@ function trabalhoSalva() {
 	// Se houve erro
 	if (erro == true) {
 		// Apresenta mensagem "msgAtencao"
-		$('.msgAtencao').removeAttr('style');
+		$('.msgAtencao').removeAttr('style').fadeOut(5000);
 		$('.msgParabens').attr('style', 'display:none');
 		$('.msgErro').attr('style', 'display:none');
 	}

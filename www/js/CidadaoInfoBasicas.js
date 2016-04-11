@@ -762,7 +762,7 @@
 	salvaCidadaoSuccess: function () {
 		console.log("salvaCidadaoSuccess");
 		
-		$('.msgParabens').removeAttr('style');
+		$('.msgParabens').removeAttr('style').fadeOut(5000);
 		$('html, body').animate({scrollTop:0}, 'slow');
 	},
 	
