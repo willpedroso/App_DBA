@@ -1210,9 +1210,23 @@
 		BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2, mobile = ? \
 							WHERE id = ?",
 							[CIDADAO.UPDATE_MOBILE, ATIVIDADE.listaAtividades[indexAtividade].id], 
-							ATIVIDADE.encerraAtividadeSuccess, ATIVIDADE.encerraAtividadeFail);
+							ATIVIDADE.dataTerminoAtividadeEncerrada, ATIVIDADE.encerraAtividadeFail);
 	},
 	
+	dataTerminoAtividadeEncerrada: function () {
+		console.log("dataTerminoAtividadeEncerrada");
+		
+		var hoje = new Date();
+		BANCODADOS.sqlCmdDB("UPDATE periodicidade SET data_termino = ?, permanente = 0, mobile = ? \
+							WHERE atividade_id = ?",
+							[
+							 hoje.getFullYear() + "-" + ((hoje.getMonth()+1) < 10 ? "0" + (hoje.getMonth()+1) : (hoje.getMonth()+1)) + "-" + (hoje.getDate() < 10 ? "0" + hoje.getDate() : hoje.getDate()),
+							 CIDADAO.UPDATE_MOBILE,
+							 ATIVIDADE.listaAtividades[indexAtividade].id
+							], 
+							ATIVIDADE.encerraAtividadeSuccess, ATIVIDADE.encerraAtividadeFail);		
+	},
+		
 	encerraAtividadeSuccess: function () {
 		console.log("encerraAtividadeSuccess");
 
@@ -1279,15 +1293,15 @@
 			BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2, mobile = ? \
 								WHERE id = ?",
 								[CIDADAO.UPDATE_MOBILE, ATIVIDADE.auxAtividadeID = res.rows.item(0).id], 
-								ATIVIDADE.dataTerminoAtividadeEncerrada, SITUACAODBA.salvaSituacaoDBAFail);
+								ATIVIDADE.dataTerminoAtividadeEncerradaSitDBA, SITUACAODBA.salvaSituacaoDBAFail);
 		}
 		else {
 			SITUACAODBA.salvaSituacaoDBAFail("A atividade associada ao local de acolhida não foi encontrada ou há mais de uma atividade!");
 		}
 	},
 	
-	dataTerminoAtividadeEncerrada: function () {
-		console.log("dataTerminoAtividadeEncerrada");
+	dataTerminoAtividadeEncerradaSitDBA: function () {
+		console.log("dataTerminoAtividadeEncerradaSitDBA");
 		
 		var hoje = new Date();
 		BANCODADOS.sqlCmdDB("UPDATE periodicidade SET data_termino = ?, permanente = 0, mobile = ? \
