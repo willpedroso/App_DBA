@@ -23,6 +23,19 @@
 	tipoAtuacaoID: null,
 	listaPontosServico: [],
 	
+	// Dados da frequência inserida
+	fi_cidadao_id: null,
+	fi_atividade_id: null,
+	fi_tipo_atuacao_id: null,
+	fi_usuario_id: null,
+	fi_data_frequencia: null,
+	fi_frequencia: null,
+	fi_justificativa: null,
+	fi_frequencia_livre: null,
+	fi_status: null,
+	fi_dt_criacao: null,
+	fi_mobile: null,
+	
 	// ****************** FREQUENCIAS ***********************************
 	listaFrequenciasCidadaos: [],
 	
@@ -529,6 +542,63 @@
 			FREQUENCIA.montaFrequencia();
 		}
 	},
+	
+	criaFrequenciasLivresFaltantes: function () {
+		console.log("criaFrequenciasLivres");
+
+		for (var i = 0; i < FREQUENCIA.listaFrequenciasCidadaos.length; i++) {
+			if (FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Saude == null) {
+				// Inclui uma frequência livre de saúde
+				var dt = new FREQUENCIA.tFrequencia();
+				dt.id = null;
+				dt.atividade_id = "";
+				dt.tipo_atuacao_id = FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"];
+				dt.usuario_id = USUARIO.usuario_id;
+				dt.data_frequencia = null;
+				dt.frequencia = null;
+				dt.justificativa = null;
+				dt.frequencia_livre = 1;
+				dt.dt_criacao = null;
+				dt.descricao = "";
+				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Saude = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+			}
+			if (FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social == null) {
+				// Inclui uma frequência livre social
+				var dt = new FREQUENCIA.tFrequencia();
+				dt.id = null;
+				dt.atividade_id = "";
+				dt.tipo_atuacao_id = FREQUENCIA.listaAtuacao_NomeVersusID["Social"];
+				dt.usuario_id = USUARIO.usuario_id;
+				dt.data_frequencia = null;
+				dt.frequencia = null;
+				dt.justificativa = null;
+				dt.frequencia_livre = 1;
+				dt.dt_criacao = null;
+				dt.descricao = "";
+				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+			}
+			if (FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho == null) {
+				// Inclui uma frequência livre de trabalho
+				var dt = new FREQUENCIA.tFrequencia();
+				dt.id = null;
+				dt.atividade_id = "";
+				dt.tipo_atuacao_id = FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"];
+				dt.usuario_id = USUARIO.usuario_id;
+				dt.data_frequencia = null;
+				dt.frequencia = null;
+				dt.justificativa = null;
+				dt.frequencia_livre = 1;
+				dt.dt_criacao = null;
+				dt.descricao = "";
+				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+			}
+		}
+		// Monta a tela
+		FREQUENCIA.montaFrequencia();
+	},
 
 	montaFrequencia: function () {
 		console.log("montaFrequencia");
@@ -685,7 +755,7 @@
 					selectedNao = selectedSim = "";
 					observacoes = "";
 					showObservacoes = false;
-					btnDisabled = "";
+					btnDisabled = "disabled";
 				}
 				nomeRadio = "radioFrequencias_Livre_Trabalho_" + i;
 				nomeObs = "observacao_Livre_Trabalho_" + i;
@@ -995,20 +1065,20 @@
 				BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 									[
-									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
-									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
+									FREQUENCIA.fi_cidadao_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
+									FREQUENCIA.fi_atividade_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
 //									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
-									tipo_atuacao_id,
-									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
-									FREQUENCIA.auxData,
-									FREQUENCIA.frequencia,
-									FREQUENCIA.justificativa,
-									FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
-									1,
-									strHoje,
-									CIDADAO.INSERT_MOBILE
+									FREQUENCIA.fi_tipo_atuacao_id = tipo_atuacao_id,
+									FREQUENCIA.fi_usuario_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
+									FREQUENCIA.fi_data_frequencia = FREQUENCIA.auxData,
+									FREQUENCIA.fi_frequencia = FREQUENCIA.frequencia,
+									FREQUENCIA.fi_justificativa = FREQUENCIA.justificativa,
+									FREQUENCIA.fi_frequencia_livre = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
+									FREQUENCIA.fi_status = 1,
+									FREQUENCIA.fi_dt_criacao = strHoje,
+									FREQUENCIA.fi_mobile = CIDADAO.INSERT_MOBILE
 									], 
-									FREQUENCIA.salvaFrequenciaSuccess, 
+									FREQUENCIA.obtemIDFrequencia, 
 									FREQUENCIA.salvaFrequenciaFail);
 			}
 			else {
@@ -1028,19 +1098,19 @@
 			BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 								[
-								cidadao_id,
-								"",
-								tipo_atuacao_id,
-								USUARIO.usuario_id,
-								FREQUENCIA.auxData,
-								frequencia,
-								justificativa,
-								1,
-								1,
-								strHoje,
-								CIDADAO.INSERT_MOBILE
+								FREQUENCIA.fi_cidadao_id = cidadao_id,
+								FREQUENCIA.fi_atividade_id = "",
+								FREQUENCIA.fi_tipo_atuacao_id = tipo_atuacao_id,
+								FREQUENCIA.fi_usuario_id = USUARIO.usuario_id,
+								FREQUENCIA.fi_data_frequencia = FREQUENCIA.auxData,
+								FREQUENCIA.fi_frequencia = frequencia,
+								FREQUENCIA.fi_justificativa = justificativa,
+								FREQUENCIA.fi_frequencia_livre = 1,
+								FREQUENCIA.fi_status = 1,
+								FREQUENCIA.fi_dt_criacao = strHoje,
+								FREQUENCIA.fi_mobile = CIDADAO.INSERT_MOBILE
 								], 
-								FREQUENCIA.salvaFrequenciaSuccess, 
+								FREQUENCIA.obtemIDFrequencia, 
 								FREQUENCIA.salvaFrequenciaFail);
 		}
 	},
@@ -1054,21 +1124,68 @@
 		BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 							[
-							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
-							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
+							FREQUENCIA.fi_cidadao_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].cidadao_id,
+							FREQUENCIA.fi_atividade_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].atividade_id,
 //							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].tipo_atuacao_id,
-							FREQUENCIA.tipoAtuacaoID,
-							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
-							FREQUENCIA.auxData,
-							FREQUENCIA.frequencia,
-							FREQUENCIA.justificativa,
-							FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
-							1,
-							strHoje,
-							CIDADAO.INSERT_MOBILE
+							FREQUENCIA.fi_tipo_atuacao_id = FREQUENCIA.tipoAtuacaoID,
+							FREQUENCIA.fi_usuario_id = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].usuario_id,
+							FREQUENCIA.fi_data_frequencia = FREQUENCIA.auxData,
+							FREQUENCIA.fi_frequencia = FREQUENCIA.frequencia,
+							FREQUENCIA.fi_justificativa = FREQUENCIA.justificativa,
+							FREQUENCIA.fi_frequencia_livre = FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].frequencia_livre,
+							FREQUENCIA.fi_status = 1,
+							FREQUENCIA.fi_dt_criacao = strHoje,
+							FREQUENCIA.fi_mobile = CIDADAO.INSERT_MOBILE
 							], 
-							FREQUENCIA.salvaFrequenciaSuccess, 
+							FREQUENCIA.obtemIDFrequencia, 
 							FREQUENCIA.salvaFrequenciaFail);
+	},
+	
+	obtemIDFrequencia: function (trans, res) {
+		console.log("obtemIDFrequencia");
+
+		BANCODADOS.sqlCmdDB("SELECT id FROM frequencia WHERE " +
+							"cidadao_id = ? " +
+							"AND atividade_id = ? " +
+							"AND tipo_atuacao_id = ? " +
+							"AND usuario_id = ? " +
+							"AND data_frequencia = ? " +
+							"AND frequencia = ? " +
+							"AND justificativa = ? " +
+							"AND frequencia_livre = ? " +
+							"AND status = ? " +
+							"AND dt_criacao = ? " +
+							"AND mobile = ? ",
+							[
+							 FREQUENCIA.fi_cidadao_id,
+							 FREQUENCIA.fi_atividade_id,
+							 FREQUENCIA.fi_tipo_atuacao_id,
+							 FREQUENCIA.fi_usuario_id,
+							 FREQUENCIA.fi_data_frequencia,
+							 FREQUENCIA.fi_frequencia,
+							 FREQUENCIA.fi_justificativa,
+							 FREQUENCIA.fi_frequencia_livre,
+							 FREQUENCIA.fi_status,
+							 FREQUENCIA.fi_dt_criacao,
+							 FREQUENCIA.fi_mobile
+							], 
+							FREQUENCIA.obtemIDFrequenciaSuccess, 
+							FREQUENCIA.dadosEntradaFrequenciaFail);
+	},
+	
+	obtemIDFrequenciaSuccess: function (trans, res) {
+		console.log("obtemIDFrequenciaSuccess");
+		
+		if (res.rows.length == 1) {
+			// Atualiza o id da frequência na lista, com o id do novo registro
+			FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id = res.rows.item(0).id;
+			aguardeMsgOff();
+			// todo: acende ícone de sucesso na linha da frequência
+			alert("Frequencia salva com sucesso.");
+		}
+		else {
+			FREQUENCIA.salvaFrequenciaFail();
+		}
 	},
 	
 	salvaFrequenciaSuccess: function (trans, res) {

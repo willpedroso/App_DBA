@@ -1424,6 +1424,8 @@ var BANCODADOS = {
 		
 		aguardeMsgOff();
 		PageManager.loadTmpl('div_busca_inicio');
+		abasmenu();
+		fechaficha();
 		hideTela('#div_login');
 		showTela('#div_header');
 	},
