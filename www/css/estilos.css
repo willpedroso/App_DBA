@@ -2001,9 +2001,10 @@ span.phone-img {
 	ul#ullistaCidadaos li.li-header{
 		font-weight: bold;
 		font-size: 1.245em;
+		background: #CCCCCC !important;
 	}
 	ul#ullistaCidadaos li:nth-child(odd){
-		background: #ccc;
+		background: #E2E2E2;
 	}
 	ul#ullistaCidadaos li div{
 		width: auto;
@@ -2016,12 +2017,14 @@ span.phone-img {
 		min-width: 5%;
 	}
 	ul#ullistaCidadaos li div:nth-child(1){
-		width: calc(20% - 3px);
+		width: calc(22% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
+		font-weight: bold;
+		font-size: 18px;
 	}
 	ul#ullistaCidadaos li div:nth-child(2){
-		width: calc(17% - 3px);
+		width: calc(15% - 3px);
 		padding: 0 0 0 3px;
 		text-align: left;
 	}
@@ -2051,12 +2054,12 @@ span.phone-img {
 	}
 
 	ul#ullistaCidadaos li.li-header div:nth-child(1){
-		width: calc(20% - 3px);
+		width: calc(22% - 3px);
 		padding: 18px 0 0 3px;
 		text-align: left;
 	}
 	ul#ullistaCidadaos li.li-header div:nth-child(2){
-		width: calc(17% - 3px);
+		width: calc(15% - 3px);
 		padding: 18px 0 0 3px;
 		text-align: left;
 	}
