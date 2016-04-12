@@ -19,7 +19,7 @@
 	indiceFrequencia: null,
 	indiceCidadao: null,
 	frequencia: null,
-	justificativa: null,
+	justificativa: "",
 	tipoAtuacaoID: null,
 	listaPontosServico: [],
 	nomeCheck: null,
@@ -47,7 +47,7 @@
 		usuario_id: null;
 		data_frequencia: null;
 		frequencia: null;
-		justificativa: null;
+		justificativa: "";
 		frequencia_livre: null;
 		dt_criacao: null;
 	},
@@ -449,7 +449,7 @@
 						dt.usuario_id = USUARIO.usuario_id;
 						dt.data_frequencia = null;
 						dt.frequencia = null;
-						dt.justificativa = null;
+						dt.justificativa = "";
 						dt.frequencia_livre = null;
 						dt.dt_criacao = null;
 						dt.descricao = ATIVIDADE.listaAtividades[i].ponto_servico_nome + " - " + ATIVIDADE.listaAtividades[i].descricao;
@@ -557,7 +557,7 @@
 				dt.usuario_id = USUARIO.usuario_id;
 				dt.data_frequencia = null;
 				dt.frequencia = null;
-				dt.justificativa = null;
+				dt.justificativa = "";
 				dt.frequencia_livre = 1;
 				dt.dt_criacao = null;
 				dt.descricao = "";
@@ -573,7 +573,7 @@
 				dt.usuario_id = USUARIO.usuario_id;
 				dt.data_frequencia = null;
 				dt.frequencia = null;
-				dt.justificativa = null;
+				dt.justificativa = "";
 				dt.frequencia_livre = 1;
 				dt.dt_criacao = null;
 				dt.descricao = "";
@@ -589,7 +589,7 @@
 				dt.usuario_id = USUARIO.usuario_id;
 				dt.data_frequencia = null;
 				dt.frequencia = null;
-				dt.justificativa = null;
+				dt.justificativa = "";
 				dt.frequencia_livre = 1;
 				dt.dt_criacao = null;
 				dt.descricao = "";
