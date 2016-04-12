@@ -32,7 +32,7 @@ function salvaFrequenciaFail (err) {
 	alertMessage ("Houve falha no salvamento da frequência.");
 }
 
-function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nomeObs, cidadao_id, tipo_atuacao_id) {
+function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nomeObs, cidadao_id, tipo_atuacao_id, nomeCheck) {
 	console.log("validaCamposFrequencia");
 	
 	// todo: testes retirar
@@ -62,10 +62,10 @@ function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nome
 	// testes retirar
 	
 	if (indiceFrequencia != null) {
-		FREQUENCIA.salvaFrequencia (indiceCidadao, indiceFrequencia, frequencia, $('#' + nomeObs).val(), cidadao_id, tipo_atuacao_id, this.salvaFrequenciaSuccess, this.salvaFrequenciaFail);
+		FREQUENCIA.salvaFrequencia (indiceCidadao, indiceFrequencia, frequencia, $('#' + nomeObs).val(), cidadao_id, tipo_atuacao_id, nomeCheck, this.salvaFrequenciaSuccess, this.salvaFrequenciaFail);
 	}
 	else {
-		FREQUENCIA.salvaFrequencia (indiceCidadao, indiceFrequencia, frequencia, $('#' + nomeObs).val(), cidadao_id, tipo_atuacao_id, this.salvaFrequenciaSuccess, this.salvaFrequenciaFail);
+		FREQUENCIA.salvaFrequencia (indiceCidadao, indiceFrequencia, frequencia, $('#' + nomeObs).val(), cidadao_id, tipo_atuacao_id, nomeCheck, this.salvaFrequenciaSuccess, this.salvaFrequenciaFail);
 	}
 }
 

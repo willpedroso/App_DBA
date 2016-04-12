@@ -1344,6 +1344,14 @@ p.info-basica{
 	margin: 8px 0 15px 0;
 	float: right;
 }
+.icoSalvo{
+	height: 50px;
+	width: 64px;
+	border: none;
+	padding: 8px;
+	margin: 8px 0 15px 0;
+	float: right;
+}
 .btnLimpar{
 	font-family: "Roboto", Arial;
 	font-size: 24px;
