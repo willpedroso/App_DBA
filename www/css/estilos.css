@@ -45,8 +45,12 @@ output, ruby, section, summary, time, mark, audio, video {
 	color:#333333;
 	box-sizing:border-box;
 }
+input { 
+    text-transform: uppercase;
+}
 textarea{
 	font-family:"Roboto", Arial;
+	text-transform: uppercase;
 }
 button{
 	padding: 0;
