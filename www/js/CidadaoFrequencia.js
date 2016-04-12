@@ -538,8 +538,8 @@
 			*/
 			// testes retirar
 
-			// Monta a tela
-			FREQUENCIA.montaFrequencia();
+			// Cria frequências livres, se necessário
+			FREQUENCIA.criaFrequenciasLivresFaltantes();
 		}
 	},
 	
@@ -561,7 +561,7 @@
 				dt.dt_criacao = null;
 				dt.descricao = "";
 				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
-				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Saude = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Saude = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length - 1;
 			}
 			if (FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social == null) {
 				// Inclui uma frequência livre social
@@ -577,7 +577,7 @@
 				dt.dt_criacao = null;
 				dt.descricao = "";
 				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
-				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Social = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length - 1;
 			}
 			if (FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho == null) {
 				// Inclui uma frequência livre de trabalho
@@ -593,7 +593,7 @@
 				dt.dt_criacao = null;
 				dt.descricao = "";
 				FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.push(dt);
-				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho = FREQUENCIA.listaFrequenciasCidadaos.length - 1;
+				FREQUENCIA.listaFrequenciasCidadaos[i].indice_frequencia_livre_Trabalho = FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias.length - 1;
 			}
 		}
 		// Monta a tela
@@ -1034,6 +1034,7 @@
     salvaFrequencia: function(indiceCidadao, indiceFrequencia, frequencia, justificativa, cidadao_id, tipo_atuacao_id, cbSuccess, cbFail) {
 	    console.log("salvaFrequencia");
 		
+		aguardeMsgOn("Salvando a frequência...");
 		// Salva o tipo de atuação para controlar a apresentação da aba correta após o recarregamento
 		switch (FREQUENCIA.listaIDVersusAtuacao_Nome[tipo_atuacao_id]) {
 			case "Saúde":
@@ -1061,7 +1062,7 @@
 			if (FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id == null) {
 				// Nova frequência, insere
 				var hoje = new Date();
-				var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+				var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()) + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds();
 				BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 									VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 									[
@@ -1094,7 +1095,7 @@
 		else {
 			// Nova frequência livre
 			var hoje = new Date();
-			var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+			var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()) + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds();
 			BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 								VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 								[
@@ -1120,7 +1121,7 @@
 
 		// Insere nova frequencia
 		var hoje = new Date();
-		var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
+		var strHoje = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()) + " " + hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds();
 		BANCODADOS.sqlCmdDB("INSERT INTO frequencia (cidadao_id, atividade_id, tipo_atuacao_id, usuario_id, data_frequencia, frequencia, justificativa, frequencia_livre, status, dt_criacao, mobile) \
 							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 							[
@@ -1152,7 +1153,7 @@
 							"AND data_frequencia = ? " +
 							"AND frequencia = ? " +
 							"AND justificativa = ? " +
-							"AND frequencia_livre = ? " +
+							//"AND frequencia_livre = ? " +		// se utilizar este campo na busca ocorre erro!!!
 							"AND status = ? " +
 							"AND dt_criacao = ? " +
 							"AND mobile = ? ",
@@ -1164,7 +1165,7 @@
 							 FREQUENCIA.fi_data_frequencia,
 							 FREQUENCIA.fi_frequencia,
 							 FREQUENCIA.fi_justificativa,
-							 FREQUENCIA.fi_frequencia_livre,
+							 //FREQUENCIA.fi_frequencia_livre,		// se utilizar este campo na busca ocorre erro!!!
 							 FREQUENCIA.fi_status,
 							 FREQUENCIA.fi_dt_criacao,
 							 FREQUENCIA.fi_mobile
@@ -1175,7 +1176,7 @@
 	
 	obtemIDFrequenciaSuccess: function (trans, res) {
 		console.log("obtemIDFrequenciaSuccess");
-		
+
 		if (res.rows.length == 1) {
 			// Atualiza o id da frequência na lista, com o id do novo registro
 			FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id = res.rows.item(0).id;
