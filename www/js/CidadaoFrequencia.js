@@ -713,7 +713,7 @@
 				}
 				nomeRadio = "radioFrequencias_Livre_Saude_" + i;
 				nomeObs = "observacao_Livre_Saude_" + i;
-				nomeCheck = "check_" + i;
+				nomeCheck = "check_livre_saude_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
@@ -724,7 +724,7 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSaude >= 0 ? lIndiceFrequenciaLivreSaude : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ", " + nomeCheck + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSaude >= 0 ? lIndiceFrequenciaLivreSaude : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
 										  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +
 										"</div>" + 
 									  "</div>" + 
@@ -763,6 +763,7 @@
 				}
 				nomeRadio = "radioFrequencias_Livre_Trabalho_" + i;
 				nomeObs = "observacao_Livre_Trabalho_" + i;
+				nomeCheck = "check_livre_trabalho_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
@@ -773,8 +774,8 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreTrabalho >= 0 ? lIndiceFrequenciaLivreTrabalho : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
-										  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +										
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreTrabalho >= 0 ? lIndiceFrequenciaLivreTrabalho : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
+										  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +										
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -812,6 +813,7 @@
 				}
 				nomeRadio = "radioFrequencias_Livre_Social_" + i;
 				nomeObs = "observacao_Livre_Social_" + i;
+				nomeCheck = "check_livre_social_" + i;
 				htmlFrequencia = "<div class='divFrequenciaLivre'>" + 
 									  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>FREQUÊNCIA LIVRE</p>" +  
 									  "<div class='linhaForm' id='divFrequencias'>" + 
@@ -822,8 +824,8 @@
 										  "<p>Não</p>" + 
 										  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 										  "<p>Sim</p>" + 
-										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSocial >= 0 ? lIndiceFrequenciaLivreSocial : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
-										  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +	
+										  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + (lIndiceFrequenciaLivreSocial >= 0 ? lIndiceFrequenciaLivreSocial : null) + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + FREQUENCIA.listaFrequenciasCidadaos[i].cidadao_id + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
+										  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +	
 										"</div>" + 
 									  "</div>" + 
 									  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -878,6 +880,7 @@
 					if (freqSaude) {
 						nomeRadio = "radioFrequencias_Saude" + i + j;
 						nomeObs = "observacao_Saude" + i + j;
+						nomeCheck = "check_saude_" + i + j;
 						
 						htmlFrequencia = "<div class='divFrequencia'>" + 
 											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
@@ -889,8 +892,8 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
-												  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Saúde"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' " + btnDisabled + ">" + 
+												  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -901,6 +904,7 @@
 					if (freqTrabalho) {
 						nomeRadio = "radioFrequencias_Trabalho" + i + j;
 						nomeObs = "observacao_Trabalho" + i + j;
+						nomeCheck = "check_trabalho_" + i + j;
 						
 						htmlFrequencia = "<div class='divFrequencia'>" + 
 											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
@@ -912,8 +916,8 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
-												  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Trabalho"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
+												  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -924,6 +928,7 @@
 					if (freqSocial) {
 						nomeRadio = "radioFrequencias_Social" + i + j;
 						nomeObs = "observacao_Social" + i + j;
+						nomeCheck = "check_social_" + i + j;
 						
 						htmlFrequencia = "<div class='divFrequencia'>" + 
 											  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
@@ -935,8 +940,8 @@
 												  "<p>Não</p>" + 
 												  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 												  "<p>Sim</p>" + 
-												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
-												  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +
+												  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaAtuacao_NomeVersusID["Social"] + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
+												  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +
 												"</div>" + 
 											  "</div>" + 
 											  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -948,6 +953,7 @@
 					var strAtuacaoNome = FREQUENCIA.listaIDVersusAtuacao_Nome[FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id];
 					nomeRadio = "radioFrequencias_" + strAtuacaoNome + i + j;
 					nomeObs = "observacao_" + strAtuacaoNome + i + j;
+					nomeCheck = "check_" + strAtuacaoNome + i + j;
 					
 					htmlFrequencia = "<div class='divFrequencia'>" + 
 										  "<p class='atividadeFreq'><img src='img/icoSetaIn.png'>" + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].descricao + "</p>" +  
@@ -959,8 +965,8 @@
 											  "<p>Não</p>" + 
 											  "<input type='radio' name='" + nomeRadio + "' value='Sim' class='radio' onchange='radioFrequencia(\"" + nomeObs + "\", \"" + nomeRadio + "\")'" + selectedSim + ">" + 
 											  "<p>Sim</p>" + 
-											  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + ");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
-											  "<img src='img/icoSalvo.png' class='icoSalvo' style='display:none'>" +
+											  "<input type='button' id='btnSalvar' onclick='validaCamposFrequencia(" + i + ", " + j + ", \"" + nomeRadio + "\", \"" + nomeObs + "\", " + null + ", " + FREQUENCIA.listaFrequenciasCidadaos[i].listaFrequencias[j].tipo_atuacao_id + ", \"" + nomeCheck + "\");' value='Salvar' class='btnSalvar' "+ btnDisabled + ">" + 
+											  "<img src='img/icoSalvo.png' id='" + nomeCheck + "' class='icoSalvo' style='display:none'>" +
 											"</div>" + 
 										  "</div>" + 
 										  "<textarea placeholder='Observações' id='" + nomeObs + "' class='inputGrande inputFrequenciaLivre'" + (showObservacoes ? "" : " style='display:none'") + ">" + observacoes + "</textarea>" + 
@@ -1189,12 +1195,12 @@
 	obtemIDFrequenciaSuccess: function (trans, res) {
 		console.log("obtemIDFrequenciaSuccess");
 
+		var nCheck = FREQUENCIA.nomeCheck;
 		if (res.rows.length == 1) {
 			// Atualiza o id da frequência na lista, com o id do novo registro
 			FREQUENCIA.listaFrequenciasCidadaos[FREQUENCIA.indiceCidadao].listaFrequencias[FREQUENCIA.indiceFrequencia].id = res.rows.item(0).id;
 			// acende ícone de sucesso na linha da frequência
-			$("#" + FREQUENCIA.nomeCheck).show();
-			alert("executou");
+			$("#" + nCheck).show();
 		}
 		else {
 			FREQUENCIA.salvaFrequenciaFail();
