@@ -50,7 +50,6 @@ input {
 }
 textarea{
 	font-family:"Roboto", Arial;
-	text-transform: uppercase;
 }
 button{
 	padding: 0;
