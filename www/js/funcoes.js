@@ -9,7 +9,7 @@ function onDeviceReady() {
 
 
 
-
+$(document).unbind('mousedown', $.datepicker._checkExternalClick);
 $(document).ready(function(){
 
  var flag = "1";
