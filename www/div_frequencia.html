@@ -60,6 +60,9 @@
 	</div>
 	<script>
 		$(document).ready(function() {
+			var hoje = new Date();
+			hoje = new Date(hoje.getTime() + (24*60*60*1000));
+			$("#dataCorrente").attr("max", hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()));
 			$("#dataCorrente").val(FREQUENCIA.auxData);
 			if (FREQUENCIA.cidadao_id == null) {
 				FREQUENCIA.iniFrequencia();
