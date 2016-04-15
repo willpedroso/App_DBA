@@ -27,6 +27,9 @@
         },
         "io.litehelpers.cordova.sqlite": {
             "PACKAGE_NAME": "br.gov.sp.prodam.dba_app"
+        },
+        "nl.moreapps.datepicker": {
+            "PACKAGE_NAME": "br.gov.sp.prodam.dba_app"
         }
     },
     "dependent_plugins": {}

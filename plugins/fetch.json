@@ -14,5 +14,14 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "nl.moreapps.datepicker": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/DURK/cordova-datepicker-plugin",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

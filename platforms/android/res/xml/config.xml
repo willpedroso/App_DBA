@@ -8,6 +8,9 @@
     <feature name="SQLitePlugin">
         <param name="android-package" value="io.liteglue.SQLitePlugin" />
     </feature>
+    <feature name="Datepicker">
+        <param name="android-package" value="nl.moreapps.datepicker.Datepicker" />
+    </feature>
     <allow-intent href="market:*" />
     <name>De Braços Abertos</name>
     <description>
