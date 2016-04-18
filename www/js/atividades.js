@@ -53,7 +53,8 @@ function preparaListasOpt () {
 		$("input[name='infoDiaInteiro']").prop("disabled", readonlyAtividade);
 		
 		// Data de início
-		$("#data_inicio").val(ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_inicio);
+		var auxData = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_inicio.split("-");
+		$("#data_inicio").val(auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
 		$("#data_inicio").prop("readonly", readonlyAtividade);
 		
 		// Hora de início
@@ -68,7 +69,8 @@ function preparaListasOpt () {
 		
 		// Data de término
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino;
-		$("#data_termino").val(auxVar == null ? "" : auxVar);
+		auxData = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino.split("-");
+		$("#data_termino").val(auxVar == null ? "" : auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
 		$("#data_termino").prop("readonly", readonlyAtividade);
 		
 		// Hora de término
@@ -276,7 +278,7 @@ function confirmEncerraAtiv() {
 function encerraAtiv() {
 	console.log("encerraAtiv");
 	
-	ATIVIDADE.encerraAtividade(ATIVIDADE.editIndexAtividade);
+	ATIVIDADE.encerraAtividade();
 }
 
 function confirmExcluiAtiv() {
@@ -475,7 +477,8 @@ function validaCampos() {
 		//alert("Ver console");
 		*/
 		// todo: testes retirar
-		
+		var auxDataInicio = $('#data_inicio').val().split("/");
+		var auxDataTermino = $('#data_termino').val().split("/");
 		ATIVIDADE.salvaAtividade(ATIVIDADE.editIndexAtividade,													// índice da atividade
 								 $("#pontoServicoLabel").val(),													// ponto de serviço (nome)
 								 $("#tipoAtuacaoLabel").val(),													// tipo de atuação (nome)
@@ -483,10 +486,10 @@ function validaCampos() {
 								 $("#descricao").val(),															// título == descrição
 								 $("#tipoPeriodicidadeLabel").val(),											// periodicidade (nome)
 								 $("input:radio[name=infoDiaInteiro]:checked").val() == "Não" ? 0 : 1,			// dia inteiro
-								 $('#data_inicio').val(),														// data de início
+								 auxDataInicio[2] + "-" + auxDataInicio[1] + "-" + auxDataInicio[0],			// data de início
 								 $('#hora_inicio').val() == "" ? null : $('#hora_inicio').val(),				// hora de início
 								 $("input:radio[name=infoPermanente]:checked").val() == "Não" ? 0 : 1,			// permanente
-								 $('#data_termino').val(),														// data de término
+								 auxDataTermino[2] + "-" + auxDataTermino[1] + "-" + auxDataTermino[0],			// data de término
 								 $('#hora_termino').val() == "" ? null : $('#hora_termino').val(),				// hora de término
 								 diasSemanaRepetir,																// repetir nos dias da semana
 								 // repetir no dia da semana (mensal)

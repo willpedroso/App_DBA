@@ -5,7 +5,9 @@ function carregaFrequencia () {
 	window.scrollTo(0, 0);
 	var hoje = new Date();
 	FREQUENCIA.auxData = hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate());
-	$("#dataCorrente").val(FREQUENCIA.auxData);
+	$("#dataCorrente").val((hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()) + "/" + 
+						   ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "/" +
+						   hoje.getFullYear());
 			
 	if (USUARIO.perfil_tecnico == true) {
 		// Usuário é técnico, abre em frequências
@@ -69,10 +71,15 @@ function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nome
 	}
 }
 
-function dataMudou(Atuacao) {
+function dataMudou() {
 	console.log("dataMudou");
 	
-	FREQUENCIA.auxData = $("#dataCorrente"/* + Atuacao*/).val();
-	aguardeMsgOn("Carregando dados...");
-	PageManager.loadTmpl('div_frequencia');
+	var data = $("#dataCorrente").val().split("/");
+	if (FREQUENCIA.auxData != (data[2] + "-" + data[1] + "-" + data[0]))
+	{
+		// Houve mudança de data
+		FREQUENCIA.auxData = data[2] + "-" + data[1] + "-" + data[0];
+		aguardeMsgOn("Carregando dados...");
+		PageManager.loadTmpl('div_frequencia');
+	}
 }

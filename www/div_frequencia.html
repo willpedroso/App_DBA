@@ -7,7 +7,7 @@
 					<label class="dataFreq">  
 						<span class="labelFiltroData">Filtre por data</span>
 						<!--<input type="text" class="inputPeq hasDatepicker" value="" id="dataCorrente" name="dataCorrente">-->
-						<input type="date" class="inputPeq float-nn" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou('Saúde');">
+						<input type="text" class="inputPeq float-nn datepicker" value="" id="dataCorrente" name="dataCorrente" placeholder="dd/mm/aaaa" onchange="dataMudou();" readonly="">
 						<img src="img/icoCalendar.png" class="icoCalendario">
 					</label>
 				</div>
@@ -60,10 +60,10 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-			var hoje = new Date();
-			hoje = new Date(hoje.getTime() + (24*60*60*1000));
-			$("#dataCorrente").attr("max", hoje.getFullYear() + "-" + ((hoje.getMonth() + 1) > 9 ? (hoje.getMonth() + 1) : "0" + (hoje.getMonth() + 1)) + "-" + (hoje.getDate() > 9 ? hoje.getDate() : "0" + hoje.getDate()));
-			$("#dataCorrente").val(FREQUENCIA.auxData);
+			$("#dataCorrente").datepicker({maxDate: new Date(FREQUENCIA.auxData + "T12:00")});
+			var data = FREQUENCIA.auxData.split("-");
+			$("#dataCorrente").val(data[2] + "/" + data[1] + "/" + data[0]);
+			
 			if (FREQUENCIA.cidadao_id == null) {
 				FREQUENCIA.iniFrequencia();
 			}

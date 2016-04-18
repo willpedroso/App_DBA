@@ -48,10 +48,9 @@ function carregaDadosCidadao () {
 	$("#nome_social").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_social);
 	$("#nome_mae").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].nome_mae);
 	$("#sisrua").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].sisrua);
-	$("#data_nascimento").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento + "-" +
-							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento + "-" +
-							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento);
-	
+	$("#data_nascimento").val(CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].dia_nascimento + "/" +
+							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].mes_nascimento + "/" +
+							  CIDADAO.listaCidadaosDadosBusca[CIDADAO.indiceListaCidadao].ano_nascimento);
 	atualizaFichaCidadao();
 	
 	// posiciona no início
@@ -97,7 +96,7 @@ function validaCamposIdentificacao() {
 		// prepara data de nascimento
 		var dnascimento = [];
 		if ($('#data_nascimento').val() != "") { 
-			var dnascimento = $('#data_nascimento').val().split("-");
+			var dnascimento = $('#data_nascimento').val().split("/");
 		}
 	
 		CIDADAO.salvaCidadao($("#nome").val(),											// nome
@@ -105,10 +104,10 @@ function validaCamposIdentificacao() {
 							 $("#nome_mae").val(),										// nome da mãe
 							 $("#sisrua").val(),										// sisrua
 							 // dia do nascimento							 
-							 dnascimento.length > 0 ? dnascimento[2] : "",
+							 dnascimento.length > 0 ? dnascimento[0] : "",
 							 // mês do nascimento
 							 dnascimento.length > 0 ? dnascimento[1] : "",
-							 dnascimento.length > 0 ? dnascimento[0] : "",
+							 dnascimento.length > 0 ? dnascimento[2] : "",
 							 this.salvaCidadaoSuccess,
 							 this.salvaCidadaoFail);
 	}
