@@ -959,7 +959,7 @@
 		}
 /*
 		// Testes - apresenta dados da atividade selecionada
-		alertMessage ("Dados da atividade: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].id);
+		alertMessage ("Dados da atividade: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].id, false);
 		var dadosAtividadePrint = "Tipo de serviço: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_servico_nome + "\r\n";
 		dadosAtividadePrint += "Área de atuação: " + ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].tipo_atuacao_nome + "\r\n";
 		dadosAtividadePrint += "Atividade privada: " + (ATIVIDADE.listaAtividades[ATIVIDADE.indexAtividade].privada == 1 ? "Sim" : "Não") + "\r\n";
@@ -1241,7 +1241,7 @@
 	encerraAtividadeSuccess: function () {
 		console.log("encerraAtividadeSuccess");
 
-		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.encerraAtividadeOK);
+		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.encerraAtividadeOK, false);
 	},
 	
 	encerraAtividadeOK: function () {
@@ -1270,7 +1270,7 @@
 	excluiAtividadeSuccess: function () {
 		console.log("excluiAtividadeSuccess");
 		
-		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.excluiAtividadeOK);
+		alertMessageCallback("Encerramento da atividade efetuado com sucesso!", ATIVIDADE.excluiAtividadeOK, false);
 	},
 	
 	excluiAtividadeOK: function () {

@@ -1021,7 +1021,7 @@ var BANCODADOS = {
 				if (jsonResponse.return == false) {
 					// Houve falha no processamento de dados enviados
 					aguardeMsgOff();
-					alertMessageCallback("Houve falha no envio de dados. \r\n" + jsonResponse.message, BANCODADOS.sincSuccessUsuario);
+					alertMessageCallback("Houve falha no envio de dados. \r\n" + jsonResponse.message, BANCODADOS.sincSuccessUsuario, true);
 				}
 				else {
 					if (BANCODADOS.counterServicesUpload + 1 < BANCODADOS.listaServicosUpload.length) {
@@ -1039,18 +1039,18 @@ var BANCODADOS = {
 			}
 			catch (err) {
 				aguardeMsgOff();
-				alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario);
+				alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario, true);
 			}
         }).bind(this)).fail(function(){
 			aguardeMsgOff();
-			alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario);
+			alertMessageCallback(BANCODADOS.listaServicosUpload[BANCODADOS.counterServicesUpload].msgUpload + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario, true);
         });		
     },
 	
 	envioFalha: function (err) {
 		console.log("envioFalha");
 		
-		alertMessage("Houve falha no envio dos dados!");
+		alertMessage("Houve falha no envio dos dados!", true);
 	},
 	
 	initSincronismo: function (usuarioIDLogin) {
@@ -1352,11 +1352,11 @@ var BANCODADOS = {
 			}
 			catch (err) {
 				aguardeMsgOff();
-				alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario);
+				alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nErro no parse - erro: " + err, BANCODADOS.sincSuccessUsuario, true);
 			}
         }).bind(this)).fail(function(){
 			aguardeMsgOff();
-			alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario);
+			alertMessageCallback(BANCODADOS.listaMsgDownload[BANCODADOS.downloadCounter - 1] + "\r\nHouve falha de acesso à internet.", BANCODADOS.sincSuccessUsuario, true);
         });		
     },
     // Obtenção de Operadores
@@ -1399,13 +1399,13 @@ var BANCODADOS = {
 		// todo: testes retirar
 		var fim = new Date();
 		BANCODADOS.totalSegundos += (fim - BANCODADOS.testesData)/1000;
-		//alertMessage("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.");
+		//alertMessage("FIM do download de: " + BANCODADOS.listaDownload[BANCODADOS.downloadCounter-1] + "\r\nDuração: " + ((fim - BANCODADOS.testesData)/1000) + " segundos.", false);
 		// testes retirar
 		
 		if (BANCODADOS.downloadCounter == BANCODADOS.listaDownload.length) {
 			aguardeMsgOff();
 
-			alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!");
+			alertMessage("Sincronismo efetuado com sucesso em: " + Math.ceil(BANCODADOS.totalSegundos) + " segundos!", false);
 
 			if (BANCODADOS.usuarioSincronismo != -1) {
 				// Sincronismo interno, carrega cidadãos recebidos
@@ -1423,25 +1423,28 @@ var BANCODADOS = {
 		console.log("sincSuccessUsuario");
 		
 		aguardeMsgOff();
-		PageManager.loadTmpl('div_busca_inicio');
-		abasmenu();
-		fechaficha();
-		hideTela('#div_login');
-		showTela('#div_header');
+		
+		if(BANCODADOS.usuarioSincronismo != -1) {
+			PageManager.loadTmpl('div_busca_inicio');
+			abasmenu();
+			fechaficha();
+			hideTela('#div_login');
+			showTela('#div_header');
+		}
 	},
 
 	insertSincFail: function (err) {
 		console.log("insertSincFail");
 		
 		aguardeMsgOff();
-		alertMessageCallback("Houve falha na inserção dos dados. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario);
+		alertMessageCallback("Houve falha na inserção dos dados. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario, true);
 	},
 	
 	deleteSincFail: function (err) {
 		console.log("deleteSincFail");
 		
 		aguardeMsgOff();
-		alertMessageCallback("Houve falha na exclusão dos registros anteriores. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario);
+		alertMessageCallback("Houve falha na exclusão dos registros anteriores. \r\nErro: " + err, BANCODADOS.sincSuccessUsuario, true);
 	},
 
     // **********************************************************************************************************
@@ -2815,7 +2818,7 @@ var BANCODADOS = {
 	insertDataFail: function (err) {
         console.log("insertDataFail");
 		aguardeMsgOff();
-        alertMessage("Erro na inserção de dados no banco - msg: " + err);
+        alertMessage("Erro na inserção de dados no banco - msg: " + err, true);
 	},
 	// ********************** TESTES - RETIRAR *******************************
 	
@@ -2845,7 +2848,7 @@ var BANCODADOS = {
     createTablesFail: function (err) {
         console.log("createTablesFail");
 		aguardeMsgOff();
-        alertMessage("Erro na criação das tabelas do banco de dados - msg: " + err);
+        alertMessage("Erro na criação das tabelas do banco de dados - msg: " + err, true);
     },
 
     createTablesSuccess: function () {
@@ -2867,7 +2870,7 @@ var BANCODADOS = {
         }
 	    catch (err) {
 			aguardeMsgOff();
-	        alertMessage("createDB() exception: " + err.msg);
+	        alertMessage("createDB() exception: " + err.msg, true);
 	    }
 	},
 

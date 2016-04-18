@@ -31,7 +31,7 @@ function salvaFrequenciaFail (err) {
 	console.log("salvaFrequenciaFail: " + err);
 
 	aguardeMsgOff();
-	alertMessage ("Houve falha no salvamento da frequência.");
+	alertMessage ("Houve falha no salvamento da frequência.", true);
 }
 
 function validaCamposFrequencia(indiceCidadao, indiceFrequencia, nomeRadio, nomeObs, cidadao_id, tipo_atuacao_id, nomeCheck) {

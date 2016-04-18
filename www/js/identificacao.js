@@ -63,7 +63,7 @@ function salvaCidadaoSuccess () {
 
 function salvaCidadaoFail (err) {
 	console.log("identificacao.salvaCidadaoFail");
-	alertMessage("Houve erro no salvamento do cidadão: " + err);
+	alertMessage("Houve erro no salvamento do cidadão: " + err, true);
 }
 
 function validaCamposIdentificacao() {

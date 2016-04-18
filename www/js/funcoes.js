@@ -182,7 +182,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if($('input.adicionaObs').val()  == ''){
-			alertMessage("Preencha o campo Observações Rápidas");
+			alertMessage("Preencha o campo Observações Rápidas", false);
 		}
 		else{
 			
@@ -207,7 +207,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if($('input.adicionaObsCertidao').val()  == '' || $('.selectCertidao').text() == 'Selecione'){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -235,7 +235,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaDrogasAlemCrack').val()  == '' ){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -260,7 +260,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaEspecialidade').val()  == '' ){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -284,7 +284,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaDrogaHoje').val()  == '' ){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -308,7 +308,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaQualOficina').val()  == '' || $('input.adicionaLocalOficina').val()  == '' ){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -332,7 +332,7 @@ $("#bt_frequencia").click(function(){
 		var idobj =  d.getTime();
 		
 		if( $('input.adicionaQualAtividade').val()  == '' || $('input.adicionaLocalAtividade').val()  == '' ){
-			alertMessage("Preencha os campos corretamente");
+			alertMessage("Preencha os campos corretamente", false);
 		}
 		else{
 			
@@ -532,7 +532,7 @@ function adicionaCertidao(nome_certidao) {
 	}
 
 	if($('input.adicionaObsCertidao').val()  == '' || (nome_certidao == null ? ($("#tipoCertidaoLabel option:selected").text() == 'Selecione') : false)){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -556,7 +556,7 @@ function adicionaProvidencia() {
 	
 //	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
 	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -578,7 +578,7 @@ function addProvidencia() {
 	
 //	if($('input.adicionaObsProvidencia').val()  == '' || $('.selectProvidencia').text() == 'Selecione'){
 	if($('input.adicionaObsProvidencia').val()  == '' || $('input.adicionaObsProvidenciaPeq').val() == ''){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -608,7 +608,7 @@ function adicionaContatoEmpresa(nome_dispositivo_contato) {
 	}
 	
 	if($('input.adicionaNumContatoEmpresa').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoEmpresaLabel').val() == 'Selecione') : false)){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -641,7 +641,7 @@ function adicionaContato (nome_dispositivo_contato) {
 	
 	//if($('input.adicionaNumContato').val()  == '' || $('.selectDispositivoContato').text() == 'Selecione'){
 	if($('input.adicionaNumContato').val()  == '' || (nome_dispositivo_contato == null ? ($('#tipoDispositivoContatoLabel').val() == 'Selecione') : false)){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -674,7 +674,7 @@ function adicionaDocumento (nome_documento) {
 	}
 	
 	if($('input.adicionaNumDocumento').val()  == '' || (nome_documento == null ? ($('#tipoDocumentoLabel').val() == 'Selecione') : false)){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		var html2insert ='<div id="div'+idobj+'">'+
@@ -694,7 +694,7 @@ function adicionaDrogaHoje() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaDrogaHoje').val()  == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -712,7 +712,7 @@ function adicionaAtividadeRecreativa() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualAtividade').val()  == '' || $('input.adicionaLocalAtividade').val()  == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -732,7 +732,7 @@ function adicionaOficinaParticipou() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualOficina').val()  == '' || $('input.adicionaLocalOficina').val()  == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -752,7 +752,7 @@ function adicionaEspecialidadeConsultaHoje() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaEspecialidade').val()  == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -770,7 +770,7 @@ function adicionaDrogasAlemCrack() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaDrogasAlemCrack').val()  == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -788,7 +788,7 @@ function adicionaDrogas(dias, meses, anos) {
 	var idobj =  d.getTime();
 	
 	if($('input.adicionaDrogas').val()  == ''){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		var vdias = dias != null ? dias : $("#diaDrogasFazUsoLabel option:selected").text();
@@ -823,7 +823,7 @@ function adicionaTelefoneFamiliar(parentesco) {
 	var idobj =  d.getTime();
 	
 	if($('input.adicionaNumContatoFamiliar').val()  == '' || $('.selectTipoParente').text() == 'Selecione'){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -864,7 +864,7 @@ function adicionaAcompanhamentoUBS() {
 	var idobj =  d.getTime();
 	
 	if( $('input.adicionaQualUbsSaude').val()  == '' || $('input.adicionaTecnicoReferenciaUbsSaude').val() == '' ){
-		alertMessage("Preencha os campos corretamente");
+		alertMessage("Preencha os campos corretamente", false);
 	}
 	else{
 		
@@ -1833,48 +1833,63 @@ function fcnAtualizacao () {
 	}
 }
 
+// *************************************************
 // MENSAGENS EM ALERTA
-function alertClose() {
-	$('#msg-ok').attr('style','display:none');
-}
-
+// *************************************************
 var alertOptions_cb = null;
-
-function alertCloseYes(cb) {
-	$('#msg-yn').attr('style','display:none');
-}
-
-function alertCloseCallback() {
-	$('#msg-ok').attr('style','display:none');
-	alertOptions_cb();
-}
-
-function alertMessageCallback(msg, cb) {
-	alertOptions_cb = cb;
-	$("#txtMsgOK").empty();
-	var conteudo = "<img src='img/msgInfo.png' width='128'><p>";
-	conteudo += msg;
-	conteudo += "</p><input onclick='alertCloseCallback()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
-	$("#txtMsgOK").append(conteudo);
-	$('#msg-ok').attr('style','display:block');
-}
-
-function alertCloseYesCallback() {
-	$('#msg-yn').attr('style','display:none');
-	alertOptions_cb();
-}
 
 function alertCloseNo() {
 	$('#msg-yn').attr('style','display:none');
 }
 
-function alertMessage(msg) {
+// ****** ALERTA DE MENSAGEM COM CALLBACK
+function alertCloseCallback() {
+	$('#msg-ok').attr('style','display:none');
+	alertOptions_cb();
+}
+
+function alertMessageCallback(msg, cb, err) {
+	alertOptions_cb = cb;
 	$("#txtMsgOK").empty();
-	var conteudo = "<img src='img/msgInfo.png' width='128'><p>";
+	var conteudo;
+	if (err == true) {
+		conteudo = "<img src='img/msgErro.png' width='128'><p>";
+	} 
+	else {
+		conteudo = "<img src='img/msgInfo.png' width='128'><p>";
+	}
+	conteudo += msg;
+	conteudo += "</p><input onclick='alertCloseCallback()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
+	$("#txtMsgOK").append(conteudo);
+	$('#msg-ok').attr('style','display:block');
+}
+// ****** ALERTA DE MENSAGEM COM CALLBACK
+
+// ****** ALERTA DE MENSAGEM
+function alertClose() {
+	$('#msg-ok').attr('style','display:none');
+}
+
+function alertMessage(msg, err) {
+	$("#txtMsgOK").empty();
+	var conteudo;
+	if (err == true) {
+		conteudo = "<img src='img/msgErro.png' width='128'><p>";
+	}
+	else {
+		conteudo = "<img src='img/msgInfo.png' width='128'><p>";
+	}
 	conteudo += msg;
 	conteudo += "</p><input onclick='alertClose()' type='button'  value='OK' id='bt-msgok' class='btnOk'>";
 	$("#txtMsgOK").append(conteudo);
 	$('#msg-ok').attr('style','display:block');
+}
+// ****** ALERTA DE MENSAGEM
+
+// ****** ALERTA DE MENSAGEM COM OPÇÕES, COM CALLBACK
+function alertCloseYesCallback() {
+	$('#msg-yn').attr('style','display:none');
+	alertOptions_cb();
 }
 
 function alertOptionsCallback(msg, cb) {
@@ -1887,6 +1902,12 @@ function alertOptionsCallback(msg, cb) {
 	$("#txtMsgYN").append(conteudo);
 	$('#msg-yn').attr('style','display:block');
 }
+// ****** ALERTA DE MENSAGEM COM OPÇÕES, COM CALLBACK
+
+// ****** ALERTA DE MENSAGEM COM OPÇÕES
+function alertCloseYes(cb) {
+	$('#msg-yn').attr('style','display:none');
+}
 
 function alertOptions(msg) {
 	$("#txtMsgYN").empty();
@@ -1897,7 +1918,9 @@ function alertOptions(msg) {
 	$("#txtMsgYN").append(conteudo);
 	$('#msg-yn').attr('style','display:block');
 }
+// ****** ALERTA DE MENSAGEM COM OPÇÕES
 
+// ****** ALERTA PARA LOGOFF
 function alertLogoff(msg) {
 	$("#txtMsgYN").empty();
 	var conteudo = "<img src='img/msgWarning.png' width='128'><p>";
@@ -1919,3 +1942,7 @@ function alertOffYes() {
 function alertOffNo() {
 	$('#msg-yn').attr('style','display:none');
 }
+// ****** ALERTA PARA LOGOFF
+// *************************************************
+// MENSAGENS EM ALERTA
+// *************************************************

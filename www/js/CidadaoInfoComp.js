@@ -44,7 +44,7 @@
 		console.log("dadosEntradaInfoCompleFail");
 		
 		// Retorna
-		alertMessage("Houve falha na obtenção de informações complementares do cidadão.");
+		alertMessage("Houve falha na obtenção de informações complementares do cidadão.", true);
 		
 		INFOCOMPLE.cbFail_f(err);
 	},

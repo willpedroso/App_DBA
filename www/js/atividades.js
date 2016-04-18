@@ -55,7 +55,12 @@ function preparaListasOpt () {
 		// Data de início
 		var auxData = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_inicio.split("-");
 		$("#data_inicio").val(auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
-		$("#data_inicio").prop("readonly", readonlyAtividade);
+		if (readonlyAtividade) {
+			$("#data_inicio").attr("disabled", "disabled");
+		}
+		else {
+			$("#data_inicio").removeAttr("disabled");
+		}
 		
 		// Hora de início
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_inicio;
@@ -71,7 +76,12 @@ function preparaListasOpt () {
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino;
 		auxData = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_data_termino.split("-");
 		$("#data_termino").val(auxVar == null ? "" : auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
-		$("#data_termino").prop("readonly", readonlyAtividade);
+		if (readonlyAtividade) {
+			$("#data_termino").attr("disabled", "disabled");
+		}
+		else {
+			$("#data_termino").removeAttr("disabled");
+		}
 		
 		// Hora de término
 		auxVar = ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].periodicidade_hora_termino;

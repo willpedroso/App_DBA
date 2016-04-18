@@ -1041,7 +1041,7 @@
 		// Retorna
 		aguardeMsgOff();
 
-		alertMessage("Houve falha na obtenção de informações de frequência.");
+		alertMessage("Houve falha na obtenção de informações de frequência.", true);
 		
 		FREQUENCIA.cbFail_f(err);
 	},

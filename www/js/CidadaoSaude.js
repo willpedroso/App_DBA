@@ -446,7 +446,7 @@
 		/*		
 		if (res.rows.length != 1) {
 			// Há mais de um registro de saúde para o cidadão
-			alertMessage ("Erro: Há mais de um registro de saúde para o cidadão!");
+			alertMessage ("Erro: Há mais de um registro de saúde para o cidadão!", true);
 		}
 		*/
 		var ds = {

@@ -74,10 +74,23 @@ function carregaSituacaoDBA () {
 	}
 	
 	// Data de inclusão no DBA
-	$("#data_inc_dba").val(SITUACAODBA.dt_inclusao_dba != null ? SITUACAODBA.dt_inclusao_dba.substr(0, 10) : "");
+	var auxData;
+	if (SITUACAODBA.dt_inclusao_dba != null && SITUACAODBA.dt_inclusao_dba != "") {
+		auxData = SITUACAODBA.dt_inclusao_dba.substr(0, 10).split("-");
+		$("#data_inc_dba").val(auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
+	}
+	else {
+		$("#data_inc_dba").val("");
+	}
 	
 	// Data de exclusão no DBA
-	$("#data_exc_dba").val(SITUACAODBA.dt_exclusao_dba != null ? SITUACAODBA.dt_exclusao_dba.substr(0, 10) : "");
+	if (SITUACAODBA.dt_exclusao_dba != null && SITUACAODBA.dt_exclusao_dba != "") {
+		auxData = SITUACAODBA.dt_exclusao_dba.substr(0, 10).split("-");
+		$("#data_exc_dba").val(auxData[2] + "/" + auxData[1] + "/" + auxData[0]);
+	}
+	else {
+		$("#data_exc_dba").val("");
+	}
 	
 	// Ajusta campos apresentados para usuário
 	if (USUARIO.perfil_tecnico == true) {
@@ -159,16 +172,17 @@ function validaCamposSituacaoDBA() {
 		}
 		
 		// prepara data de inclusão e exclusão
+		var auxData;
 		var dinclusao_Text = "";
-		var dinclusao;
 		if ($('#data_inc_dba').val() != "") {
-			dinclusao_Text = $('#data_inc_dba').val();
+			auxData = $('#data_inc_dba').val().split("/");
+			dinclusao_Text = auxData[2] + "-" + auxData[1] + "-" + auxData[0];
 		}
 
 		var dexclusao_Text = "";
-		var dexclusao;
 		if ($('#data_exc_dba').val() != "") {
-			dexclusao_Text = $('#data_exc_dba').val();
+			auxData = $('#data_exc_dba').val().split("/");
+			dexclusao_Text = auxData[2] + "-" + auxData[1] + "-" + auxData[0];
 		}
 		
 		// todo: testes retirar

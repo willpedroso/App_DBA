@@ -37,25 +37,25 @@ function retLogin (retCode) {
 		}
 	}
 	else if (retCode == USUARIO.login_return.SENHA_INCORRETA) {
-		alertMessage("Senha incorreta");
+		alertMessage("Senha incorreta", true);
 	}
 	else if (retCode == USUARIO.login_return.NAO_ENCONTRADO) {
-		alertMessage("Não encontrado");
+		alertMessage("Usuário não encontrado", true);
 	}
 	else if (retCode == USUARIO.login_return.REPETIDO) {
-		alertMessage("Repetido");
+		alertMessage("Usuário repetido", true);
 	}
 	else if (retCode == USUARIO.login_return.INATIVO) {
-		alertMessage("Inativo");
+		alertMessage("Usuário inativo", true);
 	}
 	else if (retCode == USUARIO.login_return.ALTERAR_SENHA) {
-		alertMessage("Alterar a senha");
+		alertMessage("Alterar a senha", true);
 	}
 	else if (retCode == USUARIO.login_return.ERRO_BD) {
-		alertMessage("Erro no banco");
+		alertMessage("Erro no banco de dados", true);
 	}
 	else {
 		// Erro desconhecido
-		alertMessage("Erro desconhecido");
+		alertMessage("Erro desconhecido", true);
 	}
 }

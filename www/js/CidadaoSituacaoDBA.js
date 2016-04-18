@@ -118,7 +118,7 @@
 		
 		if (SITUACAODBA.pontoServicoId == SITUACAODBA.auxpontoServicoId) {
 			// Não houve mudança do local de acolhida
-			ATIVIDADE.atualizaSituacaoDBA();
+			SITUACAODBA.atualizaSituacaoDBA();
 		}
 		else {
 			// Houve mudança no local de acolhida (pontoServicoId), troca a atividade diária do cidadão
@@ -218,6 +218,6 @@
 		
 		// Retorna
 		//SITUACAODBA.cbFail_f(err);
-		alertMessage("Erro na operação: " + err);
+		alertMessage("Erro na operação: " + err, true);
 	},
 }

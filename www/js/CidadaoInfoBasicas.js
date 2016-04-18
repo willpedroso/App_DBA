@@ -539,7 +539,7 @@
 		console.log("dadosEntradaInfoBasicasFail");
 		
 		// Retorna
-		alertMessage("Houve falha na obtenção de informações básicas do cidadão.");
+		alertMessage("Houve falha na obtenção de informações básicas do cidadão.", true);
 
 		INFOBASICAS.cbFail_f(err);
 	},
