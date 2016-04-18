@@ -1215,12 +1215,12 @@
 		ATIVIDADE.cbFail_f(err);
 	},
 	
-	encerraAtividade: function (indexAtividade) {
+	encerraAtividade: function () {
 		console.log("encerraAtividade");
 		
 		BANCODADOS.sqlCmdDB("UPDATE atividade SET status = 2, mobile = ? \
 							WHERE id = ?",
-							[CIDADAO.UPDATE_MOBILE, ATIVIDADE.listaAtividades[indexAtividade].id], 
+							[CIDADAO.UPDATE_MOBILE, ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].id], 
 							ATIVIDADE.dataTerminoAtividadeEncerrada, ATIVIDADE.encerraAtividadeFail);
 	},
 	
@@ -1233,7 +1233,7 @@
 							[
 							 hoje.getFullYear() + "-" + ((hoje.getMonth()+1) < 10 ? "0" + (hoje.getMonth()+1) : (hoje.getMonth()+1)) + "-" + (hoje.getDate() < 10 ? "0" + hoje.getDate() : hoje.getDate()),
 							 CIDADAO.UPDATE_MOBILE,
-							 ATIVIDADE.listaAtividades[indexAtividade].id
+							 ATIVIDADE.listaAtividades[ATIVIDADE.editIndexAtividade].id
 							], 
 							ATIVIDADE.encerraAtividadeSuccess, ATIVIDADE.encerraAtividadeFail);		
 	},
