@@ -7,14 +7,15 @@ function onDeviceReady() {
     }, false );}
 
 $(document).ready(function(){
-
+/*
 $(document).on('click', '.datepicker', function () {
                 showDatePicker($(this), 'date');
                 console.log('cliquei no datepicker');
             });
+*/
 
 
-
+$( "#data_nascimento" ).datepicker();
 
  var flag = "1";
 $('#bt_aba, #bt_opt').click(function(event){

@@ -38,7 +38,7 @@
                    </div>
                    <div class="linhaForm"> 
                       <span class="titLabel">Data de Nascimento*: (dd/mm/aaaa)</span>
-                      <input type="text" class="inputMedio float-nn datepicker" value="dd/mm/aaaa" id="data_nascimento" name="data_nascimento" disable>
+                      <input type="text" class="inputMedio float-nn datepicker" value="dd/mm/aaaa" id="data_nascimento" name="data_nascimento" readonly="">
                    </div>
                 </div>
                 <input type="button" class="btnAlterar" value="Salvar Alterações" onclick="validaCamposIdentificacao();">
@@ -51,3 +51,8 @@
 			carregaDadosCidadao();
 		});
 	</script>
+  <script>
+  $(function() {
+    $( "#data_nascimento" ).datepicker();
+  });
+  </script>
